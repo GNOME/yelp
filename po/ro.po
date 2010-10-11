@@ -3,19 +3,20 @@
 # Mugurel Tudor <mugurelu@gnome.ro>, 2002-2003, 2005, 2006.
 # Adi Roiban <adi@roiban.ro> 2008.
 # Daniel Șerbănescu <cyber19rider@gmail.com>, 2010.
+# Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ro\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&component=general\n"
+"Report-Msgid-Bugs-To: "
+"http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&component=general\n"
 "POT-Creation-Date: 2010-10-10 03:01+0000\n"
-"PO-Revision-Date: 2010-10-10 23:18+0100\n"
-"Last-Translator: Daniel Șerbănescu <cyber19rider@gmail.com>\n"
+"PO-Revision-Date: 2010-10-11 04:12+0300\n"
+"Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
 "X-Generator: Virtaal 0.6.1\n"
@@ -884,7 +885,7 @@ msgstr "Memorie insuficientă"
 #: ../libyelp/yelp-mallard-document.c:401 ../libyelp/yelp-man-document.c:269
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "Nu s-a găsit pagina „%s” din documentul „%s”."
+msgstr "Nu s-a găsit pagina „%s” în documentul „%s”."
 
 #: ../libyelp/yelp-docbook-document.c:298 ../libyelp/yelp-info-document.c:367
 #: ../libyelp/yelp-man-document.c:403
@@ -957,7 +958,7 @@ msgstr "Un exemplu de implementare YelpBookmarks"
 
 #: ../libyelp/yelp-location-entry.c:356
 msgid "Enable Search"
-msgstr "Activează Căutarea"
+msgstr "Activează căutarea"
 
 #: ../libyelp/yelp-location-entry.c:357
 msgid "Whether the location entry can be used as a search field"
@@ -990,7 +991,7 @@ msgstr "GtkSettings"
 
 #: ../libyelp/yelp-settings.c:149
 msgid "A GtkSettings object to get settings from"
-msgstr "Un obiect GtkSettings pentru a obține setările"
+msgstr "Un obiect GtkSettings de la care să se obțină configurările"
 
 #: ../libyelp/yelp-settings.c:157
 msgid "GtkIconTheme"
@@ -998,7 +999,7 @@ msgstr "GtkIconTheme"
 
 #: ../libyelp/yelp-settings.c:158
 msgid "A GtkIconTheme object to get icons from"
-msgstr "Un obiect GtkIconTheme pentru a obține pictogramele"
+msgstr "Un obiect GtkIconTheme de la care să se obțină iconițele"
 
 #: ../libyelp/yelp-settings.c:166
 msgid "Font Adjustment"
@@ -1006,15 +1007,15 @@ msgstr "Ajustare font"
 
 #: ../libyelp/yelp-settings.c:167
 msgid "A size adjustment to add to font sizes"
-msgstr "O ajustare de dimensiune pentru a adăuga la dimensiuni de font"
+msgstr "O ajustare de dimensiune de adăugat la dimensiunile fonturilor"
 
 #: ../libyelp/yelp-settings.c:175
 msgid "Show Text Cursor"
-msgstr "Afișează cursor de tip „text”"
+msgstr "Afișează un cursor în text"
 
 #: ../libyelp/yelp-settings.c:176
 msgid "Show the text cursor or caret for accessible navigation"
-msgstr ""
+msgstr "Afișează un cursor în text pentru navigare accesibilă"
 
 #: ../libyelp/yelp-settings.c:184
 msgid "Editor Mode"
@@ -1059,7 +1060,7 @@ msgstr "Îna_inte"
 
 #: ../libyelp/yelp-view.c:133
 msgid "_Previous Page"
-msgstr "_Pagina anterioară"
+msgstr "_Pagina precedentă"
 
 #: ../libyelp/yelp-view.c:138
 msgid "_Next Page"
@@ -1075,18 +1076,17 @@ msgstr "Un YelpUri cu locația curentă"
 
 #: ../libyelp/yelp-view.c:410
 msgid "Loading State"
-msgstr ""
+msgstr "Stare de încărcare"
 
 #: ../libyelp/yelp-view.c:411
 msgid "The loading state of the view"
-msgstr ""
+msgstr "Starea de încărcare a vizualizării"
 
 #: ../libyelp/yelp-view.c:420
 msgid "Page ID"
 msgstr "ID Pagină"
 
 #: ../libyelp/yelp-view.c:421
-#, fuzzy
 msgid "The ID of the root page of the page being viewed"
 msgstr "ID-ul paginii rădăcină a paginii care este vizualizată"
 
@@ -1095,7 +1095,6 @@ msgid "Root Title"
 msgstr "Titlu rădăcină"
 
 #: ../libyelp/yelp-view.c:430
-#, fuzzy
 msgid "The title of the root page of the page being viewed"
 msgstr "Titlul paginii rădăcină a paginii care este vizualizată"
 
@@ -1117,11 +1116,11 @@ msgstr "Descrierea paginii care este vizualizată"
 
 #: ../libyelp/yelp-view.c:456
 msgid "Page Icon"
-msgstr "Pictograma paginii"
+msgstr "Iconița paginii"
 
 #: ../libyelp/yelp-view.c:457
 msgid "The icon of the page being viewed"
-msgstr "Pictograma paginii care este vizualizată"
+msgstr "Iconița paginii care este vizualizată"
 
 #: ../libyelp/yelp-view.c:813
 msgid "Save Image"
@@ -1171,13 +1170,12 @@ msgid "_Copy Text"
 msgstr "_Copiază textul"
 
 #: ../libyelp/yelp-view.c:1157
-#, fuzzy
 msgid "C_opy Code Block"
-msgstr "C_opiază codul selectat"
+msgstr "C_opiază blocul de cod"
 
 #: ../libyelp/yelp-view.c:1162
 msgid "Save Code _Block As..."
-msgstr "Salvează codul _selectat ca..."
+msgstr "Salvează _blocul de cod ca..."
 
 #: ../libyelp/yelp-view.c:1333
 #, c-format
@@ -1204,17 +1202,17 @@ msgstr "Eroare necunoscută"
 #: ../libyelp/yelp-view.c:1507
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "URI-ul „%s” nu inică spre o pagină validă."
+msgstr "URI-ul „%s” nu indică spre o pagină validă."
 
 #: ../libyelp/yelp-view.c:1513
 #, c-format
 msgid "The URI does not point to a valid page."
-msgstr "URI-ul nu inică spre o pagină validă."
+msgstr "URI-ul nu indică spre o pagină validă."
 
 #: ../libyelp/yelp-view.c:1521
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "URI-ul „%s” nu a putut fi verificat."
+msgstr "URI-ul „%s” nu a putut fi analizat."
 
 #: ../src/yelp-application.c:53
 msgid "Turn on editor mode"
@@ -1234,11 +1232,11 @@ msgstr "Text mai mi_c"
 
 #: ../src/yelp-application.c:145
 msgid "Decrease the size of the text"
-msgstr "Diminuează dimensiunea textului"
+msgstr "Micșorează dimensiunea textului"
 
 #: ../src/yelp-application.c:257
 msgid "Show Text _Cursor"
-msgstr "Afișează _cursor de tip „text”"
+msgstr "Afișează un _cursor în text"
 
 #: ../src/yelp-application.c:333 ../src/yelp-window.c:1532
 #: ../yelp.desktop.in.in.h:2
@@ -1250,7 +1248,7 @@ msgid ""
 "You do not have PackageKit installed. Package installation links require "
 "PackageKit."
 msgstr ""
-"Nu aveți instalat PackageKit. Legăturile pentru instalarea pachetelor "
+"PackageKit nu este instalat. Legăturile pentru instalarea pachetelor "
 "necesită PackageKit."
 
 #: ../src/yelp-window.c:267
@@ -1287,7 +1285,7 @@ msgstr "_Adăugare favorit"
 
 #: ../src/yelp-window.c:292
 msgid "_Edit Bookmarks"
-msgstr "_Editare favorite..."
+msgstr "_Editare favorite"
 
 #: ../src/yelp-window.c:297
 msgid "Find in Page..."
@@ -1325,11 +1323,11 @@ msgstr[2] "%i de potriviri"
 
 #: ../src/yelp-window.c:1364
 msgid "No matches"
-msgstr "Nici o potrivire"
+msgstr "Nicio potrivire"
 
 #: ../src/yelp-window.c:1649
 msgid "_Open Bookmark"
-msgstr "Deschide un favorit"
+msgstr "_Deschide un favorit"
 
 #: ../src/yelp-window.c:1655
 msgid "Open Bookmark in New _Window"
@@ -1337,7 +1335,7 @@ msgstr "Deschide favoritul într-o _fereastră nouă"
 
 #: ../src/yelp-window.c:1664
 msgid "_Remove Bookmark"
-msgstr "Ște_rge favoritul"
+msgstr "Elimină favo_ritul"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
