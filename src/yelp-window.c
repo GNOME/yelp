@@ -87,7 +87,7 @@ static void          window_open_location         (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_read_later            (GtkAction          *action,
                                                    YelpWindow         *window);
-static void          read_later_clicked           (GtkLinkButton      *button,
+static gboolean      read_later_clicked           (GtkLinkButton      *button,
                                                    YelpWindow         *window);
 static void          app_read_later_changed       (YelpApplication    *app,
                                                    const gchar        *doc_uri,
@@ -317,8 +317,6 @@ yelp_window_init (YelpWindow *window)
     g_signal_connect (window, "map-event", G_CALLBACK (window_map_event), NULL);
 }
 
-static void suppress_link_buttons (GtkLinkButton *button, const gchar *link, gpointer userdata) {}
-
 static void
 yelp_window_class_init (YelpWindowClass *klass)
 {
@@ -348,13 +346,6 @@ yelp_window_class_init (YelpWindowClass *klass)
                       G_TYPE_NONE, 0);
 
     g_type_class_add_private (klass, sizeof (YelpWindowPrivate));
-
-    /* We don't want GTK+'s default behavior for link buttons in the read
-     * later list. I don't see any other way around this, because GTK+'s
-     * handlers run before Yelp's. If we ever use link buttons elsewhere
-     * in Yelp, we need to do something in this callback.
-     */
-    gtk_link_button_set_uri_hook (suppress_link_buttons, NULL, NULL);
 }
 
 static void
@@ -1110,7 +1101,7 @@ window_read_later (GtkAction   *action,
     }
 }
 
-static void
+static gboolean
 read_later_clicked (GtkLinkButton  *button,
                     YelpWindow     *window)
 {
@@ -1132,6 +1123,7 @@ read_later_clicked (GtkLinkButton  *button,
     yelp_view_load (priv->view, fulluri);
 
     g_free (fulluri);
+    return TRUE;
 }
 
 static void
@@ -1164,7 +1156,7 @@ app_read_later_changed (YelpApplication *app,
 
         link = gtk_link_button_new_with_label (uri, title);
         g_object_set (link, "xalign", 0.0, NULL);
-        g_signal_connect (link, "clicked", G_CALLBACK (read_later_clicked), window);
+        g_signal_connect (link, "activate-link", G_CALLBACK (read_later_clicked), window);
         gtk_container_add (GTK_CONTAINER (align), link);
 
         gtk_widget_show_all (align);
