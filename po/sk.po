@@ -4,22 +4,21 @@
 # Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2001, 2002, 2003.
 # Stanislav Visnovsky <visnovsky@kde.org>, 2004.
 # Ivan Noris <vix@vazka.sk>, 2005.
-# Laco Gubík <lacogubik@googlemail.com>, 2010.
+# Laco Gubík <lacogubik@gmail.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2010-08-10 19:58+0000\n"
-"PO-Revision-Date: 2010-08-10 22:48+0200\n"
-"Last-Translator: Laco Gubík <lacogubik@googlemail.com>\n"
+"POT-Creation-Date: 2010-08-11 21:47+0000\n"
+"PO-Revision-Date: 2010-10-25 21:34+0200\n"
+"Last-Translator: Laco Gubík <lacogubik@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"Language: sk\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -294,10 +293,9 @@ msgstr "2D Grafika"
 msgid "3D Graphics"
 msgstr "3D Grafika"
 
-# sprístupnenie?
-#: ../data/toc.xml.in.h:3
+#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
 msgid "Accessibility"
-msgstr "Prístupnosť"
+msgstr "Sprístupnenie"
 
 #: ../data/toc.xml.in.h:4
 msgid "Action Games"
@@ -396,7 +394,7 @@ msgstr "Nástroje na kompresiu"
 msgid "Computer Science"
 msgstr "Informatika"
 
-# patrí do sekcie Vzdelávanie - že by predsa len projektovanie?
+# patrí do sekcie Vzdelávanie
 #: ../data/toc.xml.in.h:28
 msgid "Construction"
 msgstr "Konštruovanie"
@@ -618,6 +616,7 @@ msgid "Miscellaneous Documentation"
 msgstr "Rôzna dokumentácia"
 
 # v sekcii AudioVideoEditing
+# PŠ: audio mixer nie je mixér zvuku
 #: ../data/toc.xml.in.h:85
 msgid "Mixers"
 msgstr "Zmiešavače"
@@ -659,7 +658,6 @@ msgid "Other Documentation"
 msgstr "Ďalšia dokumentácia"
 
 #: ../data/toc.xml.in.h:95
-#, fuzzy
 msgid "P2P"
 msgstr "P2P"
 
@@ -692,7 +690,7 @@ msgstr "Prehrávače"
 msgid "Presentation Tools"
 msgstr "Prezentačné nástroje"
 
-#: ../data/toc.xml.in.h:104
+#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:339 ../src/yelp-print.c:366
 msgid "Printing"
 msgstr "Tlač"
 
@@ -876,38 +874,221 @@ msgstr "Vitajte v prehliadači pomocníka pre Gnome"
 msgid "Word Processors"
 msgstr "Textové procesory"
 
-#: ../libyelp/yelp-bz2-decompressor.c:146
-#: ../libyelp/yelp-lzma-decompressor.c:155
-msgid "Invalid compressed data"
-msgstr ""
+#: ../data/ui/yelp-bookmarks.ui.h:1
+msgid "Bookmarks"
+msgstr "Záložky"
 
-#: ../libyelp/yelp-bz2-decompressor.c:152
-#: ../libyelp/yelp-lzma-decompressor.c:161
-msgid "Not enough memory"
-msgstr "Nedostatok pamäte"
+#: ../data/ui/yelp-bookmarks.ui.h:2
+msgid "Re_name"
+msgstr "_Premenovať"
 
-#: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:233
-#: ../libyelp/yelp-mallard-document.c:254
-#: ../libyelp/yelp-mallard-document.c:401 ../libyelp/yelp-man-document.c:269
-#, fuzzy, c-format
-#| msgid "The page %s was not found in the document %s."
-msgid "The page ‘%s’ was not found in the document ‘%s’."
+#: ../data/ui/yelp-bookmarks.ui.h:3
+msgid "_Bookmarks:"
+msgstr "_Záložky:"
+
+#: ../data/ui/yelp-bookmarks-add.ui.h:1
+msgid "Add Bookmark"
+msgstr "Pridať záložku"
+
+#: ../data/ui/yelp-bookmarks-add.ui.h:2
+msgid "_Title:"
+msgstr "_Nadpis:"
+
+#: ../data/ui/yelp-open-location.ui.h:1
+msgid "Open Location"
+msgstr "Otvoriť umiestnenie"
+
+#: ../data/ui/yelp-open-location.ui.h:2
+msgid "_Location:"
+msgstr "_Umiestnenie:"
+
+#: ../data/ui/yelp-preferences.ui.h:2
+msgid "Fonts"
+msgstr "Písma"
+
+#: ../data/ui/yelp-preferences.ui.h:3
+msgid "Preferences"
+msgstr "Predvoľby"
+
+#: ../data/ui/yelp-preferences.ui.h:4
+msgid "_Browse with caret"
+msgstr "_Prezerať s kurzorom"
+
+#: ../data/ui/yelp-preferences.ui.h:5
+msgid "_Fixed width:"
+msgstr "Pe_vná šírka:"
+
+#: ../data/ui/yelp-preferences.ui.h:6
+msgid "_Use system fonts"
+msgstr "Použiť _systémové písma"
+
+#: ../data/ui/yelp-preferences.ui.h:7
+msgid "_Variable width:"
+msgstr "Pre_menlivá šírka:"
+
+#: ../data/yelp.schemas.in.h:1
+msgid "Font for fixed text"
+msgstr "Písmo pre neproporcionálny text"
+
+#: ../data/yelp.schemas.in.h:2
+msgid "Font for text"
+msgstr "Písmo pre text"
+
+#: ../data/yelp.schemas.in.h:3
+msgid "Font for text with fixed width."
+msgstr "Písmo pre text pevnej šírky."
+
+#: ../data/yelp.schemas.in.h:4
+msgid "Font for text with variable width."
+msgstr "Písmo pre text premenlivej šírky."
+
+#: ../data/yelp.schemas.in.h:5
+msgid "Use a keyboard-controllable caret when viewing pages."
+msgstr "Použiť kurzor ovládaný klávesami pri prezeraní stránok."
+
+#: ../data/yelp.schemas.in.h:6
+msgid "Use caret"
+msgstr "Použiť kurzor"
+
+#: ../data/yelp.schemas.in.h:7
+msgid "Use system fonts"
+msgstr "Použiť systémové písma"
+
+#: ../data/yelp.schemas.in.h:8
+msgid "Use the default fonts set for the system."
+msgstr "Použiť štandardné sady písiem pre systém."
+
+#: ../src/eggdesktopfile.c:165
+#, c-format
+msgid "File is not a valid .desktop file"
+msgstr "Súbor nie je platným .desktop súborom"
+
+#: ../src/eggdesktopfile.c:188
+#, c-format
+msgid "Unrecognized desktop file Version '%s'"
+msgstr "Neznáma verzia desktop súboru '%s'"
+
+#: ../src/eggdesktopfile.c:957
+#, c-format
+msgid "Starting %s"
+msgstr "Spúšťa sa %s"
+
+#: ../src/eggdesktopfile.c:1098
+#, c-format
+msgid "Application does not accept documents on command line"
+msgstr "Aplikácia neprijíma dokumenty v príkazovom riadku"
+
+#: ../src/eggdesktopfile.c:1166
+#, c-format
+msgid "Unrecognized launch option: %d"
+msgstr "Neznáma spúšťacia voľba: %d"
+
+#: ../src/eggdesktopfile.c:1365
+#, c-format
+msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+msgstr "Spúšťaču typu Odkaz ('Type=Link') nie je možné odovzdať URI dokumentov"
+
+#: ../src/eggdesktopfile.c:1384
+#, c-format
+msgid "Not a launchable item"
+msgstr "Položka nie je spustiteľná."
+
+#: ../src/eggsmclient.c:225
+msgid "Disable connection to session manager"
+msgstr "Zakázať spojenie so správcom relácií"
+
+#: ../src/eggsmclient.c:228
+msgid "Specify file containing saved configuration"
+msgstr "Zadajte súbor obsahujúci uložené nastavenia"
+
+#: ../src/eggsmclient.c:228
+msgid "FILE"
+msgstr "SÚBOR"
+
+#: ../src/eggsmclient.c:231
+msgid "Specify session management ID"
+msgstr "Zadajte identifikátor správy relácie"
+
+#: ../src/eggsmclient.c:231
+msgid "ID"
+msgstr "IDENTIFIKÁTOR"
+
+#: ../src/eggsmclient.c:252
+msgid "Session management options:"
+msgstr "Voľby správy relácie:"
+
+#: ../src/eggsmclient.c:253
+msgid "Show session management options"
+msgstr "Zobraziť voľby správy relácie"
+
+#: ../src/yelp-bookmarks.c:147
+msgid "Open Bookmark in New Window"
+msgstr "Otvoriť záložku v novom okne"
+
+#: ../src/yelp-bookmarks.c:151
+msgid "Rename Bookmark"
+msgstr "Premenovať záložku"
+
+#: ../src/yelp-bookmarks.c:155
+msgid "Remove Bookmark"
+msgstr "Odstrániť záložku"
+
+#: ../src/yelp-bookmarks.c:319
+#, c-format
+msgid "A bookmark titled %s already exists for this page."
+msgstr "Na tejto strane už existuje záložka s názvom %s."
+
+#: ../src/yelp-bookmarks.c:395
+#, c-format
+msgid "A bookmark titled <b>%s</b> already exists for this page."
+msgstr "Na tejto strane už existuje záložka s názvom <b>%s</b>."
+
+#: ../src/yelp-bookmarks.c:408
+msgid "Help Topics"
+msgstr "Témy pomocníka"
+
+#: ../src/yelp-bookmarks.c:423
+msgid "Document Sections"
+msgstr "Časti dokumentu"
+
+#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
+#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
+#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:284 ../src/yelp-mallard.c:384
+#: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
+#: ../src/yelp-toc.c:365
+msgid "Page not found"
+msgstr "Strana nebola nájdená"
+
+#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
+#: ../src/yelp-mallard.c:285 ../src/yelp-mallard.c:385 ../src/yelp-man.c:293
+#, c-format
+msgid "The page %s was not found in the document %s."
 msgstr "Strana %s sa nenašla v dokumente %s"
 
-#: ../libyelp/yelp-docbook-document.c:298 ../libyelp/yelp-info-document.c:366
-#: ../libyelp/yelp-man-document.c:403
-#, fuzzy, c-format
-#| msgid "The file ‘%s’ does not exist."
-msgid "The file does not exist."
-msgstr "Súbor '%s' neexistuje."
+#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
+#: ../src/yelp-man.c:386
+#, c-format
+msgid "The requested page was not found in the document %s."
+msgstr "Požadovaná strana sa v dokumente '%s' nenašla."
 
-#: ../libyelp/yelp-docbook-document.c:308 ../libyelp/yelp-info-document.c:376
-#: ../libyelp/yelp-man-document.c:413
+#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
+#: ../src/yelp-man.c:429
+msgid "File not found"
+msgstr "Súbor sa nenašiel"
+
+#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
+#: ../src/yelp-man.c:430
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Súbor '%s' neexistuje."
 
-#: ../libyelp/yelp-docbook-document.c:323
+#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
+#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
+#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
+msgid "Could not parse file"
+msgstr "Nebolo možné vykonať syntaktickú analýzu súboru"
+
+#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -916,7 +1097,7 @@ msgstr ""
 "Nebolo možné vykonať syntaktickú analýzu súboru ‘%s’, lebo nie je správne "
 "naformátovaným XML dokumentom."
 
-#: ../libyelp/yelp-docbook-document.c:336
+#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -925,23 +1106,24 @@ msgstr ""
 "Nebolo možné vykonať syntaktickú analýzu súboru ‘%s’, pretože jeden alebo "
 "viac jeho priložených súborov nie je správne naformátovaným XML dokumentom."
 
-#: ../libyelp/yelp-docbook-document.c:743
+#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
 msgid "Unknown"
 msgstr "Neznámy"
 
-#: ../libyelp/yelp-docbook-document.c:804 ../libyelp/yelp-info-document.c:309
-#: ../libyelp/yelp-man-document.c:345
-#, c-format
-msgid "The requested page was not found in the document ‘%s’."
-msgstr "Požadovaná strana sa v dokumente '%s' nenašla."
+#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
+msgid "Unknown Error"
+msgstr "Neznáma chyba"
 
-#: ../libyelp/yelp-error.c:33
-#, c-format
-msgid "An unknown error occurred."
-msgstr "Vyskytla sa neznáma chyba."
+#: ../src/yelp-error.c:136 ../src/yelp-window.c:1719
+msgid "Could Not Read File"
+msgstr "Nebolo možné prečítať súbor"
+
+#: ../src/yelp-error.c:146
+msgid "No information is available about this error."
+msgstr "O tejto chybe nie sú dostupné žiadne informácie."
 
 # info je názov programu/typ dokumentu
-#: ../libyelp/yelp-info-document.c:391
+#: ../src/yelp-info.c:396
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -949,50 +1131,42 @@ msgstr ""
 "Nebolo možné vykonať syntaktickú analýzu súboru ‘%s’, lebo to nie je správne "
 "naformátovaná info stránka."
 
-#: ../libyelp/yelp-location-entry.c:323
-#, fuzzy
-#| msgid "Viewer"
-msgid "View"
-msgstr "Prehliadač"
-
-#: ../libyelp/yelp-location-entry.c:324
-msgid "A YelpView instance to control"
+#: ../src/yelp-io-channel.c:132
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read and decoded. The file may be compressed in "
+"an unsupported format."
 msgstr ""
+"Súbor '%s' sa nepodarilo načítať a dekódovať. Pravdepodobne je zkomprimovaný "
+"v nepodporovanom formáte."
 
-#: ../libyelp/yelp-location-entry.c:339
-msgid "Bookmarks"
-msgstr "Záložky"
+#: ../src/yelp-main.c:88
+msgid "Use a private session"
+msgstr "Použiť súkromú reláciu"
 
-#: ../libyelp/yelp-location-entry.c:340
-msgid "A YelpBookmarks implementation instance"
-msgstr ""
+#: ../src/yelp-main.c:97
+msgid "Define which cache directory to use"
+msgstr "Definujte, ktorý adresár vyrovnávacej pamäte sa má použiť"
 
-#: ../libyelp/yelp-location-entry.c:356
-msgid "Enable Search"
-msgstr ""
+#. Commandline parsing is done here
+#: ../src/yelp-main.c:355
+msgid " GNOME Help Browser"
+msgstr " Prehliadač pomocíka prostredia GNOME"
 
-#: ../libyelp/yelp-location-entry.c:357
-msgid "Whether the location entry can be used as a search field"
-msgstr ""
+#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
+msgid "Help"
+msgstr "Pomocník"
 
-#: ../libyelp/yelp-location-entry.c:426 ../src/yelp-window.c:290
-#, fuzzy
-#| msgid "_Search:"
-msgid "Search..."
-msgstr "_Hľadať:"
+#: ../src/yelp-mallard.c:315
+msgid "Directory not found"
+msgstr "Adresár nebol nájdený"
 
-#: ../libyelp/yelp-location-entry.c:1335
-#, fuzzy
-#| msgid "Loading..."
-msgid "Loading"
-msgstr "Načítanie"
-
-#: ../libyelp/yelp-mallard-document.c:296
+#: ../src/yelp-mallard.c:316
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Adresár ‘%s’ neexistuje."
 
-#: ../libyelp/yelp-man-document.c:444
+#: ../src/yelp-man.c:459
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed man page."
@@ -1000,898 +1174,404 @@ msgstr ""
 "Súbor '%s' nebolo možné analyzovať, pretože nie je správne naformátovaná man "
 "stránka."
 
-#: ../libyelp/yelp-settings.c:148
-#, fuzzy
-#| msgid "Settings"
-msgid "GtkSettings"
-msgstr "Nastavenia"
+#: ../src/yelp-print.c:99
+msgid "Print"
+msgstr "Tlačiť"
 
-#: ../libyelp/yelp-settings.c:149
-msgid "A GtkSettings object to get settings from"
+#: ../src/yelp-print.c:169
+msgid "Preparing to print"
+msgstr "Pripravuje sa tlač"
+
+#: ../src/yelp-print.c:263
+msgid "Printing is not supported on this printer"
+msgstr "Táto tlačiareň nepodporuje tlač"
+
+#: ../src/yelp-print.c:266
+#, c-format
+msgid "Printer %s does not support postscript printing."
+msgstr "Tlačiareň %s nepodporuje tlačenie postscript dokumentov."
+
+#: ../src/yelp-print.c:368
+msgid "Waiting to print"
+msgstr "Čaká sa na tlač"
+
+#: ../src/yelp-print.c:580
+msgid "An error occurred while printing"
+msgstr "Počas tlače nastala chyba"
+
+#: ../src/yelp-print.c:584
+#, c-format
+msgid "It was not possible to print your document: %s"
+msgstr "Nebolo možné vytlačiť váš dokuement: %s"
+
+#: ../src/yelp-search-parser.c:67
+msgid "the GNOME Support Forums"
+msgstr "Diskusné skupiny na podporu Gnome"
+
+#: ../src/yelp-search-parser.c:285
+#, c-format
+msgid "No results for \"%s\""
+msgstr "Pre \"%s\" neboli nájdené žiadne výsledky"
+
+#: ../src/yelp-search-parser.c:286
+msgid ""
+"Try using different words to describe the problem you're having or the topic "
+"you want help with."
 msgstr ""
+"Skúste zadať iné slová popisujúce váš problém alebo tému, s ktorou chcete "
+"pomôcť."
 
-#: ../libyelp/yelp-settings.c:157
-msgid "GtkIconTheme"
+#: ../src/yelp-search-parser.c:289
+#, c-format
+msgid "Search results for \"%s\""
+msgstr "Výsledky vyhľadávania výrazu \"%s\""
+
+#. TRANSLATORS: Please don't do anything funny with the
+#. * format arguement.  It isn't really going through a printf
+#. * The %s is used to indicate where the name of the site (linked)
+#. * should be.  This is done in the XSLT
+#.
+#: ../src/yelp-search-parser.c:303
+#, c-format
+msgid "Repeat the search online at %s"
+msgstr "Opakovať online hľadanie na %s"
+
+#. Translators: Do not translate this list exactly.  These are
+#. * colon-separated words that aren't useful for choosing search
+#. * results; they will be different for each language. Include
+#. * pronouns, articles, very common verbs and prepositions,
+#. * words from question structures like "tell me about" and
+#. * "how do I", and words for functional states like "not",
+#. * "work", and "broken".
+#.
+#: ../src/yelp-search-parser.c:874
+msgid ""
+"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
+"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
+"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
+"where:who:will:with:won't:wont:why:work:working:works"
 msgstr ""
+"a:i:o:s:so:v:na:pri:pre:za:pred:od:do:po:byť:som:je:sú:bude:budú:mať:mám:má:"
+"majú:ako:môže:môžu:áno:nie:keď:kedy:kto:ako:ja:mňa:že:či"
 
-#: ../libyelp/yelp-settings.c:158
-msgid "A GtkIconTheme object to get icons from"
+#. Translators: This is a list of common prefixes for words.
+#. * Do not translate this directly.  Instead, use a colon
+#. * seperated list of word-starts.  In English, an example
+#. * is re-.  If there is none, please use the term NULL
+#. * If there is only one, please put a colon after.
+#. * E.g. if the common prefix is re then the string would be
+#. * "re:"
+#.
+#: ../src/yelp-search-parser.c:890
+msgid "re"
+msgstr "za:pri:od:vy"
+
+#. Translators: This is a list of (guess what?) common suffixes
+#. * to words.  Things that may be put at ends of words to slightly
+#. * alter their meaning (like -ing and -s in English).  This is a
+#. * colon seperated list (I like colons).  If there are none,
+#. * please use the string NULL.  If there is only 1, please
+#. * add a colon at the end of the list
+#.
+#: ../src/yelp-search-parser.c:899
+msgid "ers:er:ing:es:s:'s"
+msgstr "enie:ť:ov:ova:ove"
+
+#: ../src/yelp-search-parser.c:1095
+msgid "No Comment"
+msgstr "Bez komentára"
+
+#. Much bigger problems
+#: ../src/yelp-search.c:238
+msgid "Search could not be processed"
+msgstr "Hľadanie nebolo možné vykonať"
+
+#: ../src/yelp-search.c:239
+msgid "The requested search could not be processed."
+msgstr "Nebolo možné spracovať požiadavku na hľadanie."
+
+#: ../src/yelp-search.c:366
+msgid "Cannot process the search"
+msgstr "Nie je možné spracovať hľadanie"
+
+#: ../src/yelp-search.c:367
+msgid "The search processor returned invalid results"
+msgstr "Spracovanie hľadania vrátilo chybné výsledky"
+
+#: ../src/yelp-toc.c:267
+#, c-format
+msgid "The page %s was not found in the TOC."
+msgstr "Stránka %s nebola nájdená v Obsahu."
+
+#: ../src/yelp-toc.c:366
+msgid "The requested page was not found in the TOC."
+msgstr "Požadovaná stránka nebola nájdená v Obsahu."
+
+#: ../src/yelp-toc.c:438
+msgid ""
+"The TOC file could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
+"Súbor Obsahu nebolo možné prečítať, pretože je to chybne utvorený XML "
+"dokument."
 
-#: ../libyelp/yelp-settings.c:166
-msgid "Font Adjustment"
-msgstr ""
-
-#: ../libyelp/yelp-settings.c:167
-msgid "A size adjustment to add to font sizes"
-msgstr ""
-
-#: ../libyelp/yelp-settings.c:175
-msgid "Show Text Cursor"
-msgstr ""
-
-#: ../libyelp/yelp-settings.c:176
-msgid "Show the text cursor or caret for accessibile navigation"
-msgstr ""
-
-#: ../libyelp/yelp-settings.c:184
-msgid "Editor Mode"
-msgstr ""
-
-#: ../libyelp/yelp-settings.c:185
-msgid "Enable features useful to editors"
-msgstr ""
-
-#: ../libyelp/yelp-transform.c:171
-#, fuzzy
-#| msgid "Invalid Stylesheet"
-msgid "XSLT Stylesheet"
+#: ../src/yelp-transform.c:86
+msgid "Invalid Stylesheet"
 msgstr "Neplatná definícia štýlu"
 
-#: ../libyelp/yelp-transform.c:172
-msgid "The location of the XSLT stylesheet"
-msgstr ""
-
-#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
+#: ../src/yelp-transform.c:87
 #, c-format
-msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr "Štýl XSLT ‘%s’ buď chýba, alebo nie je platný."
+msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgstr "Definícia štýlu XSLT ‘%s’ buď chýba, alebo nie je platná."
 
-#: ../libyelp/yelp-transform.c:528
+#: ../src/yelp-transform.c:122
+msgid "Broken Transformation"
+msgstr "Chyba pri transformácii"
+
+#: ../src/yelp-transform.c:123
+msgid "An unknown error occurred while attempting to transform the document."
+msgstr "Pri pokuse o transformáciu dokumentu sa vyskytla neznáma chyba."
+
+#: ../src/yelp-transform.c:389
 msgid "No href attribute found on yelp:document\n"
 msgstr "V značke yelp:document chýba atribút href\n"
 
-#: ../libyelp/yelp-transform.c:543
+#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "Nedostatok pamäte"
 
-#: ../libyelp/yelp-view.c:118
-#, fuzzy
-#| msgid "Print"
-msgid "_Print..."
-msgstr "Tlačiť"
+#: ../src/yelp-window.c:304
+msgid "_File"
+msgstr "_Súbor"
 
-#: ../libyelp/yelp-view.c:123
-msgid "_Back"
-msgstr "Do_zadu"
+#: ../src/yelp-window.c:305
+msgid "_Edit"
+msgstr "_Upraviť"
 
-#: ../libyelp/yelp-view.c:128
-msgid "_Forward"
-msgstr "_Dopredu"
-
-#: ../libyelp/yelp-view.c:133
-#, fuzzy
-#| msgid "_Previous"
-msgid "_Previous Page"
-msgstr "_Predchádzajúci"
-
-#: ../libyelp/yelp-view.c:138
-#, fuzzy
-#| msgid "_Next"
-msgid "_Next Page"
-msgstr "_Nasledujúci"
-
-#: ../libyelp/yelp-view.c:387
-#, fuzzy
-#| msgid "Yelp"
-msgid "Yelp URI"
-msgstr "Yelp"
-
-#: ../libyelp/yelp-view.c:388
-msgid "A YelpUri with the current location"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:396
-#, fuzzy
-#| msgid "Loading..."
-msgid "Loading State"
-msgstr "Načítavam..."
-
-#: ../libyelp/yelp-view.c:397
-msgid "The loading state of the view"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:406
-msgid "Page ID"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:407
-msgid "The ID of the root page of the page being viewed"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:415
-msgid "Root Title"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:416
-msgid "The title of the root page of the page being viewed"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:424
-msgid "Page Title"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:425
-msgid "The title of the page being viewed"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:433
-msgid "Page Description"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:434
-msgid "The description of the page being viewed"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:442
-#, fuzzy
-#| msgid "Page not found"
-msgid "Page Icon"
-msgstr "Strana sa nenašla"
-
-#: ../libyelp/yelp-view.c:443
-msgid "The icon of the page being viewed"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:791
-msgid "Save Image"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:873
-msgid "Save Code"
-msgstr ""
-
-#. Not using a mnemonic because underscores are common in email
-#. * addresses, and we'd have to escape them. There doesn't seem
-#. * to be a quick GTK+ function for this. In practice, there will
-#. * probably only be one menu item for mailto link popups anyway,
-#. * so the mnemonic's not that big of a deal.
-#.
-#: ../libyelp/yelp-view.c:1034
-#, c-format
-msgid "Send email to %s"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:1044
-msgid "_Open Link"
-msgstr "_Otvoriť odkaz"
-
-#: ../libyelp/yelp-view.c:1049
-msgid "Open Link in New _Window"
-msgstr "Otvoriť odkaz v _novom okne"
-
-#: ../libyelp/yelp-view.c:1091
-msgid "_Save Image As..."
-msgstr ""
-
-#: ../libyelp/yelp-view.c:1093
-msgid "_Save Video As..."
-msgstr ""
-
-#: ../libyelp/yelp-view.c:1100
-msgid "S_end Image To..."
-msgstr ""
-
-#: ../libyelp/yelp-view.c:1102
-msgid "S_end Video To..."
-msgstr ""
-
-#: ../libyelp/yelp-view.c:1113
-#, fuzzy
-#| msgid "_Copy"
-msgid "_Copy Text"
-msgstr "_Kopírovať"
-
-#: ../libyelp/yelp-view.c:1126
-msgid "C_opy Code Block"
-msgstr ""
-
-#: ../libyelp/yelp-view.c:1131
-msgid "Save Code _Block As..."
-msgstr ""
-
-#: ../libyelp/yelp-view.c:1302
-#, fuzzy, c-format
-#| msgid "Could not load document"
-msgid "Could not load a document for ‘%s’"
-msgstr "Nepodarilo sa načítať dokument"
-
-#: ../libyelp/yelp-view.c:1308
-#, c-format
-msgid "Could not load a document"
-msgstr "Nepodarilo sa načítať dokument"
-
-#: ../libyelp/yelp-view.c:1375
-#, fuzzy
-#| msgid "Page not found"
-msgid "Not Found"
-msgstr "Strana sa nenašla"
-
-#: ../libyelp/yelp-view.c:1378
-#, fuzzy
-#| msgid "Cannot create window"
-msgid "Cannot Read"
-msgstr "Nebolo možné vytvoriť okno"
-
-#: ../libyelp/yelp-view.c:1384
-msgid "Unknown Error"
-msgstr "Neznáma chyba"
-
-#: ../libyelp/yelp-view.c:1476
-#, fuzzy, c-format
-#| msgid "The file ‘%s’ does not exist."
-msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "Súbor '%s' neexistuje."
-
-#: ../libyelp/yelp-view.c:1482
-#, c-format
-msgid "The URI does not point to a valid page."
-msgstr ""
-
-#: ../libyelp/yelp-view.c:1490
-#, fuzzy, c-format
-#| msgid "The file ‘%s’ does not exist."
-msgid "The URI ‘%s’ could not be parsed."
-msgstr "Súbor '%s' neexistuje."
-
-#: ../src/yelp-application.c:53
-msgid "Turn on editor mode"
-msgstr ""
-
-#: ../src/yelp-application.c:138
-msgid "_Larger Text"
-msgstr ""
-
-#: ../src/yelp-application.c:140
-msgid "Increase the size of the text"
-msgstr ""
-
-#: ../src/yelp-application.c:143
-msgid "_Smaller Text"
-msgstr ""
-
-#: ../src/yelp-application.c:145
-msgid "Descrease the size of the text"
-msgstr ""
-
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr ""
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1501
-#: ../yelp.desktop.in.in.h:2
-msgid "Help"
-msgstr "Pomocník"
-
-#: ../src/yelp-application.c:785
-msgid ""
-"You do not have PackageKit installed.  Package installation links require "
-"PackageKit."
-msgstr ""
-
-#: ../src/yelp-window.c:259
-msgid "_Page"
-msgstr ""
-
-#: ../src/yelp-window.c:260
-#, fuzzy
-#| msgid "Viewer"
-msgid "_View"
-msgstr "Prehliadač"
-
-#: ../src/yelp-window.c:261
+#: ../src/yelp-window.c:306
 msgid "_Go"
 msgstr "_Prejsť na"
 
-#: ../src/yelp-window.c:262
+#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
 msgstr "_Záložky"
 
-#: ../src/yelp-window.c:265
+#: ../src/yelp-window.c:308
+msgid "_Help"
+msgstr "_Pomocník"
+
+#: ../src/yelp-window.c:311
 msgid "_New Window"
 msgstr "_Nové okno"
 
-#: ../src/yelp-window.c:270
-#, fuzzy
-#| msgid "Clocks"
-msgid "_Close"
-msgstr "Hodiny"
+#: ../src/yelp-window.c:316
+msgid "Print This Document ..."
+msgstr "Vytlačiť tento dokument ..."
 
-#: ../src/yelp-window.c:275
+#: ../src/yelp-window.c:321
+msgid "Print This Page ..."
+msgstr "Vytlačiť túto stranu ..."
+
+#: ../src/yelp-window.c:326
+msgid "About This Document"
+msgstr "O tomto dokumente"
+
+#: ../src/yelp-window.c:331
+msgid "Open _Location"
+msgstr "Otvoriť _umiestnenie"
+
+#: ../src/yelp-window.c:336
+msgid "_Close Window"
+msgstr "_Zavrieť okno"
+
+#: ../src/yelp-window.c:342
+msgid "_Copy"
+msgstr "_Kopírovať"
+
+#: ../src/yelp-window.c:348
+msgid "_Select All"
+msgstr "_Vybrať všetko"
+
+#: ../src/yelp-window.c:353
+msgid "_Find..."
+msgstr "_Nájsť..."
+
+#: ../src/yelp-window.c:358
+msgid "Find Pre_vious"
+msgstr "Nájsť _predchádzajúce"
+
+#: ../src/yelp-window.c:360
+msgid "Find previous occurrence of the word or phrase"
+msgstr "Nájde predchádzajúci výskyt hľadaného slova alebo frázy"
+
+#: ../src/yelp-window.c:363
+msgid "Find Ne_xt"
+msgstr "Nájsť ná_sledujúce"
+
+#: ../src/yelp-window.c:365
+msgid "Find next occurrence of the word or phrase"
+msgstr "Nájde ďalší výskyt hľadaného slova alebo frázy"
+
+#: ../src/yelp-window.c:368
+msgid "_Preferences"
+msgstr "_Predvoľby"
+
+#: ../src/yelp-window.c:373
+msgid "_Reload"
+msgstr "_Obnoviť"
+
+#: ../src/yelp-window.c:385
+msgid "_Back"
+msgstr "Do_zadu"
+
+#: ../src/yelp-window.c:387
+msgid "Show previous page in history"
+msgstr "Zobrazí predchádzajúcu stránku histórie"
+
+#: ../src/yelp-window.c:390
+msgid "_Forward"
+msgstr "_Dopredu"
+
+#: ../src/yelp-window.c:392
+msgid "Show next page in history"
+msgstr "Zobrazí nasledujúcu stránku histórie"
+
+#: ../src/yelp-window.c:395
+msgid "_Help Topics"
+msgstr "_Témy pomocníka"
+
+#: ../src/yelp-window.c:397
+msgid "Go to the listing of help topics"
+msgstr "Prejde na zoznam tém pomocníka"
+
+#: ../src/yelp-window.c:400
+msgid "_Previous Section"
+msgstr "_Predchádzajúca časť"
+
+#: ../src/yelp-window.c:405
+msgid "_Next Section"
+msgstr "_Následujúca časť"
+
+#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
+msgid "_Contents"
+msgstr "Ob_sah"
+
+#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
 msgstr "_Pridať záložku"
 
-#: ../src/yelp-window.c:280
-msgid "_Edit Bookmarks"
-msgstr "_Upraviť záložky"
+#: ../src/yelp-window.c:421
+msgid "_Edit Bookmarks..."
+msgstr "_Upraviť záložky..."
 
-#: ../src/yelp-window.c:285
-#, fuzzy
-#| msgid "Print This Page ..."
-msgid "Find in Page..."
-msgstr "Vytlačiť túto stránku..."
+#: ../src/yelp-window.c:427
+msgid "_Open Link"
+msgstr "_Otvoriť odkaz"
 
-#: ../src/yelp-window.c:295
-msgid "Open Location"
-msgstr "Otvoriť umiestnenie"
+#: ../src/yelp-window.c:432
+msgid "Open Link in _New Window"
+msgstr "Otvoriť odkaz v _novom okne"
 
-#: ../src/yelp-window.c:323
-msgid "Application"
-msgstr "Aplikácia"
+#: ../src/yelp-window.c:437
+msgid "_Copy Link Address"
+msgstr "_Kopírovať adresu odkazu"
 
-#: ../src/yelp-window.c:324
-msgid "A YelpApplication instance that controls this window"
-msgstr ""
+#: ../src/yelp-window.c:444
+msgid "Help On this application"
+msgstr "Pomocník k tejto aplikácii"
 
-#: ../src/yelp-window.c:575
-msgid "Read Later"
-msgstr ""
+#: ../src/yelp-window.c:447
+msgid "_About"
+msgstr "_O programe"
 
-#. %s will be replaced with the name of a document
-#: ../src/yelp-window.c:784
-#, fuzzy, c-format
-#| msgid "Bookmarks"
-msgid "Bookmarks for %s"
-msgstr "Záložky"
+#: ../src/yelp-window.c:452
+msgid "Copy _Email Address"
+msgstr "Kopírovať _emailovú adresu"
 
-#: ../src/yelp-window.c:1317
+#: ../src/yelp-window.c:524
+msgid "Help Browser"
+msgstr "Prehliadač pomocníka"
+
+#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1782
+msgid "Loading..."
+msgstr "Načítáva sa..."
+
+#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
+msgid "Unknown Page"
+msgstr "Neznáma strana"
+
+#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1105
+#: ../src/yelp-window.c:1114
 #, c-format
-msgid "%i match"
-msgid_plural "%i matches"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgid "The requested URI \"%s\" is invalid"
+msgstr "Požadovaný URI \"%s\" je neplatný"
 
-#: ../src/yelp-window.c:1342
-msgid "No matches"
+#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1107
+#: ../src/yelp-window.c:1115
+msgid "Unable to load page"
+msgstr "Nepodarilo sa načítať stránku"
+
+#: ../src/yelp-window.c:1339
+msgid "_Search:"
+msgstr "_Hľadať:"
+
+#: ../src/yelp-window.c:1340
+msgid "Search for other documentation"
+msgstr "Hľadať inú dokumentáciu"
+
+#: ../src/yelp-window.c:1360
+msgid "Cannot create window"
+msgstr "Nie je možné vytvoriť okno"
+
+#: ../src/yelp-window.c:1366
+msgid "Cannot create search component"
+msgstr "Nebolo možné vytvoriť komponent vyhľadávania"
+
+#: ../src/yelp-window.c:1538
+msgid "Fin_d:"
+msgstr "_Nájsť:"
+
+#: ../src/yelp-window.c:1560
+msgid "Find _Previous"
+msgstr "Nájsť _predchádzajúci"
+
+#: ../src/yelp-window.c:1572
+msgid "Find _Next"
+msgstr "Nájsť _následujúci"
+
+#: ../src/yelp-window.c:1585
+msgid "Phrase not found"
+msgstr "Fráza nebola nájdená"
+
+#: ../src/yelp-window.c:1716
+#, c-format
+msgid ""
+"The file ‘%s’ could not be read.  This file might be missing, or you might "
+"not have permissions to read it."
 msgstr ""
+"Súbor '%s' sa nepodarilo načítať. Súbor buď chýba, alebo nemáte práva na "
+"jeho čítanie."
 
-#: ../src/yelp-window.c:1618
-#, fuzzy
-#| msgid "Rename Bookmark"
-msgid "_Open Bookmark"
-msgstr "Premenovať záložku"
+#. Note to translators: put here your name (and address) so it
+#. * will show up in the "about" box
+#: ../src/yelp-window.c:2625
+msgid "translator-credits"
+msgstr ""
+"Stanislav Višňovský (visnovsky@nenya.ms.mff.cuni.cz)\n"
+"Ivan Noris (vix@vazka.sk)\n"
+"Laco Gubík (lacogubik@googlemail.com)"
 
-#: ../src/yelp-window.c:1624
-#, fuzzy
-#| msgid "Open Bookmark in New Window"
-msgid "Open Bookmark in New _Window"
-msgstr "Otvoriť záložku v novom okne"
+#: ../src/yelp-window.c:2628
+msgid "Yelp"
+msgstr "Yelp"
 
-#: ../src/yelp-window.c:1633
-msgid "_Remove Bookmark"
-msgstr "_Odstrániť záložku"
+#: ../src/yelp-window.c:2630
+msgid "A documentation browser and viewer for the Gnome Desktop."
+msgstr "Prehliadač dokumentácie pre prostredie Gnome."
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Zobraziť pomocníka pre GNOME"
 
-#~ msgid "Re_name"
-#~ msgstr "_Premenovať"
-
-#~ msgid "_Bookmarks:"
-#~ msgstr "_Záložky:"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Pridať záložku"
-
-#~ msgid "_Title:"
-#~ msgstr "_Nadpis:"
-
-#~ msgid "_Location:"
-#~ msgstr "_Umiestnenie:"
-
-#~ msgid "Fonts"
-#~ msgstr "Písma"
-
-#~ msgid "Preferences"
-#~ msgstr "Predvoľby"
-
-#~ msgid "_Browse with caret"
-#~ msgstr "_Prezerať s kurzorom"
-
-#~ msgid "_Fixed width:"
-#~ msgstr "Pe_vná šírka:"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "Použiť _systémové písma"
-
-#~ msgid "_Variable width:"
-#~ msgstr "Pre_menlivá šírka:"
-
-#~ msgid "Font for fixed text"
-#~ msgstr "Písmo pre neproporcionálny text"
-
-#~ msgid "Font for text"
-#~ msgstr "Písmo pre text"
-
-#~ msgid "Font for text with fixed width."
-#~ msgstr "Písmo pre text pevnej šírky."
-
-#~ msgid "Font for text with variable width."
-#~ msgstr "Písmo pre text premenlivej šírky."
-
-#~ msgid "Use a keyboard-controllable caret when viewing pages."
-#~ msgstr "Použiť kurzor ovládaný klávesami pri prezeraní stránok."
-
-#~ msgid "Use caret"
-#~ msgstr "Použiť kurzor"
-
-#~ msgid "Use system fonts"
-#~ msgstr "Použiť systémové písma"
-
-#~ msgid "Use the default fonts set for the system."
-#~ msgstr "Použiť štandardné sady písiem pre systém."
-
-#~ msgid "File is not a valid .desktop file"
-#~ msgstr "Súbor nie je platným .desktop súborom"
-
-#~ msgid "Unrecognized desktop file Version '%s'"
-#~ msgstr "Neznáma verzia desktop súboru '%s'"
-
-#~ msgid "Starting %s"
-#~ msgstr "Spúšťa sa %s"
-
-#~ msgid "Application does not accept documents on command line"
-#~ msgstr "Aplikácia neprijíma dokumenty v príkazovom riadku"
-
-#~ msgid "Unrecognized launch option: %d"
-#~ msgstr "Neznáma spúšťacia voľba: %d"
-
-#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr ""
-#~ "Spúšťaču typu Odkaz ('Type=Link') nie je možné odovzdať URI dokumentov"
-
-#~ msgid "Not a launchable item"
-#~ msgstr "Položka nie je spustiteľná."
-
-#~ msgid "Disable connection to session manager"
-#~ msgstr "Zakázať spojenie so správcom relácií"
-
-#~ msgid "Specify file containing saved configuration"
-#~ msgstr "Zadajte súbor obsahujúci uložené nastavenia"
-
-#~ msgid "FILE"
-#~ msgstr "SÚBOR"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Zadajte identifikátor správy relácie"
-
-#~ msgid "ID"
-#~ msgstr "IDENTIFIKÁTOR"
-
-#~ msgid "Session management options:"
-#~ msgstr "Voľby správy relácie:"
-
-#~ msgid "Show session management options"
-#~ msgstr "Zobraziť voľby správy relácie"
-
-#~ msgid "A bookmark titled %s already exists for this page."
-#~ msgstr "Na tejto strane už existuje záložka s názvom %s."
-
-#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
-#~ msgstr "Na tejto strane už existuje záložka s názvom <b>%s</b>."
-
-#~ msgid "Help Topics"
-#~ msgstr "Témy pomocníka"
-
-#~ msgid "Document Sections"
-#~ msgstr "Časti dokumentu"
-
-#~ msgid "File not found"
-#~ msgstr "Súbor sa nenašiel"
-
-#~ msgid "Could not parse file"
-#~ msgstr "Nebolo možné vykonať syntaktickú analýzu súboru"
-
-#~ msgid "Could Not Read File"
-#~ msgstr "Nebolo možné prečítať súbor"
-
-#~ msgid "No information is available about this error."
-#~ msgstr "O tejto chybe nie sú dostupné žiadne informácie."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
-#~ "in an unsupported format."
-#~ msgstr ""
-#~ "Súbor '%s' sa nepodarilo načítať a dekódovať. Pravdepodobne je "
-#~ "zkomprimovaný v nepodporovanom formáte."
-
-#~ msgid "Use a private session"
-#~ msgstr "Použiť súkromú reláciu"
-
-#~ msgid "Define which cache directory to use"
-#~ msgstr "Definujte, ktorý adresár vyrovnávacej pamäte sa má použiť"
-
-#~ msgid " GNOME Help Browser"
-#~ msgstr " Prehliadač pomocíka prostredia GNOME"
-
-#~ msgid "Directory not found"
-#~ msgstr "Adresár nebol nájdený"
-
-#~ msgid "Preparing to print"
-#~ msgstr "Pripravuje sa tlač"
-
-#~ msgid "Printing is not supported on this printer"
-#~ msgstr "Táto tlačiareň nepodporuje tlač"
-
-#~ msgid "Printer %s does not support postscript printing."
-#~ msgstr "Tlačiareň %s nepodporuje tlačenie postscript dokumentov."
-
-#~ msgid "Waiting to print"
-#~ msgstr "Čaká sa na tlač"
-
-#~ msgid "An error occurred while printing"
-#~ msgstr "Počas tlače nastala chyba"
-
-#~ msgid "It was not possible to print your document: %s"
-#~ msgstr "Nebolo možné vytlačiť váš dokuement: %s"
-
-#~ msgid "the GNOME Support Forums"
-#~ msgstr "Diskusné skupiny na podporu Gnome"
-
-#~ msgid "No results for \"%s\""
-#~ msgstr "Pre \"%s\" neboli nájdené žiadne výsledky"
-
-#~ msgid ""
-#~ "Try using different words to describe the problem you're having or the "
-#~ "topic you want help with."
-#~ msgstr ""
-#~ "Skúste zadať iné slová popisujúce váš problém alebo tému, s ktorou chcete "
-#~ "pomôcť."
-
-#~ msgid "Search results for \"%s\""
-#~ msgstr "Výsledky vyhľadávania výrazu \"%s\""
-
-#~ msgid "Repeat the search online at %s"
-#~ msgstr "Opakovať online hľadanie na %s"
-
-#~ msgid ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-#~ msgstr ""
-#~ "a:i:o:s:so:v:na:pri:pre:za:pred:od:do:po:byť:som:je:sú:bude:budú:mať:mám:"
-#~ "má:majú:ako:môže:môžu:áno:nie:keď:kedy:kto:ako:ja:mňa:že:či"
-
-#~ msgid "re"
-#~ msgstr "za:pri:od:vy"
-
-#~ msgid "ers:er:ing:es:s:'s"
-#~ msgstr "enie:ť:ov:ova:ove"
-
-#~ msgid "No Comment"
-#~ msgstr "Bez komentára"
-
-#~ msgid "Search could not be processed"
-#~ msgstr "Hľadanie nebolo možné vykonať"
-
-#~ msgid "The requested search could not be processed."
-#~ msgstr "Nebolo možné spracovať požiadavku na hľadanie."
-
-#~ msgid "Cannot process the search"
-#~ msgstr "Nie je možné spracovať hľadanie"
-
-#~ msgid "The search processor returned invalid results"
-#~ msgstr "Spracovanie hľadania vrátilo chybné výsledky"
-
-#~ msgid "The page %s was not found in the TOC."
-#~ msgstr "Stránka %s nebola nájdená v Obsahu."
-
-#~ msgid "The requested page was not found in the TOC."
-#~ msgstr "Požadovaná stránka nebola nájdená v Obsahu."
-
-#~ msgid ""
-#~ "The TOC file could not be parsed because it is not a well-formed XML "
-#~ "document."
-#~ msgstr ""
-#~ "Súbor Obsahu nebolo možné prečítať, pretože je to chybne utvorený XML "
-#~ "dokument."
-
-#~ msgid "Broken Transformation"
-#~ msgstr "Chyba pri transformácii"
-
-#~ msgid ""
-#~ "An unknown error occurred while attempting to transform the document."
-#~ msgstr "Pri pokuse o transformáciu dokumentu sa vyskytla neznáma chyba."
-
-#~ msgid "_File"
-#~ msgstr "_Súbor"
-
-#~ msgid "_Edit"
-#~ msgstr "_Upraviť"
-
-#~ msgid "_Help"
-#~ msgstr "_Pomocník"
-
-#~ msgid "Print This Document ..."
-#~ msgstr "Vytlačiť tento dokument..."
-
-#~ msgid "About This Document"
-#~ msgstr "O tomto dokumente"
-
-#~ msgid "Open _Location"
-#~ msgstr "Otvoriť _umiestnenie"
-
-#~ msgid "_Close Window"
-#~ msgstr "_Zavrieť okno"
-
-#~ msgid "_Select All"
-#~ msgstr "_Vybrať všetko"
-
-#~ msgid "_Find..."
-#~ msgstr "_Nájsť..."
-
-#~ msgid "Find Pre_vious"
-#~ msgstr "Nájsť _predchádzajúce"
-
-#~ msgid "Find previous occurrence of the word or phrase"
-#~ msgstr "Nájde predchádzajúci výskyt hľadaného slova alebo frázy"
-
-#~ msgid "Find Ne_xt"
-#~ msgstr "Nájsť ná_sledujúce"
-
-#~ msgid "Find next occurrence of the word or phrase"
-#~ msgstr "Nájde ďalší výskyt hľadaného slova alebo frázy"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Predvoľby"
-
-#~ msgid "_Reload"
-#~ msgstr "_Obnoviť"
-
-#~ msgid "Show previous page in history"
-#~ msgstr "Zobrazí predchádzajúcu stránku histórie"
-
-#~ msgid "Show next page in history"
-#~ msgstr "Zobrazí nasledujúcu stránku histórie"
-
-#~ msgid "_Help Topics"
-#~ msgstr "_Témy pomocníka"
-
-#~ msgid "Go to the listing of help topics"
-#~ msgstr "Prejde na zoznam tém pomocníka"
-
-#~ msgid "_Previous Section"
-#~ msgstr "_Predchádzajúca časť"
-
-#~ msgid "_Next Section"
-#~ msgstr "_Následujúca časť"
-
-#~ msgid "_Contents"
-#~ msgstr "_Obsah"
-
-#~ msgid "_Copy Link Address"
-#~ msgstr "_Kopírovať adresu odkazu"
-
-#~ msgid "Help On this application"
-#~ msgstr "Pomocník k tejto aplikácii"
-
-#~ msgid "_About"
-#~ msgstr "_O programe"
-
-#~ msgid "Copy _Email Address"
-#~ msgstr "Kopírovať _emailovú adresu"
-
-#~ msgid "Help Browser"
-#~ msgstr "Prehliadač pomocníka"
-
-#~ msgid "Unknown Page"
-#~ msgstr "Neznáma strana"
-
-#~ msgid "The requested URI \"%s\" is invalid"
-#~ msgstr "Požadovaný URI \"%s\" je neplatný"
-
-#~ msgid "Unable to load page"
-#~ msgstr "Nepodarilo sa načítať stránku"
-
-#~ msgid "Search for other documentation"
-#~ msgstr "Hľadať inú dokumentáciu"
-
-#~ msgid "Cannot create search component"
-#~ msgstr "Nebolo možné vytvoriť komponent vyhľadávania"
-
-#~ msgid "Fin_d:"
-#~ msgstr "_Nájsť:"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Nájsť _predchádzajúci"
-
-#~ msgid "Find _Next"
-#~ msgstr "Nájsť _následujúci"
-
-#~ msgid "Phrase not found"
-#~ msgstr "Fráza nebola nájdená"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
-#~ "might not have permissions to read it."
-#~ msgstr ""
-#~ "Súbor '%s' sa nepodarilo načítať. Súbor buď chýba, alebo nemáte práva na "
-#~ "jeho čítanie."
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "Stanislav Višňovský (visnovsky@nenya.ms.mff.cuni.cz), Ivan Noris "
-#~ "(vix@vazka.sk), Laco Gubík (lacogubik@googlemail.com)"
-
-#~ msgid "A documentation browser and viewer for the Gnome Desktop."
-#~ msgstr "Prehliadač dokumentácie pre prostredie Gnome."
-
-#~ msgid "Library Functions"
-#~ msgstr "Funkcie z knižníc"
-
-#~ msgid "Accessories"
-#~ msgstr "Príslušenstvo"
-
-#~ msgid "Education Applications"
-#~ msgstr "Vzdelávacie aplikácie"
-
-#~ msgid "KDE"
-#~ msgstr "KDE"
-
-#~ msgid "Multimedia"
-#~ msgstr "Multimédiá"
-
-#~ msgid "Office"
-#~ msgstr "Kancelária"
-
-#~ msgid "Other"
-#~ msgstr "Iné"
-
-#~ msgid "Panel Applets"
-#~ msgstr "Aplety panelu"
-
-#~ msgid "Programming"
-#~ msgstr "Programovanie"
-
-#~ msgid "<b>Accessibility</b>"
-#~ msgstr "<b>Dostupnosť</b>"
-
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Písma</b>"
-
-#~ msgid "<b>_Bookmarks:</b>"
-#~ msgstr "<b>_Záložky:</b>"
-
-#~ msgid "C_ase sensitive"
-#~ msgstr "Rozlišovať veľké _a malé písmená"
-
-#~ msgid "Find"
-#~ msgstr "Nájsť"
-
-#~ msgid "_Find: "
-#~ msgstr "_Nájsť:"
-
-#~ msgid "_Wrap around"
-#~ msgstr "_Preskočiť na začiatok"
-
-#~ msgid "Yelp Factory"
-#~ msgstr "Vytváracie rozhranie Yelp"
-
-#~ msgid "Could not read the table of contents"
-#~ msgstr "Nepodarilo sa načítať obsah"
-
-#~ msgid "Unsupported Format"
-#~ msgstr "Nepodporovaný formát"
-
-#~ msgid "Could not activate Yelp: '%s'"
-#~ msgstr "Nepodarilo sa aktivovať Yelp: '%s'"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
-#~ "is formatted incorrectly."
-#~ msgstr ""
-#~ "Súbor '%s' sa nepodarilo načítať.  Buď neexistuje, alebo má nesprávny "
-#~ "formát."
-
-#~ msgid "The YelpDocInfo struct of the document"
-#~ msgstr "YelpDocInfo štruktúra dokumentu"
-
-#~ msgid ""
-#~ "Your search could not be processed. There is no connection to the beagle "
-#~ "daemon."
-#~ msgstr ""
-#~ "Vaše hľadanie sa nepodarilo spracovať. Nie je vytvorené spojenie s "
-#~ "démonom beagle."
-
-#~ msgid ""
-#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
-#~ "not a valid XSLT stylesheet."
-#~ msgstr ""
-#~ "Vaše hľadanie sa nepodarilo spracovať. Súbor '%s' buď chýba, alebo nejde "
-#~ "o platný XSLT list."
-
-#~ msgid "Help Contents"
-#~ msgstr "Obsah Pomocníka"
-
-#~ msgid "yelp-watermark-blockquote-201C"
-#~ msgstr "yelp-watermark-blockquote-201E"
-
-#~ msgid "YelpTocPager: Pause count is negative."
-#~ msgstr "YelpTocPager: Počet páuz je záporné číslo."
-
-#~ msgid "Could not load the OMF file '%s'."
-#~ msgstr "Nepodarilo sa načítať OMF súbor '%s'."
-
-#~ msgid "Read man page for %s"
-#~ msgstr "Čítať manuálovú stránku pre %s"
-
-#~ msgid ""
-#~ "The table of contents could not be loaded. The file ‘%s’ is either "
-#~ "missing or is not well-formed XML."
-#~ msgstr ""
-#~ "Obsah sa nepodarilo načítať. Súbor '%s' buď neexistuje, alebo nie je v "
-#~ "správnom XML formáte."
-
-#~ msgid ""
-#~ "The table of contents could not be processed. The file ‘%s’ is either "
-#~ "missing or is not a valid XSLT stylesheet."
-#~ msgstr ""
-#~ "Obsah sa nepodarilo spracovať. Súbor '%s' buď chýba, alebo nejde o platný "
-#~ "XSLT list."
-
-#~ msgid "The Uniform Resource Identifier for the file is invalid."
-#~ msgstr "Uniform Resource Identifier (URI) pre tento súbor je neplatný."
-
-#~ msgid ""
-#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-#~ "actual file."
-#~ msgstr "URI '%s' nie je platný alebo neukazuje na skutočný súbor."
-
-#~ msgid "Man pages are not supported in this version."
-#~ msgstr "Manuálové stránky nie sú v tejto verzii podporované."
-
-#~ msgid "GNU info pages are not supported in this version"
-#~ msgstr "GNU info stránky nie sú v tejto verzii podporované"
-
-#~ msgid ""
-#~ "SGML documents are no longer supported. Please ask the author of the "
-#~ "document to convert to XML."
-#~ msgstr ""
-#~ "SGML dokumenty už nie sú podporované. Požiadajte prosím autora dokumentu "
-#~ "o konverziu do XML."
-
-#~ msgid ""
-#~ "A transformation context could not be created for the file ‘%s’. The "
-#~ "format may not be supported."
-#~ msgstr ""
-#~ "Kontext transformácie pre súbor '%s' sa nepodarilo vytvoriť. Formátzrejme "
-#~ "nie je podporovaný."
-
-#~ msgid ""
-#~ "The section ‘%s’ does not exist in this document. If you were directed to "
-#~ "this section from a Help button in an application, please report this to "
-#~ "the maintainers of that application."
-#~ msgstr ""
-#~ "Časť '%s' v tomto dokumente neexistuje. Ak ste sa k tejto časti dostali "
-#~ "stlačením tlačidla Pomocník z aplikácie, nahláste to prosím správcom "
-#~ "danej aplikácie."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#~ "is improperly formatted."
-#~ msgstr ""
-#~ "Súbor '%s' sa nepodarilo načítať. Súbor buď neexistuje, alebo nemá "
-#~ "správny formát."
+#~ msgid "Not enough memory"
+#~ msgstr "Nedostatok pamäte"
