@@ -11,10 +11,11 @@ msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2010-09-15 15:01+0000\n"
-"PO-Revision-Date: 2009-09-19 23:00+0900\n"
+"POT-Creation-Date: 2010-10-30 19:42+0000\n"
+"PO-Revision-Date: 2010-11-01 23:52+0900\n"
 "Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1252,7 +1253,7 @@ msgstr ""
 msgid "Show Text _Cursor"
 msgstr ""
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1532
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1524
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "ヘルプ"
@@ -1287,7 +1288,7 @@ msgstr "新しいウィンドウ(_N)"
 #: ../src/yelp-window.c:278
 #, fuzzy
 msgid "_Close"
-msgstr "時計"
+msgstr "閉じる(_C)"
 
 #: ../src/yelp-window.c:283
 #, fuzzy
@@ -1312,47 +1313,47 @@ msgstr "このページの印刷..."
 msgid "Open Location"
 msgstr "場所を開く"
 
-#: ../src/yelp-window.c:335
+#: ../src/yelp-window.c:333
 #, fuzzy
 msgid "Application"
 msgstr "アプリケーション"
 
-#: ../src/yelp-window.c:336
+#: ../src/yelp-window.c:334
 msgid "A YelpApplication instance that controls this window"
 msgstr ""
 
-#: ../src/yelp-window.c:589
+#: ../src/yelp-window.c:580
 msgid "Read Later"
 msgstr ""
 
 #. %s will be replaced with the name of a document
-#: ../src/yelp-window.c:806
+#: ../src/yelp-window.c:797
 #, fuzzy, c-format
 msgid "Bookmarks for %s"
 msgstr "ブックマーク"
 
-#: ../src/yelp-window.c:1339
+#: ../src/yelp-window.c:1331
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../src/yelp-window.c:1364
+#: ../src/yelp-window.c:1356
 msgid "No matches"
 msgstr ""
 
-#: ../src/yelp-window.c:1649
+#: ../src/yelp-window.c:1641
 #, fuzzy
 msgid "_Open Bookmark"
 msgstr "ブックマークの名前を変更します"
 
-#: ../src/yelp-window.c:1655
+#: ../src/yelp-window.c:1647
 #, fuzzy
 msgid "Open Bookmark in New _Window"
 msgstr "新しいウィンドウでブックマークを開きます"
 
-#: ../src/yelp-window.c:1664
+#: ../src/yelp-window.c:1656
 #, fuzzy
 msgid "_Remove Bookmark"
 msgstr "ブックマークを削除します"
@@ -1389,7 +1390,7 @@ msgstr "GNOME のヘルプを手にいれます"
 #~ msgstr "等幅(_F):"
 
 #~ msgid "_Use system fonts"
-#~ msgstr "システムのフォントを使う(_U)"
+#~ msgstr "システムフォントを使う(_U)"
 
 #~ msgid "_Variable width:"
 #~ msgstr "可変幅(_V):"
@@ -1413,7 +1414,7 @@ msgstr "GNOME のヘルプを手にいれます"
 #~ msgstr "キャレットを使用する"
 
 #~ msgid "Use system fonts"
-#~ msgstr "システム・フォントを使用する"
+#~ msgstr "システムフォントを使用する"
 
 #~ msgid "Use the default fonts set for the system."
 #~ msgstr "システムのデフォルト・フォントを使用します。"
@@ -1606,9 +1607,6 @@ msgstr "GNOME のヘルプを手にいれます"
 #~ msgid "Open _Location"
 #~ msgstr "場所を開く(_L)"
 
-#~ msgid "_Close Window"
-#~ msgstr "閉じる(_C)"
-
 #~ msgid "_Select All"
 #~ msgstr "すべて選択(_S)"
 
@@ -1708,7 +1706,8 @@ msgstr "GNOME のヘルプを手にいれます"
 #~ "Satoru SATOH <ss@gnome.gr.jp>\n"
 #~ "相花 毅 <takeshi.aihana@gmail.com>\n"
 #~ "KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>\n"
-#~ "日本GNOMEユーザー会 http://www.gnome.gr.jp"
+#~ "草野 貴之 <AE5T-KSN@asahi-net.or.jp>\n"
+#~ "日本GNOMEユーザー会 <http://www.gnome.gr.jp/>"
 
 #~ msgid "A documentation browser and viewer for the Gnome Desktop."
 #~ msgstr "GNOME デスクトップ向けのドキュメント閲覧ブラウザです。"
