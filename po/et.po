@@ -13,9 +13,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp MASTER\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&component=general\n"
-"POT-Creation-Date: 2010-06-02 22:55+0000\n"
-"PO-Revision-Date: 2010-06-03 10:35+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&component=general\n"
+"POT-Creation-Date: 2010-11-03 00:19+0000\n"
+"PO-Revision-Date: 2010-11-13 17:18+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -441,8 +442,11 @@ msgstr "KDE rakendused"
 msgid "Kids Games"
 msgstr "Lastemängud"
 
-msgid "Learn more about making your system more accessible for a range of disabilities"
-msgstr "Abitekstid süsteemi hõlbustuste seadmiseks erivajadustega inimeste jaoks"
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr ""
+"Abitekstid süsteemi hõlbustuste seadmiseks erivajadustega inimeste jaoks"
 
 msgid "Licenses"
 msgstr "Litsentsid"
@@ -676,12 +680,20 @@ msgid "The file ‘%s’ does not exist."
 msgstr "Faili „%s” pole olemas."
 
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
-msgstr "Faili „%s” pole võimalik analüüsida kuna see pole korrektselt vormindatud XML-dokument."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Faili „%s” pole võimalik analüüsida kuna see pole korrektselt vormindatud "
+"XML-dokument."
 
 #, c-format
-msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
-msgstr "Faili „%s” pole võimalik analüüsida kuna üks või rohkem selle poolt kaasatud faili pole korrektselt vormindatud XML-dokumendid."
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+"Faili „%s” pole võimalik analüüsida kuna üks või rohkem selle poolt kaasatud "
+"faili pole korrektselt vormindatud XML-dokumendid."
 
 msgid "Unknown"
 msgstr "Tundmatu"
@@ -695,25 +707,26 @@ msgid "An unknown error occurred."
 msgstr "Esines tundmatu viga."
 
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "Faili „%s” pole võimalik analüüsida kuna see pole korrektselt vormindatud teabeleht (info page)."
-
-msgid "Description Column"
-msgstr "Kirjelduse veerg"
-
-msgid "A column in the model to get descriptions from"
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
+"Faili „%s” pole võimalik analüüsida kuna see pole korrektselt vormindatud "
+"teabeleht (info page)."
 
-msgid "Icon Column"
-msgstr "Ikoonide veerg"
+#, fuzzy
+#| msgid "_View"
+msgid "View"
+msgstr "_Vaade"
 
-msgid "A column in the model to get icon names from"
-msgstr ""
+#, fuzzy
+#| msgid "A YelpApplication instance that controls this window"
+msgid "A YelpView instance to control"
+msgstr "Seda akent juhtiv YelpApplication instants"
 
-msgid "Flags Column"
-msgstr "Lippude veerg"
+msgid "Bookmarks"
+msgstr "Järjehoidjad"
 
-msgid "A column in the model with YelpLocationEntryFlags flags"
+msgid "A YelpBookmarks implementation instance"
 msgstr ""
 
 msgid "Enable Search"
@@ -722,9 +735,22 @@ msgstr ""
 msgid "Whether the location entry can be used as a search field"
 msgstr ""
 
+msgid "Search..."
+msgstr "Otsimine..."
+
+msgid "Loading"
+msgstr "Laadimine"
+
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Kataloogi „%s” pole olemas."
+
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+msgstr ""
+"Faili „%s” pole võimalik analüüsida kuna see pole käsiraamatu korrektselt "
+"vormindatud leht (man page)."
 
 msgid "GtkSettings"
 msgstr "GtkSettings"
@@ -747,7 +773,7 @@ msgstr ""
 msgid "Show Text Cursor"
 msgstr ""
 
-msgid "Show the text cursor or caret for accessibile navigation"
+msgid "Show the text cursor or caret for accessible navigation"
 msgstr ""
 
 msgid "Editor Mode"
@@ -832,6 +858,9 @@ msgstr "Vaadeldava lehe ikoon"
 msgid "Save Image"
 msgstr "Pildi salvestamine"
 
+msgid "Save Code"
+msgstr "Salvesta kood"
+
 #. Not using a mnemonic because underscores are common in email
 #. * addresses, and we'd have to escape them. There doesn't seem
 #. * to be a quick GTK+ function for this. In practice, there will
@@ -840,7 +869,7 @@ msgstr "Pildi salvestamine"
 #.
 #, c-format
 msgid "Send email to %s"
-msgstr ""
+msgstr "Saada e-sõnum aadressile %s"
 
 msgid "_Open Link"
 msgstr "_Ava viit"
@@ -863,6 +892,12 @@ msgstr "S_aada video..."
 msgid "_Copy Text"
 msgstr "_Kopeeri tekst"
 
+msgid "C_opy Code Block"
+msgstr "K_opeeri koodiblokk"
+
+msgid "Save Code _Block As..."
+msgstr "Salvesta koodi_blokk _kui..."
+
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr ""
@@ -880,8 +915,14 @@ msgstr "Pole võimalik lugeda"
 msgid "Unknown Error"
 msgstr "Tundmatu viga"
 
-#, c-format
-msgid "The URI ‘%s’ does point to a valid page."
+#, fuzzy, c-format
+#| msgid "The URI ‘%s’ does point to a valid page."
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "URI „%s” ei viita korrektsele lehele."
+
+#, fuzzy, c-format
+#| msgid "The URI ‘%s’ does point to a valid page."
+msgid "The URI does not point to a valid page."
 msgstr "URI „%s” ei viita korrektsele lehele."
 
 #, c-format
@@ -892,15 +933,15 @@ msgid "Turn on editor mode"
 msgstr ""
 
 msgid "_Larger Text"
-msgstr ""
+msgstr "_Suurem tekst"
 
 msgid "Increase the size of the text"
 msgstr "Teksti suuruse suurendamine"
 
 msgid "_Smaller Text"
-msgstr ""
+msgstr "_Väiksem tekst"
 
-msgid "Descrease the size of the text"
+msgid "Decrease the size of the text"
 msgstr "Teksti suuruse vähendamine"
 
 msgid "Show Text _Cursor"
@@ -909,7 +950,9 @@ msgstr ""
 msgid "Help"
 msgstr "Abi"
 
-msgid "You do not have PackageKit installed.  Package installation links require PackageKit."
+msgid ""
+"You do not have PackageKit installed. Package installation links require "
+"PackageKit."
 msgstr ""
 
 msgid "_Page"
@@ -930,6 +973,11 @@ msgstr "_Uus aken"
 msgid "_Close"
 msgstr "Sul_ge"
 
+#, fuzzy
+#| msgid "About This Document"
+msgid "_All Documents"
+msgstr "Dokumendist"
+
 msgid "_Add Bookmark"
 msgstr "_Lisa järjehoidja"
 
@@ -938,9 +986,6 @@ msgstr "_Järjehoidjate redigeerimine"
 
 msgid "Find in Page..."
 msgstr "Otsi lehelt..."
-
-msgid "Search..."
-msgstr "Otsimine..."
 
 msgid "Open Location"
 msgstr "Asukoha avamine"
@@ -968,9 +1013,6 @@ msgstr[1] "%i vastavust"
 msgid "No matches"
 msgstr "Vastavused puuduvad"
 
-msgid "Loading"
-msgstr "Laadimine"
-
 msgid "_Open Bookmark"
 msgstr "_Ava järjehoidja"
 
@@ -982,6 +1024,15 @@ msgstr "_Eemalda järjehoidja"
 
 msgid "Get help with GNOME"
 msgstr "Abistab GNOME kasutamisel"
+
+#~ msgid "Description Column"
+#~ msgstr "Kirjelduse veerg"
+
+#~ msgid "Icon Column"
+#~ msgstr "Ikoonide veerg"
+
+#~ msgid "Flags Column"
+#~ msgstr "Lippude veerg"
 
 #~ msgid "Re_name"
 #~ msgstr "Muuda _nime"
@@ -1056,7 +1107,9 @@ msgstr "Abistab GNOME kasutamisel"
 #~ msgstr "Tundmatu käivitusvalik: %d"
 
 #~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr "Dokumendi URI-sid pole võimalik 'Liik=Viit' tüüpi töölauakirjetele edastada"
+#~ msgstr ""
+#~ "Dokumendi URI-sid pole võimalik 'Liik=Viit' tüüpi töölauakirjetele "
+#~ "edastada"
 
 #~ msgid "Not a launchable item"
 #~ msgstr "Pole käivitatav kirje"
@@ -1106,8 +1159,12 @@ msgstr "Abistab GNOME kasutamisel"
 #~ msgid "No information is available about this error."
 #~ msgstr "Selle vea kohta puuduvad andmed."
 
-#~ msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
-#~ msgstr "Faili „%s” ei ole võimalik lugeda ja dekodeerida. Arvatavasti on fail pakitud toetamata vorminguga."
+#~ msgid ""
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
+#~ "in an unsupported format."
+#~ msgstr ""
+#~ "Faili „%s” ei ole võimalik lugeda ja dekodeerida. Arvatavasti on fail "
+#~ "pakitud toetamata vorminguga."
 
 #~ msgid "Use a private session"
 #~ msgstr "Uus privaatne seanss"
@@ -1120,9 +1177,6 @@ msgstr "Abistab GNOME kasutamisel"
 
 #~ msgid "Directory not found"
 #~ msgstr "Kataloogi ei leitud"
-
-#~ msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
-#~ msgstr "Faili „%s” pole võimalik analüüsida kuna see pole käsiraamatu korrektselt vormindatud leht (man page)."
 
 #~ msgid "Preparing to print"
 #~ msgstr "Printimise ettevalmistamine"
@@ -1148,8 +1202,12 @@ msgstr "Abistab GNOME kasutamisel"
 #~ msgid "No results for \"%s\""
 #~ msgstr "Tulemusi otsingule \"%s\" ei leitud"
 
-#~ msgid "Try using different words to describe the problem you're having or the topic you want help with."
-#~ msgstr "Proovi oma probleemi kirjeldamiseks või abiteabe otsimiseks kasutada veidi teistsuguseid sõnu."
+#~ msgid ""
+#~ "Try using different words to describe the problem you're having or the "
+#~ "topic you want help with."
+#~ msgstr ""
+#~ "Proovi oma probleemi kirjeldamiseks või abiteabe otsimiseks kasutada "
+#~ "veidi teistsuguseid sõnu."
 
 #~ msgid "Search results for \"%s\""
 #~ msgstr "Otsingu \"%s\" tulemused"
@@ -1157,14 +1215,25 @@ msgstr "Abistab GNOME kasutamisel"
 #~ msgid "Repeat the search online at %s"
 #~ msgstr "Võrgust otsimise kordamine asukohas %s"
 
-#~ msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-#~ msgstr "ja:ning:ega:ehk:või:aga:kuid:ent:vaid:et:kui:kuna:sest:kuni:kuigi:ehkki:nagu:saati:elik:justkui:otsekui:mina:ma:meie:me:sina:sa:teie:te:tema:ta:nemad:nad"
+#~ msgid ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ msgstr ""
+#~ "ja:ning:ega:ehk:või:aga:kuid:ent:vaid:et:kui:kuna:sest:kuni:kuigi:ehkki:"
+#~ "nagu:saati:elik:justkui:otsekui:mina:ma:meie:me:sina:sa:teie:te:tema:ta:"
+#~ "nemad:nad"
 
 #~ msgid "re"
 #~ msgstr "eba"
 
 #~ msgid "ers:er:ing:es:s:'s"
-#~ msgstr "am:ard:e:el:gil:gile:i:ik:is:istu:ja:jas:k:kas:ke:kene:kesi:kil:kile:kond:kuti:la:lane:ldane:ldasa:li:lik:line:lt:m:me:mik:mine:misi:mu:nd:ndik:ndus:ne:ng:nik:nna:nu:r:rd:s:si:sk:sti:stik:stikku:stu:tar:ti:ts:tsi:tu:u:ur:us:v:vel:vele:vil:vile"
+#~ msgstr ""
+#~ "am:ard:e:el:gil:gile:i:ik:is:istu:ja:jas:k:kas:ke:kene:kesi:kil:kile:kond:"
+#~ "kuti:la:lane:ldane:ldasa:li:lik:line:lt:m:me:mik:mine:misi:mu:nd:ndik:"
+#~ "ndus:ne:ng:nik:nna:nu:r:rd:s:si:sk:sti:stik:stikku:stu:tar:ti:ts:tsi:tu:u:"
+#~ "ur:us:v:vel:vele:vil:vile"
 
 #~ msgid "No Comment"
 #~ msgstr "Kommentaarita"
@@ -1187,13 +1256,18 @@ msgstr "Abistab GNOME kasutamisel"
 #~ msgid "The requested page was not found in the TOC."
 #~ msgstr "Küsitud lehekülge sisukorras ei leitud."
 
-#~ msgid "The TOC file could not be parsed because it is not a well-formed XML document."
-#~ msgstr "Sisukorda pole võimalik analüüsida kuna see pole korrektselt vormindatud XML-dokument."
+#~ msgid ""
+#~ "The TOC file could not be parsed because it is not a well-formed XML "
+#~ "document."
+#~ msgstr ""
+#~ "Sisukorda pole võimalik analüüsida kuna see pole korrektselt vormindatud "
+#~ "XML-dokument."
 
 #~ msgid "Broken Transformation"
 #~ msgstr "Katkine teisendus"
 
-#~ msgid "An unknown error occurred while attempting to transform the document."
+#~ msgid ""
+#~ "An unknown error occurred while attempting to transform the document."
 #~ msgstr "Dokumendi teisendamisel leidis aset tundmatu viga."
 
 #~ msgid "_File"
@@ -1207,9 +1281,6 @@ msgstr "Abistab GNOME kasutamisel"
 
 #~ msgid "Print This Document ..."
 #~ msgstr "Prindi see dokument..."
-
-#~ msgid "About This Document"
-#~ msgstr "Dokumendist"
 
 #~ msgid "Open _Location"
 #~ msgstr "_Ava asukoht"
@@ -1298,8 +1369,12 @@ msgstr "Abistab GNOME kasutamisel"
 #~ msgid "Phrase not found"
 #~ msgstr "Fraasi ei leitud"
 
-#~ msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
-#~ msgstr "Faili „%s” pole võimalik lugeda.  Seda kas pole olemas või pole sul selle lugemiseks piisavalt õiguseid."
+#~ msgid ""
+#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
+#~ "might not have permissions to read it."
+#~ msgstr ""
+#~ "Faili „%s” pole võimalik lugeda.  Seda kas pole olemas või pole sul selle "
+#~ "lugemiseks piisavalt õiguseid."
 
 #~ msgid "translator-credits"
 #~ msgstr ""
