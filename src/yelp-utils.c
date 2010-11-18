@@ -116,15 +116,15 @@ resolve_process_ghelp (char *uri, gchar **result)
             hash = NULL;
         }
         for (i = 0; type != YELP_RRN_TYPE_MAL && dirs[i]; i++) {
-            gchar *path = g_strdup_printf ("%sgnome/help/%s", dirs[i], dir);
+            gchar *path = g_build_filename (dirs[i], "gnome", "help", dir, NULL);
             if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
                 const gchar * const *langs = g_get_language_names ();
                 gint j;
                 for (j = 0; type != YELP_RRN_TYPE_MAL && langs[j]; j++) {
-                    gchar *index = g_strdup_printf ("%sgnome/help/%s/%s/index.page", dirs[i], dir, langs[j]);
+                    gchar *index = g_build_filename (dirs[i], "gnome", "help", dir, langs[j], "index.page", NULL);
                     if (g_file_test (index, G_FILE_TEST_IS_REGULAR)) {
                         type = YELP_RRN_TYPE_MAL;
-                        *result = g_strdup_printf ("%sgnome/help/%s/%s/", dirs[i], dir, langs[j]);
+                        *result = g_build_filename (dirs[i], "gnome", "help", dir, langs[j], NULL);
                     }
                     g_free (index);
                 }
