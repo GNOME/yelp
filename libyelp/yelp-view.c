@@ -55,9 +55,11 @@ static void        yelp_view_set_property         (GObject            *object,
 
 static void        view_scrolled                  (GtkAdjustment      *adjustment,
                                                    YelpView           *view);
-static void        view_scroll_adjustments        (YelpView           *view,
-                                                   GtkAdjustment      *hadj,
-                                                   GtkAdjustment      *vadj,
+static void        view_set_hadjustment           (YelpView           *view,
+                                                   GParamSpec         *pspec,
+                                                   gpointer            data);
+static void        view_set_vadjustment           (YelpView           *view,
+                                                   GParamSpec         *pspec,
                                                    gpointer            data);
 static void        popup_open_link                (GtkMenuItem        *item,
                                                    YelpView           *view);
@@ -261,8 +263,10 @@ yelp_view_init (YelpView *view)
                           G_CALLBACK (view_navigation_requested), NULL);
     g_signal_connect (view, "resource-request-starting",
                       G_CALLBACK (view_resource_request), NULL);
-    g_signal_connect (view, "set-scroll-adjustments",
-                      G_CALLBACK (view_scroll_adjustments), NULL);
+    g_signal_connect (view, "notify::hadjustment",
+                      G_CALLBACK (view_set_hadjustment), NULL);
+    g_signal_connect (view, "notify::vadjustment",
+                      G_CALLBACK (view_set_vadjustment), NULL);
     g_signal_connect (view, "populate-popup",
                       G_CALLBACK (view_populate_popup), NULL);
 
@@ -693,28 +697,33 @@ view_scrolled (GtkAdjustment *adjustment,
 }
 
 static void
-view_scroll_adjustments (YelpView      *view,
-                         GtkAdjustment *hadj,
-                         GtkAdjustment *vadj,
-                         gpointer       data)
+view_set_hadjustment (YelpView      *view,
+                      GParamSpec    *pspec,
+                      gpointer       data)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
-    priv->vadjustment = vadj;
-    if (priv->vadjuster > 0)
-        g_source_remove (priv->vadjuster);
-    priv->vadjuster = 0;
-    if (vadj) {
-        priv->vadjuster = g_signal_connect (vadj, "value-changed",
-                                            G_CALLBACK (view_scrolled), view);
-    }
-    priv->hadjustment = hadj;
+    priv->hadjustment = gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (view));
     if (priv->hadjuster > 0)
         g_source_remove (priv->hadjuster);
     priv->hadjuster = 0;
-    if (hadj) {
-        priv->hadjuster = g_signal_connect (hadj, "value-changed",
+    if (priv->hadjustment)
+        priv->hadjuster = g_signal_connect (priv->hadjustment, "value-changed",
                                             G_CALLBACK (view_scrolled), view);
-    }
+}
+
+static void
+view_set_vadjustment (YelpView      *view,
+                      GParamSpec    *pspec,
+                      gpointer       data)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    priv->vadjustment = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (view));
+    if (priv->vadjuster > 0)
+        g_source_remove (priv->vadjuster);
+    priv->vadjuster = 0;
+    if (priv->vadjustment)
+        priv->vadjuster = g_signal_connect (priv->vadjustment, "value-changed",
+                                            G_CALLBACK (view_scrolled), view);
 }
 
 static void
