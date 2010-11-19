@@ -53,12 +53,12 @@ typedef struct _YelpLocationEntryClass    YelpLocationEntryClass;
 
 struct _YelpLocationEntry
 {
-    GtkComboBoxEntry          parent;
+    GtkComboBox          parent;
 };
 
 struct _YelpLocationEntryClass
 {
-    GtkComboBoxEntryClass     parent;
+    GtkComboBoxClass     parent;
 
     void     (* location_selected)          (YelpLocationEntry *entry);
     void     (* search_activated)           (YelpLocationEntry *entry);

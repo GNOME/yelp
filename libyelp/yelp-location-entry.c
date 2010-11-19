@@ -33,12 +33,12 @@
  * @short_description: A location entry with history and search
  * @include: yelp.h
  *
- * #YelpLocationEntry is a #GtkComboBoxEntry designed to show the current location,
+ * #YelpLocationEntry is a #GtkComboBox designed to show the current location,
  * provide a drop-down menu of previous locations, and allow the user to perform
  * searches.
  *
  * The #GtkTreeModel used by a #YelpLocationEntry is expected to have at least
- * four columns: #GtkComboBoxEntry::text-column contains the displayed name
+ * four columns: #GtkComboBox::entry-text-column contains the displayed name
  * of the location, #YelpLocationEntry::desc-column contains a description
  * for each entry, #YelpLocationEntry::icon-column contains an icon name for
  * the location, and #YelpLocationEntry::flags-column contains a bit field
@@ -236,7 +236,7 @@ static GHashTable *completions;
 
 static guint location_entry_signals[LAST_SIGNAL] = {0,};
 
-G_DEFINE_TYPE (YelpLocationEntry, yelp_location_entry, GTK_TYPE_COMBO_BOX_ENTRY)
+G_DEFINE_TYPE (YelpLocationEntry, yelp_location_entry, GTK_TYPE_COMBO_BOX)
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE((object), YELP_TYPE_LOCATION_ENTRY, YelpLocationEntryPrivate))
 
 static void
@@ -371,7 +371,7 @@ yelp_location_entry_init (YelpLocationEntry *entry)
 {
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     priv->search_mode = FALSE;
-    g_object_set (entry, "text-column", HISTORY_COL_TITLE, NULL);
+    g_object_set (entry, "entry-text-column", HISTORY_COL_TITLE, NULL);
 }
 
 static void
@@ -701,8 +701,6 @@ location_entry_set_completion (YelpLocationEntry *entry,
                                         (GtkCellLayoutDataFunc) cell_set_completion_text_cell,
                                         entry, NULL);
     g_object_set (cells->data, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
-    /* We use multi-line text, and GTK+ gets heights wrong without this. */
-    gtk_cell_renderer_text_set_fixed_height_from_font (GTK_CELL_RENDERER_TEXT (cells->data), 2);
     g_list_free (cells);
 
     icon_cell = gtk_cell_renderer_pixbuf_new ();
@@ -1489,6 +1487,7 @@ yelp_location_entry_new (YelpView      *view,
     g_return_val_if_fail (YELP_IS_VIEW (view), NULL);
 
     ret = GTK_WIDGET (g_object_new (YELP_TYPE_LOCATION_ENTRY,
+                                    "has-entry", TRUE,
                                     "view", view,
                                     "bookmarks", bookmarks,
                                     NULL));
