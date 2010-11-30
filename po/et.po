@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
 "POT-Creation-Date: 2010-11-03 00:19+0000\n"
-"PO-Revision-Date: 2010-11-13 17:18+0200\n"
+"PO-Revision-Date: 2010-11-30 10:09+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +46,7 @@ msgid "Development"
 msgstr "Arendus"
 
 msgid "FORTRAN Functions"
-msgstr "FORTRAN'i funktsioonid"
+msgstr "FORTRANi funktsioonid"
 
 msgid "Games"
 msgstr "Mängud"
@@ -64,16 +64,16 @@ msgid "Network Audio Sound Functions"
 msgstr "Network Audio Sound funktsioonid"
 
 msgid "OpenSSL Applications"
-msgstr "OpenSSL'i rakendused"
+msgstr "OpenSSLi rakendused"
 
 msgid "OpenSSL Configuration"
-msgstr "OpenSSL'i sätted"
+msgstr "OpenSSLi sätted"
 
 msgid "OpenSSL Functions"
-msgstr "OpenSSL'i funktsioonid"
+msgstr "OpenSSLi funktsioonid"
 
 msgid "OpenSSL Overviews"
-msgstr "OpenSSL'i ülevaated"
+msgstr "OpenSSLi ülevaated"
 
 msgid "Overviews"
 msgstr "Ülevaated"
@@ -199,7 +199,7 @@ msgid "TIFF Functions"
 msgstr "TIFF funktsioonid"
 
 msgid "Termcap Applications"
-msgstr "Termcap'i rakendused"
+msgstr "Termcapi rakendused"
 
 msgid "Traditional command line help (man)"
 msgstr "Traditsiooniline käsurea-abi (man)"
@@ -656,7 +656,7 @@ msgid "Web Development"
 msgstr "Veebiarendus"
 
 msgid "Welcome to the GNOME Help Browser"
-msgstr "Tere tulemast GNOME'i Abiteabe sirvijasse"
+msgstr "Tere tulemast GNOME Abiteabe sirvijasse"
 
 msgid "Word Processors"
 msgstr "Tekstitöötlusprogrammid"
@@ -713,15 +713,11 @@ msgstr ""
 "Faili „%s” pole võimalik analüüsida kuna see pole korrektselt vormindatud "
 "teabeleht (info page)."
 
-#, fuzzy
-#| msgid "_View"
 msgid "View"
-msgstr "_Vaade"
+msgstr ""
 
-#, fuzzy
-#| msgid "A YelpApplication instance that controls this window"
 msgid "A YelpView instance to control"
-msgstr "Seda akent juhtiv YelpApplication instants"
+msgstr "Juhtiv YelpView instants"
 
 msgid "Bookmarks"
 msgstr "Järjehoidjad"
@@ -915,15 +911,13 @@ msgstr "Pole võimalik lugeda"
 msgid "Unknown Error"
 msgstr "Tundmatu viga"
 
-#, fuzzy, c-format
-#| msgid "The URI ‘%s’ does point to a valid page."
+#, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI „%s” ei viita korrektsele lehele."
 
-#, fuzzy, c-format
-#| msgid "The URI ‘%s’ does point to a valid page."
+#, c-format
 msgid "The URI does not point to a valid page."
-msgstr "URI „%s” ei viita korrektsele lehele."
+msgstr "URI ei viita korrektsele lehele."
 
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
@@ -973,10 +967,8 @@ msgstr "_Uus aken"
 msgid "_Close"
 msgstr "Sul_ge"
 
-#, fuzzy
-#| msgid "About This Document"
 msgid "_All Documents"
-msgstr "Dokumendist"
+msgstr "_Kõik dokumendid"
 
 msgid "_Add Bookmark"
 msgstr "_Lisa järjehoidja"
