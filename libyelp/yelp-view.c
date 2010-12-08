@@ -76,6 +76,10 @@ static void        popup_save_code                (GtkMenuItem        *item,
 static void        view_populate_popup            (YelpView           *view,
                                                    GtkMenu            *menu,
                                                    gpointer            data);
+static void        view_script_alert              (YelpView           *view,
+                                                   WebKitWebFrame     *frame,
+                                                   gchar             **message,
+                                                   gpointer            data);
 static gboolean    view_navigation_requested      (WebKitWebView             *view,
                                                    WebKitWebFrame            *frame,
                                                    WebKitNetworkRequest      *request,
@@ -269,6 +273,8 @@ yelp_view_init (YelpView *view)
                       G_CALLBACK (view_set_vadjustment), NULL);
     g_signal_connect (view, "populate-popup",
                       G_CALLBACK (view_populate_popup), NULL);
+    g_signal_connect (view, "script-alert",
+                      G_CALLBACK (view_script_alert), NULL);
 
     priv->action_group = gtk_action_group_new ("YelpView");
     gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
@@ -1177,6 +1183,15 @@ view_populate_popup (YelpView *view,
     g_object_unref (result);
     gdk_event_free (event);
     gtk_widget_show_all (GTK_WIDGET (menu));
+}
+
+static void
+view_script_alert (YelpView        *view,
+                   WebKitWebFrame  *frame,
+                   gchar          **message,
+                   gpointer         data)
+{
+    printf ("\n\n===ALERT===\n%s\n\n", message);
 }
 
 static gboolean
