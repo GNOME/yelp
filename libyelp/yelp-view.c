@@ -114,10 +114,6 @@ static void        document_callback              (YelpDocument       *document,
                                                    YelpDocumentSignal  signal,
                                                    YelpView           *view,
                                                    GError             *error);
-static gboolean    dom_node_is_name               (WebKitDOMNode      *node,
-                                                   gchar              *name);
-static gboolean    dom_node_has_class             (WebKitDOMNode      *node,
-                                                   gchar              *class);
 
 static const GtkActionEntry entries[] = {
     {"YelpViewPrint", GTK_STOCK_PRINT,
@@ -997,16 +993,24 @@ view_populate_popup (YelpView *view,
                   "inner-node", &node,
                   NULL);
     for (cur = node; cur != NULL; cur = webkit_dom_node_get_parent_node (cur)) {
-        if (dom_node_is_name (cur, "a"))
+        if (WEBKIT_DOM_IS_ELEMENT (cur) &&
+            webkit_dom_element_webkit_matches_selector ((WebKitDOMElement *) cur,
+                                                        "a", NULL))
             link_node = cur;
 
-        if (dom_node_is_name (cur, "div") && dom_node_has_class (cur, "code")) {
+        if (WEBKIT_DOM_IS_ELEMENT (cur) &&
+            webkit_dom_element_webkit_matches_selector ((WebKitDOMElement *) cur,
+                                                        "div.code", NULL)) {
             WebKitDOMNode *title;
             code_node = cur;
             title = webkit_dom_node_get_parent_node (cur);
-            if (title && dom_node_is_name (title, "div") && dom_node_has_class (title, "contents")) {
+            if (title != NULL && WEBKIT_DOM_IS_ELEMENT (title) &&
+                webkit_dom_element_webkit_matches_selector ((WebKitDOMElement *) title,
+                                                            "div.contents", NULL)) {
                 title = webkit_dom_node_get_previous_sibling (title);
-                if (title && dom_node_is_name (title, "div") && dom_node_has_class (title, "title")) {
+                if (title != NULL && WEBKIT_DOM_IS_ELEMENT (title) &&
+                    webkit_dom_element_webkit_matches_selector ((WebKitDOMElement *) title,
+                                                                "div.title", NULL)) {
                     code_title_node = title;
                 }
             }
@@ -1021,20 +1025,17 @@ view_populate_popup (YelpView *view,
 
         g_free (priv->popup_link_text);
         priv->popup_link_text = NULL;
-        /* FIXME: Handled space-separated class names, etc. See about a convenience API
-         * in WebKit, because this kind of processing in C really sucks.
-         */
         if (link_node != NULL) {
-            WebKitDOMNode *child = webkit_dom_node_get_first_child (link_node);
+            WebKitDOMNode *child;
             gchar *tmp;
             gint i, tmpi;
             gboolean ws;
-            if (dom_node_is_name (child, "div") && dom_node_has_class (child, "linkdiv")) {
-                child = webkit_dom_node_get_first_child (child);
-                if (child && dom_node_is_name (child, "div") && dom_node_has_class (child, "title")) {
-                    priv->popup_link_text = webkit_dom_node_get_text_content (child);
-                }
-            }
+
+            child = webkit_dom_element_query_selector (WEBKIT_DOM_ELEMENT (link_node),
+                                                       "div.linkdiv div.title", NULL);
+            if (child != NULL)
+                priv->popup_link_text = webkit_dom_node_get_text_content (child);
+
             if (priv->popup_link_text == NULL)
                 priv->popup_link_text = webkit_dom_node_get_text_content (link_node);
 
@@ -1812,38 +1813,4 @@ document_callback (YelpDocument       *document,
     else if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {
         view_show_error_page (view, error);
     }
-}
-
-static gboolean
-dom_node_is_name (WebKitDOMNode *node,
-                  gchar         *name)
-{
-    gboolean ret;
-    gchar *nodename = webkit_dom_node_get_node_name (node);
-    ret = g_str_equal (nodename, name);
-    g_free (nodename);
-    return ret;
-}
-
-static gboolean
-dom_node_has_class (WebKitDOMNode *node,
-                    gchar         *class)
-{
-    gboolean ret = FALSE;
-    WebKitDOMNamedNodeMap *map = webkit_dom_node_get_attributes (node);
-    WebKitDOMNode *attr = webkit_dom_named_node_map_get_named_item (map, "class");
-    if (attr) {
-        gchar *htmlclass = webkit_dom_node_get_text_content (attr);
-        gchar **classes = g_strsplit (htmlclass, " ", -1);
-        gint classi;
-        for (classi = 0; classes[classi] != NULL; classi++) {
-            if (g_str_equal (classes[classi], class)) {
-                ret = TRUE;
-                break;
-            }
-        }
-        g_strfreev (classes);
-        g_free (htmlclass);
-    }
-    return ret;
 }
