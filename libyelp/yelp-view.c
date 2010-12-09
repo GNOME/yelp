@@ -78,7 +78,7 @@ static void        view_populate_popup            (YelpView           *view,
                                                    gpointer            data);
 static void        view_script_alert              (YelpView           *view,
                                                    WebKitWebFrame     *frame,
-                                                   gchar             **message,
+                                                   gchar              *message,
                                                    gpointer            data);
 static gboolean    view_navigation_requested      (WebKitWebView             *view,
                                                    WebKitWebFrame            *frame,
@@ -363,6 +363,7 @@ yelp_view_class_init (YelpViewClass *klass)
     nautilus_sendto = g_find_program_in_path ("nautilus-sendto");
 
     websettings = webkit_web_settings_new ();
+    g_object_set (websettings, "enable-universal-access-from-file-uris", TRUE, NULL);
     g_signal_connect (settings,
                       "fonts-changed",
                       G_CALLBACK (settings_set_fonts),
@@ -1188,7 +1189,7 @@ view_populate_popup (YelpView *view,
 static void
 view_script_alert (YelpView        *view,
                    WebKitWebFrame  *frame,
-                   gchar          **message,
+                   gchar           *message,
                    gpointer         data)
 {
     printf ("\n\n===ALERT===\n%s\n\n", message);
@@ -1230,9 +1231,6 @@ view_resource_request (WebKitWebView         *view,
     const gchar *requri = webkit_network_request_get_uri (request);
     gchar last;
     gchar *newpath;
-
-    debug_print (DB_FUNCTION, "entering\n");
-    debug_print (DB_ARG, "    uri=\"%s\"\n", requri);
 
     if (!g_str_has_prefix (requri, BOGUS_URI))
         return;

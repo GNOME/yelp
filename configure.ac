@@ -137,6 +137,8 @@ XSL_ICONS="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/common/icons.xsl"
 AC_SUBST(XSL_ICONS)
 XSL_HTML="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/common/html.xsl"
 AC_SUBST(XSL_HTML)
+XSL_JSDIR="`$PKG_CONFIG --variable=jsdir yelp-xsl`"
+AC_SUBST(XSL_JSDIR)
 
 XSL_GETTEXT="`$PKG_CONFIG --variable=gettext yelp-xsl`"
 AC_SUBST(XSL_GETTEXT)

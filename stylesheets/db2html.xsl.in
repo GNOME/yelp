@@ -37,9 +37,4 @@
   </xsl:choose>
 </xsl:template>
 
-<!-- == db2html.division.head.extra == -->
-<xsl:template name="db2html.division.head.extra">
-  <xsl:call-template name="yelp.common.javascript"/>
-</xsl:template>
-
 </xsl:stylesheet>

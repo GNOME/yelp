@@ -80,8 +80,4 @@ body, div.body {
 </xsl:if>
 </xsl:template>
 
-<xsl:template name="html.head.custom">
-  <xsl:call-template name="yelp.common.javascript"/>
-</xsl:template>
-
 </xsl:stylesheet>

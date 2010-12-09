@@ -11,6 +11,9 @@
 
 <xsl:param name="html.extension" select="''"/>
 
+<xsl:param name="html.syntax.highlight" select="true()"/>
+<xsl:param name="html.js.root" select="'file://@XSL_JSDIR@/'"/>
+
 <!-- == html.output == -->
 <xsl:template name="html.output">
   <xsl:param name="node" select="."/>
@@ -83,14 +86,10 @@ div.body {
   border: none;
 }
 </xsl:text>
-<xsl:call-template name="yelp.css.custom"/>
 </xsl:template>
 
-<xsl:template name="yelp.css.custom"/>
-
-<xsl:template name="yelp.common.javascript">
-<script type="text/javascript" language="javascript" src="@DATADIR@/jquery-1.4.2.min.js"/>
-<script type="text/javascript" language="javascript" src="@DATADIR@/jquery-ui-1.8.custom.min.js"/>
+<!-- == html.js.custom == -->
+<xsl:template name="html.js.custom">
 <script type="text/javascript" language="javascript">
 <xsl:text>
 $(document).ready (function () {
@@ -110,6 +109,5 @@ $(document).ready (function () {
 </xsl:text>
 </script>
 </xsl:template>
-
 
 </xsl:stylesheet>
