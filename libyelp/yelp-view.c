@@ -1002,7 +1002,9 @@ view_populate_popup (YelpView *view,
             webkit_dom_element_webkit_matches_selector ((WebKitDOMElement *) cur,
                                                         "div.code", NULL)) {
             WebKitDOMNode *title;
-            code_node = cur;
+            code_node = (WebKitDOMNode *)
+                webkit_dom_element_query_selector ((WebKitDOMElement *) cur,
+                                                   "pre.contents", NULL);
             title = webkit_dom_node_get_parent_node (cur);
             if (title != NULL && WEBKIT_DOM_IS_ELEMENT (title) &&
                 webkit_dom_element_webkit_matches_selector ((WebKitDOMElement *) title,
@@ -1031,8 +1033,9 @@ view_populate_popup (YelpView *view,
             gint i, tmpi;
             gboolean ws;
 
-            child = webkit_dom_element_query_selector (WEBKIT_DOM_ELEMENT (link_node),
-                                                       "div.linkdiv div.title", NULL);
+            child = (WebKitDOMNode *)
+                webkit_dom_element_query_selector (WEBKIT_DOM_ELEMENT (link_node),
+                                                   "div.linkdiv div.title", NULL);
             if (child != NULL)
                 priv->popup_link_text = webkit_dom_node_get_text_content (child);
 
