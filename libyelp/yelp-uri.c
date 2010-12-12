@@ -811,6 +811,52 @@ resolve_help_list_uri (YelpUri *uri)
     priv->tmptype = YELP_URI_DOCUMENT_TYPE_HELP_LIST;
 }
 
+/*
+  Resolve a manual file's path using 'man -w'. section may be NULL,
+  otherwise should be the section of the manual (ie should have dealt
+  with empty strings before calling this!) Returns NULL if the file
+  can't be found.
+*/
+static gchar*
+find_man_path (gchar* name, gchar* section)
+{
+    gchar* argv[] = { "man", "-w", NULL, NULL, NULL };
+    gchar *stdout = NULL;
+    gint status;
+    gchar **lines;
+    GError *error = NULL;
+
+    /* Syntax for man is "man -w <section> <name>", possibly omitting
+       section */
+    if (section) {
+        argv[2] = section;
+        argv[3] = name;
+    } else {
+        argv[2] = name;
+    }
+
+    if (!g_spawn_sync (NULL, argv, NULL,
+                       G_SPAWN_SEARCH_PATH | G_SPAWN_STDERR_TO_DEV_NULL,
+                       NULL, NULL,
+                       &stdout, NULL, &status, &error)) {
+        g_warning ("Couldn't find path for %s(%s). Error: %s",
+                   name, section, error->message);
+        g_error_free (error);
+    }
+
+    if (status == 0) {
+        lines = g_strsplit (stdout, "\n", 2);
+        g_free (stdout);
+        stdout = g_strdup (lines[0]);
+
+        g_strfreev (lines);
+        return stdout;
+    } else {
+        g_free (stdout);
+        return NULL;
+    }
+}
+
 static void
 resolve_man_uri (YelpUri *uri)
 {
@@ -820,145 +866,77 @@ resolve_man_uri (YelpUri *uri)
      * man:name.section
      * man:name
      */
-    static gchar **manpath = NULL;
-    const gchar * const * langs = g_get_language_names ();
-    gchar *newarg = NULL;
-    gchar *section = NULL;
-    gchar *name = NULL;
-    gchar *fullpath = NULL;
 
-    /* not to be freed */
-    gchar *realsection;
-    gchar *colon, *hash;
-    gchar *lbrace = NULL;
-    gchar *rbrace = NULL;
-    gint i, j, k;
+    /* Search via regular expressions for name, name(section) and
+     * name.section (assuming that name doesn't contain forward
+     * slashes or other nasties)
+     *
+     * If these don't match, assume that we were given a filename
+     * (absolute iff it starts with a /).
+     */
+    static GRegex* man_not_path = NULL;
+    GError *error = NULL;
+    GMatchInfo *match_info = NULL;
+    gchar *name, *section, *hash;
+    gchar *path;
 
-    if (g_str_has_prefix (priv->res_arg, "man:/")) {
+    if (!man_not_path) {
+        /* Match group 1 should contain the name; then one of groups 3
+         * and 4 will contain the section if there was one. Group 6
+         * will contain any hash fragment. */
+        man_not_path = g_regex_new ("man:([^ /.()#]+)"
+                                    "(\\(([0-9A-Za-z]+)\\)|\\.([0-9A-Za-z]+)|)"
+                                    "(#([^/ ()]+))?",
+                                    0, 0, &error);
+        if (!man_not_path) {
+            g_error ("Error with regex in man uri: %s\n",
+                     error->message);
+        }
+    }
+
+    if (!g_regex_match (man_not_path, priv->res_arg,
+                        0, &match_info)) {
+        /* The regexp didn't match, so treat as a file name. */
         gchar *newuri;
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
         newuri = g_strdup_printf ("file:%s", priv->res_arg + 4);
         g_free (priv->res_arg);
         priv->res_arg = newuri;
         resolve_file_uri (uri);
-        return;
     }
-
-    if (!manpath) {
-        /* Initialize manpath only once */
-        const gchar *env = g_getenv ("MANPATH");
-        if (!env || env[0] == '\0')
-            env = "/usr/share/man:/usr/man:/usr/local/share/man:/usr/local/man";
-        manpath = g_strsplit (env, ":", 0);
-    }
-
-    colon = strchr (priv->res_arg, ':');
-    if (colon)
-        colon++;
-    else
-        colon = (gchar *) priv->res_arg;
-
-    hash = strchr (colon, '#');
-    if (hash)
-        newarg = g_strndup (colon, hash - colon);
-    else
-        newarg = g_strdup (colon);
-
-    lbrace = strrchr (newarg, '(');
-    if (lbrace) {
-        rbrace = strrchr (lbrace, ')');
-        if (rbrace) {
-            section = g_strndup (lbrace + 1, rbrace - lbrace - 1);
-            name = g_strndup (newarg, lbrace - newarg);
-        } else {
-            section = NULL;
-            name = strdup (newarg);
+    else {
+        /* The regexp matched, so we've got a name/section pair that
+         * needs resolving. */
+        name = g_match_info_fetch (match_info, 1);
+        section = g_match_info_fetch (match_info, 3);
+        hash = g_match_info_fetch (match_info, 6);
+        if (!name) {
+            g_error ("Error matching strings in man uri '%s'",
+                     priv->res_arg);
         }
-    } else {
-        lbrace = strrchr (newarg, '.');
-        if (lbrace) {
-            section = strdup (lbrace + 1);
-            name = g_strndup (newarg, lbrace - newarg);
-        } else {
-            section = NULL;
-            name = strdup (newarg);
+        if ((!section) || (section[0] == '\0')) {
+            section = g_match_info_fetch (match_info, 4);
         }
-    }
+        if (section && section[0] == '\0') section = NULL;
 
-    for (i = 0; langs[i]; i++) {
-        for (j = 0; manpath[j]; j++) {
-            gchar *langdir;
-            if (g_str_equal (langs[i], "C"))
-                langdir = g_strdup (manpath[j]);
-            else
-                langdir = g_strconcat (manpath[j], "/", langs[i], NULL);
-            if (!g_file_test (langdir, G_FILE_TEST_IS_DIR)) {
-                g_free (langdir);
-                continue;
-            }
+        path = find_man_path (name, section);
 
-            for (k = 0; section ? k == 0 : mancats[k] != NULL; k++) {
-                if (section)
-                    realsection = section;
-                else
-                    realsection = (gchar *) mancats[k];
-
-                fullpath = g_strconcat (langdir, "/man", realsection,
-                                        "/", name, ".", realsection,
-                                        NULL);
-                if (g_file_test (fullpath, G_FILE_TEST_IS_REGULAR))
-                    goto gotit;
-                g_free (fullpath);
-
-                fullpath = g_strconcat (langdir, "/man", realsection,
-                                        "/", name, ".", realsection, ".gz",
-                                        NULL);
-                if (g_file_test (fullpath, G_FILE_TEST_IS_REGULAR))
-                    goto gotit;
-                g_free (fullpath);
-
-                fullpath = g_strconcat (langdir, "/man", realsection,
-                                        "/", name, ".", realsection, ".bz2",
-                                        NULL);
-                if (g_file_test (fullpath, G_FILE_TEST_IS_REGULAR))
-                    goto gotit;
-                g_free (fullpath);
-
-                fullpath = g_strconcat (langdir, "/man", realsection,
-                                        "/", name, ".", realsection, ".lzma",
-                                        NULL);
-                if (g_file_test (fullpath, G_FILE_TEST_IS_REGULAR))
-                    goto gotit;
-                g_free (fullpath);
-
-                fullpath = NULL;
-            gotit:
-                if (fullpath)
-                    break;
-            }
-            g_free (langdir);
-            if (fullpath)
-                break;
+        if (!path) {
+            priv->tmptype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
+            return;
         }
-        if (fullpath)
-            break;
-    }
-
-    if (fullpath) {
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
-        priv->gfile = g_file_new_for_path (fullpath);
-        priv->docuri = g_strconcat ("man:",  name, ".", realsection, NULL);
+        priv->gfile = g_file_new_for_path (path);
+        priv->docuri = g_strconcat ("man:",  name, ".", section, NULL);
         priv->fulluri = g_strdup (priv->docuri);
         resolve_gfile (uri, NULL);
-        g_free (fullpath);
-    } else {
-        priv->tmptype = YELP_URI_DOCUMENT_TYPE_NOT_FOUND;
+
+        if (hash && hash[0] != '\0')
+            resolve_page_and_frag (uri, hash + 1);
+
+        g_free (path);
+        g_match_info_free (match_info);
     }
-
-    if (hash)
-        resolve_page_and_frag (uri, hash + 1);
-
-    g_free (newarg);
 }
 
 /*
