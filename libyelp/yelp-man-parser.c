@@ -186,6 +186,9 @@ static gboolean cheeky_call_parse_line (YelpManParser *parser,
                                         GError **error,
                                         gchar first_char,
                                         const gchar *text);
+static void cleanup_parsed_page (YelpManParser *parser);
+static gboolean parse_last_line (YelpManParser *parser, gchar* line);
+static void unicode_strstrip (gchar *str);
 
 /******************************************************************************/
 /* Translations for the 'C' command. This is indeed hackish, but the
@@ -396,6 +399,8 @@ yelp_man_parser_parse_file (YelpManParser *parser,
        }
     }
 
+    cleanup_parsed_page (parser);
+
     g_object_unref (parser->stream);
 
     return parser->doc;
@@ -568,8 +573,7 @@ parse_h (YelpManParser *parser, GError **error)
      */
     k = dx_to_em_count (parser, dx);
 
-    if ((parser->sheet_node) &&
-        ((!parser->last_char_was_space) || (k > 2))) {
+    if ((!parser->last_char_was_space) || (k > 2)) {
 
         k -= parser->N_count;
         if (k < 0) k = 0;
@@ -707,8 +711,9 @@ parse_body_text (YelpManParser *parser, GError **error)
                          xmlNewNode (NULL, BAD_CAST "section"));
     }
 
-    if (parser->section_state != SECTION_TITLE)
+    if (parser->section_state != SECTION_TITLE) {
         deal_with_newlines (parser);
+    }
 
     g_string_append (parser->accumulator, parser->buffer+1);
 
@@ -772,6 +777,7 @@ parse_n (YelpManParser *parser, GError **error)
         */
         right_truncate_common (parser->accumulator->str,
                                parser->title_str);
+        unicode_strstrip (parser->accumulator->str);
 
         xmlNewTextChild (parser->header,
                          NULL, BAD_CAST "collection",
@@ -847,9 +853,6 @@ parse_N (YelpManParser *parser, GError **error)
     if (n < -200) {
         RAISE_PARSE_ERROR ("Bizarrely many nbsps in N line: %s");
     }
-
-    deal_with_newlines (parser);
-    parser->last_char_was_space = FALSE;
 
     if (n < 0) {
         append_nbsps (parser, -n);
@@ -1045,4 +1048,152 @@ cheeky_call_parse_line (YelpManParser *parser, GError **error,
     parser->buffer = tmp;
 
     return ret;
+}
+
+static void
+cleanup_parsed_page (YelpManParser *parser)
+{
+    /* First job: the last line usually has the version, date and
+     * title (again!). The code above misunderstands and parses this
+     * as a section, so we need to "undo" this and stick the data in
+     * the header where it belongs.
+     *
+     * parser->section_node should still point to it. We assume this
+     * has happened if it has exactly one child element (the <title>
+     * tag)
+     */
+    gchar *lastline;
+
+    if (xmlChildElementCount (parser->section_node) == 1) {
+        lastline = xmlNodeGetContent (parser->section_node);
+
+        /* If parse_last_line works, it sets the data from it in the
+           <header> tag, so delete the final section. */
+        if (parse_last_line (parser, lastline)) {
+            xmlUnlinkNode (parser->section_node);
+            xmlFreeNode (parser->section_node);
+        }
+        else {
+            /* Oh dear. This would be unexpected and doesn't seem to
+               happen with man on my system. But we probably shouldn't
+               ditch the info, so let's leave the <section> tag and
+               print a warning message to the console.
+            */
+            g_warning ("Unexpected final line in man document (%s)\n",
+                       lastline);
+        }
+
+        xmlFree (lastline);
+    }
+}
+
+static gchar *
+skip_whitespace (gchar *text)
+{
+    while (g_unichar_isspace (g_utf8_get_char (text))) {
+        text = g_utf8_next_char (text);
+    }
+    return text;
+}
+
+static gchar *
+last_non_whitespace (gchar *text)
+{
+    gchar *end = text + strlen(text);
+    gchar *prev;
+
+    prev = g_utf8_find_prev_char (text, end);
+    if (!prev) {
+        /* The string must have been zero-length. */
+        return NULL;
+    }
+
+    while (g_unichar_isspace (g_utf8_get_char (prev))) {
+        end = prev;
+        prev = g_utf8_find_prev_char (text, prev);
+        if (!prev) return NULL;
+    }
+    return end;
+}
+
+static gchar *
+find_contiguous_whitespace (gchar *text, guint ws_len)
+{
+    guint counter = 0;
+    gchar *ws_start;
+    while (*text) {
+        if (g_unichar_isspace (g_utf8_get_char (text))) {
+            if (!counter) ws_start = text;
+            counter++;
+        }
+        else counter = 0;
+
+        if (counter == ws_len) return ws_start;
+
+        text = g_utf8_next_char (text);
+    }
+    return NULL;
+}
+
+static gboolean
+parse_last_line (YelpManParser *parser, gchar* line)
+{
+    /* We expect a line of the form
+           '1.2.3      blah 2009       libfoo(1)'
+       where the spaces are all nbsp's.
+
+       Look for a gap of at least 3 in a row. If we find that, expand
+       either side and declare the stuff before to be the version
+       number and then the stuff afterwards to be the start of the
+       date. Then do the same thing on the next gap, if there is one.
+    */
+    gchar *gap, *date_start;
+
+    gchar *version;
+    gchar *date;
+
+    gap = find_contiguous_whitespace (line, 3);
+    if (!gap) return FALSE;
+
+    version = g_strndup (line, gap - line);
+
+    date_start = skip_whitespace (gap);
+
+    gap = find_contiguous_whitespace (date_start, 3);
+    if (!gap) return FALSE;
+
+    date = g_strndup (date_start, gap - date_start);
+
+    xmlNewProp (parser->header, BAD_CAST "version", version);
+    xmlNewProp (parser->header, BAD_CAST "date", date);
+
+    g_free (version);
+    g_free (date);
+
+    return TRUE;
+}
+
+/* This should work like g_strstrip, but that's an ASCII-only version
+ * and I want to strip the nbsp's that I so thoughtfully plaster
+ * stuff with...
+ */
+static void
+unicode_strstrip (gchar *str)
+{
+    gchar *start, *end;
+
+    if (str == NULL) return;
+
+    end = last_non_whitespace (str);
+
+    if (!end) {
+        /* String is zero-length or entirely whitespace */
+        *str = '\0';
+        return;
+    }
+    start = skip_whitespace (str);
+    g_utf8_next_char (end);
+
+    g_memmove (str, start, end - start);
+    *(str + (end - start)) = '\0';
 }

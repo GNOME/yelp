@@ -31,13 +31,24 @@
   <div class="hgroup">
     <h1 class="title">
       <xsl:value-of select="title"/>
-      <xsl:text>(</xsl:text>
+      <xsl:text> (</xsl:text>
       <xsl:value-of select="section"/>
       <xsl:text>)</xsl:text>
     </h1>
     <h3 style="text-align: right;">
       <xsl:value-of select="collection"/>
     </h3>
+    <xsl:if test="@version or @date">
+      <p style="text-align: right">
+        <xsl:if test="@version">
+          Version: <xsl:value-of select="@version"/>
+        </xsl:if>
+        <xsl:if test="@version and @date"><br/></xsl:if>
+        <xsl:if test="@date">
+          Date: <xsl:value-of select="@date"/>
+        </xsl:if>
+      </p>
+    </xsl:if>
   </div>
 </xsl:template>
 
