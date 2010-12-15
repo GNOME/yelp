@@ -125,6 +125,9 @@ struct _YelpManParser {
      * whether we need to insert extra space above a line.
      */
     gint last_vertical_jump;
+
+    /* The title we read earlier (eg 'Foo(2)') */
+    gchar *title_str;
 };
 
 static gboolean parser_parse_line (YelpManParser *parser, GError **error);
@@ -176,6 +179,9 @@ static guint dx_to_em_count (YelpManParser *parser, guint dx);
 static void append_nbsps (YelpManParser *parser, guint k);
 static void deal_with_newlines (YelpManParser *parser);
 static void new_sheet (YelpManParser *parser);
+static void register_title (YelpManParser *parser,
+                            const gchar* name, const gchar* section);
+static void right_truncate_common (gchar *dst, const gchar *src);
 
 /******************************************************************************/
 /* Translations for the 'C' command. This is indeed hackish, but the
@@ -400,6 +406,7 @@ yelp_man_parser_free (YelpManParser *parser)
             g_free (parser->font_registers[k]);
     }
     g_string_free (parser->accumulator, TRUE);
+    g_free (parser->title_str);
     g_free (parser);
 }
 
@@ -598,65 +605,68 @@ static gboolean
 parse_text (YelpManParser *parser, GError **error)
 {
     gchar *text, *section, *tmp;
-    xmlNodePtr node;
+    const gchar *acc;
 
     g_assert (parser->buffer[0] == 't');
 
     if (parser->state == START) {
-        /* With a bit of luck, this will be the tBLAH(1) line. Can't
-         * use sscanf to chop it up since that needs whitespace. */
-        section = strchr (parser->buffer + 1, '(');
-        if (!section)
-            RAISE_PARSE_ERROR ("Expected t line with title. Got %s");
-        text = g_strndup (parser->buffer + 1,
-                          section - (parser->buffer + 1));
-
-        // Skip over the (
-        section++;
-
-        tmp = strchr (section, ')');
-        if (!tmp || (*(tmp+1) != '\0'))
-            RAISE_PARSE_ERROR ("Strange format for t title line: %s");
-        section = g_strndup (section, tmp - section);
-
-        parser->state = HAVE_TITLE;
-
-        xmlNewTextChild (parser->header,
-                         NULL, BAD_CAST "title", text);
-        xmlNewTextChild (parser->header,
-                         NULL, BAD_CAST "section", section);
-
-        g_free (text);
-        g_free (section);
-
-        /* The accumulator should currently be "". */
-        g_assert (parser->accumulator &&
-                  *(parser->accumulator->str) == '\0');
-
-        return TRUE;
-    }
-    if (parser->state == HAVE_TITLE) {
-        /* We expect (maybe!) to get some lines tThe wh24
-         * tCollection. We've found (and can ignore!) the second
-         * title line if there's a (). */
-        if (strchr (parser->buffer+1, '(') &&
-            strchr (parser->buffer+1, ')')) {
-            parser->state = BODY;
-
-            xmlNewTextChild (parser->header,
-                             NULL, BAD_CAST "collection",
-                             parser->accumulator->str);
-            g_string_truncate (parser->accumulator, 0);
-
-            return TRUE;
-        }
-
+        /* This should be the 'Title String(1)' line. It might come in
+         * chunks (for example, it might be more than one line
+         * long!). So just read bits until we get a (blah) bit: stick
+         * everything in the accumulator and check for
+         * parentheses. When we've got some, stick the parsed title in
+         * the header and switch to HAVE_TITLE.
+         *
+         * The parse_n code will error out if we didn't manage to get
+         * a title before the first newline and otherwise is in charge
+         * of switching to body-parsing mode.
+         */
         g_string_append (parser->accumulator, parser->buffer+1);
 
+        acc = parser->accumulator->str;
+
+        section = strchr (acc, '(');
+
+        if (section) {
+            section++;
+            tmp = strchr (section, ')');
+        }
+
+        if (section && tmp) {
+            /* We've got 'Blah (3)' or the like in the accumulator */
+            if (*(tmp+1) != '\0') {
+                RAISE_PARSE_ERROR ("Don't understand title line: '%s'");
+            }
+            parser->state = HAVE_TITLE;
+            parser->title_str = g_strdup (acc);
+
+            text = g_strndup (acc, (section - 1) - acc);
+            section = g_strndup (section, tmp - section);
+
+            register_title (parser, text, section);
+
+            g_string_truncate (parser->accumulator, 0);
+
+            g_free (text);
+            g_free (section);
+        }
+
         return TRUE;
     }
 
-    return parse_body_text (parser, error);
+    if (parser->state == BODY)
+        return parse_body_text (parser, error);
+
+    /* In state HAVE_TITLE */
+    else {
+        /* We expect (maybe!) to get some lines in between the two
+         * occurrences of the title itself. So collect up all the text
+         * we get and then we'll remove the copy of the title at the
+         * end (hopefully) when we find a newline in parse_n.
+         */
+        g_string_append (parser->accumulator, parser->buffer+1);
+        return TRUE;
+    }
 }
 
 /*
@@ -727,8 +737,40 @@ parse_n (YelpManParser *parser, GError **error)
 {
     xmlNodePtr node;
 
-    /* Don't care about newlines in the header bit */
-    if (parser->state != BODY) return TRUE;
+    /* When we're in the header, the parse_n is responsible for
+     * switching to body text. (See the body of parse_text() for more
+     * of an explanation).
+     */
+    if (parser->state == START) {
+        /* Oh no! We've not got a proper title yet! Ho hum, let's
+           stick whatever's going into a 'title title' and have a null
+           section. Sob.
+        */
+        register_title (parser,
+                        parser->accumulator->str,
+                        "unknown section");
+        g_string_truncate (parser->accumulator, 0);
+        parser->state = BODY;
+        return TRUE;
+    }
+
+    if (parser->state == HAVE_TITLE) {
+        /* What we've got so far is the manual's collection, followed
+           by the title again. So we want to get rid of the latter if
+           possible...
+        */
+        right_truncate_common (parser->accumulator->str,
+                               parser->title_str);
+
+        xmlNewTextChild (parser->header,
+                         NULL, BAD_CAST "collection",
+                         parser->accumulator->str);
+        g_string_truncate (parser->accumulator, 0);
+        parser->state = BODY;
+        return TRUE;
+    }
+
+    /* parser->state == BODY */
 
     if (parser->section_state == SECTION_TITLE) {
         g_strchomp (parser->accumulator->str);
@@ -933,4 +975,35 @@ new_sheet (YelpManParser *parser)
         xmlAddChild (parser->section_node,
                      xmlNewNode (NULL, BAD_CAST "sheet"));
     parser->sheet_indent = parser->hpos;
+}
+
+static void
+register_title (YelpManParser *parser,
+                const gchar* name, const gchar* section)
+{
+    xmlNewTextChild (parser->header,
+                     NULL, BAD_CAST "title", name);
+    xmlNewTextChild (parser->header,
+                     NULL, BAD_CAST "section", section);
+}
+
+static void
+right_truncate_common (gchar *dst, const gchar *src)
+{
+    guint len_src = strlen (src);
+    guint len_dst = strlen (dst);
+
+    guint k = (len_src < len_dst) ? len_src - 1 : len_dst - 1;
+
+    dst += len_dst - 1;
+    src += len_src - 1;
+
+    while (k >= 0) {
+        if (*dst != *src) break;
+        *dst = '\0';
+
+        k--;
+        dst--;
+        src--;
+    }
 }
