@@ -182,6 +182,10 @@ static void new_sheet (YelpManParser *parser);
 static void register_title (YelpManParser *parser,
                             const gchar* name, const gchar* section);
 static void right_truncate_common (gchar *dst, const gchar *src);
+static gboolean cheeky_call_parse_line (YelpManParser *parser,
+                                        GError **error,
+                                        gchar first_char,
+                                        const gchar *text);
 
 /******************************************************************************/
 /* Translations for the 'C' command. This is indeed hackish, but the
@@ -607,7 +611,13 @@ parse_text (YelpManParser *parser, GError **error)
     gchar *text, *section, *tmp;
     const gchar *acc;
 
-    g_assert (parser->buffer[0] == 't');
+    /*
+      Sneakily, this might get called with something other than t
+      starting the buffer: see parse_C and parse_N.
+    */
+    if (parser->buffer[0] == 't') {
+        parser->N_count = 0;
+    }
 
     if (parser->state == START) {
         /* This should be the 'Title String(1)' line. It might come in
@@ -669,29 +679,6 @@ parse_text (YelpManParser *parser, GError **error)
     }
 }
 
-/*
-  w is a sort of prefix argument. It indicates a space, so we register
-  that here, then call parser_parse_line again on the rest of the
-  string to deal with that.
- */
-static gboolean
-parse_w (YelpManParser *parser, GError **error)
-{
-    gboolean ret;
-
-    if (parser->state != START) {
-        g_string_append_c (parser->accumulator, ' ');
-    }
-    
-    parser->buffer++;
-    parser->last_char_was_space = TRUE;
-
-    ret = parser_parse_line (parser, error);
-
-    parser->buffer--;
-    return ret;
-}
-
 static gboolean
 parse_body_text (YelpManParser *parser, GError **error)
 {
@@ -708,7 +695,8 @@ parse_body_text (YelpManParser *parser, GError **error)
       It's possible to have spaces in section titles, so we carry on
       accumulating the section title until the next newline.
     */
-    if (parser->section_state != SECTION_TITLE && parser->hpos == 0) {
+    if (parser->section_state == SECTION_BODY &&
+        (!parser->section_node || (parser->hpos == 0))) {
         g_string_truncate (parser->accumulator, 0);
         /* End the current sheet & section */
         parser->section_state = SECTION_TITLE;
@@ -726,10 +714,33 @@ parse_body_text (YelpManParser *parser, GError **error)
 
     /* Move hpos forward per char */
     parser->hpos += strlen (parser->buffer+1) * parser->char_width;
+
     parser->last_char_was_space = FALSE;
-    parser->N_count = 0;
 
     return TRUE;
+}
+
+/*
+  w is a sort of prefix argument. It indicates a space, so we register
+  that here, then call parser_parse_line again on the rest of the
+  string to deal with that.
+ */
+static gboolean
+parse_w (YelpManParser *parser, GError **error)
+{
+    gboolean ret;
+
+    if (parser->state != START) {
+        g_string_append_c (parser->accumulator, ' ');
+    }
+
+    parser->buffer++;
+    parser->last_char_was_space = TRUE;
+
+    ret = parser_parse_line (parser, error);
+
+    parser->buffer--;
+    return ret;
 }
 
 static gboolean
@@ -767,12 +778,13 @@ parse_n (YelpManParser *parser, GError **error)
                          parser->accumulator->str);
         g_string_truncate (parser->accumulator, 0);
         parser->state = BODY;
+        parser->section_state = SECTION_BODY;
         return TRUE;
     }
 
     /* parser->state == BODY */
-
     if (parser->section_state == SECTION_TITLE) {
+
         g_strchomp (parser->accumulator->str);
         xmlNewTextChild (parser->section_node, NULL,
                          BAD_CAST "title", parser->accumulator->str);
@@ -824,6 +836,8 @@ static gboolean
 parse_N (YelpManParser *parser, GError **error)
 {
     gint n;
+    gchar tmp[2];
+
     if (SSCANF ("N%i", 1, &n)) {
         RAISE_PARSE_ERROR ("Strange format for N line: %s");
     }
@@ -840,13 +854,15 @@ parse_N (YelpManParser *parser, GError **error)
     if (n < 0) {
         append_nbsps (parser, -n);
         parser->N_count += -n;
-    }
-    else {
-        g_string_append_c (parser->accumulator, (gchar)n);
-        parser->N_count++;
+        return TRUE;
     }
 
-    return TRUE;
+    parser->N_count++;
+
+    tmp[0] = (gchar)n;
+    tmp[1] = '\0';
+
+    return cheeky_call_parse_line (parser, error, 'N', tmp);
 }
 
 static void
@@ -887,17 +903,13 @@ parse_C (YelpManParser *parser, GError **error)
         code = 65533; /* Unicode replacement character */
     }
 
-    deal_with_newlines (parser);
-    parser->last_char_was_space = FALSE;
-
     /* Output buffer must be length >= 6. 16 >= 6, so we're ok. */
     len = g_unichar_to_utf8 (code, name);
     name[len] = '\0';
-    g_string_append (parser->accumulator, name);
 
     parser->N_count++;
 
-    return TRUE;
+    return cheeky_call_parse_line (parser, error, 'C', name);
 }
 
 static void
@@ -967,10 +979,10 @@ parse_p (YelpManParser *parser, GError **error)
 static void
 new_sheet (YelpManParser *parser)
 {
-   /* We don't need to worry about finishing the current sheet,
-      since the accumulator etc. get cleared on newlines and we
-      know we're at the start of a line.
-   */
+    /* We don't need to worry about finishing the current sheet,
+       since the accumulator etc. get cleared on newlines and we
+       know we're at the start of a line.
+    */
     parser->sheet_node =
         xmlAddChild (parser->section_node,
                      xmlNewNode (NULL, BAD_CAST "sheet"));
@@ -1006,4 +1018,31 @@ right_truncate_common (gchar *dst, const gchar *src)
         dst--;
         src--;
     }
+}
+
+static gboolean
+cheeky_call_parse_line (YelpManParser *parser, GError **error,
+                        gchar first_char, const gchar* text)
+{
+    /* Do a cunning trick. There's all sorts of code that parse_text
+     * does, which we don't want to duplicate in parse_N and
+     * parse_C. So feed a buffer back to parse_text. Tada! Start it
+     * with "C" or "N" rather than "t" so clever stuff in parse_text
+     * can tell the difference.
+     */
+    gchar *tmp;
+    gboolean ret;
+    guint len = strlen (text);
+
+    tmp = parser->buffer;
+    parser->buffer = g_new (gchar, 2 + len);
+    parser->buffer[0] = first_char;
+    strncpy (parser->buffer + 1, text, len + 1);
+
+    ret = parse_text (parser, error);
+
+    g_free (parser->buffer);
+    parser->buffer = tmp;
+
+    return ret;
 }
