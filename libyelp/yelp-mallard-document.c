@@ -39,6 +39,7 @@
 
 #define STYLESHEET DATADIR"/yelp/xslt/mal2html.xsl"
 #define MALLARD_NS "http://projectmallard.org/1.0/"
+#define MALLARD_FACET_NS "http://projectmallard.org/facet/1.0/"
 
 typedef enum {
     MALLARD_STATE_BLANK,
@@ -100,6 +101,10 @@ static void           mallard_page_data_info    (MallardPageData      *page_data
                                                  xmlNodePtr            cache_node);
 static void           mallard_page_data_run     (MallardPageData      *page_data);
 static void           mallard_page_data_free    (MallardPageData      *page_data);
+
+static gboolean       xml_node_is_ns_name       (xmlNodePtr            node,
+                                                 const xmlChar        *ns,
+                                                 const xmlChar        *name);
 
 
 G_DEFINE_TYPE (YelpMallardDocument, yelp_mallard_document, YELP_TYPE_DOCUMENT);
@@ -468,7 +473,7 @@ mallard_page_data_walk (MallardPageData *page_data)
         if (id == NULL)
             goto done;
 
-        ispage = xmlStrEqual (page_data->cur->name, BAD_CAST "page");
+        ispage = xml_node_is_ns_name (page_data->cur, MALLARD_NS, BAD_CAST "page");
         if (ispage && g_hash_table_lookup (priv->pages_hash, id) != NULL)
             goto done;
 
@@ -526,10 +531,10 @@ mallard_page_data_walk (MallardPageData *page_data)
         for (child = page_data->cur->children; child; child = child->next) {
             if (child->type != XML_ELEMENT_NODE)
                 continue;
-            if (xmlStrEqual (child->name, BAD_CAST "info")) {
+            if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "info")) {
                 mallard_page_data_info (page_data, child, info);
             }
-            else if (xmlStrEqual (child->name, BAD_CAST "title")) {
+            else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "title")) {
                 xmlNodePtr node;
                 xmlNodePtr title_node = xmlNewChild (page_data->cache,
                                                      priv->cache_ns,
@@ -564,7 +569,7 @@ mallard_page_data_walk (MallardPageData *page_data)
                     xmlXPathFreeObject (obj);
                 }
             }
-            else if (xmlStrEqual (child->name, BAD_CAST "section")) {
+            else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "section")) {
                 oldcur = page_data->cur;
                 oldcache = page_data->cache;
                 page_data->cur = child;
@@ -591,10 +596,10 @@ mallard_page_data_info (MallardPageData *page_data,
     gboolean editor_mode = yelp_settings_get_editor_mode (yelp_settings_get_default ());
 
     for (child = info_node->children; child; child = child->next) {
-        if (xmlStrEqual (child->name, BAD_CAST "info")) {
+        if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "info")) {
             mallard_page_data_info (page_data, child, cache_node);
         }
-        else if (xmlStrEqual (child->name, BAD_CAST "title")) {
+        else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "title")) {
             xmlNodePtr node, title_node;
             xmlChar *type, *role;
             title_node = xmlCopyNode (child, 1);
@@ -617,7 +622,7 @@ mallard_page_data_info (MallardPageData *page_data,
                 xmlXPathFreeObject (obj);
             }
         }
-        else if (xmlStrEqual (child->name, BAD_CAST "desc")) {
+        else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "desc")) {
             YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
             xmlXPathObjectPtr obj;
             page_data->xpath->node = child;
@@ -627,10 +632,15 @@ mallard_page_data_info (MallardPageData *page_data,
 
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
         }
-        else if (xmlStrEqual (child->name, BAD_CAST "link")) {
+        else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "link")) {
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
         }
-        else if (xmlStrEqual (child->name, BAD_CAST "revision")) {
+        else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "revision")) {
+            xmlAddChild (cache_node, xmlCopyNode (child, 1));
+        }
+        else if (xml_node_is_ns_name (child, MALLARD_FACET_NS, BAD_CAST "tag") ||
+                 xml_node_is_ns_name (child, MALLARD_FACET_NS, BAD_CAST "match") ||
+                 xml_node_is_ns_name (child, MALLARD_FACET_NS, BAD_CAST "choice") ) {
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
         }
     }
@@ -774,4 +784,16 @@ transform_error (YelpTransform   *transform,
     g_error_free (error);
 
     mallard_page_data_cancel (page_data);
+}
+
+static gboolean
+xml_node_is_ns_name (xmlNodePtr      node,
+                     const xmlChar  *ns,
+                     const xmlChar  *name)
+{
+    if (node->ns == NULL)
+        return (ns == NULL);
+    else if (ns != NULL && node->ns->href != NULL)
+        return (xmlStrEqual (ns, node->ns->href) && xmlStrEqual (name, node->name)); 
+    return FALSE;
 }
