@@ -51,22 +51,16 @@
       <xsl:value-of select="title"/>
     </h2>
 
-    <xsl:apply-templates select="sheet"/>
+    <div class="section-contents" style="font-family: monospace;">
+      <xsl:apply-templates select="sheet"/>
+    </div>
   </div>
 </xsl:template>
 
 <xsl:template match="sheet">
-  <xsl:element name="div">
-    <xsl:attribute name="style">
-      <xsl:text>padding-left: </xsl:text>
-      <xsl:value-of select="@indent"/>
-      <xsl:text>em; font-family: monospace;</xsl:text>
-    </xsl:attribute>
-
-    <p>
-      <xsl:apply-templates select="span|br"/>
-    </p>
-  </xsl:element>
+  <div style="margin: 0px;">
+    <p><xsl:apply-templates select="span|br"/></p>
+  </div>
 </xsl:template>
 
 <xsl:template match="span">

@@ -73,7 +73,7 @@ struct _YelpManParser {
     guint char_height;
 
     /* Count the number of lines we've parsed (needed to get prologue) */
-    guint lines_parsed;
+    guint line_no;
 
     /* The x f k name command sets the k'th register to be name. */
     gchar* font_registers[MAN_FONTS];
@@ -113,6 +113,13 @@ struct _YelpManParser {
      * parse_h.
      */
     guint N_count;
+
+    /* Keep track of whether the last character was a space. We can't
+     * just do this by looking at the last char of accumulator,
+     * because if there's a font change, it gets zeroed. This gets set
+     * to TRUE by parse_w and is FALSE the rest of the time.
+     */
+    gboolean last_char_was_space;
 };
 
 static gboolean parser_parse_line (YelpManParser *parser, GError **error);
@@ -160,6 +167,7 @@ static struct LineParsePair line_parsers[] = {
 static void finish_span (YelpManParser *parser);
 static guint dx_to_em_count (YelpManParser *parser, guint dx);
 static void append_nbsps (YelpManParser *parser, guint k);
+static void deal_with_newlines (YelpManParser *parser);
 
 /******************************************************************************/
 /* Translations for the 'C' command. This is indeed hackish, but the
@@ -358,6 +366,7 @@ yelp_man_parser_parse_file (YelpManParser *parser,
                                       NULL, NULL);
        if (parser->buffer == NULL) break;
 
+       parser->line_no++;
        ret = parser_parse_line (parser, error);
 
        g_free (parser->buffer);
@@ -440,7 +449,7 @@ get_font (const YelpManParser *parser)
 static gboolean
 parser_parse_line (YelpManParser *parser, GError **error)
 {
-    if (parser->lines_parsed < 3)
+    if (parser->line_no <= 3)
         return parse_prologue_line (parser, error);
 
     const struct LineParsePair *p = line_parsers;
@@ -456,8 +465,7 @@ parser_parse_line (YelpManParser *parser, GError **error)
 static gboolean
 parse_prologue_line (YelpManParser *parser, GError **error)
 {
-    parser->lines_parsed++;
-    if (parser->lines_parsed != 2) return TRUE;
+    if (parser->line_no != 2) return TRUE;
 
     /* This is the interesting line, which should look like
               x res 240 24 40
@@ -516,7 +524,6 @@ parse_h (YelpManParser *parser, GError **error)
 {
     guint dx;
     int k;
-    const gchar *str;
 
     if (SSCANF ("h%u", 1, &dx)) {
         RAISE_PARSE_ERROR ("Invalid h line from troff: %s");
@@ -529,20 +536,28 @@ parse_h (YelpManParser *parser, GError **error)
      * insert nonbreaking spaces (eugh!)
      *
      * Of course we don't want to do this when chained from wh24 or
-     * whatever, so check that accumulator is nonempty and the last
-     * character isn't ' '.
+     * whatever, so use the last_char_was_space flag
+     * but... unfortunately some documents actually use stuff like
+     * wh96 for spacing (eg the lists in perl(1)). So (very hackish!),
+     * ignore double spaces, since that's probably just been put in to
+     * make the text justified (eugh), but allow bigger jumps.
+     *
+     * Incidentally, the perl manual here has bizarre gaps in the
+     * synopsis section. God knows why, but man displays them too so
+     * it's not our fault! :-)
      */
-    str = parser->accumulator->str;
-    if ((parser->sheet_node) &&
-        (str[0] != '\0') &&
-        (str[strlen (str)-1] != ' ')) {
+    k = dx_to_em_count (parser, dx);
 
-        k = dx_to_em_count (parser, dx) - parser->N_count;
-        parser->N_count = 0;
+    if ((parser->sheet_node) &&
+        ((!parser->last_char_was_space) || (k > 2))) {
+
+        k -= parser->N_count;
         if (k < 0) k = 0;
 
         append_nbsps (parser, k);
     }
+
+    parser->N_count = 0;
 
     return TRUE;
 }
@@ -649,7 +664,10 @@ parse_w (YelpManParser *parser, GError **error)
     }
     
     parser->buffer++;
+    parser->last_char_was_space = TRUE;
+
     ret = parser_parse_line (parser, error);
+
     parser->buffer--;
     return ret;
 }
@@ -657,8 +675,6 @@ parse_w (YelpManParser *parser, GError **error)
 static gboolean
 parse_body_text (YelpManParser *parser, GError **error)
 {
-    gchar tmp[64];
-
     /*
       It's this function which is responsible for trying to get *some*
       semantic information back out of the manual page.
@@ -682,44 +698,16 @@ parse_body_text (YelpManParser *parser, GError **error)
             xmlAddChild (xmlDocGetRootElement (parser->doc),
                          xmlNewNode (NULL, BAD_CAST "section"));
     }
-    if (parser->section_state == SECTION_TITLE) goto do_append;
 
-    /*
-      Here we've got real body text! If newline is true, this is the
-      first word on a line.
+    if (parser->section_state != SECTION_TITLE)
+        deal_with_newlines (parser);
 
-      In which case, we check to see whether hpos agrees with the
-      current sheet's indent. If so (or if there isn't a sheet yet!),
-      we just add to the accumulator. If not, start a new sheet with
-      the correct indent.
-
-      If we aren't the first word on the line, just add to the
-      accumulator.
-    */
-    if ((!parser->sheet_node) ||
-        (parser->newline && (parser->hpos != parser->sheet_indent))) {
-        /* We don't need to worry about finishing the current sheet,
-           since the accumulator etc. get cleared on newlines and we
-           know we're at the start of a line.
-        */
-        parser->sheet_node =
-            xmlAddChild (parser->section_node,
-                         xmlNewNode (NULL, BAD_CAST "sheet"));
-        parser->sheet_indent = parser->hpos;
-
-        /* The indent is specified in em's. */
-        snprintf (tmp, 64, "%d",
-                  (int)(dx_to_em_count (parser, parser->hpos) / 1.5));
-        xmlNewProp (parser->sheet_node, BAD_CAST "indent", tmp);
-    }
-
-  do_append:
     g_string_append (parser->accumulator, parser->buffer+1);
 
     /* Move hpos forward per char */
     parser->hpos += strlen (parser->buffer+1) * parser->char_width;
-
-    parser->newline = FALSE;
+    parser->last_char_was_space = FALSE;
+    parser->N_count = 0;
 
     return TRUE;
 }
@@ -755,6 +743,7 @@ parse_n (YelpManParser *parser, GError **error)
     }
 
     parser->newline = TRUE;
+    parser->last_char_was_space = FALSE;
 
     return TRUE;
 }
@@ -792,6 +781,9 @@ parse_N (YelpManParser *parser, GError **error)
     if (n < -200) {
         RAISE_PARSE_ERROR ("Bizarrely many nbsps in N line: %s");
     }
+
+    deal_with_newlines (parser);
+    parser->last_char_was_space = FALSE;
 
     if (n < 0) {
         append_nbsps (parser, -n);
@@ -843,6 +835,9 @@ parse_C (YelpManParser *parser, GError **error)
         code = 65533; /* Unicode replacement character */
     }
 
+    deal_with_newlines (parser);
+    parser->last_char_was_space = FALSE;
+
     /* Output buffer must be length >= 6. 16 >= 6, so we're ok. */
     len = g_unichar_to_utf8 (code, name);
     name[len] = '\0';
@@ -851,4 +846,39 @@ parse_C (YelpManParser *parser, GError **error)
     parser->N_count++;
 
     return TRUE;
+}
+
+static void
+deal_with_newlines (YelpManParser *parser)
+{
+    /*
+      If newline is true, this is the first word on a line.
+
+      In which case, we check to see whether hpos agrees with the
+      current sheet's indent. If so (or if there isn't a sheet yet!),
+      we just add to the accumulator. If not, start a new sheet with
+      the correct indent.
+
+      If we aren't the first word on the line, just add to the
+      accumulator.
+    */
+    gchar tmp[64];
+
+    if ((!parser->sheet_node) ||
+        (parser->newline && (parser->hpos != parser->sheet_indent))) {
+        /* We don't need to worry about finishing the current sheet,
+           since the accumulator etc. get cleared on newlines and we
+           know we're at the start of a line.
+        */
+        parser->sheet_node =
+            xmlAddChild (parser->section_node,
+                         xmlNewNode (NULL, BAD_CAST "sheet"));
+        parser->sheet_indent = parser->hpos;
+    }
+
+    if (parser->newline) {
+        append_nbsps (parser, dx_to_em_count (parser, parser->hpos));
+    }
+
+    parser->newline = FALSE;
 }
