@@ -27,125 +27,204 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <libxml/tree.h>
+#include <gio/gio.h>
 #include <string.h>
+#include <math.h>
 
+#include "yelp-error.h"
 #include "yelp-man-parser.h"
-#include "yelp-magic-decompressor.h"
 
-#define PARSER_CUR (g_utf8_get_char (parser->cur) != '\0' \
-    && (parser->cur - parser->buffer < parser->length))
+#define MAN_FONTS 8
 
-static void        parser_parse_line        (YelpManParser *parser);
-static void        parser_handle_linetag    (YelpManParser *parser);
-static void        parser_ensure_P          (YelpManParser *parser);
-static void        parser_read_until        (YelpManParser *parser,
-					     gchar          delim);
-static void        parser_escape_tags       (YelpManParser *parser,
-					     gchar        **tags,
-					     gint           ntags);
-static xmlNodePtr  parser_append_text       (YelpManParser *parser);
-static xmlNodePtr  parser_append_given_text (YelpManParser *parser,
-					     gchar         *text);
-static void        parser_append_given_text_handle_escapes 
-					    (YelpManParser *parser,
-					     gchar         *text,
-					     gboolean      make_links);
-static xmlNodePtr  parser_append_node       (YelpManParser *parser,
-					     gchar         *name);
-static xmlNodePtr  parser_append_node_attr  (YelpManParser *parser,
-					     gchar         *name,
-					     gchar         *attr,
-					     gchar         *value);
-static void        parser_stack_push_node   (YelpManParser *parser,
-					     xmlNodePtr     node);
-static xmlNodePtr  parser_stack_pop_node    (YelpManParser *parser,
-					     gchar         *name);
-static void        parser_parse_table       (YelpManParser *parser);
+/* The format has two copies of the title like MAN(1) at the top,
+ * possibly with a string of text in between for the collection.
+ *
+ * Start with the parser on START, then HAVE_TITLE when we've read the
+ * first word with parentheses. At that point, stick new words into
+ * the "collection" tag. Then finally switch to BODY when we've seen
+ * the second copy of the one with parentheses.
+ */
+typedef enum ManParserState
+{
+    START,
+    HAVE_TITLE,
+    BODY
+} ManParserState;
 
-typedef struct _StackElem StackElem;
+/* See parse_body_text for how this is used. */
+typedef enum ManParserSectionState
+{
+    SECTION_TITLE,
+    SECTION_BODY
+} ManParserSectionState;
+
 struct _YelpManParser {
     xmlDocPtr     doc;           /* The top-level XML document */
-    xmlNodePtr    ins;           /* The insertion node */
-    xmlNodePtr    th_node;       /* The TH node, or NULL if it doesn't exist */
+    xmlNodePtr    header;        /* The header node */
+    xmlNodePtr    section_node;  /* The current section */
+    xmlNodePtr    sheet_node;    /* The current sheet */
 
     GDataInputStream *stream;    /* The GIO input stream to read from */
     gchar            *buffer;    /* The buffer, line at a time */
     gsize             length;    /* The buffer length */
 
-    gchar        *anc;           /* The anchor point in the document */
-    gchar        *cur;           /* Our current position in the document */
+    /* The width and height of a character according to troff. */
+    guint char_width;
+    guint char_height;
 
-    gchar        *token;         /* see ignore flag; we ignore the parsing stream until
-				  * this string is found in the stream */
-    gboolean      make_links;    /* Allow auto-generated hyperlinks to be disabled. */
-    gboolean      ignore;        /* when true, ignore stream until "token" is found  */
-	
-    GSList       *nodeStack;
+    /* Count the number of lines we've parsed (needed to get prologue) */
+    guint lines_parsed;
+
+    /* The x f k name command sets the k'th register to be name. */
+    gchar* font_registers[MAN_FONTS];
+
+    /* The current font. Should be the index of one of the
+     * font_registers. Starts at 0 (of course!)
+     */
+    guint current_font;
+
+    /* See description of ManParserState above */
+    ManParserState state;
+
+    /* Vertical and horizontal position as far as the troff output is
+     * concerned. (Measured from top-left).
+     */
+    guint vpos, hpos;
+
+    /* Text accumulator (needed since it comes through in dribs &
+     * drabs...) */
+    GString *accumulator;
+
+    /* See parse_body_text for how this is used. */
+    ManParserSectionState section_state;
+
+    /* The indent of the current sheet */
+    guint sheet_indent;
+
+    /* Set to TRUE if there's been a newline since the last text was
+     * parsed. */
+    gboolean newline;
 };
+
+static gboolean parser_parse_line (YelpManParser *parser, GError **error);
+static gboolean parse_prologue_line (YelpManParser *parser, GError **error);
+
+/* Parsers for different types of line */
+typedef gboolean (*LineParser)(YelpManParser *, GError **);
+#define DECLARE_LINE_PARSER(name) \
+    static gboolean (name) (YelpManParser *parser, GError **error);
+
+DECLARE_LINE_PARSER (parse_xf);
+DECLARE_LINE_PARSER (parse_f);
+DECLARE_LINE_PARSER (parse_V);
+DECLARE_LINE_PARSER (parse_H);
+DECLARE_LINE_PARSER (parse_v);
+DECLARE_LINE_PARSER (parse_h);
+DECLARE_LINE_PARSER (parse_text);
+DECLARE_LINE_PARSER (parse_w);
+DECLARE_LINE_PARSER (parse_body_text);
+DECLARE_LINE_PARSER (parse_n);
+
+/* Declare a sort of alist registry of parsers for different lines. */
+struct LineParsePair
+{
+    const gchar *prefix;
+    LineParser handler;
+};
+static struct LineParsePair line_parsers[] = {
+    { "x f", parse_xf }, { "f", parse_f },
+    { "V", parse_V }, { "H", parse_H },
+    { "v", parse_v }, { "h", parse_h },
+    { "t", parse_text },
+    { "w", parse_w },
+    { "n", parse_n },
+    { NULL, NULL }
+};
+
+/******************************************************************************/
+/* Parser helper functions (managing the state of the various parsing
+ * bits) */
+static void finish_span (YelpManParser *parser);
+
+/******************************************************************************/
 
 YelpManParser *
 yelp_man_parser_new (void)
 {
     YelpManParser *parser = g_new0 (YelpManParser, 1);
-
+    parser->accumulator = g_string_sized_new (1024);
     return parser;
 }
 
-xmlDocPtr
-yelp_man_parser_parse_file (YelpManParser   *parser,
-			    gchar           *file,
-			    const gchar     *encoding)
+/*
+  This function is responsible for taking a path to a man file and
+  returning something in the groff intermediate output format for us
+  to use.
+
+  If something goes wrong, we return NULL and set error to be a
+  YelpError describing the problem.
+*/
+static GInputStream*
+get_troff (gchar *path, GError **error)
 {
-    GFile *gfile;
-    GConverter *converter;
-    GFileInputStream *file_stream;
-    GInputStream *stream;
+    gint stdout;
+    GError *err = NULL;
+    gchar *argv[] = { "man", "-Z", "-Tutf8", NULL, NULL };
+
+    argv[3] = path;
+
+    if (!g_spawn_async_with_pipes (NULL, argv, NULL,
+                                   G_SPAWN_SEARCH_PATH, NULL, NULL,
+                                   NULL, NULL, &stdout, NULL, &err)) {
+        /* We failed to run the man program. Return a "Huh?" error. */
+        *error = g_error_new (YELP_ERROR, YELP_ERROR_UNKNOWN,
+                              err->message);
+        g_error_free (err);
+        return NULL;
+    }
+
+    return (GInputStream*) g_unix_input_stream_new (stdout, TRUE);
+}
+
+xmlDocPtr
+yelp_man_parser_parse_file (YelpManParser *parser,
+                            gchar *path,
+                            GError **error)
+{
+    GInputStream *troff_stream;
     gchar *line;
     gsize len;
+    gboolean ret;
+    xmlNodePtr root;
 
-    gfile = g_file_new_for_path (file);
-    file_stream = g_file_read (gfile, NULL, NULL);
-    converter = (GConverter *) yelp_magic_decompressor_new ();
-    stream = g_converter_input_stream_new ((GInputStream *) file_stream, converter);
-    parser->stream = g_data_input_stream_new (stream);
+    troff_stream = get_troff (path, error);
+    if (!troff_stream) return NULL;
+
+    parser->stream = g_data_input_stream_new (troff_stream);
 
     parser->doc = xmlNewDoc (BAD_CAST "1.0");
-    parser->ins = xmlNewNode (NULL, BAD_CAST "Man");
-	xmlDocSetRootElement (parser->doc, parser->ins);
+    root = xmlNewNode (NULL, BAD_CAST "Man");
+    xmlDocSetRootElement (parser->doc, root);
 
-    parser->make_links = TRUE;
+    parser->header = xmlNewNode (NULL, BAD_CAST "header");
+    xmlAddChild (root, parser->header);
 
-    while ((parser->buffer = g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL)) != NULL) {
-	/* convert this line from the encoding indicated to UTF-8 */
-	if (!g_str_equal (encoding, "UTF-8")) {
-	    GError *converr = NULL;
-	    gchar *new_buffer = NULL;
-	    gsize bytes_written = 0;
+    while (1) {
+       parser->buffer =
+       g_data_input_stream_read_line (parser->stream,
+                                      &(parser->length),
+                                      NULL, NULL);
+       if (parser->buffer == NULL) break;
 
-	    /* We are making the
-	     * assumption that there are no partial characters at the end of this
-	     * string, and therefore can use calls like g_convert() which do not
-	     * preserve state - someone tell me if I'm wrong here */
-	    new_buffer = g_convert (parser->buffer, parser->length, "UTF-8", 
-	                            encoding, NULL, &bytes_written, &converr);
-	    if (converr != NULL) {
-		g_print ("Error occurred converting %s to UTF-8: %s\n", 
-		         encoding, converr->message);
-		g_error_free (converr);
-		break;
-	    } else if (parser->buffer == NULL) {
-		g_print ("parser->buffer == NULL\n");
-		break;
-	    }
+       ret = parser_parse_line (parser, error);
 
-	    g_free (parser->buffer);
-	    parser->buffer = new_buffer;
-	    parser->length = bytes_written;
-	}
+       g_free (parser->buffer);
 
-	parser_parse_line (parser);
-
-	g_free (parser->buffer);
+       if (!ret) {
+           xmlFreeDoc (parser->doc);
+           parser->doc = NULL;
+           break;
+       }
     }
 
     g_object_unref (parser->stream);
@@ -156,1667 +235,373 @@ yelp_man_parser_parse_file (YelpManParser   *parser,
 void
 yelp_man_parser_free (YelpManParser *parser)
 {
+    guint k;
+    if (parser) {
+        for (k=0; k<MAN_FONTS; k++)
+            g_free (parser->font_registers[k]);
+    }
+    g_string_free (parser->accumulator, TRUE);
     g_free (parser);
 }
 
 /******************************************************************************/
 
-static void
-parser_parse_line (YelpManParser *parser) {
-    parser->anc = parser->buffer;
-    parser->cur = parser->buffer;
-    
-    /* check to see if we are ignoring input */
-    if (parser->ignore) {
-	gchar *ptr;
-	/* needs to be utf-8 compatible */
-	ptr = strstr (parser->buffer, parser->token);
-    	if (ptr != NULL) {
-	    while (PARSER_CUR) {
-		parser->cur = g_utf8_next_char (parser->cur);
-		parser->anc = parser->cur;
-	    }
-	    g_free (parser->token);
-	    parser->ignore = FALSE;
-	} else {
-	    /* return to get another line of input  */
-	    return;
-	}
-    } else {
-	switch (*(parser->buffer)) {
-	case '.':
-	    parser_handle_linetag (parser);
-    	    /* we are ignoring everything until parser->token, 
-     	     * so return and get next line */
-    	    if (parser->ignore)
-	        return;
-	    break;
-	case '\0':
-	    parser->ins = xmlDocGetRootElement (parser->doc);
-	    break;
-	case '\'':
-	    parser->cur = parser->buffer + parser->length - 1;
-	    parser->anc = parser->cur;
-	default:
-	    break;
-	}
-    }
-    
-    parser_read_until (parser, '\0');
-     
-    if (parser->cur != parser->anc)
-	parser_append_text (parser);
-    
-    if (PARSER_CUR) {
-	parser->cur = g_utf8_next_char (parser->cur);
-	parser_append_text (parser);
-    }
-}
-
-/* creates a single string from all the macro arguments */
-static gchar *
-args_concat_all (GSList *args)
-{
-    GSList *ptr = NULL;
-    gchar **str_array = NULL;
-    gchar *retval = NULL;
-    gint i = 0;
-    
-    if (!args)
-	return NULL;
-
-    str_array = g_malloc0 ((sizeof (gchar *)) * (g_slist_length (args)+1) );
-
-    ptr = args;
-    while (ptr && ptr->data) {
-	str_array[i++] = ptr->data;
-	ptr = g_slist_next (ptr);
-    }
-    
-    str_array[i] = NULL;
-
-    retval = g_strjoinv (" ", str_array);
-
-    g_free (str_array);
-
-    return retval;
-}
-
-/* handler to ignore a macro by reading until the null character */
-static void
-macro_ignore_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{ 
-    while (PARSER_CUR) {
-	parser->cur = g_utf8_next_char (parser->cur);
-	parser->anc = parser->cur;
-    }
-}
-
-static void
-macro_bold_small_italic_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    gchar *str = NULL;
-
-    parser_ensure_P (parser);
-    parser->ins = parser_append_node (parser, macro);
-    
-    if (args && args->data) {
-	str = args_concat_all (args);
-	parser_append_given_text_handle_escapes (parser, str, TRUE);
-	g_free (str);
-    }
-    
-    parser->ins = parser->ins->parent;
-}
-
-static void
-macro_roman_bold_small_italic_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    GSList *ptr = NULL;
-    gchar a[2], b[2];
-    gboolean toggle = TRUE;
-    
-    a[0] = macro[0];
-    b[0] = macro[1];
-    a[1] = b[1] = '\0';
-
-    parser_ensure_P (parser);
-
-    ptr = args;
-    while (ptr && ptr->data) {
-	if (toggle)
-	    parser->ins = parser_append_node (parser, a);
-	else
-	    parser->ins = parser_append_node (parser, b);
-	
-	if (ptr->next) {
-	    gchar *tmp = ptr->next->data;
-	    
-	    if (tmp[0] == '(' && g_ascii_isdigit (tmp[1]) &&
-		(tmp[2] == ')' || (g_ascii_isalpha (tmp[2]) && tmp[3] == ')'))) {
-		tmp = g_strconcat (ptr->data, " ", tmp, NULL);
-		parser_append_given_text_handle_escapes (parser, tmp, TRUE);
-		g_free (tmp);
-		parser->ins = parser->ins->parent;
-		ptr = ptr->next->next;
-		continue;
-	    }  
-	}
-
-	parser_append_given_text_handle_escapes (parser, ptr->data, TRUE);
-	parser->ins = parser->ins->parent;
-	
-	toggle = (toggle) ? 0 : 1;
-	ptr = g_slist_next (ptr);
-    }
-}
-
-static void
-macro_new_paragraph_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    xmlNodePtr tmpNode;
-	
-    /* Clean up from 'lists'. If this is null we don't care. */
-    tmpNode = parser_stack_pop_node (parser, "IP");
-	
-    tmpNode = parser_stack_pop_node (parser, "P");
-    if (tmpNode != NULL) {
-	parser->ins = tmpNode->parent;
-    }
-
-    parser_ensure_P (parser);
-}
-
-static void
-macro_insert_self_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    parser_append_node (parser, macro);
-}
-
-static void
-macro_title_header_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    GSList *ptr = NULL;
-    gchar *fields[5] = { "Title", "Section", "Date", "Commentary", "Name" };
-    gint i;
-	
-    parser->ins = parser_append_node (parser, macro);
-
-    ptr = args;
-    for (i=0; i < 5; i++) {
-	if (ptr && ptr->data) {
-	    parser->ins = parser_append_node (parser, fields[i]);
-	    parser_append_given_text_handle_escapes (parser, ptr->data, FALSE);
-	    parser->ins = parser->ins->parent;	
-	    ptr = g_slist_next (ptr);
-	} else 
-	    break;
-    }
-
-    parser->ins = parser->ins->parent;
-}
-
-static void
-macro_section_header_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    static gint id = 0;
-    GIOStatus retval;
-    GError *error = NULL;
-    gchar *str = NULL;
-    gchar *macro_uc = g_strdup (macro);
-    gchar *ptr;
-    gchar  idval[20];
-    
-    if (!args) {
-	str = g_data_input_stream_read_line (parser->stream, NULL, NULL, &error);
-	if (error) {
-	    g_warning ("%s\n", error->message);
-	    g_error_free (error);
-	}
-    }
-    else 
-	str = args_concat_all (args);
-
-    for (ptr = macro_uc; *ptr != '\0'; ptr++)
-	/* FIXME: utf-8 */
-    	*ptr = g_ascii_toupper (*ptr);
-    
-    parser_stack_pop_node (parser, "IP");
-
-    g_snprintf (idval, 20, "%d", ++id);
-    
-    /* Sections should be their own, well, section */
-    parser->ins = xmlDocGetRootElement (parser->doc);
-    parser->ins = parser_append_node_attr (parser, macro_uc, "id", idval);
-    parser_append_given_text_handle_escapes (parser, str, FALSE);
-    parser->ins = parser->ins->parent;
-    
-    if (str)
-	g_free (str);
-}
-
-static void
-macro_spacing_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    parser->ins = parser_append_node (parser, macro);
-
-    if (args && args->data) {
-	parser->ins = parser_append_node (parser, "Count");
-	parser_append_given_text (parser, args->data);
-	parser->ins = parser->ins->parent;
-    }
-
-    parser->ins = parser->ins->parent;
-}
-	
-/* this is used to define or redefine a macro until ".." 
- * is reached. */
-static void
-macro_define_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-	parser->ignore = TRUE;
-	parser->token = g_strdup("..");
-}
-	
-static void
-macro_tp_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    xmlNodePtr tmpNode = NULL;
-    GError **errormsg = NULL;
-
-    tmpNode = parser_stack_pop_node (parser, "IP");
-
-    if (tmpNode != NULL)
-	parser->ins = tmpNode->parent;
-
-    parser->ins = parser_append_node (parser, "IP");
-
-    if (args && args->data) {
-        parser->ins = parser_append_node (parser, "Indent");
-	parser_append_given_text (parser, args->data);
-        parser->ins = parser->ins->parent;
-    }
-
-    g_free (parser->buffer);
-
-    parser->buffer = g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL);
-    if (parser->buffer != NULL) {
-	parser->ins = parser_append_node (parser, "Tag");
-	parser_parse_line (parser);
-	parser->ins = parser->ins->parent;
-    }
-
-    parser_stack_push_node (parser, parser->ins);
-}
-	
-static void
-macro_ip_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    xmlNodePtr tmpNode;
-    
-    tmpNode = parser_stack_pop_node (parser, "IP");
-
-    if (tmpNode != NULL)
-	parser->ins = tmpNode->parent;
-
-    parser->ins = parser_append_node (parser, macro);
-
-    if (args && args->data) {
-	parser->ins = parser_append_node (parser, "Tag");
-	parser_append_given_text_handle_escapes (parser, args->data, TRUE);
-	parser->ins = parser->ins->parent;
-	    
-	if (args->next && args->next->data) {
-	    parser->ins = parser_append_node (parser, "Indent");
-	    parser_append_given_text_handle_escapes (parser, args->next->data, TRUE);
-	    parser->ins = parser->ins->parent;
-	}
-    }
-
-    parser_stack_push_node (parser, parser->ins);
-}
-	
-static void
-macro_hanging_paragraph_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    parser_stack_pop_node (parser, "IP");
-
-    parser->ins = parser_append_node (parser, macro);
-
-    if (args && args->data) {
-	parser->ins = parser_append_node (parser, "Indent");
-	parser_append_given_text (parser, args->data);
-	parser->ins = parser->ins->parent;
-    }
-}
-
-static xmlNodePtr
-create_th_node (YelpManParser *parser)
-{
-    /* Create a TH node if we don't have one already */
-    if (!parser->th_node) {
-	parser->th_node = parser_append_node (parser, "TH");
-    }
-    return parser->th_node;
-}
-
-static void
-macro_title_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    gchar *str = NULL;
-    
-    parser->ins = create_th_node (parser);
-    
-    if (args && args->data) {
-	parser->ins = parser_append_node (parser, "Title");
-	parser_append_given_text (parser, args->data);
-	parser->ins = parser->ins->parent;
-    }
-
-    if (args && args->next && args->next->data) {
-	parser->ins = parser_append_node (parser, "Section");
-	parser_append_given_text (parser, args->next->data);
-    } 
-    parser->ins = parser->th_node->parent;
-}
-
-static void
-macro_os_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    gchar *str = NULL;
-    xmlNodePtr new_ins = parser->ins;
-    
-    parser->ins = create_th_node (parser);
-
-    if (args && args->data) {
-	parser->ins = parser_append_node (parser, "Os");
-	parser_append_given_text (parser, args->data);
-    }
-
-    parser->ins = parser->th_node->parent;
-}
-
-static void
-macro_date_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    gchar *str = NULL;
-
-    parser->ins = create_th_node (parser);
-
-    if (args && args->data) {
-    
-	str = args_concat_all (args);
-	
-	parser->ins = parser_append_node (parser, "Date");
-	parser_append_given_text (parser, str);
-
-	g_free (str);
-    }
-
-    parser->ins = parser->th_node->parent;
-}
-
-
-static void
-macro_url_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    xmlNodePtr tmpNode = NULL;
-    
-    if (g_str_equal (macro, "UR")) {
-	/* If someone wants to do automatic hyperlink wizardry outside
-	 * for the parser, then this should instead generate a tag.
-         */
-	if (args && args->data) {
-	    if (g_str_equal (args->data, ":"))
-		parser->make_links = FALSE;
-	    else {
-		parser->ins = parser_append_node (parser, macro);
-	    
-		parser_stack_push_node (parser, parser->ins);
-	    
-		parser->ins = parser_append_node (parser, "URI");
-		parser_append_given_text (parser, args->data);
-		parser->ins = parser->ins->parent;
-	    }
-	}
-    } 
-    else if (g_str_equal (macro, "UE")) {
-	
-	if (parser->make_links) {
-	    tmpNode = parser_stack_pop_node (parser, "UR");
-
-	    if (tmpNode == NULL)
-		g_warning ("Found unexpected tag: '%s'\n", macro);
-	    else
-		parser->ins = tmpNode->parent;
-	} else
-	    parser->make_links = TRUE;
-	
-    } 
-    else if (g_str_equal (macro, "UN")) {
-
-	if (args && args->data) {
-	    parser->ins = parser_append_node (parser, macro);
-	    parser_append_given_text (parser, args->data);
-	    parser->ins = parser->ins->parent;
-	}
-	
-    }
-}
-
-/* relative margin indent; FIXME: this takes a parameter that tells
- * how many indents to do, which needs to be implemented to fix 
- * some man page formatting options */
-/*static void
-macro_rs_re_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    xmlNodePtr tmpNode;
-
-    if (g_str_equal (macro, "RS")) {
-	parser->ins = parser_append_node (parser, macro);
-
-	parser_stack_push_node (parser, parser->ins);
-
-	if (args && args->data) {
-            parser->ins = parser_append_node (parser, "Indent");
-            parser_append_given_text (parser, args->data);
-            parser->ins = parser->ins->parent;
-        }
-    } 
-    else if (g_str_equal (macro, "RE")) {
-	parser_stack_pop_node (parser, "IP");
-
-	tmpNode = parser_stack_pop_node (parser, "RS");
-
-	if (tmpNode == NULL)
-	    d (g_warning ("Found unexpected tag: '%s'\n", macro));
-	else
-	    parser->ins = tmpNode->parent;
-    }
-}*/
-
-static void
-macro_mandoc_list_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    xmlNodePtr tmpNode;
-
-    if (g_str_equal (macro, "Bl")) {
-       
-	parser->ins = parser_append_node (parser, macro);
-	    
-	if (args && args->data) {
-	    gchar *listtype = (gchar *)args->data;
-		
-	    if (g_str_equal (listtype, "-hang") ||
-		g_str_equal (listtype, "-ohang") ||
-		g_str_equal (listtype, "-tag") ||
-		g_str_equal (listtype, "-diag") ||
-		g_str_equal (listtype, "-inset")
-	       ) {
-		listtype++;
-		xmlNewProp (parser->ins, BAD_CAST "listtype", 
-		            BAD_CAST listtype);
-		/* TODO: check for -width, -offset, -compact */
-	    } else if (g_str_equal (listtype, "-column")) {
-		/* TODO: support this */;
-	    } else if (g_str_equal (listtype, "-item") ||
-		       g_str_equal (listtype, "-bullet") ||
-		       g_str_equal (listtype, "-hyphen") ||
-		       g_str_equal (listtype, "-dash")
-		      ) {
-		listtype++;
-		xmlNewProp (parser->ins, BAD_CAST "listtype", 
-		            BAD_CAST listtype);
-		/* TODO: check for -offset, -compact */
-	    }
-	}
-	    
-        parser_stack_push_node (parser, parser->ins);
-    }
-    else if (g_str_equal (macro, "El")) {
-    
-    	tmpNode = parser_stack_pop_node (parser, "It");
-
-	if (tmpNode != NULL)
-	    parser->ins = tmpNode->parent;
-
-        tmpNode = parser_stack_pop_node (parser, "Bl");
-
-        if (tmpNode == NULL)
-	    g_warning ("Found unexpected tag: '%s'\n", macro);
-        else
-            parser->ins = tmpNode->parent;
-    }
-}
-
-static void
-macro_verbatim_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    xmlNodePtr tmpNode;
-    
-    if (g_str_equal (macro, "nf") || g_str_equal (macro, "Vb")) {
-	parser->ins = parser_append_node (parser, "Verbatim");
-	parser_stack_push_node (parser, parser->ins);
-    } 
-    else if (g_str_equal (macro, "fi") || g_str_equal (macro, "Ve")) {
-	tmpNode = parser_stack_pop_node (parser, "Verbatim");
-
-	if (tmpNode == NULL)
-	    g_warning ("Found unexpected tag: '%s'\n", macro);
-	else
-	    parser->ins = tmpNode->parent;
-    }
-}
-
-static void
-macro_reference_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    if (g_str_equal (macro, "so")) {
-	gchar *basename = NULL;
-	gchar *link = NULL;
-	
-	if (args && args->data) {
-	    basename = g_strrstr((const gchar *)args->data, "/");
-
-	    if (basename) {
-		basename++;
-		link = g_strdup_printf ("man:%s", basename);
-	    } else {
-		link = g_strdup_printf ("man:%s", (const gchar *)args->data);
-		basename = (gchar *)args->data;
-	    }
-	    
-	    parser->ins = create_th_node (parser);
-	    parser->ins = parser_append_node (parser, "Title");
-	    parser_append_given_text (parser, "REFERENCE");
-	    parser->ins = parser->ins->parent;
-	    parser->ins = parser->ins->parent;
-		
-	    parser->ins = parser_append_node_attr (parser, "SH", "id", "9999");
-	    parser_append_given_text (parser, "REFERENCE");
-	    parser->ins = parser->ins->parent;
-	    
-	    parser_append_given_text (parser, "See ");
-	    parser->ins = parser_append_node (parser, "UR");
-	    parser->ins = parser_append_node (parser, "URI");
-	    parser_append_given_text (parser, link);
-	    parser->ins = parser->ins->parent;
-	    parser_append_given_text (parser, basename);
-	    parser->ins = parser->ins->parent;
-
-	    g_free (link);
-	}
-    }
-}
-	
-/* many mandoc macros have their arguments parsed so that other
- * macros can be called to operate on their arguments.  This table
- * indicates which macros are _parsed_ for other callable macros, 
- * and which are _callable_ from other macros: see mdoc(7) for more
- * details
+/* Sets the k'th font register to be name. Copies name, so free it
+ * afterwards. k should be in [0,MAN_FONTS). It seems that man always
+ * gives us ones at least 1, but groff_out(5) says non-negative.
  */
+static void
+set_font_register (YelpManParser *parser, guint k, const gchar* name)
+{
+    if (k > MAN_FONTS) {
+        g_warning ("Tried to set nonexistant font register %d to %s",
+                   k, name);
+        return;
+    }
+    g_free (parser->font_registers[k]);
+    parser->font_registers[k] = g_strdup (name);
+}
 
-#define MANDOC_NONE 0x01
-#define MANDOC_PARSED 0x01
-#define MANDOC_CALLABLE 0x02
+static const gchar*
+get_font (const YelpManParser *parser)
+{
+    guint k = parser->current_font;
+    if (k > MAN_FONTS ||
+        parser->font_registers[k] == NULL) {
 
-struct MandocMacro {
-    gchar *macro;
-    gint flags;
-};
+        g_warning ("Tried to get nonexistant font register %d", k);
 
-static struct MandocMacro manual_macros[] = {
-    { "Ad", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "An", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Ar", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Cd", MANDOC_NONE },
-    { "Cm", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Dv", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Er", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Ev", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Fa", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Fd", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Fl", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Fn", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Ic", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Li", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Nd", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Nm", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Op", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Ot", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Pa", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "St", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Tn", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Va", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Vt", MANDOC_PARSED | MANDOC_CALLABLE },
-    { "Xr", MANDOC_PARSED | MANDOC_CALLABLE },
-    { NULL, MANDOC_NONE }
-};
+        return "";
+    }
+
+    return parser->font_registers[k];
+}
+
+/******************************************************************************/
+
+/*
+  Convenience macros to scan a string, checking for the correct number
+  of things read.
+
+  Also to raise an error. Add an %s to the end of the format string,
+  which automatically gets given parser->buffer.
+ */
+#define SSCANF(fmt,num,...)                                 \
+    (sscanf (parser->buffer, (fmt), __VA_ARGS__) != (num))
+
+#define PARSE_ERROR(...)                                    \
+    g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,         \
+                 __VA_ARGS__, parser->buffer)
+#define RAISE_PARSE_ERROR(...)                              \
+    { *error = PARSE_ERROR (__VA_ARGS__); return FALSE; }
 
 static gboolean
-is_mandoc_manual_macro_parsed (gchar *macro)
+parser_parse_line (YelpManParser *parser, GError **error)
 {
-    gint i;
-	
-    for (i=0; manual_macros[i].macro != NULL; i++) {
-        if (g_str_equal (macro, manual_macros[i].macro) &&
-	    (manual_macros[i].flags & MANDOC_PARSED) == MANDOC_PARSED
-	   ) {
-		return TRUE;
-	}
-    }
+    if (parser->lines_parsed < 3)
+        return parse_prologue_line (parser, error);
 
-    return FALSE;
+    const struct LineParsePair *p = line_parsers;
+    while (p->handler != NULL) {
+        if (g_str_has_prefix (parser->buffer, p->prefix)) {
+            return p->handler(parser, error);
+        }
+        p++;
+    }
+    return TRUE;
 }
 
 static gboolean
-is_mandoc_manual_macro_callable (gchar *macro)
+parse_prologue_line (YelpManParser *parser, GError **error)
 {
-    gint i;
-	
-    for (i=0; manual_macros[i].macro != NULL; i++) {
-        if (g_str_equal (macro, manual_macros[i].macro) &&
-	    (manual_macros[i].flags & MANDOC_CALLABLE) == MANDOC_CALLABLE
-	   ) {
-		return TRUE;
-	}
-    }
+    parser->lines_parsed++;
+    if (parser->lines_parsed != 2) return TRUE;
 
-    return FALSE;
-}
-
-static void
-macro_mandoc_utility_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    GSList *ptr = NULL;
-    gchar *str = NULL;
-    gchar *manpage, *uri;
-
-    g_return_if_fail (macro != NULL);
-    
-    if (is_mandoc_manual_macro_parsed (macro)) {
-	parser->ins = parser_append_node (parser, macro);
-	
-	ptr = args;
-	while (ptr && ptr->data) {
-	    if (is_mandoc_manual_macro_callable ((gchar *)ptr->data)) {
-	    	macro_mandoc_utility_handler (parser, (gchar *)ptr->data, ptr->next);
-		break;
-	    } else {
-		parser_append_given_text_handle_escapes (parser, (gchar *)ptr->data, TRUE);
-	    }
-	    ptr = ptr->next;
-	    if (ptr && ptr->data)
-		parser_append_given_text (parser, " ");
-	}
-	
-	parser->ins = parser->ins->parent;
-    } else {
-	parser->ins = parser_append_node (parser, macro);
-	str = args_concat_all (args);
-	parser->ins = parser->ins->parent;
-    
-	g_free (str);
-    }
-
-    return;
-	
-    if (g_str_equal (macro, "Op")) {
-	    
-    } else if (g_str_equal (macro, "Nm")) {
-
-	if (str) {
-	    parser_ensure_P (parser);
-		
-	    parser->ins = parser_append_node (parser, "B");
-	    parser_append_given_text_handle_escapes (parser, str, TRUE);
-	    parser->ins = parser->ins->parent;
-        }
-    }
-    else if (g_str_equal (macro, "Nd")) {
-    
-	if (str) {
-	    parser_append_given_text (parser, " -- ");
-	    parser_append_given_text_handle_escapes (parser, str, TRUE);
-	}
-    }
-    else if (g_str_equal (macro, "Xr")) {
-	    
-	if (args && args->data && args->next && args->next->data) {
-	    
-	    manpage = g_strdup_printf ("%s(%s)", (gchar *)args->data, (gchar *)args->next->data);
-	    uri = g_strdup_printf ("man:%s", manpage);
-	    
-	    parser_ensure_P (parser);
-	    
-	    parser->ins = parser_append_node (parser, "UR");
-	    parser->ins = parser_append_node (parser, "URI");
-	    parser_append_given_text (parser, uri);
-	    parser->ins = parser->ins->parent;
-	    parser_append_given_text (parser, manpage);
-	    parser->ins = parser->ins->parent;
-	   
-	    ptr = args->next->next;
-
-	    while (ptr && ptr->data) {
-		parser_append_given_text (parser, ptr->data);
-		ptr = g_slist_next (ptr);
-	    }
-	    
-	    g_free (uri);
-	    g_free (manpage);
-	}
-    }
-
-    g_free (str);
-}
-
-static void
-macro_mandoc_listitem_handler (YelpManParser *parser, gchar *macro, GSList *args)
-{
-    GSList *ptr = NULL;
-    xmlNodePtr tmpNode;
-    
-    tmpNode = parser_stack_pop_node (parser, "It");
-
-    if (tmpNode != NULL)
-	parser->ins = tmpNode->parent;
-
-    parser->ins = parser_append_node (parser, macro);
-
-    if (args && args->data) {
-	parser->ins = parser_append_node (parser, "ItTag");
-	
-	ptr = args;
-	while (ptr && ptr->data) {
-	    if (is_mandoc_manual_macro_callable ((gchar *)ptr->data)) {
-	    	macro_mandoc_utility_handler (parser, (gchar *)ptr->data, ptr->next);
-		break;
-	    } else {
-		parser_append_given_text (parser, (gchar *)ptr->data);
-	    }
-	    ptr = ptr->next;
-	    if (ptr && ptr->data)
-		parser_append_given_text (parser, " ");
-	}
-	
-	parser->ins = parser->ins->parent;
-    }
-
-    parser_stack_push_node (parser, parser->ins);
-}
-
-/* the handler functions for each macro all have this form:
- *   - the calling function, parser_handle_linetag owns the "macro", and "args"
- *     parameters, so do not free them.
- */
-typedef void (*MacroFunc)(YelpManParser *parser, gchar *macro, GSList *args);
-
-struct MacroHandler {
-    gchar *macro;
-    MacroFunc handler;
-};
-
-/* We are calling all of these macros, when in reality some of them are
- * requests (lowercase, defined by groff system), and some of them are
- * macros (varying case, defined by man/mdoc/ms/tbl extensions)
- *
- * A great resource to figure out what each of these does is the groff
- * info page.  Also groff(7), man(7), and mdoc(7) are useful as well.
- */
-static struct MacroHandler macro_handlers[] = {
-    { "\\\"", macro_ignore_handler },                /* groff: comment */ 
-    { "ad", macro_ignore_handler },                  /* groff: set adjusting mode */ 
-    { "Ad", macro_mandoc_utility_handler },          /* mandoc: Address */ 
-    { "An", macro_mandoc_utility_handler },          /* mandoc: Author name */ 
-    { "Ar", macro_mandoc_utility_handler },          /* mandoc: Command line argument */ 
-    { "B",  macro_bold_small_italic_handler },       /* man: set bold font */
-    { "Bd", macro_ignore_handler },                  /* mandoc: Begin-display block */
-    { "BI", macro_roman_bold_small_italic_handler }, /* man: bold italic font */
-    { "Bl", macro_mandoc_list_handler },             /* mandoc: begin list */
-    { "bp", macro_ignore_handler },                  /* groff: break page */ 
-    { "br", macro_insert_self_handler },             /* groff: line break */
-    { "BR", macro_roman_bold_small_italic_handler }, /* man: set bold roman font */
-    { "Cd", macro_mandoc_utility_handler },          /* mandoc: Configuration declaration */ 
-    { "Cm", macro_mandoc_utility_handler },          /* mandoc: Command line argument modifier */ 
-    { "ce", macro_ignore_handler },                  /* groff: center text */
-    { "Dd", macro_date_handler },                    /* mandoc: Document date */
-    { "de", macro_define_handler },                  /* groff: define macro */
-    { "ds", macro_ignore_handler },                  /* groff: define string variable */
-    { "D1", macro_ignore_handler },                  /* mandoc: Indent and display one text line */
-    { "Dl", macro_ignore_handler },                  /* mandoc: Indent and display one line of literal text */
-    { "Dt", macro_title_handler },                   /* mandoc: Document title */
-    { "Dv", macro_mandoc_utility_handler },          /* mandoc: Defined variable */ 
-    { "Ed", macro_ignore_handler },                  /* mandoc: End-display block */
-    { "El", macro_mandoc_list_handler },             /* mandoc: end list */ 
-    { "Er", macro_mandoc_utility_handler },          /* mandoc: Error number */ 
-    { "Ev", macro_mandoc_utility_handler },          /* mandoc: Environment variable */ 
-    { "Fa", macro_mandoc_utility_handler },          /* mandoc: Function argument */ 
-    { "Fd", macro_mandoc_utility_handler },          /* mandoc: Function declaration */ 
-    { "fi", macro_verbatim_handler },                /* groff: activate fill mode */
-    { "Fl", macro_mandoc_utility_handler },          /* mandoc: ? */ 
-    { "Fn", macro_mandoc_utility_handler },          /* mandoc: Function call */ 
-    { "ft", macro_ignore_handler },                  /* groff: change font */
-    { "HP", macro_hanging_paragraph_handler },       /* man: paragraph with hanging left indentation */
-    { "hy", macro_ignore_handler },                  /* groff: enable hyphenation */
-    { "I",  macro_bold_small_italic_handler },       /* man: set italic font */
-    { "Ic", macro_mandoc_utility_handler },          /* mandoc: Interactive Command */ 
-    { "ie", macro_ignore_handler },                  /* groff: else portion of if-else */
-    { "if", macro_ignore_handler },                  /* groff: if statement */
-    { "ig", macro_ignore_handler },                  /* groff: comment until '..' or '.END' */
-    { "ih", macro_ignore_handler },                  /* ? */
-    { "IX", macro_ignore_handler },                  /* ms: print index to stderr */
-    { "IB", macro_roman_bold_small_italic_handler }, /* man: set italic bold font */
-    { "IP", macro_ip_handler },                      /* man: indented paragraph */
-    { "IR", macro_roman_bold_small_italic_handler }, /* man: set italic roman font */
-    { "It", macro_mandoc_listitem_handler },         /* mandoc: item in list */
-    { "Li", macro_mandoc_utility_handler },          /* mandoc: Literal text */ 
-    { "LP", macro_new_paragraph_handler },           /* man: line break and left margin and indentation are reset */
-    { "na", macro_ignore_handler },                  /* groff: disable adjusting */
-    { "Nd", macro_mandoc_utility_handler },          /* mandoc: description of utility/program */
-    { "ne", macro_ignore_handler },                  /* groff: force space at bottom of page */
-    { "nf", macro_verbatim_handler },                /* groff: no fill mode */
-    { "nh", macro_ignore_handler },                  /* groff: disable hyphenation */
-    { "Nd", macro_mandoc_utility_handler },          /* mandoc: ? */
-    { "Nm", macro_mandoc_utility_handler },          /* mandoc: Command/utility/program name*/
-    { "Op", macro_mandoc_utility_handler },          /* mandoc: Option */
-    { "Os", macro_os_handler },                      /* mandoc: Operating System */
-    { "Ot", macro_mandoc_utility_handler },          /* mandoc: Old style function type (Fortran) */
-    { "P",  macro_new_paragraph_handler },           /* man: line break and left margin and indentation are reset */
-    { "Pa", macro_mandoc_utility_handler },          /* mandoc: Pathname or filename */
-    { "PP", macro_new_paragraph_handler },           /* man: line break and left margin and indentation are reset */
-    { "Pp", macro_new_paragraph_handler },           /* man: line break and left margin and indentation are reset */
-    { "ps", macro_ignore_handler },                  /* groff: change type size */
-    { "RB", macro_roman_bold_small_italic_handler }, /* man: set roman bold font */
-    { "RE", macro_ignore_handler },                  /* man: move left margin back to NNN */
-    { "RI", macro_roman_bold_small_italic_handler }, /* man: set roman italic font */
-    { "RS", macro_ignore_handler },                  /* man: move left margin to right by NNN */
-    { "SH", macro_section_header_handler },          /* man: unnumbered section heading */
-    { "Sh", macro_section_header_handler },          /* man: unnumbered section heading */
-    { "SM", macro_bold_small_italic_handler },       /* man: set font size one SMaller */
-    { "so", macro_reference_handler },               /* groff: include file */
-    { "sp", macro_spacing_handler },                 /* groff: */
-    { "SS", macro_section_header_handler },          /* man: unnumbered subsection heading */
-    { "Ss", macro_section_header_handler },          /* man: unnumbered subsection heading */
-    { "St", macro_mandoc_utility_handler },          /* mandoc: Standards (-p1003.2, -p1003.1 or -ansiC) */
-    { "TH", macro_title_header_handler },            /* man: set title of man page */
-    { "TP", macro_tp_handler },                      /* man: set indented paragraph with label */
-    { "UR", macro_url_handler },                     /* man: URL start hyperlink */
-    { "UE", macro_url_handler },                     /* man: URL end hyperlink */
-    { "UN", macro_ignore_handler },                  /* ? */ 
-    { "TE", macro_ignore_handler },                  /* ms: table */
-    { "Tn", macro_mandoc_utility_handler },          /* mandoc: Trade or type name (small Caps). */
-    { "ti", macro_ignore_handler },                  /* groff: temporary indent */
-    { "tr", macro_ignore_handler },                  /* groff: translate characters */
-    { "TS", macro_ignore_handler },                  /* ms: table with optional header */
-    { "Va", macro_mandoc_utility_handler },          /* mandoc: Variable name */
-    { "Vb", macro_verbatim_handler },                /* pod2man: start of verbatim text */
-    { "Ve", macro_verbatim_handler },                /* pod2man: end of verbatim text */
-    { "Vt", macro_mandoc_utility_handler },          /* mandoc: Variable type (Fortran only) */
-    { "Xr", macro_mandoc_utility_handler },          /* mandoc: Manual page cross reference */
-    { NULL, NULL } 
-};
-
-static void
-parser_handle_linetag (YelpManParser *parser) {
-    gchar c, *str, *ptr, *arg;
-    GSList *arglist = NULL;
-    GSList *listptr = NULL;
-    MacroFunc handler_func = NULL;
-    
-    static GHashTable *macro_hash = NULL;
-
-    /* check if we've created the hash of macros yet.  If not, make it */
-    if (!macro_hash) {
-	gint i;
-	    
-	macro_hash = g_hash_table_new (g_str_hash, g_str_equal);
-	
-	for (i=0; macro_handlers[i].macro != NULL; i++) {
-	    g_hash_table_insert (macro_hash, 
-	                         macro_handlers[i].macro, 
-	                         macro_handlers[i].handler);
-	}
-    }
-
-    /* FIXME: figure out a better way to handle these cases */
-    /* special case, if the line is simply ".\0" then return */
-    if (g_utf8_get_char (g_utf8_next_char (parser->cur)) == '\0') {
-    	parser->cur = g_utf8_next_char (parser->cur);
-    	parser->cur = g_utf8_next_char (parser->cur);
-	parser->anc = parser->cur;
-	return;
-    } 
-    /* special case, if the line is simply "..\0" then return */
-    else if (g_utf8_get_char (g_utf8_next_char(parser->cur)) == '.' && 
-	     g_utf8_get_char (g_utf8_next_char (g_utf8_next_char (parser->cur+2))) == '\0') {
-    	parser->cur = g_utf8_next_char (parser->cur);
-    	parser->cur = g_utf8_next_char (parser->cur);
-    	parser->cur = g_utf8_next_char (parser->cur);
-    	parser->anc = parser->cur;
-    }
-    
-    /* skip any spaces after the control character . */
-    while (PARSER_CUR && g_utf8_get_char (parser->cur) == ' ')
-	    parser->cur = g_utf8_next_char (parser->cur);
-    
-    while (PARSER_CUR
-	   && g_utf8_get_char (parser->cur) != ' '
-	   && ( (g_utf8_get_char (parser->cur) != '\\') || 
-	        (
-		 (g_utf8_get_char(parser->cur) == '\\') && 
-		 (g_utf8_get_char(g_utf8_next_char (parser->cur)) == '\"')
-		) 
-	      )
-	   && g_utf8_get_char (parser->cur) != '\0') {    
-	if (
-	    (g_utf8_get_char (parser->cur) == '\\') && 
-	    (g_utf8_get_char (g_utf8_next_char (parser->cur)) == '\"')
-	   ) {
-	    parser->cur = g_utf8_next_char (g_utf8_next_char (parser->cur));
-	    break;
-	}
-	parser->cur = g_utf8_next_char (parser->cur);
-    }
-
-    /* copy the macro/request into str */
-    c = *(parser->cur);
-    *(parser->cur) = '\0';
-    str = g_strdup (parser->anc + 1);  /* skip control character '.' by adding one */
-    *(parser->cur) = c;
-    parser->anc = parser->cur;
-    
-    /* FIXME: need to handle escaped characters */
-    /* perform argument parsing and store argument in a singly linked list */
-    while (PARSER_CUR && g_utf8_get_char (parser->cur) != '\0') { 
-	ptr = NULL;
-	arg = NULL;
-	    
-	/* skip any whitespace */
-	while (PARSER_CUR && g_utf8_get_char (parser->cur) == ' ') {
-	    parser->cur = g_utf8_next_char (parser->cur);
-	    parser->anc = parser->cur;
-	}
-	
-get_argument:
-	/* search until we hit whitespace or an " */
-	while (PARSER_CUR && 
-               g_utf8_get_char (parser->cur) != '\0' &&
-	       g_utf8_get_char (parser->cur) != ' ' &&
-	       g_utf8_get_char (parser->cur) != '\"')
-		parser->cur = g_utf8_next_char (parser->cur);
-
-	/* this checks for escaped spaces */
-	if (PARSER_CUR && 
-	    ((parser->cur - parser->buffer) > 0) &&
-	    g_utf8_get_char (parser->cur) == ' ' &&
-	    g_utf8_get_char (g_utf8_prev_char (parser->cur)) == '\\') {
-		parser->cur = g_utf8_next_char (parser->cur);
-		goto get_argument;
-	}
-	
-	if (g_utf8_get_char (parser->cur) == '\0' && 
-	    (parser->cur == parser->anc))
-	    break;
-	
-	if (g_utf8_get_char (parser->cur) == '\"' && 
-	    g_utf8_get_char (g_utf8_prev_char (parser->cur)) == ' ') {
-	    /* quoted argument */
-	    ptr = strchr (parser->cur+1, '\"');
-	    if (ptr != NULL) {
-		c = *(ptr);
-		*(ptr) = '\0';
-		arg = g_strdup (parser->anc+1);
-		*(ptr) = c;
-		parser->cur = ptr;
-		parser->anc = ++parser->cur;
-	    } else {
-		/* unmatched double quote: include the " as part of the argument */
-		parser->cur++;
-		goto get_argument;
-	    }
-	} 
-	else if (*(parser->cur) == '\"') {
-	    /* quote in the middle of an argument */
-	    c = *(parser->cur+1);
-	    *(parser->cur+1) = '\0';
-	    arg = g_strdup (parser->anc);
-	    *(parser->cur+1) = c;
-	    parser->anc = ++parser->cur;
-	} 
-	else if (*(parser->cur) == ' ') {
-	    /* normal space separated argument */
-	    c = *(parser->cur);
-	    *(parser->cur) = '\0';
-	    arg = g_strdup (parser->anc);
-	    *(parser->cur) = c;
-	    parser->anc = ++parser->cur;
-	} 
-	else if (*(parser->cur) == '\0' && *(parser->cur-1) != ' ') {
-	    /* special case for EOL */
-	    c = *(parser->cur);
-	    *(parser->cur) = '\0';
-	    arg = g_strdup (parser->anc);
-	    *(parser->cur) = c;
-	    parser->anc = parser->cur;
-	} else
-	    ; /* FIXME: do we need to handle this case? */
-
-	arglist = g_slist_append (arglist, arg);
-    }
-    
-    /*g_print ("handling macro (%s)\n", str);
-    
-    listptr = arglist;
-    while (listptr && listptr->data) {
-	g_print ("   arg = %s\n", (gchar *)listptr->data);
-	listptr = g_slist_next (listptr);
-    }
+    /* This is the interesting line, which should look like
+              x res 240 24 40
+       The interesting bits are the 24 and the 40, which are the
+       width and height of a character as far as -Tutf8 is
+       concerned.
     */
-    
-    /* lookup the macro handler and call that function */
-    handler_func = g_hash_table_lookup (macro_hash, str);
-    if (handler_func)
-	(*handler_func) (parser, str, arglist);
-    
-    /* in case macro is not defined in hash table, ignore rest of line */
-    else
-	macro_ignore_handler (parser, str, arglist);
-
-    g_free (str);
-    
-    listptr = arglist;
-    while (listptr && listptr->data) {
-	g_free (listptr->data);
-	listptr = g_slist_next (listptr);
-    } 
-    
-    return;
-    
-    if (0) {
-    }
-    /* Table (tbl) macros */
-    else if (g_str_equal (str, "TS")) {
-	parser->ins = parser_append_node (parser, "TABLE");
-        g_free (str);
-
-	parser_stack_push_node (parser, parser->ins);
-	g_free (parser->buffer);
-	parser_parse_table (parser);
-    }
-    else if (g_str_equal (str, "TE")) {
-	/* We should only see this from within parser_parse_table */
-	g_warning ("Found unexpected tag: '%s'\n", str);
-        g_free (str);
-    }
-    /* "ie" and "if" are conditional macros in groff
-     * "ds" is to define a variable; see groff(7)
-     * ignore anything between the \{ \}, otherwise ignore until
-     * the end of the linee*/
-    else if (g_str_equal (str, "ds") || g_str_equal (str, "ie")
-	                             || g_str_equal (str, "if")) {
-	/* skip any remaining spaces */
-	while (PARSER_CUR && (*parser->cur == ' '))
-	    parser->anc = ++parser->cur;
-	
-	/* skip the "stringvar" or "cond"; see groff(7) */
-	while (PARSER_CUR && (*parser->cur != ' '))
-	    parser->anc = ++parser->cur;
-	
-	/* skip any remaining spaces */
-	while (PARSER_CUR && (*parser->cur == ' '))
-	    parser->anc = ++parser->cur;
-	
-	/* check to see if the next two characters are the
-	 * special "\{" sequence */
-	if (*parser->cur == '\\' && *(parser->cur+1) == '{') {
-	    parser->ignore = TRUE;
-	    parser->token = g_strdup ("\\}");
-	} else {
-	    /* otherwise just ignore till the end of the line */
-	    while (PARSER_CUR)
-	        parser->anc = ++parser->cur;
-	}
-    }
-    /* else conditional macro */
-    else if (g_str_equal (str, "el")) {
-	/* check to see if the next two characters are the
-	 * special "\{" sequence */
-	parser->ignore = 0;
-	if (*parser->cur == '\\' && *(parser->cur+1) == '{') {
-	    parser->ignore = TRUE;
-	    parser->token = g_strdup ("\\}");
-	} else {
-	    /* otherwise just ignore till the end of the line */
-	    while (PARSER_CUR)
-	        parser->anc = ++parser->cur;
-	}
+    if (SSCANF ("x %*s %*u %u %u", 2,
+                &parser->char_width, &parser->char_height)) {
+        RAISE_PARSE_ERROR ("Wrong 'x res' line from troff: %s");
     }
 
+    return TRUE;
 }
 
-static void
-parser_ensure_P (YelpManParser *parser)
+static gboolean
+parse_xf (YelpManParser *parser, GError **error)
 {
-    if (xmlStrEqual (parser->ins->name, BAD_CAST "Man")) {
-	parser->ins = parser_append_node (parser, "P");
-	parser_stack_push_node (parser, parser->ins);
+    gchar name[10];
+    guint k;
+
+    if (SSCANF ("x f%*s %u %10s", 2, &k, name)) {
+        RAISE_PARSE_ERROR ("Invalid 'x f' line from troff: %s");
     }
+    set_font_register (parser, k, name);
+    return TRUE;
 }
 
-static void
-parser_read_until (YelpManParser *parser,
-		   gchar          delim)
+static gboolean
+parse_f (YelpManParser *parser, GError **error)
 {
-    gchar c;
-    
-    while (PARSER_CUR
-	   && g_utf8_get_char (parser->cur) != '\0'
-	   && g_utf8_get_char (parser->cur) != delim) {
-	    parser->cur = g_utf8_next_char (parser->cur);
+    guint k;
+    if (SSCANF ("f%u", 1, &k)) {
+        RAISE_PARSE_ERROR ("Invalid font line from troff: %s");
+    }
+    finish_span (parser);
+
+    parser->current_font = k;
+
+    return TRUE;
+}
+
+static gboolean
+parse_v (YelpManParser *parser, GError **error)
+{
+    guint dy;
+    if (SSCANF ("v%u", 1, &dy)) {
+        RAISE_PARSE_ERROR ("Invalid v line from troff: %s");
+    }
+    parser->vpos += dy;
+    return TRUE;
+}
+
+static gboolean
+parse_h (YelpManParser *parser, GError **error)
+{
+    guint dx;
+    if (SSCANF ("h%u", 1, &dx)) {
+        RAISE_PARSE_ERROR ("Invalid h line from troff: %s");
+    }
+    parser->hpos += dx;
+    return TRUE;
+}
+
+static gboolean
+parse_V (YelpManParser *parser, GError **error)
+{
+    guint y;
+    if (SSCANF ("V%u", 1, &y)) {
+        RAISE_PARSE_ERROR ("Invalid V line from troff: %s");
+    }
+    parser->vpos = y;
+    return TRUE;
+}
+
+static gboolean
+parse_H (YelpManParser *parser, GError **error)
+{
+    guint x;
+    if (SSCANF ("H%u", 1, &x)) {
+        RAISE_PARSE_ERROR ("Invalid H line from troff: %s");
+    }
+    parser->hpos = x;
+    return TRUE;
+}
+
+static gboolean
+parse_text (YelpManParser *parser, GError **error)
+{
+    gchar *text, *section, *tmp;
+    xmlNodePtr node;
+
+    g_assert (parser->buffer[0] == 't');
+
+    if (parser->state == START) {
+        /* With a bit of luck, this will be the tBLAH(1) line. Can't
+         * use sscanf to chop it up since that needs whitespace. */
+        section = strchr (parser->buffer + 1, '(');
+        if (!section)
+            RAISE_PARSE_ERROR ("Expected t line with title. Got %s");
+        text = g_strndup (parser->buffer + 1,
+                          section - (parser->buffer + 1));
+
+        // Skip over the (
+        section++;
+
+        tmp = strchr (section, ')');
+        if (!tmp || (*(tmp+1) != '\0'))
+            RAISE_PARSE_ERROR ("Strange format for t title line: %s");
+        section = g_strndup (section, tmp - section);
+
+        parser->state = HAVE_TITLE;
+
+        xmlNewTextChild (parser->header,
+                         NULL, BAD_CAST "title", text);
+        xmlNewTextChild (parser->header,
+                         NULL, BAD_CAST "section", section);
+
+        g_free (text);
+        g_free (section);
+
+        /* The accumulator should currently be "". */
+        g_assert (parser->accumulator &&
+                  *(parser->accumulator->str) == '\0');
+
+        return TRUE;
+    }
+    if (parser->state == HAVE_TITLE) {
+        /* We expect (maybe!) to get some lines tThe wh24
+         * tCollection. We've found (and can ignore!) the second
+         * title line if there's a (). */
+        if (strchr (parser->buffer+1, '(') &&
+            strchr (parser->buffer+1, ')')) {
+            parser->state = BODY;
+
+            xmlNewTextChild (parser->header,
+                             NULL, BAD_CAST "collection",
+                             parser->accumulator->str);
+            g_string_truncate (parser->accumulator, 0);
+
+            return TRUE;
+        }
+
+        g_string_append (parser->accumulator, parser->buffer+1);
+
+        return TRUE;
     }
 
-    if (parser->anc == parser->cur)
-	return;
-    
-    c = *(parser->cur);
-    *(parser->cur) = '\0';
-    parser_append_given_text_handle_escapes (parser, parser->anc, TRUE);
-    *(parser->cur) = c;
-    
-    parser->anc = parser->cur;
-}
-
-static void
-parser_escape_tags (YelpManParser *parser,
-		    gchar        **tags,
-		    gint           ntags)
-{
-    gint i;
-    xmlNodePtr node = NULL;
-    xmlNodePtr cur  = parser->ins;
-    GSList *path = NULL;
- 
-    /* Find the top node we can escape from */
-    while (cur && cur != (xmlNodePtr)parser->doc && 
-	   cur->parent && cur->parent != (xmlNodePtr) parser->doc) {
-	for (i = 0; i < ntags; i++)
-	    if (!xmlStrcmp (cur->name, BAD_CAST tags[i])) {
-		node = cur;
-		break;
-	    }
-	path = g_slist_prepend (path, cur);
-	cur = cur->parent;
-    }
-
-    /* Walk back down, reproducing nodes we aren't escaping */
-    if (node) {
-	GSList *c = path;
-	while (c && (xmlNodePtr) c->data != node)
-	    c = g_slist_next (c);
-
-	parser->ins = node->parent;
-	parser_ensure_P (parser);
-
-	while ((c = c->next)) {
-	    gboolean insert = TRUE;
-	    cur = (xmlNodePtr) c->data;
-
-	    for (i = 0; i < ntags; i++)
-		if (!xmlStrcmp (cur->name, BAD_CAST tags[i])) {
-		    insert = FALSE;
-		    break;
-		}
-	    if (insert)
-		parser->ins = parser_append_node (parser, (gchar *) cur->name);
-	}
-    }
-}
-
-static void
-parser_append_given_text_handle_escapes (YelpManParser *parser, gchar *text, gboolean make_links)
-{
-    gchar *escape[] = { "fI", "fB" };
-    gchar *baseptr, *ptr, *anc, *str;
-    gint c, len;
-
-    g_return_if_fail (parser != NULL);
-   
-    if (!text)
-	return;
-
-    baseptr = g_strdup (text);
-    ptr = baseptr;
-    anc = baseptr;
-    len = strlen (baseptr);
-    
-    while (ptr && *ptr != '\0') {
-    
-	if (*ptr == '\\') {
-	    
-	    c = *ptr;
-	    *ptr = '\0';
-	    parser_append_given_text (parser, anc);
-	    *ptr = c;
-	    
-	    anc = ++ptr;
-	
-	    switch (*ptr) {
-	    case '\0':
-	        break;
-	    case '-':
-	    case '\\':
-	        ptr++;
-	        c = *ptr;
-	        *ptr = '\0';
-	        parser_append_given_text (parser, anc);
-	        *ptr = c;
-	        anc = ptr;
-	        break;
-	    case 'f':
-	        ptr++;
-	        if ((ptr - baseptr) > len || *ptr == '\0') break;
-	        ptr++;
-
-	        c = *(ptr);
-	        *(ptr) = '\0';
-	        str = g_strdup (anc);
-	        *(ptr) = c;
-
-	        parser_ensure_P (parser);
-	        parser_escape_tags (parser, escape, 2);
-
-	        /* the \f escape sequence changes the font - R is Roman, 
-	         * B is Bold, and I is italic */
-	        if (g_str_equal (str, "fI") || g_str_equal (str, "fB"))
-		    parser->ins = parser_append_node (parser, str);
-	        else if (!g_str_equal (str, "fR") && !g_str_equal (str, "fP"))
-		    g_warning ("No rule matching the tag '%s'\n", str);
-
-	        g_free (str);
-	        anc = ptr;
-	        break;
-	    case '(':
-	        ptr++;
-	        if ((ptr - baseptr) > len || *ptr == '\0') break;
-	        ptr++;
-	        if ((ptr - baseptr) > len || *ptr == '\0') break;
-	        ptr++;
-
-	        c = *(ptr);
-	        *(ptr) = '\0';
-	        str = g_strdup (anc);
-	        *(ptr) = c;
-
-	        if (g_str_equal (str, "(co"))
-		    parser_append_given_text (parser, "©");
-	        else if (g_str_equal (str, "(bu"))
-		    parser_append_given_text (parser, "•");
-	        else if (g_str_equal (str, "(em"))
-		    parser_append_given_text (parser, "—");
-
-	        g_free (str);
-	        anc = ptr;
-	        break;
-	    case '*':
-	        ptr++;
-	        if ((ptr - baseptr) > len || *ptr == '\0') break;
-
-	        if (*(ptr) == 'R') {
-		    parser_append_given_text (parser, "®");
-		    ptr++;
-		} else if (*(ptr) == '=') {
-		    parser_append_given_text (parser, "--");
-		    ptr++;
-	        } else if (*(ptr) == '(') {
-		    ptr++;
-		    if ((ptr - baseptr) > len || *ptr == '\0') break;
-		    ptr++;
-		    if ((ptr - baseptr) > len || *ptr == '\0') break;
-		    ptr++;
-		    
-		    c = *(ptr);
-		    *(ptr) = '\0';
-		    str = g_strdup (anc);
-		    *(ptr) = c;
-
-		    if (g_str_equal (str, "*(Tm"))
-		        parser_append_given_text (parser, "™");
-		    else if (g_str_equal (str, "*(lq"))
-		        parser_append_given_text (parser, "“");
-		    else if (g_str_equal (str, "*(rq"))
-		        parser_append_given_text (parser, "”");
-
-		    g_free (str);
-	        }
-	    
-	        anc = ptr;
-	        break;
-	    case 'e':
-	        anc = ++ptr;
-	        parser_append_given_text (parser, "\\");
-	        break;
-	    case '&':
-	        anc = ++ptr;
-	        break;
-	    case 's':
-	        /* this handles (actually ignores) the groff macros \s[+-][0-9] */
-	        ptr++;
-	        if (*(ptr) == '+' || *(ptr) == '-') {
-		    ptr++;
-		    if (g_ascii_isdigit (*ptr)) {
-			    ptr++;
-		    }
-	        } else if (g_ascii_isdigit (*ptr)) {
-		    ptr++;
-	        }
-	        anc = ptr;
-	        break;
-	    case '"':
-	        /* Marks comments till end of line. so we can ignore it. */
-	        while (ptr && *ptr != '\0')
-		    ptr++;
-	        anc = ptr;
-	        break;
-	    case '^':
-	    case '|':
-	        /* 1/12th and 1/16th em respectively - ignore this and simply output a space */
-	        anc = ++ptr;
-	        break;
-	    default:
-	        ptr++;
-		c = *(ptr);
-		*(ptr) = '\0';
-		parser_append_given_text (parser, anc);
-		*(ptr) = c;
-
-		anc++;
-		break;
-	    }
-	    
-	}
-        else if ((make_links) && (*ptr == '(')) {
-	    gchar *space_pos;
-	    gchar *url;
-	    gchar  c;
-	    gchar *name_end;
-            gchar *num_start;
-            gchar *num_end;
-
-	   
-	    space_pos = ptr;
-	    
-	    while (space_pos != anc && *(space_pos - 1) != ' ') {
-		space_pos--;
-	    }
-	    name_end = space_pos;
-	    
-	    if (space_pos != ptr &&
-	        g_ascii_isdigit(*(ptr+1)) &&
-		(*(ptr+2) == ')' || (g_ascii_isalpha (*(ptr+2)) && *(ptr+3) == ')'))) {
-                num_start = ptr;
-		if (*(ptr+2) == ')')
-		    num_end = ptr + 2;
-                else
-		    num_end = ptr + 3;
-	    
-		ptr+=3;
-	    
-		parser_ensure_P (parser);
-	    
-		ptr = space_pos;
-	    
-		c = (*ptr);
-		*ptr = '\0';
-		parser_append_given_text (parser, anc);
-		*ptr = c;
-		anc = ptr;
-		ptr = num_start;
-
-		c = *name_end;
-		*name_end = '\0';
-                *num_end = '\0';
-		url = g_strdup_printf ("man:%s(%s)", anc, num_start + 1);
-
-	    
-		parser->ins = parser_append_node (parser, "UR");
-	
-		parser->ins = parser_append_node (parser, "URI");
-		parser_append_given_text (parser, url);
-		parser->ins = parser->ins->parent;
-	    
-		parser_append_given_text (parser, anc);
-		parser->ins = parser->ins->parent;
-	    
-		*name_end = c;
-                *num_end = ')';
-		anc = ptr;
-	    
-		g_free (url);
-
-	    } else {
-		ptr++;
-	    }    
-	}
-	else {
-	    ptr++;
-	}	
-
-    } /* end while */
-
-    c = *(ptr);
-    *(ptr) = '\0';
-    parser_append_given_text (parser, anc);
-    parser_append_given_text (parser, "\n");
-    *(ptr) = c;
-   
-    g_free (baseptr); 
-}
-
-static xmlNodePtr
-parser_append_text (YelpManParser *parser)
-{
-    xmlNodePtr  node;
-    gchar       c;
-
-    if (parser->anc == parser->cur)
-	return NULL;
-
-    c = *(parser->cur);
-    *(parser->cur) = '\0';
-
-    if (g_utf8_get_char (parser->anc) != '\0')
-	parser_ensure_P (parser);
-
-    node = xmlNewText (BAD_CAST parser->anc);
-    xmlAddChild (parser->ins, node);
-
-    *(parser->cur) = c;
-
-    parser->anc = parser->cur;
-
-    return node;
-}
-
-static xmlNodePtr
-parser_append_given_text (YelpManParser *parser,
-			  gchar         *text)
-{
-    xmlNodePtr  node;
-
-    parser_ensure_P (parser);
-
-    node = xmlNewText (BAD_CAST text);
-    xmlAddChild (parser->ins, node);
-
-    return node;
-}
-
-static xmlNodePtr
-parser_append_node (YelpManParser *parser,
-		    gchar         *name)
-{
-    if (!name)
-	return NULL;
-	
-    return xmlNewChild (parser->ins, NULL, BAD_CAST name, NULL);
-}
-
-static xmlNodePtr
-parser_append_node_attr (YelpManParser *parser,
-			 gchar         *name,
-			 gchar         *attr,
-			 gchar         *value)
-{
-    xmlNodePtr node = NULL;
-    
-    node = xmlNewChild (parser->ins, NULL, BAD_CAST name, NULL);
-    xmlNewProp (node, BAD_CAST attr, BAD_CAST value);
-
-    return node;
-}
-
-static void        
-parser_stack_push_node (YelpManParser *parser,
-			xmlNodePtr     node)
-{
-    parser->nodeStack = g_slist_prepend (parser->nodeStack, node);
-}
-
-static xmlNodePtr  
-parser_stack_pop_node (YelpManParser *parser,
-		       gchar         *name)
-{
-    xmlNodePtr popped;
-
-    if (parser->nodeStack == NULL)
-	return NULL;
-   
-    popped = (xmlNodePtr) parser->nodeStack->data;
-    
-    if (!xmlStrEqual (BAD_CAST name, popped->name))
-	return NULL;
-	
-    parser->nodeStack = g_slist_remove (parser->nodeStack, popped);
-    return popped;
+    return parse_body_text (parser, error);
 }
 
 /*
- *  Table (tbl) macro package parsing
+  w is a sort of prefix argument. It indicates a space, so we register
+  that here, then call parser_parse_line again on the rest of the
+  string to deal with that.
  */
-
-static void
-parser_handle_table_options (YelpManParser *parser)
+static gboolean
+parse_w (YelpManParser *parser, GError **error)
 {
-    /* FIXME: do something with the options */
-    g_free (parser->buffer);
+    gboolean ret;
 
-    return;
+    if (parser->state != START) {
+        g_string_append_c (parser->accumulator, ' ');
+    }
+    
+    parser->buffer++;
+    ret = parser_parse_line (parser, error);
+    parser->buffer--;
+    return ret;
+}
+
+static gboolean
+parse_body_text (YelpManParser *parser, GError **error)
+{
+    gchar tmp[64];
+
+    /*
+      It's this function which is responsible for trying to get *some*
+      semantic information back out of the manual page.
+
+      The highest-level chopping up is into sections. We use the
+      heuristic that if either
+        (1) We haven't got a section yet or
+        (2) text starts a line (hpos=0)
+      then it's a section title.
+
+      It's possible to have spaces in section titles, so we carry on
+      accumulating the section title until the next newline.
+    */
+    if (parser->section_state != SECTION_TITLE && parser->hpos == 0) {
+        g_string_truncate (parser->accumulator, 0);
+        /* End the current sheet & section */
+        parser->section_state = SECTION_TITLE;
+        parser->sheet_node = NULL;
+
+        parser->section_node =
+            xmlAddChild (xmlDocGetRootElement (parser->doc),
+                         xmlNewNode (NULL, BAD_CAST "section"));
+    }
+    if (parser->section_state == SECTION_TITLE) goto do_append;
+
+    /*
+      Here we've got real body text! If newline is true, this is the
+      first word on a line.
+
+      In which case, we check to see whether hpos agrees with the
+      current sheet's indent. If so (or if there isn't a sheet yet!),
+      we just add to the accumulator. If not, start a new sheet with
+      the correct indent.
+
+      If we aren't the first word on the line, just add to the
+      accumulator.
+    */
+    if ((!parser->sheet_node) ||
+        (parser->newline && (parser->hpos != parser->sheet_indent))) {
+        /* We don't need to worry about finishing the current sheet,
+           since the accumulator etc. get cleared on newlines and we
+           know we're at the start of a line.
+        */
+        parser->sheet_node =
+            xmlAddChild (parser->section_node,
+                         xmlNewNode (NULL, BAD_CAST "sheet"));
+        parser->sheet_indent = parser->hpos;
+
+        /* The indent is specified in em's. */
+        snprintf (tmp, 64, "%d",
+                  (int)(parser->hpos / ((float)parser->char_width) / 1.5));
+        xmlNewProp (parser->sheet_node, BAD_CAST "indent", tmp);
+    }
+
+  do_append:
+    g_string_append (parser->accumulator, parser->buffer+1);
+
+    /* Move hpos forward per char */
+    parser->hpos += strlen (parser->buffer+1) * parser->char_width;
+
+    parser->newline = FALSE;
+
+    return TRUE;
+}
+
+static gboolean
+parse_n (YelpManParser *parser, GError **error)
+{
+    xmlNodePtr node;
+
+    /* Don't care about newlines in the header bit */
+    if (parser->state != BODY) return TRUE;
+
+    if (parser->section_state == SECTION_TITLE) {
+        g_strchomp (parser->accumulator->str);
+        xmlNewTextChild (parser->section_node, NULL,
+                         BAD_CAST "title", parser->accumulator->str);
+        g_string_truncate (parser->accumulator, 0);
+
+        parser->section_state = SECTION_BODY;
+    }
+    else if (parser->sheet_node != NULL) {
+        /*
+          In the body of a section, when we get to a newline we should
+          have an accumulator with text in it and a non-null sheet
+          (hopefully!).
+
+          We know the current font, so add a span for that font
+          containing the relevant text. Then add a <br/> tag.
+        */
+        finish_span (parser);
+        node = xmlNewNode (NULL, BAD_CAST "br");
+        xmlAddChild (parser->sheet_node, node);
+    }
+
+    parser->newline = TRUE;
+
+    return TRUE;
 }
 
 static void
-parser_handle_row_options (YelpManParser *parser)
+finish_span (YelpManParser *parser)
 {
-    /* FIXME: do something with these options */
+    xmlNodePtr node;
 
-    do {
-	parser->anc = parser->buffer;
-	parser->cur = parser->buffer;
-	
-	parser_read_until (parser, '.');
-	
-	if (*(parser->cur) == '.') {
-	    g_free (parser->buffer);
-	    break;
-	}
-	
-	g_free (parser->buffer);
-
-    } while ((parser->buffer =
-	      g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL))
-	     != NULL);
-}
-
-static void
-parser_parse_table (YelpManParser *parser)
-{
-    xmlNodePtr table_start;
-    gboolean empty_row;
-
-    table_start = parser->ins;
-
-    parser->buffer = g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL);
-    if (parser->buffer != NULL) {
-	parser->anc = parser->buffer;
-	parser->cur = parser->buffer;
-	
-	parser_read_until (parser, ';');
-
-	if (*(parser->cur) == ';') {
-	    parser_handle_table_options (parser);
-
-	    parser->buffer = g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL);
-	    if (parser->buffer != NULL) {
-		parser->anc = parser->buffer;
-		parser->cur = parser->buffer;
-	    
-		parser_read_until (parser, '\0');
-	    } else
-		return;
-	}
-
-	parser_handle_row_options (parser);
-
-	/* Now this is where we go through all the rows */
-	while ((parser->buffer = g_data_input_stream_read_line (parser->stream, &(parser->length), NULL, NULL)) != NULL) {
-	    parser->anc = parser->buffer;
-	    parser->cur = parser->buffer;
-	    
-	    empty_row = FALSE;
-
-	    switch (*(parser->buffer)) {
-	    case '.':
-		if (*(parser->buffer + 1) == 'T'
-		    && *(parser->buffer + 2) == 'E') {
-		    if (parser_stack_pop_node (parser, "TABLE") == NULL)
-			g_warning ("Found unexpected tag: 'TE'\n");
-		    else {
-			parser->ins = table_start;
-			
-			parser->anc = parser->buffer + 3;
-			parser->cur = parser->buffer + 3;
-			return;
-		    }
-		} else if (*(parser->buffer + 1) == 'T'
-			   && *(parser->buffer + 2) == 'H') {
-		    /* Do nothing */
-		    empty_row = TRUE;
-		} else {
-		    parser_handle_linetag (parser);
-		    break;
-		}
-	    case '\0':
-		empty_row = TRUE;
-		break;
-	    default:
-		break;
-	    }
-	    
-	    if (!empty_row) {
-		parser->ins = parser_append_node (parser, "ROW");
-		while (PARSER_CUR && *(parser->cur) != '\0') {
-		    parser_read_until (parser, '\t');
-		    parser->ins = parser_append_node (parser, "CELL");
-		    parser_append_text (parser);
-		    parser->ins = parser->ins->parent;
-		    parser->anc++;
-		    parser->cur++;
-		}
-	    }
-
-	    g_free (parser->buffer);
-
-	    parser->ins = table_start;
-	}
+    if (parser->accumulator->str[0] != '\0') {
+        node = xmlNewTextChild (parser->sheet_node, NULL,
+                                BAD_CAST "span",
+                                parser->accumulator->str);
+        xmlNewProp (node, BAD_CAST "class", get_font (parser));
+        g_string_truncate (parser->accumulator, 0);
     }
 }

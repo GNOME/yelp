@@ -436,14 +436,10 @@ man_document_process (YelpManDocument *man)
     }
 
     parser = yelp_man_parser_new ();
-    priv->xmldoc = yelp_man_parser_parse_file (parser, filepath, encoding);
+    priv->xmldoc = yelp_man_parser_parse_file (parser, filepath, &error);
     yelp_man_parser_free (parser);
 
     if (priv->xmldoc == NULL) {
-	error = g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,
-                             _("The file ‘%s’ could not be parsed because it is"
-                               " not a well-formed man page."),
-                             filepath);
 	yelp_document_error_pending ((YelpDocument *) man, error);
     }
 
