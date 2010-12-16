@@ -674,6 +674,9 @@ yelp_application_remove_bookmark (YelpBookmarks     *bookmarks,
     GSettings *settings;
     YelpApplication *app = YELP_APPLICATION (bookmarks);
 
+    g_return_if_fail (page_id);
+    g_return_if_fail (doc_uri);
+
     settings = application_get_doc_settings (app, doc_uri);
 
     if (settings) {
@@ -704,6 +707,9 @@ yelp_application_is_bookmarked (YelpBookmarks     *bookmarks,
     GSettings *settings;
     YelpApplication *app = YELP_APPLICATION (bookmarks);
 
+    g_return_if_fail (page_id);
+    g_return_if_fail (doc_uri);
+
     settings = application_get_doc_settings (app, doc_uri);
     if (settings == NULL)
         return FALSE;
@@ -730,6 +736,9 @@ yelp_application_update_bookmarks (YelpApplication   *app,
                                    const gchar       *title)
 {
     GSettings *settings;
+
+    g_return_if_fail (page_id);
+    g_return_if_fail (doc_uri);
 
     settings = application_get_doc_settings (app, doc_uri);
 
