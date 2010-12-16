@@ -629,13 +629,14 @@ application_maybe_quit (YelpApplication *app)
 /******************************************************************************/
 
 void
-yelp_application_add_bookmark (YelpApplication   *app,
+yelp_application_add_bookmark (YelpBookmarks     *bookmarks,
                                const gchar       *doc_uri,
                                const gchar       *page_id,
                                const gchar       *icon,
                                const gchar       *title)
 {
     GSettings *settings;
+    YelpApplication *app = YELP_APPLICATION (bookmarks);
 
     settings = application_get_doc_settings (app, doc_uri);
 
@@ -666,11 +667,12 @@ yelp_application_add_bookmark (YelpApplication   *app,
 }
 
 void
-yelp_application_remove_bookmark (YelpApplication   *app,
+yelp_application_remove_bookmark (YelpBookmarks     *bookmarks,
                                   const gchar       *doc_uri,
                                   const gchar       *page_id)
 {
     GSettings *settings;
+    YelpApplication *app = YELP_APPLICATION (bookmarks);
 
     settings = application_get_doc_settings (app, doc_uri);
 
@@ -691,21 +693,22 @@ yelp_application_remove_bookmark (YelpApplication   *app,
 }
 
 gboolean
-yelp_application_is_bookmarked (YelpApplication   *app,
+yelp_application_is_bookmarked (YelpBookmarks     *bookmarks,
                                 const gchar       *doc_uri,
                                 const gchar       *page_id)
 {
-    GVariant *bookmarks;
+    GVariant *stored_bookmarks;
     GVariantIter *iter;
     gboolean ret = FALSE;
     gchar *this_id = NULL;
     GSettings *settings;
+    YelpApplication *app = YELP_APPLICATION (bookmarks);
 
     settings = application_get_doc_settings (app, doc_uri);
     if (settings == NULL)
         return FALSE;
 
-    bookmarks = g_settings_get_value (settings, "bookmarks");
+    stored_bookmarks = g_settings_get_value (settings, "bookmarks");
     g_settings_get (settings, "bookmarks", "a(sss)", &iter);
     while (g_variant_iter_loop (iter, "(&s&s&s)", &this_id, NULL, NULL)) {
         if (g_str_equal (page_id, this_id)) {
@@ -715,7 +718,7 @@ yelp_application_is_bookmarked (YelpApplication   *app,
     }
 
     g_variant_iter_free (iter);
-    g_variant_unref (bookmarks);
+    g_variant_unref (stored_bookmarks);
     return ret;
 }
 

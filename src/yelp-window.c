@@ -768,7 +768,8 @@ window_add_bookmark (GtkAction  *action,
                   "page-title", &title,
                   NULL);
     doc_uri = yelp_uri_get_document_uri (uri);
-    yelp_application_add_bookmark (priv->application, doc_uri, page_id, icon, title);
+    yelp_application_add_bookmark (YELP_BOOKMARKS (priv->application),
+                                   doc_uri, page_id, icon, title);
     g_free (doc_uri);
     g_free (page_id);
     g_free (icon);
@@ -993,9 +994,10 @@ window_set_bookmark_action (YelpWindow *window)
         goto done;
     }
     doc_uri = yelp_uri_get_document_uri (uri);
-    gtk_action_set_sensitive (action,
-                              !yelp_application_is_bookmarked (priv->application,
-                                                               doc_uri, page_id));
+    gtk_action_set_sensitive (
+        action,
+        !yelp_application_is_bookmarked (YELP_BOOKMARKS (priv->application),
+                                         doc_uri, page_id));
   done:
     g_free (page_id);
     g_free (doc_uri);
@@ -1757,7 +1759,11 @@ bookmark_remove (YelpWindow  *window)
                             -1);
         g_object_get (priv->view, "yelp-uri", &uri, NULL);
         doc_uri = yelp_uri_get_document_uri (uri);
-        yelp_application_remove_bookmark (priv->application, doc_uri, page_id);
+
+        yelp_application_remove_bookmark (
+            YELP_BOOKMARKS (priv->application),
+            doc_uri, page_id);
+
         g_object_unref (uri);
         g_free (doc_uri);
         g_free (page_id);
