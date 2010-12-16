@@ -104,6 +104,15 @@ struct _YelpManParser {
     /* Set to TRUE if there's been a newline since the last text was
      * parsed. */
     gboolean newline;
+
+    /* Count the number of 'N' lines we've seen since the last h
+     * command. This is because for some reason N doesn't
+     * automatically move the position forward. Thus immediately after
+     * one, you see a h24 or the like. Unless there's a space. Then it
+     * might be wh48. This is set in parse_N (obviously) and used in
+     * parse_h.
+     */
+    guint N_count;
 };
 
 static gboolean parser_parse_line (YelpManParser *parser, GError **error);
@@ -124,6 +133,8 @@ DECLARE_LINE_PARSER (parse_text);
 DECLARE_LINE_PARSER (parse_w);
 DECLARE_LINE_PARSER (parse_body_text);
 DECLARE_LINE_PARSER (parse_n);
+DECLARE_LINE_PARSER (parse_N);
+DECLARE_LINE_PARSER (parse_C);
 
 /* Declare a sort of alist registry of parsers for different lines. */
 struct LineParsePair
@@ -138,6 +149,8 @@ static struct LineParsePair line_parsers[] = {
     { "t", parse_text },
     { "w", parse_w },
     { "n", parse_n },
+    { "N", parse_N },
+    { "C", parse_C },
     { NULL, NULL }
 };
 
@@ -146,6 +159,134 @@ static struct LineParsePair line_parsers[] = {
  * bits) */
 static void finish_span (YelpManParser *parser);
 static guint dx_to_em_count (YelpManParser *parser, guint dx);
+static void append_nbsps (YelpManParser *parser, guint k);
+
+/******************************************************************************/
+/* Translations for the 'C' command. This is indeed hackish, but the
+ * -Tutf8 output doesn't seem to give include files so we can do this
+ * at runtime :-(
+ *
+ * On my machine, this data's at /usr/share/groff/current/tmac/ in
+ * latin1.tmac, unicode.tmac and I worked out the lq and rq from
+ * running man: I'm not sure where that comes from!
+ */
+struct StringPair
+{
+    const gchar *from;
+    gunichar to;
+};
+static const struct StringPair char_translations[] = {
+    { "r!", 161 },
+    { "ct", 162 },
+    { "Po", 163 },
+    { "Cs", 164 },
+    { "Ye", 165 },
+    { "bb", 166 },
+    { "sc", 167 },
+    { "ad", 168 },
+    { "co", 169 },
+    { "Of", 170 },
+    { "Fo", 171 },
+    { "tno", 172 },
+    { "%", 173 },
+    { "rg", 174 },
+    { "a-", 175 },
+    { "de", 176 },
+    { "t+-", 177 },
+    { "S2", 178 },
+    { "S3", 179 },
+    { "aa", 180 },
+    { "mc", 181 },
+    { "ps", 182 },
+    { "pc", 183 },
+    { "ac", 184 },
+    { "S1", 185 },
+    { "Om", 186 },
+    { "Fc", 187 },
+    { "14", 188 },
+    { "12", 189 },
+    { "34", 190 },
+    { "r?", 191 },
+    { "`A", 192 },
+    { "'A", 193 },
+    { "^A", 194 },
+    { "~A", 195 },
+    { ":A", 196 },
+    { "oA", 197 },
+    { "AE", 198 },
+    { ",C", 199 },
+    { "`E", 200 },
+    { "'E", 201 },
+    { "^E", 202 },
+    { ":E", 203 },
+    { "`I", 204 },
+    { "'I", 205 },
+    { "^I", 206 },
+    { ":I", 207 },
+    { "-D", 208 },
+    { "~N", 209 },
+    { "`O", 210 },
+    { "'O", 211 },
+    { "^O", 212 },
+    { "~O", 213 },
+    { ":O", 214 },
+    { "tmu", 215 },
+    { "/O", 216 },
+    { "`U", 217 },
+    { "'U", 218 },
+    { "^U", 219 },
+    { ":U", 220 },
+    { "'Y", 221 },
+    { "TP", 222 },
+    { "ss", 223 },
+    { "`a", 224 },
+    { "'a", 225 },
+    { "^a", 226 },
+    { "~a", 227 },
+    { ":a", 228 },
+    { "oa", 229 },
+    { "ae", 230 },
+    { ",c", 231 },
+    { "`e", 232 },
+    { "'e", 233 },
+    { "^e", 234 },
+    { ":e", 235 },
+    { "`i", 236 },
+    { "'i", 237 },
+    { "^i", 238 },
+    { ":i", 239 },
+    { "Sd", 240 },
+    { "~n", 241 },
+    { "`o", 242 },
+    { "'o", 243 },
+    { "^o", 244 },
+    { "~o", 245 },
+    { ":o", 246 },
+    { "tdi", 247 },
+    { "/o", 248 },
+    { "`u", 249 },
+    { "'u", 250 },
+    { "^u", 251 },
+    { ":u", 252 },
+    { "'y", 253 },
+    { "Tp", 254 },
+    { ":y", 255 },
+    { "hy", '-' },
+    { "oq", '`' },
+    { "cq", '\'' },
+    { "lq", 8220 }, // left smart quotes
+    { "rq", 8221 }, // right smart quotes
+    { "en", 8211 }, // en-dash
+    { "em", 8212 }, // em-dash
+    { "la", 10216 }, // left angle bracket
+    { "ra", 10217 }, // left angle bracket
+    { "rs", '\\' },
+    { "<=", 8804 }, // < or equal to sign
+    { ">=", 8805 }, // > or equal to sign
+    { "aq", '\'' },
+    { "tm", 8482 }, // trademark symbol
+    { NULL, 0 }
+};
 
 /******************************************************************************/
 
@@ -170,9 +311,9 @@ get_troff (gchar *path, GError **error)
 {
     gint stdout;
     GError *err = NULL;
-    gchar *argv[] = { "man", "-Z", "-Tutf8", NULL, NULL };
+    gchar *argv[] = { "man", "-Z", "-Tutf8", "-EUTF-8", NULL, NULL };
 
-    argv[3] = path;
+    argv[4] = path;
 
     if (!g_spawn_async_with_pipes (NULL, argv, NULL,
                                    G_SPAWN_SEARCH_PATH, NULL, NULL,
@@ -374,7 +515,7 @@ static gboolean
 parse_h (YelpManParser *parser, GError **error)
 {
     guint dx;
-    guint k;
+    int k;
     const gchar *str;
 
     if (SSCANF ("h%u", 1, &dx)) {
@@ -396,12 +537,11 @@ parse_h (YelpManParser *parser, GError **error)
         (str[0] != '\0') &&
         (str[strlen (str)-1] != ' ')) {
 
-        dx = dx_to_em_count (parser, dx);
-        for (k=0; k<dx; k++) {
-            /* 0xc2 0xa0 is nonbreaking space in utf8 */
-            g_string_append_c (parser->accumulator, 0xc2);
-            g_string_append_c (parser->accumulator, 0xa0);
-        }
+        k = dx_to_em_count (parser, dx) - parser->N_count;
+        parser->N_count = 0;
+        if (k < 0) k = 0;
+
+        append_nbsps (parser, k);
     }
 
     return TRUE;
@@ -637,4 +777,78 @@ static guint
 dx_to_em_count (YelpManParser *parser, guint dx)
 {
     return (int)(dx / ((float)parser->char_width));
+}
+
+static gboolean
+parse_N (YelpManParser *parser, GError **error)
+{
+    gint n;
+    if (SSCANF ("N%i", 1, &n)) {
+        RAISE_PARSE_ERROR ("Strange format for N line: %s");
+    }
+    if (n > 127) {
+        RAISE_PARSE_ERROR ("N line has non-7-bit character: %s");
+    }
+    if (n < -200) {
+        RAISE_PARSE_ERROR ("Bizarrely many nbsps in N line: %s");
+    }
+
+    if (n < 0) {
+        append_nbsps (parser, -n);
+        parser->N_count += -n;
+    }
+    else {
+        g_string_append_c (parser->accumulator, (gchar)n);
+        parser->N_count++;
+    }
+
+    return TRUE;
+}
+
+static void
+append_nbsps (YelpManParser *parser, guint k)
+{
+    for (; k > 0; k--) {
+        /* 0xc2 0xa0 is nonbreaking space in utf8 */
+        g_string_append_c (parser->accumulator, 0xc2);
+        g_string_append_c (parser->accumulator, 0xa0);
+    }
+}
+
+static gboolean
+parse_C (YelpManParser *parser, GError **error)
+{
+    gchar name[16];
+    gunichar code = 0;
+    guint k;
+    gint len;
+
+    if (SSCANF ("C%16s", 1, name)) {
+        RAISE_PARSE_ERROR ("Can't understand special character: %s");
+    }
+
+    for (k=0; char_translations[k].from; k++) {
+        if (g_str_equal (char_translations[k].from, name)) {
+            code = char_translations[k].to;
+            break;
+        }
+    }
+    if (sscanf (name, "u%x", &k) == 1) {
+        code = k;
+    }
+
+    if (!code) {
+        g_warning ("Couldn't parse troff special character: '%s'",
+                   name);
+        code = 65533; /* Unicode replacement character */
+    }
+
+    /* Output buffer must be length >= 6. 16 >= 6, so we're ok. */
+    len = g_unichar_to_utf8 (code, name);
+    name[len] = '\0';
+    g_string_append (parser->accumulator, name);
+
+    parser->N_count++;
+
+    return TRUE;
 }
