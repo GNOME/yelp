@@ -60,7 +60,7 @@
     <xsl:attribute name="style">
       <xsl:text>padding-left: </xsl:text>
       <xsl:value-of select="@indent"/>
-      <xsl:text>em;</xsl:text>
+      <xsl:text>em; font-family: monospace;</xsl:text>
     </xsl:attribute>
 
     <p>

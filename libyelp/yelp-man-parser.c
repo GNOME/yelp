@@ -145,6 +145,7 @@ static struct LineParsePair line_parsers[] = {
 /* Parser helper functions (managing the state of the various parsing
  * bits) */
 static void finish_span (YelpManParser *parser);
+static guint dx_to_em_count (YelpManParser *parser, guint dx);
 
 /******************************************************************************/
 
@@ -373,10 +374,36 @@ static gboolean
 parse_h (YelpManParser *parser, GError **error)
 {
     guint dx;
+    guint k;
+    const gchar *str;
+
     if (SSCANF ("h%u", 1, &dx)) {
         RAISE_PARSE_ERROR ("Invalid h line from troff: %s");
     }
     parser->hpos += dx;
+
+    /* This is a bit hackish to be honest but... if we're in something
+     * that'll end up in a span, a spacing h command means that a gap
+     * should appear. It seems that the easiest way to get this is to
+     * insert nonbreaking spaces (eugh!)
+     *
+     * Of course we don't want to do this when chained from wh24 or
+     * whatever, so check that accumulator is nonempty and the last
+     * character isn't ' '.
+     */
+    str = parser->accumulator->str;
+    if ((parser->sheet_node) &&
+        (str[0] != '\0') &&
+        (str[strlen (str)-1] != ' ')) {
+
+        dx = dx_to_em_count (parser, dx);
+        for (k=0; k<dx; k++) {
+            /* 0xc2 0xa0 is nonbreaking space in utf8 */
+            g_string_append_c (parser->accumulator, 0xc2);
+            g_string_append_c (parser->accumulator, 0xa0);
+        }
+    }
+
     return TRUE;
 }
 
@@ -542,7 +569,7 @@ parse_body_text (YelpManParser *parser, GError **error)
 
         /* The indent is specified in em's. */
         snprintf (tmp, 64, "%d",
-                  (int)(parser->hpos / ((float)parser->char_width) / 1.5));
+                  (int)(dx_to_em_count (parser, parser->hpos) / 1.5));
         xmlNewProp (parser->sheet_node, BAD_CAST "indent", tmp);
     }
 
@@ -604,4 +631,10 @@ finish_span (YelpManParser *parser)
         xmlNewProp (node, BAD_CAST "class", get_font (parser));
         g_string_truncate (parser->accumulator, 0);
     }
+}
+
+static guint
+dx_to_em_count (YelpManParser *parser, guint dx)
+{
+    return (int)(dx / ((float)parser->char_width));
 }
