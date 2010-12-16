@@ -58,9 +58,13 @@
 </xsl:template>
 
 <xsl:template match="sheet">
-  <div style="margin: 0px;">
+  <xsl:element name="div">
+    <xsl:attribute name="style">
+      margin-bottom: 0px;
+      margin-top: <xsl:value-of select="@jump"/>em;
+    </xsl:attribute>
     <p><xsl:apply-templates select="span|br"/></p>
-  </div>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="span">

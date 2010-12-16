@@ -120,6 +120,11 @@ struct _YelpManParser {
      * to TRUE by parse_w and is FALSE the rest of the time.
      */
     gboolean last_char_was_space;
+
+    /* Keep track of the size of the last vertical jump - used to tell
+     * whether we need to insert extra space above a line.
+     */
+    gint last_vertical_jump;
 };
 
 static gboolean parser_parse_line (YelpManParser *parser, GError **error);
@@ -142,6 +147,7 @@ DECLARE_LINE_PARSER (parse_body_text);
 DECLARE_LINE_PARSER (parse_n);
 DECLARE_LINE_PARSER (parse_N);
 DECLARE_LINE_PARSER (parse_C);
+DECLARE_LINE_PARSER (parse_p);
 
 /* Declare a sort of alist registry of parsers for different lines. */
 struct LineParsePair
@@ -158,6 +164,7 @@ static struct LineParsePair line_parsers[] = {
     { "n", parse_n },
     { "N", parse_N },
     { "C", parse_C },
+    { "p", parse_p },
     { NULL, NULL }
 };
 
@@ -168,6 +175,7 @@ static void finish_span (YelpManParser *parser);
 static guint dx_to_em_count (YelpManParser *parser, guint dx);
 static void append_nbsps (YelpManParser *parser, guint k);
 static void deal_with_newlines (YelpManParser *parser);
+static void new_sheet (YelpManParser *parser);
 
 /******************************************************************************/
 /* Translations for the 'C' command. This is indeed hackish, but the
@@ -515,6 +523,7 @@ parse_v (YelpManParser *parser, GError **error)
     if (SSCANF ("v%u", 1, &dy)) {
         RAISE_PARSE_ERROR ("Invalid v line from troff: %s");
     }
+    parser->last_vertical_jump += dy;
     parser->vpos += dy;
     return TRUE;
 }
@@ -569,6 +578,7 @@ parse_V (YelpManParser *parser, GError **error)
     if (SSCANF ("V%u", 1, &y)) {
         RAISE_PARSE_ERROR ("Invalid V line from troff: %s");
     }
+    parser->last_vertical_jump += y - parser->vpos;
     parser->vpos = y;
     return TRUE;
 }
@@ -863,22 +873,64 @@ deal_with_newlines (YelpManParser *parser)
       accumulator.
     */
     gchar tmp[64];
+    guint jump_lines;
+    gboolean made_sheet = FALSE, dont_jump = FALSE;
+
+    /* This only happens at the start of a section, where there's
+       already a gap
+    */
+    if (!parser->sheet_node) {
+        dont_jump = TRUE;
+    }
 
     if ((!parser->sheet_node) ||
         (parser->newline && (parser->hpos != parser->sheet_indent))) {
-        /* We don't need to worry about finishing the current sheet,
-           since the accumulator etc. get cleared on newlines and we
-           know we're at the start of a line.
-        */
-        parser->sheet_node =
-            xmlAddChild (parser->section_node,
-                         xmlNewNode (NULL, BAD_CAST "sheet"));
-        parser->sheet_indent = parser->hpos;
+        new_sheet (parser);
+        made_sheet = TRUE;
     }
 
     if (parser->newline) {
         append_nbsps (parser, dx_to_em_count (parser, parser->hpos));
+
+        if ((parser->last_vertical_jump > 0) && (!dont_jump)) {
+            jump_lines =
+                parser->last_vertical_jump/parser->char_height;
+        } else {
+            jump_lines = 1;
+        }
+
+        if (jump_lines > 1) {
+            if (!made_sheet) new_sheet (parser);
+            made_sheet = TRUE;
+        }
+
+        if (made_sheet) {
+            snprintf (tmp, 64, "%u", jump_lines-1);
+            xmlNewProp (parser->sheet_node, BAD_CAST "jump", tmp);
+        }
     }
 
     parser->newline = FALSE;
+    parser->last_vertical_jump = 0;
+}
+
+static gboolean
+parse_p (YelpManParser *parser, GError **error)
+{
+    parser->vpos = 0;
+    parser->hpos = 0;
+    return TRUE;
+}
+
+static void
+new_sheet (YelpManParser *parser)
+{
+   /* We don't need to worry about finishing the current sheet,
+      since the accumulator etc. get cleared on newlines and we
+      know we're at the start of a line.
+   */
+    parser->sheet_node =
+        xmlAddChild (parser->section_node,
+                     xmlNewNode (NULL, BAD_CAST "sheet"));
+    parser->sheet_indent = parser->hpos;
 }
