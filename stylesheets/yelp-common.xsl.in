@@ -90,6 +90,7 @@ div.body {
 
 <!-- == html.js.custom == -->
 <xsl:template name="html.js.custom">
+<script type="text/javascript" language="javascript" src="@DATADIR@/jquery-ui-1.8.custom.min.js"/>
 <script type="text/javascript" language="javascript">
 <xsl:text>
 $(document).ready (function () {
