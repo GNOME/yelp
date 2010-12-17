@@ -62,7 +62,7 @@ print_uri (gchar *orig, YelpUri *uri, GOutputStream *stream)
     case YELP_URI_DOCUMENT_TYPE_XHTML:
         type = "XHTML";
         break;
-    case YELP_URI_DOCUMENT_TYPE_TOC:
+    case YELP_URI_DOCUMENT_TYPE_HELP_LIST:
         type = "TOC";
         break;
     case YELP_URI_DOCUMENT_TYPE_SEARCH:

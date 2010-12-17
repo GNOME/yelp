@@ -9,12 +9,12 @@ YELP_COMMON_LDADD =				\
 	$(top_builddir)/libyelp/libyelp.la
 
 check_PROGRAMS =				\
-	test-location-entry			\
 	test-magic				\
 	test-settings				\
 	test-transform				\
 	test-uri				\
 	test-view
+#	test-location-entry
 
 if ENABLE_LZMA
 check_PROGRAMS += test-lzma
