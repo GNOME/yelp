@@ -25,12 +25,14 @@
 #endif
 
 #include <string.h>
+#include <stdio.h>
 
 #include <glib.h>
 #include <gio/gio.h>
 
 #include "yelp-uri.h"
 #include "yelp-debug.h"
+#include "yelp-settings.h"
 
 static void           yelp_uri_class_init        (YelpUriClass   *klass);
 static void           yelp_uri_init              (YelpUri        *uri);
@@ -558,7 +560,7 @@ resolve_data_dirs (YelpUri      *ret,
     gchar *filename = NULL;
     gchar **searchpath = NULL;
     gint searchi, searchmax;
-    gint datadir_i, subdir_i, lang_i;
+    gint datadir_i, lang_i;
 
     datadirs = g_new0 (gchar *, g_strv_length ((gchar **) sdatadirs) + 2);
     datadirs[0] = (gchar *) g_get_user_data_dir ();
