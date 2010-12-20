@@ -28,6 +28,7 @@
 #include <glib/gi18n.h>
 #include <libxml/tree.h>
 #include <gio/gio.h>
+#include <gio/gunixinputstream.h>
 #include <string.h>
 #include <math.h>
 
@@ -363,8 +364,6 @@ yelp_man_parser_parse_file (YelpManParser *parser,
                             GError **error)
 {
     GInputStream *troff_stream;
-    gchar *line;
-    gsize len;
     gboolean ret;
     xmlNodePtr root;
 
@@ -781,7 +780,7 @@ parse_n (YelpManParser *parser, GError **error)
 
         xmlNewTextChild (parser->header,
                          NULL, BAD_CAST "collection",
-                         parser->accumulator->str);
+                         BAD_CAST parser->accumulator->str);
         g_string_truncate (parser->accumulator, 0);
         parser->state = BODY;
         parser->section_state = SECTION_BODY;
@@ -793,7 +792,8 @@ parse_n (YelpManParser *parser, GError **error)
 
         g_strchomp (parser->accumulator->str);
         xmlNewTextChild (parser->section_node, NULL,
-                         BAD_CAST "title", parser->accumulator->str);
+                         BAD_CAST "title",
+                         BAD_CAST parser->accumulator->str);
         g_string_truncate (parser->accumulator, 0);
 
         parser->section_state = SECTION_BODY;
@@ -826,8 +826,9 @@ finish_span (YelpManParser *parser)
     if (parser->accumulator->str[0] != '\0') {
         node = xmlNewTextChild (parser->sheet_node, NULL,
                                 BAD_CAST "span",
-                                parser->accumulator->str);
-        xmlNewProp (node, BAD_CAST "class", get_font (parser));
+                                BAD_CAST parser->accumulator->str);
+        xmlNewProp (node, BAD_CAST "class",
+                    BAD_CAST get_font (parser));
         g_string_truncate (parser->accumulator, 0);
     }
 }
@@ -963,7 +964,8 @@ deal_with_newlines (YelpManParser *parser)
 
         if (made_sheet) {
             snprintf (tmp, 64, "%u", jump_lines-1);
-            xmlNewProp (parser->sheet_node, BAD_CAST "jump", tmp);
+            xmlNewProp (parser->sheet_node,
+                        BAD_CAST "jump", BAD_CAST tmp);
         }
     }
 
@@ -997,9 +999,9 @@ register_title (YelpManParser *parser,
                 const gchar* name, const gchar* section)
 {
     xmlNewTextChild (parser->header,
-                     NULL, BAD_CAST "title", name);
+                     NULL, BAD_CAST "title", BAD_CAST name);
     xmlNewTextChild (parser->header,
-                     NULL, BAD_CAST "section", section);
+                     NULL, BAD_CAST "section", BAD_CAST section);
 }
 
 static void
@@ -1065,7 +1067,7 @@ cleanup_parsed_page (YelpManParser *parser)
     gchar *lastline;
 
     if (xmlChildElementCount (parser->section_node) == 1) {
-        lastline = xmlNodeGetContent (parser->section_node);
+        lastline = (gchar *)xmlNodeGetContent (parser->section_node);
 
         /* If parse_last_line works, it sets the data from it in the
            <header> tag, so delete the final section. */
@@ -1164,8 +1166,8 @@ parse_last_line (YelpManParser *parser, gchar* line)
 
     date = g_strndup (date_start, gap - date_start);
 
-    xmlNewProp (parser->header, BAD_CAST "version", version);
-    xmlNewProp (parser->header, BAD_CAST "date", date);
+    xmlNewProp (parser->header, BAD_CAST "version", BAD_CAST version);
+    xmlNewProp (parser->header, BAD_CAST "date", BAD_CAST date);
 
     g_free (version);
     g_free (date);
@@ -1192,7 +1194,6 @@ unicode_strstrip (gchar *str)
         return;
     }
     start = skip_whitespace (str);
-    g_utf8_next_char (end);
 
     g_memmove (str, start, end - start);
     *(str + (end - start)) = '\0';
