@@ -27,6 +27,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <libxml/tree.h>
+#include <libxml/xpath.h>
 #include <gio/gio.h>
 #include <gio/gunixinputstream.h>
 #include <string.h>
@@ -190,6 +191,31 @@ static gboolean cheeky_call_parse_line (YelpManParser *parser,
 static void cleanup_parsed_page (YelpManParser *parser);
 static gboolean parse_last_line (YelpManParser *parser, gchar* line);
 static void unicode_strstrip (gchar *str);
+
+/*
+  A link_inserter takes
+    (1) an array of offsets for the different spans within the string
+    (2) the match info from the regex match
+
+  It's then responsible for mangling the XML tree to insert the actual
+  link. Finally, it should return the offset into the string of the
+  end of what it's just dealt with. If necessary, it should also fix
+  up offsets to point correctly at the last node inserted.
+ */
+typedef struct {
+    gsize      start, end;
+    xmlNodePtr elt;
+} offset_elt_pair;
+
+typedef gsize (*link_inserter)(offset_elt_pair *,
+                               const GMatchInfo *);
+
+static void fixup_links (YelpManParser *parser,
+                         const GRegex *matcher,
+                         link_inserter inserter);
+
+static gsize man_link_inserter (offset_elt_pair *offsets,
+                                const GMatchInfo *match_info);
 
 /******************************************************************************/
 /* Translations for the 'C' command. This is indeed hackish, but the
@@ -1065,6 +1091,7 @@ cleanup_parsed_page (YelpManParser *parser)
      * tag)
      */
     gchar *lastline;
+    GRegex *regex;
 
     if (xmlChildElementCount (parser->section_node) == 1) {
         lastline = (gchar *)xmlNodeGetContent (parser->section_node);
@@ -1087,6 +1114,17 @@ cleanup_parsed_page (YelpManParser *parser)
 
         xmlFree (lastline);
     }
+
+    /* Next job: Go through and stick the links in. Text that looks
+     * like man(1) should be converted to a link to man:man(1) and
+     * urls should also be linkified.
+     */
+    regex = g_regex_new ("([a-zA-Z0-9\\-_.]+)"
+                         "\\(([a-zA-Z0-9]{1,2})\\)",
+                         0, 0, NULL);
+    g_return_if_fail (regex);
+    fixup_links (parser, regex, man_link_inserter);
+    g_regex_unref (regex);
 }
 
 static gchar *
@@ -1197,4 +1235,288 @@ unicode_strstrip (gchar *str)
 
     g_memmove (str, start, end - start);
     *(str + (end - start)) = '\0';
+}
+
+static void
+sheet_fixup_links (xmlNodePtr sheet,
+                   const GRegex *regex, link_inserter inserter)
+{
+    /*
+      This works as follows: grab (<span>) nodes from a sheet in
+      order and stick their contents into a string. Since a sheet
+      won't be ludicrously long, we can just grab everything and then
+      work over it, but we need to keep track of which node points at
+      which bit of the string so we can call inserter helpfully. To do
+      so, use byte offsets, since that seems less likely to go
+      horribly wrong!
+    */
+    GString *accumulator = g_string_new ("");
+    xmlNodePtr span;
+    xmlChar *tmp;
+    gsize offset = 0;
+    gsize len;
+    offset_elt_pair pair;
+    GMatchInfo *match_info;
+
+    /* Make pairs zero-terminated so that code can iterate through it
+     * looking for something with elt = NULL. */
+    GArray *pairs = g_array_new (TRUE, FALSE,
+                                 sizeof (offset_elt_pair));
+
+    g_return_if_fail (regex);
+    g_return_if_fail (inserter);
+    g_return_if_fail (sheet);
+
+    for (span = sheet->children; span != NULL; span = span->next) {
+        if (span->type != XML_ELEMENT_NODE) continue;
+
+        if (strcmp ((const char*) span->name, "span") != 0) {
+
+            if ((strcmp ((const char*) span->name, "br") == 0) ||
+                (strcmp ((const char*) span->name, "a") == 0))
+                continue;
+
+            g_warning ("Expected all child elements to be "
+                       "<span>, <br> or <a>, but "
+                       "have found a <%s>.",
+                       (gchar *) span->name);
+            continue;
+        }
+
+        tmp = xmlNodeGetContent (span);
+        g_string_append (accumulator, (gchar *) tmp);
+        len = strlen ((const char*) tmp);
+
+        pair.start = offset;
+        pair.end = offset + len;
+        pair.elt = span;
+
+        g_array_append_val (pairs, pair);
+
+        offset += len;
+        xmlFree (tmp);
+    }
+
+    /* We've got the data. Now try to match the regex against it as
+     * many times as possible
+     */
+    offset = 0;
+    g_regex_match_full (regex, accumulator->str,
+                        -1, offset, 0, &match_info, NULL);
+    while (g_match_info_matches (match_info)) {
+        offset = inserter ((offset_elt_pair *)pairs->data,
+                           match_info);
+
+        g_match_info_free (match_info);
+
+        g_regex_match_full (regex, accumulator->str,
+                            -1, offset, 0, &match_info, NULL);
+    }
+
+    g_string_free (accumulator, TRUE);
+    g_array_unref (pairs);
+}
+
+static void
+fixup_links (YelpManParser *parser,
+             const GRegex *regex, link_inserter inserter)
+{
+    /* Iterate over all the <sheet>'s in the xml document */
+    xmlXPathContextPtr context;
+    xmlXPathObjectPtr path_obj;
+    xmlNodeSetPtr nodeset;
+    guint i;
+
+    context = xmlXPathNewContext (parser->doc);
+    g_return_if_fail (context);
+
+    path_obj = xmlXPathEvalExpression (BAD_CAST "//sheet", context);
+    g_return_if_fail (path_obj);
+
+    nodeset = path_obj->nodesetval;
+    g_return_if_fail (nodeset);
+
+    for (i = 0; i < nodeset->nodeNr; ++i) {
+        sheet_fixup_links (nodeset->nodeTab[i], regex, inserter);
+    }
+
+    xmlXPathFreeObject (path_obj);
+    xmlXPathFreeContext (context);
+}
+
+/*
+  This inserts new_child under parent. If older_sibling is non-NULL,
+  we stick it immediately after it. Otherwise, insert as the first
+  child of the parent.
+
+  Returns the inserted child.
+ */
+static xmlNodePtr
+insert_child_after (xmlNodePtr parent, xmlNodePtr older_sibling,
+                    xmlNodePtr new_child)
+{
+    g_return_val_if_fail (parent && new_child, new_child);
+
+    if (older_sibling) {
+        xmlAddNextSibling (older_sibling, new_child);
+    }
+    else if (parent->children == NULL) {
+        xmlAddChild (parent, new_child);
+    }
+    else {
+        xmlAddPrevSibling (parent->children, new_child);
+    }
+
+    return new_child;
+}
+
+static void
+copy_prop (xmlNodePtr to, xmlNodePtr from, const xmlChar *name)
+{
+    xmlChar *prop = xmlGetProp (from, name);
+    g_return_if_fail (prop);
+    xmlSetProp (to, name, prop);
+    xmlFree (prop);
+}
+
+static gsize
+do_node_replacement (xmlNodePtr anchor_node,
+                     offset_elt_pair *offsets,
+                     gsize startpos, gsize endpos)
+{
+    xmlNodePtr node, sibling_before;
+    gchar *gtmp;
+    xmlChar *xtmp, *xshort;
+    gsize look_from;
+
+    /* Find the first element by searching through offsets. I suppose
+     * a binary search would be cleverer, but I doubt that this will
+     * take significant amounts of time.
+     *
+     * We should never fall off the end, but (just in case) the GArray
+     * that holds the offsets is zero-terminated and elt should never
+     * be NULL so we can stop if necessary
+     */
+    while ((offsets->end <= startpos) && offsets->elt) {
+        offsets++;
+    }
+    g_return_val_if_fail (offsets->elt, endpos);
+
+    /* xtmp is NULL by default, but we do this here so that if we read
+     * the node in the if block below, we don't have to do it a second
+     * time.
+     */
+    xtmp = NULL;
+    sibling_before = offsets->elt->prev;
+    look_from = startpos;
+
+    /* Maybe there's text in the relevant span before the start of
+     * the stuff we want to replace with a link.
+     */
+    if (startpos > offsets->start) {
+        node = xmlNewNode (NULL, BAD_CAST "span");
+        copy_prop (node, offsets->elt, BAD_CAST "class");
+
+        xtmp = xmlNodeGetContent (offsets->elt);
+        gtmp = g_strndup ((const gchar*)xtmp, startpos - offsets->start);
+        xmlNodeAddContent (node, BAD_CAST gtmp);
+        g_free (gtmp);
+
+        sibling_before = insert_child_after (offsets->elt->parent,
+                                             sibling_before, node);
+    }
+
+    insert_child_after (offsets->elt->parent,
+                        sibling_before, anchor_node);
+
+    /* The main loop. Here we work over each span that overlaps with
+     * the link we're adding. We add a similar span as a child of the
+     * anchor node and then delete the existing one.  */
+    while (look_from < endpos) {
+        if (!xtmp) xtmp = xmlNodeGetContent (offsets->elt);
+
+        if (endpos < offsets->end) {
+            xshort = BAD_CAST g_strndup ((const gchar*)xtmp,
+                                         endpos - offsets->start);
+
+            node = xmlNewChild (anchor_node, NULL, BAD_CAST "span",
+                                xshort + (look_from-offsets->start));
+            copy_prop (node, offsets->elt, BAD_CAST "class");
+
+            node = xmlNewNode (NULL, BAD_CAST "span");
+            xmlNodeAddContent (node,
+                               xtmp + (endpos - offsets->start));
+            copy_prop (node, offsets->elt, BAD_CAST "class");
+            xmlAddNextSibling (anchor_node, node);
+
+            xmlFree (xshort);
+
+            xmlUnlinkNode (offsets->elt);
+            xmlFreeNode (offsets->elt);
+            xmlFree (xtmp);
+            xtmp = NULL;
+
+            offsets->start = endpos;
+            offsets->elt = node;
+        }
+        else {
+            node = xmlNewChild (anchor_node, NULL, BAD_CAST "span",
+                                xtmp + (look_from - offsets->start));
+            copy_prop (node, offsets->elt, BAD_CAST "class");
+
+            xmlUnlinkNode (offsets->elt);
+            xmlFreeNode (offsets->elt);
+            xmlFree (xtmp);
+            xtmp = NULL;
+            offsets++;
+        }
+
+        if (!offsets->elt) {
+            /* We got to the end of a sheet and of the stuff we're
+             * doing at the same time
+             */
+            return endpos;
+        }
+
+        look_from = offsets->start;
+    }
+
+    return offsets->start;
+}
+
+static gsize
+do_link_insertion (const gchar *url,
+                   offset_elt_pair *offsets,
+                   gsize startpos, gsize endpos)
+{
+    xmlNodePtr anchor_node = xmlNewNode (NULL, BAD_CAST "a");
+
+    xmlNewProp (anchor_node, BAD_CAST "href", BAD_CAST url);
+
+    return do_node_replacement (anchor_node, offsets,
+                                startpos, endpos);
+}
+
+static gsize
+man_link_inserter (offset_elt_pair *offsets,
+                   const GMatchInfo *match_info)
+{
+    gchar *name, *section;
+    gchar url[1024];
+
+    gint startpos, endpos;
+
+    g_match_info_fetch_pos (match_info, 0, &startpos, &endpos);
+
+    name = g_match_info_fetch (match_info, 1);
+    section = g_match_info_fetch (match_info, 2);
+
+    g_return_val_if_fail (name && section, endpos);
+
+    snprintf (url, 1024, "man:%s(%s)", name, section);
+
+    g_free (name);
+    g_free (section);
+
+    return do_link_insertion (url, offsets, startpos, endpos);
 }
