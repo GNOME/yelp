@@ -574,7 +574,7 @@ mallard_page_data_walk (MallardPageData *page_data)
                     xmlXPathObjectPtr obj;
                     page_data->xpath->node = child;
                     obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
-                    page_data->page_title = g_strdup (obj->stringval);
+                    page_data->page_title = g_strdup ((const gchar *) obj->stringval);
                     xmlXPathFreeObject (obj);
                 }
             }

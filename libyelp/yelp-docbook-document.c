@@ -354,7 +354,7 @@ docbook_process (YelpDocbookDocument *docbook)
         id = xmlGetNsProp (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "id");
 
     if (id) {
-        priv->root_id = g_strdup (id);
+        priv->root_id = g_strdup ((const gchar *) id);
         yelp_document_set_page_id (document, NULL, (gchar *) id);
         yelp_document_set_page_id (document, "//index", (gchar *) id);
     }

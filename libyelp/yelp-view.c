@@ -1809,8 +1809,7 @@ uri_resolved (YelpUri  *uri,
         }
         else {
             error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
-                                 _("The URI does not point to a valid page."),
-                                 struri);
+                                 _("The URI does not point to a valid page."));
         }
         break;
     case YELP_URI_DOCUMENT_TYPE_ERROR:
