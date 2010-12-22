@@ -216,6 +216,8 @@ static void fixup_links (YelpManParser *parser,
 
 static gsize man_link_inserter (offset_elt_pair *offsets,
                                 const GMatchInfo *match_info);
+static gsize http_link_inserter (offset_elt_pair *offsets,
+                                 const GMatchInfo *match_info);
 
 /******************************************************************************/
 /* Translations for the 'C' command. This is indeed hackish, but the
@@ -1125,6 +1127,16 @@ cleanup_parsed_page (YelpManParser *parser)
     g_return_if_fail (regex);
     fixup_links (parser, regex, man_link_inserter);
     g_regex_unref (regex);
+
+    /* Now for http:// links.
+     */
+    regex = g_regex_new ("https?:\\/\\/[\\w\\-_]+(\\.[\\w\\-_]+)+"
+                         "([\\w\\-\\.,@?^=%&:/~\\+#]*"
+                         "[\\w\\-\\@?^=%&/~\\+#])?",
+                         0, 0, NULL);
+    g_return_if_fail (regex);
+    fixup_links (parser, regex, http_link_inserter);
+    g_regex_unref (regex);
 }
 
 static gchar *
@@ -1519,4 +1531,22 @@ man_link_inserter (offset_elt_pair *offsets,
     g_free (section);
 
     return do_link_insertion (url, offsets, startpos, endpos);
+}
+
+static gsize
+http_link_inserter (offset_elt_pair *offsets,
+                    const GMatchInfo *match_info)
+{
+    gchar *url;
+    gint startpos, endpos;
+    gsize ret;
+
+    url = g_match_info_fetch (match_info, 0);
+    g_match_info_fetch_pos (match_info, 0, &startpos, &endpos);
+
+    ret = do_link_insertion (url, offsets, startpos, endpos);
+
+    g_free (url);
+
+    return ret;
 }
