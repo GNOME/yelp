@@ -2,7 +2,7 @@
 _Name=Help
 _Comment=Get help with GNOME
 OnlyShowIn=GNOME;
-Exec=yelp
+Exec=yelp %u
 Icon=help-browser
 StartupNotify=true
 Terminal=false
@@ -12,3 +12,4 @@ X-GNOME-Bugzilla-Bugzilla=GNOME
 X-GNOME-Bugzilla-Product=Yelp
 X-GNOME-Bugzilla-Component=general
 X-GNOME-Bugzilla-Version=@VERSION@
+MimeType=x-scheme-handler/ghelp;x-scheme-handler/help;x-scheme-handler/info;x-scheme-handler/man;
