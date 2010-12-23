@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Abduxukur Abdurixit <abduxukur.abdurixit@t-systems.ch>, 2005
 # Gheyret T.Kenji <gheyret@gmail.com>, 2010
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&component=general\n"
-"POT-Creation-Date: 2010-11-18 23:03+0000\n"
+"POT-Creation-Date: 2010-12-20 15:47+0000\n"
 "PO-Revision-Date: 2010-10-27 10:36+0600\n"
 "Last-Translator: Sahran <sahran@live.com>\n"
 "Language-Team: GNOME Uighur Translation Project <gnome-uighur@yahoogroups.com>\n"
@@ -129,7 +129,7 @@ msgstr "1x بۆلەك"
 
 #: ../data/man.xml.in.h:26
 msgid "Section 2"
-msgstr "2 بۆلەك"
+msgstr "2-بۆلەك"
 
 #: ../data/man.xml.in.h:27
 msgid "Section 3blt"
@@ -165,7 +165,7 @@ msgstr "3tiff بۆلەك"
 
 #: ../data/man.xml.in.h:35
 msgid "Section 4"
-msgstr "4 بۆلەك"
+msgstr "4-بۆلەك"
 
 #: ../data/man.xml.in.h:36
 msgid "Section 4x"
@@ -173,7 +173,7 @@ msgstr "4x بۆلەك"
 
 #: ../data/man.xml.in.h:37
 msgid "Section 5"
-msgstr "5 بۆلەك"
+msgstr "5-بۆلەك"
 
 #: ../data/man.xml.in.h:38
 msgid "Section 5ssl"
@@ -413,11 +413,11 @@ msgstr "سازلىغۇچلار"
 
 #: ../data/toc.xml.in.h:33
 msgid "Desktop"
-msgstr "ئۈستەليۈزى"
+msgstr "ئۈستەلئۈستى"
 
 #: ../data/toc.xml.in.h:34
 msgid "Desktop Settings"
-msgstr "ئۈستەليۈزى تەڭشىكى"
+msgstr "ئۈستەلئۈستى تەڭشىكى"
 
 #: ../data/toc.xml.in.h:36
 msgid "Dialup"
@@ -873,14 +873,15 @@ msgstr "ئىناۋەتسىز پرېسلانغان سانلىق مەلۇمات"
 #: ../libyelp/yelp-bz2-decompressor.c:152
 #: ../libyelp/yelp-lzma-decompressor.c:161
 msgid "Not enough memory"
-msgstr "يېتەرلىك ئەسلەك يوق"
+msgstr "يېتەرلىك  ئەسلەك يوق"
 
 #: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:233
-#: ../libyelp/yelp-mallard-document.c:254
-#: ../libyelp/yelp-mallard-document.c:401 ../libyelp/yelp-man-document.c:269
+#: ../libyelp/yelp-mallard-document.c:259
+#: ../libyelp/yelp-mallard-document.c:406 ../libyelp/yelp-man-document.c:269
 #, c-format
-msgid "The page ‘%s was not found in the document ‘%s."
-msgstr "بەت «%s» نى پۈتۈك «%s» نىڭ ئىچىدىن تاپقىلى بولمىدى."
+#| msgid "The page ‘%s was not found in the document ‘%s."
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr "%2$s پۈتۈكتىكى %1$s بەتنى تاپالمىدى."
 
 #: ../libyelp/yelp-docbook-document.c:298 ../libyelp/yelp-info-document.c:367
 #: ../libyelp/yelp-man-document.c:403
@@ -891,22 +892,29 @@ msgstr "ھۆججەت مەۋجۇت ئەمەس."
 #: ../libyelp/yelp-docbook-document.c:308 ../libyelp/yelp-info-document.c:377
 #: ../libyelp/yelp-man-document.c:413
 #, c-format
-msgid "The file ‘%s does not exist."
-msgstr "ھۆججەت «%s» مەۋجۇت ئەمەس."
+#| msgid "The file ‘%s does not exist."
+msgid "The file ‘%s’ does not exist."
+msgstr "‘%s’ ھۆججەت مەۋجۇت ئەمەس."
 
 #: ../libyelp/yelp-docbook-document.c:323
 #, c-format
+#| msgid ""
+#| "The file ‘%s could not be parsed because it is not a well-formed XML "
+#| "document."
 msgid ""
-"The file ‘%s could not be parsed because it is not a well-formed XML "
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "ھۆججەت «%s» قۇرۇلمىسى نورمال XML بولمىغاچقا تەھلىل قىلغىلى بولمىدى."
+msgstr "‘%s’ ھۆججەتنى يېشەلمىدى، چۈنكى ئۇ ئىناۋەتلىك XML پۈتۈكى ئەمەس."
 
 #: ../libyelp/yelp-docbook-document.c:336
 #, c-format
+#| msgid ""
+#| "The file ‘%s could not be parsed because one or more of its included "
+#| "files is not a well-formed XML document."
 msgid ""
-"The file ‘%s could not be parsed because one or more of its included files "
+"The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
-msgstr "ھۆججەت «%s» ئوز ئىچىگە بىر ياكى بىرقانچە ھۆججەتلەرنىڭ قۇرۇلمىسى نورمال XML بولمىغاچقا تەھلىل قىلغىلى بولمىدى."
+msgstr "‘%s’ ھۆججەتنى يېشەلمىدى، چۈنكى ئۇنىڭ بىر ياكى بىر قانچە بۆلەك ھۆججىتى ئىناۋەتلىك XML پۈتۈكى ئەمەس."
 
 #: ../libyelp/yelp-docbook-document.c:743
 msgid "Unknown"
@@ -915,19 +923,28 @@ msgstr "نامەلۇم"
 #: ../libyelp/yelp-docbook-document.c:804 ../libyelp/yelp-info-document.c:310
 #: ../libyelp/yelp-man-document.c:345
 #, c-format
-msgid "The requested page was not found in the document ‘%s."
-msgstr "تەلەپ قىلىنغان بەتنى پۈتۈك «%s» نىڭ ئىچىدىن تاپقىلى بولمىدى."
+#| msgid "The requested page was not found in the document ‘%s."
+msgid "The requested page was not found in the document ‘%s’."
+msgstr "‘%s’ پۈتۈكتىن ئىلتىماس قىلغان بەتنى تاپالمىدى."
 
 #: ../libyelp/yelp-error.c:33
 #, c-format
 msgid "An unknown error occurred."
 msgstr "نامەلۇم خاتالىق كۆرۈلدى."
 
+#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+#| msgid "_All Documents"
+msgid "All Help Documents"
+msgstr ""
+
 #: ../libyelp/yelp-info-document.c:392
 #, c-format
+#| msgid ""
+#| "The file ‘%s could not be parsed because it is not a well-formed info "
+#| "page."
 msgid ""
-"The file ‘%s could not be parsed because it is not a well-formed info page."
-msgstr "ھۆججەت «%s» قۇرۇلمىسى نورمال ئۇچۇر بېتى(info page) بولمىغاچقا تەھلىل قىلغىلى بولمىدى."
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr "‘%s’ ھۆججەتنى يېشەلمىدى، چۈنكى ئۇچۇر بېتى فورماتقا ماس كەلمەيدۇ."
 
 #: ../libyelp/yelp-location-entry.c:323
 msgid "View"
@@ -939,7 +956,7 @@ msgstr ""
 
 #: ../libyelp/yelp-location-entry.c:339
 msgid "Bookmarks"
-msgstr "خەتكۈش"
+msgstr "خەتكۈچلەر"
 
 #: ../libyelp/yelp-location-entry.c:340
 msgid "A YelpBookmarks implementation instance"
@@ -957,20 +974,15 @@ msgstr "ئىزدەش سۆز بۆلىكىگە ئىشلىتىشكە بولىدىغ
 msgid "Search..."
 msgstr "ئىزدە…"
 
-#: ../libyelp/yelp-location-entry.c:1335
+#: ../libyelp/yelp-location-entry.c:1333
 msgid "Loading"
 msgstr "يۈكلەۋاتىدۇ"
 
-#: ../libyelp/yelp-mallard-document.c:296
+#: ../libyelp/yelp-mallard-document.c:301
 #, c-format
-msgid "The directory ‘%s does not exist."
-msgstr "مۇندەرىجە «%s» مەۋجۇت ئەمەس."
-
-#: ../libyelp/yelp-man-document.c:444
-#, c-format
-msgid ""
-"The file ‘%s could not be parsed because it is not a well-formed man page."
-msgstr "ھۆججەت «%s» قۇرۇلمىسى نورمال قوللانما بېتى(man page) بولمىغاچقا تەھلىل قىلغىلى بولمىدى."
+#| msgid "The directory ‘%s does not exist."
+msgid "The directory ‘%s’ does not exist."
+msgstr "‘%s’  مۇندەرىجە مەۋجۇد ئەمەس."
 
 #: ../libyelp/yelp-settings.c:148
 msgid "GtkSettings"
@@ -1022,8 +1034,9 @@ msgstr "XSLT ئۇسلۇب جەدۋىلىنىڭ ئورنى"
 
 #: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
-msgid "The XSLT stylesheet ‘%s is either missing or not valid."
-msgstr "XSLT stylesheet «%s» يوق ياكى ئىناۋەتسىز."
+#| msgid "The XSLT stylesheet ‘%s is either missing or not valid."
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
+msgstr "XSLT ئۇسلۇب جەدۋىلى ‘%s’ مەۋجۇد ئەمەس ياكى ئىناۋەتسىز."
 
 #: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
@@ -1033,87 +1046,87 @@ msgstr "yelp:document دا href خاسلىقى يوقكەن\n"
 msgid "Out of memory"
 msgstr "ئەسلەك يېتىشمىدى"
 
-#: ../libyelp/yelp-view.c:118
+#: ../libyelp/yelp-view.c:120
 msgid "_Print..."
 msgstr "باس(_P)…"
 
-#: ../libyelp/yelp-view.c:123
+#: ../libyelp/yelp-view.c:125
 msgid "_Back"
-msgstr "كەينىگە(_B)"
+msgstr "كەينى(_B)"
 
-#: ../libyelp/yelp-view.c:128
+#: ../libyelp/yelp-view.c:130
 msgid "_Forward"
-msgstr "ئالدىغا(_F)"
+msgstr "ئالدىنقى(_F)"
 
-#: ../libyelp/yelp-view.c:133
+#: ../libyelp/yelp-view.c:135
 msgid "_Previous Page"
 msgstr "ئالدىنقى بەت(_P)"
 
-#: ../libyelp/yelp-view.c:138
+#: ../libyelp/yelp-view.c:140
 msgid "_Next Page"
 msgstr "كېيىنكى بەت(_N)"
 
-#: ../libyelp/yelp-view.c:401
+#: ../libyelp/yelp-view.c:408
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:402
+#: ../libyelp/yelp-view.c:409
 msgid "A YelpUri with the current location"
 msgstr "YelpUri نىڭ نۆۋەتتىكى يەرلىك ئورنى"
 
-#: ../libyelp/yelp-view.c:410
+#: ../libyelp/yelp-view.c:417
 msgid "Loading State"
 msgstr "يۈكلەش ھالىتى"
 
-#: ../libyelp/yelp-view.c:411
+#: ../libyelp/yelp-view.c:418
 msgid "The loading state of the view"
 msgstr "كۆرۈنۈشنىڭ يۈكلەش ھالىتى"
 
-#: ../libyelp/yelp-view.c:420
+#: ../libyelp/yelp-view.c:427
 msgid "Page ID"
 msgstr "بەت نومۇرى"
 
-#: ../libyelp/yelp-view.c:421
+#: ../libyelp/yelp-view.c:428
 msgid "The ID of the root page of the page being viewed"
 msgstr "كۆرۈۋاتقان بەتنىڭ غول بەت نومۇرى"
 
-#: ../libyelp/yelp-view.c:429
+#: ../libyelp/yelp-view.c:436
 msgid "Root Title"
 msgstr "غول ماۋزۇ"
 
-#: ../libyelp/yelp-view.c:430
+#: ../libyelp/yelp-view.c:437
 msgid "The title of the root page of the page being viewed"
 msgstr "كۆرۈۋاتقان بەتنىڭ غول بەت ماۋزۇسى"
 
-#: ../libyelp/yelp-view.c:438
+#: ../libyelp/yelp-view.c:445
 msgid "Page Title"
 msgstr "بەت ماۋزۇسى"
 
-#: ../libyelp/yelp-view.c:439
+#: ../libyelp/yelp-view.c:446
 msgid "The title of the page being viewed"
 msgstr "كۆرۈۋاتقان بەتنىڭ بەت ماۋزۇسى"
 
-#: ../libyelp/yelp-view.c:447
+#: ../libyelp/yelp-view.c:454
 msgid "Page Description"
 msgstr "بەت چۈشەندۈرۈشى"
 
-#: ../libyelp/yelp-view.c:448
+#: ../libyelp/yelp-view.c:455
 msgid "The description of the page being viewed"
 msgstr "كۆرۈۋاتقان بەتنىڭ بەت چۈشەندۈرۈشى"
 
-#: ../libyelp/yelp-view.c:456
+#: ../libyelp/yelp-view.c:463
 msgid "Page Icon"
 msgstr "بەت سىنبەلگىسى"
 
-#: ../libyelp/yelp-view.c:457
+#: ../libyelp/yelp-view.c:464
 msgid "The icon of the page being viewed"
 msgstr "كۆرۈۋاتقان بەتنىڭ سىنبەلگىسى"
 
-#: ../libyelp/yelp-view.c:813
+#: ../libyelp/yelp-view.c:825
 msgid "Save Image"
 msgstr "سۈرەت ساقلا"
 
-#: ../libyelp/yelp-view.c:895
+#: ../libyelp/yelp-view.c:907
 msgid "Save Code"
 msgstr "كود ساقلا"
 
@@ -1123,83 +1136,86 @@ msgstr "كود ساقلا"
 #. * probably only be one menu item for mailto link popups anyway,
 #. * so the mnemonic's not that big of a deal.
 #.
-#: ../libyelp/yelp-view.c:1056
+#: ../libyelp/yelp-view.c:1076
 #, c-format
 msgid "Send email to %s"
 msgstr "%s غا ئېلخەت يوللا"
 
-#: ../libyelp/yelp-view.c:1066
+#: ../libyelp/yelp-view.c:1086
 msgid "_Open Link"
 msgstr "ئۇلانما ئاچ(_O)"
 
-#: ../libyelp/yelp-view.c:1071
+#: ../libyelp/yelp-view.c:1091
 msgid "Open Link in New _Window"
 msgstr "ئۇلانمىنى يېڭى كۆزنەكتە ئاچ(_W)"
 
-#: ../libyelp/yelp-view.c:1122
+#: ../libyelp/yelp-view.c:1142
 msgid "_Save Image As..."
 msgstr "سۈرەتنى باشقا ئاتتا ساقلا(_S)…"
 
-#: ../libyelp/yelp-view.c:1124
+#: ../libyelp/yelp-view.c:1144
 msgid "_Save Video As..."
 msgstr "سىننى باشقا ئاتتا ساقلا(_S)…"
 
-#: ../libyelp/yelp-view.c:1131
+#: ../libyelp/yelp-view.c:1151
 msgid "S_end Image To..."
 msgstr "سۈرەت يوللاش ئورنى(_E)…"
 
-#: ../libyelp/yelp-view.c:1133
+#: ../libyelp/yelp-view.c:1153
 msgid "S_end Video To..."
 msgstr "سىن يوللاش ئورنى(_E)…"
 
-#: ../libyelp/yelp-view.c:1144
+#: ../libyelp/yelp-view.c:1164
 msgid "_Copy Text"
 msgstr "تېكىست كۆچۈر(_C)"
 
-#: ../libyelp/yelp-view.c:1157
+#: ../libyelp/yelp-view.c:1177
 msgid "C_opy Code Block"
 msgstr "كود بۆلىكىنى كۆچۈر(_O)"
 
-#: ../libyelp/yelp-view.c:1162
+#: ../libyelp/yelp-view.c:1182
 msgid "Save Code _Block As..."
 msgstr "كود بۆلىكىنى باشقا ئاتتا ساقلا(_B)…"
 
-#: ../libyelp/yelp-view.c:1333
+#: ../libyelp/yelp-view.c:1359
 #, c-format
-msgid "Could not load a document for ‘%s"
-msgstr ""
+#| msgid "Could not load a document"
+msgid "Could not load a document for ‘%s’"
+msgstr "‘%s’ نىڭ پۈتۈكىنى يۈكلىيەلمىدى"
 
-#: ../libyelp/yelp-view.c:1339
+#: ../libyelp/yelp-view.c:1365
 #, c-format
 msgid "Could not load a document"
 msgstr "پۈتۈكنى يۈكلىيەلمىدى"
 
-#: ../libyelp/yelp-view.c:1406
+#: ../libyelp/yelp-view.c:1432
 msgid "Not Found"
 msgstr "تاپالمىدى"
 
-#: ../libyelp/yelp-view.c:1409
+#: ../libyelp/yelp-view.c:1435
 msgid "Cannot Read"
 msgstr "ئوقۇيالمىدى"
 
-#: ../libyelp/yelp-view.c:1415
+#: ../libyelp/yelp-view.c:1441
 msgid "Unknown Error"
 msgstr "نامەلۇم خاتالىق"
 
-#: ../libyelp/yelp-view.c:1507
+#: ../libyelp/yelp-view.c:1533
 #, c-format
-msgid "The URI ‘%s does not point to a valid page."
-msgstr "«%s»دېگەن URI ئىناۋەتلىك بەتنى كۆرسەتمىگەن."
+#| msgid "The URI ‘%s does not point to a valid page."
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "URI ‘%s’ ئىناۋەتلىك بەتنى كۆرسەتمىگەن."
 
-#: ../libyelp/yelp-view.c:1513
+#: ../libyelp/yelp-view.c:1539
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI ئىناۋەتلىك بەتنى كۆرسەتمىگەن."
 
-#: ../libyelp/yelp-view.c:1521
+#: ../libyelp/yelp-view.c:1547
 #, c-format
-msgid "The URI ‘%s could not be parsed."
-msgstr "«%s»دېگەن URI نى تەھلىل قىلغىلى بولمىدى."
+#| msgid "The URI ‘%s could not be parsed."
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "URI ‘%s’ نى يېشەلمىدى."
 
 #: ../src/yelp-application.c:53
 msgid "Turn on editor mode"
@@ -1225,12 +1241,12 @@ msgstr "تېكىستنى كىچىكلىتىدۇ"
 msgid "Show Text _Cursor"
 msgstr "تېكىست نۇر بەلگىنى كۆرسەت(_C)"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1524
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1526
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "ياردەم"
 
-#: ../src/yelp-application.c:785
+#: ../src/yelp-application.c:797
 msgid ""
 "You do not have PackageKit installed. Package installation links require "
 "PackageKit."
@@ -1250,7 +1266,7 @@ msgstr "يۆتكەل(_G)"
 
 #: ../src/yelp-window.c:270
 msgid "_Bookmarks"
-msgstr "خەتكۈش(_B)"
+msgstr "خەتكۈچلەر(_B)"
 
 #: ../src/yelp-window.c:273
 msgid "_New Window"
@@ -1293,36 +1309,42 @@ msgid "Read Later"
 msgstr "سەل تۇرۇپ ئوقۇ"
 
 #. %s will be replaced with the name of a document
-#: ../src/yelp-window.c:797
+#: ../src/yelp-window.c:798
 #, c-format
 msgid "Bookmarks for %s"
 msgstr "%s نىڭ خەتكۈچلىرى"
 
-#: ../src/yelp-window.c:1331
+#: ../src/yelp-window.c:1333
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "ماس كەلگىنى %i"
 
-#: ../src/yelp-window.c:1356
+#: ../src/yelp-window.c:1358
 msgid "No matches"
 msgstr "ماس كەلگىنى يوق"
 
-#: ../src/yelp-window.c:1641
+#: ../src/yelp-window.c:1643
 msgid "_Open Bookmark"
 msgstr "خەتكۈش ئاچ(_O)"
 
-#: ../src/yelp-window.c:1647
+#: ../src/yelp-window.c:1649
 msgid "Open Bookmark in New _Window"
 msgstr "خەتكۈچنى يېڭى كۆزنەكتە ئاچ(_W)"
 
-#: ../src/yelp-window.c:1656
+#: ../src/yelp-window.c:1658
 msgid "_Remove Bookmark"
 msgstr "خەتكۈچنى چىقىرىۋەت(_R)"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "GNOME ياردىمىگە ئېرىش"
+
+#~ msgid ""
+#~ "The file ‘%s could not be parsed because it is not a well-formed man page."
+#~ msgstr ""
+#~ "ھۆججەت «%s» قۇرۇلمىسى نورمال قوللانما بېتى(man page) بولمىغاچقا تەھلىل "
+#~ "قىلغىلى بولمىدى."
 
 #~ msgid "Re_name"
 #~ msgstr "ئاتىنى ئۆزگەرت(_N)"
