@@ -861,13 +861,26 @@ popup_send_image (GtkMenuItem *item,
                   YelpView    *view)
 {
     gchar *command;
+    GAppInfo *app;
+    GAppLaunchContext *context;
+    GError *error = NULL;
     YelpViewPrivate *priv = GET_PRIV (view);
 
     command = g_strdup_printf ("%s %s", nautilus_sendto, priv->popup_image_uri);
+    context = (GAppLaunchContext *) gdk_app_launch_context_new ();
 
-    gdk_spawn_command_line_on_screen (gtk_widget_get_screen (GTK_WIDGET (view)),
-                                      command, NULL);
+    app = g_app_info_create_from_commandline (command, NULL, 0, &error);
+    if (app) {
+        g_app_info_launch (app, NULL, context, &error);
+        g_object_unref (app);
+    }
 
+    if (error) {
+        g_debug ("Could not launch nautilus-sendto: %s", error->message);
+        g_error_free (error);
+    }
+
+    g_object_unref (context);
     g_free (command);
     g_free (priv->popup_image_uri);
     priv->popup_image_uri = NULL;
