@@ -15,14 +15,14 @@ msgstr ""
 "Project-Id-Version: yelp MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2010-12-18 22:54+0000\n"
-"PO-Revision-Date: 2010-11-30 10:09+0200\n"
+"POT-Creation-Date: 2010-12-20 15:47+0000\n"
+"PO-Revision-Date: 2010-12-29 12:25+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
-"Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "GNU Info Pages"
@@ -707,9 +707,8 @@ msgstr "Dokumendist „%s” ei leitud küsitud lehekülge."
 msgid "An unknown error occurred."
 msgstr "Esines tundmatu viga."
 
-#, fuzzy
 msgid "All Help Documents"
-msgstr "_Kõik dokumendid"
+msgstr "Kõik abidokumendid"
 
 #, c-format
 msgid ""
@@ -731,10 +730,10 @@ msgid "A YelpBookmarks implementation instance"
 msgstr ""
 
 msgid "Enable Search"
-msgstr ""
+msgstr "Luba otsing"
 
 msgid "Whether the location entry can be used as a search field"
-msgstr ""
+msgstr "Kas asukohavälja saab kasutada ka otsignuväljana"
 
 msgid "Search..."
 msgstr "Otsimine..."
@@ -745,13 +744,6 @@ msgstr "Laadimine"
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Kataloogi „%s” pole olemas."
-
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr ""
-"Faili „%s” pole võimalik analüüsida kuna see pole käsiraamatu korrektselt "
-"vormindatud leht (man page)."
 
 msgid "GtkSettings"
 msgstr "GtkSettings"
@@ -766,10 +758,10 @@ msgid "A GtkIconTheme object to get icons from"
 msgstr "GtkIconTheme objekt, millelt ikoone hangitakse"
 
 msgid "Font Adjustment"
-msgstr ""
+msgstr "Kirjatüübi kohendamine"
 
 msgid "A size adjustment to add to font sizes"
-msgstr ""
+msgstr "Kirjatüübi suuruste kohendamine"
 
 msgid "Show Text Cursor"
 msgstr ""
@@ -901,7 +893,7 @@ msgstr "Salvesta koodi_blokk kui..."
 
 #, c-format
 msgid "Could not load a document for ‘%s’"
-msgstr ""
+msgstr "‘%s’ jaoks pole võimalik dokumenti laadida"
 
 #, c-format
 msgid "Could not load a document"
@@ -994,7 +986,7 @@ msgid "A YelpApplication instance that controls this window"
 msgstr "Seda akent juhtiv YelpApplication instants"
 
 msgid "Read Later"
-msgstr ""
+msgstr "Loen hiljem"
 
 #. %s will be replaced with the name of a document
 #, c-format
@@ -1021,6 +1013,13 @@ msgstr "_Eemalda järjehoidja"
 
 msgid "Get help with GNOME"
 msgstr "Abistab GNOME kasutamisel"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
+#~ "page."
+#~ msgstr ""
+#~ "Faili „%s” pole võimalik analüüsida kuna see pole käsiraamatu korrektselt "
+#~ "vormindatud leht (man page)."
 
 #~ msgid "Description Column"
 #~ msgstr "Kirjelduse veerg"
