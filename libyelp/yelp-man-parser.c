@@ -976,8 +976,6 @@ deal_with_newlines (YelpManParser *parser)
     }
 
     if (parser->newline) {
-        append_nbsps (parser, dx_to_em_count (parser, parser->hpos));
-
         if ((parser->last_vertical_jump > 0) && (!dont_jump)) {
             jump_lines =
                 parser->last_vertical_jump/parser->char_height;
@@ -989,6 +987,10 @@ deal_with_newlines (YelpManParser *parser)
             if (!made_sheet) new_sheet (parser);
             made_sheet = TRUE;
         }
+
+        snprintf (tmp, 64, "%u", dx_to_em_count (parser, parser->hpos));
+        xmlNewProp (parser->sheet_node,
+                    BAD_CAST "indent", BAD_CAST tmp);
 
         if (made_sheet) {
             snprintf (tmp, 64, "%u", jump_lines-1);
