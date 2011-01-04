@@ -1492,9 +1492,10 @@ view_uri_selected (YelpView     *view,
         return;
 
     gdkwin = gtk_widget_get_window (GTK_WIDGET (window));
-    gdk_window_set_cursor (gdkwin,
-                           gdk_cursor_new_for_display (gdk_window_get_display (gdkwin),
-                                                       GDK_WATCH));
+    if (gdkwin != NULL)
+        gdk_window_set_cursor (gdkwin,
+                               gdk_cursor_new_for_display (gdk_window_get_display (gdkwin),
+                                                           GDK_WATCH));
 
     doc_uri = yelp_uri_get_document_uri (uri);
     if (priv->doc_uri == NULL || !g_str_equal (priv->doc_uri, doc_uri)) {
@@ -1552,11 +1553,13 @@ hidden_entry_hide (YelpWindow  *window)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
 
-    gtk_container_remove (GTK_CONTAINER (priv->hbox),
-                          priv->align_hidden);
-    gtk_box_pack_start (GTK_BOX (priv->hbox),
-                        priv->align_location,
-                        TRUE, TRUE, 0);
+    if (gtk_widget_get_parent (priv->align_hidden) != NULL) {
+        gtk_container_remove (GTK_CONTAINER (priv->hbox),
+                              priv->align_hidden);
+        gtk_box_pack_start (GTK_BOX (priv->hbox),
+                            priv->align_location,
+                            TRUE, TRUE, 0);
+    }
 }
 
 static gboolean
