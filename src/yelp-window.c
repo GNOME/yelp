@@ -1467,6 +1467,7 @@ view_loaded (YelpView   *view,
                                        page_id,
                                        icon,
                                        title);
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)), NULL);
     g_free (page_id);
     g_free (icon);
     g_free (title);
@@ -1483,11 +1484,17 @@ view_uri_selected (YelpView     *view,
 {
     YelpUri *uri;
     gchar *doc_uri;
+    GdkWindow *gdkwin;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     g_object_get (G_OBJECT (view), "yelp-uri", &uri, NULL);
     if (uri == NULL)
         return;
+
+    gdkwin = gtk_widget_get_window (GTK_WIDGET (window));
+    gdk_window_set_cursor (gdkwin,
+                           gdk_cursor_new_for_display (gdk_window_get_display (gdkwin),
+                                                       GDK_WATCH));
 
     doc_uri = yelp_uri_get_document_uri (uri);
     if (priv->doc_uri == NULL || !g_str_equal (priv->doc_uri, doc_uri)) {
