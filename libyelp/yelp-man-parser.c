@@ -1286,9 +1286,36 @@ sheet_fixup_links (xmlNodePtr sheet,
 
         if (strcmp ((const char*) span->name, "span") != 0) {
 
-            if ((strcmp ((const char*) span->name, "br") == 0) ||
-                (strcmp ((const char*) span->name, "a") == 0))
+            if (strcmp ((const char*) span->name, "a") == 0)
                 continue;
+
+            if (strcmp ((const char*) span->name, "br") == 0) {
+                /* If the last character in the accumulator is a
+                 * hyphen, we don't want to include that in the link
+                 * we make. If not, append a newline to the
+                 * accumulator (so we don't mistakenly make links from
+                 * "see\nthis(2)" to seethis(2).
+                 *
+                 * Either way, we add the <br> to the list of pairs
+                 * since we might need to do stuff with it if it's in
+                 * the middle of a link.
+                 */
+                len = strlen (accumulator->str);
+                if (len > 0 && accumulator->str [len-1] == '-') {
+                    g_string_truncate (accumulator, len - 1);
+                    offset--;
+                }
+                else {
+                    g_string_append_c (accumulator, '\n');
+                    offset++;
+                }
+                pair.start = offset;
+                pair.end = offset;
+                pair.elt = span; /* Er, br in fact. */
+                g_array_append_val (pairs, pair);
+
+                continue;
+            }
 
             g_warning ("Expected all child elements to be "
                        "<span>, <br> or <a>, but "
@@ -1449,7 +1476,16 @@ do_node_replacement (xmlNodePtr anchor_node,
     while (look_from < endpos) {
         if (!xtmp) xtmp = xmlNodeGetContent (offsets->elt);
 
-        if (endpos < offsets->end) {
+        if (strcmp ((const gchar*)offsets->elt->name, "br") == 0) {
+            node = xmlNewChild (anchor_node,
+                                NULL, BAD_CAST "br", NULL);
+            xmlUnlinkNode (offsets->elt);
+            xmlFreeNode (offsets->elt);
+            xmlFree (xtmp);
+            xtmp = NULL;
+            offsets++;
+        }
+        else if (endpos < offsets->end) {
             xshort = BAD_CAST g_strndup ((const gchar*)xtmp,
                                          endpos - offsets->start);
 
