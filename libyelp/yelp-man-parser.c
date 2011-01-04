@@ -70,6 +70,8 @@ struct _YelpManParser {
     gchar            *buffer;    /* The buffer, line at a time */
     gsize             length;    /* The buffer length */
 
+    gchar            *section;   /* The name of the current section */
+
     /* The width and height of a character according to troff. */
     guint char_width;
     guint char_height;
@@ -443,6 +445,7 @@ yelp_man_parser_free (YelpManParser *parser)
     }
     g_string_free (parser->accumulator, TRUE);
     g_free (parser->title_str);
+    g_free (parser->section);
     g_free (parser);
 }
 
@@ -689,7 +692,7 @@ parse_text (YelpManParser *parser, GError **error)
             g_string_truncate (parser->accumulator, 0);
 
             g_free (text);
-            g_free (section);
+            parser->section = section;
         }
 
         return TRUE;
@@ -1096,6 +1099,7 @@ cleanup_parsed_page (YelpManParser *parser)
      */
     gchar *lastline;
     GRegex *regex;
+    gchar regex_string [1024];
 
     if (xmlChildElementCount (parser->section_node) == 1) {
         lastline = (gchar *)xmlNodeGetContent (parser->section_node);
@@ -1122,10 +1126,18 @@ cleanup_parsed_page (YelpManParser *parser)
     /* Next job: Go through and stick the links in. Text that looks
      * like man(1) should be converted to a link to man:man(1) and
      * urls should also be linkified.
+     *
+     * Unfortunately, it's not entirely clear what constitutes a valid
+     * section. All sections must be alphanumeric and the logic we use
+     * to avoid extra hits (eg "one or more widget(s)") is that either
+     * the section must start with a digit or (if the current section
+     * doesn't) must start with the same letter as the current
+     * section.
      */
-    regex = g_regex_new ("([a-zA-Z0-9\\-_.]+)"
-                         "\\(([a-zA-Z0-9]{1,2})\\)",
-                         0, 0, NULL);
+    snprintf (regex_string, 1024,
+              "([a-zA-Z0-9\\-_.:]+)\\(((%c|[0-9])[a-zA-Z0-9]*)\\)",
+              parser->section ? parser->section[0] : '0');
+    regex = g_regex_new (regex_string, 0, 0, NULL);
     g_return_if_fail (regex);
     fixup_links (parser, regex, man_link_inserter);
     g_regex_unref (regex);
