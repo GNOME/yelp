@@ -1464,6 +1464,7 @@ view_show_error_page (YelpView *view,
                             left, iconsize, left, iconsize, left, iconsize,
                             titlecolor, title, error->message);
     g_object_set (view, "state", YELP_VIEW_STATE_ERROR, NULL);
+    g_signal_emit (view, signals[LOADED], 0);
     g_signal_handler_block (view, priv->navigation_requested);
     webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
                                  page,

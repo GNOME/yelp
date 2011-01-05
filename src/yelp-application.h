@@ -88,8 +88,12 @@ void              yelp_application_remove_read_later    (YelpApplication   *app,
                                                          const gchar       *full_uri);
 GVariant *        yelp_application_get_read_later       (YelpApplication   *app,
                                                          const gchar       *doc_uri);
+void              yelp_application_install_help         (YelpApplication   *app,
+                                                         const gchar       *uri,
+                                                         GtkWindow         *window);
 void              yelp_application_install_package      (YelpApplication   *app,
                                                          const gchar       *pkg,
-                                                         const gchar       *alt);
+                                                         const gchar       *alt,
+                                                         GtkWindow         *window);
 
 #endif /* __YELP_APPLICATION_H__ */

@@ -95,6 +95,9 @@ static void          app_read_later_changed       (YelpApplication    *app,
 static void          app_bookmarks_changed        (YelpApplication    *app,
                                                    const gchar        *doc_uri,
                                                    YelpWindow         *window);
+static void          app_help_installed           (YelpApplication    *app,
+                                                   const gchar        *doc_uri,
+                                                   YelpWindow         *window);
 static void          window_set_bookmarks         (YelpWindow         *window,
                                                    const gchar        *doc_uri);
 static void          window_set_bookmark_action   (YelpWindow         *window);
@@ -225,6 +228,9 @@ struct _YelpWindowPrivate {
     GtkWidget    *bookmarks_list;
     GtkListStore *bookmarks_store;
     gulong        bookmarks_changed;
+
+    gulong        read_later_changed;
+    gulong        help_installed;
 
     /* no refs on these, owned by containers */
     YelpView *view;
@@ -368,9 +374,19 @@ yelp_window_dispose (GObject *object)
         priv->bookmark_actions = NULL;
     }
 
+    if (priv->read_later_changed) {
+        g_source_remove (priv->read_later_changed);
+        priv->read_later_changed = 0;
+    }
+
     if (priv->bookmarks_changed) {
         g_source_remove (priv->bookmarks_changed);
         priv->bookmarks_changed = 0;
+    }
+
+    if (priv->help_installed) {
+        g_source_remove (priv->help_installed);
+        priv->help_installed = 0;
     }
 
     if (priv->align_location) {
@@ -468,7 +484,9 @@ window_construct (YelpWindow *window)
     yelp_view_add_link_action (priv->view, action,
                                (YelpViewActionValidFunc) view_is_xref_uri,
                                window);
-    g_signal_connect (priv->application, "read-later-changed", G_CALLBACK (app_read_later_changed), window);
+    priv->read_later_changed =
+        g_signal_connect (priv->application, "read-later-changed",
+                          G_CALLBACK (app_read_later_changed), window);
 
     priv->vbox_full = gtk_vbox_new (FALSE, 3);
     gtk_container_add (GTK_CONTAINER (window), priv->vbox_full);
@@ -606,6 +624,10 @@ window_construct (YelpWindow *window)
     gtk_drag_dest_add_uri_targets (GTK_WIDGET (window));
     g_signal_connect (window, "drag-data-received",
                       G_CALLBACK (window_drag_received), NULL);
+
+    priv->help_installed =
+        g_signal_connect (priv->application, "help-installed",
+                          G_CALLBACK (app_help_installed), window);
 }
 
 /******************************************************************************/
@@ -881,6 +903,36 @@ app_bookmarks_changed (YelpApplication *app,
 
     g_free (this_doc_uri);
     g_object_unref (uri);
+}
+
+static void
+app_help_installed (YelpApplication  *app,
+                    const gchar      *doc_uri,
+                    YelpWindow       *window)
+{
+    YelpViewState state;
+    YelpWindowPrivate *priv = GET_PRIV (window);
+
+    g_object_get (priv->view, "state", &state, NULL);
+
+    if (state == YELP_VIEW_STATE_ERROR) {
+        YelpUri *uri;
+        gchar *view_doc_uri;
+
+        g_object_get (priv->view, "yelp-uri", &uri, NULL);
+        if (uri == NULL)
+            return;
+        view_doc_uri = yelp_uri_get_document_uri (uri);
+
+        if (g_str_equal (view_doc_uri, doc_uri)) {
+            gchar *fulluri = yelp_uri_get_canonical_uri (uri);
+            yelp_view_load (priv->view, fulluri);
+            g_free (fulluri);
+        }
+
+        g_free (view_doc_uri);
+        g_object_unref (uri);
+    }
 }
 
 typedef struct _YelpMenuEntry YelpMenuEntry;
@@ -1429,7 +1481,8 @@ view_external_uri (YelpView   *view,
     if (g_str_has_prefix (struri, "install:")) {
         YelpWindowPrivate *priv = GET_PRIV (window);
         gchar *pkg = struri + 8;
-        yelp_application_install_package (priv->application, pkg, "");
+        yelp_application_install_package (priv->application, pkg, "",
+                                          (GtkWindow *) window);
     }
     else
         g_app_info_launch_default_for_uri (struri, NULL, NULL);
@@ -1452,28 +1505,45 @@ view_loaded (YelpView   *view,
 {
 
     YelpUri *uri;
-    gchar *doc_uri, *page_id, *icon, *title;
+    gchar *doc_uri;
+    YelpViewState state;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     g_object_get (view,
                   "yelp-uri", &uri,
-                  "page-id", &page_id,
-                  "page-icon", &icon,
-                  "page-title", &title,
+                  "state", &state,
                   NULL);
     doc_uri = yelp_uri_get_document_uri (uri);
-    yelp_application_update_bookmarks (priv->application,
-                                       doc_uri,
-                                       page_id,
-                                       icon,
-                                       title);
     gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)), NULL);
-    g_free (page_id);
-    g_free (icon);
-    g_free (title);
 
-    app_read_later_changed (priv->application, doc_uri, window);
+    if (state == YELP_VIEW_STATE_ERROR) {
+        if (yelp_uri_get_document_type (uri) == YELP_URI_DOCUMENT_TYPE_NOT_FOUND) {
+            if (g_str_has_prefix (doc_uri, "ghelp:") ||
+                g_str_has_prefix (doc_uri, "help:")) {
+                yelp_application_install_help (priv->application, doc_uri,
+                                               (GtkWindow *) window);
+            }
+        }
+    }
+    else {
+        gchar *page_id, *icon, *title;
+        g_object_get (view,
+                      "page-id", &page_id,
+                      "page-icon", &icon,
+                      "page-title", &title,
+                      NULL);
+        yelp_application_update_bookmarks (priv->application,
+                                           doc_uri,
+                                           page_id,
+                                           icon,
+                                           title);
+        app_read_later_changed (priv->application, doc_uri, window);
+        g_free (page_id);
+        g_free (icon);
+        g_free (title);
+    }
 
+    g_free (doc_uri);
     g_object_unref (uri);
 }
 
