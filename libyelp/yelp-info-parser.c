@@ -547,43 +547,60 @@ static GHashTable
 	return table;
 }
 
-static char
-*get_value_after (char *source, char *required)
+/*
+  Look for strings in source by key. For example, we extract "blah"
+  from "Node: blah," when the key is "Node: ". To know when to stop,
+  there are two strings: end and cancel.
+
+  If we find a character from end first, return a copy of the string
+  up to (not including) that character. If we find a character of
+  cancel first, return NULL. If we find neither, return the rest of
+  the string.
+
+  cancel can be NULL, in which case, we don't do its test.
+ */
+static char*
+get_value_after_ext (const char *source, const char *key,
+                     const char *end, const char *cancel)
 {
-	char *ret, *ret_cp;
-	char *source_cp;
-	char *ptr;
+  char *start;
+  size_t not_end, not_cancel;
 
-	source_cp = g_strdup (source);
-	
-	ptr = g_strstr_len (source_cp, strlen (source_cp), required);
-	if (!ptr) {
-	  g_free (source_cp);
-		return NULL;
-	}
-	ret = ptr + strlen (required);
-	ptr = g_strstr_len (ret, strlen (ret), ",");
-	/* if there is no pointer, we're at the end of the string */
-	if (ptr)
-		ret_cp = g_strndup (ret, ptr - ret);
-	else
-		ret_cp = g_strdup (ret);
+  start = strstr (source, key);
+  if (!start) return NULL;
 
-	g_free (source_cp);
+  start += strlen (key);
 
-	return ret_cp;
+  not_end = strcspn (start, end);
+  not_cancel = (cancel) ? strcspn (start, cancel) : not_end + 1;
+
+  if (not_cancel < not_end)
+    return NULL;
+
+  return g_strndup (start, not_end);
+}
+
+static char*
+get_value_after (const char* source, const char *key)
+{
+  return get_value_after_ext (source, key, ",", "\n\x7f");
 }
 
 static int
 node2page (GHashTable *nodes2offsets, GHashTable *offsets2pages, char *node)
 {
-	char *offset = NULL;
-	gint page;
+  char *offset;
+  gint page;
+  gboolean found;
 
-	offset = g_hash_table_lookup (nodes2offsets, node);
-	page = GPOINTER_TO_INT (g_hash_table_lookup (offsets2pages, offset));
+  offset = g_hash_table_lookup (nodes2offsets, node);
+  g_return_val_if_fail (offset, 0);
 
-	return page;
+  found = g_hash_table_lookup_extended (offsets2pages, offset,
+                                        NULL, (gpointer*) &page);
+  g_return_val_if_fail (found, 0);
+
+  return page;
 }
 
 static GtkTreeIter
