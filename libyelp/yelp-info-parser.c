@@ -33,8 +33,6 @@
 #include "yelp-debug.h"
 
 
-typedef struct _TagTableFix TagTableFix;
-
 GtkTreeIter *         find_real_top                      (GtkTreeModel *model, 
 							  GtkTreeIter *it);
 GtkTreeIter *         find_real_sibling                  (GtkTreeModel *model,
@@ -53,9 +51,6 @@ gboolean              resolve_frag_id                    (GtkTreeModel *model,
 							  GtkTreePath *path, 
 							  GtkTreeIter *iter,
 							  gpointer data);
-void                  fix_tag_table                      (gchar *offset, 
-							  gpointer page, 
-							  TagTableFix *a);
 void   		      info_process_text_notes            (xmlNodePtr *node, 
 							  gchar *content,
 							  GtkTreeStore
@@ -373,7 +368,7 @@ page_type (char *page)
 }
 
 static char
-*open_info_file (char *file)
+*open_info_file (const gchar *file)
 {
     GFile *gfile;
     GConverter *converter;
@@ -409,7 +404,7 @@ static char
 }
 
 static gchar *
-find_info_part (gchar *part_name, gchar *base)
+find_info_part (gchar *part_name, const gchar *base)
 {
   /* New and improved.  We now assume that all parts are
    * in the same subdirectory as the base file.  Makes
@@ -446,14 +441,19 @@ find_info_part (gchar *part_name, gchar *base)
 }
 
 static char
-*process_indirect_map (char *page, gchar * file)
+*process_indirect_map (char *page, const gchar *file)
 {
 	char **lines;
 	char **ptr;
 	char *composite = NULL;
-	
+        size_t composite_len = 0;
+
 	lines = g_strsplit (page, "\n", 0);
 
+        /*
+          Go backwards down the list so that we allocate composite
+          big enough the first time around.
+        */
 	for (ptr = lines + 1; *ptr != NULL; ptr++);
 	for (ptr--; ptr != lines; ptr--)
 	{
@@ -492,13 +492,24 @@ static char
 			
 			if (!composite) /* not yet created, malloc it */
 			{
-				int length;
-				length = offset + plength;
+				composite_len = offset + plength;
 				composite = g_malloc (sizeof (char) *
-						      (length + 1));
-				memset (composite, '-', length);
-				composite[length] = '\0';
+						      (composite_len + 1));
+				memset (composite, '-', composite_len);
+				composite[composite_len] = '\0';
 			}
+
+                        /* Because we're going down the list
+                         * backwards, plength should always be short
+                         * enough to fit in the memory allocated. But
+                         * in case something's broken/malicious, we
+                         * should check anyway.
+                         */
+                        if (offset > composite_len)
+                          continue;
+                        if (plength + offset + 1 > composite_len)
+                          plength = composite_len - offset - 1;
+
 			composite[offset] = '';
 			memcpy (composite + offset + 1, pages[1], plength);
 			
@@ -514,37 +525,48 @@ static char
 	return composite;
 }
 
-static GHashTable
-*process_tag_table (char *page)
+/*
+  Open up the relevant info file and read it all into memory. If there
+  is an indirect table thingy, we resolve that as we go.
+
+  Returns a NULL-terminated list of pointers to pages on success and
+  NULL otherwise.
+ */
+static gchar**
+expanded_info_file (const gchar *file)
 {
-	/* Let's assume we've been passed a valid page */
+  gchar *slurp = open_info_file (file);
+  gchar **page_list;
+  gchar **page;
 
-	GHashTable *table;
-	char **lines;
-	char **ptr;
-	char **items;
+  if (!slurp) return NULL;
 
-	table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, 
-				       g_free);
-	lines = g_strsplit (page, "\n", 0);
+  /* TODO: There's a lot of copying of bits of memory here. With a bit
+   * more effort we could avoid it. Either we should fix this or
+   * measure the time taken and decide it's irrelevant...
+   *
+   * Note: \x1f\n is ^_\n
+   */
+  page_list = g_strsplit (slurp, "\x1f\n", 0);
 
-	for (ptr = lines; *ptr != NULL; ptr++)
-	{
-		if (strncmp (*ptr, "Node: ", 6) == 0)
-		{
-			items = g_strsplit (*ptr, "", 2);
-			debug_print (DB_DEBUG, "Node: %s Offset: %s\n",
-				    items[0] + 6, items[1]);
-			g_hash_table_insert (table,
-					g_strdup (items[0] + 6),
-					g_strdup (items[1]));
-			g_strfreev (items);
-		}
-	}
+  g_free (slurp);
 
-	g_strfreev (lines);
+  for (page = page_list; *page != NULL; page++) {
+    if (page_type (*page) == PAGE_INDIRECT) {
 
-	return table;
+      slurp = process_indirect_map (*page, file);
+      g_strfreev (page_list);
+
+      if (!slurp)
+        return NULL;
+
+      page_list = g_strsplit (slurp, "\x1f\n", 0);
+      g_free (slurp);
+      break;
+    }
+  }
+
+  return page_list;
 }
 
 /*
@@ -587,20 +609,17 @@ get_value_after (const char* source, const char *key)
 }
 
 static int
-node2page (GHashTable *nodes2offsets, GHashTable *offsets2pages, char *node)
+node2page (GHashTable *nodes2pages, char *node)
 {
-  char *offset;
   gint page;
-  gboolean found;
 
-  offset = g_hash_table_lookup (nodes2offsets, node);
-  g_return_val_if_fail (offset, 0);
+  if (g_hash_table_lookup_extended (nodes2pages, node,
+                                    NULL, (gpointer*) &page))
+    return page;
 
-  found = g_hash_table_lookup_extended (offsets2pages, offset,
-                                        NULL, (gpointer*) &page);
-  g_return_val_if_fail (found, 0);
-
-  return page;
+  /* This shouldn't happen: we should only ever have to look up pages
+   * that exist. */
+  g_return_val_if_reached (0);
 }
 
 static GtkTreeIter
@@ -679,9 +698,9 @@ GtkTreeIter * find_real_sibling (GtkTreeModel *model,
 }
 
 static void
-process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
-		GHashTable *offsets2pages, GHashTable *nodes2iters,
-		int *processed_table, char **page_list, char *page_text)
+process_page (GtkTreeStore *tree,
+              GHashTable *nodes2pages, GHashTable *nodes2iters,
+              int *processed_table, char **page_list, char *page_text)
 {
 	GtkTreeIter *iter;
 	
@@ -712,7 +731,7 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	}
 
 	/* check to see if this page has been processed already */
-	page = node2page (nodes2offsets, offsets2pages, node);
+	page = node2page (nodes2pages, node);
 	if (processed_table[page]) {
 		return;
 	}
@@ -724,11 +743,11 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	/* check to see if we need to process our parent and siblings */
 	if (up && g_ascii_strncasecmp (up, "(dir)", 5) && strcmp (up, "Top"))
 	{
-		page = node2page (nodes2offsets, offsets2pages, up);
+		page = node2page (nodes2pages, up);
 		if (!processed_table[page])
 		{
 		  debug_print (DB_DEBUG, "%% Processing Node %s\n", up);
-			process_page (tree, nodes2offsets, offsets2pages,
+                  process_page (tree, nodes2pages,
 				nodes2iters, processed_table, page_list,
 				page_list[page]);
 		}
@@ -738,11 +757,11 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	    if (strncmp (node, "Top", 3)) {
 	      /* Special case the Top node to always appear first */
 	    } else {
-	      page = node2page (nodes2offsets, offsets2pages, prev);
+	      page = node2page (nodes2pages, prev);
 	      if (!processed_table[page])
 		{
 		  debug_print (DB_DEBUG, "%% Processing Node %s\n", prev);
-		  process_page (tree, nodes2offsets, offsets2pages,
+		  process_page (tree, nodes2pages,
 				nodes2iters, processed_table, page_list,
 				page_list[page]);
 		}
@@ -808,7 +827,7 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	debug_print (DB_DEBUG, "size: %i\n", g_hash_table_size (nodes2iters));
 
 	/*tmp = g_strdup_printf ("%i",
-	  node2page (nodes2offsets, offsets2pages, node));*/
+	  node2page (nodes2pages, node));*/
 	tmp = g_strdup (node);
 	tmp = g_strdelimit (tmp, " ", '_');
 	gtk_tree_store_set (tree, iter,
@@ -825,30 +844,41 @@ process_page (GtkTreeStore *tree, GHashTable *nodes2offsets,
 	g_strfreev (parts);
 }
 
-/* These are used to fix the tag tables to the correct offsets.
- * Assuming out offsets are correct (because we calculated them, these values
- * are used to overwrite the offsets declared in the info file */
-struct _TagTableFix {
-  GHashTable *nodes2offsets;
-  GHashTable *pages2nodes;
+struct TagTableFix {
+  GHashTable *nodes2pages; /* Build this... */
+  GHashTable *pages2nodes; /* ... using this. */
 };
 
-void
-fix_tag_table (gchar *offset, gpointer page, TagTableFix *a)
+static void
+use_offset2page (gpointer o, gpointer p, gpointer ud)
 {
-  gchar *node_name = NULL;
+  struct TagTableFix* ttf = (struct TagTableFix*)ud;
 
-  node_name = g_hash_table_lookup (a->pages2nodes, page);
-
-  if (!node_name) 
-    return;
-
-  g_hash_table_replace (a->nodes2offsets, g_strdup (node_name), g_strdup (offset));
-
-
-
+  const gchar* node = g_hash_table_lookup (ttf->pages2nodes, p);
+  if (node) {
+    g_hash_table_insert (ttf->nodes2pages, g_strdup (node), p);
+  }
 }
 
+/*
+  We had a nodes2offsets hash table, but sometimes these things
+  lie. How terribly rude. Anyway, use offsets2pages and pages2nodes
+  (and injectivity!) to construct the nodes2pages hash table.
+*/
+static GHashTable *
+make_nodes2pages (GHashTable* offsets2pages,
+                  GHashTable* pages2nodes)
+{
+  struct TagTableFix ttf;
+
+  ttf.nodes2pages =
+    g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+  ttf.pages2nodes = pages2nodes;
+
+  g_hash_table_foreach (offsets2pages, use_offset2page, &ttf);
+
+  return ttf.nodes2pages;
+}
 
 /**
  * Parse file into a GtkTreeStore containing useful information that we can
@@ -857,33 +887,24 @@ fix_tag_table (gchar *offset, gpointer page, TagTableFix *a)
 GtkTreeStore
 *yelp_info_parser_parse_file (char *file)
 {
-	char **page_list;
+	gchar **page_list;
 	char **ptr;
 	int pages;
 	int offset;
-	GHashTable *nodes2offsets = NULL;
 	GHashTable *offsets2pages = NULL;
 	GHashTable *pages2nodes = NULL;
+        GHashTable *nodes2pages = NULL;
 	GHashTable *nodes2iters = NULL;
 	int *processed_table;
 	GtkTreeStore *tree;
 	int pt;
-	char *str = NULL;
-	gboolean chained_info;
-	TagTableFix *ttf;
 	
-	str = open_info_file (file);
-	if (!str) {
-		return NULL;
-	}	
-	page_list = g_strsplit (str, "\n", 0);
-
-	g_free (str);
-	str = NULL;
+	page_list = expanded_info_file (file);
+	if (!page_list)
+          return NULL;
 	
 	pages = 0;
 	offset = 0;
-	chained_info = FALSE;
 
 	offsets2pages = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
 					       NULL);
@@ -893,84 +914,33 @@ GtkTreeStore
 	for (ptr = page_list; *ptr != NULL; ptr++)
 	{
 	  gchar *name = NULL;
-	  debug_print (DB_DEBUG, "page %i at offset %i\n", pages, offset);
 
-		g_hash_table_insert (offsets2pages,
-				g_strdup_printf ("%i", offset), 
-				GINT_TO_POINTER (pages));
-		name = get_value_after (*ptr, "Node: ");
-		if (name)
-		  g_hash_table_insert (pages2nodes,
-				       GINT_TO_POINTER (pages), name);
+          g_hash_table_insert (offsets2pages,
+                               g_strdup_printf ("%i", offset),
+                               GINT_TO_POINTER (pages));
+
+          name = get_value_after (*ptr, "Node: ");
+          if (name)
+            g_hash_table_insert (pages2nodes,
+                                 GINT_TO_POINTER (pages), name);
 		
-		offset += strlen (*ptr);
-		if (pages) offset += 2;
-		pages++;
-		pt = page_type (*ptr);
-		if (pt == PAGE_TAG_TABLE)
-		{
-		  debug_print (DB_DEBUG, "Have the Tag Table\n");
-			/* this needs to be freed later too */
-			nodes2offsets = process_tag_table (*ptr);
-			break;
-		}
-		else if (pt == PAGE_INDIRECT)
-		{
-		  debug_print (DB_DEBUG, "Have the indirect mapping table\n");
-			chained_info = TRUE;
-			str = process_indirect_map (*ptr, file);
-			if (!str) {
-				return NULL;
-			}
-		}
+          offset += strlen (*ptr);
+          if (pages) offset += 2;
+          pages++;
+
+          pt = page_type (*ptr);
+          if (pt == PAGE_INDIRECT) {
+            g_warning ("Found an indirect page in a file "
+                       "we thought we'd expanded.");
+          }
 	}
 
-	if (chained_info)
-	{
-		/* this is a chained info file, and therefore will require
-		 * more processing */
-		g_strfreev (page_list);
-		g_hash_table_destroy (offsets2pages);
-		offsets2pages = g_hash_table_new_full (g_str_hash, 
-						       g_str_equal, g_free,
-						       NULL);
-		
-		pages = 0;
-		offset = 0;
+        /* Now consolidate (and correct) the two hash tables */
+        nodes2pages = make_nodes2pages (offsets2pages, pages2nodes);
 
-		page_list = g_strsplit (str, "\n", 0);
-		
-		g_free (str);
-		
-		for (ptr = page_list; *ptr != NULL; ptr++)
-		{
-		  debug_print (DB_DEBUG, "page %i at offset %i\n", pages, offset);
-			g_hash_table_insert (offsets2pages,
-					g_strdup_printf ("%i", offset),
-					 GINT_TO_POINTER (pages));
-			offset += strlen (*ptr);
-			if (pages) offset += 2;
-			pages++;
-		}
-	}
-	if (!nodes2offsets)
-	  return NULL;
-	/* We now go through the offsets2pages dictionary and correct the entries
-	 * as the tag tables are known to lie.  Yes, they do.  Consistantly and
-	 * maliciously
-	 */	
-	ttf = g_new0 (TagTableFix, 1);
-	ttf->nodes2offsets = nodes2offsets;
-	ttf->pages2nodes = pages2nodes;
-	g_hash_table_foreach (offsets2pages, (GHFunc) fix_tag_table, ttf);
-	g_free (ttf);
+	g_hash_table_destroy (offsets2pages);
+        g_hash_table_destroy (pages2nodes);
 
-
-	/* at this point we have two dictionaries,
-	 * 	node names:offsets, and
-	 * 	offsets:page numbers
-	 * rather then consolidating these into one dictionary, we'll just
-	 * chain our lookups */
 	processed_table = g_malloc0 (pages * sizeof (int));
 	tree = gtk_tree_store_new (INFO_PARSER_N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING,
 			G_TYPE_STRING);
@@ -981,15 +951,15 @@ GtkTreeStore
 	for (ptr = page_list; *ptr != NULL; ptr++)
 	{
 	  if (page_type (*ptr) != PAGE_NODE) continue;
-	  process_page (tree, nodes2offsets, offsets2pages, nodes2iters,
+	  process_page (tree, nodes2pages, nodes2iters,
 			processed_table, page_list, *ptr);
 	}
 
 	g_strfreev (page_list);
 
-	g_hash_table_destroy (nodes2offsets);
-	g_hash_table_destroy (offsets2pages);
 	g_hash_table_destroy (nodes2iters);
+	g_hash_table_destroy (nodes2pages);
+
 	g_free (processed_table);
 
 	return tree;
