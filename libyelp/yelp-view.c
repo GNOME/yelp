@@ -258,6 +258,7 @@ enum {
 static void
 yelp_view_init (YelpView *view)
 {
+    GtkAction *action;
     YelpViewPrivate *priv = GET_PRIV (view);
 
     g_object_set (view, "settings", websettings, NULL);
@@ -285,6 +286,10 @@ yelp_view_init (YelpView *view)
     gtk_action_group_add_actions (priv->action_group,
 				  entries, G_N_ELEMENTS (entries),
 				  view);
+    action = gtk_action_group_get_action (priv->action_group, "YelpViewGoBack");
+    gtk_action_set_sensitive (action, FALSE);
+    action = gtk_action_group_get_action (priv->action_group, "YelpViewGoForward");
+    gtk_action_set_sensitive (action, FALSE);
 }
 
 static void
@@ -1636,6 +1641,7 @@ view_show_error_page (YelpView *view,
     gchar *page, *title = NULL, *link = NULL, *title_m, *content_beg, *content_end;
     gchar *textcolor, *bgcolor, *noteborder, *notebg, *titlecolor, *noteicon, *linkcolor;
     gint iconsize;
+    GParamSpec *spec;
     gboolean doc404 = FALSE;
     const gchar *left = (gtk_widget_get_direction((GtkWidget *) view) == GTK_TEXT_DIR_RTL) ? "right" : "left";
 
@@ -1694,6 +1700,39 @@ view_show_error_page (YelpView *view,
                             left, iconsize, left, iconsize, left, iconsize,
                             titlecolor, linkcolor, title_m, content_beg,
                             (content_end != NULL) ? content_end : "");
+
+
+    if (doc404) {
+        g_free (priv->root_title);
+        priv->root_title = g_strdup (title);
+        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                             "root-title");
+        g_signal_emit_by_name (view, "notify::root-title", spec);
+        g_free (priv->page_id);
+        priv->page_id = g_strdup ("//error");
+        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                             "page-id");
+        g_signal_emit_by_name (view, "notify::page-id", spec);
+    }
+
+    g_free (priv->page_title);
+    priv->page_title = g_strdup (title);
+    spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                         "page-title");
+    g_signal_emit_by_name (view, "notify::page-title", spec);
+
+    g_free (priv->page_desc);
+    priv->page_desc = NULL;
+    spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                         "page-desc");
+    g_signal_emit_by_name (view, "notify::page-desc", spec);
+
+    g_free (priv->page_icon);
+    priv->page_icon = g_strdup ("dialog-warning");
+    spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                         "page-icon");
+    g_signal_emit_by_name (view, "notify::page-icon", spec);
+
     g_object_set (view, "state", YELP_VIEW_STATE_ERROR, NULL);
     g_signal_emit (view, signals[LOADED], 0);
     g_signal_handler_block (view, priv->navigation_requested);
@@ -1765,7 +1804,7 @@ uri_resolved (YelpUri  *uri,
     YelpBackEntry *back;
     GtkAction *action;
     GSList *proxies, *cur;
-    GError *error;
+    GError *error = NULL;
     gchar *struri;
     GParamSpec *spec;
 
@@ -1803,24 +1842,30 @@ uri_resolved (YelpUri  *uri,
                                  _("The URI does not point to a valid page."),
                                  struri);
         }
-        view_show_error_page (view, error);
-        return;
+        break;
     case YELP_URI_DOCUMENT_TYPE_ERROR:
         struri = yelp_uri_get_canonical_uri (uri);
         error = g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,
                              _("The URI ‘%s’ could not be parsed."),
                              struri);
         g_free (struri);
-        view_show_error_page (view, error);
-        return;
+        break;
     default:
         break;
     }
 
-    document  = yelp_document_get_for_uri (uri);
-    if (priv->document)
-        g_object_unref (priv->document);
-    priv->document = document;
+    if (error == NULL) {
+        document  = yelp_document_get_for_uri (uri);
+        if (priv->document)
+            g_object_unref (priv->document);
+        priv->document = document;
+    }
+    else {
+        if (priv->document != NULL) {
+            g_object_unref (priv->document);
+            priv->document = NULL;
+        }
+    }
 
     if (!priv->back_load) {
         back = g_new0 (YelpBackEntry, 1);
@@ -1895,12 +1940,17 @@ uri_resolved (YelpUri  *uri,
     g_signal_emit_by_name (view, "notify::yelp-uri", spec);
 
     g_free (priv->page_id);
-    priv->page_id = yelp_uri_get_page_id (priv->uri);
+    priv->page_id = NULL;
+    if (priv->uri != NULL)
+        priv->page_id = yelp_uri_get_page_id (priv->uri);
     spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
                                          "page-id");
     g_signal_emit_by_name (view, "notify::page-id", spec);
 
-    view_load_page (view);
+    if (error == NULL)
+        view_load_page (view);
+    else
+        view_show_error_page (view, error);
 }
 
 static void

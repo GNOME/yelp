@@ -1259,26 +1259,28 @@ view_loaded (YelpView          *view,
                                                      entry_completion_sort,
                                                      NULL, NULL);
             g_hash_table_insert (completions, g_strdup (doc_uri), completion);
-            ids = yelp_document_list_page_ids (document);
-            for (i = 0; ids[i]; i++) {
-                GtkTreeIter iter;
-                gchar *title, *desc, *icon;
-                gtk_list_store_insert (GTK_LIST_STORE (base), &iter, 0);
-                title = yelp_document_get_page_title (document, ids[i]);
-                desc = yelp_document_get_page_desc (document, ids[i]);
-                icon = yelp_document_get_page_icon (document, ids[i]);
-                gtk_list_store_set (base, &iter,
-                                    COMPLETION_COL_TITLE, title,
-                                    COMPLETION_COL_DESC, desc,
-                                    COMPLETION_COL_ICON, icon,
-                                    COMPLETION_COL_PAGE, ids[i],
-                                    -1);
-                g_free (icon);
-                g_free (desc);
-                g_free (title);
+            if (document != NULL) {
+                ids = yelp_document_list_page_ids (document);
+                for (i = 0; ids[i]; i++) {
+                    GtkTreeIter iter;
+                    gchar *title, *desc, *icon;
+                    gtk_list_store_insert (GTK_LIST_STORE (base), &iter, 0);
+                    title = yelp_document_get_page_title (document, ids[i]);
+                    desc = yelp_document_get_page_desc (document, ids[i]);
+                    icon = yelp_document_get_page_icon (document, ids[i]);
+                    gtk_list_store_set (base, &iter,
+                                        COMPLETION_COL_TITLE, title,
+                                        COMPLETION_COL_DESC, desc,
+                                        COMPLETION_COL_ICON, icon,
+                                        COMPLETION_COL_PAGE, ids[i],
+                                        -1);
+                    g_free (icon);
+                    g_free (desc);
+                    g_free (title);
+                }
+                g_strfreev (ids);
             }
             g_object_unref (base);
-            g_strfreev (ids);
         }
         g_free (priv->completion_uri);
         priv->completion_uri = doc_uri;
