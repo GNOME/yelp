@@ -28,11 +28,13 @@
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#include <gdk/gdkx.h>
 #include <webkit/webkit.h>
 
 #include "yelp-debug.h"
 #include "yelp-docbook-document.h"
 #include "yelp-error.h"
+#include "yelp-marshal.h"
 #include "yelp-settings.h"
 #include "yelp-types.h"
 #include "yelp-view.h"
@@ -53,6 +55,10 @@ static void        yelp_view_set_property         (GObject            *object,
                                                    const GValue       *value,
                                                    GParamSpec         *pspec);
 
+static gboolean    view_external_uri              (YelpView           *view,
+                                                   YelpUri            *uri);
+static void        view_install_uri               (YelpView           *view,
+                                                   const gchar        *uri);
 static void        view_scrolled                  (GtkAdjustment      *adjustment,
                                                    YelpView           *view);
 static void        view_set_hadjustment           (YelpView           *view,
@@ -224,6 +230,7 @@ struct _YelpViewPrivate {
     gchar         *popup_code_text;
 
     YelpViewState  state;
+    YelpViewState  prevstate;
 
     gchar         *page_id;
     gchar         *root_title;
@@ -256,7 +263,7 @@ yelp_view_init (YelpView *view)
 
     priv->cancellable = NULL;
 
-    priv->state = YELP_VIEW_STATE_BLANK;
+    priv->prevstate = priv->state = YELP_VIEW_STATE_BLANK;
 
     priv->navigation_requested =
         g_signal_connect (view, "navigation-policy-decision-requested",
@@ -371,6 +378,8 @@ yelp_view_class_init (YelpViewClass *klass)
                       NULL);
     settings_show_text_cursor (settings);
 
+    klass->external_uri = view_external_uri;
+
     object_class->dispose = yelp_view_dispose;
     object_class->finalize = yelp_view_finalize;
     object_class->get_property = yelp_view_get_property;
@@ -388,9 +397,10 @@ yelp_view_class_init (YelpViewClass *klass)
 	g_signal_new ("external-uri",
 		      G_TYPE_FROM_CLASS (klass),
 		      G_SIGNAL_RUN_LAST,
-                      0, NULL, NULL,
-		      g_cclosure_marshal_VOID__OBJECT,
-		      G_TYPE_NONE, 1, YELP_TYPE_URI);
+                      G_STRUCT_OFFSET (YelpViewClass, external_uri),
+                      g_signal_accumulator_true_handled, NULL,
+		      yelp_marshal_BOOLEAN__OBJECT,
+		      G_TYPE_BOOLEAN, 1, YELP_TYPE_URI);
 
     signals[LOADED] =
         g_signal_new ("loaded",
@@ -524,6 +534,7 @@ yelp_view_set_property (GObject      *object,
             g_object_unref (uri);
             break;
         case PROP_STATE:
+            priv->prevstate = priv->state;
             priv->state = g_value_get_enum (value);
             break;
         default:
@@ -685,6 +696,171 @@ yelp_view_get_active_link_text (YelpView *view)
 }
 
 /******************************************************************************/
+
+static gboolean
+view_external_uri (YelpView *view,
+                   YelpUri  *uri)
+{
+    gchar *struri = yelp_uri_get_canonical_uri (uri);
+    g_app_info_launch_default_for_uri (struri, NULL, NULL);
+    g_free (struri);
+    return TRUE;
+}
+
+typedef struct _YelpInstallInfo YelpInstallInfo;
+struct _YelpInstallInfo {
+    YelpView *view;
+    gchar *uri;
+};
+
+static void
+yelp_install_info_free (YelpInstallInfo *info)
+{
+    g_object_unref (info->view);
+    if (info->uri)
+        g_free (info->uri);
+    g_free (info);
+}
+
+static void
+view_install_installed (GDBusConnection *connection,
+                        GAsyncResult    *res,
+                        YelpInstallInfo *info)
+{
+    GError *error = NULL;
+    g_dbus_connection_call_finish (connection, res, &error);
+    if (error) {
+        const gchar *err = NULL;
+        if (error->domain == G_DBUS_ERROR) {
+            if (error->code == G_DBUS_ERROR_SERVICE_UNKNOWN)
+                err = _("You do not have PackageKit. Package install links require PackageKit.");
+            else
+                err = error->message;
+        }
+        if (err != NULL) {
+            GtkWidget *dialog = gtk_message_dialog_new (NULL, 0,
+                                                        GTK_MESSAGE_ERROR,
+                                                        GTK_BUTTONS_CLOSE,
+                                                        "%s", err);
+            gtk_dialog_run ((GtkDialog *) dialog);
+            gtk_widget_destroy (dialog);
+        }
+        g_error_free (error);
+    }
+}
+
+static void
+view_install_uri (YelpView    *view,
+                  const gchar *uri)
+{
+    GDBusConnection *connection;
+    GError *error;
+    gboolean help = FALSE, ghelp = FALSE;
+    GVariantBuilder *strv;
+    YelpInstallInfo *info;
+    guint32 xid = 0;
+    YelpViewPrivate *priv = GET_PRIV (view);
+    GtkWidget *gtkwin;
+    GdkWindow *gdkwin;
+    /* do not free */
+    gchar *pkg, *confirm_search;
+
+    if (g_str_has_prefix (uri, "install-help:")) {
+        help = TRUE;
+        pkg = (gchar *) uri + 13;
+    }
+    else if (g_str_has_prefix (uri, "install-ghelp:")) {
+        ghelp = TRUE;
+        pkg = (gchar *) uri + 14;
+    }
+    else if (g_str_has_prefix (uri, "install:")) {
+        pkg = (gchar *) uri + 8;
+    }
+
+    connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
+    if (connection == NULL) {
+        g_warning ("Unable to connect to dbus: %s", error->message);
+        g_error_free (error);
+        return;
+    }
+
+    info = g_new0 (YelpInstallInfo, 1);
+    info->view = g_object_ref (view);
+
+    gtkwin = gtk_widget_get_toplevel (GTK_WIDGET (view));
+    if (gtkwin != NULL && gtk_widget_is_toplevel (gtkwin)) {
+        gdkwin = gtk_widget_get_window (gtkwin);
+        if (gdkwin != NULL)
+            xid = gdk_x11_window_get_xid (gdkwin);
+    }
+
+    if (priv->state == YELP_VIEW_STATE_ERROR)
+        confirm_search = "hide-confirm-search";
+    else
+        confirm_search = "";
+
+    if (help || ghelp) {
+        const gchar * const *datadirs = g_get_system_data_dirs ();
+        gint datadirs_i;
+        gchar *docbook, *fname;
+        docbook = g_strconcat (pkg, ".xml", NULL);
+        strv = g_variant_builder_new (G_VARIANT_TYPE ("as"));
+        for (datadirs_i = 0; datadirs[datadirs_i] != NULL; datadirs_i++) {
+            if (ghelp) {
+                fname = g_build_filename (datadirs[datadirs_i], "gnome", "help",
+                                          pkg, "C", "index.page", NULL);
+                g_variant_builder_add (strv, "s", fname);
+                g_free (fname);
+                fname = g_build_filename (datadirs[datadirs_i], "gnome", "help",
+                                          pkg, "C", docbook, NULL);
+                g_variant_builder_add (strv, "s", fname);
+                g_free (fname);
+            }
+            else {
+                fname = g_build_filename (datadirs[datadirs_i], "help", "C",
+                                          pkg, "index.page", NULL);
+                g_variant_builder_add (strv, "s", fname);
+                g_free (fname);
+                fname = g_build_filename (datadirs[datadirs_i], "help", "C",
+                                          pkg, "index.docbook", NULL);
+                g_variant_builder_add (strv, "s", fname);
+                g_free (fname);
+            }
+        }
+        g_free (docbook);
+        info->uri = g_strdup (pkg);
+        g_dbus_connection_call (connection,
+                                "org.freedesktop.PackageKit",
+                                "/org/freedesktop/PackageKit",
+                                "org.freedesktop.PackageKit.Modify",
+                                "InstallProvideFiles",
+                                g_variant_new ("(uass)", xid, strv, confirm_search),
+                                NULL,
+                                G_DBUS_CALL_FLAGS_NONE,
+                                G_MAXINT, NULL,
+                                (GAsyncReadyCallback) view_install_installed,
+                                info);
+        g_variant_builder_unref (strv);
+    }
+    else {
+        strv = g_variant_builder_new (G_VARIANT_TYPE ("as"));
+        g_variant_builder_add (strv, "s", pkg);
+        g_dbus_connection_call (connection,
+                                "org.freedesktop.PackageKit",
+                                "/org/freedesktop/PackageKit",
+                                "org.freedesktop.PackageKit.Modify",
+                                "InstallPackageNames",
+                                g_variant_new ("(uass)", xid, strv, confirm_search),
+                                NULL,
+                                G_DBUS_CALL_FLAGS_NONE,
+                                G_MAXINT, NULL,
+                                (GAsyncReadyCallback) view_install_installed,
+                                info);
+        g_variant_builder_unref (strv);
+    }
+
+    g_object_unref (connection);
+}
 
 static void
 view_scrolled (GtkAdjustment *adjustment,
@@ -1404,6 +1580,7 @@ view_show_error_page (YelpView *view,
         " color: %s;"
         " background-color: %s;"
         " }\n"
+        "p { margin: 1em 0 0 0; }\n"
         "div.note {"
         " padding: 6px;"
         " border-color: %s;"
@@ -1427,22 +1604,29 @@ view_show_error_page (YelpView *view,
         " font-weight: bold;"
         " color: %s;"
         " }\n"
+        "a { color: %s; text-decoration: none; }\n"
         "</style>"
         "</head><body>"
         "<div class='note'><div class='inner'>"
-        "<div class='title'>%s</div>"
-        "<div class='contents'>%s</div>"
+        "%s<div class='contents'>%s%s</div>"
         "</div></div>"
         "</body></html>";
     YelpSettings *settings = yelp_settings_get_default ();
-    gchar *page, *title = NULL;
-    gchar *textcolor, *bgcolor, *noteborder, *notebg, *titlecolor, *noteicon;
+    gchar *page, *title = NULL, *link = NULL, *title_m, *content_beg, *content_end;
+    gchar *textcolor, *bgcolor, *noteborder, *notebg, *titlecolor, *noteicon, *linkcolor;
     gint iconsize;
+    gboolean doc404 = FALSE;
     const gchar *left = (gtk_widget_get_direction((GtkWidget *) view) == GTK_TEXT_DIR_RTL) ? "right" : "left";
+
+    if (priv->uri && yelp_uri_get_document_type (priv->uri) == YELP_URI_DOCUMENT_TYPE_NOT_FOUND)
+        doc404 = TRUE;
     if (error->domain == YELP_ERROR)
         switch (error->code) {
         case YELP_ERROR_NOT_FOUND:
-            title = _("Not Found");
+            if (doc404)
+                title = _("Document Not Found");
+            else
+                title = _("Page Not Found");
             break;
         case YELP_ERROR_CANT_READ:
             title = _("Cannot Read");
@@ -1452,17 +1636,45 @@ view_show_error_page (YelpView *view,
         }
     if (title == NULL)
         title = _("Unknown Error");
+    title_m = g_markup_printf_escaped ("<div class='title'>%s</div>", title);
+
+    content_beg = g_markup_printf_escaped ("<p>%s</p>", error->message);
+    content_end = NULL;
+    if (doc404) {
+        gchar *struri = yelp_uri_get_document_uri (priv->uri);
+        /* do not free */
+        gchar *pkg = NULL, *scheme = NULL;
+        if (g_str_has_prefix (struri, "help:")) {
+            scheme = "help";
+            pkg = struri + 5;
+        }
+        else if (g_str_has_prefix (struri, "ghelp:")) {
+            scheme = "ghelp";
+            pkg = struri + 6;
+        }
+        if (pkg != NULL)
+            content_end = g_markup_printf_escaped ("<p><a href='install-%s:%s'>%s</a></p>",
+                                                   scheme, pkg,
+                                                   _("Search for packages containing this document."));
+        g_free (struri);
+    }
+
+    /* FIXME: reload page after install complete */
+
     textcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_TEXT);
     bgcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_BASE);
     noteborder = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_RED_BORDER);
     notebg = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_YELLOW_BASE);
     titlecolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_TEXT_LIGHT);
+    linkcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_LINK);
     noteicon = yelp_settings_get_icon (settings, YELP_SETTINGS_ICON_WARNING);
     iconsize = yelp_settings_get_icon_size (settings) + 6;
+
     page = g_strdup_printf (errorpage,
                             textcolor, bgcolor, noteborder, notebg, noteicon,
                             left, iconsize, left, iconsize, left, iconsize,
-                            titlecolor, title, error->message);
+                            titlecolor, linkcolor, title_m, content_beg,
+                            (content_end != NULL) ? content_end : "");
     g_object_set (view, "state", YELP_VIEW_STATE_ERROR, NULL);
     g_signal_emit (view, signals[LOADED], 0);
     g_signal_handler_block (view, priv->navigation_requested);
@@ -1473,6 +1685,10 @@ view_show_error_page (YelpView *view,
                                  "file:///error/");
     g_signal_handler_unblock (view, priv->navigation_requested);
     g_error_free (error);
+    g_free (title_m);
+    g_free (content_beg);
+    if (content_end != NULL)
+        g_free (content_end);
     g_free (page);
 }
 
@@ -1538,7 +1754,18 @@ uri_resolved (YelpUri  *uri,
 
     switch (yelp_uri_get_document_type (uri)) {
     case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
-        g_signal_emit (view, signals[EXTERNAL_URI], 0, uri);
+        g_object_set (view, "state", priv->prevstate, NULL);
+        struri = yelp_uri_get_canonical_uri (uri);
+        if (g_str_has_prefix (struri, "install:") ||
+            g_str_has_prefix (struri, "install-ghelp:") ||
+            g_str_has_prefix (struri, "install-help:")) {
+            view_install_uri (view, struri);
+        }
+        else {
+            gboolean result;
+            g_signal_emit (view, signals[EXTERNAL_URI], 0, uri, &result);
+        }
+        g_free (struri);
         return;
     case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
         struri = yelp_uri_get_canonical_uri (uri);

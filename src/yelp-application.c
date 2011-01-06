@@ -45,7 +45,6 @@ static gboolean editor_mode = FALSE;
 
 enum {
     READ_LATER_CHANGED,
-    HELP_INSTALLED,
     LAST_SIGNAL
 };
 static gint signals[LAST_SIGNAL] = { 0 };
@@ -166,14 +165,6 @@ yelp_application_class_init (YelpApplicationClass *klass)
 
     signals[READ_LATER_CHANGED] =
         g_signal_new ("read-later-changed",
-                      G_TYPE_FROM_CLASS (klass),
-                      G_SIGNAL_RUN_LAST,
-                      0, NULL, NULL,
-                      g_cclosure_marshal_VOID__STRING,
-                      G_TYPE_NONE, 1, G_TYPE_STRING);
-
-    signals[HELP_INSTALLED] =
-        g_signal_new ("help-installed",
                       G_TYPE_FROM_CLASS (klass),
                       G_SIGNAL_RUN_LAST,
                       0, NULL, NULL,
@@ -860,156 +851,6 @@ yelp_application_get_read_later (YelpApplication *app,
     GSettings *settings = application_get_doc_settings (app, doc_uri);
 
     return g_settings_get_value (settings, "readlater");
-}
-
-typedef struct _YelpHelpInstallInfo YelpHelpInstallInfo;
-struct _YelpHelpInstallInfo {
-    YelpApplication *app;
-    gchar *uri;
-};
-
-static void
-help_installed (GDBusConnection     *connection,
-                GAsyncResult        *res,
-                YelpHelpInstallInfo *info)
-{
-    GError *error = NULL;
-    g_dbus_connection_call_finish (connection, res, &error);
-
-    if (error != NULL)
-        g_error_free (error);
-    else
-        g_signal_emit (info->app, signals[HELP_INSTALLED], 0, info->uri);
-
-    g_free (info->uri);
-    g_object_unref (info->app);
-    g_free (info);
-}
-
-void
-yelp_application_install_help (YelpApplication *app,
-                               const gchar     *uri,
-                               GtkWindow       *window)
-{
-    const gchar * const *datadirs = g_get_system_data_dirs ();
-    YelpApplicationPrivate *priv = GET_PRIV (app);
-    gint datadirs_i;
-    GVariantBuilder *strv;
-    guint32 xid = 0;
-    gboolean ghelp;
-    const gchar *docname;
-    gchar *docbook, *fname;
-    YelpHelpInstallInfo *info;
-
-    if (g_str_has_prefix (uri, "help:")) {
-        ghelp = FALSE;
-        docname = (const gchar *) uri + 5;
-    }
-    else if (g_str_has_prefix (uri, "ghelp:")) {
-        ghelp = TRUE;
-        docname = (const gchar *) uri + 6;
-    }
-    else
-        return;
-    docbook = g_strconcat (docname, ".xml", NULL);
-
-    info = g_new0 (YelpHelpInstallInfo, 1);
-    info->app = g_object_ref (app);
-    info->uri = g_strdup (uri);
-
-    if (window != NULL)
-        xid = gdk_x11_window_get_xid (gtk_widget_get_window (GTK_WIDGET (window)));
-
-    strv = g_variant_builder_new (G_VARIANT_TYPE ("as"));
-    for (datadirs_i = 0; datadirs[datadirs_i] != NULL; datadirs_i++) {
-        if (ghelp) {
-            fname = g_build_filename (datadirs[datadirs_i], "gnome", "help",
-                                      docname, "C", "index.page", NULL);
-            g_variant_builder_add (strv, "s", fname);
-            g_free (fname);
-            fname = g_build_filename (datadirs[datadirs_i], "gnome", "help",
-                                      docname, "C", docbook, NULL);
-            g_variant_builder_add (strv, "s", fname);
-            g_free (fname);
-        }
-        else {
-            fname = g_build_filename (datadirs[datadirs_i], "help", "C",
-                                      docname, "index.page", NULL);
-            g_variant_builder_add (strv, "s", fname);
-            g_free (fname);
-            fname = g_build_filename (datadirs[datadirs_i], "help", "C",
-                                      docname, "index.docbook", NULL);
-            g_variant_builder_add (strv, "s", fname);
-            g_free (fname);
-        }
-    }
-    g_free (docbook);
-    g_dbus_connection_call (priv->connection,
-                            "org.freedesktop.PackageKit",
-                            "/org/freedesktop/PackageKit",
-                            "org.freedesktop.PackageKit.Modify",
-                            "InstallProvideFiles",
-                            g_variant_new ("(uass)", xid, strv, "hide-warning"),
-                            NULL,
-                            G_DBUS_CALL_FLAGS_NONE,
-                            G_MAXINT, NULL,
-                            (GAsyncReadyCallback) help_installed,
-                            info);
-    g_variant_builder_unref (strv);
-}
-
-static void
-packages_installed (GDBusConnection *connection,
-                    GAsyncResult    *res,
-                    YelpApplication *app)
-{
-    GError *error = NULL;
-    g_dbus_connection_call_finish (connection, res, &error);
-    if (error) {
-        const gchar *err = NULL;
-        if (error->domain == G_DBUS_ERROR) {
-            if (error->code == G_DBUS_ERROR_SERVICE_UNKNOWN)
-                err = _("You do not have PackageKit. Package install links require PackageKit.");
-            else
-                err = error->message;
-        }
-        if (err != NULL) {
-            GtkWidget *dialog = gtk_message_dialog_new (NULL, 0,
-                                                        GTK_MESSAGE_ERROR,
-                                                        GTK_BUTTONS_CLOSE,
-                                                        "%s", err);
-            gtk_dialog_run ((GtkDialog *) dialog);
-            gtk_widget_destroy (dialog);
-        }
-        g_error_free (error);
-    }
-}
-
-void
-yelp_application_install_package (YelpApplication  *app,
-                                  const gchar      *pkg,
-                                  const gchar      *alt,
-                                  GtkWindow        *window)
-{
-    GVariantBuilder *strv;
-    YelpApplicationPrivate *priv = GET_PRIV (app);
-    guint32 xid = 0;
-    if (window != NULL)
-        xid = gdk_x11_window_get_xid (gtk_widget_get_window (GTK_WIDGET (window)));
-    strv = g_variant_builder_new (G_VARIANT_TYPE ("as"));
-    g_variant_builder_add (strv, "s", pkg);
-    g_dbus_connection_call (priv->connection,
-                            "org.freedesktop.PackageKit",
-                            "/org/freedesktop/PackageKit",
-                            "org.freedesktop.PackageKit.Modify",
-                            "InstallPackageNames",
-                            g_variant_new ("(uass)", xid, strv, ""),
-                            NULL,
-                            G_DBUS_CALL_FLAGS_NONE,
-                            -1, NULL,
-                            (GAsyncReadyCallback) packages_installed,
-                            app);
-    g_variant_builder_unref (strv);
 }
 
 static void

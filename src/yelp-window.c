@@ -95,9 +95,6 @@ static void          app_read_later_changed       (YelpApplication    *app,
 static void          app_bookmarks_changed        (YelpApplication    *app,
                                                    const gchar        *doc_uri,
                                                    YelpWindow         *window);
-static void          app_help_installed           (YelpApplication    *app,
-                                                   const gchar        *doc_uri,
-                                                   YelpWindow         *window);
 static void          window_set_bookmarks         (YelpWindow         *window,
                                                    const gchar        *doc_uri);
 static void          window_set_bookmark_action   (YelpWindow         *window);
@@ -119,9 +116,6 @@ static gboolean      entry_focus_out              (YelpLocationEntry  *entry,
                                                    GdkEventFocus      *event,
                                                    YelpWindow         *window);
 
-static void          view_external_uri            (YelpView           *view,
-                                                   YelpUri            *uri,
-                                                   YelpWindow         *window);
 static void          view_new_window              (YelpView           *view,
                                                    YelpUri            *uri,
                                                    YelpWindow         *window);
@@ -228,9 +222,7 @@ struct _YelpWindowPrivate {
     GtkWidget    *bookmarks_list;
     GtkListStore *bookmarks_store;
     gulong        bookmarks_changed;
-
     gulong        read_later_changed;
-    gulong        help_installed;
 
     /* no refs on these, owned by containers */
     YelpView *view;
@@ -382,11 +374,6 @@ yelp_window_dispose (GObject *object)
     if (priv->bookmarks_changed) {
         g_source_remove (priv->bookmarks_changed);
         priv->bookmarks_changed = 0;
-    }
-
-    if (priv->help_installed) {
-        g_source_remove (priv->help_installed);
-        priv->help_installed = 0;
     }
 
     if (priv->align_location) {
@@ -607,7 +594,6 @@ window_construct (YelpWindow *window)
     priv->read_later_vbox = gtk_vbox_new (FALSE, 0);
     gtk_box_pack_start (GTK_BOX (vbox), priv->read_later_vbox, FALSE, FALSE, 0);
 
-    g_signal_connect (priv->view, "external-uri", G_CALLBACK (view_external_uri), window);
     g_signal_connect (priv->view, "new-view-requested", G_CALLBACK (view_new_window), window);
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
     g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), window);
@@ -624,10 +610,6 @@ window_construct (YelpWindow *window)
     gtk_drag_dest_add_uri_targets (GTK_WIDGET (window));
     g_signal_connect (window, "drag-data-received",
                       G_CALLBACK (window_drag_received), NULL);
-
-    priv->help_installed =
-        g_signal_connect (priv->application, "help-installed",
-                          G_CALLBACK (app_help_installed), window);
 }
 
 /******************************************************************************/
@@ -903,36 +885,6 @@ app_bookmarks_changed (YelpApplication *app,
 
     g_free (this_doc_uri);
     g_object_unref (uri);
-}
-
-static void
-app_help_installed (YelpApplication  *app,
-                    const gchar      *doc_uri,
-                    YelpWindow       *window)
-{
-    YelpViewState state;
-    YelpWindowPrivate *priv = GET_PRIV (window);
-
-    g_object_get (priv->view, "state", &state, NULL);
-
-    if (state == YELP_VIEW_STATE_ERROR) {
-        YelpUri *uri;
-        gchar *view_doc_uri;
-
-        g_object_get (priv->view, "yelp-uri", &uri, NULL);
-        if (uri == NULL)
-            return;
-        view_doc_uri = yelp_uri_get_document_uri (uri);
-
-        if (g_str_equal (view_doc_uri, doc_uri)) {
-            gchar *fulluri = yelp_uri_get_canonical_uri (uri);
-            yelp_view_load (priv->view, fulluri);
-            g_free (fulluri);
-        }
-
-        g_free (view_doc_uri);
-        g_object_unref (uri);
-    }
 }
 
 typedef struct _YelpMenuEntry YelpMenuEntry;
@@ -1473,24 +1425,6 @@ entry_focus_out (YelpLocationEntry  *entry,
 }
 
 static void
-view_external_uri (YelpView   *view,
-                   YelpUri    *uri,
-                   YelpWindow *window)
-{
-    gchar *struri = yelp_uri_get_canonical_uri (uri);
-    if (g_str_has_prefix (struri, "install:")) {
-        YelpWindowPrivate *priv = GET_PRIV (window);
-        gchar *pkg = struri + 8;
-        yelp_application_install_package (priv->application, pkg, "",
-                                          (GtkWindow *) window);
-    }
-    else
-        g_app_info_launch_default_for_uri (struri, NULL, NULL);
-
-    g_free (struri);
-}
-
-static void
 view_new_window (YelpView   *view,
                  YelpUri    *uri,
                  YelpWindow *window)
@@ -1516,16 +1450,7 @@ view_loaded (YelpView   *view,
     doc_uri = yelp_uri_get_document_uri (uri);
     gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)), NULL);
 
-    if (state == YELP_VIEW_STATE_ERROR) {
-        if (yelp_uri_get_document_type (uri) == YELP_URI_DOCUMENT_TYPE_NOT_FOUND) {
-            if (g_str_has_prefix (doc_uri, "ghelp:") ||
-                g_str_has_prefix (doc_uri, "help:")) {
-                yelp_application_install_help (priv->application, doc_uri,
-                                               (GtkWindow *) window);
-            }
-        }
-    }
-    else {
+    if (state != YELP_VIEW_STATE_ERROR) {
         gchar *page_id, *icon, *title;
         g_object_get (view,
                       "page-id", &page_id,

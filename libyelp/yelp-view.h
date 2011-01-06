@@ -50,6 +50,9 @@ struct _YelpView
 struct _YelpViewClass
 {
     WebKitWebViewClass  parent_class;
+
+    gboolean    (* external_uri)            (YelpView    *view,
+                                             YelpUri     *uri);
 };
 
 typedef enum {
