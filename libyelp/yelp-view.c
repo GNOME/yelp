@@ -211,6 +211,7 @@ back_entry_free (YelpBackEntry *back)
 typedef struct _YelpViewPrivate YelpViewPrivate;
 struct _YelpViewPrivate {
     YelpUri       *uri;
+    YelpUri       *resolve_uri;
     gulong         uri_resolved;
     gchar         *bogus_uri;
     YelpDocument  *document;
@@ -291,10 +292,7 @@ yelp_view_dispose (GObject *object)
 {
     YelpViewPrivate *priv = GET_PRIV (object);
 
-    if (priv->uri) {
-        g_object_unref (priv->uri);
-        priv->uri = NULL;
-    }
+    view_clear_load (YELP_VIEW (object));
 
     if (priv->vadjuster > 0) {
         g_source_remove (priv->vadjuster);
@@ -304,12 +302,6 @@ yelp_view_dispose (GObject *object)
     if (priv->hadjuster > 0) {
         g_source_remove (priv->hadjuster);
         priv->hadjuster = 0;
-    }
-
-    if (priv->cancellable) {
-        g_cancellable_cancel (priv->cancellable);
-        g_object_unref (priv->cancellable);
-        priv->cancellable = NULL;
     }
 
     if (priv->action_group) {
@@ -567,7 +559,6 @@ yelp_view_load_uri (YelpView *view,
     YelpViewPrivate *priv = GET_PRIV (view);
     GParamSpec *spec;
 
-    view_clear_load (view);
     g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
 
     g_free (priv->page_id);
@@ -608,8 +599,15 @@ yelp_view_load_uri (YelpView *view,
                                                            "YelpViewGoNext"),
                               FALSE);
 
-    priv->uri = g_object_ref (uri);
     if (!yelp_uri_is_resolved (uri)) {
+        if (priv->resolve_uri != NULL) {
+            if (priv->uri_resolved != 0) {
+                g_signal_handler_disconnect (priv->resolve_uri, priv->uri_resolved);
+                priv->uri_resolved = 0;
+            }
+            g_object_unref (priv->resolve_uri);
+        }
+        priv->resolve_uri = g_object_ref (uri);
         priv->uri_resolved = g_signal_connect (uri, "resolved",
                                                G_CALLBACK (uri_resolved),
                                                view);
@@ -625,14 +623,19 @@ yelp_view_load_document (YelpView     *view,
                          YelpUri      *uri,
                          YelpDocument *document)
 {
+    GParamSpec *spec;
     YelpViewPrivate *priv = GET_PRIV (view);
 
     g_return_if_fail (yelp_uri_is_resolved (uri));
 
-    view_clear_load (view);
     g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
 
-    priv->uri = g_object_ref (uri);
+    g_object_ref (uri);
+    view_clear_load (view);
+    priv->uri = uri;
+    spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                         "yelp-uri");
+    g_signal_emit_by_name (view, "notify::yelp-uri", spec);
     g_object_ref (document);
     if (priv->document)
         g_object_unref (document);
@@ -747,6 +750,19 @@ view_install_installed (GDBusConnection *connection,
         }
         g_error_free (error);
     }
+    else if (info->uri) {
+        gchar *struri, *docuri;
+        YelpViewPrivate *priv = GET_PRIV (info->view);
+        docuri = yelp_uri_get_document_uri (priv->uri);
+        if (g_str_equal (docuri, info->uri)) {
+            struri = yelp_uri_get_canonical_uri (priv->uri);
+            yelp_view_load (info->view, struri);
+            g_free (struri);
+        }
+        g_free (docuri);
+    }
+
+    yelp_install_info_free (info);
 }
 
 static void
@@ -828,7 +844,7 @@ view_install_uri (YelpView    *view,
             }
         }
         g_free (docbook);
-        info->uri = g_strdup (pkg);
+        info->uri = g_strconcat (ghelp ? "ghelp:" : "help:", pkg, NULL);
         g_dbus_connection_call (connection,
                                 "org.freedesktop.PackageKit",
                                 "/org/freedesktop/PackageKit",
@@ -1512,11 +1528,16 @@ view_clear_load (YelpView *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
 
-    if (priv->uri) {
+    if (priv->resolve_uri != NULL) {
         if (priv->uri_resolved != 0) {
-            g_signal_handler_disconnect (priv->uri, priv->uri_resolved);
+            g_signal_handler_disconnect (priv->resolve_uri, priv->uri_resolved);
             priv->uri_resolved = 0;
         }
+        g_object_unref (priv->resolve_uri);
+    }
+    priv->resolve_uri = NULL;
+
+    if (priv->uri) {
         g_object_unref (priv->uri);
         priv->uri = NULL;
     }
@@ -1659,8 +1680,6 @@ view_show_error_page (YelpView *view,
         g_free (struri);
     }
 
-    /* FIXME: reload page after install complete */
-
     textcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_TEXT);
     bgcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_BASE);
     noteborder = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_RED_BORDER);
@@ -1750,7 +1769,11 @@ uri_resolved (YelpUri  *uri,
     gchar *struri;
     GParamSpec *spec;
 
-    debug_print (DB_FUNCTION, "entering\n");
+    if (yelp_uri_get_document_type (uri) != YELP_URI_DOCUMENT_TYPE_EXTERNAL) {
+        g_object_ref (uri);
+        view_clear_load (view);
+        priv->uri = uri;
+    }
 
     switch (yelp_uri_get_document_type (uri)) {
     case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
