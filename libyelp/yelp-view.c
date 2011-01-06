@@ -1669,6 +1669,7 @@ view_show_error_page (YelpView *view,
                             titlecolor, linkcolor, title_m, content_beg,
                             (content_end != NULL) ? content_end : "");
 
+    g_object_set (view, "state", YELP_VIEW_STATE_ERROR, NULL);
 
     if (doc404) {
         g_free (priv->root_title);
@@ -1703,7 +1704,6 @@ view_show_error_page (YelpView *view,
                                          "page-icon");
     g_signal_emit_by_name (view, "notify::page-icon", spec);
 
-    g_object_set (view, "state", YELP_VIEW_STATE_ERROR, NULL);
     g_signal_emit (view, signals[LOADED], 0);
     g_signal_handler_block (view, priv->navigation_requested);
     webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
