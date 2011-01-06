@@ -395,6 +395,8 @@ docbook_process (YelpDocbookDocument *docbook)
         goto done;
     }
 
+    priv->state = DOCBOOK_STATE_PARSED;
+
     priv->transform = yelp_transform_new (STYLESHEET);
     priv->chunk_ready =
         g_signal_connect (priv->transform, "chunk-ready",
