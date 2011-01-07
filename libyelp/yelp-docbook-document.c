@@ -197,8 +197,6 @@ yelp_docbook_document_new (YelpUri *uri)
 
     priv->uri = g_object_ref (uri);
 
-    yelp_document_set_page_id (YELP_DOCUMENT (docbook), "//about", "//about");
-
     priv->sections =
         GTK_TREE_MODEL (gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_STRING));
 
@@ -359,14 +357,10 @@ docbook_process (YelpDocbookDocument *docbook)
         priv->root_id = g_strdup (id);
         yelp_document_set_page_id (document, NULL, (gchar *) id);
         yelp_document_set_page_id (document, "//index", (gchar *) id);
-        yelp_document_set_prev_id (document, (gchar *) id, "//about");
-        yelp_document_set_next_id (document, "//about", (gchar *) id);
     }
     else {
         priv->root_id = g_strdup ("//index");
         yelp_document_set_page_id (document, NULL, "//index");
-        yelp_document_set_prev_id (document, "//index", "//about");
-        yelp_document_set_next_id (document, "//about", "//index");
         /* add the id attribute to the root element with value "index"
          * so when we try to load the document later, it doesn't fail */
         if (priv->xmlcur->ns)
@@ -377,7 +371,6 @@ docbook_process (YelpDocbookDocument *docbook)
             xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST "//index");
     }
     yelp_document_set_root_id (document, priv->root_id, priv->root_id);
-    yelp_document_set_root_id (document, "//about", priv->root_id);
     g_mutex_unlock (priv->mutex);
 
     g_mutex_lock (priv->mutex);

@@ -69,6 +69,7 @@ typedef struct {
 
     gchar         *page_title;
     gchar         *page_desc;
+    gchar         *next_page;
 } MallardPageData;
 
 static void           yelp_mallard_document_class_init (YelpMallardDocumentClass *klass);
@@ -348,6 +349,14 @@ mallard_think (YelpMallardDocument *mallard)
                 yelp_document_set_page_desc ((YelpDocument *) mallard,
                                              page_data->page_id,
                                              page_data->page_desc);
+                if (page_data->next_page != NULL) {
+                    yelp_document_set_next_id ((YelpDocument *) mallard,
+                                               page_data->page_id,
+                                               page_data->next_page);
+                    yelp_document_set_prev_id ((YelpDocument *) mallard,
+                                               page_data->next_page,
+                                               page_data->page_id);
+                }
                 yelp_document_signal ((YelpDocument *) mallard,
                                       page_data->page_id,
                                       YELP_DOCUMENT_SIGNAL_INFO,
@@ -606,20 +615,25 @@ mallard_page_data_info (MallardPageData *page_data,
             xmlAddChild (cache_node, title_node);
 
             type = xmlGetProp (child, BAD_CAST "type");
-            role = xmlGetProp (child, BAD_CAST "role");
 
-            if (xmlStrEqual (type, BAD_CAST "link") && role == NULL)
-                page_data->link_title = TRUE;
-            if (xmlStrEqual (type, BAD_CAST "sort"))
-                page_data->sort_title = TRUE;
-            if (xmlStrEqual (type, BAD_CAST "text")) {
-                YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
-                xmlXPathObjectPtr obj;
-                page_data->xpath->node = child;
-                obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
-                g_free (page_data->page_title);
-                page_data->page_title = g_strdup (obj->stringval);
-                xmlXPathFreeObject (obj);
+            if (type != NULL) {
+                role = xmlGetProp (child, BAD_CAST "role");
+                if (xmlStrEqual (type, BAD_CAST "link") && role == NULL)
+                    page_data->link_title = TRUE;
+                if (xmlStrEqual (type, BAD_CAST "sort"))
+                    page_data->sort_title = TRUE;
+                if (xmlStrEqual (type, BAD_CAST "text")) {
+                    YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
+                    xmlXPathObjectPtr obj;
+                    page_data->xpath->node = child;
+                    obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
+                    g_free (page_data->page_title);
+                    page_data->page_title = g_strdup (obj->stringval);
+                    xmlXPathFreeObject (obj);
+                }
+                if (role != NULL)
+                    xmlFree (role);
+                xmlFree (type);
             }
         }
         else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "desc")) {
@@ -633,7 +647,24 @@ mallard_page_data_info (MallardPageData *page_data,
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
         }
         else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "link")) {
+            xmlChar *type, *next;
+
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
+
+            type = xmlGetProp (child, BAD_CAST "type");
+            if (type != NULL) {
+                if (xmlStrEqual (type, "next")) {
+                    next = xmlGetProp (child, BAD_CAST "xref");
+                    if (next != NULL) {
+                        if (page_data->next_page != NULL)
+                            g_free (page_data->next_page);
+                        page_data->next_page = g_strdup (next);
+                        xmlFree (next);
+                    }
+                }
+                xmlFree (type);
+            }
+
         }
         else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "revision")) {
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
@@ -698,6 +729,7 @@ mallard_page_data_free (MallardPageData *page_data)
         xmlXPathFreeContext (page_data->xpath);
     g_free (page_data->page_title);
     g_free (page_data->page_desc);
+    g_free (page_data->next_page);
     g_free (page_data);
 }
 
