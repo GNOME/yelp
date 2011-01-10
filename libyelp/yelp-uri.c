@@ -965,10 +965,10 @@ decode_url (const gchar *url)
 {
     if (!url) return NULL;
 
-    unsigned int len = strlen (url) + 1;
+    unsigned int len = strlen (url);
     int hex;
-    gchar *ret = g_new (gchar, len);
-    const gchar *ptr = url, *end = url+len;
+    gchar *ret = g_new (gchar, len + 1);
+    const gchar *ptr = url, *end = url + len;
     gchar *retptr = ret, *tmp;
 
     while (ptr < end) {
