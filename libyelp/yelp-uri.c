@@ -995,66 +995,6 @@ resolve_man_uri (YelpUri *uri)
     }
 }
 
-/*
-  Return 1 if ch is a number from 0 to 9 or a letter a-f or A-F and 0
-  otherwise. This is sort of not utf8-safe, but since we are only
-  looking for 7-bit things, it doesn't matter.
- */
-static int
-is_hex (gchar ch)
-{
-    if (((48 <= ch) && (ch <= 57)) ||
-        ((65 <= ch) && (ch <= 70)) ||
-        ((97 <= ch) && (ch <= 102)))
-        return 1;
-    return 0;
-}
-
-/*
-  Return a newly allocated string, where %ab for a,b in [0, f] is
-  replaced by the character it represents.
- */
-static gchar*
-decode_url (const gchar *url)
-{
-    if (!url) return NULL;
-
-    unsigned int len = strlen (url);
-    int hex;
-    gchar *ret = g_new (gchar, len + 1);
-    const gchar *ptr = url, *end = url + len;
-    gchar *retptr = ret, *tmp;
-
-    while (ptr < end) {
-        if (*ptr == '%' && is_hex(*(ptr + 1)) && is_hex(*(ptr + 2))) {
-            *retptr = *(ptr+1);
-            *(retptr+1) = *(ptr+2);
-            *(retptr+2) = '\0';
-
-            sscanf (retptr, "%x", &hex);
-
-            if (hex < 0 || hex > 127) {
-                g_warning ("Skipping non-7-bit character.");
-                ptr++;
-                continue;
-            }
-            *retptr = (gchar)hex;
-
-            retptr++;
-            ptr += 3;
-        }
-        else {
-            tmp = g_utf8_next_char(ptr);
-            memcpy (retptr, ptr, (tmp-ptr));
-            retptr += tmp-ptr;
-            ptr = tmp;
-        }
-    }
-    *retptr = '\0';
-
-    return ret;
-}
-
 static void
 resolve_info_uri (YelpUri *uri)
 {
@@ -1216,7 +1156,7 @@ resolve_xref_uri (YelpUri *uri)
           the url again here.
          */
         gchar* tmp = priv->page_id;
-        priv->page_id = decode_url (priv->page_id);
+        priv->page_id = g_uri_unescape_string (tmp, NULL);
         g_free (tmp);
     }
 
