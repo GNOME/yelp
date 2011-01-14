@@ -1,4 +1,4 @@
-SUBDIRS = icons
+SUBDIRS = dtd icons
 
 #This has to be defined, because GSETTINGS_CHECK_RULE adds to it
 MOSTLYCLEANFILES =

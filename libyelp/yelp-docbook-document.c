@@ -38,6 +38,8 @@
 #include "yelp-debug.h"
 
 #define STYLESHEET DATADIR"/yelp/xslt/db2html.xsl"
+#define DEFAULT_CATALOG "file:///etc/xml/catalog"
+#define YELP_CATALOG "file://"DATADIR"/yelp/dtd/catalog"
 
 typedef enum {
     DOCBOOK_STATE_BLANK,   /* Brand new, run transform as needed */
@@ -125,6 +127,19 @@ yelp_docbook_document_class_init (YelpDocbookDocumentClass *klass)
 {
     GObjectClass      *object_class   = G_OBJECT_CLASS (klass);
     YelpDocumentClass *document_class = YELP_DOCUMENT_CLASS (klass);
+    const gchar *catalog = g_getenv ("XML_CATALOG_FILES");
+
+    /* We ship a faux DocBook catalog. It just contains the common entity
+     * definitions. Documents can use the named entities they expect to
+     * be able to use, but we don't have to depend on docbook-dtds.
+     */
+    if (catalog == NULL)
+        catalog = DEFAULT_CATALOG;
+    if (!strstr(catalog, YELP_CATALOG)) {
+        gchar *newcat = g_strconcat (YELP_CATALOG, " ", catalog, NULL);
+        g_setenv ("XML_CATALOG_FILES", newcat, TRUE);
+        g_free (newcat);
+    }
 
     object_class->dispose = yelp_docbook_document_dispose;
     object_class->finalize = yelp_docbook_document_finalize;
