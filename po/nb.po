@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.91.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-17 14:27+0100\n"
-"PO-Revision-Date: 2010-12-17 14:31+0100\n"
+"POT-Creation-Date: 2011-01-15 13:53+0100\n"
+"PO-Revision-Date: 2011-01-15 13:53+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -876,26 +876,26 @@ msgstr "Ugyldige komprimerte data"
 msgid "Not enough memory"
 msgstr "Ikke nok minne"
 
-#: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:233
-#: ../libyelp/yelp-mallard-document.c:259
-#: ../libyelp/yelp-mallard-document.c:406 ../libyelp/yelp-man-document.c:269
+#: ../libyelp/yelp-docbook-document.c:277 ../libyelp/yelp-info-document.c:233
+#: ../libyelp/yelp-mallard-document.c:260
+#: ../libyelp/yelp-mallard-document.c:415 ../libyelp/yelp-man-document.c:269
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Siden «%s» ble ikke funnet i dokumentet «%s»."
 
-#: ../libyelp/yelp-docbook-document.c:298 ../libyelp/yelp-info-document.c:367
+#: ../libyelp/yelp-docbook-document.c:311 ../libyelp/yelp-info-document.c:367
 #: ../libyelp/yelp-man-document.c:403
 #, c-format
 msgid "The file does not exist."
 msgstr "Filen eksisterer ikke."
 
-#: ../libyelp/yelp-docbook-document.c:308 ../libyelp/yelp-info-document.c:377
+#: ../libyelp/yelp-docbook-document.c:321 ../libyelp/yelp-info-document.c:377
 #: ../libyelp/yelp-man-document.c:413
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Filen «%s» eksisterer ikke."
 
-#: ../libyelp/yelp-docbook-document.c:323
+#: ../libyelp/yelp-docbook-document.c:336
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -904,7 +904,7 @@ msgstr ""
 "Filen «%s» kunne ikke leses fordi den ikke er et gyldig utformet XML-"
 "dokument."
 
-#: ../libyelp/yelp-docbook-document.c:336
+#: ../libyelp/yelp-docbook-document.c:349
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -913,11 +913,11 @@ msgstr ""
 "Filen «%s» kunne ikke tolkes fordi den eller en inkludert fil ikke er "
 "velformet XML."
 
-#: ../libyelp/yelp-docbook-document.c:743
+#: ../libyelp/yelp-docbook-document.c:753
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: ../libyelp/yelp-docbook-document.c:804 ../libyelp/yelp-info-document.c:310
+#: ../libyelp/yelp-docbook-document.c:814 ../libyelp/yelp-info-document.c:310
 #: ../libyelp/yelp-man-document.c:345
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
@@ -962,25 +962,18 @@ msgstr "Slå på søk"
 msgid "Whether the location entry can be used as a search field"
 msgstr "Om lokasjonsfeltet kan brukes som et søkefelt"
 
-#: ../libyelp/yelp-location-entry.c:426 ../src/yelp-window.c:302
+#: ../libyelp/yelp-location-entry.c:426 ../src/yelp-window.c:300
 msgid "Search..."
 msgstr "Søk…"
 
-#: ../libyelp/yelp-location-entry.c:1333
+#: ../libyelp/yelp-location-entry.c:1335
 msgid "Loading"
 msgstr "Laster"
 
-#: ../libyelp/yelp-mallard-document.c:301
+#: ../libyelp/yelp-mallard-document.c:302
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Katalogen «%s» eksisterer ikke."
-
-#: ../libyelp/yelp-man-document.c:444
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr ""
-"Filen «%s» kunne ikke tolkes fordi den ikke er en velformet manualside."
 
 #: ../libyelp/yelp-settings.c:148
 msgid "GtkSettings"
@@ -1043,87 +1036,93 @@ msgstr "Ingen href-attributt funnet på yelp:document\n"
 msgid "Out of memory"
 msgstr "Ikke mer minne"
 
-#: ../libyelp/yelp-view.c:120
+#: ../libyelp/yelp-view.c:126
 msgid "_Print..."
 msgstr "S_kriv ut…"
 
-#: ../libyelp/yelp-view.c:125
+#: ../libyelp/yelp-view.c:131
 msgid "_Back"
 msgstr "Til_bake"
 
-#: ../libyelp/yelp-view.c:130
+#: ../libyelp/yelp-view.c:136
 msgid "_Forward"
 msgstr "_Fremover"
 
-#: ../libyelp/yelp-view.c:135
+#: ../libyelp/yelp-view.c:141
 msgid "_Previous Page"
 msgstr "_Forrige side"
 
-#: ../libyelp/yelp-view.c:140
+#: ../libyelp/yelp-view.c:146
 msgid "_Next Page"
 msgstr "_Neste side"
 
-#: ../libyelp/yelp-view.c:408
+#: ../libyelp/yelp-view.c:415
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:409
+#: ../libyelp/yelp-view.c:416
 msgid "A YelpUri with the current location"
 msgstr "En YelpUri med aktiv lokasjon"
 
-#: ../libyelp/yelp-view.c:417
+#: ../libyelp/yelp-view.c:424
 msgid "Loading State"
 msgstr "Laster tilstand"
 
-#: ../libyelp/yelp-view.c:418
+#: ../libyelp/yelp-view.c:425
 msgid "The loading state of the view"
 msgstr "Tilstand for lasting av visningen"
 
-#: ../libyelp/yelp-view.c:427
+#: ../libyelp/yelp-view.c:434
 msgid "Page ID"
 msgstr "Side-ID"
 
-#: ../libyelp/yelp-view.c:428
+#: ../libyelp/yelp-view.c:435
 msgid "The ID of the root page of the page being viewed"
 msgstr "ID på rotsiden for siden som vises"
 
-#: ../libyelp/yelp-view.c:436
+#: ../libyelp/yelp-view.c:443
 msgid "Root Title"
 msgstr "Rot-tittel"
 
-#: ../libyelp/yelp-view.c:437
+#: ../libyelp/yelp-view.c:444
 msgid "The title of the root page of the page being viewed"
 msgstr "Tittel på rotsiden for siden som vises"
 
-#: ../libyelp/yelp-view.c:445
+#: ../libyelp/yelp-view.c:452
 msgid "Page Title"
 msgstr "Sidetittel"
 
-#: ../libyelp/yelp-view.c:446
+#: ../libyelp/yelp-view.c:453
 msgid "The title of the page being viewed"
 msgstr "Tittel på siden som vises"
 
-#: ../libyelp/yelp-view.c:454
+#: ../libyelp/yelp-view.c:461
 msgid "Page Description"
 msgstr "Beskrivelse av side"
 
-#: ../libyelp/yelp-view.c:455
+#: ../libyelp/yelp-view.c:462
 msgid "The description of the page being viewed"
 msgstr "Beskrivelse av siden som vises"
 
-#: ../libyelp/yelp-view.c:463
+#: ../libyelp/yelp-view.c:470
 msgid "Page Icon"
 msgstr "Sideikon"
 
-#: ../libyelp/yelp-view.c:464
+#: ../libyelp/yelp-view.c:471
 msgid "The icon of the page being viewed"
 msgstr "Ikon for siden som vises"
 
-#: ../libyelp/yelp-view.c:825
+#: ../libyelp/yelp-view.c:712
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr ""
+"Du har ikke installert PackageKit. Lenker for pakkeinstallasjon krever "
+"PackageKit."
+
+#: ../libyelp/yelp-view.c:990
 msgid "Save Image"
 msgstr "Lagre bilde"
 
-#: ../libyelp/yelp-view.c:907
+#: ../libyelp/yelp-view.c:1085
 msgid "Save Code"
 msgstr "Lagre kode"
 
@@ -1133,80 +1132,88 @@ msgstr "Lagre kode"
 #. * probably only be one menu item for mailto link popups anyway,
 #. * so the mnemonic's not that big of a deal.
 #.
-#: ../libyelp/yelp-view.c:1076
+#: ../libyelp/yelp-view.c:1254
 #, c-format
 msgid "Send email to %s"
 msgstr "Send e-post til %s"
 
-#: ../libyelp/yelp-view.c:1086
+#: ../libyelp/yelp-view.c:1264
 msgid "_Open Link"
 msgstr "_Åpne lenke"
 
-#: ../libyelp/yelp-view.c:1091
+#: ../libyelp/yelp-view.c:1269
 msgid "Open Link in New _Window"
 msgstr "Åpne lenke i nytt _vindu"
 
-#: ../libyelp/yelp-view.c:1142
+#: ../libyelp/yelp-view.c:1320
 msgid "_Save Image As..."
 msgstr "_Lagre bilde som…"
 
-#: ../libyelp/yelp-view.c:1144
+#: ../libyelp/yelp-view.c:1322
 msgid "_Save Video As..."
 msgstr "_Lagre video som…"
 
-#: ../libyelp/yelp-view.c:1151
+#: ../libyelp/yelp-view.c:1329
 msgid "S_end Image To..."
 msgstr "S_end bilde til…"
 
-#: ../libyelp/yelp-view.c:1153
+#: ../libyelp/yelp-view.c:1331
 msgid "S_end Video To..."
 msgstr "S_end video til…"
 
-#: ../libyelp/yelp-view.c:1164
+#: ../libyelp/yelp-view.c:1342
 msgid "_Copy Text"
 msgstr "_Kopier tekst"
 
-#: ../libyelp/yelp-view.c:1177
+#: ../libyelp/yelp-view.c:1355
 msgid "C_opy Code Block"
 msgstr "K_opier kodeblokk"
 
-#: ../libyelp/yelp-view.c:1182
+#: ../libyelp/yelp-view.c:1360
 msgid "Save Code _Block As..."
 msgstr "Lagre kode_blokk som…"
 
-#: ../libyelp/yelp-view.c:1359
+#: ../libyelp/yelp-view.c:1542
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Kunne ikke laste dokument for «%s»"
 
-#: ../libyelp/yelp-view.c:1365
+#: ../libyelp/yelp-view.c:1548
 #, c-format
 msgid "Could not load a document"
 msgstr "Kunne ikke laste et dokument"
 
-#: ../libyelp/yelp-view.c:1432
-msgid "Not Found"
-msgstr "Ikke funnet"
+#: ../libyelp/yelp-view.c:1622
+msgid "Document Not Found"
+msgstr "Dokumentet ble ikke funnet"
 
-#: ../libyelp/yelp-view.c:1435
+#: ../libyelp/yelp-view.c:1624
+msgid "Page Not Found"
+msgstr "Siden ble ikke funnet"
+
+#: ../libyelp/yelp-view.c:1627
 msgid "Cannot Read"
 msgstr "Kan ikke lese"
 
-#: ../libyelp/yelp-view.c:1441
+#: ../libyelp/yelp-view.c:1633
 msgid "Unknown Error"
 msgstr "Ukjent feil"
 
-#: ../libyelp/yelp-view.c:1533
+#: ../libyelp/yelp-view.c:1653
+msgid "Search for packages containing this document."
+msgstr "Søk etter pakker som inneholder dette dokumentet."
+
+#: ../libyelp/yelp-view.c:1806
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI «%s» peker ikke til en gyldig side."
 
-#: ../libyelp/yelp-view.c:1539
+#: ../libyelp/yelp-view.c:1812
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URIen peker ikke til en gyldig side."
 
-#: ../libyelp/yelp-view.c:1547
+#: ../libyelp/yelp-view.c:1818
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI «%s» kunne ikke tolkes."
@@ -1235,101 +1242,93 @@ msgstr "Gjør tekststørrelsen mindre"
 msgid "Show Text _Cursor"
 msgstr "Vis tekstmar_kør"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1524
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1533
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjelp"
 
-#: ../src/yelp-application.c:785
-msgid ""
-"You do not have PackageKit installed. Package installation links require "
-"PackageKit."
-msgstr ""
-"Du har ikke installert PackageKit. Lenker for pakkeinstallasjon krever "
-"PackageKit."
-
-#: ../src/yelp-window.c:267
+#: ../src/yelp-window.c:265
 msgid "_Page"
 msgstr "Si_de"
 
-#: ../src/yelp-window.c:268
+#: ../src/yelp-window.c:266
 msgid "_View"
 msgstr "_Visning"
 
-#: ../src/yelp-window.c:269
+#: ../src/yelp-window.c:267
 msgid "_Go"
 msgstr "_Naviger"
 
-#: ../src/yelp-window.c:270
+#: ../src/yelp-window.c:268
 msgid "_Bookmarks"
 msgstr "_Bokmerker"
 
-#: ../src/yelp-window.c:273
+#: ../src/yelp-window.c:271
 msgid "_New Window"
 msgstr "_Nytt vindu"
 
-#: ../src/yelp-window.c:278
+#: ../src/yelp-window.c:276
 msgid "_Close"
 msgstr "_Lukk"
 
-#: ../src/yelp-window.c:283
+#: ../src/yelp-window.c:281
 msgid "_All Documents"
 msgstr "_Alle dokumenter"
 
-#: ../src/yelp-window.c:287
+#: ../src/yelp-window.c:285
 msgid "_Add Bookmark"
 msgstr "_Legg til bokmerke"
 
-#: ../src/yelp-window.c:292
+#: ../src/yelp-window.c:290
 msgid "_Edit Bookmarks"
 msgstr "R_ediger bokmerker"
 
-#: ../src/yelp-window.c:297
+#: ../src/yelp-window.c:295
 msgid "Find in Page..."
 msgstr "Finn på siden…"
 
-#: ../src/yelp-window.c:307
+#: ../src/yelp-window.c:305
 msgid "Open Location"
 msgstr "Åpne lokasjon"
 
-#: ../src/yelp-window.c:333
+#: ../src/yelp-window.c:331
 msgid "Application"
 msgstr "Program"
 
-#: ../src/yelp-window.c:334
+#: ../src/yelp-window.c:332
 msgid "A YelpApplication instance that controls this window"
 msgstr "En YelpApplication-instans som kontrollerer dette vinduet"
 
-#: ../src/yelp-window.c:580
+#: ../src/yelp-window.c:585
 msgid "Read Later"
 msgstr "Les senere"
 
 #. %s will be replaced with the name of a document
-#: ../src/yelp-window.c:797
+#: ../src/yelp-window.c:802
 #, c-format
 msgid "Bookmarks for %s"
 msgstr "Bokmerker for %s"
 
-#: ../src/yelp-window.c:1331
+#: ../src/yelp-window.c:1337
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i treff"
 msgstr[1] "%i treff"
 
-#: ../src/yelp-window.c:1356
+#: ../src/yelp-window.c:1362
 msgid "No matches"
 msgstr "Ingen treff"
 
-#: ../src/yelp-window.c:1641
+#: ../src/yelp-window.c:1652
 msgid "_Open Bookmark"
 msgstr "_Åpne bokmerke"
 
-#: ../src/yelp-window.c:1647
+#: ../src/yelp-window.c:1658
 msgid "Open Bookmark in New _Window"
 msgstr "Åpne bokmerke i nytt _vindu"
 
-#: ../src/yelp-window.c:1656
+#: ../src/yelp-window.c:1667
 msgid "_Remove Bookmark"
 msgstr "Fje_rn bokmerke"
 
