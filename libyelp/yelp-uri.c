@@ -260,6 +260,7 @@ resolve_start (YelpUri *uri)
 static void
 resolve_async (YelpUri *uri)
 {
+    gchar *tmp;
     YelpUriPrivate *priv = GET_PRIV (uri);
 
     if (g_str_has_prefix (priv->res_arg, "ghelp:")
@@ -296,9 +297,13 @@ resolve_async (YelpUri *uri)
         case YELP_URI_DOCUMENT_TYPE_INFO:
             resolve_xref_uri (uri);
             break;
-        case YELP_URI_DOCUMENT_TYPE_MAN:
-            /* FIXME: what do we do? */
+        case YELP_URI_DOCUMENT_TYPE_MAN: {
+            gchar *tmp = g_strconcat ("man:", priv->res_arg + 5, NULL);
+            g_free (priv->res_arg);
+            priv->res_arg = tmp;
+            resolve_man_uri (uri);
             break;
+        }
         case YELP_URI_DOCUMENT_TYPE_TEXT:
         case YELP_URI_DOCUMENT_TYPE_HTML:
         case YELP_URI_DOCUMENT_TYPE_XHTML:
@@ -929,8 +934,9 @@ resolve_man_uri (YelpUri *uri)
         }
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
         priv->gfile = g_file_new_for_path (path);
-        priv->docuri = g_strconcat ("man:",  name, ".", section, NULL);
-        priv->fulluri = g_strdup (priv->docuri);
+        priv->docuri = g_strdup ("man:");
+        priv->fulluri = g_strconcat ("man:",  name, ".", section, NULL);
+        priv->page_id = g_strconcat (name, ".", section, NULL);
         resolve_gfile (uri, NULL);
 
         if (hash && hash[0] != '\0')

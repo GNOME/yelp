@@ -139,7 +139,7 @@ YelpDocument *
 yelp_document_get_for_uri (YelpUri *uri)
 {
     static GHashTable *documents = NULL;
-    gchar *docuri;
+    gchar *docuri = NULL;
     gchar *page_id, *tmp;
     YelpDocument *document = NULL;
 
@@ -148,10 +148,6 @@ yelp_document_get_for_uri (YelpUri *uri)
                                            g_free, g_object_unref);
 
     g_return_val_if_fail (yelp_uri_is_resolved (uri), NULL);
-
-    docuri = yelp_uri_get_document_uri (uri);
-    if (docuri == NULL)
-        return NULL;
 
     switch (yelp_uri_get_document_type (uri)) {
     case YELP_URI_DOCUMENT_TYPE_TEXT:
@@ -165,12 +161,21 @@ yelp_document_get_for_uri (YelpUri *uri)
         page_id = yelp_uri_get_page_id (uri);
         tmp = g_strconcat (docuri, "/", page_id, NULL);
         g_free (page_id);
-        g_free (docuri);
         docuri = tmp;
         break;
+    case YELP_URI_DOCUMENT_TYPE_MAN:
+        /* The document URI for man pages is just man:, so we use the
+         * full canonical URI to look these up.
+         */
+        docuri = yelp_uri_get_canonical_uri (uri);
+        break;
     default:
+        docuri = yelp_uri_get_document_uri (uri);
         break;
     }
+
+    if (docuri == NULL)
+        return NULL;
     document = g_hash_table_lookup (documents, docuri);
 
     if (document != NULL) {

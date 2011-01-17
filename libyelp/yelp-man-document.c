@@ -48,6 +48,7 @@ typedef struct _YelpManDocumentPrivate  YelpManDocumentPrivate;
 struct _YelpManDocumentPrivate {
     YelpUri    *uri;
     ManState    state;
+    gchar      *page_id;
 
     GMutex     *mutex;
     GThread    *thread;
@@ -196,6 +197,7 @@ yelp_man_document_finalize (GObject *object)
 	xmlFreeDoc (priv->xmldoc);
 
     g_mutex_free (priv->mutex);
+    g_free (priv->page_id);
 
     G_OBJECT_CLASS (yelp_man_document_parent_class)->finalize (object);
 }
@@ -224,18 +226,22 @@ yelp_man_document_new (YelpUri *uri)
 
 static gboolean
 man_request_page (YelpDocument         *document,
-                   const gchar          *page_id,
-                   GCancellable         *cancellable,
-                   YelpDocumentCallback  callback,
-                   gpointer              user_data)
+                  const gchar          *page_id,
+                  GCancellable         *cancellable,
+                  YelpDocumentCallback  callback,
+                  gpointer              user_data)
 {
     YelpManDocumentPrivate *priv = GET_PRIV (document);
-    gchar *docuri;
+    gchar *docuri, *fulluri;
     GError *error;
     gboolean handled;
 
-    if (page_id == NULL)
-        page_id = "//index";
+    fulluri = yelp_uri_get_canonical_uri (priv->uri);
+    if (g_str_has_prefix (fulluri, "man:"))
+        priv->page_id = g_strdup (fulluri + 4);
+    else
+        priv->page_id = g_strdup ("//index");
+    g_free (fulluri);
 
     handled =
         YELP_DOCUMENT_CLASS (yelp_man_document_parent_class)->request_page (document,
@@ -254,9 +260,11 @@ man_request_page (YelpDocument         *document,
 	priv->state = MAN_STATE_PARSING;
 	priv->process_running = TRUE;
         g_object_ref (document);
-        yelp_document_set_page_id (document, NULL, "//index");
-        yelp_document_set_page_id (document, "//index", "//index");
-        yelp_document_set_root_id (document, "//index", "//index");
+        yelp_document_set_page_id (document, page_id, priv->page_id);
+        yelp_document_set_page_id (document, NULL, priv->page_id);
+        yelp_document_set_page_id (document, "//index", priv->page_id);
+        yelp_document_set_page_id (document, priv->page_id, priv->page_id);
+        yelp_document_set_root_id (document, priv->page_id, priv->page_id);
 	priv->thread = g_thread_create ((GThreadFunc) man_document_process,
                                         document, FALSE, NULL);
 	break;
@@ -300,16 +308,16 @@ transform_chunk_ready (YelpTransform    *transform,
 
     content = yelp_transform_take_chunk (transform, chunk_id);
     yelp_document_give_contents (YELP_DOCUMENT (man),
-                                 chunk_id,
+                                 priv->page_id,
                                  content,
                                  "application/xhtml+xml");
 
     yelp_document_signal (YELP_DOCUMENT (man),
-                          chunk_id,
+                          priv->page_id,
                           YELP_DOCUMENT_SIGNAL_INFO,
                           NULL);
     yelp_document_signal (YELP_DOCUMENT (man),
-                          chunk_id,
+                          priv->page_id,
                           YELP_DOCUMENT_SIGNAL_CONTENTS,
                           NULL);
 }
