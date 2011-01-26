@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-09 23:51+0100\n"
-"PO-Revision-Date: 2011-01-09 23:51+0100\n"
+"POT-Creation-Date: 2011-01-27 00:40+0100\n"
+"PO-Revision-Date: 2011-01-26 14:58+0100\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -268,7 +268,7 @@ msgstr "Aplicativos Termcap"
 
 #: ../data/man.xml.in.h:58
 msgid "Traditional command line help (man)"
-msgstr "Axuda tradicional de liña de comandos (man)"
+msgstr "Axuda tradicional de liña de ordes (man)"
 
 #: ../data/man.xml.in.h:59
 msgid "X11 Applications"
@@ -890,26 +890,26 @@ msgstr "Datos comprimidos non válidos"
 msgid "Not enough memory"
 msgstr "Non hai suficiente memoria"
 
-#: ../libyelp/yelp-docbook-document.c:262 ../libyelp/yelp-info-document.c:233
+#: ../libyelp/yelp-docbook-document.c:277 ../libyelp/yelp-info-document.c:233
 #: ../libyelp/yelp-mallard-document.c:260
-#: ../libyelp/yelp-mallard-document.c:415 ../libyelp/yelp-man-document.c:269
+#: ../libyelp/yelp-mallard-document.c:415 ../libyelp/yelp-man-document.c:277
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "Non se encontrou a páxina «%s» no documento «%s»."
+msgstr "Non se atopou a páxina «%s» no documento «%s»."
 
-#: ../libyelp/yelp-docbook-document.c:296 ../libyelp/yelp-info-document.c:367
-#: ../libyelp/yelp-man-document.c:403
+#: ../libyelp/yelp-docbook-document.c:311 ../libyelp/yelp-info-document.c:367
+#: ../libyelp/yelp-man-document.c:411
 #, c-format
 msgid "The file does not exist."
 msgstr "O ficheiro non existe."
 
-#: ../libyelp/yelp-docbook-document.c:306 ../libyelp/yelp-info-document.c:377
-#: ../libyelp/yelp-man-document.c:413
+#: ../libyelp/yelp-docbook-document.c:321 ../libyelp/yelp-info-document.c:377
+#: ../libyelp/yelp-man-document.c:421
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "O ficheiro ‘%s’ non existe."
 
-#: ../libyelp/yelp-docbook-document.c:321
+#: ../libyelp/yelp-docbook-document.c:336
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -918,7 +918,7 @@ msgstr ""
 "Non foi posíbel analizar o ficheiro ‘%s’ porque non é un documento HTML ben "
 "formado."
 
-#: ../libyelp/yelp-docbook-document.c:334
+#: ../libyelp/yelp-docbook-document.c:349
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -926,15 +926,15 @@ msgid ""
 msgstr ""
 "Non foi posíbel o ficheiro ‘%s’ porque non é un documento XML ben formado."
 
-#: ../libyelp/yelp-docbook-document.c:738
+#: ../libyelp/yelp-docbook-document.c:753
 msgid "Unknown"
 msgstr "Descoñecido"
 
-#: ../libyelp/yelp-docbook-document.c:799 ../libyelp/yelp-info-document.c:310
-#: ../libyelp/yelp-man-document.c:345
+#: ../libyelp/yelp-docbook-document.c:814 ../libyelp/yelp-info-document.c:310
+#: ../libyelp/yelp-man-document.c:353
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr "Non se encontrou a páxina solicitada no documento «%s»."
+msgstr "Non se atopou a páxina solicitada no documento «%s»."
 
 #: ../libyelp/yelp-error.c:33
 #, c-format
@@ -980,7 +980,7 @@ msgstr ""
 
 #: ../libyelp/yelp-location-entry.c:426 ../src/yelp-window.c:300
 msgid "Search..."
-msgstr "Buscar..."
+msgstr "Buscar…"
 
 #: ../libyelp/yelp-location-entry.c:1335
 msgid "Loading"
@@ -1046,7 +1046,7 @@ msgstr "Falta a folla de estilo XSLT «%s» ou ben non é válida."
 
 #: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
-msgstr "Non se localizou o atributo href en yelp:document\n"
+msgstr "Non se atopou o atributo href en yelp:document\n"
 
 #: ../libyelp/yelp-transform.c:543
 msgid "Out of memory"
@@ -1054,7 +1054,7 @@ msgstr "Sen memoria"
 
 #: ../libyelp/yelp-view.c:126
 msgid "_Print..."
-msgstr "_Imprimir..."
+msgstr "_Imprimir…"
 
 #: ../libyelp/yelp-view.c:131
 msgid "_Back"
@@ -1163,19 +1163,19 @@ msgstr "Abrir ligazón nunha xanela _nova"
 
 #: ../libyelp/yelp-view.c:1320
 msgid "_Save Image As..."
-msgstr "_Gardar imaxe como..."
+msgstr "_Gardar imaxe como…"
 
 #: ../libyelp/yelp-view.c:1322
 msgid "_Save Video As..."
-msgstr "_Gardar vídeo como..."
+msgstr "_Gardar vídeo como…"
 
 #: ../libyelp/yelp-view.c:1329
 msgid "S_end Image To..."
-msgstr "G_ardar imaxe en..."
+msgstr "G_ardar imaxe en…"
 
 #: ../libyelp/yelp-view.c:1331
 msgid "S_end Video To..."
-msgstr "_Enviar vídeo a..."
+msgstr "_Enviar vídeo a…"
 
 #: ../libyelp/yelp-view.c:1342
 msgid "_Copy Text"
@@ -1187,7 +1187,7 @@ msgstr "C_opiar o bloque de código"
 
 #: ../libyelp/yelp-view.c:1360
 msgid "Save Code _Block As..."
-msgstr "Gardar o bloque de _código como..."
+msgstr "Gardar o bloque de _código como…"
 
 #: ../libyelp/yelp-view.c:1542
 #, c-format
@@ -1201,11 +1201,11 @@ msgstr "Non foi posíbel cargar un documento"
 
 #: ../libyelp/yelp-view.c:1622
 msgid "Document Not Found"
-msgstr "Documento non encontrado"
+msgstr "Documento non atopado"
 
 #: ../libyelp/yelp-view.c:1624
 msgid "Page Not Found"
-msgstr "Páxina non encontrada"
+msgstr "Páxina non atopada"
 
 #: ../libyelp/yelp-view.c:1627
 msgid "Cannot Read"
@@ -1229,7 +1229,7 @@ msgstr "O URI «%s» non apunta a unha páxina válida."
 msgid "The URI does not point to a valid page."
 msgstr "O URI non apunta a unha páxina válida."
 
-#: ../libyelp/yelp-view.c:1819
+#: ../libyelp/yelp-view.c:1818
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Non foi posíbel analizar o URI «%s»."
@@ -1329,12 +1329,12 @@ msgstr "Marcadores para %s"
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
-msgstr[0] "%i coincidencia"
-msgstr[1] "%i coincidencias"
+msgstr[0] "%i aparición"
+msgstr[1] "%i aparicións"
 
 #: ../src/yelp-window.c:1362
 msgid "No matches"
-msgstr "Sen coincidencias"
+msgstr "Non se atoparon aparicións"
 
 #: ../src/yelp-window.c:1652
 msgid "_Open Bookmark"
