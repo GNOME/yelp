@@ -36,6 +36,13 @@
 #include "yelp-mallard-document.h"
 #include "yelp-man-document.h"
 #include "yelp-simple-document.h"
+#include "yelp-storage.h"
+
+enum {
+    PROP_0,
+    PROP_URI,
+    PROP_INDEXED
+};
 
 typedef struct _Request Request;
 struct _Request {
@@ -62,6 +69,11 @@ struct _YelpDocumentPriv {
     GSList *reqs_all;         /* Holds canonical refs, only free from here */
     Hash   *reqs_by_page_id;  /* Indexed by page ID, contains GSList */
     GSList *reqs_pending;     /* List of requests that need a page */
+
+    GSList *reqs_search;      /* Pending search requests, not in reqs_all */
+    gboolean indexed;
+
+    gchar  *doc_uri;
 
     /* Real page IDs map to themselves, so this list doubles
      * as a list of all valid page IDs.
@@ -90,18 +102,27 @@ static void           yelp_document_class_init  (YelpDocumentClass    *klass);
 static void           yelp_document_init        (YelpDocument         *document);
 static void           yelp_document_dispose     (GObject              *object);
 static void           yelp_document_finalize    (GObject              *object);
-
+static void           document_get_property     (GObject              *object,
+                                                 guint                 prop_id,
+                                                 GValue               *value,
+                                                 GParamSpec           *pspec);
+static void           document_set_property     (GObject              *object,
+                                                 guint                 prop_id,
+                                                 const GValue         *value,
+                                                 GParamSpec           *pspec);
 static gboolean       document_request_page     (YelpDocument         *document,
                                                  const gchar          *page_id,
                                                  GCancellable         *cancellable,
                                                  YelpDocumentCallback  callback,
                                                  gpointer              user_data);
+static void           document_indexed          (YelpDocument         *document);
 static const gchar *  document_read_contents    (YelpDocument         *document,
                                                  const gchar          *page_id);
 static void           document_finish_read      (YelpDocument         *document,
                                                  const gchar          *contents);
 static gchar *        document_get_mime_type    (YelpDocument         *document,
                                                  const gchar          *mime_type);
+static void           document_index            (YelpDocument         *document);
 
 static Hash *         hash_new                  (GDestroyNotify        destroy);
 static void           hash_free                 (Hash                 *hash);
@@ -204,9 +225,6 @@ yelp_document_get_for_uri (YelpUri *uri)
     case YELP_URI_DOCUMENT_TYPE_HELP_LIST:
         document = yelp_help_list_new (uri);
         break;
-    case YELP_URI_DOCUMENT_TYPE_SEARCH:
-        /* FIXME */
-        break;
     case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
     case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
     case YELP_URI_DOCUMENT_TYPE_ERROR:
@@ -231,11 +249,32 @@ yelp_document_class_init (YelpDocumentClass *klass)
 
     object_class->dispose  = yelp_document_dispose;
     object_class->finalize = yelp_document_finalize;
+    object_class->get_property = document_get_property;
+    object_class->set_property = document_set_property;
 
     klass->request_page =   document_request_page;
     klass->read_contents =  document_read_contents;
     klass->finish_read =    document_finish_read;
     klass->get_mime_type =  document_get_mime_type;
+    klass->index =          document_index;
+
+    g_object_class_install_property (object_class,
+                                     PROP_INDEXED,
+                                     g_param_spec_boolean ("indexed",
+                                                           N_("Indexed"),
+                                                           N_("Whether the document content has been indexed"),
+                                                           FALSE,
+                                                           G_PARAM_CONSTRUCT | G_PARAM_READWRITE |
+                                                           G_PARAM_STATIC_STRINGS));
+
+    g_object_class_install_property (object_class,
+                                     PROP_URI,
+                                     g_param_spec_string ("document-uri",
+                                                          N_("Document URI"),
+                                                          N_("The URI which identifies the document"),
+                                                          NULL,
+                                                          G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE |
+                                                          G_PARAM_STATIC_STRINGS));
 
     g_type_class_add_private (klass, sizeof (YelpDocumentPriv));
 }
@@ -252,6 +291,7 @@ yelp_document_init (YelpDocument *document)
     priv->reqs_by_page_id = hash_new ((GDestroyNotify) g_slist_free);
     priv->reqs_all = NULL;
     priv->reqs_pending = NULL;
+    priv->reqs_search = NULL;
 
     priv->core_ids = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
     priv->page_ids = hash_new (g_free );
@@ -278,6 +318,14 @@ yelp_document_dispose (GObject *object)
 			 NULL);
 	g_slist_free (document->priv->reqs_all);
 	document->priv->reqs_all = NULL;
+    }
+
+    if (document->priv->reqs_search) {
+	g_slist_foreach (document->priv->reqs_search,
+			 (GFunc) request_try_free,
+			 NULL);
+	g_slist_free (document->priv->reqs_search);
+	document->priv->reqs_search = NULL;
     }
 
     G_OBJECT_CLASS (yelp_document_parent_class)->dispose (object);
@@ -309,6 +357,52 @@ yelp_document_finalize (GObject *object)
     g_mutex_free (document->priv->mutex);
 
     G_OBJECT_CLASS (yelp_document_parent_class)->finalize (object);
+}
+
+static void
+document_get_property (GObject      *object,
+                       guint         prop_id,
+                       GValue       *value,
+                       GParamSpec   *pspec)
+{
+    YelpDocument *document = YELP_DOCUMENT (object);
+
+    switch (prop_id) {
+    case PROP_INDEXED:
+        g_value_set_boolean (value, document->priv->indexed);
+        break;
+    case PROP_URI:
+        g_value_set_string (value, document->priv->doc_uri);
+        break;
+    default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+        break;
+    }
+}
+
+static void
+document_set_property (GObject      *object,
+                       guint         prop_id,
+                       const GValue *value,
+                       GParamSpec   *pspec)
+{
+    YelpDocument *document = YELP_DOCUMENT (object);
+
+    switch (prop_id) {
+    case PROP_INDEXED:
+        document->priv->indexed = g_value_get_boolean (value);
+        if (document->priv->indexed)
+            g_idle_add ((GSourceFunc) document_indexed, document);
+        break;
+    case PROP_URI:
+        if (document->priv->doc_uri != NULL)
+            g_free (document->priv->doc_uri);
+        document->priv->doc_uri = g_value_dup_string (value);
+        break;
+    default:
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+        break;
+    }
 }
 
 /******************************************************************************/
@@ -642,6 +736,20 @@ yelp_document_set_page_icon (YelpDocument *document,
     g_mutex_unlock (document->priv->mutex);
 }
 
+static void
+document_indexed (YelpDocument *document)
+{
+    g_mutex_lock (document->priv->mutex);
+    while (document->priv->reqs_search != NULL) {
+        Request *request = (Request *) document->priv->reqs_search->data;
+        request->idle_funcs++;
+        g_idle_add ((GSourceFunc) request_idle_contents, request);
+        document->priv->reqs_search = g_slist_delete_link (document->priv->reqs_search,
+                                                           document->priv->reqs_search);
+    }
+    g_mutex_unlock (document->priv->mutex);
+}
+
 /******************************************************************************/
 
 gboolean
@@ -693,6 +801,16 @@ document_request_page (YelpDocument         *document,
 
     g_mutex_lock (document->priv->mutex);
 
+    if (g_str_has_prefix (page_id, "search=")) {
+        document->priv->reqs_search = g_slist_prepend (document->priv->reqs_search, request);
+        if (document->priv->indexed)
+            g_idle_add ((GSourceFunc) document_indexed, document);
+        else
+            yelp_document_index (document);
+        g_mutex_unlock (document->priv->mutex);
+        return TRUE;
+    }
+
     hash_slist_insert (document->priv->reqs_by_page_id,
 		       request->page_id,
 		       request);
@@ -735,6 +853,48 @@ document_read_contents (YelpDocument *document,
     gchar *real, *str;
 
     g_mutex_lock (document->priv->mutex);
+
+    if (page_id != NULL && g_str_has_prefix (page_id, "search=")) {
+        gchar *tmp, *txt;
+        GVariant *value;
+        GVariantIter *iter;
+        gchar *url, *title, *desc, *icon; /* do not free */
+        GString *ret = g_string_new ("<html><body>");
+
+        str = hash_lookup (document->priv->contents, real);
+        if (str) {
+            str_ref (str);
+            g_mutex_unlock (document->priv->mutex);
+            return (const gchar *) str;
+        }
+
+        txt = g_uri_unescape_string (page_id + 7, NULL);
+        tmp = g_markup_printf_escaped ("<h1>Search results for “%s”</h1>", txt);
+        g_string_append (ret, tmp);
+        g_free (tmp);
+
+        value = yelp_storage_search (yelp_storage_get_default (),
+                                     document->priv->doc_uri,
+                                     txt);
+        iter = g_variant_iter_new (value);
+        while (g_variant_iter_loop (iter, "(&s&s&s&s)", &url, &title, &desc, &icon)) {
+            tmp = g_strdup_printf ("<div><a href='%s'>%s</a></div>", url, title);
+            g_string_append (ret, tmp);
+            g_free (tmp);
+        }
+        g_variant_iter_free (iter);
+        g_variant_unref (value);
+
+        g_free (txt);
+        g_string_append (ret, "</body></html>");
+        g_mutex_unlock (document->priv->mutex);
+
+        hash_replace (document->priv->contents, page_id, g_string_free (ret, FALSE));
+        str = hash_lookup (document->priv->contents, page_id);
+        str_ref (str);
+        g_mutex_unlock (document->priv->mutex);
+        return (const gchar *) str;
+    }
 
     real = hash_lookup (document->priv->page_ids, page_id);
     str = hash_lookup (document->priv->contents, real);
@@ -813,6 +973,23 @@ document_get_mime_type (YelpDocument *document,
     g_mutex_unlock (document->priv->mutex);
 
     return ret;
+}
+
+/******************************************************************************/
+
+void
+yelp_document_index (YelpDocument *document)
+{
+    g_return_if_fail (YELP_IS_DOCUMENT (document));
+    g_return_if_fail (YELP_DOCUMENT_GET_CLASS (document)->index != NULL);
+
+    YELP_DOCUMENT_GET_CLASS (document)->index (document);
+}
+
+static void
+document_index (YelpDocument *document)
+{
+    g_object_set (document, "indexed", TRUE, NULL);
 }
 
 /******************************************************************************/
@@ -994,6 +1171,7 @@ request_cancel (GCancellable *cancellable, Request *request)
 {
     GSList *cur;
     YelpDocument *document = request->document;
+    gboolean found = FALSE;
 
     g_assert (document != NULL && YELP_IS_DOCUMENT (document));
 
@@ -1007,8 +1185,17 @@ request_cancel (GCancellable *cancellable, Request *request)
     for (cur = document->priv->reqs_all; cur != NULL; cur = cur->next) {
 	if (cur->data == request) {
 	    document->priv->reqs_all = g_slist_delete_link (document->priv->reqs_all, cur);
+            found = TRUE;
 	    break;
 	}
+    }
+    if (!found) {
+        for (cur = document->priv->reqs_search; cur != NULL; cur = cur->next) {
+            if (cur->data == request) {
+                document->priv->reqs_search = g_slist_delete_link (document->priv->reqs_search, cur);
+                break;
+            }
+        }
     }
     request_try_free (request);
 

@@ -204,10 +204,15 @@ yelp_docbook_document_new (YelpUri *uri)
 {
     YelpDocbookDocument *docbook;
     YelpDocbookDocumentPrivate *priv;
+    gchar *doc_uri;
 
     g_return_val_if_fail (uri != NULL, NULL);
 
-    docbook = (YelpDocbookDocument *) g_object_new (YELP_TYPE_DOCBOOK_DOCUMENT, NULL);
+    doc_uri = yelp_uri_get_document_uri (uri);
+    docbook = (YelpDocbookDocument *) g_object_new (YELP_TYPE_DOCBOOK_DOCUMENT,
+                                                    "document-uri", doc_uri,
+                                                    NULL);
+    g_free (doc_uri);
     priv = GET_PRIV (docbook);
 
     priv->uri = g_object_ref (uri);

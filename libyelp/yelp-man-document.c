@@ -209,10 +209,15 @@ yelp_man_document_new (YelpUri *uri)
 {
     YelpManDocument *man;
     YelpManDocumentPrivate *priv;
+    gchar *doc_uri;
 
     g_return_val_if_fail (uri != NULL, NULL);
 
-    man = (YelpManDocument *) g_object_new (YELP_TYPE_MAN_DOCUMENT, NULL);
+    doc_uri = yelp_uri_get_document_uri (uri);
+    man = (YelpManDocument *) g_object_new (YELP_TYPE_MAN_DOCUMENT,
+                                            "document-uri", doc_uri,
+                                            NULL);
+    g_free (doc_uri);
     priv = GET_PRIV (man);
 
     priv->uri = g_object_ref (uri);

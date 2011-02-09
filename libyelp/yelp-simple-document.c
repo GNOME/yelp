@@ -166,8 +166,13 @@ YelpDocument *
 yelp_simple_document_new (YelpUri *uri)
 {
     YelpSimpleDocument *document;
+    gchar *doc_uri;
 
-    document = (YelpSimpleDocument *) g_object_new (YELP_TYPE_SIMPLE_DOCUMENT, NULL);
+    doc_uri = yelp_uri_get_document_uri (uri);
+    document = (YelpSimpleDocument *) g_object_new (YELP_TYPE_SIMPLE_DOCUMENT,
+                                                    "document-uri", doc_uri,
+                                                    NULL);
+    g_free (doc_uri);
 
     document->priv->file = yelp_uri_get_file (uri);
 

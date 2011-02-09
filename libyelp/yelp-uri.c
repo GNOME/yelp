@@ -204,6 +204,27 @@ yelp_uri_new_relative (YelpUri *base, const gchar *arg)
     return uri;
 }
 
+YelpUri *
+yelp_uri_new_search (YelpUri      *base,
+                     const gchar  *text)
+{
+    YelpUri *uri;
+    YelpUriPrivate *priv;
+    gchar *tmp;
+
+    uri = (YelpUri *) g_object_new (YELP_TYPE_URI, NULL);
+
+    priv = GET_PRIV (uri);
+    priv->doctype = YELP_URI_DOCUMENT_TYPE_UNRESOLVED;
+    if (base)
+        priv->res_base = g_object_ref (base);
+    tmp = g_uri_escape_string (text, NULL, FALSE);
+    priv->res_arg = g_strconcat("xref:search=", tmp, NULL);
+    g_free (tmp);
+
+    return uri;
+}
+
 /******************************************************************************/
 
 void
@@ -310,9 +331,6 @@ resolve_async (YelpUri *uri)
             resolve_file_path (uri);
             break;
         case YELP_URI_DOCUMENT_TYPE_HELP_LIST:
-            /* FIXME: what do we do? */
-            break;
-        case YELP_URI_DOCUMENT_TYPE_SEARCH:
             /* FIXME: what do we do? */
             break;
         case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:

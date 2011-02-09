@@ -47,7 +47,6 @@ typedef enum {
     YELP_URI_DOCUMENT_TYPE_HTML,
     YELP_URI_DOCUMENT_TYPE_XHTML,
     YELP_URI_DOCUMENT_TYPE_HELP_LIST,
-    YELP_URI_DOCUMENT_TYPE_SEARCH,
     YELP_URI_DOCUMENT_TYPE_NOT_FOUND,
     YELP_URI_DOCUMENT_TYPE_EXTERNAL,
     YELP_URI_DOCUMENT_TYPE_ERROR
@@ -67,6 +66,8 @@ GType                yelp_uri_get_type           (void);
 YelpUri *            yelp_uri_new                (const gchar  *arg);
 YelpUri *            yelp_uri_new_relative       (YelpUri      *base,
                                                   const gchar  *arg);
+YelpUri *            yelp_uri_new_search         (YelpUri      *base,
+                                                  const gchar  *text);
 
 void                 yelp_uri_resolve            (YelpUri      *uri);
 

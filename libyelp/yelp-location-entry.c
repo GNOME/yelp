@@ -611,7 +611,14 @@ location_entry_location_selected (YelpLocationEntry *entry)
 static void
 location_entry_search_activated  (YelpLocationEntry *entry)
 {
-    printf ("FIXME: search_activated\n");
+    YelpUri *base, *uri;
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    g_object_get (priv->view, "yelp-uri", &base, NULL);
+    uri = yelp_uri_new_search (base,
+                               gtk_entry_get_text (GTK_ENTRY (priv->text_entry)));
+    g_object_unref (base);
+    yelp_view_load_uri (priv->view, uri);
 }
 
 static void

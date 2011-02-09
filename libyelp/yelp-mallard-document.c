@@ -194,10 +194,15 @@ yelp_mallard_document_new (YelpUri *uri)
 {
     YelpMallardDocument *mallard;
     YelpMallardDocumentPrivate *priv;
+    gchar *doc_uri;
 
     g_return_val_if_fail (uri != NULL, NULL);
 
-    mallard = (YelpMallardDocument *) g_object_new (YELP_TYPE_MALLARD_DOCUMENT, NULL);
+    doc_uri = yelp_uri_get_document_uri (uri);
+    mallard = (YelpMallardDocument *) g_object_new (YELP_TYPE_MALLARD_DOCUMENT,
+                                                    "document-uri", doc_uri,
+                                                    NULL);
+    g_free (doc_uri);
     priv = GET_PRIV (mallard);
     priv->uri = g_object_ref (uri);
 

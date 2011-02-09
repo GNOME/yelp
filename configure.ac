@@ -34,6 +34,7 @@ PKG_CHECK_MODULES(YELP,
 	libxml-2.0 >= 2.6.5
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
+	sqlite3
 	webkitgtk-3.0 >= 1.3.2
 	yelp-xsl >= 2.91.9
 ])
