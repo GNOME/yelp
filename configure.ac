@@ -212,6 +212,8 @@ data/icons/Makefile
 data/icons/hicolor/Makefile
 data/icons/hicolor/16x16/Makefile
 data/icons/hicolor/16x16/status/Makefile
+data/icons/hicolor/scalable/Makefile
+data/icons/hicolor/scalable/actions/Makefile
 po/Makefile.in
 tests/Makefile
 yelp.desktop.in
