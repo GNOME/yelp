@@ -824,7 +824,7 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
                                         priv->icon_edit_clear);
         gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                          GTK_ENTRY_ICON_SECONDARY,
-                                         "Clear the search text");
+                                         _("Clear the search text"));
         priv->icon_is_clear = TRUE;
         return;
     }
@@ -867,7 +867,7 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
                                                 priv->icon_bookmark_add);
                 gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                                  GTK_ENTRY_ICON_SECONDARY,
-                                                 "Bookmark this page");
+                                                 _("Bookmark this page"));
             }
             else {
                 gtk_entry_set_icon_from_pixbuf (GTK_ENTRY (priv->text_entry),
@@ -875,7 +875,7 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
                                                 priv->icon_bookmark_remove);
                 gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                                  GTK_ENTRY_ICON_SECONDARY,
-                                                 "Remove bookmark");
+                                                 _("Remove bookmark"));
             }
         }
         else {
@@ -1559,7 +1559,7 @@ bookmarks_changed (YelpBookmarks      *bookmarks,
                                                 priv->icon_bookmark_add);
                 gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                                  GTK_ENTRY_ICON_SECONDARY,
-                                                 "Bookmark this page");
+                                                 _("Bookmark this page"));
             }
             else {
                 gtk_entry_set_icon_from_pixbuf (GTK_ENTRY (priv->text_entry),
@@ -1567,7 +1567,7 @@ bookmarks_changed (YelpBookmarks      *bookmarks,
                                                 priv->icon_bookmark_remove);
                 gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                                  GTK_ENTRY_ICON_SECONDARY,
-                                                 "Remove bookmark");
+                                                 _("Remove bookmark"));
             }
         }
         else {
