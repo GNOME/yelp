@@ -70,6 +70,7 @@ YelpUri *            yelp_uri_new_search         (YelpUri      *base,
                                                   const gchar  *text);
 
 void                 yelp_uri_resolve            (YelpUri      *uri);
+void                 yelp_uri_resolve_sync       (YelpUri      *uri);
 
 gboolean             yelp_uri_is_resolved        (YelpUri      *uri);
 YelpUriDocumentType  yelp_uri_get_document_type  (YelpUri      *uri);

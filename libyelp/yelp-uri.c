@@ -40,6 +40,7 @@ static void           yelp_uri_dispose           (GObject        *object);
 static void           yelp_uri_finalize          (GObject        *object);
 
 static void           resolve_start              (YelpUri        *uri);
+static void           resolve_sync               (YelpUri        *uri);
 static void           resolve_async              (YelpUri        *uri);
 static gboolean       resolve_final              (YelpUri        *uri);
 
@@ -243,6 +244,22 @@ yelp_uri_resolve (YelpUri *uri)
     }
 }
 
+void
+yelp_uri_resolve_sync (YelpUri *uri)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+
+    if (priv->doctype != YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
+        return;
+
+    if (priv->res_base)
+        yelp_uri_resolve_sync (priv->res_base);
+
+    g_object_ref (uri);
+    resolve_sync (uri);
+    resolve_final (uri);
+}
+
 /* We want code to be able to do something like this:
  *
  *   if (yelp_uri_get_document_type (uri) != YELP_URI_DOCUMENT_TYPE_UNRESOLVED) {
@@ -279,7 +296,7 @@ resolve_start (YelpUri *uri)
 }
 
 static void
-resolve_async (YelpUri *uri)
+resolve_sync (YelpUri *uri)
 {
     gchar *tmp;
     YelpUriPrivate *priv = GET_PRIV (uri);
@@ -307,7 +324,7 @@ resolve_async (YelpUri *uri)
         YelpUriPrivate *base_priv;
         if (priv->res_base == NULL) {
             priv->tmptype = YELP_URI_DOCUMENT_TYPE_ERROR;
-            goto done;
+            return;
         }
         base_priv = GET_PRIV (priv->res_base);
         switch (base_priv->doctype) {
@@ -352,8 +369,12 @@ resolve_async (YelpUri *uri)
     if (!priv->fulluri) {
         priv->fulluri = g_strdup (priv->res_arg);
     }
+}
 
- done:
+static void
+resolve_async (YelpUri *uri)
+{
+    resolve_sync (uri);
     g_idle_add ((GSourceFunc) resolve_final, uri);
 }
 
