@@ -26,6 +26,7 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
+#include <gtk/gtk.h>
 
 #include "yelp-debug.h"
 #include "yelp-document.h"
@@ -35,6 +36,7 @@
 #include "yelp-info-document.h"
 #include "yelp-mallard-document.h"
 #include "yelp-man-document.h"
+#include "yelp-settings.h"
 #include "yelp-simple-document.h"
 #include "yelp-storage.h"
 
@@ -850,7 +852,7 @@ static const gchar *
 document_read_contents (YelpDocument *document,
 			const gchar  *page_id)
 {
-    gchar *real, *str;
+    gchar *real, *str, **colors;
 
     g_mutex_lock (document->priv->mutex);
 
@@ -858,8 +860,62 @@ document_read_contents (YelpDocument *document,
         gchar *tmp, *txt;
         GVariant *value;
         GVariantIter *iter;
-        gchar *url, *title, *desc, *icon; /* do not free */
-        GString *ret = g_string_new ("<html><body>");
+        gchar *url, *title, *desc, *icon, *index_id, *index_title; /* do not free */
+        GString *ret = g_string_new ("<html><head><style type='text/css'>");
+
+        colors = yelp_settings_get_colors (yelp_settings_get_default ());
+        g_string_append_printf (ret,
+                                "html { height: 100%; } "
+                                "body { margin: 0; padding: 0;"
+                                " background-color: %s; color: %s;"
+                                " direction: %s; } "
+                                "div.header { margin-bottom: 1em; } "
+                                "div.trails { "
+                                " margin: 0; padding: 0.2em 12px 0 12px;"
+                                " background-color: %s;"
+                                " border-bottom: solid 1px %s; } "
+                                "div.trail { text-indent: -1em;"
+                                " margin: 0 1em 0.2em 1em; padding: 0; color: %s; } "
+                                "div.body { margin: 0 12px 0 12px; padding: 0 0 12px 0; max-width: 60em; } "
+                                "div, p { margin: 1em 0 0 0; padding: 0; } "
+                                "div:first-child, p:first-child { margin-top: 0; } "
+                                "h1 { margin: 0; padding: 0; color: %s; font-size: 1.44em; } "
+                                "a { color: %s; text-decoration: none; } "
+                                "a.linkdiv { display: block; } "
+                                "div.linkdiv { margin: 0; padding: 0.5em; }"
+                                "a:hover div.linkdiv {"
+                                " outline: solid 1px %s;"
+                                " background: -webkit-gradient(linear, left top, left 80, from(%s), to(%s)); } "
+                                "div.title { margin-bottom: 0.2em; font-weight: bold; } "
+                                "div.desc { margin: 0; color: %s; } ",
+                                colors[YELP_SETTINGS_COLOR_BASE],
+                                colors[YELP_SETTINGS_COLOR_TEXT],
+                                (gtk_widget_get_default_direction() == GTK_TEXT_DIR_RTL ? "rtl" : "ltr"),
+                                colors[YELP_SETTINGS_COLOR_GRAY_BASE],
+                                colors[YELP_SETTINGS_COLOR_GRAY_BORDER],
+                                colors[YELP_SETTINGS_COLOR_TEXT_LIGHT],
+                                colors[YELP_SETTINGS_COLOR_TEXT_LIGHT],
+                                colors[YELP_SETTINGS_COLOR_LINK],
+                                colors[YELP_SETTINGS_COLOR_BLUE_BASE],
+                                colors[YELP_SETTINGS_COLOR_BLUE_BASE],
+                                colors[YELP_SETTINGS_COLOR_BASE],
+                                colors[YELP_SETTINGS_COLOR_TEXT_LIGHT]
+                                );
+        index_id = hash_lookup (document->priv->page_ids, NULL);
+        index_title = hash_lookup (document->priv->titles, index_id);
+        if (index_title == NULL)
+            index_title = "index";
+        tmp = g_markup_printf_escaped ("</style></head><body>"
+                                       "<div class='header'><div class='trails'><div class='trail'>"
+                                       "<a href='xref:'>%s</a>&#x00A0;%s "
+                                       "</div></div></div>"
+                                       "<div class='body'>",
+                                       index_title,
+                                       (gtk_widget_get_default_direction() == GTK_TEXT_DIR_RTL ? "«" : "»")
+                                       );
+        g_string_append (ret, tmp);
+        g_free (tmp);
+        g_strfreev (colors);
 
         str = hash_lookup (document->priv->contents, real);
         if (str) {
@@ -878,7 +934,11 @@ document_read_contents (YelpDocument *document,
                                      txt);
         iter = g_variant_iter_new (value);
         while (g_variant_iter_loop (iter, "(&s&s&s&s)", &url, &title, &desc, &icon)) {
-            tmp = g_strdup_printf ("<div><a href='%s'>%s</a></div>", url, title);
+            tmp = g_markup_printf_escaped ("<div><a class='linkdiv' href='%s'><div class='linkdiv'>"
+                                           "<div class='title'>%s</div>"
+                                           "<div class='desc'>%s</div>"
+                                           "</div></a></div>",
+                                           url, title, desc);
             g_string_append (ret, tmp);
             g_free (tmp);
         }
@@ -886,7 +946,7 @@ document_read_contents (YelpDocument *document,
         g_variant_unref (value);
 
         g_free (txt);
-        g_string_append (ret, "</body></html>");
+        g_string_append (ret, "</div></body></html>");
         g_mutex_unlock (document->priv->mutex);
 
         hash_replace (document->priv->contents, page_id, g_string_free (ret, FALSE));
