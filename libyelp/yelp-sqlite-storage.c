@@ -40,16 +40,21 @@ static void        yelp_sqlite_storage_set_property (GObject                *obj
                                                      const GValue           *value,
                                                      GParamSpec             *pspec);
 
-static void        yelp_sqlite_storage_update      (YelpStorage      *storage,
-                                                    const gchar      *doc_uri,
-                                                    const gchar      *full_uri,
-                                                    const gchar      *title,
-                                                    const gchar      *desc,
-                                                    const gchar      *icon,
-                                                    const gchar      *text);
-static GVariant *  yelp_sqlite_storage_search      (YelpStorage      *storage,
-                                                    const gchar      *doc_uri,
-                                                    const gchar      *text);
+static void        yelp_sqlite_storage_update         (YelpStorage      *storage,
+                                                       const gchar      *doc_uri,
+                                                       const gchar      *full_uri,
+                                                       const gchar      *title,
+                                                       const gchar      *desc,
+                                                       const gchar      *icon,
+                                                       const gchar      *text);
+static GVariant *  yelp_sqlite_storage_search         (YelpStorage      *storage,
+                                                       const gchar      *doc_uri,
+                                                       const gchar      *text);
+static gchar *     yelp_sqlite_storage_get_root_title (YelpStorage      *storage,
+                                                       const gchar      *doc_uri);
+static void        yelp_sqlite_storage_set_root_title (YelpStorage      *storage,
+                                                       const gchar      *doc_uri,
+                                                       const gchar      *title);
 
 typedef struct _YelpSqliteStoragePrivate YelpSqliteStoragePrivate;
 struct _YelpSqliteStoragePrivate {
@@ -115,7 +120,14 @@ yelp_sqlite_storage_constructed (GObject *object)
                                  -1, &stmt, NULL);
     if (status != SQLITE_OK)
         return;
+    sqlite3_step (stmt);
+    sqlite3_finalize (stmt);
 
+    status = sqlite3_prepare_v2 (priv->db,
+                                 "create table titles (doc_uri text, lang text, title text);",
+                                 -1, &stmt, NULL);
+    if (status != SQLITE_OK)
+        return;
     sqlite3_step (stmt);
     sqlite3_finalize (stmt);
 }
@@ -147,6 +159,8 @@ yelp_sqlite_storage_iface_init (YelpStorageInterface *iface)
 {
     iface->update = yelp_sqlite_storage_update;
     iface->search = yelp_sqlite_storage_search;
+    iface->get_root_title = yelp_sqlite_storage_get_root_title;
+    iface->set_root_title = yelp_sqlite_storage_set_root_title;
 }
 
 YelpStorage *
@@ -273,4 +287,58 @@ yelp_sqlite_storage_search (YelpStorage   *storage,
     g_mutex_unlock (priv->mutex);
 
     return ret;
+}
+
+static gchar *
+yelp_sqlite_storage_get_root_title (YelpStorage *storage,
+                                    const gchar *doc_uri)
+{
+    gchar *ret = NULL;
+    sqlite3_stmt *stmt = NULL;
+    YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
+
+    g_mutex_lock (priv->mutex);
+
+    sqlite3_prepare_v2 (priv->db,
+                        "select title from titles where doc_uri = ? and lang = ?;",
+                        -1, &stmt, NULL);
+    sqlite3_bind_text (stmt, 1, doc_uri, -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text (stmt, 2, g_get_language_names()[0], -1, SQLITE_STATIC);
+    if (sqlite3_step (stmt) == SQLITE_ROW)
+        ret = g_strdup (sqlite3_column_text (stmt, 0));
+    sqlite3_finalize (stmt);
+
+    g_mutex_unlock (priv->mutex);
+    return ret;
+}
+
+static void
+yelp_sqlite_storage_set_root_title (YelpStorage *storage,
+                                    const gchar *doc_uri,
+                                    const gchar *title)
+{
+    sqlite3_stmt *stmt = NULL;
+    YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
+
+    g_mutex_lock (priv->mutex);
+
+    sqlite3_prepare_v2 (priv->db,
+                        "delete from titles where doc_uri = ? and lang = ?;",
+                        -1, &stmt, NULL);
+    sqlite3_bind_text (stmt, 1, doc_uri, -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text (stmt, 2, g_get_language_names()[0], -1, SQLITE_STATIC);
+    sqlite3_step (stmt);
+    sqlite3_finalize (stmt);
+
+    sqlite3_prepare_v2 (priv->db,
+                        "insert into titles (doc_uri, lang, title)"
+                        " values (?, ?, ?);",
+                        -1, &stmt, NULL);
+    sqlite3_bind_text (stmt, 1, doc_uri, -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text (stmt, 2, g_get_language_names()[0], -1, SQLITE_STATIC);
+    sqlite3_bind_text (stmt, 3, title, -1, SQLITE_TRANSIENT);
+    sqlite3_step (stmt);
+    sqlite3_finalize (stmt);
+
+    g_mutex_unlock (priv->mutex);
 }

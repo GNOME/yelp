@@ -1009,6 +1009,9 @@ mallard_index_threaded (YelpMallardDocument *mallard)
                                  title, desc,
                                  xml_node_get_icon (xmlDocGetRootElement (index->doc)),
                                  fulltext);
+            if (g_str_equal (id, "index"))
+                yelp_storage_set_root_title (yelp_storage_get_default (),
+                                             doc_uri, title);
             g_free (full_uri);
             g_free (title);
             g_free (desc);

@@ -442,6 +442,9 @@ yelp_document_get_page_id (YelpDocument *document,
 
     g_assert (document != NULL && YELP_IS_DOCUMENT (document));
 
+    if (id != NULL && g_str_has_prefix (id, "search="))
+        return g_strdup (id);
+
     g_mutex_lock (document->priv->mutex);
     ret = hash_lookup (document->priv->page_ids, id);
     if (ret)
@@ -497,7 +500,10 @@ yelp_document_get_root_id (YelpDocument *document,
     g_assert (document != NULL && YELP_IS_DOCUMENT (document));
 
     g_mutex_lock (document->priv->mutex);
-    real = hash_lookup (document->priv->page_ids, page_id);
+    if (page_id != NULL && g_str_has_prefix (page_id, "search="))
+        real = hash_lookup (document->priv->page_ids, NULL);
+    else
+        real = hash_lookup (document->priv->page_ids, page_id);
     if (real) {
 	ret = hash_lookup (document->priv->root_ids, real);
 	if (ret)
@@ -625,15 +631,22 @@ yelp_document_get_root_title (YelpDocument *document,
     g_assert (document != NULL && YELP_IS_DOCUMENT (document));
 
     g_mutex_lock (document->priv->mutex);
-    real = hash_lookup (document->priv->page_ids, page_id);
-    if (real) {
-	root = hash_lookup (document->priv->root_ids, real);
-        if (root) {
-            ret = hash_lookup (document->priv->titles, root);
-            if (ret)
-                ret = g_strdup (ret);
+    if (page_id != NULL && g_str_has_prefix (page_id, "search=")) {
+        ret = yelp_storage_get_root_title (yelp_storage_get_default (),
+                                           document->priv->doc_uri);
+    }
+    else {
+        real = hash_lookup (document->priv->page_ids, page_id);
+        if (real) {
+            root = hash_lookup (document->priv->root_ids, real);
+            if (root) {
+                ret = hash_lookup (document->priv->titles, root);
+                if (ret)
+                    ret = g_strdup (ret);
+            }
         }
     }
+
     g_mutex_unlock (document->priv->mutex);
 
     return ret;
@@ -646,6 +659,11 @@ yelp_document_get_page_title (YelpDocument *document,
     gchar *real, *ret = NULL;
 
     g_assert (document != NULL && YELP_IS_DOCUMENT (document));
+
+    if (page_id != NULL && g_str_has_prefix (page_id, "search=")) {
+        ret = g_uri_unescape_string (page_id + 7, NULL);
+        return ret;
+    }
 
     g_mutex_lock (document->priv->mutex);
     real = hash_lookup (document->priv->page_ids, page_id);
@@ -679,6 +697,9 @@ yelp_document_get_page_desc (YelpDocument *document,
 
     g_assert (document != NULL && YELP_IS_DOCUMENT (document));
 
+    if (page_id != NULL && g_str_has_prefix (page_id, "search="))
+        return yelp_document_get_root_title (document, page_id);
+
     g_mutex_lock (document->priv->mutex);
     real = hash_lookup (document->priv->page_ids, page_id);
     if (real) {
@@ -710,6 +731,9 @@ yelp_document_get_page_icon (YelpDocument *document,
     gchar *real, *ret = NULL;
 
     g_assert (document != NULL && YELP_IS_DOCUMENT (document));
+
+    if (page_id != NULL && g_str_has_prefix (page_id, "search="))
+        return g_strdup ("folder-saved-search");
 
     g_mutex_lock (document->priv->mutex);
     real = hash_lookup (document->priv->page_ids, page_id);
@@ -745,6 +769,7 @@ document_indexed (YelpDocument *document)
     while (document->priv->reqs_search != NULL) {
         Request *request = (Request *) document->priv->reqs_search->data;
         request->idle_funcs++;
+        g_idle_add ((GSourceFunc) request_idle_info, request);
         g_idle_add ((GSourceFunc) request_idle_contents, request);
         document->priv->reqs_search = g_slist_delete_link (document->priv->reqs_search,
                                                            document->priv->reqs_search);
@@ -860,7 +885,8 @@ document_read_contents (YelpDocument *document,
         gchar *tmp, *txt;
         GVariant *value;
         GVariantIter *iter;
-        gchar *url, *title, *desc, *icon, *index_id, *index_title; /* do not free */
+        gchar *url, *title, *desc, *icon; /* do not free */
+        gchar *index_title;
         GString *ret = g_string_new ("<html><head><style type='text/css'>");
 
         colors = yelp_settings_get_colors (yelp_settings_get_default ());
@@ -887,7 +913,8 @@ document_read_contents (YelpDocument *document,
                                 " outline: solid 1px %s;"
                                 " background: -webkit-gradient(linear, left top, left 80, from(%s), to(%s)); } "
                                 "div.title { margin-bottom: 0.2em; font-weight: bold; } "
-                                "div.desc { margin: 0; color: %s; } ",
+                                "div.desc { margin: 0; color: %s; } "
+                                "</style></head><body><div class='header'>",
                                 colors[YELP_SETTINGS_COLOR_BASE],
                                 colors[YELP_SETTINGS_COLOR_TEXT],
                                 (gtk_widget_get_default_direction() == GTK_TEXT_DIR_RTL ? "rtl" : "ltr"),
@@ -901,20 +928,21 @@ document_read_contents (YelpDocument *document,
                                 colors[YELP_SETTINGS_COLOR_BASE],
                                 colors[YELP_SETTINGS_COLOR_TEXT_LIGHT]
                                 );
-        index_id = hash_lookup (document->priv->page_ids, NULL);
-        index_title = hash_lookup (document->priv->titles, index_id);
-        if (index_title == NULL)
-            index_title = "index";
-        tmp = g_markup_printf_escaped ("</style></head><body>"
-                                       "<div class='header'><div class='trails'><div class='trail'>"
-                                       "<a href='xref:'>%s</a>&#x00A0;%s "
-                                       "</div></div></div>"
-                                       "<div class='body'>",
-                                       index_title,
-                                       (gtk_widget_get_default_direction() == GTK_TEXT_DIR_RTL ? "«" : "»")
-                                       );
-        g_string_append (ret, tmp);
-        g_free (tmp);
+
+        index_title = yelp_storage_get_root_title (yelp_storage_get_default (),
+                                                   document->priv->doc_uri);
+        if (index_title != NULL) {
+            tmp = g_markup_printf_escaped ("<div class='trails'><div class='trail'>"
+                                           "<a href='xref:'>%s</a>&#x00A0;%s "
+                                           "</div></div>",
+                                           index_title,
+                                           (gtk_widget_get_default_direction() == GTK_TEXT_DIR_RTL ? "«" : "»")
+                                           );
+            g_string_append (ret, tmp);
+            g_free (tmp);
+        }
+
+        g_string_append (ret, "</div><div class='body'>");
         g_strfreev (colors);
 
         str = hash_lookup (document->priv->contents, real);
@@ -933,18 +961,35 @@ document_read_contents (YelpDocument *document,
                                      document->priv->doc_uri,
                                      txt);
         iter = g_variant_iter_new (value);
-        while (g_variant_iter_loop (iter, "(&s&s&s&s)", &url, &title, &desc, &icon)) {
-            tmp = g_markup_printf_escaped ("<div><a class='linkdiv' href='%s'><div class='linkdiv'>"
-                                           "<div class='title'>%s</div>"
-                                           "<div class='desc'>%s</div>"
-                                           "</div></a></div>",
-                                           url, title, desc);
+        if (g_variant_iter_n_children (iter) == 0) {
+            if (index_title != NULL) {
+                gchar *t = g_strdup_printf (_("No matching help pages found in “%s”."), index_title);
+                tmp = g_markup_printf_escaped ("<p>%s</p>", t);
+                g_free (t);
+            }
+            else {
+                tmp = g_markup_printf_escaped ("<p>%s</p>",
+                                               _("No matching help pages found."));
+            }
             g_string_append (ret, tmp);
             g_free (tmp);
+        }
+        else {
+            while (g_variant_iter_loop (iter, "(&s&s&s&s)", &url, &title, &desc, &icon)) {
+                tmp = g_markup_printf_escaped ("<div><a class='linkdiv' href='%s'><div class='linkdiv'>"
+                                               "<div class='title'>%s</div>"
+                                               "<div class='desc'>%s</div>"
+                                               "</div></a></div>",
+                                               url, title, desc);
+                g_string_append (ret, tmp);
+                g_free (tmp);
+            }
         }
         g_variant_iter_free (iter);
         g_variant_unref (value);
 
+        if (index_title != NULL)
+            g_free (index_title);
         g_free (txt);
         g_string_append (ret, "</div></body></html>");
         g_mutex_unlock (document->priv->mutex);

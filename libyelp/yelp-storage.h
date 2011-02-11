@@ -38,16 +38,21 @@ typedef struct _YelpStorageInterface YelpStorageInterface;
 struct _YelpStorageInterface {
     GTypeInterface base_iface;
 
-    void          (*update)        (YelpStorage   *storage,
-                                    const gchar   *doc_uri,
-                                    const gchar   *full_uri,
-                                    const gchar   *title,
-                                    const gchar   *desc,
-                                    const gchar   *icon,
-                                    const gchar   *text);
-    GVariant *    (*search)        (YelpStorage   *storage,
-                                    const gchar   *doc_uri,
-                                    const gchar   *text);
+    void          (*update)         (YelpStorage   *storage,
+                                     const gchar   *doc_uri,
+                                     const gchar   *full_uri,
+                                     const gchar   *title,
+                                     const gchar   *desc,
+                                     const gchar   *icon,
+                                     const gchar   *text);
+    GVariant *    (*search)         (YelpStorage   *storage,
+                                     const gchar   *doc_uri,
+                                     const gchar   *text);
+    gchar *       (*get_root_title) (YelpStorage   *storage,
+                                     const gchar   *doc_uri);
+    void          (*set_root_title) (YelpStorage   *storage,
+                                     const gchar   *doc_uri,
+                                     const gchar   *title);
 };
 
 GType             yelp_storage_get_type       (void);
@@ -65,6 +70,11 @@ void              yelp_storage_update         (YelpStorage   *storage,
 GVariant *        yelp_storage_search         (YelpStorage   *storage,
                                                const gchar   *doc_uri,
                                                const gchar   *text);
+gchar *           yelp_storage_get_root_title (YelpStorage   *storage,
+                                               const gchar   *doc_uri);
+void              yelp_storage_set_root_title (YelpStorage   *storage,
+                                               const gchar   *doc_uri,
+                                               const gchar   *title);
 
 G_END_DECLS
 

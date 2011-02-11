@@ -85,3 +85,34 @@ yelp_storage_search (YelpStorage   *storage,
     else
         return NULL;
 }
+
+gchar *
+yelp_storage_get_root_title (YelpStorage *storage,
+                             const gchar *doc_uri)
+{
+    YelpStorageInterface *iface;
+
+    g_return_if_fail (YELP_IS_STORAGE (storage));
+
+    iface = YELP_STORAGE_GET_INTERFACE (storage);
+
+    if (iface->search)
+        return (*iface->get_root_title) (storage, doc_uri);
+    else
+        return NULL;
+}
+
+void
+yelp_storage_set_root_title (YelpStorage *storage,
+                             const gchar *doc_uri,
+                             const gchar *title)
+{
+    YelpStorageInterface *iface;
+
+    g_return_if_fail (YELP_IS_STORAGE (storage));
+
+    iface = YELP_STORAGE_GET_INTERFACE (storage);
+
+    if (iface->search)
+        (*iface->set_root_title) (storage, doc_uri, title);
+}
