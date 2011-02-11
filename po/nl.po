@@ -1,22 +1,25 @@
 # Dutch translation of Yelp.
 # Copyright © 2002 Free Software Foundation, Inc.
 #
-# Tino Meinen <a.t.meinen@chello.nl>, 2002, 2003, 2004, 2005, 2006
-# Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002
-# Reinout van Schouwen <reinouts@gnome.org>, 2005, 2008
-# Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006 (small additions)
+# Tino Meinen <a.t.meinen@chello.nl>, 2002, 2003, 2004, 2005, 2006.
+# Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002.
+# Reinout van Schouwen <reinouts@gnome.org>, 2005, 2008.
+# Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006, 2011 (small additions).
+# Redmar <redmar@ubuntu-nl.org>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-13 16:16+0000\n"
-"PO-Revision-Date: 2006-08-08 01:30+0200\n"
-"Last-Translator: Reinout van Schouwen <reinouts@gnome.org>\n"
-"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"POT-Creation-Date: 2011-02-11 22:38+0100\n"
+"PO-Revision-Date: 2011-02-08 10:17+0100\n"
+"Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
+"Language-Team: Dutch <ubuntu-l10n-nl@lists.ubuntu.com>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -245,7 +248,7 @@ msgstr "Systeemadministratie"
 
 #: ../data/man.xml.in.h:54
 msgid "System Calls"
-msgstr "Systeemfuncties"
+msgstr "Systeemaanroepen"
 
 #: ../data/man.xml.in.h:55
 msgid "System V Form/Menu Functions"
@@ -289,11 +292,11 @@ msgstr "X11-overzicht"
 
 #: ../data/toc.xml.in.h:1
 msgid "2D Graphics"
-msgstr "2D-grafisch"
+msgstr "2D-graphics"
 
 #: ../data/toc.xml.in.h:2
 msgid "3D Graphics"
-msgstr "3D-grafisch"
+msgstr "3D-graphics"
 
 #: ../data/toc.xml.in.h:3
 msgid "Accessibility"
@@ -403,7 +406,7 @@ msgstr "Constructie"
 
 #: ../data/toc.xml.in.h:29
 msgid "Contact Management"
-msgstr "Contactbeheer"
+msgstr "Contactenbeheer"
 
 #: ../data/toc.xml.in.h:30
 msgid "Data Visualization"
@@ -528,7 +531,9 @@ msgstr "Grafisch"
 
 #: ../data/toc.xml.in.h:63
 msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Gidsen en handleidingen voor toepassingen die verbinding maken met de buitenwereld"
+msgstr ""
+"Gidsen en handleidingen voor toepassingen die verbinding maken met de "
+"buitenwereld"
 
 #: ../data/toc.xml.in.h:64
 msgid "Guides for getting involved in development"
@@ -587,8 +592,8 @@ msgid ""
 "Learn more about making your system more accessible for a range of "
 "disabilities"
 msgstr ""
-"Meer te weten komen over het toegankelijk maken van uw systeem voor "
-"een scala aan functiebeperkingen"
+"Meer te weten komen over het toegankelijk maken van uw systeem voor een "
+"scala aan functiebeperkingen"
 
 #: ../data/toc.xml.in.h:78
 msgid "Licenses"
@@ -691,7 +696,7 @@ msgstr "Afspeelprogramma's"
 msgid "Presentation Tools"
 msgstr "Presentatieprogramma's"
 
-#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
+#: ../data/toc.xml.in.h:104
 msgid "Printing"
 msgstr "Afdrukken"
 
@@ -759,7 +764,9 @@ msgstr "Instellingen"
 
 #: ../data/toc.xml.in.h:121
 msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "Instellingen die gebruikers kunnen manipuleren om hun werkomgeving naar hun smaak aan te passen"
+msgstr ""
+"Instellingen die gebruikers kunnen manipuleren om hun werkomgeving naar hun "
+"smaak aan te passen"
 
 #: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
@@ -872,207 +879,44 @@ msgstr "Web-ontwikkeling"
 
 #: ../data/toc.xml.in.h:149
 msgid "Welcome to the GNOME Help Browser"
-msgstr "Welkom bij de Hulpbrowser"
+msgstr "Welkom bij de hulpbrowser van Gnome"
 
 #: ../data/toc.xml.in.h:150
 msgid "Word Processors"
 msgstr "Tekstverwerkers"
 
-#: ../data/ui/yelp.glade.h:1
-msgid "<b>Accessibility</b>"
-msgstr "<b>Toegankelijkheid</b>"
+#: ../libyelp/yelp-bz2-decompressor.c:146
+#: ../libyelp/yelp-lzma-decompressor.c:155
+msgid "Invalid compressed data"
+msgstr "Gecomprimeerde data is beschadigd"
 
-#: ../data/ui/yelp.glade.h:2
-msgid "<b>Fonts</b>"
-msgstr "<b>Lettertypes</b>"
-
-#: ../data/ui/yelp.glade.h:3
-msgid "Add Bookmark"
-msgstr "Bladwijzer toevoegen"
-
-#: ../data/ui/yelp.glade.h:4
-msgid "Bookmarks"
-msgstr "Bladwijzers"
-
-#: ../data/ui/yelp.glade.h:5
-msgid "C_ase sensitive"
-msgstr "_Hoofdlettergevoelig"
-
-#: ../data/ui/yelp.glade.h:6
-msgid "Find"
-msgstr "Zoeken"
-
-#: ../data/ui/yelp.glade.h:7
-msgid "Open Location"
-msgstr "Locatie openen"
-
-#: ../data/ui/yelp.glade.h:8
-msgid "Preferences"
-msgstr "Voorkeuren"
-
-#: ../data/ui/yelp.glade.h:9
-msgid "Re_name"
-msgstr "_Hernoemen"
-
-#: ../data/ui/yelp.glade.h:10
-msgid "_Bookmarks:"
-msgstr "Bl_adwijzers:"
-
-#: ../data/ui/yelp.glade.h:11
-msgid "_Browse with caret"
-msgstr "_Met caret verkennen"
-
-#: ../data/ui/yelp.glade.h:12
-msgid "_Find:"
-msgstr "_Zoeken:"
-
-#: ../data/ui/yelp.glade.h:13
-msgid "_Fixed width:"
-msgstr "_Vaste breedte:"
-
-#: ../data/ui/yelp.glade.h:14
-msgid "_Location:"
-msgstr "_Locatie:"
-
-#: ../data/ui/yelp.glade.h:15
-msgid "_Next"
-msgstr "V_olgende"
-
-#: ../data/ui/yelp.glade.h:16
-msgid "_Previous"
-msgstr "Vo_rige"
-
-# naam/titel
-#: ../data/ui/yelp.glade.h:17
-msgid "_Title:"
-msgstr "_Titel:"
-
-#: ../data/ui/yelp.glade.h:18
-msgid "_Use system fonts"
-msgstr "_Systeemlettertypes gebruiken:"
-
-#: ../data/ui/yelp.glade.h:19
-msgid "_Variable width:"
-msgstr "_Variabele breedte:"
-
-# hele discussie hierover op http://home.o2w.net/~ivo/wiki.pl?WrapAround
-# Betere vertaling hier in yelp?
-# was Terugloop, maar consensus schijnt te zijn: Doorgaan na documenteinde
-#: ../data/ui/yelp.glade.h:20
-msgid "_Wrap around"
-msgstr "_Doorgaan na documenteinde"
-
-# fixed text?
-# platte tekst als compromis, dit is eigenlijk
-# tekst met vaste breedte-lettertype
-#: ../data/yelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "Lettertype voor platte tekst"
-
-#: ../data/yelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "Lettertype voor tekst"
-
-#: ../data/yelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "Lettertype voor tekst met vaste breedte."
-
-#: ../data/yelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "Lettertype voor tekst met variabele breedte."
-
-# vertaald als weergeven ipv bekijken
-#: ../data/yelp.schemas.in.h:5
-msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr ""
-"Bij het weergeven van pagina's een caret gebruiken die met het toetsenbord "
-"bediend kan worden."
-
-#: ../data/yelp.schemas.in.h:6
-msgid "Use caret"
-msgstr "caret gebruiken"
-
-#: ../data/yelp.schemas.in.h:7
-msgid "Use system fonts"
-msgstr "Systeemlettertypes gebruiken"
-
-# for the system niet meevertaald
-#: ../data/yelp.schemas.in.h:8
-msgid "Use the default fonts set for the system."
-msgstr "De standaard lettertypes gebruiken."
-
-#: ../src/yelp-bookmarks.c:150
-msgid "Open Bookmark in New Window"
-msgstr "Bladwijzer openen in nieuw venster"
-
-#: ../src/yelp-bookmarks.c:154
-msgid "Rename Bookmark"
-msgstr "Bladwijzer hernoemen"
-
-#: ../src/yelp-bookmarks.c:158
-msgid "Remove Bookmark"
-msgstr "Bladwijzer verwijderen"
-
-#: ../src/yelp-bookmarks.c:315
-#, c-format
-msgid "A bookmark titled %s already exists for this page."
-msgstr "Een bladwijzer genaamd %s bestaat al voor deze pagina."
-
-#: ../src/yelp-bookmarks.c:392
-#, c-format
-msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "Een bladwijzer genaamd <b>%s</b> bestaat al voor deze pagina."
-
-#: ../src/yelp-bookmarks.c:405
-msgid "Help Topics"
-msgstr "Hulp-onderwerpen"
-
-# onderdelen/secties
-#: ../src/yelp-bookmarks.c:420
-msgid "Document Sections"
-msgstr "Documentsecties"
-
-#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:242
-#: ../src/yelp-info.c:337 ../src/yelp-man.c:292 ../src/yelp-man.c:387
-#: ../src/yelp-toc.c:265 ../src/yelp-toc.c:363
-msgid "Page not found"
-msgstr "Pagina niet gevonden"
+#: ../libyelp/yelp-bz2-decompressor.c:152
+#: ../libyelp/yelp-lzma-decompressor.c:161
+msgid "Not enough memory"
+msgstr "Te weinig geheugen"
 
 # werd niet gevonden?
 # aangetroffen?
-#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:243
-#: ../src/yelp-man.c:293
+#: ../libyelp/yelp-docbook-document.c:277 ../libyelp/yelp-info-document.c:233
+#: ../libyelp/yelp-mallard-document.c:260
+#: ../libyelp/yelp-mallard-document.c:415 ../libyelp/yelp-man-document.c:277
 #, c-format
-msgid "The page %s was not found in the document %s."
-msgstr "Pagina %s kon niet worden gevonden in document %s."
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr "Pagina ‘%s’ kon niet worden gevonden in document ‘%s’."
 
-# werd niet gevonden?
-# aangetroffen?
-#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:338
-#: ../src/yelp-man.c:388
+#: ../libyelp/yelp-docbook-document.c:311 ../libyelp/yelp-info-document.c:367
+#: ../libyelp/yelp-man-document.c:411
 #, c-format
-msgid "The requested page was not found in the document %s."
-msgstr "De geselecteerde pagina kon niet worden gevonden in document %s."
+msgid "The file does not exist."
+msgstr "Het bestand bestaat niet."
 
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:409 ../src/yelp-info.c:378
-#: ../src/yelp-man.c:430
-msgid "File not found"
-msgstr "Bestand niet gevonden"
-
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:410 ../src/yelp-info.c:379
-#: ../src/yelp-man.c:431
+#: ../libyelp/yelp-docbook-document.c:321 ../libyelp/yelp-info-document.c:377
+#: ../libyelp/yelp-man-document.c:421
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Het bestand ‘%s’ bestaat niet."
 
-#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:423 ../src/yelp-docbook.c:435 ../src/yelp-info.c:393
-#: ../src/yelp-man.c:459 ../src/yelp-toc.c:433
-msgid "Could not parse file"
-msgstr "Kon bestand niet verwerken"
-
-#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:424
+#: ../libyelp/yelp-docbook-document.c:336
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -1080,7 +924,7 @@ msgid ""
 msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt, omdat het ongeldige XML bevat."
 
-#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:436
+#: ../libyelp/yelp-docbook-document.c:349
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -1089,23 +933,28 @@ msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt, omdat een van de bestanden waar "
 "het naar verwijst ongeldige XML bevat."
 
-#: ../src/yelp-db-print.c:765 ../src/yelp-docbook.c:786
+#: ../libyelp/yelp-docbook-document.c:753
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
-msgid "Unknown Error"
-msgstr "Onbekende fout"
+# werd niet gevonden?
+# aangetroffen?
+#: ../libyelp/yelp-docbook-document.c:814 ../libyelp/yelp-info-document.c:310
+#: ../libyelp/yelp-man-document.c:353
+#, c-format
+msgid "The requested page was not found in the document ‘%s’."
+msgstr "De gezochte pagina kon niet worden gevonden in document ‘%s’."
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1582
-msgid "Could Not Read File"
-msgstr "Kon bestand niet lezen"
+#: ../libyelp/yelp-error.c:33
+#, c-format
+msgid "An unknown error occurred."
+msgstr "Er is een onbekende fout opgetreden."
 
-#: ../src/yelp-error.c:146
-msgid "No information is available about this error."
-msgstr "Er is geen informatie beschikbaar over deze fout."
+#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+msgid "All Help Documents"
+msgstr "Alle hulp-documenten"
 
-#: ../src/yelp-info.c:394
+#: ../libyelp/yelp-info-document.c:392
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -1113,452 +962,763 @@ msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt, omdat het een ongeldige info-"
 "pagina is."
 
-#: ../src/yelp-io-channel.c:123
+#: ../libyelp/yelp-location-entry.c:329
+msgid "View"
+msgstr "Weergave"
+
+#: ../libyelp/yelp-location-entry.c:330
+msgid "A YelpView instance to control"
+msgstr "Een YelpView-instance voor beheer"
+
+#: ../libyelp/yelp-location-entry.c:345
+msgid "Bookmarks"
+msgstr "Bladwijzers"
+
+#: ../libyelp/yelp-location-entry.c:346
+msgid "A YelpBookmarks implementation instance"
+msgstr "Een YelpBookmarks-implementation-instance"
+
+#: ../libyelp/yelp-location-entry.c:362
+msgid "Enable Search"
+msgstr "Zoeken inschakelen"
+
+#: ../libyelp/yelp-location-entry.c:363
+msgid "Whether the location entry can be used as a search field"
+msgstr "Of de locatiebalk als zoekveld gebruikt kan worden"
+
+#: ../libyelp/yelp-location-entry.c:478 ../src/yelp-window.c:277
+msgid "Search..."
+msgstr "Zoeken…"
+
+#: ../libyelp/yelp-location-entry.c:827
+msgid "Clear the search text"
+msgstr "De zoektekst wissen"
+
+#: ../libyelp/yelp-location-entry.c:870 ../libyelp/yelp-location-entry.c:1562
+msgid "Bookmark this page"
+msgstr "Bladwijzer voor deze bladzijde toevoegen"
+
+#: ../libyelp/yelp-location-entry.c:878 ../libyelp/yelp-location-entry.c:1570
+msgid "Remove bookmark"
+msgstr "Bladwijzer verwijderen"
+
+#: ../libyelp/yelp-location-entry.c:1427
+msgid "Loading"
+msgstr "Bezig met laden…"
+
+#: ../libyelp/yelp-mallard-document.c:302
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
-msgstr ""
-"Het bestand ‘%s’ kon niet worden gelezen en gedecodeerd. Het bestand is "
-"mogelijk gecomprimeerd in een onbekend formaat."
+msgid "The directory ‘%s’ does not exist."
+msgstr "De map ‘%s’ bestaat niet."
 
-#: ../src/yelp-main.c:92
-msgid "Use a private session"
-msgstr "Een privé-sessie gebruiken"
+#: ../libyelp/yelp-settings.c:148
+msgid "GtkSettings"
+msgstr "GtkSettings"
 
-#: ../src/yelp-main.c:101
-msgid "Define which cache directory to use"
-msgstr "Aangeven welke map moet worden gebruikt voor tijdelijke opslag"
+#: ../libyelp/yelp-settings.c:149
+msgid "A GtkSettings object to get settings from"
+msgstr "Een GtkSettings-object om instellingen van op te halen"
 
-#. Commandline parsing is done here
-#: ../src/yelp-main.c:358
-msgid " GNOME Help Browser"
-msgstr "GNOME Hulp-browser"
+#: ../libyelp/yelp-settings.c:157
+msgid "GtkIconTheme"
+msgstr "GtkIconTheme"
 
-#: ../src/yelp-main.c:378 ../yelp.desktop.in.in.h:2
-msgid "Help"
-msgstr "Hulp"
+#: ../libyelp/yelp-settings.c:158
+msgid "A GtkIconTheme object to get icons from"
+msgstr "Een GtkIconTheme-object om pictogrammen van op te halen"
 
-#: ../src/yelp-man.c:460
+#: ../libyelp/yelp-settings.c:166
+msgid "Font Adjustment"
+msgstr "Lettertype aanpassen"
+
+#: ../libyelp/yelp-settings.c:167
+msgid "A size adjustment to add to font sizes"
+msgstr "Een aanpassing van de grootte om aan tekengroottes toe te voegen"
+
+#: ../libyelp/yelp-settings.c:175
+msgid "Show Text Cursor"
+msgstr "tekstcursor tonen"
+
+#: ../libyelp/yelp-settings.c:176
+msgid "Show the text cursor or caret for accessible navigation"
+msgstr "De tekstcursor of caret tonen voor eenvoudige navigatie"
+
+#: ../libyelp/yelp-settings.c:184
+msgid "Editor Mode"
+msgstr "Bewerk-modus"
+
+#: ../libyelp/yelp-settings.c:185
+msgid "Enable features useful to editors"
+msgstr "Activeer opties die van pas komen bij bewerken"
+
+#: ../libyelp/yelp-transform.c:171
+msgid "XSLT Stylesheet"
+msgstr "XSLT-stijlblad"
+
+#: ../libyelp/yelp-transform.c:172
+msgid "The location of the XSLT stylesheet"
+msgstr "De locatie van het XSLT-stijlblad"
+
+#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr ""
-"Het bestand ‘%s’ kon niet worden verwerkt, omdat het een ongeldige man-"
-"pagina is."
-
-#: ../src/yelp-print.c:97
-msgid "Print"
-msgstr "Afdrukken"
-
-#: ../src/yelp-print.c:167
-msgid "Preparing to print"
-msgstr "Voorbereiding voor afdrukken"
-
-#: ../src/yelp-print.c:261
-msgid "Printing is not supported on this printer"
-msgstr "Afdrukken is niet mogelijk op deze printer"
-
-#: ../src/yelp-print.c:264
-#, c-format
-msgid "Printer %s does not support postscript printing."
-msgstr "Op printer %s kunt u geen postscript afdrukken."
-
-#: ../src/yelp-print.c:366
-msgid "Waiting to print"
-msgstr "Wachten om af te drukken"
-
-# er was een fout bij het afdrukken
-#: ../src/yelp-print.c:578
-msgid "An error occurred while printing"
-msgstr "Er is een fout opgetreden bij het afdrukken"
-
-# het bleek onmogelijk/het was onmogelijk/het is onmogelijk gebleken
-#: ../src/yelp-print.c:582
-#, c-format
-msgid "It was not possible to print your document: %s"
-msgstr "Het bleek niet mogelijk om uw document af te drukken: %s"
-
-#: ../src/yelp-search-parser.c:68
-msgid "the GNOME Support Forums"
-msgstr "De GNOME support-forums"
-
-# zoekresultaten/resultaten op/Niets gevonden op
-#: ../src/yelp-search-parser.c:286
-#, c-format
-msgid "No results for \"%s\""
-msgstr "Geen resultaten op ‘%s’"
-
-#: ../src/yelp-search-parser.c:287
-msgid ""
-"Try using different words to describe the problem you're having or the topic "
-"you want help with."
-msgstr ""
-"Probeer met andere woorden te omschrijven wat het probleem is of waar u hulp "
-"bij zoekt."
-
-# op/voor
-#: ../src/yelp-search-parser.c:290
-#, c-format
-msgid "Search results for \"%s\""
-msgstr "Zoekresultaten voor ‘%s’"
-
-#. TRANSLATORS: Please don't do anything funny with the
-#. * format arguement.  It isn't really going through a printf
-#. * The %s is used to indicate where the name of the site (linked)
-#. * should be.  This is done in the XSLT
-#.
-#: ../src/yelp-search-parser.c:304
-#, c-format
-msgid "Repeat the search online at %s"
-msgstr "De zoekopdracht online herhalen op %s"
-
-#. Translators: Do not translate this list exactly.  These are
-#. * colon-separated words that aren't useful for choosing search
-#. * results; they will be different for each language. Include
-#. * pronouns, articles, very common verbs and prepositions,
-#. * words from question structures like "tell me about" and
-#. * "how do I", and words for functional states like "not",
-#. * "work", and "broken".
-#.
-#: ../src/yelp-search-parser.c:874
-msgid ""
-"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
-"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
-"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
-"where:who:will:with:won't:wont:why:work:working:works"
-msgstr ""
-"de:het:een:over:vertel:uitleg:help:hoe:kan:ik:je:iets:werkt:doet:niet:stuk"
-
-# ^^ Dit kan vast beter (Wouter Bolsterlee)
-#. Translators: This is a list of common prefixes for words.
-#. * Do not translate this directly.  Instead, use a colon
-#. * seperated list of word-starts.  In English, an example
-#. * is re-.  If there is none, please use the term NULL
-#. * If there is only one, please put a colon after.
-#. * E.g. if the common prefix is re then the string would be
-#. * "re:"
-#.
-#: ../src/yelp-search-parser.c:890
-msgid "re"
-msgstr "her:ont:on:ge:ver:be"
-
-#. Translators: This is a list of (guess what?) common suffixes
-#. * to words.  Things that may be put at ends of words to slightly
-#. * alter their meaning (like -ing and -s in English).  This is a
-#. * colon seperated list (I like colons).  If there are none,
-#. * please use the string NULL.  If there is only 1, please
-#. * add a colon at the end of the list
-#.
-#: ../src/yelp-search-parser.c:899
-msgid "ers:er:ing:es:s:'s"
-msgstr "en:ig:pje:tje:je"
-
-#: ../src/yelp-search-parser.c:1095
-msgid "No Comment"
-msgstr "Geen commentaar"
-
-#. Much bigger problems
-#: ../src/yelp-search.c:238
-msgid "Search could not be processed"
-msgstr "Zoekopdracht kon niet worden verwerkt."
-
-#: ../src/yelp-search.c:239
-msgid "The requested search could not be processed."
-msgstr "De zoekopdracht kon niet worden verwerkt."
-
-#: ../src/yelp-search.c:366
-msgid "Cannot process the search"
-msgstr "Kan zoekopdracht niet uitvoeren"
-
-#: ../src/yelp-search.c:367
-msgid "The search processor returned invalid results"
-msgstr "Zoekopdracht gaf ongeldige resultaten"
-
-#: ../src/yelp-toc.c:266
-#, c-format
-msgid "The page %s was not found in the TOC."
-msgstr "De pagina %s kon niet in de inhoudsopgave gevonden worden."
-
-# werd niet gevonden?
-# aangetroffen?
-#: ../src/yelp-toc.c:364
-msgid "The requested page was not found in the TOC."
-msgstr "De geselecteerde pagina kon niet worden gevonden in de inhoudsopgave."
-
-#: ../src/yelp-toc.c:434
-msgid ""
-"The TOC file could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"De inhoudsopgave kon niet worden verwerkt, omdat het ongeldige XML bevat."
-
-#: ../src/yelp-transform.c:80
-msgid "Invalid Stylesheet"
-msgstr "Ongeldig stijlblad"
-
-#: ../src/yelp-transform.c:81
-#, c-format
-msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Het XSLT-stijlblad ‘%s’ onbreekt of is ongeldig."
 
-#: ../src/yelp-transform.c:112
-msgid "Broken Transformation"
-msgstr "Documentomzetting"
-
-#: ../src/yelp-transform.c:113
-msgid "An unknown error occurred while attempting to transform the document."
-msgstr "Er is onbekende fout opgetreden bij het omzetten van het document."
-
-#: ../src/yelp-transform.c:372
+#: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
 msgstr "Geen ‘href’-attribuut gevonden op yelp:document\n"
 
-#: ../src/yelp-transform.c:387
+#: ../libyelp/yelp-transform.c:543
 msgid "Out of memory"
 msgstr "Geen geheugen meer"
 
-#: ../src/yelp-window.c:298
-msgid "_File"
-msgstr "_Bestand"
+#: ../libyelp/yelp-view.c:126
+msgid "_Print..."
+msgstr "_Afdrukken…"
 
-#: ../src/yelp-window.c:299
-msgid "_Edit"
-msgstr "Be_werken"
-
-#: ../src/yelp-window.c:300
-msgid "_Go"
-msgstr "_Ga naar"
-
-#: ../src/yelp-window.c:301
-msgid "_Bookmarks"
-msgstr "Bl_adwijzers"
-
-#: ../src/yelp-window.c:302
-msgid "_Help"
-msgstr "_Hulp"
-
-#: ../src/yelp-window.c:305
-msgid "_New Window"
-msgstr "_Nieuw venster"
-
-#: ../src/yelp-window.c:310
-msgid "Print This Document ..."
-msgstr "Dit document afdrukken…"
-
-#: ../src/yelp-window.c:315
-msgid "Print This Page ..."
-msgstr "Deze pagina afdrukken…"
-
-#: ../src/yelp-window.c:320
-msgid "About This Document"
-msgstr "Over dit document"
-
-#: ../src/yelp-window.c:325
-msgid "Open _Location"
-msgstr "_Locatie openen"
-
-#: ../src/yelp-window.c:330
-msgid "_Close Window"
-msgstr "Venster sl_uiten"
-
-#: ../src/yelp-window.c:336
-msgid "_Copy"
-msgstr "_Kopiëren"
-
-#: ../src/yelp-window.c:342
-msgid "_Select All"
-msgstr "Alles _selecteren"
-
-#: ../src/yelp-window.c:347
-msgid "_Find..."
-msgstr "_Zoeken..."
-
-#: ../src/yelp-window.c:352
-msgid "Find Pre_vious"
-msgstr "Vo_rige zoeken"
-
-#: ../src/yelp-window.c:354
-msgid "Find previous occurrence of the word or phrase"
-msgstr "Zoek de vorige plaats waar het woord voorkomt"
-
-#: ../src/yelp-window.c:357
-msgid "Find Ne_xt"
-msgstr "V_olgende zoeken"
-
-#: ../src/yelp-window.c:359
-msgid "Find next occurrence of the word or phrase"
-msgstr "Zoek de volgende plaats waar het woord voorkomt"
-
-#: ../src/yelp-window.c:362
-msgid "_Preferences"
-msgstr "_Voorkeuren"
-
-#: ../src/yelp-window.c:367
-msgid "_Reload"
-msgstr "_Herladen"
-
-#: ../src/yelp-window.c:379
+#: ../libyelp/yelp-view.c:131
 msgid "_Back"
 msgstr "_Terug"
 
-#: ../src/yelp-window.c:381
-msgid "Show previous page in history"
-msgstr "De vorige pagina tonen"
-
 # In tegenstelling tot de normale sneltoets gebruiken we hier de V
-#: ../src/yelp-window.c:384
+#: ../libyelp/yelp-view.c:136
 msgid "_Forward"
 msgstr "_Volgende"
 
-#: ../src/yelp-window.c:386
-msgid "Show next page in history"
-msgstr "De volgende pagina tonen"
+#: ../libyelp/yelp-view.c:141
+msgid "_Previous Page"
+msgstr "Vo_rige pagina"
 
-#: ../src/yelp-window.c:389
-msgid "_Help Topics"
-msgstr "_Hulp-onderwerpen"
+#: ../libyelp/yelp-view.c:146
+msgid "_Next Page"
+msgstr "_Volgende pagina"
 
-# van/met
-#: ../src/yelp-window.c:391
-msgid "Go to the listing of help topics"
-msgstr "Ga naar het overzicht van hulp-onderwerpen"
+#: ../libyelp/yelp-view.c:415
+msgid "Yelp URI"
+msgstr "Yelp-URI"
 
-#: ../src/yelp-window.c:394
-msgid "_Previous Section"
-msgstr "Vorige s_ectie"
+#: ../libyelp/yelp-view.c:416
+msgid "A YelpUri with the current location"
+msgstr "Een YelpUri met de huidige locatie"
 
-#: ../src/yelp-window.c:399
-msgid "_Next Section"
-msgstr "Volgende _sectie"
+#: ../libyelp/yelp-view.c:424
+msgid "Loading State"
+msgstr "Status van laden"
 
-#: ../src/yelp-window.c:404 ../src/yelp-window.c:436
-msgid "_Contents"
-msgstr "_Inhoudsopgave"
+#: ../libyelp/yelp-view.c:425
+msgid "The loading state of the view"
+msgstr "De ladings-status van de weergave"
 
-#: ../src/yelp-window.c:410
-msgid "_Add Bookmark"
-msgstr "Bla_dwijzer toevoegen"
+#: ../libyelp/yelp-view.c:434
+msgid "Page ID"
+msgstr "Pagina-ID"
 
-#: ../src/yelp-window.c:415
-msgid "_Edit Bookmarks..."
-msgstr "Bladwijzers be_werken..."
+#: ../libyelp/yelp-view.c:435
+msgid "The ID of the root page of the page being viewed"
+msgstr "De bronpagina-ID van de pagina die bekeken wordt"
 
-#: ../src/yelp-window.c:421
+#: ../libyelp/yelp-view.c:443
+msgid "Root Title"
+msgstr "Bron-titel"
+
+#: ../libyelp/yelp-view.c:444
+msgid "The title of the root page of the page being viewed"
+msgstr "De titel van de bronpagina van de pagina die bekeken wordt"
+
+#: ../libyelp/yelp-view.c:452
+msgid "Page Title"
+msgstr "Pagina-titel"
+
+#: ../libyelp/yelp-view.c:453
+msgid "The title of the page being viewed"
+msgstr "De titel van de pagina die bekeken wordt"
+
+#: ../libyelp/yelp-view.c:461
+msgid "Page Description"
+msgstr "Pagina-omschrijving"
+
+#: ../libyelp/yelp-view.c:462
+msgid "The description of the page being viewed"
+msgstr "De omschrijving van de pagina die bekeken wordt"
+
+#: ../libyelp/yelp-view.c:470
+msgid "Page Icon"
+msgstr "Pagina-pictogram"
+
+#: ../libyelp/yelp-view.c:471
+msgid "The icon of the page being viewed"
+msgstr "Het pictogram van de pagina die bekeken wordt"
+
+#: ../libyelp/yelp-view.c:712
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr "U heeft PackageKit niet. Installatie-links vereisen PackageKit."
+
+#: ../libyelp/yelp-view.c:990
+msgid "Save Image"
+msgstr "Afbeelding opslaan"
+
+#: ../libyelp/yelp-view.c:1085
+msgid "Save Code"
+msgstr "Code opslaan"
+
+#. Not using a mnemonic because underscores are common in email
+#. * addresses, and we'd have to escape them. There doesn't seem
+#. * to be a quick GTK+ function for this. In practice, there will
+#. * probably only be one menu item for mailto link popups anyway,
+#. * so the mnemonic's not that big of a deal.
+#.
+#: ../libyelp/yelp-view.c:1254
+#, c-format
+msgid "Send email to %s"
+msgstr "Stuur een e-mail naar %s"
+
+#: ../libyelp/yelp-view.c:1264
 msgid "_Open Link"
 msgstr "_Link openen"
 
-#: ../src/yelp-window.c:426
-msgid "Open Link in _New Window"
+#: ../libyelp/yelp-view.c:1269
+msgid "Open Link in New _Window"
 msgstr "Link openen in _nieuw venster"
 
-#: ../src/yelp-window.c:431
-msgid "_Copy Link Address"
-msgstr "Linkadres _kopiëren"
+#: ../libyelp/yelp-view.c:1320
+msgid "_Save Image As..."
+msgstr "Afbeelding op_slaan als…"
 
-#: ../src/yelp-window.c:438
-msgid "Help On this application"
-msgstr "Hulp bij deze toepassing"
+#: ../libyelp/yelp-view.c:1322
+msgid "_Save Video As..."
+msgstr "Video op_slaan als…"
 
-#: ../src/yelp-window.c:441
-msgid "_About"
-msgstr "I_nfo"
+#: ../libyelp/yelp-view.c:1329
+msgid "S_end Image To..."
+msgstr "Afbeelding s_turen naar…"
 
-#: ../src/yelp-window.c:446
-msgid "Copy _Email Address"
-msgstr "_E-mailadres kopiëren"
+#: ../libyelp/yelp-view.c:1331
+msgid "S_end Video To..."
+msgstr "Video s_turen naar…"
 
-#: ../src/yelp-window.c:495
-msgid "Help Browser"
-msgstr "Hulp-browser"
+#: ../libyelp/yelp-view.c:1342
+msgid "_Copy Text"
+msgstr "Tekst _kopiëren"
 
-#: ../src/yelp-window.c:586 ../src/yelp-window.c:638 ../src/yelp-window.c:1636
-msgid "Loading..."
-msgstr "Bezig met laden..."
+#: ../libyelp/yelp-view.c:1355
+msgid "C_opy Code Block"
+msgstr "Code-blok _kopiëren"
 
-#: ../src/yelp-window.c:587 ../src/yelp-window.c:639
-msgid "Unknown Page"
-msgstr "Onbekende pagina"
+#: ../libyelp/yelp-view.c:1360
+msgid "Save Code _Block As..."
+msgstr "Code-_blok opslaan als…"
 
-#: ../src/yelp-window.c:1001 ../src/yelp-window.c:1067
+#: ../libyelp/yelp-view.c:1542
 #, c-format
-msgid "The requested URI \"%s\" is invalid"
-msgstr "De opgevraagde URI ‘%s’ is ongeldig"
+msgid "Could not load a document for ‘%s’"
+msgstr "Kon een document voor ‘%s’niet laden"
 
-#: ../src/yelp-window.c:1002 ../src/yelp-window.c:1068
-msgid "Unable to load page"
-msgstr "Pagina kan niet geopend worden"
-
-#: ../src/yelp-window.c:1062
-msgid "Error executing \"gnome-open\""
-msgstr "Fout bij uitvoeren van ‘gnome-open’"
-
-#: ../src/yelp-window.c:1246
-msgid "_Search:"
-msgstr "_Zoeken:"
-
-#: ../src/yelp-window.c:1247
-msgid "Search for other documentation"
-msgstr "Zoeken naar overige documentatie"
-
-#: ../src/yelp-window.c:1266
-msgid "Cannot create window"
-msgstr "Kon geen venster aanmaken."
-
-#: ../src/yelp-window.c:1272
-msgid "Cannot create search component"
-msgstr "Kan zoekcomponent niet aanmaken"
-
-#: ../src/yelp-window.c:1406
-msgid "Fin_d:"
-msgstr "_Zoeken:"
-
-#: ../src/yelp-window.c:1426
-msgid "Find _Previous"
-msgstr "Vo_rige zoeken"
-
-#: ../src/yelp-window.c:1438
-msgid "Find _Next"
-msgstr "V_olgende zoeken..."
-
-# Vrij vertaald -- Wouter Bolsterlee
-#: ../src/yelp-window.c:1451
-msgid "Phrase not found"
-msgstr "Zoekopdracht niet gevonden"
-
-#: ../src/yelp-window.c:1579
+#: ../libyelp/yelp-view.c:1548
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
-msgstr ""
-"Het bestand ‘%s’ kon niet worden gelezen.  Ofwel het bestand ontbreekt, of u "
-"heeft geen toestemming het te lezen."
+msgid "Could not load a document"
+msgstr "Kon een document niet laden"
 
-#. Note to translators: put here your name (and address) so it
-#. * will show up in the "about" box
-#: ../src/yelp-window.c:2402
-msgid "translator-credits"
-msgstr ""
-"Tino Meinen\n"
-"Ronald Hummelink\n"
-"Reinout van Schouwen\n"
-"Wouter Bolsterlee\n"
-"\n"
-"Kijk voor meer informatie op http://nl.gnome.org/"
+# onderdelen/secties
+#: ../libyelp/yelp-view.c:1622
+msgid "Document Not Found"
+msgstr "Document niet gevonden"
 
-#: ../src/yelp-window.c:2405
-msgid "Yelp"
-msgstr "Yelp"
+#: ../libyelp/yelp-view.c:1624
+msgid "Page Not Found"
+msgstr "Pagina niet gevonden"
 
-# vrij vertaald.
-#: ../src/yelp-window.c:2407
-msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "Een documentatieverkenner voor Gnome"
+#: ../libyelp/yelp-view.c:1627
+msgid "Cannot Read"
+msgstr "Kan niet lezen"
+
+#: ../libyelp/yelp-view.c:1633
+msgid "Unknown Error"
+msgstr "Onbekende fout"
+
+#: ../libyelp/yelp-view.c:1653
+msgid "Search for packages containing this document."
+msgstr "Zoek naar pakketten die dit document bevatten."
+
+#: ../libyelp/yelp-view.c:1806
+#, c-format
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "De URI ‘%s’ wijst niet naar een geldige pagina."
+
+#: ../libyelp/yelp-view.c:1812
+#, c-format
+msgid "The URI does not point to a valid page."
+msgstr "De URI wijst niet naar een geldige pagina."
+
+#: ../libyelp/yelp-view.c:1818
+#, c-format
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "De URI ‘%s’ kan niet verwerkt worden."
+
+#: ../src/yelp-application.c:53
+msgid "Turn on editor mode"
+msgstr "Activeer bewerkings-modus"
+
+#: ../src/yelp-application.c:138
+msgid "_Larger Text"
+msgstr "_Grotere tekst"
+
+#: ../src/yelp-application.c:140
+msgid "Increase the size of the text"
+msgstr "Maak het lettertype groter"
+
+#: ../src/yelp-application.c:143
+msgid "_Smaller Text"
+msgstr "_Kleinere tekst"
+
+#: ../src/yelp-application.c:145
+msgid "Decrease the size of the text"
+msgstr "Maak het lettertype kleiner"
+
+#: ../src/yelp-application.c:257
+msgid "Show Text _Cursor"
+msgstr "Toon de _cursor"
+
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1460
+#: ../yelp.desktop.in.in.h:2
+msgid "Help"
+msgstr "Hulp"
+
+#: ../src/yelp-window.c:243
+msgid "_Page"
+msgstr "_Pagina"
+
+#: ../src/yelp-window.c:244
+msgid "_View"
+msgstr "_Weergave"
+
+#: ../src/yelp-window.c:245
+msgid "_Go"
+msgstr "_Ga naar"
+
+#: ../src/yelp-window.c:246
+msgid "_Bookmarks"
+msgstr "Bl_adwijzers"
+
+#: ../src/yelp-window.c:249
+msgid "_New Window"
+msgstr "_Nieuw venster"
+
+#: ../src/yelp-window.c:254
+msgid "_Close"
+msgstr "_Sluiten"
+
+#: ../src/yelp-window.c:259
+msgid "_All Documents"
+msgstr "_Alle documenten"
+
+#: ../src/yelp-window.c:263
+msgid "_Add Bookmark"
+msgstr "Bla_dwijzer toevoegen"
+
+#: ../src/yelp-window.c:268
+msgid "_Remove Bookmark"
+msgstr "Bladwijzer _verwijderen"
+
+#: ../src/yelp-window.c:272
+msgid "Find in Page..."
+msgstr "Zoek in pagina…"
+
+#: ../src/yelp-window.c:282
+msgid "Open Location"
+msgstr "Locatie openen"
+
+#: ../src/yelp-window.c:308
+msgid "Application"
+msgstr "Toepassing"
+
+#: ../src/yelp-window.c:309
+msgid "A YelpApplication instance that controls this window"
+msgstr "Een YelpApplication-instance die dit venster beheert"
+
+#: ../src/yelp-window.c:557
+msgid "Read Later"
+msgstr "Lees later"
+
+#: ../src/yelp-window.c:1264
+#, c-format
+msgid "%i match"
+msgid_plural "%i matches"
+msgstr[0] "%i resultaat"
+msgstr[1] "%i resultaten"
+
+#: ../src/yelp-window.c:1289
+msgid "No matches"
+msgstr "Geen resultaten"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Hulp bij GNOME"
+
+#~| msgid "_Edit Bookmarks..."
+#~ msgid "_Edit Bookmarks"
+#~ msgstr "Bladwijzers be_werken"
+
+#~| msgid "Bookmarks"
+#~ msgid "Bookmarks for %s"
+#~ msgstr "Bladwijzers voor %s"
+
+#~| msgid "Rename Bookmark"
+#~ msgid "_Open Bookmark"
+#~ msgstr "Bladwijzer _openen"
+
+#~| msgid "Open Bookmark in New Window"
+#~ msgid "Open Bookmark in New _Window"
+#~ msgstr "Bladwijzer in nieuw _venster openen"
+
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>Toegankelijkheid</b>"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Lettertypes</b>"
+
+#~ msgid "Add Bookmark"
+#~ msgstr "Bladwijzer toevoegen"
+
+#~ msgid "C_ase sensitive"
+#~ msgstr "_Hoofdlettergevoelig"
+
+#~ msgid "Find"
+#~ msgstr "Zoeken"
+
+#~ msgid "Preferences"
+#~ msgstr "Voorkeuren"
+
+#~ msgid "Re_name"
+#~ msgstr "_Hernoemen"
+
+#~ msgid "_Bookmarks:"
+#~ msgstr "Bl_adwijzers:"
+
+#~ msgid "_Browse with caret"
+#~ msgstr "_Met caret verkennen"
+
+#~ msgid "_Find:"
+#~ msgstr "_Zoeken:"
+
+#~ msgid "_Fixed width:"
+#~ msgstr "_Vaste breedte:"
+
+#~ msgid "_Location:"
+#~ msgstr "_Locatie:"
+
+#~ msgid "_Next"
+#~ msgstr "V_olgende"
+
+# naam/titel
+#~ msgid "_Title:"
+#~ msgstr "_Titel:"
+
+#~ msgid "_Use system fonts"
+#~ msgstr "_Systeemlettertypes gebruiken:"
+
+#~ msgid "_Variable width:"
+#~ msgstr "_Variabele breedte:"
+
+# hele discussie hierover op http://home.o2w.net/~ivo/wiki.pl?WrapAround
+# Betere vertaling hier in yelp?
+# was Terugloop, maar consensus schijnt te zijn: Doorgaan na documenteinde
+#~ msgid "_Wrap around"
+#~ msgstr "_Doorgaan na documenteinde"
+
+# fixed text?
+# platte tekst als compromis, dit is eigenlijk
+# tekst met vaste breedte-lettertype
+#~ msgid "Font for fixed text"
+#~ msgstr "Lettertype voor platte tekst"
+
+#~ msgid "Font for text"
+#~ msgstr "Lettertype voor tekst"
+
+#~ msgid "Font for text with fixed width."
+#~ msgstr "Lettertype voor tekst met vaste breedte."
+
+#~ msgid "Font for text with variable width."
+#~ msgstr "Lettertype voor tekst met variabele breedte."
+
+# vertaald als weergeven ipv bekijken
+#~ msgid "Use a keyboard-controllable caret when viewing pages."
+#~ msgstr ""
+#~ "Bij het weergeven van pagina's een caret gebruiken die met het "
+#~ "toetsenbord bediend kan worden."
+
+#~ msgid "Use caret"
+#~ msgstr "caret gebruiken"
+
+#~ msgid "Use system fonts"
+#~ msgstr "Systeemlettertypes gebruiken"
+
+# for the system niet meevertaald
+#~ msgid "Use the default fonts set for the system."
+#~ msgstr "De standaard lettertypes gebruiken."
+
+#~ msgid "A bookmark titled %s already exists for this page."
+#~ msgstr "Een bladwijzer genaamd %s bestaat al voor deze pagina."
+
+#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
+#~ msgstr "Een bladwijzer genaamd <b>%s</b> bestaat al voor deze pagina."
+
+#~ msgid "Help Topics"
+#~ msgstr "Hulp-onderwerpen"
+
+#~ msgid "File not found"
+#~ msgstr "Bestand niet gevonden"
+
+#~ msgid "Could not parse file"
+#~ msgstr "Kon bestand niet verwerken"
+
+#~ msgid "Could Not Read File"
+#~ msgstr "Kon bestand niet lezen"
+
+#~ msgid "No information is available about this error."
+#~ msgstr "Er is geen informatie beschikbaar over deze fout."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
+#~ "in an unsupported format."
+#~ msgstr ""
+#~ "Het bestand ‘%s’ kon niet worden gelezen en gedecodeerd. Het bestand is "
+#~ "mogelijk gecomprimeerd in een onbekend formaat."
+
+#~ msgid "Use a private session"
+#~ msgstr "Een privé-sessie gebruiken"
+
+#~ msgid "Define which cache directory to use"
+#~ msgstr "Aangeven welke map moet worden gebruikt voor tijdelijke opslag"
+
+#~ msgid " GNOME Help Browser"
+#~ msgstr "GNOME Hulp-browser"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
+#~ "page."
+#~ msgstr ""
+#~ "Het bestand ‘%s’ kon niet worden verwerkt, omdat het een ongeldige man-"
+#~ "pagina is."
+
+#~ msgid "Preparing to print"
+#~ msgstr "Voorbereiding voor afdrukken"
+
+#~ msgid "Printing is not supported on this printer"
+#~ msgstr "Afdrukken is niet mogelijk op deze printer"
+
+#~ msgid "Printer %s does not support postscript printing."
+#~ msgstr "Op printer %s kunt u geen postscript afdrukken."
+
+#~ msgid "Waiting to print"
+#~ msgstr "Wachten om af te drukken"
+
+# er was een fout bij het afdrukken
+#~ msgid "An error occurred while printing"
+#~ msgstr "Er is een fout opgetreden bij het afdrukken"
+
+# het bleek onmogelijk/het was onmogelijk/het is onmogelijk gebleken
+#~ msgid "It was not possible to print your document: %s"
+#~ msgstr "Het bleek niet mogelijk om uw document af te drukken: %s"
+
+#~ msgid "the GNOME Support Forums"
+#~ msgstr "De GNOME support-forums"
+
+# zoekresultaten/resultaten op/Niets gevonden op
+#~ msgid "No results for \"%s\""
+#~ msgstr "Geen resultaten op ‘%s’"
+
+#~ msgid ""
+#~ "Try using different words to describe the problem you're having or the "
+#~ "topic you want help with."
+#~ msgstr ""
+#~ "Probeer met andere woorden te omschrijven wat het probleem is of waar u "
+#~ "hulp bij zoekt."
+
+# op/voor
+#~ msgid "Search results for \"%s\""
+#~ msgstr "Zoekresultaten voor ‘%s’"
+
+#~ msgid ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ msgstr ""
+#~ "de:het:een:over:vertel:uitleg:help:hoe:kan:ik:je:iets:werkt:doet:niet:stuk"
+
+# ^^ Dit kan vast beter (Wouter Bolsterlee)
+#~ msgid "re"
+#~ msgstr "her:ont:on:ge:ver:be"
+
+#~ msgid "ers:er:ing:es:s:'s"
+#~ msgstr "en:ig:pje:tje:je"
+
+#~ msgid "No Comment"
+#~ msgstr "Geen commentaar"
+
+#~ msgid "Search could not be processed"
+#~ msgstr "Zoekopdracht kon niet worden verwerkt."
+
+#~ msgid "The requested search could not be processed."
+#~ msgstr "De zoekopdracht kon niet worden verwerkt."
+
+#~ msgid "Cannot process the search"
+#~ msgstr "Kan zoekopdracht niet uitvoeren"
+
+#~ msgid "The search processor returned invalid results"
+#~ msgstr "Zoekopdracht gaf ongeldige resultaten"
+
+#~ msgid "The page %s was not found in the TOC."
+#~ msgstr "De pagina %s kon niet in de inhoudsopgave gevonden worden."
+
+# werd niet gevonden?
+# aangetroffen?
+#~ msgid "The requested page was not found in the TOC."
+#~ msgstr ""
+#~ "De geselecteerde pagina kon niet worden gevonden in de inhoudsopgave."
+
+#~ msgid ""
+#~ "The TOC file could not be parsed because it is not a well-formed XML "
+#~ "document."
+#~ msgstr ""
+#~ "De inhoudsopgave kon niet worden verwerkt, omdat het ongeldige XML bevat."
+
+#~ msgid "Broken Transformation"
+#~ msgstr "Documentomzetting"
+
+#~ msgid ""
+#~ "An unknown error occurred while attempting to transform the document."
+#~ msgstr "Er is onbekende fout opgetreden bij het omzetten van het document."
+
+#~ msgid "_File"
+#~ msgstr "_Bestand"
+
+#~ msgid "_Edit"
+#~ msgstr "Be_werken"
+
+#~ msgid "_Help"
+#~ msgstr "_Hulp"
+
+#~ msgid "Print This Document ..."
+#~ msgstr "Dit document afdrukken…"
+
+#~ msgid "About This Document"
+#~ msgstr "Over dit document"
+
+#~ msgid "Open _Location"
+#~ msgstr "_Locatie openen"
+
+#~ msgid "_Close Window"
+#~ msgstr "Venster sl_uiten"
+
+#~ msgid "_Select All"
+#~ msgstr "Alles _selecteren"
+
+#~ msgid "_Find..."
+#~ msgstr "_Zoeken..."
+
+#~ msgid "Find Pre_vious"
+#~ msgstr "Vo_rige zoeken"
+
+#~ msgid "Find previous occurrence of the word or phrase"
+#~ msgstr "Zoek de vorige plaats waar het woord voorkomt"
+
+#~ msgid "Find Ne_xt"
+#~ msgstr "V_olgende zoeken"
+
+#~ msgid "Find next occurrence of the word or phrase"
+#~ msgstr "Zoek de volgende plaats waar het woord voorkomt"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Voorkeuren"
+
+#~ msgid "_Reload"
+#~ msgstr "_Herladen"
+
+#~ msgid "Show previous page in history"
+#~ msgstr "De vorige pagina tonen"
+
+#~ msgid "Show next page in history"
+#~ msgstr "De volgende pagina tonen"
+
+#~ msgid "_Help Topics"
+#~ msgstr "_Hulp-onderwerpen"
+
+# van/met
+#~ msgid "Go to the listing of help topics"
+#~ msgstr "Ga naar het overzicht van hulp-onderwerpen"
+
+#~ msgid "_Previous Section"
+#~ msgstr "Vorige s_ectie"
+
+#~ msgid "_Next Section"
+#~ msgstr "Volgende _sectie"
+
+#~ msgid "_Contents"
+#~ msgstr "_Inhoudsopgave"
+
+#~ msgid "_Copy Link Address"
+#~ msgstr "Linkadres _kopiëren"
+
+#~ msgid "Help On this application"
+#~ msgstr "Hulp bij deze toepassing"
+
+#~ msgid "_About"
+#~ msgstr "I_nfo"
+
+#~ msgid "Copy _Email Address"
+#~ msgstr "_E-mailadres kopiëren"
+
+#~ msgid "Help Browser"
+#~ msgstr "Hulp-browser"
+
+#~ msgid "Unknown Page"
+#~ msgstr "Onbekende pagina"
+
+#~ msgid "The requested URI \"%s\" is invalid"
+#~ msgstr "De opgevraagde URI ‘%s’ is ongeldig"
+
+#~ msgid "Unable to load page"
+#~ msgstr "Pagina kan niet geopend worden"
+
+#~ msgid "Error executing \"gnome-open\""
+#~ msgstr "Fout bij uitvoeren van ‘gnome-open’"
+
+#~ msgid "Cannot create search component"
+#~ msgstr "Kan zoekcomponent niet aanmaken"
+
+#~ msgid "Fin_d:"
+#~ msgstr "_Zoeken:"
+
+#~ msgid "Find _Previous"
+#~ msgstr "Vo_rige zoeken"
+
+#~ msgid "Find _Next"
+#~ msgstr "V_olgende zoeken..."
+
+# Vrij vertaald -- Wouter Bolsterlee
+#~ msgid "Phrase not found"
+#~ msgstr "Zoekopdracht niet gevonden"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
+#~ "might not have permissions to read it."
+#~ msgstr ""
+#~ "Het bestand ‘%s’ kon niet worden gelezen.  Ofwel het bestand ontbreekt, "
+#~ "of u heeft geen toestemming het te lezen."
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Tino Meinen\n"
+#~ "Ronald Hummelink\n"
+#~ "Reinout van Schouwen\n"
+#~ "Wouter Bolsterlee\n"
+#~ "\n"
+#~ "Kijk voor meer informatie op http://nl.gnome.org/"
+
+# vrij vertaald.
+#~ msgid "A documentation browser and viewer for the Gnome Desktop."
+#~ msgstr "Een documentatieverkenner voor Gnome"
 
 #~ msgid "Accessories"
 #~ msgstr "Accessoires"
@@ -1606,12 +1766,6 @@ msgstr "Hulp bij GNOME"
 # een keurmerk van andere toepassingen/verschillende/verscheidene
 #~ msgid "Variety of other applications"
 #~ msgstr "Een aantal overige toepassingen"
-
-#~ msgid "An unknown error occured"
-#~ msgstr "Er was een onbekende fout"
-
-#~ msgid "Could not load document"
-#~ msgstr "Kon document niet laden"
 
 #~ msgid "Could not read the table of contents"
 #~ msgstr "Kon de inhoudstabel niet lezen"
@@ -1711,8 +1865,8 @@ msgstr "Hulp bij GNOME"
 #~ "A transformation context could not be created for the file ‘%s’. The "
 #~ "format may not be supported."
 #~ msgstr ""
-#~ "Een transformatiecontext kon niet worden aangemaakt voor het bestand ‘%"
-#~ "s’. De opmaak wordt mogelijk niet ondersteund."
+#~ "Een transformatiecontext kon niet worden aangemaakt voor het bestand "
+#~ "‘%s’. De opmaak wordt mogelijk niet ondersteund."
 
 #~ msgid ""
 #~ "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -1748,15 +1902,9 @@ msgstr "Hulp bij GNOME"
 #~ msgid "_From:"
 #~ msgstr "_Van:"
 
-#~ msgid "Sets the start of the range of pages to be printed"
-#~ msgstr "Geeft de eerste pagina die moet worden afgedrukt"
-
 # Van 1 tot 6 (geen hoofdletter bij tot)
 #~ msgid "_To:"
 #~ msgstr "_tot:"
-
-#~ msgid "Sets the end of the range of pages to be printed"
-#~ msgstr "Geeft de laatste pagina die moet worden afgedrukt"
 
 #~ msgid ""
 #~ "Could not display help for Yelp.\n"
@@ -1793,7 +1941,7 @@ msgstr "Hulp bij GNOME"
 #~ msgid "<b>_Bookmarks:</b>"
 #~ msgstr "<b>Bl_adwijzers:</b>"
 
-# Naam. Niet 'titel' Het is nl de naam van de bladwijzer en de 
+# Naam. Niet 'titel' Het is nl de naam van de bladwijzer en de
 # sneltoets T wordt gebruikt voor _Toevoegen
 #~ msgid "<b>_Title:</b>"
 #~ msgstr "<b>_Naam:</b>"
@@ -1824,9 +1972,6 @@ msgstr "Hulp bij GNOME"
 
 #~ msgid "The selected file could not be read."
 #~ msgstr "Het geselecteerde bestand kon niet worden gelezen."
-
-#~ msgid "_Next Page"
-#~ msgstr "_Volgende pagina"
 
 #~ msgid "Development Environments"
 #~ msgstr "Ontwikkelomgevingen"
@@ -1867,9 +2012,6 @@ msgstr "Hulp bij GNOME"
 
 #~ msgid "Categories"
 #~ msgstr "Categorieën"
-
-#~ msgid "Documents"
-#~ msgstr "Documenten"
 
 #~ msgid "&#8216;"
 #~ msgstr "&#8216;"
