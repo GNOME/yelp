@@ -977,8 +977,6 @@ mallard_index_threaded (YelpMallardDocument *mallard)
             /* We never use the value. Just need something non-NULL. */
             g_hash_table_insert (ids, g_strdup (id), id);
 
-            index->str = g_string_new ("");
-
             xpath = xmlXPathNewContext (index->doc);
             xmlXPathRegisterNs (xpath, BAD_CAST "mal", BAD_CAST MALLARD_NS);
             obj = xmlXPathEvalExpression (BAD_CAST
@@ -993,6 +991,8 @@ mallard_index_threaded (YelpMallardDocument *mallard)
             desc = g_strdup (obj->stringval);
             xmlXPathFreeObject (obj);
 
+            index->str = g_string_new (desc);
+            g_string_append_c (index->str, ' ');
             mallard_index_node (index);
 
             tmp = g_strconcat ("xref:", id, NULL);
