@@ -216,6 +216,7 @@ enum {
     COMPLETION_COL_TITLE,
     COMPLETION_COL_DESC,
     COMPLETION_COL_ICON,
+    COMPLETION_COL_PIXBUF,
     COMPLETION_COL_PAGE,
     COMPLETION_COL_FLAGS
 };
@@ -742,8 +743,8 @@ location_entry_set_completion (YelpLocationEntry *entry,
     gtk_cell_layout_reorder (GTK_CELL_LAYOUT (priv->completion), icon_cell, 0);
     gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->completion),
                                     icon_cell,
-                                    "icon-name",
-                                    COMPLETION_COL_ICON,
+                                    "pixbuf",
+                                    COMPLETION_COL_PIXBUF,
                                     NULL);
     if (priv->bookmarks) {
         bookmark_cell = gtk_cell_renderer_pixbuf_new ();
@@ -1129,10 +1130,15 @@ cell_set_completion_bookmark_icon (GtkCellLayout     *layout,
                             -1);
 
         if (page_id && yelp_bookmarks_is_bookmarked (priv->bookmarks,
-                                                     priv->completion_uri, page_id))
-            g_object_set (cell, "icon-name", "bookmark", NULL);
-        else
-            g_object_set (cell, "icon-name", NULL, NULL);
+                                                     priv->completion_uri, page_id)) {
+            GdkPixbuf *pixbuf = yelp_settings_get_icon_pixbuf (yelp_settings_get_default (),
+                                                               "yelp-bookmark-remove");
+            g_object_set (cell, "pixbuf", pixbuf, NULL);
+            g_object_unref (pixbuf);
+        }
+        else {
+            g_object_set (cell, "pixbuf", NULL, NULL);
+        }
 
         g_free (page_id);
     }
@@ -1314,6 +1320,7 @@ view_loaded (YelpView          *view,
                                                      G_TYPE_STRING,  /* title */
                                                      G_TYPE_STRING,  /* desc */
                                                      G_TYPE_STRING,  /* icon */
+                                                     G_TYPE_OBJECT,  /* pixbuf */
                                                      G_TYPE_STRING,  /* uri */
                                                      G_TYPE_INT      /* flags */
                                                      );
@@ -1327,16 +1334,20 @@ view_loaded (YelpView          *view,
                 for (i = 0; ids[i]; i++) {
                     GtkTreeIter iter;
                     gchar *title, *desc, *icon;
+                    GdkPixbuf *pixbuf;
                     gtk_list_store_insert (GTK_LIST_STORE (base), &iter, 0);
                     title = yelp_document_get_page_title (document, ids[i]);
                     desc = yelp_document_get_page_desc (document, ids[i]);
                     icon = yelp_document_get_page_icon (document, ids[i]);
+                    pixbuf = yelp_settings_get_icon_pixbuf (yelp_settings_get_default (), icon);
                     gtk_list_store_set (base, &iter,
                                         COMPLETION_COL_TITLE, title,
                                         COMPLETION_COL_DESC, desc,
                                         COMPLETION_COL_ICON, icon,
+                                        COMPLETION_COL_PIXBUF, pixbuf,
                                         COMPLETION_COL_PAGE, ids[i],
                                         -1);
+                    g_object_unref (pixbuf);
                     g_free (icon);
                     g_free (desc);
                     g_free (title);
