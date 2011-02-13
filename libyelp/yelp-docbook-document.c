@@ -921,8 +921,9 @@ docbook_index_chunk (DocbookIndexData *index)
     id = xmlGetProp (index->cur, BAD_CAST "id");
     if (id != NULL) {
         title = docbook_walk_get_title (index->docbook, index->cur);
-        yelp_storage_set_root_title (yelp_storage_get_default (),
-                                     index->doc_uri, title);
+        if (index->cur->parent->parent == NULL)
+            yelp_storage_set_root_title (yelp_storage_get_default (),
+                                         index->doc_uri, title);
         index->str = g_string_new ("");
     }
 
