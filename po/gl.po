@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-27 00:40+0100\n"
-"PO-Revision-Date: 2011-01-26 14:58+0100\n"
+"POT-Creation-Date: 2011-02-13 14:52+0100\n"
+"PO-Revision-Date: 2011-02-13 14:53+0100\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -953,36 +953,48 @@ msgstr ""
 "Non foi posíbel analizar o ficheiro ‘%s’ porque non é unha páxina de "
 "información ben elaborada."
 
-#: ../libyelp/yelp-location-entry.c:323
+#: ../libyelp/yelp-location-entry.c:329
 msgid "View"
 msgstr "Ver"
 
-#: ../libyelp/yelp-location-entry.c:324
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
 msgstr "Unha instancia de YelpView que controla esta xanela"
 
-#: ../libyelp/yelp-location-entry.c:339
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "Marcadores"
 
-#: ../libyelp/yelp-location-entry.c:340
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
 msgstr "Unha instancia da implementación de YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:356
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
 msgstr "Activar a busca"
 
-#: ../libyelp/yelp-location-entry.c:357
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
 msgstr ""
 "Indica se a entrada de localización pode ser usada como un campo de busca"
 
-#: ../libyelp/yelp-location-entry.c:426 ../src/yelp-window.c:300
+#: ../libyelp/yelp-location-entry.c:478 ../src/yelp-window.c:277
 msgid "Search..."
 msgstr "Buscar…"
 
-#: ../libyelp/yelp-location-entry.c:1335
+#: ../libyelp/yelp-location-entry.c:827
+msgid "Clear the search text"
+msgstr "Limpar o texto de busca"
+
+#: ../libyelp/yelp-location-entry.c:870 ../libyelp/yelp-location-entry.c:1562
+msgid "Bookmark this page"
+msgstr "Marcar esta páxina"
+
+#: ../libyelp/yelp-location-entry.c:878 ../libyelp/yelp-location-entry.c:1570
+msgid "Remove bookmark"
+msgstr "Quitar marcador"
+
+#: ../libyelp/yelp-location-entry.c:1427
 msgid "Loading"
 msgstr "Cargando"
 
@@ -1258,99 +1270,93 @@ msgstr "Reducir o tamaño do texto"
 msgid "Show Text _Cursor"
 msgstr "Mostrar o _cursor de texto"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1533
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1460
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Axuda"
 
-#: ../src/yelp-window.c:265
+#: ../src/yelp-window.c:243
 msgid "_Page"
 msgstr "_Páxina"
 
-#: ../src/yelp-window.c:266
+#: ../src/yelp-window.c:244
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/yelp-window.c:267
+#: ../src/yelp-window.c:245
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/yelp-window.c:268
+#: ../src/yelp-window.c:246
 msgid "_Bookmarks"
 msgstr "_Marcadores"
 
-#: ../src/yelp-window.c:271
+#: ../src/yelp-window.c:249
 msgid "_New Window"
 msgstr "Xanela _nova"
 
-#: ../src/yelp-window.c:276
+#: ../src/yelp-window.c:254
 msgid "_Close"
 msgstr "_Pechar"
 
-#: ../src/yelp-window.c:281
+#: ../src/yelp-window.c:259
 msgid "_All Documents"
 msgstr "_Todos os documentos"
 
-#: ../src/yelp-window.c:285
+#: ../src/yelp-window.c:263
 msgid "_Add Bookmark"
 msgstr "_Engadir marcador"
 
-#: ../src/yelp-window.c:290
-msgid "_Edit Bookmarks"
-msgstr "_Editar marcadores"
+#: ../src/yelp-window.c:268
+msgid "_Remove Bookmark"
+msgstr "_Eliminar marcador"
 
-#: ../src/yelp-window.c:295
+#: ../src/yelp-window.c:272
 msgid "Find in Page..."
 msgstr "Buscar na páxina…"
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:282
 msgid "Open Location"
 msgstr "Abrir localización"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:308
 msgid "Application"
 msgstr "Aplicativos"
 
-#: ../src/yelp-window.c:332
+#: ../src/yelp-window.c:309
 msgid "A YelpApplication instance that controls this window"
 msgstr "Unha instancia de YelpApplications que controla esta xanela"
 
-#: ../src/yelp-window.c:585
+#: ../src/yelp-window.c:557
 msgid "Read Later"
 msgstr "Ler máis tarde"
 
-#. %s will be replaced with the name of a document
-#: ../src/yelp-window.c:802
-#, c-format
-msgid "Bookmarks for %s"
-msgstr "Marcadores para %s"
-
-#: ../src/yelp-window.c:1337
+#: ../src/yelp-window.c:1264
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i aparición"
 msgstr[1] "%i aparicións"
 
-#: ../src/yelp-window.c:1362
+#: ../src/yelp-window.c:1289
 msgid "No matches"
 msgstr "Non se atoparon aparicións"
-
-#: ../src/yelp-window.c:1652
-msgid "_Open Bookmark"
-msgstr "_Abrir marcador"
-
-#: ../src/yelp-window.c:1658
-msgid "Open Bookmark in New _Window"
-msgstr "Abrir marcador nunha _xanela nova"
-
-#: ../src/yelp-window.c:1667
-msgid "_Remove Bookmark"
-msgstr "_Eliminar marcador"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obter axuda co Gnome"
+
+#~ msgid "_Edit Bookmarks"
+#~ msgstr "_Editar marcadores"
+
+#~ msgid "Bookmarks for %s"
+#~ msgstr "Marcadores para %s"
+
+#~ msgid "_Open Bookmark"
+#~ msgstr "_Abrir marcador"
+
+#~ msgid "Open Bookmark in New _Window"
+#~ msgstr "Abrir marcador nunha _xanela nova"
 
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
