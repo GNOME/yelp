@@ -763,6 +763,11 @@ resolve_ghelp_uri (YelpUri *uri)
         priv->frag_id = g_strdup (hash);
     }
 
+    if (priv->frag_id && g_str_has_prefix (priv->frag_id, "search=")) {
+        g_free (priv->frag_id);
+        priv->frag_id = NULL;
+    }
+
     priv->docuri = g_strconcat ("ghelp:", document,
                                 slash ? "/" : NULL,
                                 slash, NULL);
@@ -830,6 +835,10 @@ resolve_help_uri (YelpUri *uri)
 
     if (hash)
         priv->frag_id = hash;
+    if (priv->frag_id && g_str_has_prefix (priv->frag_id, "search=")) {
+        g_free (priv->frag_id);
+        priv->frag_id = NULL;
+    }
 
     priv->docuri = g_strconcat ("help:", document, NULL);
 
