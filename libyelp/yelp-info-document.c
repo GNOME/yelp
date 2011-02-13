@@ -174,10 +174,15 @@ yelp_info_document_new (YelpUri *uri)
 {
     YelpInfoDocument *info;
     YelpInfoDocumentPrivate *priv;
+    gchar *doc_uri;
 
     g_return_val_if_fail (uri != NULL, NULL);
 
-    info = (YelpInfoDocument *) g_object_new (YELP_TYPE_INFO_DOCUMENT, NULL);
+    doc_uri = yelp_uri_get_document_uri (uri);
+    info = (YelpInfoDocument *) g_object_new (YELP_TYPE_INFO_DOCUMENT,
+                                              "document-uri", doc_uri,
+                                              NULL);
+    g_free (doc_uri);
     priv = GET_PRIV (info);
 
     priv->uri = g_object_ref (uri);

@@ -40,6 +40,7 @@ static void           yelp_uri_dispose           (GObject        *object);
 static void           yelp_uri_finalize          (GObject        *object);
 
 static void           resolve_start              (YelpUri        *uri);
+static void           resolve_sync               (YelpUri        *uri);
 static void           resolve_async              (YelpUri        *uri);
 static gboolean       resolve_final              (YelpUri        *uri);
 
@@ -204,6 +205,27 @@ yelp_uri_new_relative (YelpUri *base, const gchar *arg)
     return uri;
 }
 
+YelpUri *
+yelp_uri_new_search (YelpUri      *base,
+                     const gchar  *text)
+{
+    YelpUri *uri;
+    YelpUriPrivate *priv;
+    gchar *tmp;
+
+    uri = (YelpUri *) g_object_new (YELP_TYPE_URI, NULL);
+
+    priv = GET_PRIV (uri);
+    priv->doctype = YELP_URI_DOCUMENT_TYPE_UNRESOLVED;
+    if (base)
+        priv->res_base = g_object_ref (base);
+    tmp = g_uri_escape_string (text, NULL, FALSE);
+    priv->res_arg = g_strconcat("xref:search=", tmp, NULL);
+    g_free (tmp);
+
+    return uri;
+}
+
 /******************************************************************************/
 
 void
@@ -220,6 +242,22 @@ yelp_uri_resolve (YelpUri *uri)
     else {
         resolve_start (uri);
     }
+}
+
+void
+yelp_uri_resolve_sync (YelpUri *uri)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+
+    if (priv->doctype != YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
+        return;
+
+    if (priv->res_base)
+        yelp_uri_resolve_sync (priv->res_base);
+
+    g_object_ref (uri);
+    resolve_sync (uri);
+    resolve_final (uri);
 }
 
 /* We want code to be able to do something like this:
@@ -258,7 +296,7 @@ resolve_start (YelpUri *uri)
 }
 
 static void
-resolve_async (YelpUri *uri)
+resolve_sync (YelpUri *uri)
 {
     gchar *tmp;
     YelpUriPrivate *priv = GET_PRIV (uri);
@@ -286,7 +324,7 @@ resolve_async (YelpUri *uri)
         YelpUriPrivate *base_priv;
         if (priv->res_base == NULL) {
             priv->tmptype = YELP_URI_DOCUMENT_TYPE_ERROR;
-            goto done;
+            return;
         }
         base_priv = GET_PRIV (priv->res_base);
         switch (base_priv->doctype) {
@@ -312,9 +350,6 @@ resolve_async (YelpUri *uri)
         case YELP_URI_DOCUMENT_TYPE_HELP_LIST:
             /* FIXME: what do we do? */
             break;
-        case YELP_URI_DOCUMENT_TYPE_SEARCH:
-            /* FIXME: what do we do? */
-            break;
         case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
         case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
         case YELP_URI_DOCUMENT_TYPE_ERROR:
@@ -334,8 +369,12 @@ resolve_async (YelpUri *uri)
     if (!priv->fulluri) {
         priv->fulluri = g_strdup (priv->res_arg);
     }
+}
 
- done:
+static void
+resolve_async (YelpUri *uri)
+{
+    resolve_sync (uri);
     g_idle_add ((GSourceFunc) resolve_final, uri);
 }
 
@@ -724,6 +763,11 @@ resolve_ghelp_uri (YelpUri *uri)
         priv->frag_id = g_strdup (hash);
     }
 
+    if (priv->frag_id && g_str_has_prefix (priv->frag_id, "search=")) {
+        g_free (priv->frag_id);
+        priv->frag_id = NULL;
+    }
+
     priv->docuri = g_strconcat ("ghelp:", document,
                                 slash ? "/" : NULL,
                                 slash, NULL);
@@ -791,6 +835,10 @@ resolve_help_uri (YelpUri *uri)
 
     if (hash)
         priv->frag_id = hash;
+    if (priv->frag_id && g_str_has_prefix (priv->frag_id, "search=")) {
+        g_free (priv->frag_id);
+        priv->frag_id = NULL;
+    }
 
     priv->docuri = g_strconcat ("help:", document, NULL);
 
@@ -1154,6 +1202,10 @@ resolve_xref_uri (YelpUri *uri)
             priv->page_id = g_strdup (arg);
             priv->frag_id = NULL;
         }
+    }
+    if (priv->page_id && priv->page_id[0] == '\0') {
+        g_free (priv->page_id);
+        priv->page_id = NULL;
     }
 
     if (priv->page_id &&

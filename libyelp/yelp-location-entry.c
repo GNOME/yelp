@@ -683,7 +683,15 @@ location_entry_location_selected (YelpLocationEntry *entry)
 static void
 location_entry_search_activated  (YelpLocationEntry *entry)
 {
-    printf ("FIXME: search_activated\n");
+    YelpUri *base, *uri;
+    YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    g_object_get (priv->view, "yelp-uri", &base, NULL);
+    uri = yelp_uri_new_search (base,
+                               gtk_entry_get_text (GTK_ENTRY (priv->text_entry)));
+    g_object_unref (base);
+    yelp_view_load_uri (priv->view, uri);
+    gtk_widget_grab_focus (GTK_WIDGET (priv->view));
 }
 
 static void
@@ -727,7 +735,10 @@ location_entry_start_search (YelpLocationEntry *entry,
     if (!priv->enable_search)
         return;
     if (clear && !priv->search_mode) {
-        gtk_entry_set_text (GTK_ENTRY (priv->text_entry), "");
+        const gchar *icon = gtk_entry_get_icon_name (GTK_ENTRY (priv->text_entry),
+                                                     GTK_ENTRY_ICON_PRIMARY);
+        if (!g_str_equal (icon, "folder-saved-search"))
+            gtk_entry_set_text (GTK_ENTRY (priv->text_entry), "");
     }
     priv->search_mode = TRUE;
     location_entry_set_entry (entry, FALSE);
@@ -756,6 +767,7 @@ location_entry_cancel_search (YelpLocationEntry *entry)
                                   priv->completion);
         g_object_unref (priv->completion);
     }
+    gtk_editable_select_region (GTK_EDITABLE (priv->text_entry), 0, 0);
 }
 
 static void

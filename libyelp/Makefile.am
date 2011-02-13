@@ -1,6 +1,6 @@
 lib_LTLIBRARIES = libyelp.la
 
-libyelp_la_SOURCES =            \
+libyelp_la_SOURCES =                \
 	yelp-bookmarks.c            \
 	yelp-debug.c                \
 	yelp-error.c                \
@@ -17,12 +17,14 @@ libyelp_la_SOURCES =            \
 	yelp-marshal.c              \
 	yelp-settings.c             \
 	yelp-simple-document.c      \
+	yelp-sqlite-storage.c       \
+	yelp-storage.c              \
 	yelp-transform.c            \
 	yelp-uri.c                  \
 	yelp-types.c                \
 	yelp-view.c
 
-EXTRA_DIST =                    \
+EXTRA_DIST =                        \
 	yelp-bz2-decompressor.h     \
 	yelp-debug.h                \
 	yelp-error.h                \
@@ -44,14 +46,14 @@ else
 EXTRA_DIST += yelp-bz2-decompressor.c
 endif
 
-libyelp_la_CFLAGS =                         \
+libyelp_la_CFLAGS =                             \
 	$(YELP_CFLAGS)                          \
 	-DDATADIR=\""$(datadir)"\"              \
 	-DYELP_ICON_PATH=\"$(YELP_ICON_PATH)\"
 
 libyelp_la_LIBADD = $(YELP_LIBS)
 
-libyelp_headers =               \
+libyelp_headers =                   \
 	yelp-bookmarks.h            \
 	yelp-docbook-document.h     \
 	yelp-document.h             \
@@ -62,6 +64,8 @@ libyelp_headers =               \
 	yelp-man-document.h         \
 	yelp-settings.h             \
 	yelp-simple-document.h      \
+	yelp-sqlite-storage.h       \
+	yelp-storage.h              \
 	yelp-transform.h            \
 	yelp-uri.h                  \
 	yelp-view.h
@@ -70,7 +74,7 @@ libyelp_includedir = $(includedir)/libyelp/
 
 libyelp_include_HEADERS = $(libyelp_headers) yelp-types.h
 
-BUILT_SOURCES =              \
+BUILT_SOURCES =                  \
 	stamp-yelp-marshal.h     \
 	yelp-marshal.c           \
 	yelp-marshal.h           \

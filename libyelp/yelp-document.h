@@ -71,7 +71,8 @@ struct _YelpDocumentClass {
     void          (*finish_read)               (YelpDocument         *document,
                                                 const gchar          *contents);
     gchar *       (*get_mime_type)             (YelpDocument         *document,
-                                                const gchar          *mime_type);
+                                                const gchar          *page_id);
+    void          (*index)                     (YelpDocument         *document);
 
 };
 
@@ -95,6 +96,8 @@ const gchar *     yelp_document_read_contents  (YelpDocument         *document,
                                                 const gchar          *page_id);
 void              yelp_document_finish_read    (YelpDocument         *document,
                                                 const gchar          *contents);
+
+void              yelp_document_index          (YelpDocument         *document);
 
 gchar **          yelp_document_list_page_ids  (YelpDocument         *document);
 
