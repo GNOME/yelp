@@ -98,8 +98,6 @@ static void          app_bookmarks_changed        (YelpApplication    *app,
 static void          window_set_bookmarks         (YelpWindow         *window,
                                                    const gchar        *doc_uri);
 static void          window_set_bookmark_action   (YelpWindow         *window);
-static gboolean      find_animate_open            (YelpWindow         *window);
-static gboolean      find_animate_close           (YelpWindow         *window);
 static gboolean      find_entry_focus_out         (GtkEntry           *entry,
                                                    GdkEventFocus      *event,
                                                    YelpWindow         *window);
@@ -231,11 +229,6 @@ struct _YelpWindowPrivate {
     guint entry_color_animate;
     gfloat entry_color_step;
 
-    guint find_animate;
-    gint find_cur_height;
-    gint find_entry_height;
-    gint find_bar_height;
-
     gboolean configured;
 };
 
@@ -366,11 +359,6 @@ yelp_window_dispose (GObject *object)
     if (priv->find_bar) {
         g_object_unref (priv->find_bar);
         priv->find_bar = NULL;
-    }
-
-    if (priv->find_animate != 0) {
-        g_source_remove (priv->find_animate);
-        priv->find_animate = 0;
     }
 
     if (priv->entry_color_animate != 0) {
@@ -1113,65 +1101,11 @@ app_read_later_changed (YelpApplication *app,
     }
 }
 
-static gboolean
-find_animate_open (YelpWindow *window) {
-    YelpWindowPrivate *priv = GET_PRIV (window);
-
-    priv->find_cur_height += 2;
-    if (priv->find_cur_height >= priv->find_bar_height) {
-        priv->find_cur_height = priv->find_bar_height;
-        g_object_set (priv->find_bar, "height-request", -1, NULL);
-        g_object_set (priv->find_entry, "height-request", -1, NULL);
-        priv->find_animate = 0;
-        gtk_editable_select_region (GTK_EDITABLE (priv->find_entry), 0, -1);
-        return FALSE;
-    }
-    else {
-        if (priv->find_cur_height >= 12)
-            find_entry_changed (GTK_ENTRY (priv->find_entry), window);
-        g_object_set (priv->find_bar, "height-request", priv->find_cur_height, NULL);
-        g_object_set (priv->find_entry, "height-request",
-                      MIN(priv->find_cur_height, priv->find_entry_height),
-                      NULL);
-        return TRUE;
-    }
-}
-
-static gboolean
-find_animate_close (YelpWindow *window) {
-    YelpWindowPrivate *priv = GET_PRIV (window);
-
-    priv->find_cur_height -= 2;
-    if (priv->find_cur_height <= 0) {
-        priv->find_cur_height = 0;
-        g_object_set (priv->find_bar, "height-request", -1, NULL);
-        g_object_set (priv->find_entry, "height-request", -1, NULL);
-        gtk_container_remove (GTK_CONTAINER (priv->vbox_view), priv->find_bar); 
-        priv->find_animate = 0;
-        return FALSE;
-    }
-    else {
-        if (priv->find_cur_height < 12)
-            gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->find_entry),
-                                               GTK_ENTRY_ICON_PRIMARY,
-                                               NULL);
-        g_object_set (priv->find_bar, "height-request", priv->find_cur_height, NULL);
-        g_object_set (priv->find_entry, "height-request",
-                      MIN(priv->find_cur_height, priv->find_entry_height),
-                      NULL);
-        return TRUE;
-    }
-}
-
 static void
 window_find_in_page (GtkAction  *action,
                      YelpWindow *window)
 {
-    GtkRequisition req;
     YelpWindowPrivate *priv = GET_PRIV (window);
-
-    if (priv->find_animate != 0)
-        return;
 
     if (gtk_widget_get_parent (priv->find_bar) != NULL) {
         gtk_widget_grab_focus (priv->find_entry);
@@ -1181,21 +1115,8 @@ window_find_in_page (GtkAction  *action,
     g_object_set (priv->find_entry, "width-request", 2 * priv->width / 3, NULL);
 
     gtk_box_pack_end (GTK_BOX (priv->vbox_view), priv->find_bar, FALSE, FALSE, 0);
-    g_object_set (priv->find_bar, "height-request", -1, NULL);
-    g_object_set (priv->find_entry, "height-request", -1, NULL);
     gtk_widget_show_all (priv->find_bar);
     gtk_widget_grab_focus (priv->find_entry);
-
-    gtk_widget_size_request (priv->find_bar, &req);
-    priv->find_bar_height = req.height;
-    gtk_widget_size_request (priv->find_entry, &req);
-    priv->find_entry_height = req.height;
-
-    priv->find_cur_height = 2;
-
-    g_object_set (priv->find_bar, "height-request", 2, NULL);
-    g_object_set (priv->find_entry, "height-request", 2, NULL);
-    priv->find_animate = g_timeout_add (2, (GSourceFunc) find_animate_open, window);
 }
 
 static gboolean
@@ -1204,9 +1125,6 @@ find_entry_key_press (GtkEntry    *entry,
                       YelpWindow  *window)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
-
-    if (priv->find_animate != 0)
-        return TRUE;
 
     if (event->keyval == GDK_KEY_Escape) {
         gtk_widget_grab_focus (GTK_WIDGET (priv->view));
@@ -1232,8 +1150,8 @@ find_entry_focus_out (GtkEntry      *entry,
     YelpWindowPrivate *priv = GET_PRIV (window);
     webkit_web_view_unmark_text_matches (WEBKIT_WEB_VIEW (priv->view));
     webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), FALSE);
-    priv->find_cur_height = priv->find_bar_height;
-    priv->find_animate = g_timeout_add (2, (GSourceFunc) find_animate_close, window);
+    if (gtk_widget_get_parent (priv->find_bar) != NULL)
+        gtk_container_remove (GTK_CONTAINER (priv->vbox_view), priv->find_bar); 
     return FALSE;
 }
 
