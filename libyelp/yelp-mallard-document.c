@@ -878,7 +878,8 @@ mallard_index_node (MallardIndexData *index)
         }
 
         if (child->type != XML_ELEMENT_NODE ||
-            xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "info"))
+            xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "info") ||
+            xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "comment"))
             continue;
 
         if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "p") ||
