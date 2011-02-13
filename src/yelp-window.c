@@ -430,7 +430,7 @@ window_construct (YelpWindow *window)
     GtkWidget *scroll;
     GtkActionGroup *view_actions;
     GtkAction *action;
-    GtkWidget *vbox, *button;
+    GtkWidget *vbox, *button, *label;
     gchar *color, *text;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
@@ -530,12 +530,15 @@ window_construct (YelpWindow *window)
     gtk_box_pack_start (GTK_BOX (priv->vbox_view), scroll, TRUE, TRUE, 0);
 
     priv->find_bar = g_object_ref_sink (gtk_hbox_new (FALSE, 6));
-    g_object_set (priv->find_bar, "border-width", 2, NULL);
+    g_object_set (priv->find_bar,
+                  "border-width", 2,
+                  "margin-right", 16,
+                  NULL);
+
+    label = gtk_label_new ("Find:");
+    gtk_box_pack_start (GTK_BOX (priv->find_bar), label, FALSE, FALSE, 6);
 
     priv->find_entry = gtk_entry_new ();
-    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->find_entry),
-                                       GTK_ENTRY_ICON_PRIMARY,
-                                       "edit-find");
     g_signal_connect (priv->find_entry, "changed",
                       G_CALLBACK (find_entry_changed), window);
     g_signal_connect (priv->find_entry, "key-press-event",
@@ -1192,9 +1195,6 @@ window_find_in_page (GtkAction  *action,
 
     g_object_set (priv->find_bar, "height-request", 2, NULL);
     g_object_set (priv->find_entry, "height-request", 2, NULL);
-    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->find_entry),
-                                       GTK_ENTRY_ICON_PRIMARY,
-                                       NULL);
     priv->find_animate = g_timeout_add (2, (GSourceFunc) find_animate_open, window);
 }
 
@@ -1250,10 +1250,6 @@ find_entry_changed (GtkEntry   *entry,
     text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
 
     if (text[0] == '\0') {
-        gtk_widget_modify_base (priv->find_entry, GTK_STATE_NORMAL, NULL);
-        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry),
-                                           GTK_ENTRY_ICON_PRIMARY,
-                                           "edit-find");
         gtk_label_set_text (GTK_LABEL (priv->find_label), "");
         return;
     }
@@ -1262,30 +1258,14 @@ find_entry_changed (GtkEntry   *entry,
                                                text, FALSE, 0);
     if (count > 0) {
         gchar *label = g_strdup_printf (ngettext ("%i match", "%i matches", count), count);
-        gtk_widget_modify_base (priv->find_entry, GTK_STATE_NORMAL, NULL);
         webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), TRUE);
         webkit_web_view_search_text (WEBKIT_WEB_VIEW (priv->view),
                                      text, FALSE, TRUE, TRUE);
-        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry),
-                                           GTK_ENTRY_ICON_PRIMARY,
-                                           "edit-find");
         gtk_label_set_text (GTK_LABEL (priv->find_label), label);
         g_free (label);
     }
     else {
-        gchar *color;
-        GdkColor gdkcolor;
-
-        color = yelp_settings_get_color (yelp_settings_get_default (),
-                                         YELP_SETTINGS_COLOR_RED_BASE);
-        if (gdk_color_parse (color, &gdkcolor))
-            gtk_widget_modify_base (priv->find_entry, GTK_STATE_NORMAL, &gdkcolor);
-        g_free (color);
-
         webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), FALSE);
-        gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry),
-                                           GTK_ENTRY_ICON_PRIMARY,
-                                           "dialog-warning");
         gtk_label_set_text (GTK_LABEL (priv->find_label), _("No matches"));
     }
 
