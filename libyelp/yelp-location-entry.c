@@ -192,10 +192,6 @@ struct _YelpLocationEntryPrivate
     guint      pulse;
     gulong bookmarks_changed;
 
-    GdkPixbuf *icon_edit_clear;
-    GdkPixbuf *icon_edit_find;
-    GdkPixbuf *icon_bookmark_add;
-    GdkPixbuf *icon_bookmark_remove;
     gboolean   icon_is_clear;
 };
 
@@ -375,55 +371,10 @@ yelp_location_entry_class_init (YelpLocationEntryClass *klass)
 static void
 yelp_location_entry_init (YelpLocationEntry *entry)
 {
-    YelpSettings *settings;
-    GtkIconTheme *theme;
-    GtkIconInfo *icon;
-    gchar *color;
-    GdkRGBA gray, white, border, fill;
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
 
     priv->search_mode = FALSE;
     g_object_set (entry, "entry-text-column", HISTORY_COL_TITLE, NULL);
-
-    settings = yelp_settings_get_default ();
-    g_object_get (settings, "gtk-icon-theme", &theme, NULL);
-
-    color = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_GRAY_BORDER);
-    gdk_rgba_parse (&gray, color);
-    g_free (color);
-    color = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_BASE);
-    gdk_rgba_parse (&white, color);
-    g_free (color);
-    color = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_YELLOW_BORDER);
-    gdk_rgba_parse (&border, color);
-    g_free (color);
-    color = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_YELLOW_BASE);
-    gdk_rgba_parse (&fill, color);
-    g_free (color);
-
-    icon = gtk_icon_theme_lookup_icon (theme, "edit-clear-symbolic", 16,
-                                       GTK_ICON_LOOKUP_FORCE_SVG);
-    priv->icon_edit_clear = gtk_icon_info_load_symbolic (icon, &gray,
-                                                         NULL, NULL, NULL,
-                                                         NULL, NULL);
-    gtk_icon_info_free (icon);
-
-    icon = gtk_icon_theme_lookup_icon (theme, "edit-find-symbolic", 16,
-                                       GTK_ICON_LOOKUP_FORCE_SVG);
-    priv->icon_edit_find = gtk_icon_info_load_symbolic (icon, &gray,
-                                                        NULL, NULL, NULL,
-                                                        NULL, NULL);
-    gtk_icon_info_free (icon);
-
-    icon = gtk_icon_theme_lookup_icon (theme, "yelp-bookmark-symbolic", 16,
-                                       GTK_ICON_LOOKUP_FORCE_SVG);
-    priv->icon_bookmark_add = gtk_icon_info_load_symbolic (icon, &gray, &white,
-                                                           NULL, NULL, NULL, NULL);
-    priv->icon_bookmark_remove = gtk_icon_info_load_symbolic (icon, &border, &fill,
-                                                              NULL, NULL, NULL, NULL);
-    gtk_icon_info_free (icon);
-
-    g_object_unref (theme);
 }
 
 static void
@@ -578,26 +529,6 @@ location_entry_dispose (GObject *object)
     if (priv->pulse > 0) {
         g_source_remove (priv->pulse);
         priv->pulse = 0;
-    }
-
-    if (priv->icon_edit_clear) {
-        g_object_unref (priv->icon_edit_clear);
-        priv->icon_edit_clear = NULL;
-    }
-
-    if (priv->icon_edit_find) {
-        g_object_unref (priv->icon_edit_find);
-        priv->icon_edit_find = NULL;
-    }
-
-    if (priv->icon_bookmark_add) {
-        g_object_unref (priv->icon_bookmark_add);
-        priv->icon_bookmark_add = NULL;
-    }
-
-    if (priv->icon_bookmark_remove) {
-        g_object_unref (priv->icon_bookmark_remove);
-        priv->icon_bookmark_remove = NULL;
     }
 
     G_OBJECT_CLASS (yelp_location_entry_parent_class)->dispose (object);
@@ -828,12 +759,18 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
     gchar *icon_name;
 
     if (priv->search_mode) {
+        YelpSettings *settings = yelp_settings_get_default ();
+        GdkPixbuf *pixbuf;
+        pixbuf = yelp_settings_get_icon_pixbuf (settings, "system-search");
         gtk_entry_set_icon_from_pixbuf (GTK_ENTRY (priv->text_entry),
                                         GTK_ENTRY_ICON_PRIMARY,
-                                        priv->icon_edit_find);
+                                        pixbuf);
+        g_object_unref (pixbuf);
+        pixbuf = yelp_settings_get_icon_pixbuf (settings, "edit-clear");
         gtk_entry_set_icon_from_pixbuf (GTK_ENTRY (priv->text_entry),
                                         GTK_ENTRY_ICON_SECONDARY,
-                                        priv->icon_edit_clear);
+                                        pixbuf);
+        g_object_unref (pixbuf);
         gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                          GTK_ENTRY_ICON_SECONDARY,
                                          _("Clear the search text"));
@@ -873,18 +810,25 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
                                                icon_name);
         }
         if (priv->bookmarks && doc_uri && page_id) {
+            GdkPixbuf *pixbuf;
             if (!yelp_bookmarks_is_bookmarked (priv->bookmarks, doc_uri, page_id)) {
+                pixbuf = yelp_settings_get_icon_pixbuf (yelp_settings_get_default (),
+                                                        "yelp-bookmark-add");
                 gtk_entry_set_icon_from_pixbuf (GTK_ENTRY (priv->text_entry),
                                                 GTK_ENTRY_ICON_SECONDARY,
-                                                priv->icon_bookmark_add);
+                                                pixbuf);
+                g_object_unref (pixbuf);
                 gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                                  GTK_ENTRY_ICON_SECONDARY,
                                                  _("Bookmark this page"));
             }
             else {
+                pixbuf = yelp_settings_get_icon_pixbuf (yelp_settings_get_default (),
+                                                        "yelp-bookmark-remove");
                 gtk_entry_set_icon_from_pixbuf (GTK_ENTRY (priv->text_entry),
                                                 GTK_ENTRY_ICON_SECONDARY,
-                                                priv->icon_bookmark_remove);
+                                                pixbuf);
+                g_object_unref (pixbuf);
                 gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                                  GTK_ENTRY_ICON_SECONDARY,
                                                  _("Remove bookmark"));
@@ -1130,13 +1074,13 @@ cell_set_bookmark_icon (GtkCellLayout     *layout,
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
 
     if (priv->bookmarks == NULL) {
-        g_object_set (cell, "icon-name", NULL, NULL);
+        g_object_set (cell, "pixbuf", NULL, NULL);
         return;
     }
 
     gtk_tree_model_get (model, iter, HISTORY_COL_FLAGS, &flags, -1);
     if (flags & (LOCATION_ENTRY_IS_SEPARATOR | LOCATION_ENTRY_IS_SEARCH)) {
-        g_object_set (cell, "icon-name", NULL, NULL);
+        g_object_set (cell, "pixbuf", NULL, NULL);
         return;
     }
     
@@ -1145,10 +1089,14 @@ cell_set_bookmark_icon (GtkCellLayout     *layout,
                         HISTORY_COL_PAGE, &page_id,
                         -1);
     if (doc_uri && page_id &&
-        yelp_bookmarks_is_bookmarked (priv->bookmarks, doc_uri, page_id))
-        g_object_set (cell, "icon-name", "bookmark", NULL);
+        yelp_bookmarks_is_bookmarked (priv->bookmarks, doc_uri, page_id)) {
+        GdkPixbuf *pixbuf = yelp_settings_get_icon_pixbuf (yelp_settings_get_default (),
+                                                           "yelp-bookmark-remove");
+        g_object_set (cell, "pixbuf", pixbuf, NULL);
+        g_object_unref (pixbuf);
+    }
     else
-        g_object_set (cell, "icon-name", NULL, NULL);
+        g_object_set (cell, "pixbuf", NULL, NULL);
 
     g_free (doc_uri);
     g_free (page_id);
@@ -1565,18 +1513,25 @@ bookmarks_changed (YelpBookmarks      *bookmarks,
                             HISTORY_COL_PAGE, &page_id,
                             -1);
         if (this_uri && g_str_equal (this_uri, doc_uri) && page_id) {
+            GdkPixbuf *pixbuf;
             if (!yelp_bookmarks_is_bookmarked (priv->bookmarks, doc_uri, page_id)) {
+                pixbuf = yelp_settings_get_icon_pixbuf (yelp_settings_get_default (),
+                                                        "yelp-bookmark-add");
                 gtk_entry_set_icon_from_pixbuf (GTK_ENTRY (priv->text_entry),
                                                 GTK_ENTRY_ICON_SECONDARY,
-                                                priv->icon_bookmark_add);
+                                                pixbuf);
+                g_object_unref (pixbuf);
                 gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                                  GTK_ENTRY_ICON_SECONDARY,
                                                  _("Bookmark this page"));
             }
             else {
+                pixbuf = yelp_settings_get_icon_pixbuf (yelp_settings_get_default (),
+                                                        "yelp-bookmark-remove");
                 gtk_entry_set_icon_from_pixbuf (GTK_ENTRY (priv->text_entry),
                                                 GTK_ENTRY_ICON_SECONDARY,
-                                                priv->icon_bookmark_remove);
+                                                pixbuf);
+                g_object_unref (pixbuf);
                 gtk_entry_set_icon_tooltip_text (GTK_ENTRY (priv->text_entry),
                                                  GTK_ENTRY_ICON_SECONDARY,
                                                  _("Remove bookmark"));

@@ -36,6 +36,8 @@ struct _YelpSettingsPriv {
     gchar        *icons[YELP_SETTINGS_NUM_ICONS];
     gint          icon_size;
 
+    GHashTable   *pixbufs;
+
     GtkSettings  *gtk_settings;
     GtkIconTheme *gtk_icon_theme;
 
@@ -223,6 +225,9 @@ yelp_settings_init (YelpSettings *settings)
     settings->priv->mutex = g_mutex_new ();
     settings->priv->icon_size = 24;
 
+    settings->priv->pixbufs = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                                     g_free, g_object_unref);
+
     for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++)
 	settings->priv->icons[i] = NULL;
     for (i = 0; i < YELP_SETTINGS_NUM_FONTS; i++) {
@@ -238,6 +243,11 @@ static void
 yelp_settings_dispose (GObject *object)
 {
     YelpSettings *settings = YELP_SETTINGS (object);
+
+    if (settings->priv->pixbufs != NULL) {
+        g_hash_table_destroy (settings->priv->pixbufs);
+        settings->priv->pixbufs;
+    }
 
     G_OBJECT_CLASS (yelp_settings_parent_class)->dispose (object);
 }
@@ -676,6 +686,20 @@ yelp_settings_get_icon_param (YelpSettingsIcon icon)
 
 /******************************************************************************/
 
+GdkPixbuf *
+yelp_settings_get_icon_pixbuf (YelpSettings *settings,
+                               const gchar  *icon_name)
+{
+    GdkPixbuf *pixbuf;
+
+    pixbuf = g_hash_table_lookup (settings->priv->pixbufs, icon_name);
+    if (pixbuf != NULL)
+        return g_object_ref (pixbuf);
+
+    return gtk_icon_theme_load_icon (settings->priv->gtk_icon_theme,
+                                     icon_name, 16, 0, NULL);
+}
+
 gboolean
 yelp_settings_get_show_text_cursor (YelpSettings *settings)
 {
@@ -916,9 +940,12 @@ icon_theme_changed (GtkIconTheme *theme,
 {
     GtkIconInfo *info;
     gint i;
+    GdkPixbuf *pixbuf;
+    GdkRGBA base, gray_border, yellow_border;
 
     g_mutex_lock (settings->priv->mutex);
 
+    /* Set Yelp's note icons */
     for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++) {
 	if (settings->priv->icons[i] != NULL)
 	    g_free (settings->priv->icons[i]);
@@ -935,6 +962,39 @@ icon_theme_changed (GtkIconTheme *theme,
 	    settings->priv->icons[i] = NULL;
 	}
     }
+
+    /* Set pixbufs for named icons */
+    gdk_rgba_parse (&base, settings->priv->colors[YELP_SETTINGS_COLOR_BASE]);
+    gdk_rgba_parse (&gray_border, settings->priv->colors[YELP_SETTINGS_COLOR_GRAY_BORDER]);
+    gdk_rgba_parse (&yellow_border, settings->priv->colors[YELP_SETTINGS_COLOR_YELLOW_BORDER]);
+
+    info = gtk_icon_theme_lookup_icon (theme, "edit-clear-symbolic", 16,
+                                       GTK_ICON_LOOKUP_FORCE_SVG);
+    pixbuf = gtk_icon_info_load_symbolic (info, &gray_border,
+                                          NULL, NULL, NULL,
+                                          NULL, NULL);
+    g_hash_table_replace (settings->priv->pixbufs, g_strdup ("edit-clear"), pixbuf);
+    gtk_icon_info_free (info);
+
+    info = gtk_icon_theme_lookup_icon (theme, "edit-find-symbolic", 16,
+                                       GTK_ICON_LOOKUP_FORCE_SVG);
+    pixbuf = gtk_icon_info_load_symbolic (info, &gray_border,
+                                          NULL, NULL, NULL,
+                                          NULL, NULL);
+    g_hash_table_replace (settings->priv->pixbufs, g_strdup ("system-search"), pixbuf);
+    gtk_icon_info_free (info);
+
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-bookmark-symbolic", 16,
+                                       GTK_ICON_LOOKUP_FORCE_SVG);
+    pixbuf = gtk_icon_info_load_symbolic (info,
+                                          &gray_border, &base,
+                                          NULL, NULL, NULL, NULL);
+    g_hash_table_replace (settings->priv->pixbufs, g_strdup ("yelp-bookmark-add"), pixbuf);
+    pixbuf = gtk_icon_info_load_symbolic (info,
+                                          &gray_border, &yellow_border,
+                                          NULL, NULL, NULL, NULL);
+    g_hash_table_replace (settings->priv->pixbufs, g_strdup ("yelp-bookmark-remove"), pixbuf);
+    gtk_icon_info_free (info);
 
     g_mutex_unlock (settings->priv->mutex);
 
