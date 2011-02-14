@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-12 00:14+0200\n"
-"PO-Revision-Date: 2011-02-12 00:15+0200\n"
+"POT-Creation-Date: 2011-02-14 07:53+0200\n"
+"PO-Revision-Date: 2011-02-14 07:55+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "פונקציות BLT"
 
 #: ../data/man.xml.in.h:3
 msgid "Configuration Files"
-msgstr "קבצי הגדרות"
+msgstr "קובצי הגדרות"
 
 #: ../data/man.xml.in.h:4
 msgid "Curses Functions"
@@ -878,33 +878,33 @@ msgstr "נתונים דחוסים בלתי תקינים"
 msgid "Not enough memory"
 msgstr "אין מספיק זיכרון"
 
-#: ../libyelp/yelp-docbook-document.c:277 ../libyelp/yelp-info-document.c:233
-#: ../libyelp/yelp-mallard-document.c:260
-#: ../libyelp/yelp-mallard-document.c:415 ../libyelp/yelp-man-document.c:277
+#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:270
+#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "העמוד '%s' לא נמצא במסמך '%s'."
 
-#: ../libyelp/yelp-docbook-document.c:311 ../libyelp/yelp-info-document.c:367
-#: ../libyelp/yelp-man-document.c:411
+#: ../libyelp/yelp-docbook-document.c:315 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:416
 #, c-format
 msgid "The file does not exist."
 msgstr "הקובץ לא קיים."
 
-#: ../libyelp/yelp-docbook-document.c:321 ../libyelp/yelp-info-document.c:377
-#: ../libyelp/yelp-man-document.c:421
+#: ../libyelp/yelp-docbook-document.c:325 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:426
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "הקובץ '%s' לא קיים"
 
-#: ../libyelp/yelp-docbook-document.c:336
+#: ../libyelp/yelp-docbook-document.c:340
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "הקובץ '%s' לא ניתן לעיבוד. מכיון שאינו קובץ XML תקני."
 
-#: ../libyelp/yelp-docbook-document.c:349
+#: ../libyelp/yelp-docbook-document.c:353
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -913,15 +913,40 @@ msgstr ""
 "הקובץ '%s' לא ניתן לעיבוד. מכיון שאחד או יותר מהקבצים שהוא מכיל אינם קובצי "
 "XML תקניים."
 
-#: ../libyelp/yelp-docbook-document.c:753
+#: ../libyelp/yelp-docbook-document.c:762
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: ../libyelp/yelp-docbook-document.c:814 ../libyelp/yelp-info-document.c:310
-#: ../libyelp/yelp-man-document.c:353
+#: ../libyelp/yelp-docbook-document.c:823 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:358
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "העמוד המבוקש לא נמצא במסמך '%s'."
+
+#: ../libyelp/yelp-document.c:266
+msgid "Indexed"
+msgstr "נאגר באינדקס"
+
+#: ../libyelp/yelp-document.c:267
+msgid "Whether the document content has been indexed"
+msgstr "האם תוכן המסמך נאגר באינדקס"
+
+#: ../libyelp/yelp-document.c:275
+msgid "Document URI"
+msgstr "כתובת המסמך הייחודית"
+
+#: ../libyelp/yelp-document.c:276
+msgid "The URI which identifies the document"
+msgstr "הכתובת הייחודית המזהה את המסמך"
+
+#: ../libyelp/yelp-document.c:966
+#, c-format
+msgid "No matching help pages found in “%s”."
+msgstr "לא נמצאו דפי עזרה תואמים תחת “%s”."
+
+#: ../libyelp/yelp-document.c:972
+msgid "No matching help pages found."
+msgstr "לא נמצאו דפי עזרה תואמים."
 
 #: ../libyelp/yelp-error.c:33
 #, c-format
@@ -932,98 +957,98 @@ msgstr "ארעה שגיאה בלתי ידועה."
 msgid "All Help Documents"
 msgstr "כל מסמכי העזרה"
 
-#: ../libyelp/yelp-info-document.c:392
+#: ../libyelp/yelp-info-document.c:397
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "הקובץ ’%s’ לא ניתן לפירוק מכיון שאינו דף מידע תקין."
 
-#: ../libyelp/yelp-location-entry.c:329
+#: ../libyelp/yelp-location-entry.c:326
 msgid "View"
 msgstr "תצוגה"
 
-#: ../libyelp/yelp-location-entry.c:330
+#: ../libyelp/yelp-location-entry.c:327
 msgid "A YelpView instance to control"
 msgstr "מופע של YelpApplication לשליטה"
 
-#: ../libyelp/yelp-location-entry.c:345
+#: ../libyelp/yelp-location-entry.c:342
 msgid "Bookmarks"
 msgstr "סימניות"
 
-#: ../libyelp/yelp-location-entry.c:346
+#: ../libyelp/yelp-location-entry.c:343
 msgid "A YelpBookmarks implementation instance"
 msgstr "מופע הטמעה של YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:362
+#: ../libyelp/yelp-location-entry.c:359
 msgid "Enable Search"
 msgstr "הפעלת חיפוש"
 
-#: ../libyelp/yelp-location-entry.c:363
+#: ../libyelp/yelp-location-entry.c:360
 msgid "Whether the location entry can be used as a search field"
 msgstr "האם רשומת המיקום יכולה לשמש כשדה חיפוש"
 
-#: ../libyelp/yelp-location-entry.c:478 ../src/yelp-window.c:277
+#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "חיפוש..."
 
-#: ../libyelp/yelp-location-entry.c:827
+#: ../libyelp/yelp-location-entry.c:785
 msgid "Clear the search text"
 msgstr "ניקוי הטקסט לחיפוש"
 
-#: ../libyelp/yelp-location-entry.c:870 ../libyelp/yelp-location-entry.c:1562
+#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
 msgid "Bookmark this page"
 msgstr "הוספת דף זה לסימניות"
 
-#: ../libyelp/yelp-location-entry.c:878 ../libyelp/yelp-location-entry.c:1570
+#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
 msgid "Remove bookmark"
 msgstr "הסרת סימנייה"
 
-#: ../libyelp/yelp-location-entry.c:1427
+#: ../libyelp/yelp-location-entry.c:1412
 msgid "Loading"
 msgstr "בטעינה"
 
-#: ../libyelp/yelp-mallard-document.c:302
+#: ../libyelp/yelp-mallard-document.c:310
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "התיקייה ‘%s’ לא קיימת."
 
-#: ../libyelp/yelp-settings.c:148
+#: ../libyelp/yelp-settings.c:150
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:149
+#: ../libyelp/yelp-settings.c:151
 msgid "A GtkSettings object to get settings from"
 msgstr "עצם מסוג GtkSettings ממנו יש לקבל הגדרות"
 
-#: ../libyelp/yelp-settings.c:157
+#: ../libyelp/yelp-settings.c:159
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:158
+#: ../libyelp/yelp-settings.c:160
 msgid "A GtkIconTheme object to get icons from"
 msgstr "עצם GtkIconTheme לקבל סמלים ממנו"
 
-#: ../libyelp/yelp-settings.c:166
+#: ../libyelp/yelp-settings.c:168
 msgid "Font Adjustment"
 msgstr "התאמת גופנים"
 
-#: ../libyelp/yelp-settings.c:167
+#: ../libyelp/yelp-settings.c:169
 msgid "A size adjustment to add to font sizes"
 msgstr "התאמת גודל טקסט להוספה לגדלי הגופנים"
 
-#: ../libyelp/yelp-settings.c:175
+#: ../libyelp/yelp-settings.c:177
 msgid "Show Text Cursor"
 msgstr "הצגת סמן טקסט"
 
-#: ../libyelp/yelp-settings.c:176
+#: ../libyelp/yelp-settings.c:178
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "הצגת סמן הטקסט או סמן גלילה לניווט נגיש יותר"
 
-#: ../libyelp/yelp-settings.c:184
+#: ../libyelp/yelp-settings.c:186
 msgid "Editor Mode"
 msgstr "מצב עריכה"
 
-#: ../libyelp/yelp-settings.c:185
+#: ../libyelp/yelp-settings.c:187
 msgid "Enable features useful to editors"
 msgstr "הפעלת תכונות השימושיות לעורכים"
 
@@ -1253,75 +1278,75 @@ msgstr "הקטנת גודל הטקסט"
 msgid "Show Text _Cursor"
 msgstr "הצגת _סמן טקסט"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1460
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1358
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "עזרה"
 
-#: ../src/yelp-window.c:243
+#: ../src/yelp-window.c:236
 msgid "_Page"
 msgstr "_עמוד"
 
-#: ../src/yelp-window.c:244
+#: ../src/yelp-window.c:237
 msgid "_View"
 msgstr "_תצוגה"
 
-#: ../src/yelp-window.c:245
+#: ../src/yelp-window.c:238
 msgid "_Go"
 msgstr "_מעבר"
 
-#: ../src/yelp-window.c:246
+#: ../src/yelp-window.c:239
 msgid "_Bookmarks"
 msgstr "_סימניות"
 
-#: ../src/yelp-window.c:249
+#: ../src/yelp-window.c:242
 msgid "_New Window"
 msgstr "_חלון חדש"
 
-#: ../src/yelp-window.c:254
+#: ../src/yelp-window.c:247
 msgid "_Close"
 msgstr "_סגירה"
 
-#: ../src/yelp-window.c:259
+#: ../src/yelp-window.c:252
 msgid "_All Documents"
 msgstr "_כל המסמכים"
 
-#: ../src/yelp-window.c:263
+#: ../src/yelp-window.c:256
 msgid "_Add Bookmark"
 msgstr "_הוסף לסימניות"
 
-#: ../src/yelp-window.c:268
+#: ../src/yelp-window.c:261
 msgid "_Remove Bookmark"
 msgstr "ה_סרת סימנייה"
 
-#: ../src/yelp-window.c:272
+#: ../src/yelp-window.c:265
 msgid "Find in Page..."
 msgstr "חיפוש בעמוד..."
 
-#: ../src/yelp-window.c:282
+#: ../src/yelp-window.c:275
 msgid "Open Location"
 msgstr "פתח מיקום"
 
-#: ../src/yelp-window.c:308
+#: ../src/yelp-window.c:301
 msgid "Application"
 msgstr "יישום"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "מופע של YelpApplication השולט בחלון זה"
 
-#: ../src/yelp-window.c:557
+#: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "אקרא אחר כך"
 
-#: ../src/yelp-window.c:1264
+#: ../src/yelp-window.c:1178
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "התאמה אחת"
 msgstr[1] "%i התאמות"
 
-#: ../src/yelp-window.c:1289
+#: ../src/yelp-window.c:1187
 msgid "No matches"
 msgstr "אין התאמות"
 
