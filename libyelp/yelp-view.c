@@ -503,7 +503,7 @@ yelp_view_get_property (GObject    *object,
             if (priv->page_icon)
                 g_value_set_string (value, priv->page_icon);
             else
-                g_value_set_string (value, "help-contents");
+                g_value_set_string (value, "yelp-page");
             break;
         case PROP_STATE:
             g_value_set_enum (value, priv->state);

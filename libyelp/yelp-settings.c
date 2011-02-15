@@ -941,7 +941,7 @@ icon_theme_changed (GtkIconTheme *theme,
     GtkIconInfo *info;
     gint i;
     GdkPixbuf *pixbuf;
-    GdkRGBA base, gray_border, yellow_border;
+    GdkRGBA color, base;
 
     g_mutex_lock (settings->priv->mutex);
 
@@ -964,13 +964,12 @@ icon_theme_changed (GtkIconTheme *theme,
     }
 
     /* Set pixbufs for named icons */
+    gdk_rgba_parse (&color, settings->priv->colors[YELP_SETTINGS_COLOR_TEXT_LIGHT]);
     gdk_rgba_parse (&base, settings->priv->colors[YELP_SETTINGS_COLOR_BASE]);
-    gdk_rgba_parse (&gray_border, settings->priv->colors[YELP_SETTINGS_COLOR_GRAY_BORDER]);
-    gdk_rgba_parse (&yellow_border, settings->priv->colors[YELP_SETTINGS_COLOR_YELLOW_BORDER]);
 
     info = gtk_icon_theme_lookup_icon (theme, "edit-clear-symbolic", 16,
                                        GTK_ICON_LOOKUP_FORCE_SVG);
-    pixbuf = gtk_icon_info_load_symbolic (info, &gray_border,
+    pixbuf = gtk_icon_info_load_symbolic (info, &color,
                                           NULL, NULL, NULL,
                                           NULL, NULL);
     g_hash_table_replace (settings->priv->pixbufs, g_strdup ("edit-clear"), pixbuf);
@@ -978,7 +977,7 @@ icon_theme_changed (GtkIconTheme *theme,
 
     info = gtk_icon_theme_lookup_icon (theme, "edit-find-symbolic", 16,
                                        GTK_ICON_LOOKUP_FORCE_SVG);
-    pixbuf = gtk_icon_info_load_symbolic (info, &gray_border,
+    pixbuf = gtk_icon_info_load_symbolic (info, &color,
                                           NULL, NULL, NULL,
                                           NULL, NULL);
     g_hash_table_replace (settings->priv->pixbufs, g_strdup ("system-search"), pixbuf);
@@ -987,13 +986,69 @@ icon_theme_changed (GtkIconTheme *theme,
     info = gtk_icon_theme_lookup_icon (theme, "yelp-bookmark-symbolic", 16,
                                        GTK_ICON_LOOKUP_FORCE_SVG);
     pixbuf = gtk_icon_info_load_symbolic (info,
-                                          &gray_border, &base,
+                                          &color, &base,
                                           NULL, NULL, NULL, NULL);
     g_hash_table_replace (settings->priv->pixbufs, g_strdup ("yelp-bookmark-add"), pixbuf);
     pixbuf = gtk_icon_info_load_symbolic (info,
-                                          &gray_border, &yellow_border,
+                                          &color, &color,
                                           NULL, NULL, NULL, NULL);
     g_hash_table_replace (settings->priv->pixbufs, g_strdup ("yelp-bookmark-remove"), pixbuf);
+    gtk_icon_info_free (info);
+
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-page-task-symbolic", 16,
+                                       GTK_ICON_LOOKUP_FORCE_SVG);
+    pixbuf = gtk_icon_info_load_symbolic (info, &color,
+                                          NULL, NULL, NULL,
+                                          NULL, NULL);
+    g_hash_table_replace (settings->priv->pixbufs, g_strdup ("yelp-page-task"), pixbuf);
+    gtk_icon_info_free (info);
+
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-page-tip-symbolic", 16,
+                                       GTK_ICON_LOOKUP_FORCE_SVG);
+    pixbuf = gtk_icon_info_load_symbolic (info, &color,
+                                          NULL, NULL, NULL,
+                                          NULL, NULL);
+    g_hash_table_replace (settings->priv->pixbufs, g_strdup ("yelp-page-tip"), pixbuf);
+    gtk_icon_info_free (info);
+
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-page-video-symbolic", 16,
+                                       GTK_ICON_LOOKUP_FORCE_SVG);
+    pixbuf = gtk_icon_info_load_symbolic (info, &color,
+                                          NULL, NULL, NULL,
+                                          NULL, NULL);
+    g_hash_table_replace (settings->priv->pixbufs, g_strdup ("yelp-page-video"), pixbuf);
+    gtk_icon_info_free (info);
+
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-page-ui-symbolic", 16,
+                                       GTK_ICON_LOOKUP_FORCE_SVG);
+    pixbuf = gtk_icon_info_load_symbolic (info, &color,
+                                          NULL, NULL, NULL,
+                                          NULL, NULL);
+    g_hash_table_replace (settings->priv->pixbufs, g_strdup ("yelp-page-ui"), pixbuf);
+    gtk_icon_info_free (info);
+
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-page-problem-symbolic", 16,
+                                       GTK_ICON_LOOKUP_FORCE_SVG);
+    pixbuf = gtk_icon_info_load_symbolic (info, &color,
+                                          NULL, NULL, NULL,
+                                          NULL, NULL);
+    g_hash_table_replace (settings->priv->pixbufs, g_strdup ("yelp-page-problem"), pixbuf);
+    gtk_icon_info_free (info);
+
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-page-search-symbolic", 16,
+                                       GTK_ICON_LOOKUP_FORCE_SVG);
+    pixbuf = gtk_icon_info_load_symbolic (info, &color,
+                                          NULL, NULL, NULL,
+                                          NULL, NULL);
+    g_hash_table_replace (settings->priv->pixbufs, g_strdup ("yelp-page-search"), pixbuf);
+    gtk_icon_info_free (info);
+
+    info = gtk_icon_theme_lookup_icon (theme, "yelp-page-symbolic", 16,
+                                       GTK_ICON_LOOKUP_FORCE_SVG);
+    pixbuf = gtk_icon_info_load_symbolic (info, &color,
+                                          NULL, NULL, NULL,
+                                          NULL, NULL);
+    g_hash_table_replace (settings->priv->pixbufs, g_strdup ("yelp-page"), pixbuf);
     gtk_icon_info_free (info);
 
     g_mutex_unlock (settings->priv->mutex);
@@ -1006,17 +1061,19 @@ yelp_settings_cmp_icons (const gchar *icon1,
                          const gchar *icon2)
 {
     static const gchar *icons[] = {
-        "yelp-page-task",
+        "yelp-page-search",
         "yelp-page-video",
+        "yelp-page-task",
         "yelp-page-tip",
+        "yelp-page-problem",
         "yelp-page-ui",
-        "help-contents",
+        "yelp-page",
         NULL
     };
     gint i;
     for (i = 0; icons[i] != NULL; i++) {
-        gboolean eq1 = icon1 ? g_str_equal (icon1, icons[i]) : FALSE;
-        gboolean eq2 = icon2 ? g_str_equal (icon2, icons[i]) : FALSE;
+        gboolean eq1 = icon1 ? g_str_has_prefix (icon1, icons[i]) : FALSE;
+        gboolean eq2 = icon2 ? g_str_has_prefix (icon2, icons[i]) : FALSE;
         if (eq1 && eq2)
             return 0;
         else if (eq1)
