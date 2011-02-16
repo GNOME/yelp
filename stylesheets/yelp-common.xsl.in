@@ -82,11 +82,14 @@ div.trail {
 }
 div.body {
   margin: 0 12px 0 12px;
-  padding: 0;
+  padding: 0 0 12px 0;
   border: none;
 }
 </xsl:text>
+<xsl:call-template name="yelp.css.custom"/>
 </xsl:template>
+
+<xsl:template name="yelp.css.custom"/>
 
 <!-- == html.js.custom == -->
 <xsl:template name="html.js.custom">
