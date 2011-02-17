@@ -1,13 +1,13 @@
 # Norwegian (bokmål) translation of yelp.
 # Copyright © 2001-2004 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 2001-2010.
+# Kjartan Maraas <kmaraas@gnome.org>, 2001-2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.91.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-15 13:53+0100\n"
-"PO-Revision-Date: 2011-01-15 13:53+0100\n"
+"POT-Creation-Date: 2011-02-17 15:09+0100\n"
+"PO-Revision-Date: 2011-02-17 15:14+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -876,26 +876,26 @@ msgstr "Ugyldige komprimerte data"
 msgid "Not enough memory"
 msgstr "Ikke nok minne"
 
-#: ../libyelp/yelp-docbook-document.c:277 ../libyelp/yelp-info-document.c:233
-#: ../libyelp/yelp-mallard-document.c:260
-#: ../libyelp/yelp-mallard-document.c:415 ../libyelp/yelp-man-document.c:269
+#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:270
+#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Siden «%s» ble ikke funnet i dokumentet «%s»."
 
-#: ../libyelp/yelp-docbook-document.c:311 ../libyelp/yelp-info-document.c:367
-#: ../libyelp/yelp-man-document.c:403
+#: ../libyelp/yelp-docbook-document.c:315 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:416
 #, c-format
 msgid "The file does not exist."
 msgstr "Filen eksisterer ikke."
 
-#: ../libyelp/yelp-docbook-document.c:321 ../libyelp/yelp-info-document.c:377
-#: ../libyelp/yelp-man-document.c:413
+#: ../libyelp/yelp-docbook-document.c:325 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:426
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Filen «%s» eksisterer ikke."
 
-#: ../libyelp/yelp-docbook-document.c:336
+#: ../libyelp/yelp-docbook-document.c:340
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -904,7 +904,7 @@ msgstr ""
 "Filen «%s» kunne ikke leses fordi den ikke er et gyldig utformet XML-"
 "dokument."
 
-#: ../libyelp/yelp-docbook-document.c:349
+#: ../libyelp/yelp-docbook-document.c:353
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -913,15 +913,40 @@ msgstr ""
 "Filen «%s» kunne ikke tolkes fordi den eller en inkludert fil ikke er "
 "velformet XML."
 
-#: ../libyelp/yelp-docbook-document.c:753
+#: ../libyelp/yelp-docbook-document.c:762
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: ../libyelp/yelp-docbook-document.c:814 ../libyelp/yelp-info-document.c:310
-#: ../libyelp/yelp-man-document.c:345
+#: ../libyelp/yelp-docbook-document.c:823 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:358
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Etterspurt side ble ikke funnet i dokument «%s»."
+
+#: ../libyelp/yelp-document.c:266
+msgid "Indexed"
+msgstr "Indeksert"
+
+#: ../libyelp/yelp-document.c:267
+msgid "Whether the document content has been indexed"
+msgstr "Om innholdet i dokumentet er indeksert"
+
+#: ../libyelp/yelp-document.c:275
+msgid "Document URI"
+msgstr "Dokument-URI"
+
+#: ../libyelp/yelp-document.c:276
+msgid "The URI which identifies the document"
+msgstr "URI som identifiserer dokumentet"
+
+#: ../libyelp/yelp-document.c:966
+#, c-format
+msgid "No matching help pages found in “%s”."
+msgstr "Ingen hjelpsider med treff funnet i «%s»."
+
+#: ../libyelp/yelp-document.c:972
+msgid "No matching help pages found."
+msgstr "Ingen hjelpsider med treff funnet."
 
 #: ../libyelp/yelp-error.c:33
 #, c-format
@@ -932,86 +957,98 @@ msgstr "En ukjent feil oppsto."
 msgid "All Help Documents"
 msgstr "Alle hjelpdokumenter"
 
-#: ../libyelp/yelp-info-document.c:392
+#: ../libyelp/yelp-info-document.c:397
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "Filen «%s» kunne ikke tolkes fordi den ikke er en velformet info-side."
 
-#: ../libyelp/yelp-location-entry.c:323
+#: ../libyelp/yelp-location-entry.c:326
 msgid "View"
 msgstr "Visning"
 
-#: ../libyelp/yelp-location-entry.c:324
+#: ../libyelp/yelp-location-entry.c:327
 msgid "A YelpView instance to control"
 msgstr "En YelpView-instans som skal kontrolleres"
 
-#: ../libyelp/yelp-location-entry.c:339
+#: ../libyelp/yelp-location-entry.c:342
 msgid "Bookmarks"
 msgstr "Bokmerker"
 
-#: ../libyelp/yelp-location-entry.c:340
+#: ../libyelp/yelp-location-entry.c:343
 msgid "A YelpBookmarks implementation instance"
 msgstr "En YelpBookmarks-implementasjonsinstans"
 
-#: ../libyelp/yelp-location-entry.c:356
+#: ../libyelp/yelp-location-entry.c:359
 msgid "Enable Search"
 msgstr "Slå på søk"
 
-#: ../libyelp/yelp-location-entry.c:357
+#: ../libyelp/yelp-location-entry.c:360
 msgid "Whether the location entry can be used as a search field"
 msgstr "Om lokasjonsfeltet kan brukes som et søkefelt"
 
-#: ../libyelp/yelp-location-entry.c:426 ../src/yelp-window.c:300
+#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
 msgid "Search..."
-msgstr "Søk…"
+msgstr "Søk …"
 
-#: ../libyelp/yelp-location-entry.c:1335
+#: ../libyelp/yelp-location-entry.c:785
+msgid "Clear the search text"
+msgstr "Tøm søketeksten"
+
+#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
+msgid "Bookmark this page"
+msgstr "Lag bokmerke for denne siden"
+
+#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
+msgid "Remove bookmark"
+msgstr "Fjern bokmerke"
+
+#: ../libyelp/yelp-location-entry.c:1412
 msgid "Loading"
 msgstr "Laster"
 
-#: ../libyelp/yelp-mallard-document.c:302
+#: ../libyelp/yelp-mallard-document.c:310
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Katalogen «%s» eksisterer ikke."
 
-#: ../libyelp/yelp-settings.c:148
+#: ../libyelp/yelp-settings.c:150
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:149
+#: ../libyelp/yelp-settings.c:151
 msgid "A GtkSettings object to get settings from"
 msgstr "Et GtkSettings-objekt å hente innstillinger fra"
 
-#: ../libyelp/yelp-settings.c:157
+#: ../libyelp/yelp-settings.c:159
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:158
+#: ../libyelp/yelp-settings.c:160
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Et GtkIconTheme-objekt å hente ikoner fra"
 
-#: ../libyelp/yelp-settings.c:166
+#: ../libyelp/yelp-settings.c:168
 msgid "Font Adjustment"
 msgstr "Justering av skrift"
 
-#: ../libyelp/yelp-settings.c:167
+#: ../libyelp/yelp-settings.c:169
 msgid "A size adjustment to add to font sizes"
 msgstr "En størrelsesjustering som skal legges til på skriftstørrelser"
 
-#: ../libyelp/yelp-settings.c:175
+#: ../libyelp/yelp-settings.c:177
 msgid "Show Text Cursor"
 msgstr "Vis tekstmarkør"
 
-#: ../libyelp/yelp-settings.c:176
+#: ../libyelp/yelp-settings.c:178
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Vis tekstmarkør for tilgjengelig navigasjon"
 
-#: ../libyelp/yelp-settings.c:184
+#: ../libyelp/yelp-settings.c:186
 msgid "Editor Mode"
 msgstr "Redigeringsmodus"
 
-#: ../libyelp/yelp-settings.c:185
+#: ../libyelp/yelp-settings.c:187
 msgid "Enable features useful to editors"
 msgstr "Slå på funksjoner som er nyttig ved redigering"
 
@@ -1038,7 +1075,7 @@ msgstr "Ikke mer minne"
 
 #: ../libyelp/yelp-view.c:126
 msgid "_Print..."
-msgstr "S_kriv ut…"
+msgstr "S_kriv ut …"
 
 #: ../libyelp/yelp-view.c:131
 msgid "_Back"
@@ -1147,19 +1184,19 @@ msgstr "Åpne lenke i nytt _vindu"
 
 #: ../libyelp/yelp-view.c:1320
 msgid "_Save Image As..."
-msgstr "_Lagre bilde som…"
+msgstr "_Lagre bilde som …"
 
 #: ../libyelp/yelp-view.c:1322
 msgid "_Save Video As..."
-msgstr "_Lagre video som…"
+msgstr "_Lagre video som …"
 
 #: ../libyelp/yelp-view.c:1329
 msgid "S_end Image To..."
-msgstr "S_end bilde til…"
+msgstr "S_end bilde til …"
 
 #: ../libyelp/yelp-view.c:1331
 msgid "S_end Video To..."
-msgstr "S_end video til…"
+msgstr "S_end video til …"
 
 #: ../libyelp/yelp-view.c:1342
 msgid "_Copy Text"
@@ -1171,7 +1208,7 @@ msgstr "K_opier kodeblokk"
 
 #: ../libyelp/yelp-view.c:1360
 msgid "Save Code _Block As..."
-msgstr "Lagre kode_blokk som…"
+msgstr "Lagre kode_blokk som …"
 
 #: ../libyelp/yelp-view.c:1542
 #, c-format
@@ -1242,95 +1279,77 @@ msgstr "Gjør tekststørrelsen mindre"
 msgid "Show Text _Cursor"
 msgstr "Vis tekstmar_kør"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1533
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1358
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjelp"
 
-#: ../src/yelp-window.c:265
+#: ../src/yelp-window.c:236
 msgid "_Page"
 msgstr "Si_de"
 
-#: ../src/yelp-window.c:266
+#: ../src/yelp-window.c:237
 msgid "_View"
 msgstr "_Visning"
 
-#: ../src/yelp-window.c:267
+#: ../src/yelp-window.c:238
 msgid "_Go"
 msgstr "_Naviger"
 
-#: ../src/yelp-window.c:268
+#: ../src/yelp-window.c:239
 msgid "_Bookmarks"
 msgstr "_Bokmerker"
 
-#: ../src/yelp-window.c:271
+#: ../src/yelp-window.c:242
 msgid "_New Window"
 msgstr "_Nytt vindu"
 
-#: ../src/yelp-window.c:276
+#: ../src/yelp-window.c:247
 msgid "_Close"
 msgstr "_Lukk"
 
-#: ../src/yelp-window.c:281
+#: ../src/yelp-window.c:252
 msgid "_All Documents"
 msgstr "_Alle dokumenter"
 
-#: ../src/yelp-window.c:285
+#: ../src/yelp-window.c:256
 msgid "_Add Bookmark"
 msgstr "_Legg til bokmerke"
 
-#: ../src/yelp-window.c:290
-msgid "_Edit Bookmarks"
-msgstr "R_ediger bokmerker"
+#: ../src/yelp-window.c:261
+msgid "_Remove Bookmark"
+msgstr "Fje_rn bokmerke"
 
-#: ../src/yelp-window.c:295
+#: ../src/yelp-window.c:265
 msgid "Find in Page..."
-msgstr "Finn på siden…"
+msgstr "Finn på siden …"
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:275
 msgid "Open Location"
 msgstr "Åpne lokasjon"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:301
 msgid "Application"
 msgstr "Program"
 
-#: ../src/yelp-window.c:332
+#: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "En YelpApplication-instans som kontrollerer dette vinduet"
 
-#: ../src/yelp-window.c:585
+#: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "Les senere"
 
-#. %s will be replaced with the name of a document
-#: ../src/yelp-window.c:802
-#, c-format
-msgid "Bookmarks for %s"
-msgstr "Bokmerker for %s"
-
-#: ../src/yelp-window.c:1337
+#: ../src/yelp-window.c:1178
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i treff"
 msgstr[1] "%i treff"
 
-#: ../src/yelp-window.c:1362
+#: ../src/yelp-window.c:1187
 msgid "No matches"
 msgstr "Ingen treff"
-
-#: ../src/yelp-window.c:1652
-msgid "_Open Bookmark"
-msgstr "_Åpne bokmerke"
-
-#: ../src/yelp-window.c:1658
-msgid "Open Bookmark in New _Window"
-msgstr "Åpne bokmerke i nytt _vindu"
-
-#: ../src/yelp-window.c:1667
-msgid "_Remove Bookmark"
-msgstr "Fje_rn bokmerke"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
