@@ -1,25 +1,27 @@
 # Dutch translation of Yelp.
 # Copyright © 2002 Free Software Foundation, Inc.
 #
+#
 # Tino Meinen <a.t.meinen@chello.nl>, 2002, 2003, 2004, 2005, 2006.
 # Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002.
 # Reinout van Schouwen <reinouts@gnome.org>, 2005, 2008.
 # Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006, 2011 (small additions).
 # Redmar <redmar@ubuntu-nl.org>, 2011.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp cvs\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-11 22:38+0100\n"
-"PO-Revision-Date: 2011-02-08 10:17+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&component=general\n"
+"POT-Creation-Date: 2011-02-17 14:14+0000\n"
+"PO-Revision-Date: 2011-02-18 09:26+0100\n"
 "Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
-"Language-Team: Dutch <ubuntu-l10n-nl@lists.ubuntu.com>\n"
-"Language: nl\n"
+"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.1\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -897,26 +899,26 @@ msgstr "Te weinig geheugen"
 
 # werd niet gevonden?
 # aangetroffen?
-#: ../libyelp/yelp-docbook-document.c:277 ../libyelp/yelp-info-document.c:233
-#: ../libyelp/yelp-mallard-document.c:260
-#: ../libyelp/yelp-mallard-document.c:415 ../libyelp/yelp-man-document.c:277
+#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:270
+#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Pagina ‘%s’ kon niet worden gevonden in document ‘%s’."
 
-#: ../libyelp/yelp-docbook-document.c:311 ../libyelp/yelp-info-document.c:367
-#: ../libyelp/yelp-man-document.c:411
+#: ../libyelp/yelp-docbook-document.c:315 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:416
 #, c-format
 msgid "The file does not exist."
 msgstr "Het bestand bestaat niet."
 
-#: ../libyelp/yelp-docbook-document.c:321 ../libyelp/yelp-info-document.c:377
-#: ../libyelp/yelp-man-document.c:421
+#: ../libyelp/yelp-docbook-document.c:325 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:426
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Het bestand ‘%s’ bestaat niet."
 
-#: ../libyelp/yelp-docbook-document.c:336
+#: ../libyelp/yelp-docbook-document.c:340
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -924,7 +926,7 @@ msgid ""
 msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt, omdat het ongeldige XML bevat."
 
-#: ../libyelp/yelp-docbook-document.c:349
+#: ../libyelp/yelp-docbook-document.c:353
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -933,17 +935,42 @@ msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt, omdat een van de bestanden waar "
 "het naar verwijst ongeldige XML bevat."
 
-#: ../libyelp/yelp-docbook-document.c:753
+#: ../libyelp/yelp-docbook-document.c:762
 msgid "Unknown"
 msgstr "Onbekend"
 
 # werd niet gevonden?
 # aangetroffen?
-#: ../libyelp/yelp-docbook-document.c:814 ../libyelp/yelp-info-document.c:310
-#: ../libyelp/yelp-man-document.c:353
+#: ../libyelp/yelp-docbook-document.c:823 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:358
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "De gezochte pagina kon niet worden gevonden in document ‘%s’."
+
+#: ../libyelp/yelp-document.c:266
+msgid "Indexed"
+msgstr "Geïndexeerd"
+
+#: ../libyelp/yelp-document.c:267
+msgid "Whether the document content has been indexed"
+msgstr "Of de documentinhoud geïndexeerd is"
+
+#: ../libyelp/yelp-document.c:275
+msgid "Document URI"
+msgstr "Document URI"
+
+#: ../libyelp/yelp-document.c:276
+msgid "The URI which identifies the document"
+msgstr "De URI die verwijst naar het document"
+
+#: ../libyelp/yelp-document.c:966
+#, c-format
+msgid "No matching help pages found in “%s”."
+msgstr "Geen overeenkomende hulppagina's gevonden in “%s”."
+
+#: ../libyelp/yelp-document.c:972
+msgid "No matching help pages found."
+msgstr "Geen overeenkomende hulppagina's gevonden."
 
 #: ../libyelp/yelp-error.c:33
 #, c-format
@@ -954,7 +981,7 @@ msgstr "Er is een onbekende fout opgetreden."
 msgid "All Help Documents"
 msgstr "Alle hulp-documenten"
 
-#: ../libyelp/yelp-info-document.c:392
+#: ../libyelp/yelp-info-document.c:397
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -962,92 +989,92 @@ msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt, omdat het een ongeldige info-"
 "pagina is."
 
-#: ../libyelp/yelp-location-entry.c:329
+#: ../libyelp/yelp-location-entry.c:326
 msgid "View"
 msgstr "Weergave"
 
-#: ../libyelp/yelp-location-entry.c:330
+#: ../libyelp/yelp-location-entry.c:327
 msgid "A YelpView instance to control"
 msgstr "Een YelpView-instance voor beheer"
 
-#: ../libyelp/yelp-location-entry.c:345
+#: ../libyelp/yelp-location-entry.c:342
 msgid "Bookmarks"
 msgstr "Bladwijzers"
 
-#: ../libyelp/yelp-location-entry.c:346
+#: ../libyelp/yelp-location-entry.c:343
 msgid "A YelpBookmarks implementation instance"
 msgstr "Een YelpBookmarks-implementation-instance"
 
-#: ../libyelp/yelp-location-entry.c:362
+#: ../libyelp/yelp-location-entry.c:359
 msgid "Enable Search"
 msgstr "Zoeken inschakelen"
 
-#: ../libyelp/yelp-location-entry.c:363
+#: ../libyelp/yelp-location-entry.c:360
 msgid "Whether the location entry can be used as a search field"
 msgstr "Of de locatiebalk als zoekveld gebruikt kan worden"
 
-#: ../libyelp/yelp-location-entry.c:478 ../src/yelp-window.c:277
+#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Zoeken…"
 
-#: ../libyelp/yelp-location-entry.c:827
+#: ../libyelp/yelp-location-entry.c:785
 msgid "Clear the search text"
 msgstr "De zoektekst wissen"
 
-#: ../libyelp/yelp-location-entry.c:870 ../libyelp/yelp-location-entry.c:1562
+#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
 msgid "Bookmark this page"
 msgstr "Bladwijzer voor deze bladzijde toevoegen"
 
-#: ../libyelp/yelp-location-entry.c:878 ../libyelp/yelp-location-entry.c:1570
+#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
 msgid "Remove bookmark"
 msgstr "Bladwijzer verwijderen"
 
-#: ../libyelp/yelp-location-entry.c:1427
+#: ../libyelp/yelp-location-entry.c:1412
 msgid "Loading"
 msgstr "Bezig met laden…"
 
-#: ../libyelp/yelp-mallard-document.c:302
+#: ../libyelp/yelp-mallard-document.c:310
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "De map ‘%s’ bestaat niet."
 
-#: ../libyelp/yelp-settings.c:148
+#: ../libyelp/yelp-settings.c:150
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:149
+#: ../libyelp/yelp-settings.c:151
 msgid "A GtkSettings object to get settings from"
 msgstr "Een GtkSettings-object om instellingen van op te halen"
 
-#: ../libyelp/yelp-settings.c:157
+#: ../libyelp/yelp-settings.c:159
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:158
+#: ../libyelp/yelp-settings.c:160
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Een GtkIconTheme-object om pictogrammen van op te halen"
 
-#: ../libyelp/yelp-settings.c:166
+#: ../libyelp/yelp-settings.c:168
 msgid "Font Adjustment"
 msgstr "Lettertype aanpassen"
 
-#: ../libyelp/yelp-settings.c:167
+#: ../libyelp/yelp-settings.c:169
 msgid "A size adjustment to add to font sizes"
 msgstr "Een aanpassing van de grootte om aan tekengroottes toe te voegen"
 
-#: ../libyelp/yelp-settings.c:175
+#: ../libyelp/yelp-settings.c:177
 msgid "Show Text Cursor"
 msgstr "tekstcursor tonen"
 
-#: ../libyelp/yelp-settings.c:176
+#: ../libyelp/yelp-settings.c:178
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "De tekstcursor of caret tonen voor eenvoudige navigatie"
 
-#: ../libyelp/yelp-settings.c:184
+#: ../libyelp/yelp-settings.c:186
 msgid "Editor Mode"
 msgstr "Bewerk-modus"
 
-#: ../libyelp/yelp-settings.c:185
+#: ../libyelp/yelp-settings.c:187
 msgid "Enable features useful to editors"
 msgstr "Activeer opties die van pas komen bij bewerken"
 
@@ -1278,81 +1305,81 @@ msgstr "Maak het lettertype kleiner"
 msgid "Show Text _Cursor"
 msgstr "Toon de _cursor"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1460
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1358
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hulp"
 
-#: ../src/yelp-window.c:243
+#: ../src/yelp-window.c:236
 msgid "_Page"
 msgstr "_Pagina"
 
-#: ../src/yelp-window.c:244
+#: ../src/yelp-window.c:237
 msgid "_View"
 msgstr "_Weergave"
 
-#: ../src/yelp-window.c:245
+#: ../src/yelp-window.c:238
 msgid "_Go"
 msgstr "_Ga naar"
 
-#: ../src/yelp-window.c:246
+#: ../src/yelp-window.c:239
 msgid "_Bookmarks"
 msgstr "Bl_adwijzers"
 
-#: ../src/yelp-window.c:249
+#: ../src/yelp-window.c:242
 msgid "_New Window"
 msgstr "_Nieuw venster"
 
-#: ../src/yelp-window.c:254
+#: ../src/yelp-window.c:247
 msgid "_Close"
 msgstr "_Sluiten"
 
-#: ../src/yelp-window.c:259
+#: ../src/yelp-window.c:252
 msgid "_All Documents"
 msgstr "_Alle documenten"
 
-#: ../src/yelp-window.c:263
+#: ../src/yelp-window.c:256
 msgid "_Add Bookmark"
 msgstr "Bla_dwijzer toevoegen"
 
-#: ../src/yelp-window.c:268
+#: ../src/yelp-window.c:261
 msgid "_Remove Bookmark"
 msgstr "Bladwijzer _verwijderen"
 
-#: ../src/yelp-window.c:272
+#: ../src/yelp-window.c:265
 msgid "Find in Page..."
 msgstr "Zoek in pagina…"
 
-#: ../src/yelp-window.c:282
+#: ../src/yelp-window.c:275
 msgid "Open Location"
 msgstr "Locatie openen"
 
-#: ../src/yelp-window.c:308
+#: ../src/yelp-window.c:301
 msgid "Application"
 msgstr "Toepassing"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Een YelpApplication-instance die dit venster beheert"
 
-#: ../src/yelp-window.c:557
+#: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "Lees later"
 
-#: ../src/yelp-window.c:1264
+#: ../src/yelp-window.c:1178
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i resultaat"
 msgstr[1] "%i resultaten"
 
-#: ../src/yelp-window.c:1289
+#: ../src/yelp-window.c:1187
 msgid "No matches"
 msgstr "Geen resultaten"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
-msgstr "Hulp bij GNOME"
+msgstr "Hulp bij Gnome"
 
 #~| msgid "_Edit Bookmarks..."
 #~ msgid "_Edit Bookmarks"
@@ -1865,8 +1892,8 @@ msgstr "Hulp bij GNOME"
 #~ "A transformation context could not be created for the file ‘%s’. The "
 #~ "format may not be supported."
 #~ msgstr ""
-#~ "Een transformatiecontext kon niet worden aangemaakt voor het bestand "
-#~ "‘%s’. De opmaak wordt mogelijk niet ondersteund."
+#~ "Een transformatiecontext kon niet worden aangemaakt voor het bestand ‘%"
+#~ "s’. De opmaak wordt mogelijk niet ondersteund."
 
 #~ msgid ""
 #~ "The section ‘%s’ does not exist in this document. If you were directed to "
@@ -1960,9 +1987,6 @@ msgstr "Hulp bij GNOME"
 
 #~ msgid "Contents"
 #~ msgstr "Inhoudsopgave"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "Het geselecteerde document kon niet worden geopend"
 
 #~ msgid "The table of contents could not be read."
 #~ msgstr "De inhoudsopgave kon niet worden gelezen."
@@ -2097,9 +2121,6 @@ msgstr "Hulp bij GNOME"
 #~ msgid "Important"
 #~ msgstr "Belangrijk"
 
-#~ msgid "Index"
-#~ msgstr "Index"
-
 # Kort:
 # Rechtspraak
 #~ msgid "Legal Notice"
@@ -2170,9 +2191,6 @@ msgstr "Hulp bij GNOME"
 # Een Hulp voor GNOME, een Hulp-programma voor GNOME
 #~ msgid "A Help Browser for GNOME"
 #~ msgstr "Een Hulp-browser voor GNOME"
-
-#~ msgid "Document URI"
-#~ msgstr "Document URI"
 
 #~ msgid "The URI of the document to be processed"
 #~ msgstr "De URI van het te verwerken document"
