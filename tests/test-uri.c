@@ -65,9 +65,6 @@ print_uri (gchar *orig, YelpUri *uri, GOutputStream *stream)
     case YELP_URI_DOCUMENT_TYPE_HELP_LIST:
         type = "TOC";
         break;
-    case YELP_URI_DOCUMENT_TYPE_SEARCH:
-        type = "SEARCH";
-        break;
     case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
         type = "NOT FOUND";
         break;
