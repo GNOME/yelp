@@ -39,7 +39,7 @@
 #include "yelp-application.h"
 #include "yelp-window.h"
 
-#define DEFAULT_URI "ghelp:user-guide"
+#define DEFAULT_URI "ghelp:gnome-help"
 
 static gboolean editor_mode = FALSE;
 
