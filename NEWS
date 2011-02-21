@@ -1,5 +1,32 @@
+Changes in 2.91.90:
+-------------------
+* Default to ghelp:gnome-help
+* Full text per-document search, using sqlite FTS
+* Use symbolic icons for bookmarks and location entry
+* Don't require DocBook DTDs; provide entities internally
+* Removed bookmark editor, added bookmark toggle icon
+* Updated translations:
+  ar       (Khaled Hosny)
+  bg       (Ivaylo Valkov)
+  el       (Michael Kotsarinis)
+  es       (Daniel Mustieles, Jorge González)
+  et       (Ivar Smolin)
+  gl       (Fran Diéguez)
+  gu       (Sweta Kothari)
+  he       (Yaron Shahrabani)
+  id       (Andika Triwidada)
+  nb       (Kjartan Maraas)
+  nl       (Hannie Dumoleyn, Redmar)
+  sl       (Matej Urbančič)
+  sr       (Мирослав Николић)
+  sr@latin (Мирослав Николић)
+  uk       (Daniel Korostil)
+  zh_CN    (Aron Xu)
+  zh_HK    (Chao-Hsiung Liao)
+  zh_TW    (Chao-Hsiung Liao)
+
 Changes in 2.91.10:
-------------------
+-------------------
 * Fixed some issues with previous/next links
 * Better indents and margin in man pages (Rupert Swarbrick)
 * Handle links in man pages (Rupert Swarbrick)
