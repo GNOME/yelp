@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2011-02-13 22:29+0000\n"
-"PO-Revision-Date: 2011-02-15 13:26+0100\n"
+"POT-Creation-Date: 2011-02-21 21:28+0000\n"
+"PO-Revision-Date: 2011-02-22 09:57+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -938,7 +938,6 @@ msgid "Whether the document content has been indexed"
 msgstr "Indica si se ha indexado el contenido del documento"
 
 #: ../libyelp/yelp-document.c:275
-#| msgid "_All Documents"
 msgid "Document URI"
 msgstr "URI del documento"
 
@@ -1061,6 +1060,15 @@ msgstr "Modo editor"
 #: ../libyelp/yelp-settings.c:187
 msgid "Enable features useful to editors"
 msgstr "Activar características útiles para editores"
+
+#: ../libyelp/yelp-sqlite-storage.c:150
+#| msgid "Databases"
+msgid "Database filename"
+msgstr "Nombre del archivo de base de datos"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "El nombre del archivo de la base de datos sqlite"
 
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
@@ -1289,7 +1297,7 @@ msgstr "Reducir el tamaño del texto"
 msgid "Show Text _Cursor"
 msgstr "Mostrar el _cursor de texto"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1358
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ayuda"
@@ -1350,14 +1358,14 @@ msgstr "Una instancia de YelpApplication que controla esta ventana"
 msgid "Read Later"
 msgstr "Leer más tarde"
 
-#: ../src/yelp-window.c:1178
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i coincidencia"
 msgstr[1] "%i coincidencias"
 
-#: ../src/yelp-window.c:1187
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "Sin coincidencias"
 
