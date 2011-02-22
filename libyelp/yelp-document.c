@@ -750,7 +750,7 @@ yelp_document_get_page_icon (YelpDocument *document,
     return ret;
 }
 
-gchar *
+void
 yelp_document_set_page_icon (YelpDocument *document,
                              const gchar  *page_id,
                              const gchar  *icon)
@@ -786,8 +786,8 @@ yelp_document_request_page (YelpDocument         *document,
 			    YelpDocumentCallback  callback,
 			    gpointer              user_data)
 {
-    g_return_if_fail (YELP_IS_DOCUMENT (document));
-    g_return_if_fail (YELP_DOCUMENT_GET_CLASS (document)->request_page != NULL);
+    g_return_val_if_fail (YELP_IS_DOCUMENT (document), FALSE);
+    g_return_val_if_fail (YELP_DOCUMENT_GET_CLASS (document)->request_page != NULL, FALSE);
 
     debug_print (DB_FUNCTION, "entering\n");
 
@@ -1056,8 +1056,8 @@ gchar *
 yelp_document_get_mime_type (YelpDocument *document,
 			     const gchar  *page_id)
 {
-    g_return_if_fail (YELP_IS_DOCUMENT (document));
-    g_return_if_fail (YELP_DOCUMENT_GET_CLASS (document)->get_mime_type != NULL);
+    g_return_val_if_fail (YELP_IS_DOCUMENT (document), NULL);
+    g_return_val_if_fail (YELP_DOCUMENT_GET_CLASS (document)->get_mime_type != NULL, NULL);
 
     return YELP_DOCUMENT_GET_CLASS (document)->get_mime_type (document, page_id);
 }

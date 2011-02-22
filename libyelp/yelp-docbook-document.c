@@ -259,7 +259,7 @@ docbook_request_page (YelpDocument         *document,
                                                                                 callback,
                                                                                 user_data);
     if (handled) {
-        return;
+        return handled;
     }
 
     g_mutex_lock (priv->mutex);
@@ -289,6 +289,7 @@ docbook_request_page (YelpDocument         *document,
     }
 
     g_mutex_unlock (priv->mutex);
+    return FALSE;
 }
 
 /******************************************************************************/

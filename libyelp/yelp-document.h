@@ -148,7 +148,7 @@ void              yelp_document_set_page_desc  (YelpDocument         *document,
 
 gchar *           yelp_document_get_page_icon  (YelpDocument         *document,
                                                 const gchar          *page_id);
-gchar *           yelp_document_set_page_icon  (YelpDocument         *document,
+void              yelp_document_set_page_icon  (YelpDocument         *document,
                                                 const gchar          *page_id,
                                                 const gchar          *icon);
 

@@ -181,6 +181,7 @@ struct _YelpActionEntry {
     YelpViewActionValidFunc  func;
     gpointer                 data;
 };
+static void
 action_entry_free (YelpActionEntry *entry)
 {
     if (entry == NULL)

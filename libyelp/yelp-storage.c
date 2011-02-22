@@ -76,7 +76,7 @@ yelp_storage_search (YelpStorage   *storage,
 {
     YelpStorageInterface *iface;
 
-    g_return_if_fail (YELP_IS_STORAGE (storage));
+    g_return_val_if_fail (YELP_IS_STORAGE (storage), NULL);
 
     iface = YELP_STORAGE_GET_INTERFACE (storage);
 
@@ -92,7 +92,7 @@ yelp_storage_get_root_title (YelpStorage *storage,
 {
     YelpStorageInterface *iface;
 
-    g_return_if_fail (YELP_IS_STORAGE (storage));
+    g_return_val_if_fail (YELP_IS_STORAGE (storage), NULL);
 
     iface = YELP_STORAGE_GET_INTERFACE (storage);
 

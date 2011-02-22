@@ -83,7 +83,7 @@ yelp_bookmarks_is_bookmarked (YelpBookmarks *bookmarks,
 {
     YelpBookmarksInterface *iface;
 
-    g_return_if_fail (YELP_IS_BOOKMARKS (bookmarks));
+    g_return_val_if_fail (YELP_IS_BOOKMARKS (bookmarks), FALSE);
 
     iface = YELP_BOOKMARKS_GET_INTERFACE (bookmarks);
 
