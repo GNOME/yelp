@@ -233,7 +233,7 @@ application_setup (YelpApplication *app)
         gchar *keyfile = g_build_filename (g_get_user_config_dir (),
                                            "yelp", "yelp.cfg",
                                            NULL);
-        priv->backend = g_keyfile_settings_backend_new (keyfile, "/apps/yelp/", "yelp");
+        priv->backend = g_keyfile_settings_backend_new (keyfile, "/org/gnome/yelp/", "yelp");
         priv->gsettings = g_settings_new_with_backend ("org.gnome.yelp",
                                                        priv->backend);
         g_free (keyfile);
@@ -575,14 +575,14 @@ application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
     if (settings == NULL) {
         gchar *tmp, *key, *settings_path;
         tmp = g_uri_escape_string (doc_uri, "", FALSE);
-        settings_path = g_strconcat ("/apps/yelp/documents/", tmp, "/", NULL);
+        settings_path = g_strconcat ("/org/gnome/yelp/documents/", tmp, "/", NULL);
         g_free (tmp);
         if (priv->backend)
             settings = g_settings_new_with_backend_and_path ("org.gnome.yelp.documents",
                                                              priv->backend,
                                                              settings_path);
         else
-            settings = g_settings_new_with_path ("org.gnome.yelp.document",
+            settings = g_settings_new_with_path ("org.gnome.yelp.documents",
                                                  settings_path);
         key = g_strdup (doc_uri);
         g_hash_table_insert (priv->docsettings, key, settings);
