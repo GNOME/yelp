@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-14 07:53+0200\n"
-"PO-Revision-Date: 2011-02-14 07:55+0200\n"
+"POT-Creation-Date: 2011-02-22 08:11+0200\n"
+"PO-Revision-Date: 2011-02-22 08:12+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1052,6 +1052,14 @@ msgstr "מצב עריכה"
 msgid "Enable features useful to editors"
 msgstr "הפעלת תכונות השימושיות לעורכים"
 
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "שם קובץ מסד הנתונים"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "שם קובץ מסד הנתונים מסוג sqlite"
+
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
 msgstr "גיליון סגנון XSLT"
@@ -1278,7 +1286,7 @@ msgstr "הקטנת גודל הטקסט"
 msgid "Show Text _Cursor"
 msgstr "הצגת _סמן טקסט"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1358
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "עזרה"
@@ -1339,14 +1347,14 @@ msgstr "מופע של YelpApplication השולט בחלון זה"
 msgid "Read Later"
 msgstr "אקרא אחר כך"
 
-#: ../src/yelp-window.c:1178
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "התאמה אחת"
 msgstr[1] "%i התאמות"
 
-#: ../src/yelp-window.c:1187
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "אין התאמות"
 
