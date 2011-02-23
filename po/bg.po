@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-15 22:34+0200\n"
-"PO-Revision-Date: 2011-02-15 22:33+0200\n"
+"POT-Creation-Date: 2011-02-23 07:36+0200\n"
+"PO-Revision-Date: 2011-02-23 07:36+0200\n"
 "Last-Translator: Ivaylo Valkov <ivaylo@e-valkov.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -1060,6 +1060,14 @@ msgstr "Режим на редактиране"
 msgid "Enable features useful to editors"
 msgstr "Включване на функции полезни за редактори"
 
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "Името на файла с базата от данни"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "Името на файла с базата от данни sqlite"
+
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
 msgstr "Набор от стилове (XSLT)"
@@ -1286,7 +1294,7 @@ msgstr "Намаляване на размера на текста"
 msgid "Show Text _Cursor"
 msgstr "Показване на _курсор в текста"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1358
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Потребителско ръководство"
@@ -1347,14 +1355,14 @@ msgstr "Обект от вида „YelpApplication“, който управл�
 msgid "Read Later"
 msgstr "Прочитане по-късно"
 
-#: ../src/yelp-window.c:1178
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i съвпадение"
 msgstr[1] "%i съвпадения"
 
-#: ../src/yelp-window.c:1187
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "Няма съвпадения"
 
