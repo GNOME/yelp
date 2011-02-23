@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&component=general\n"
-"POT-Creation-Date: 2011-02-19 13:15+0000\n"
-"PO-Revision-Date: 2011-02-20 13:59+0100\n"
+"POT-Creation-Date: 2011-02-22 06:13+0000\n"
+"PO-Revision-Date: 2011-02-22 08:04+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
@@ -1054,6 +1054,14 @@ msgstr "Način urejevalnika"
 msgid "Enable features useful to editors"
 msgstr "Omogoči zmožnosti za urejevalnik"
 
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "Ime podatkovne zbirke"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "Ime datoteke podatkovne zbirke sqlite"
+
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
 msgstr "Slogovna predloga XSLT"
@@ -1281,7 +1289,7 @@ msgid "Show Text _Cursor"
 msgstr "Pokaži _kazalnik besedila"
 
 #: ../src/yelp-application.c:333
-#: ../src/yelp-window.c:1358
+#: ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Pomoč"
@@ -1342,7 +1350,7 @@ msgstr "Primerek YelpApplication, ki nadzira to okno"
 msgid "Read Later"
 msgstr "Preberi kasneje"
 
-#: ../src/yelp-window.c:1178
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
@@ -1351,7 +1359,7 @@ msgstr[1] "%i zadetek"
 msgstr[2] "%i zadetka"
 msgstr[3] "%i zadetki"
 
-#: ../src/yelp-window.c:1187
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "Ni zadetkov"
 
@@ -1361,281 +1369,405 @@ msgstr "Iskanje pomoči namizja GNOME"
 
 #~ msgid "_Edit Bookmarks"
 #~ msgstr "_Uredi zaznamke"
+
 #~ msgid "Bookmarks for %s"
 #~ msgstr "Zaznamki za %s"
+
 #~ msgid "_Open Bookmark"
 #~ msgstr "_Odpri zaznamek"
+
 #~ msgid "Open Bookmark in New _Window"
 #~ msgstr "Odpri zaznamek v novem _oknu"
+
 #~ msgid "Not Found"
 #~ msgstr "Ni mogoče najti"
+
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
 #~ "page."
 #~ msgstr ""
 #~ "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu "
 #~ "man strani."
+
 #~ msgid "Description Column"
 #~ msgstr "Stolpec opisa"
+
 #~ msgid "A column in the model to get descriptions from"
 #~ msgstr "Stolpec modela, iz katerega naj bodo pridobljeni nizi"
+
 #~ msgid "Icon Column"
 #~ msgstr "Stolpec ikone"
+
 #~ msgid "A column in the model to get icon names from"
 #~ msgstr "Stolpec iz katerega naj se pridobijo imena ikon"
+
 #~ msgid "Flags Column"
 #~ msgstr "Stolpec zastavic"
+
 #~ msgid "A column in the model with YelpLocationEntryFlags flags"
 #~ msgstr "Stolpec z zastavicami YelpLocationEntryFlags"
+
 #~ msgid ""
 #~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
 #~ "in an unsupported format."
 #~ msgstr ""
 #~ "Datoteke ‘%s’ ni mogoče prebrati in dekodirati. Datoteka je morda skrčena "
 #~ "v arhivu nepodprte vrste."
+
 #~ msgid "File is not a valid .desktop file"
 #~ msgstr "Datoteka ni veljavna .desktop datoteka"
+
 #~ msgid "Unrecognized desktop file Version '%s'"
 #~ msgstr "Neznana različica datoteke namizja '%s'"
+
 #~ msgid "Starting %s"
 #~ msgstr "Zaganjanje %s"
+
 #~ msgid "Application does not accept documents on command line"
 #~ msgstr "Program ne omogoča sprejemanja dokumentov preko ukazne vrstice"
+
 #~ msgid "Unrecognized launch option: %d"
 #~ msgstr "Nepoznana možnost zagona: %d"
+
 #~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 #~ msgstr ""
 #~ "Ni mogoče poslati naslova URI dokumenta na vnos 'Vrsta=Povezava' predmeta "
 #~ "namizja"
+
 #~ msgid "Not a launchable item"
 #~ msgstr "Predmet ni izvedljiv"
+
 #~ msgid "Disable connection to session manager"
 #~ msgstr "Onemogoči povezavo z upravljalnikom seje"
+
 #~ msgid "Specify file containing saved configuration"
 #~ msgstr "Določitev datoteke s shranjenimi nastavitvami"
+
 #~ msgid "FILE"
 #~ msgstr "DATOTEKA"
+
 #~ msgid "Specify session management ID"
 #~ msgstr "Določi ID upravljanja seje"
+
 #~ msgid "ID"
 #~ msgstr "ID"
+
 #~ msgid "Session management options:"
 #~ msgstr "Možnosti upravljanja seje:"
+
 #~ msgid "Show session management options"
 #~ msgstr "Pokaži možnosti upravljanja seje"
+
 #~ msgid "The page %s was not found in the document %s."
 #~ msgstr "Strani %s v dokumentu %s ni mogoče najti."
+
 #~ msgid "The requested page was not found in the document %s."
 #~ msgstr "Zahtevane strani ni mogoče najti v dokumentu %s."
+
 #~ msgid "File not found"
 #~ msgstr "Datoteke ni mogoče najti"
+
 #~ msgid "Could not parse file"
 #~ msgstr "Ni mogoče razčleniti datoteke"
+
 #~ msgid "Could Not Read File"
 #~ msgstr "Ni mogoče prebrati dokumenta"
+
 #~ msgid "No information is available about this error."
 #~ msgstr "Podrobnosti o napaki niso na voljo."
+
 #~ msgid "Use a private session"
 #~ msgstr "Uporabi osebno sejo"
+
 #~ msgid "Define which cache directory to use"
 #~ msgstr "Določitev predpomnilniškega imenika za uporabo"
+
 #~ msgid " GNOME Help Browser"
 #~ msgstr "GNOME brskalnik pomoči"
+
 #~ msgid "Preparing to print"
 #~ msgstr "Priprava na tiskanje"
+
 #~ msgid "Printing is not supported on this printer"
 #~ msgstr "Tiskanje s tem tiskalnikom ni podprto"
+
 #~ msgid "Printer %s does not support postscript printing."
 #~ msgstr "Tiskalnik %s ne podpira postscript tiskanja."
+
 #~ msgid "Waiting to print"
 #~ msgstr "Čakanje na tiskanje"
+
 #~ msgid "An error occurred while printing"
 #~ msgstr "Prišlo je do napake med tiskanjem"
+
 #~ msgid "It was not possible to print your document: %s"
 #~ msgstr "Dokumenta ni bilo mogoče natisniti: %s"
+
 #~ msgid "the GNOME Support Forums"
 #~ msgstr "GNOME podporni forumi"
+
 #~ msgid "No results for \"%s\""
 #~ msgstr "Ni zadetkov za \"%s\""
+
 #~ msgid ""
 #~ "Try using different words to describe the problem you're having or the "
 #~ "topic you want help with."
 #~ msgstr ""
 #~ "Poskusite uporabiti drugačne besede za opis vašega problema ali teme, za "
 #~ "katero potrebujete pomoč."
+
 #~ msgid "Search results for \"%s\""
 #~ msgstr "Iskalni zadetki za \"%s\""
+
 #~ msgid ""
 #~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
 #~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
 #~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
 #~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
 #~ msgstr "da:od:ne:k:kot:h:o:in:ali:to:tisto:tisti:tista"
+
 #~ msgid "re"
 #~ msgstr "NULL"
+
 #~ msgid "ers:er:ing:es:s:'s"
 #~ msgstr "NULL"
+
 #~ msgid "No Comment"
 #~ msgstr "Ni opomb"
+
 #~ msgid "Search could not be processed"
 #~ msgstr "Ni mogoče izvesti iskanja"
+
 #~ msgid "The requested search could not be processed."
 #~ msgstr "Iskalnega niza ni mogoče izvesti."
+
 #~ msgid "Cannot process the search"
 #~ msgstr "Ni mogoče izvesti iskanja"
+
 #~ msgid "The search processor returned invalid results"
 #~ msgstr "Iskalnik je vrnil neveljavne rezultate"
+
 #~ msgid "The page %s was not found in the TOC."
 #~ msgstr "Strani %s ni mogoče najti v kazalu."
+
 #~ msgid "The requested page was not found in the TOC."
 #~ msgstr "Zahtevane stran ni mogoče najti v kazalu."
+
 #~ msgid ""
 #~ "The TOC file could not be parsed because it is not a well-formed XML "
 #~ "document."
 #~ msgstr ""
 #~ "Datoteke kazala ni mogoče razčleniti, ker ni pravilno oblikovana v zapisu "
 #~ "XML."
+
 #~ msgid "Re_name"
 #~ msgstr "Preime_nuj"
+
 #~ msgid "_Bookmarks:"
 #~ msgstr "_Zaznamki:"
+
 #~ msgid "Add Bookmark"
 #~ msgstr "Dodaj zaznamek"
+
 #~ msgid "_Title:"
 #~ msgstr "_Naslov:"
+
 #~ msgid "_Location:"
 #~ msgstr "_Mesto:"
+
 #~ msgid "Fonts"
 #~ msgstr "Pisave"
+
 #~ msgid "Preferences"
 #~ msgstr "Možnosti"
+
 #~ msgid "_Browse with caret"
 #~ msgstr "_Brskanje s kazalko"
+
 #~ msgid "_Fixed width:"
 #~ msgstr "_Določena širina:"
+
 #~ msgid "_Use system fonts"
 #~ msgstr "_Uporabi sistemske pisave"
+
 #~ msgid "_Variable width:"
 #~ msgstr "_Spremenljiva širina:"
+
 #~ msgid "Font for fixed text"
 #~ msgstr "Pisava za besedilo določene širine"
+
 #~ msgid "Font for text"
 #~ msgstr "Pisava za besedilo"
+
 #~ msgid "Font for text with fixed width."
 #~ msgstr "Pisava za besedilo z določeno širino."
+
 #~ msgid "Font for text with variable width."
 #~ msgstr "Pisava za besedilo s spremenljivo širino."
+
 #~ msgid "Use a keyboard-controllable caret when viewing pages."
 #~ msgstr "Uporabi s tipkovnico nadzorovano kazalko med ogledom strani."
+
 #~ msgid "Use caret"
 #~ msgstr "Uporabi kazalko"
+
 #~ msgid "Use system fonts"
 #~ msgstr "Uporabi sistemske pisave"
+
 #~ msgid "Use the default fonts set for the system."
 #~ msgstr "Uporabi privzete pisave za sistem."
+
 #~ msgid "A bookmark titled %s already exists for this page."
 #~ msgstr "Zaznamek z imenom %s za to stran že obstaja."
+
 #~ msgid "A bookmark titled <b>%s</b> already exists for this page."
 #~ msgstr "Zaznamek z imenom <b>%s</b> za to stran že obstaja."
+
 #~ msgid "Help Topics"
 #~ msgstr "Teme pomoči"
+
 #~ msgid "Directory not found"
 #~ msgstr "Mape ni mogoče najti"
+
 #~ msgid "Broken Transformation"
 #~ msgstr "Pokvarjena pretvorba"
+
 #~ msgid ""
 #~ "An unknown error occurred while attempting to transform the document."
 #~ msgstr "Prišlo je do neznane napake med poskusom pretvorbe dokumenta."
+
 #~ msgid "_File"
 #~ msgstr "_Datoteka"
+
 #~ msgid "_Edit"
 #~ msgstr "_Uredi"
+
 #~ msgid "_Help"
 #~ msgstr "Pomo_č"
+
 #~ msgid "Print This Document ..."
 #~ msgstr "Natisni dokument ..."
+
 #~ msgid "Open _Location"
 #~ msgstr "Odpri _mesto"
+
 #~ msgid "_Close Window"
 #~ msgstr "_Zapri okno"
+
 #~ msgid "_Select All"
 #~ msgstr "_Izberi vse"
+
 #~ msgid "_Find..."
 #~ msgstr "_Najdi ..."
+
 #~ msgid "Find Pre_vious"
 #~ msgstr "Najdi _predhodno"
+
 #~ msgid "Find previous occurrence of the word or phrase"
 #~ msgstr "Najdi predhodno ponovitev besede ali rekla"
+
 #~ msgid "Find Ne_xt"
 #~ msgstr "Najdi na_slednje"
+
 #~ msgid "Find next occurrence of the word or phrase"
 #~ msgstr "Najdi naslednjo ponovitev besede ali rekla"
+
 #~ msgid "_Preferences"
 #~ msgstr "_Možnosti"
+
 #~ msgid "_Reload"
 #~ msgstr "_Ponovno naloži"
+
 #~ msgid "Show previous page in history"
 #~ msgstr "Pokaži predhodno stran zgodovine"
+
 #~ msgid "Show next page in history"
 #~ msgstr "Pokaži naslednjo stran v zgodovini"
+
 #~ msgid "_Help Topics"
 #~ msgstr "_Teme pomoči"
+
 #~ msgid "Go to the listing of help topics"
 #~ msgstr "Pojdi na seznam pomoči"
+
 #~ msgid "_Previous Section"
 #~ msgstr "_Predhodni odsek"
+
 #~ msgid "_Next Section"
 #~ msgstr "_Naslednji odsek"
+
 #~ msgid "_Contents"
 #~ msgstr "_Vsebina"
+
 #~ msgid "_Copy Link Address"
 #~ msgstr "_Kopiraj naslov povezave"
+
 #~ msgid "Help On this application"
 #~ msgstr "Pomoč za delo s programom"
+
 #~ msgid "_About"
 #~ msgstr "_O programu"
+
 #~ msgid "Copy _Email Address"
 #~ msgstr "Kopiraj _elektronski naslov"
+
 #~ msgid "Help Browser"
 #~ msgstr "Brskalnik pomoči"
+
 #~ msgid "Unknown Page"
 #~ msgstr "Neznana stran"
+
 #~ msgid "The requested URI \"%s\" is invalid"
 #~ msgstr "Zahtevan naslov URI \"%s\" ni veljaven"
+
 #~ msgid "Unable to load page"
 #~ msgstr "Ni mogoče naložiti strani"
+
 #~ msgid "Cannot create search component"
 #~ msgstr "Ni mogoče ustvariti iskalnega niza"
+
 #~ msgid "Fin_d:"
 #~ msgstr "_Najdi:"
+
 #~ msgid "Find _Previous"
 #~ msgstr "Najdi _predhodne"
+
 #~ msgid "Find _Next"
 #~ msgstr "Najdi na_slednje"
+
 #~ msgid "Phrase not found"
 #~ msgstr "Rekla ni mogoče najti"
+
 #~ msgid ""
 #~ "The file ‘%s’ could not be read.  This file might be missing, or you "
 #~ "might not have permissions to read it."
 #~ msgstr ""
 #~ "Datoteke ‘%s’ ni mogoče prebrati. Datoteka ne obstaja ali pa ni ustreznih "
 #~ "dovoljenj za branje."
+
 #~ msgid "translator-credits"
 #~ msgstr "Matej Urbančič <mateju@svn.gnome.org>"
+
 #~ msgid "A documentation browser and viewer for the Gnome Desktop."
 #~ msgstr "Pregledovalnik dokumentacije namizja Gnome."
+
 #~ msgid "<b>Accessibility</b>"
 #~ msgstr "<b>Dostopnost</b>"
+
 #~ msgid "<b>Fonts</b>"
 #~ msgstr "<b>Pisave</b>"
+
 #~ msgid "C_ase sensitive"
 #~ msgstr "Velike in m_ale črke"
+
 #~ msgid "Find"
 #~ msgstr "Najdi"
+
 #~ msgid "_Find:"
 #~ msgstr "_Poišči:"
+
 #~ msgid "_Wrap around"
 #~ msgstr "_Prelom vrstic"
+
 #~ msgid "Error executing \"gnome-open\""
 #~ msgstr "Napaka izvedbe \"gnome-open\""
-
