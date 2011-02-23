@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.91.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-17 15:09+0100\n"
-"PO-Revision-Date: 2011-02-17 15:14+0100\n"
+"POT-Creation-Date: 2011-02-23 09:45+0100\n"
+"PO-Revision-Date: 2011-02-23 09:45+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk (bokmål) <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -1052,6 +1052,14 @@ msgstr "Redigeringsmodus"
 msgid "Enable features useful to editors"
 msgstr "Slå på funksjoner som er nyttig ved redigering"
 
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "Filnavn for database"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "Filnavn for sqlite-databasen"
+
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
 msgstr "XSLT-stilark"
@@ -1279,7 +1287,7 @@ msgstr "Gjør tekststørrelsen mindre"
 msgid "Show Text _Cursor"
 msgstr "Vis tekstmar_kør"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1358
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjelp"
@@ -1340,14 +1348,14 @@ msgstr "En YelpApplication-instans som kontrollerer dette vinduet"
 msgid "Read Later"
 msgstr "Les senere"
 
-#: ../src/yelp-window.c:1178
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i treff"
 msgstr[1] "%i treff"
 
-#: ../src/yelp-window.c:1187
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "Ingen treff"
 
