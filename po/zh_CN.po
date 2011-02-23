@@ -9,14 +9,15 @@
 # Fan Qijiang <fqj1994@linux.com>, 2010.
 # Aron Xu <happyaron.xu@gmail.com>, 2009, 2010, 2011.
 # Lele Long <schemacs@gmail.com>, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&component=general\n"
-"POT-Creation-Date: 2011-02-13 22:29+0000\n"
-"PO-Revision-Date: 2011-02-19 21:15+0800\n"
-"Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
+"POT-Creation-Date: 2011-02-22 19:42+0000\n"
+"PO-Revision-Date: 2011-02-24 01:45+0800\n"
+"Last-Translator: Lele Long <schemacs@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1051,6 +1052,14 @@ msgstr "编辑器模式"
 msgid "Enable features useful to editors"
 msgstr "启用对编辑器有用的特性"
 
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "数据库文件名"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "Sqlite 数据库文件名"
+
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
 msgstr "XSLT 样式表"
@@ -1276,7 +1285,7 @@ msgstr "减小文本大小"
 msgid "Show Text _Cursor"
 msgstr "显示文本光标(_C)"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1358
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "帮助"
@@ -1337,13 +1346,13 @@ msgstr "一个控制此窗口的 YelpApplication 实例。"
 msgid "Read Later"
 msgstr "稍后阅读"
 
-#: ../src/yelp-window.c:1178
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i 个匹配项"
 
-#: ../src/yelp-window.c:1187
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "找不到匹配"
 
