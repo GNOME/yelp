@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-15 12:51+0200\n"
-"PO-Revision-Date: 2011-02-15 12:57+0300\n"
+"POT-Creation-Date: 2011-02-25 17:37+0200\n"
+"PO-Revision-Date: 2011-02-25 17:41+0300\n"
 "Last-Translator: Korostil Daniel <ted.korostiled@gmail.com>\n"
 "Language-Team: translation@linux.org.ua\n"
 "Language: uk\n"
@@ -1056,6 +1056,14 @@ msgstr "Режим редактора"
 msgid "Enable features useful to editors"
 msgstr "Увімкнути корисні функції для редактора"
 
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "Назва файла бази даних"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "Назва файла бази даних SQLite"
+
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
 msgstr "Таблиця стилів XSLT"
@@ -1281,7 +1289,7 @@ msgstr "Зменшити розмір тексту"
 msgid "Show Text _Cursor"
 msgstr "Показати текстовий _курсор"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1358
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Довідка"
@@ -1342,7 +1350,7 @@ msgstr "Наприклад, YelpApplication для керування цим в�
 msgid "Read Later"
 msgstr "Прочитати згодом"
 
-#: ../src/yelp-window.c:1178
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
@@ -1350,7 +1358,7 @@ msgstr[0] "%i збіг"
 msgstr[1] "%i збіги"
 msgstr[2] "%i збігів"
 
-#: ../src/yelp-window.c:1187
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "Нема збігів"
 
