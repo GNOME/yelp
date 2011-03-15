@@ -1,25 +1,26 @@
-# Dutch translation of Yelp.
-# Copyright © 2002 Free Software Foundation, Inc.
+# Dutch translation for Yelp
 #
+# This file is distributed under the same license as the yelp package.
 #
 # Tino Meinen <a.t.meinen@chello.nl>, 2002, 2003, 2004, 2005, 2006.
 # Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002.
 # Reinout van Schouwen <reinouts@gnome.org>, 2005, 2008.
-# Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006, 2011 (small additions).
+# Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006, 2011
+# Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2011
 # Redmar <redmar@ubuntu-nl.org>, 2011.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Yelp cvs\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&component=general\n"
-"POT-Creation-Date: 2011-02-17 14:14+0000\n"
-"PO-Revision-Date: 2011-02-18 09:26+0100\n"
-"Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
+"Project-Id-Version: Yelp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-15 22:30+0100\n"
+"PO-Revision-Date: 2011-03-15 22:33+0100\n"
+"Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.1\n"
 
@@ -76,7 +77,7 @@ msgstr "Handleiding-pagina's"
 
 #: ../data/man.xml.in.h:11
 msgid "Network Audio Sound Functions"
-msgstr "Netwerk audio geluidsfuncties"
+msgstr "Netwerkaudio-geluidsfuncties"
 
 #: ../data/man.xml.in.h:12
 msgid "OpenSSL Applications"
@@ -906,19 +907,19 @@ msgstr "Te weinig geheugen"
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Pagina ‘%s’ kon niet worden gevonden in document ‘%s’."
 
-#: ../libyelp/yelp-docbook-document.c:315 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:416
+#: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "Het bestand bestaat niet."
 
-#: ../libyelp/yelp-docbook-document.c:325 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:426
+#: ../libyelp/yelp-docbook-document.c:326 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Het bestand ‘%s’ bestaat niet."
 
-#: ../libyelp/yelp-docbook-document.c:340
+#: ../libyelp/yelp-docbook-document.c:341
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -926,7 +927,7 @@ msgid ""
 msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt, omdat het ongeldige XML bevat."
 
-#: ../libyelp/yelp-docbook-document.c:353
+#: ../libyelp/yelp-docbook-document.c:354
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -935,14 +936,14 @@ msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt, omdat een van de bestanden waar "
 "het naar verwijst ongeldige XML bevat."
 
-#: ../libyelp/yelp-docbook-document.c:762
+#: ../libyelp/yelp-docbook-document.c:763
 msgid "Unknown"
 msgstr "Onbekend"
 
 # werd niet gevonden?
 # aangetroffen?
-#: ../libyelp/yelp-docbook-document.c:823 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:358
+#: ../libyelp/yelp-docbook-document.c:824 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "De gezochte pagina kon niet worden gevonden in document ‘%s’."
@@ -1078,6 +1079,14 @@ msgstr "Bewerk-modus"
 msgid "Enable features useful to editors"
 msgstr "Activeer opties die van pas komen bij bewerken"
 
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "Database-bestandsnaam"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "De bestandsnaam van de SQLite-database"
+
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
 msgstr "XSLT-stijlblad"
@@ -1120,71 +1129,71 @@ msgstr "Vo_rige pagina"
 msgid "_Next Page"
 msgstr "_Volgende pagina"
 
-#: ../libyelp/yelp-view.c:415
+#: ../libyelp/yelp-view.c:416
 msgid "Yelp URI"
 msgstr "Yelp-URI"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:417
 msgid "A YelpUri with the current location"
 msgstr "Een YelpUri met de huidige locatie"
 
-#: ../libyelp/yelp-view.c:424
+#: ../libyelp/yelp-view.c:425
 msgid "Loading State"
 msgstr "Status van laden"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:426
 msgid "The loading state of the view"
 msgstr "De ladings-status van de weergave"
 
-#: ../libyelp/yelp-view.c:434
+#: ../libyelp/yelp-view.c:435
 msgid "Page ID"
 msgstr "Pagina-ID"
 
-#: ../libyelp/yelp-view.c:435
+#: ../libyelp/yelp-view.c:436
 msgid "The ID of the root page of the page being viewed"
 msgstr "De bronpagina-ID van de pagina die bekeken wordt"
 
-#: ../libyelp/yelp-view.c:443
+#: ../libyelp/yelp-view.c:444
 msgid "Root Title"
 msgstr "Bron-titel"
 
-#: ../libyelp/yelp-view.c:444
+#: ../libyelp/yelp-view.c:445
 msgid "The title of the root page of the page being viewed"
 msgstr "De titel van de bronpagina van de pagina die bekeken wordt"
 
-#: ../libyelp/yelp-view.c:452
+#: ../libyelp/yelp-view.c:453
 msgid "Page Title"
 msgstr "Pagina-titel"
 
-#: ../libyelp/yelp-view.c:453
+#: ../libyelp/yelp-view.c:454
 msgid "The title of the page being viewed"
 msgstr "De titel van de pagina die bekeken wordt"
 
-#: ../libyelp/yelp-view.c:461
+#: ../libyelp/yelp-view.c:462
 msgid "Page Description"
 msgstr "Pagina-omschrijving"
 
-#: ../libyelp/yelp-view.c:462
+#: ../libyelp/yelp-view.c:463
 msgid "The description of the page being viewed"
 msgstr "De omschrijving van de pagina die bekeken wordt"
 
-#: ../libyelp/yelp-view.c:470
+#: ../libyelp/yelp-view.c:471
 msgid "Page Icon"
 msgstr "Pagina-pictogram"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:472
 msgid "The icon of the page being viewed"
 msgstr "Het pictogram van de pagina die bekeken wordt"
 
-#: ../libyelp/yelp-view.c:712
+#: ../libyelp/yelp-view.c:713
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "U heeft PackageKit niet. Installatie-links vereisen PackageKit."
 
-#: ../libyelp/yelp-view.c:990
+#: ../libyelp/yelp-view.c:991
 msgid "Save Image"
 msgstr "Afbeelding opslaan"
 
-#: ../libyelp/yelp-view.c:1085
+#: ../libyelp/yelp-view.c:1086
 msgid "Save Code"
 msgstr "Code opslaan"
 
@@ -1194,89 +1203,89 @@ msgstr "Code opslaan"
 #. * probably only be one menu item for mailto link popups anyway,
 #. * so the mnemonic's not that big of a deal.
 #.
-#: ../libyelp/yelp-view.c:1254
+#: ../libyelp/yelp-view.c:1255
 #, c-format
 msgid "Send email to %s"
 msgstr "Stuur een e-mail naar %s"
 
-#: ../libyelp/yelp-view.c:1264
+#: ../libyelp/yelp-view.c:1265
 msgid "_Open Link"
 msgstr "_Link openen"
 
-#: ../libyelp/yelp-view.c:1269
+#: ../libyelp/yelp-view.c:1270
 msgid "Open Link in New _Window"
 msgstr "Link openen in _nieuw venster"
 
-#: ../libyelp/yelp-view.c:1320
+#: ../libyelp/yelp-view.c:1321
 msgid "_Save Image As..."
 msgstr "Afbeelding op_slaan als…"
 
-#: ../libyelp/yelp-view.c:1322
+#: ../libyelp/yelp-view.c:1323
 msgid "_Save Video As..."
 msgstr "Video op_slaan als…"
 
-#: ../libyelp/yelp-view.c:1329
+#: ../libyelp/yelp-view.c:1330
 msgid "S_end Image To..."
 msgstr "Afbeelding s_turen naar…"
 
-#: ../libyelp/yelp-view.c:1331
+#: ../libyelp/yelp-view.c:1332
 msgid "S_end Video To..."
 msgstr "Video s_turen naar…"
 
-#: ../libyelp/yelp-view.c:1342
+#: ../libyelp/yelp-view.c:1343
 msgid "_Copy Text"
 msgstr "Tekst _kopiëren"
 
-#: ../libyelp/yelp-view.c:1355
+#: ../libyelp/yelp-view.c:1356
 msgid "C_opy Code Block"
 msgstr "Code-blok _kopiëren"
 
-#: ../libyelp/yelp-view.c:1360
+#: ../libyelp/yelp-view.c:1361
 msgid "Save Code _Block As..."
 msgstr "Code-_blok opslaan als…"
 
-#: ../libyelp/yelp-view.c:1542
+#: ../libyelp/yelp-view.c:1543
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Kon een document voor ‘%s’niet laden"
 
-#: ../libyelp/yelp-view.c:1548
+#: ../libyelp/yelp-view.c:1549
 #, c-format
 msgid "Could not load a document"
 msgstr "Kon een document niet laden"
 
 # onderdelen/secties
-#: ../libyelp/yelp-view.c:1622
+#: ../libyelp/yelp-view.c:1623
 msgid "Document Not Found"
 msgstr "Document niet gevonden"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1625
 msgid "Page Not Found"
 msgstr "Pagina niet gevonden"
 
-#: ../libyelp/yelp-view.c:1627
+#: ../libyelp/yelp-view.c:1628
 msgid "Cannot Read"
 msgstr "Kan niet lezen"
 
-#: ../libyelp/yelp-view.c:1633
+#: ../libyelp/yelp-view.c:1634
 msgid "Unknown Error"
 msgstr "Onbekende fout"
 
-#: ../libyelp/yelp-view.c:1653
+#: ../libyelp/yelp-view.c:1654
 msgid "Search for packages containing this document."
 msgstr "Zoek naar pakketten die dit document bevatten."
 
-#: ../libyelp/yelp-view.c:1806
+#: ../libyelp/yelp-view.c:1807
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "De URI ‘%s’ wijst niet naar een geldige pagina."
 
-#: ../libyelp/yelp-view.c:1812
+#: ../libyelp/yelp-view.c:1813
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "De URI wijst niet naar een geldige pagina."
 
-#: ../libyelp/yelp-view.c:1818
+#: ../libyelp/yelp-view.c:1819
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "De URI ‘%s’ kan niet verwerkt worden."
@@ -1305,7 +1314,7 @@ msgstr "Maak het lettertype kleiner"
 msgid "Show Text _Cursor"
 msgstr "Toon de _cursor"
 
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1358
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hulp"
@@ -1366,14 +1375,14 @@ msgstr "Een YelpApplication-instance die dit venster beheert"
 msgid "Read Later"
 msgstr "Lees later"
 
-#: ../src/yelp-window.c:1178
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i resultaat"
 msgstr[1] "%i resultaten"
 
-#: ../src/yelp-window.c:1187
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "Geen resultaten"
 
@@ -1892,8 +1901,8 @@ msgstr "Hulp bij Gnome"
 #~ "A transformation context could not be created for the file ‘%s’. The "
 #~ "format may not be supported."
 #~ msgstr ""
-#~ "Een transformatiecontext kon niet worden aangemaakt voor het bestand ‘%"
-#~ "s’. De opmaak wordt mogelijk niet ondersteund."
+#~ "Een transformatiecontext kon niet worden aangemaakt voor het bestand "
+#~ "‘%s’. De opmaak wordt mogelijk niet ondersteund."
 
 #~ msgid ""
 #~ "The section ‘%s’ does not exist in this document. If you were directed to "
