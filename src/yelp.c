@@ -40,5 +40,5 @@ main (int argc, char **argv)
 
     app = yelp_application_new ();
 
-    return yelp_application_run (app, argc, argv);
+    return g_application_run (G_APPLICATION (app), argc, argv);
 }
