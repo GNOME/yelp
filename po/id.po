@@ -4,23 +4,25 @@
 #
 # Mohammad DAMT <mdamt@bisnisweb.com>, 2004.
 # Ahmad Riza H Nst <ari@160c.afraid.org>, 2005.
-# Dirgita <dirgitadevina@yahoo.co.id>, 2010.
+# Dirgita <dirgitadevina@yahoo.co.id>, 2010, 2011.
 # Andika Triwidada <andika@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&component=general\n"
-"POT-Creation-Date: 2011-01-06 13:30+0000\n"
-"PO-Revision-Date: 2011-01-11 09:44+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-11 12:04+0000\n"
+"PO-Revision-Date: 2011-03-05 10:13+0700\n"
+"Last-Translator: Dirgita <dirgitadevina@yahoo.co.id>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Poedit-Language: Indonesian\n"
 "X-Poedit-Country: Indonesia\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.1\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -46,8 +48,7 @@ msgstr "Berkas Konfigurasi"
 msgid "Curses Functions"
 msgstr "Fungsi Curses"
 
-#: ../data/man.xml.in.h:5
-#: ../data/toc.xml.in.h:35
+#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
 msgid "Development"
 msgstr "Pengembangan"
 
@@ -55,8 +56,7 @@ msgstr "Pengembangan"
 msgid "FORTRAN Functions"
 msgstr "Fungsi FORTRAN"
 
-#: ../data/man.xml.in.h:7
-#: ../data/toc.xml.in.h:56
+#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
 msgid "Games"
 msgstr "Permainan"
 
@@ -582,8 +582,12 @@ msgid "Kids Games"
 msgstr "Permainan Anak-anak"
 
 #: ../data/toc.xml.in.h:77
-msgid "Learn more about making your system more accessible for a range of disabilities"
-msgstr "Belajar lebih jauh tentang membuat sistem Anda lebih mudah dipakai penyandang cacat"
+msgid ""
+"Learn more about making your system more accessible for a range of "
+"disabilities"
+msgstr ""
+"Belajar lebih jauh tentang membuat sistem Anda lebih mudah dipakai "
+"penyandang cacat"
 
 #: ../data/toc.xml.in.h:78
 msgid "Licenses"
@@ -753,7 +757,9 @@ msgstr "Pengaturan"
 
 #: ../data/toc.xml.in.h:121
 msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "Tatanan yang dapat dimanipulasi pengguna untuk membuat lingkungan mereka lebih nyaman"
+msgstr ""
+"Tatanan yang dapat dimanipulasi pengguna untuk membuat lingkungan mereka "
+"lebih nyaman"
 
 #: ../data/toc.xml.in.h:122
 msgid "Simulation Games"
@@ -878,142 +884,192 @@ msgstr "Data terkompresi tak valid"
 msgid "Not enough memory"
 msgstr "Tidak cukup memori"
 
-#: ../libyelp/yelp-docbook-document.c:264
-#: ../libyelp/yelp-info-document.c:233
-#: ../libyelp/yelp-mallard-document.c:259
-#: ../libyelp/yelp-mallard-document.c:406
-#: ../libyelp/yelp-man-document.c:269
+#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:270
+#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Halaman '%s' tak ditemukan di dokumen '%s'."
 
-#: ../libyelp/yelp-docbook-document.c:298
-#: ../libyelp/yelp-info-document.c:367
-#: ../libyelp/yelp-man-document.c:403
+#: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "Berkas tidak ada."
 
-#: ../libyelp/yelp-docbook-document.c:308
-#: ../libyelp/yelp-info-document.c:377
-#: ../libyelp/yelp-man-document.c:413
+#: ../libyelp/yelp-docbook-document.c:326 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Berkas '%s' tidak ada."
 
-#: ../libyelp/yelp-docbook-document.c:323
+#: ../libyelp/yelp-docbook-document.c:341
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
-msgstr "Berkas ‘%s’ tidak dapat diuraikan karena bukan dokumen XML yang baik bentuknya."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Berkas ‘%s’ tidak dapat diuraikan karena bukan dokumen XML yang baik "
+"bentuknya."
 
-#: ../libyelp/yelp-docbook-document.c:336
+#: ../libyelp/yelp-docbook-document.c:354
 #, c-format
-msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
-msgstr "Berkas ‘%s’ tidak dapat diuraikan karena satu atau lebih berkas terkait bukan dokumen XLM yang baik bentuknya."
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+"Berkas ‘%s’ tidak dapat diuraikan karena satu atau lebih berkas terkait "
+"bukan dokumen XLM yang baik bentuknya."
 
-#: ../libyelp/yelp-docbook-document.c:743
+#: ../libyelp/yelp-docbook-document.c:763
 msgid "Unknown"
 msgstr "Tak dikenal"
 
-#: ../libyelp/yelp-docbook-document.c:804
-#: ../libyelp/yelp-info-document.c:310
-#: ../libyelp/yelp-man-document.c:345
+#: ../libyelp/yelp-docbook-document.c:824 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Halaman yang diminta tak ditemukan di dokumen '%s'."
+
+# Dirgita: "Telah Diindeks" atau "Telah diindeks"?
+#: ../libyelp/yelp-document.c:266
+msgid "Indexed"
+msgstr "Telah diindeks"
+
+#: ../libyelp/yelp-document.c:267
+msgid "Whether the document content has been indexed"
+msgstr "Menentukan isi dokumen telah diindeks atau belum"
+
+#: ../libyelp/yelp-document.c:275
+msgid "Document URI"
+msgstr "URI Dokumen"
+
+#: ../libyelp/yelp-document.c:276
+msgid "The URI which identifies the document"
+msgstr "URI milik dokumen"
+
+#: ../libyelp/yelp-document.c:966
+#, c-format
+msgid "No matching help pages found in “%s”."
+msgstr "Tidak ada halaman bantuan pada “%s”."
+
+#: ../libyelp/yelp-document.c:972
+msgid "No matching help pages found."
+msgstr "Tidak ada halaman bantuan."
 
 #: ../libyelp/yelp-error.c:33
 #, c-format
 msgid "An unknown error occurred."
 msgstr "Terjadi galat yang tak dikenal."
 
-#: ../libyelp/yelp-help-list.c:478
-#: ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
 msgid "All Help Documents"
 msgstr "Semua Dokumen Bantuan"
 
-#: ../libyelp/yelp-info-document.c:392
+#: ../libyelp/yelp-info-document.c:397
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "Berkas ‘%s’ tidak dapat diuraikan karena bukan halaman info yang baik bentuknya."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"Berkas ‘%s’ tidak dapat diuraikan karena bukan halaman info yang baik "
+"bentuknya."
 
-#: ../libyelp/yelp-location-entry.c:323
+#: ../libyelp/yelp-location-entry.c:326
 msgid "View"
 msgstr "Tampilan"
 
-#: ../libyelp/yelp-location-entry.c:324
+#: ../libyelp/yelp-location-entry.c:327
 msgid "A YelpView instance to control"
 msgstr "Instansi YelpView yang ingin dikendalikan"
 
-#: ../libyelp/yelp-location-entry.c:339
+#: ../libyelp/yelp-location-entry.c:342
 msgid "Bookmarks"
 msgstr "Penanda"
 
-#: ../libyelp/yelp-location-entry.c:340
+#: ../libyelp/yelp-location-entry.c:343
 msgid "A YelpBookmarks implementation instance"
 msgstr "Suatu instansi implementasi YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:356
+#: ../libyelp/yelp-location-entry.c:359
 msgid "Enable Search"
 msgstr "Aktifkan Pencarian"
 
-#: ../libyelp/yelp-location-entry.c:357
+#: ../libyelp/yelp-location-entry.c:360
 msgid "Whether the location entry can be used as a search field"
 msgstr "Apakah entri lokasi dapat dipakai sebagai ruas pencarian"
 
-#: ../libyelp/yelp-location-entry.c:426
-#: ../src/yelp-window.c:300
+#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Cari..."
 
-#: ../libyelp/yelp-location-entry.c:1333
+#: ../libyelp/yelp-location-entry.c:785
+msgid "Clear the search text"
+msgstr "Membersihkan teks pencarian"
+
+#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
+msgid "Bookmark this page"
+msgstr "Menandai halaman ini"
+
+#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
+msgid "Remove bookmark"
+msgstr "Menghapus penanda"
+
+#: ../libyelp/yelp-location-entry.c:1412
 msgid "Loading"
 msgstr "Sedang memuat"
 
-#: ../libyelp/yelp-mallard-document.c:301
+#: ../libyelp/yelp-mallard-document.c:310
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Direktori '%s' tidak ada."
 
-#: ../libyelp/yelp-settings.c:148
+#: ../libyelp/yelp-settings.c:150
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:149
+#: ../libyelp/yelp-settings.c:151
 msgid "A GtkSettings object to get settings from"
 msgstr "Objek GtkSettings tempat mendapat tatanan"
 
-#: ../libyelp/yelp-settings.c:157
+#: ../libyelp/yelp-settings.c:159
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:158
+#: ../libyelp/yelp-settings.c:160
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Objek GtkIconTheme tempat mendapat tatanan"
 
-#: ../libyelp/yelp-settings.c:166
+#: ../libyelp/yelp-settings.c:168
 msgid "Font Adjustment"
 msgstr "Penyesuaian Fonta"
 
-#: ../libyelp/yelp-settings.c:167
+#: ../libyelp/yelp-settings.c:169
 msgid "A size adjustment to add to font sizes"
 msgstr "Penyesuaian ukuran untuk ditambahkan ke ukuran fonta"
 
-#: ../libyelp/yelp-settings.c:175
+#: ../libyelp/yelp-settings.c:177
 msgid "Show Text Cursor"
 msgstr "Tampilkan Kursor Teks"
 
-#: ../libyelp/yelp-settings.c:176
+#: ../libyelp/yelp-settings.c:178
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Tampilkan kursor teks atau caret untuk navigasi yang lebih membantu"
 
-#: ../libyelp/yelp-settings.c:184
+#: ../libyelp/yelp-settings.c:186
 msgid "Editor Mode"
 msgstr "Mode Penyunting"
 
-#: ../libyelp/yelp-settings.c:185
+#: ../libyelp/yelp-settings.c:187
 msgid "Enable features useful to editors"
 msgstr "Aktifkan fitur yang berguna bagi para penyunting"
+
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "Nama berkas basis data"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "Nama berkas basis data sqlite"
 
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
@@ -1023,8 +1079,7 @@ msgstr "Stylesheet XSLT"
 msgid "The location of the XSLT stylesheet"
 msgstr "Lokasi dari stylesheet XSLT"
 
-#: ../libyelp/yelp-transform.c:379
-#: ../libyelp/yelp-transform.c:394
+#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Stylesheet XSLT '%s' mungkin hilang atau tak valid."
@@ -1057,74 +1112,73 @@ msgstr "_Halaman Sebelumnya"
 msgid "_Next Page"
 msgstr "Halama_n Selanjutnya"
 
-#: ../libyelp/yelp-view.c:418
+#: ../libyelp/yelp-view.c:416
 msgid "Yelp URI"
 msgstr "URI Yelp"
 
-#: ../libyelp/yelp-view.c:419
+#: ../libyelp/yelp-view.c:417
 msgid "A YelpUri with the current location"
 msgstr "YelpURI untuk lokasi kini"
 
-#: ../libyelp/yelp-view.c:427
+#: ../libyelp/yelp-view.c:425
 msgid "Loading State"
 msgstr "Memuat Keadaan"
 
-#: ../libyelp/yelp-view.c:428
+#: ../libyelp/yelp-view.c:426
 msgid "The loading state of the view"
 msgstr "Sedang memuat keadaan tilikan"
 
-#: ../libyelp/yelp-view.c:437
+#: ../libyelp/yelp-view.c:435
 msgid "Page ID"
 msgstr "ID Halaman"
 
-#: ../libyelp/yelp-view.c:438
+#: ../libyelp/yelp-view.c:436
 msgid "The ID of the root page of the page being viewed"
 msgstr "ID dari halaman akar dari halaman yang sedang ditilik"
 
-#: ../libyelp/yelp-view.c:446
+#: ../libyelp/yelp-view.c:444
 msgid "Root Title"
 msgstr "Judul Akar"
 
-#: ../libyelp/yelp-view.c:447
+#: ../libyelp/yelp-view.c:445
 msgid "The title of the root page of the page being viewed"
 msgstr "Judul dari halaman akar dari halaman yang sedang ditilik"
 
-#: ../libyelp/yelp-view.c:455
+#: ../libyelp/yelp-view.c:453
 msgid "Page Title"
 msgstr "Judul Halaman"
 
-#: ../libyelp/yelp-view.c:456
+#: ../libyelp/yelp-view.c:454
 msgid "The title of the page being viewed"
 msgstr "Judul dari halaman yang sedang ditilik"
 
-#: ../libyelp/yelp-view.c:464
+#: ../libyelp/yelp-view.c:462
 msgid "Page Description"
 msgstr "Keterangan Halaman"
 
-#: ../libyelp/yelp-view.c:465
+#: ../libyelp/yelp-view.c:463
 msgid "The description of the page being viewed"
 msgstr "Keterangan dari halaman yang sedang ditilik"
 
-#: ../libyelp/yelp-view.c:473
+#: ../libyelp/yelp-view.c:471
 msgid "Page Icon"
 msgstr "Ikon Halaman"
 
-#: ../libyelp/yelp-view.c:474
+#: ../libyelp/yelp-view.c:472
 msgid "The icon of the page being viewed"
 msgstr "Ikon dari halaman yang sedang ditilik"
 
-#: ../libyelp/yelp-view.c:736
-#| msgid ""
-#| "You do not have PackageKit installed. Package installation links require "
-#| "PackageKit."
+#: ../libyelp/yelp-view.c:713
 msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr "Anda tidak memiliki PackageKit. Tautan pemasangan paket memerlukan PackageKit."
+msgstr ""
+"Anda tidak memiliki PackageKit. Tautan pemasangan paket memerlukan "
+"PackageKit."
 
-#: ../libyelp/yelp-view.c:1001
+#: ../libyelp/yelp-view.c:991
 msgid "Save Image"
 msgstr "Simpan Gambar"
 
-#: ../libyelp/yelp-view.c:1096
+#: ../libyelp/yelp-view.c:1086
 msgid "Save Code"
 msgstr "Simpan Kode"
 
@@ -1134,90 +1188,88 @@ msgstr "Simpan Kode"
 #. * probably only be one menu item for mailto link popups anyway,
 #. * so the mnemonic's not that big of a deal.
 #.
-#: ../libyelp/yelp-view.c:1265
+#: ../libyelp/yelp-view.c:1255
 #, c-format
 msgid "Send email to %s"
 msgstr "Kirim surel ke %s"
 
-#: ../libyelp/yelp-view.c:1275
+#: ../libyelp/yelp-view.c:1265
 msgid "_Open Link"
 msgstr "_Buka Taut"
 
-#: ../libyelp/yelp-view.c:1280
+#: ../libyelp/yelp-view.c:1270
 msgid "Open Link in New _Window"
 msgstr "Buka Taut di _Jendela Baru"
 
-#: ../libyelp/yelp-view.c:1331
+#: ../libyelp/yelp-view.c:1321
 msgid "_Save Image As..."
 msgstr "_Simpan Gambar Sebagai..."
 
-#: ../libyelp/yelp-view.c:1333
+#: ../libyelp/yelp-view.c:1323
 msgid "_Save Video As..."
 msgstr "_Simpan Video Sebagai..."
 
-#: ../libyelp/yelp-view.c:1340
+#: ../libyelp/yelp-view.c:1330
 msgid "S_end Image To..."
 msgstr "Kirim Gambar K_e..."
 
-#: ../libyelp/yelp-view.c:1342
+#: ../libyelp/yelp-view.c:1332
 msgid "S_end Video To..."
 msgstr "Kirim Vid_eo Ke..."
 
-#: ../libyelp/yelp-view.c:1353
+#: ../libyelp/yelp-view.c:1343
 msgid "_Copy Text"
 msgstr "_Salin Teks"
 
-#: ../libyelp/yelp-view.c:1366
+#: ../libyelp/yelp-view.c:1356
 msgid "C_opy Code Block"
 msgstr "Salin Bl_ok Kode"
 
-#: ../libyelp/yelp-view.c:1371
+#: ../libyelp/yelp-view.c:1361
 msgid "Save Code _Block As..."
 msgstr "Simpan _Blok Kode Sebagai..."
 
-#: ../libyelp/yelp-view.c:1548
+#: ../libyelp/yelp-view.c:1543
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Tak bisa memuat suatu dokumen bagi '%s'"
 
-#: ../libyelp/yelp-view.c:1554
+#: ../libyelp/yelp-view.c:1549
 #, c-format
 msgid "Could not load a document"
 msgstr "Tak bisa memuat suatu dokumen"
 
-#: ../libyelp/yelp-view.c:1627
-#| msgid "Not Found"
+#: ../libyelp/yelp-view.c:1623
 msgid "Document Not Found"
 msgstr "Dokumen Tak Ditemukan"
 
-#: ../libyelp/yelp-view.c:1629
-#| msgid "Not Found"
+#: ../libyelp/yelp-view.c:1625
 msgid "Page Not Found"
 msgstr "Halaman Tak Ditemukan"
 
-#: ../libyelp/yelp-view.c:1632
+#: ../libyelp/yelp-view.c:1628
 msgid "Cannot Read"
 msgstr "Tak Bisa Membaca"
 
-#: ../libyelp/yelp-view.c:1638
+#: ../libyelp/yelp-view.c:1634
 msgid "Unknown Error"
 msgstr "Galat Tak Dikenal"
 
-#: ../libyelp/yelp-view.c:1658
+#: ../libyelp/yelp-view.c:1654
 msgid "Search for packages containing this document."
 msgstr "Cari paket yang memuat dokumen ini."
 
-#: ../libyelp/yelp-view.c:1774
+#: ../libyelp/yelp-view.c:1807
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI '%s' tidak merujuk pada halaman yang sah."
 
-#: ../libyelp/yelp-view.c:1780
+#: ../libyelp/yelp-view.c:1813
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI tidak merujuk pada halaman yang sah."
 
-#: ../libyelp/yelp-view.c:1788
+#: ../libyelp/yelp-view.c:1819
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI '%s' tidak dapat diuraikan."
@@ -1246,121 +1298,77 @@ msgstr "Perkecil ukuran teks"
 msgid "Show Text _Cursor"
 msgstr "Tampilkan _Kursor Teks"
 
-#: ../src/yelp-application.c:333
-#: ../src/yelp-window.c:1529
+#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Bantuan"
 
-#: ../src/yelp-window.c:265
+#: ../src/yelp-window.c:236
 msgid "_Page"
 msgstr "_Halaman"
 
-#: ../src/yelp-window.c:266
+#: ../src/yelp-window.c:237
 msgid "_View"
 msgstr "_Tampilan"
 
-#: ../src/yelp-window.c:267
+#: ../src/yelp-window.c:238
 msgid "_Go"
 msgstr "B_uka"
 
-#: ../src/yelp-window.c:268
+#: ../src/yelp-window.c:239
 msgid "_Bookmarks"
 msgstr "Pem_batas"
 
-#: ../src/yelp-window.c:271
+#: ../src/yelp-window.c:242
 msgid "_New Window"
 msgstr "Je_ndela Baru"
 
-#: ../src/yelp-window.c:276
+#: ../src/yelp-window.c:247
 msgid "_Close"
 msgstr "_Tutup"
 
-#: ../src/yelp-window.c:281
+#: ../src/yelp-window.c:252
 msgid "_All Documents"
 msgstr "Semu_a Dokumen"
 
-#: ../src/yelp-window.c:285
+#: ../src/yelp-window.c:256
 msgid "_Add Bookmark"
 msgstr "T_ambah Pembatas"
 
-#: ../src/yelp-window.c:290
-msgid "_Edit Bookmarks"
-msgstr "Sunting P_embatas"
+#: ../src/yelp-window.c:261
+msgid "_Remove Bookmark"
+msgstr "_Hapus Pembatas"
 
-#: ../src/yelp-window.c:295
+#: ../src/yelp-window.c:265
 msgid "Find in Page..."
 msgstr "Cari di Halaman..."
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:275
 msgid "Open Location"
 msgstr "Buka Lokasi"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:301
 msgid "Application"
 msgstr "Aplikasi"
 
-#: ../src/yelp-window.c:332
+#: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Instansi YelpApplication yang mengendalikan jendela ini"
 
-#: ../src/yelp-window.c:585
+#: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "Baca Nanti"
 
-#. %s will be replaced with the name of a document
-#: ../src/yelp-window.c:802
-#, c-format
-msgid "Bookmarks for %s"
-msgstr "Pembatas bagi %s"
-
-#: ../src/yelp-window.c:1337
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i cocok"
 
-#: ../src/yelp-window.c:1362
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "Tak ada yang cocok"
-
-#: ../src/yelp-window.c:1648
-msgid "_Open Bookmark"
-msgstr "Buka Pem_batas"
-
-#: ../src/yelp-window.c:1654
-msgid "Open Bookmark in New _Window"
-msgstr "Buka Penanda di _Jendela Baru"
-
-#: ../src/yelp-window.c:1663
-msgid "_Remove Bookmark"
-msgstr "_Hapus Pembatas"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Buka bantuan GNOME"
-
-#~ msgid "Description Column"
-#~ msgstr "Kolom Keterangan"
-
-#~ msgid "A column in the model to get descriptions from"
-#~ msgstr "Suatu kolom pada model tempat memperoleh keterangan"
-
-#~ msgid "Icon Column"
-#~ msgstr "Kolom Ikon"
-
-#~ msgid "A column in the model to get icon names from"
-#~ msgstr "Suatu kolom pada model tempat memperoleh nama ikon"
-
-#~ msgid "Flags Column"
-#~ msgstr "Kolom Flag"
-
-#~ msgid "A column in the model with YelpLocationEntryFlags flags"
-#~ msgstr "Suatu kolom pada model dengan flag YelpLocationEntryFlags"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
-#~ "page."
-#~ msgstr ""
-#~ "Berkas ‘%s’ tidak dapat diuraikan karena bukan halaman man yang baik "
-#~ "bentuknya."
