@@ -20,6 +20,10 @@
  * Author: Shaun McCance <shaunm@gnome.org>
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <stdarg.h>
 
 #include <gtk/gtk.h>
