@@ -3,11 +3,13 @@
 # Copyright (C) 2003, 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>.
 # Copyright (C) 2006 Lukas Novotny <lukasnov@cvs.gnome.org>.
 # This file is distributed under the same license as the yelp package.
+#
 # Michal Bukovjan <bukm@centrum.cz>, 2002.
 # Miloslav Trmac <mitr@volny.cz>, 2003, 2004, 2005, 2006.
 # Lukas Novotny <lukasnov@cvs.gnome.org>, 2006.
 # Jakub Friedl <jfriedl@suse.cz>, 2006.
 # Petr Kovar <pknbe@volny.cz>, 2008, 2009, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
@@ -405,7 +407,7 @@ msgstr "Správa kontaktů"
 
 #: ../data/toc.xml.in.h:30
 msgid "Data Visualization"
-msgstr "Datová vizualizace"
+msgstr "Vizualizace dat"
 
 #: ../data/toc.xml.in.h:31
 msgid "Databases"
@@ -534,7 +536,7 @@ msgstr "Průvodci zapojením se do vývoje"
 
 #: ../data/toc.xml.in.h:65
 msgid "Ham Radio"
-msgstr "Radioamatérství"
+msgstr "Amatérské rádio"
 
 #: ../data/toc.xml.in.h:66
 msgid "Hardware Settings"
@@ -689,7 +691,7 @@ msgstr "Prezentační nástroje"
 
 #: ../data/toc.xml.in.h:104
 msgid "Printing"
-msgstr "Tiskne se"
+msgstr "Tisk"
 
 #: ../data/toc.xml.in.h:105
 msgid "Profiling Tools"
@@ -884,7 +886,7 @@ msgstr "Nedostatek paměti"
 #: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "Stránka \"%s\" nebyla v dokumentu \"%s\" nalezena."
+msgstr "Stránka „%s“ nebyla v dokumentu „%s“ nalezena."
 
 #: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
 #: ../libyelp/yelp-man-document.c:417
@@ -896,7 +898,7 @@ msgstr "Soubor neexistuje."
 #: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
-msgstr "Soubor \"%s\" neexistuje."
+msgstr "Soubor „%s“ neexistuje."
 
 #: ../libyelp/yelp-docbook-document.c:341
 #, c-format
@@ -904,7 +906,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
-"Soubor \"%s\" nelze analyzovat, neboť není správně utvořeným dokumentem XML."
+"Soubor „%s“ nelze analyzovat, neboť není správně utvořeným dokumentem XML."
 
 #: ../libyelp/yelp-docbook-document.c:354
 #, c-format
@@ -912,7 +914,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"Soubor \"%s\" nelze analyzovat, neboť jeden (nebo více) zahrnutý soubor není "
+"Soubor „%s“ nelze analyzovat, neboť jeden (nebo více) zahrnutý soubor není "
 "správně utvořeným dokumentem XML."
 
 #: ../libyelp/yelp-docbook-document.c:763
@@ -923,7 +925,7 @@ msgstr "Neznámé"
 #: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr "Požadovaná stránka nebyla v dokumentu \"%s\" nalezena."
+msgstr "Požadovaná stránka nebyla v dokumentu „%s“ nalezena."
 
 #: ../libyelp/yelp-document.c:266
 msgid "Indexed"
@@ -944,7 +946,7 @@ msgstr "URI identifikující dokument"
 #: ../libyelp/yelp-document.c:966
 #, c-format
 msgid "No matching help pages found in “%s”."
-msgstr "V \"%s\" nebyly nalezeny žádné odpovídající stránky nápovědy."
+msgstr "V „%s“ nebyly nalezeny žádné odpovídající stránky nápovědy."
 
 #: ../libyelp/yelp-document.c:972
 msgid "No matching help pages found."
@@ -964,7 +966,7 @@ msgstr "Všechny dokumenty nápovědy"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Soubor \"%s\" nelze analyzovat, neboť není správně utvořenou stránkou info."
+"Soubor „%s“ nelze analyzovat, neboť není správně utvořenou stránkou info."
 
 #: ../libyelp/yelp-location-entry.c:330
 msgid "View"
@@ -992,7 +994,7 @@ msgstr "Zda může být vstupní pole umístění použito jako pole hledání"
 
 #: ../libyelp/yelp-location-entry.c:436 ../src/yelp-window.c:270
 msgid "Search..."
-msgstr "Hledat..."
+msgstr "Hledat…"
 
 #: ../libyelp/yelp-location-entry.c:789
 msgid "Clear the search text"
@@ -1013,7 +1015,7 @@ msgstr "Načítání"
 #: ../libyelp/yelp-mallard-document.c:310
 #, c-format
 msgid "The directory ‘%s’ does not exist."
-msgstr "Adresář \"%s\" neexistuje."
+msgstr "Adresář „%s“ neexistuje."
 
 #: ../libyelp/yelp-settings.c:154
 msgid "GtkSettings"
@@ -1074,7 +1076,7 @@ msgstr "Umístění stylu XSLT"
 #: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr "Styl XSLT \"%s\" buď schází, nebo je neplatný."
+msgstr "Styl XSLT „%s“ buď schází, nebo je neplatný."
 
 #: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
@@ -1086,7 +1088,7 @@ msgstr "Nedostatek paměti"
 
 #: ../libyelp/yelp-view.c:126
 msgid "_Print..."
-msgstr "_Tisk..."
+msgstr "_Tisk…"
 
 #: ../libyelp/yelp-view.c:131
 msgid "_Back"
@@ -1193,19 +1195,19 @@ msgstr "Otevřít od_kaz v novém okně"
 
 #: ../libyelp/yelp-view.c:1321
 msgid "_Save Image As..."
-msgstr "_Uložit obrázek jako..."
+msgstr "_Uložit obrázek jako…"
 
 #: ../libyelp/yelp-view.c:1323
 msgid "_Save Video As..."
-msgstr "_Uložit video jako..."
+msgstr "_Uložit video jako…"
 
 #: ../libyelp/yelp-view.c:1330
 msgid "S_end Image To..."
-msgstr "Od_eslat obrázek na..."
+msgstr "Od_eslat obrázek na…"
 
 #: ../libyelp/yelp-view.c:1332
 msgid "S_end Video To..."
-msgstr "Od_eslat video na..."
+msgstr "Od_eslat video na…"
 
 #: ../libyelp/yelp-view.c:1343
 msgid "_Copy Text"
@@ -1217,12 +1219,12 @@ msgstr "K_opírovat blok kódu"
 
 #: ../libyelp/yelp-view.c:1361
 msgid "Save Code _Block As..."
-msgstr "Uložit _blok kódu jako..."
+msgstr "Uložit _blok kódu jako…"
 
 #: ../libyelp/yelp-view.c:1543
 #, c-format
 msgid "Could not load a document for ‘%s’"
-msgstr "Pro \"%s\" nelze otevřít dokument"
+msgstr "Pro „%s“ nelze otevřít dokument"
 
 #: ../libyelp/yelp-view.c:1549
 #, c-format
@@ -1252,17 +1254,17 @@ msgstr "Hledat balíčky obsahující tento dokument."
 #: ../libyelp/yelp-view.c:1807
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "URI \"%s\" neodkazuje na platnou stránku."
+msgstr "Adresa URI „%s“ neodkazuje na platnou stránku."
 
 #: ../libyelp/yelp-view.c:1813
 #, c-format
 msgid "The URI does not point to a valid page."
-msgstr "URI neodkazuje na platnou stránku."
+msgstr "Adresa URI neodkazuje na platnou stránku."
 
 #: ../libyelp/yelp-view.c:1819
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "URI \"%s\" se nezdařilo analyzovat."
+msgstr "URI „%s“ se nezdařilo analyzovat."
 
 #: ../src/yelp-application.c:53
 msgid "Turn on editor mode"
@@ -1331,7 +1333,7 @@ msgstr "Odst_ranit záložku"
 
 #: ../src/yelp-window.c:265
 msgid "Find in Page..."
-msgstr "Nalézt na stránce..."
+msgstr "Nalézt na stránce…"
 
 #: ../src/yelp-window.c:275
 msgid "Open Location"
