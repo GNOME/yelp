@@ -314,7 +314,7 @@ open_uri (YelpApplication *app,
     data = g_new (YelpApplicationLoad, 1);
     data->app = app;
     data->timestamp = gtk_get_current_event_time ();
-    data->new = TRUE;
+    data->new = new_window;
 
     g_signal_connect (uri, "resolved",
                       G_CALLBACK (application_uri_resolved),
