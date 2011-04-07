@@ -222,25 +222,22 @@ application_setup (YelpApplication *app)
 {
     YelpApplicationPrivate *priv = GET_PRIV (app);
     YelpSettings *settings = yelp_settings_get_default ();
+    gchar *keyfile;
     GtkAction *action;
 
     priv->windows_by_document = g_hash_table_new_full (g_str_hash,
                                                        g_str_equal,
                                                        g_free,
                                                        NULL);
-    /* FIXME: is there a better way to see if there's a real backend in use? */
-    if (g_getenv ("GSETTINGS_BACKEND") == NULL) {
-        gchar *keyfile = g_build_filename (g_get_user_config_dir (),
-                                           "yelp", "yelp.cfg",
-                                           NULL);
-        priv->backend = g_keyfile_settings_backend_new (keyfile, "/org/gnome/yelp/", "yelp");
-        priv->gsettings = g_settings_new_with_backend ("org.gnome.yelp",
-                                                       priv->backend);
-        g_free (keyfile);
-    }
-    else {
-        priv->gsettings = g_settings_new ("org.gnome.yelp");
-    }
+    /* Use a config file for per-document settings, because
+       Ryan asked me to. */
+    keyfile = g_build_filename (g_get_user_config_dir (),
+                                "yelp", "yelp.cfg", NULL);
+    priv->backend = g_keyfile_settings_backend_new (keyfile, "/org/gnome/yelp/", "yelp");
+    g_free (keyfile);
+    /* But the main settings are in dconf */
+    priv->gsettings = g_settings_new ("org.gnome.yelp");
+
     g_settings_bind (priv->gsettings, "show-cursor",
                      settings, "show-text-cursor",
                      G_SETTINGS_BIND_DEFAULT);
