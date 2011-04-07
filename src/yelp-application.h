@@ -39,23 +39,16 @@ typedef struct _YelpApplicationClass  YelpApplicationClass;
 
 struct _YelpApplication
 {
-    GObject       parent;
+    GtkApplication       parent;
 };
 
 struct _YelpApplicationClass
 {
-    GObjectClass  parent_class;
+    GtkApplicationClass  parent_class;
 };
 
 GType             yelp_application_get_type       (void);
 YelpApplication*  yelp_application_new            (void);
-gint              yelp_application_run            (YelpApplication  *app,
-                                                   gint              argc,
-                                                   gchar           **argv);
-gboolean          yelp_application_load_uri       (YelpApplication  *app,
-                                                   const gchar      *uri,
-                                                   guint             timestamp,
-                                                   GError          **error);
 void              yelp_application_new_window     (YelpApplication  *app,
                                                    const gchar      *uri);
 void              yelp_application_new_window_uri (YelpApplication  *app,

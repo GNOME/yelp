@@ -61,42 +61,25 @@ struct _YelpApplicationLoad {
     gboolean new;
 };
 
-static const gchar introspection_xml[] =
-    "<node name='/org/gnome/Yelp'>"
-    "  <interface name='org.gnome.Yelp'>"
-    "    <annotation name='org.freedesktop.DBus.GLib.CSymbol' value='yelp_application'/>"
-    "    <method name='LoadUri'>"
-    "      <arg type='s' name='Uri' direction='in'/>"
-    "      <arg type='u' name='Timestamp' direction='in'/>"
-    "    </method>"
-    "  </interface>"
-    "</node>";
-GDBusNodeInfo *introspection_data;
-
 static void          yelp_application_init             (YelpApplication        *app);
 static void          yelp_application_class_init       (YelpApplicationClass   *klass);
 static void          yelp_application_iface_init       (YelpBookmarksInterface *iface);
 static void          yelp_application_dispose          (GObject                *object);
 static void          yelp_application_finalize         (GObject                *object);
 
-static void          yelp_application_method           (GDBusConnection       *connection,
-                                                        const gchar           *sender,
-                                                        const gchar           *object_path,
-                                                        const gchar           *interface_name,
-                                                        const gchar           *method_name,
-                                                        GVariant              *parameters,
-                                                        GDBusMethodInvocation *invocation,
-                                                        YelpApplication       *app);
-
-static void          application_setup                 (YelpApplication       *app);
+static gboolean      yelp_application_cmdline          (GApplication          *app,
+                                                        gchar               ***arguments,
+                                                        gint                  *exit_status);
+static void          yelp_application_startup          (GApplication          *app);
+static void          yelp_application_open             (GApplication          *app,
+                                                        GFile                **files,
+                                                        gint                   n_files,
+                                                        const gchar           *hint);
+static void          yelp_application_activate         (GApplication          *app);
 static void          application_uri_resolved          (YelpUri               *uri,
                                                         YelpApplicationLoad   *data);
-static gboolean      application_window_deleted        (YelpWindow            *window,
-                                                        GdkEvent              *event,
-                                                        YelpApplication       *app);
 GSettings *          application_get_doc_settings      (YelpApplication       *app,
                                                         const gchar           *doc_uri);
-static gboolean      application_maybe_quit            (YelpApplication       *app);
 static void          application_adjust_font           (GtkAction             *action,
                                                         YelpApplication       *app);
 static void          application_set_font_sensitivity  (YelpApplication       *app);
@@ -110,19 +93,13 @@ static void          readlater_changed                 (GSettings             *s
 static gboolean      window_resized                    (YelpWindow            *window,
                                                         YelpApplication       *app);
 
-G_DEFINE_TYPE_WITH_CODE (YelpApplication, yelp_application, G_TYPE_OBJECT,
+G_DEFINE_TYPE_WITH_CODE (YelpApplication, yelp_application, GTK_TYPE_APPLICATION,
                          G_IMPLEMENT_INTERFACE (YELP_TYPE_BOOKMARKS,
                                                 yelp_application_iface_init))
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_APPLICATION, YelpApplicationPrivate))
 
-GDBusInterfaceVTable yelp_dbus_vtable = {
-    (GDBusInterfaceMethodCallFunc) yelp_application_method,
-    NULL, NULL };
-
 typedef struct _YelpApplicationPrivate YelpApplicationPrivate;
 struct _YelpApplicationPrivate {
-    GDBusConnection *connection;
-
     GSList *windows;
     GHashTable *windows_by_document;
 
@@ -131,6 +108,8 @@ struct _YelpApplicationPrivate {
     GSettingsBackend *backend;
     GSettings *gsettings;
     GHashTable *docsettings;
+
+    gboolean editor_mode;
 };
 
 static const GtkActionEntry action_entries[] = {
@@ -158,7 +137,13 @@ yelp_application_init (YelpApplication *app)
 static void
 yelp_application_class_init (YelpApplicationClass *klass)
 {
+    GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+    application_class->local_command_line = yelp_application_cmdline;
+    application_class->startup = yelp_application_startup;
+    application_class->activate = yelp_application_activate;
+    application_class->open = yelp_application_open;
 
     object_class->dispose = yelp_application_dispose;
     object_class->finalize = yelp_application_finalize;
@@ -187,11 +172,6 @@ yelp_application_dispose (GObject *object)
 {
     YelpApplicationPrivate *priv = GET_PRIV (object);
 
-    if (priv->connection) {
-        g_object_unref (priv->connection);
-        priv->connection = NULL;
-    }
-
     if (priv->action_group) {
         g_object_unref (priv->action_group);
         priv->action_group = NULL;
@@ -217,14 +197,48 @@ yelp_application_finalize (GObject *object)
 }
 
 
-static void
-application_setup (YelpApplication *app)
+static gboolean
+yelp_application_cmdline (GApplication     *app,
+                          gchar          ***arguments,
+                          gint             *exit_status)
 {
+    gint i, j;
+    gchar **argv;
+
+    argv = *arguments;
+
+    for (i = 0; argv[i]; i++) {
+        if (g_str_equal (argv[i], "--editor-mode")) {
+            YelpApplicationPrivate *priv = GET_PRIV (app);
+            priv->editor_mode = TRUE;
+            g_free (argv[i]);
+            for (j = i; argv[j]; j++)
+                argv[j] = argv[j + 1];
+        }
+    }
+
+    return G_APPLICATION_CLASS (yelp_application_parent_class)
+        ->local_command_line (app, arguments, exit_status);
+}
+
+static void
+yelp_application_startup (GApplication *application)
+{
+    YelpApplication *app = YELP_APPLICATION (application);
     YelpApplicationPrivate *priv = GET_PRIV (app);
-    YelpSettings *settings = yelp_settings_get_default ();
     gchar *keyfile;
+    YelpSettings *settings;
     GtkAction *action;
 
+    g_set_application_name (N_("Help"));
+
+    /* chain up */
+    G_APPLICATION_CLASS (yelp_application_parent_class)
+      ->startup (application);
+
+    settings = yelp_settings_get_default ();
+    if (priv->editor_mode)
+        yelp_settings_set_editor_mode (settings, TRUE);
     priv->windows_by_document = g_hash_table_new_full (g_str_hash,
                                                        g_str_equal,
                                                        g_free,
@@ -310,170 +324,66 @@ yelp_application_new (void)
 {
     YelpApplication *app;
 
-    app = (YelpApplication *) g_object_new (YELP_TYPE_APPLICATION, NULL);
+    app = g_object_new (YELP_TYPE_APPLICATION,
+                        "application-id", "org.gnome.Yelp",
+                        "flags", G_APPLICATION_HANDLES_OPEN,
+                        "inactivity-timeout", 5000,
+                        NULL);
 
     return app;
 }
 
-gint
-yelp_application_run (YelpApplication  *app,
-                      gint              argc,
-                      gchar           **argv)
+// consumes the uri
+static void
+open_uri (YelpApplication *app,
+          YelpUri         *uri,
+          gboolean         new_window)
 {
-    GOptionContext *context;
-    GError *error = NULL;
-    GVariant *ret;
-    guint32 request;
-    YelpApplicationPrivate *priv = GET_PRIV (app);
-    gchar *uri;
+    YelpApplicationLoad *data;
+    data = g_new (YelpApplicationLoad, 1);
+    data->app = app;
+    data->timestamp = gtk_get_current_event_time ();
+    data->new = new_window;
 
-    g_set_application_name (N_("Help"));
+    g_signal_connect (uri, "resolved",
+                      G_CALLBACK (application_uri_resolved),
+                      data);
 
-    context = g_option_context_new (NULL);
-    g_option_context_add_group (context, gtk_get_option_group (TRUE));
-    g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);
-    g_option_context_parse (context, &argc, &argv, NULL);
+    /* hold the app while resolving the uri so we don't exit while
+     * in the middle of the load
+     */
+    g_application_hold (G_APPLICATION (app));
 
-    priv->connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
-    if (priv->connection == NULL) {
-        g_warning ("Unable to connect to dbus: %s", error->message);
-        g_error_free (error);
-        return 1;
+    yelp_uri_resolve (uri);
+}
+
+
+static void
+yelp_application_open (GApplication  *application,
+                       GFile        **files,
+                       gint           n_files,
+                       const gchar   *hint)
+{
+    YelpApplication *app = YELP_APPLICATION (application);
+    gint i;
+
+    for (i = 0; i < n_files; i++) {
+        gchar *uri;
+
+        uri = g_file_get_uri (files[i]);
+        open_uri (app, yelp_uri_new (uri), FALSE);
+        g_free (uri);
     }
-
-    if (argc > 1)
-        uri = argv[1];
-    else
-        uri = DEFAULT_URI;
-
-    ret = g_dbus_connection_call_sync (priv->connection,
-                                       "org.freedesktop.DBus",
-                                       "/org/freedesktop/DBus",
-                                       "org.freedesktop.DBus",
-                                       "RequestName",
-                                       g_variant_new ("(su)", "org.gnome.Yelp", 0),
-                                       NULL,
-                                       G_DBUS_CALL_FLAGS_NONE,
-                                       -1, NULL, &error);
-    if (error) {
-        g_warning ("Unable to register service: %s", error->message);
-        g_error_free (error);
-        g_variant_unref (ret);
-        return 1;
-    }
-
-    g_variant_get (ret, "(u)", &request);
-    g_variant_unref (ret);
-
-    if (request == 2 || request == 3) { /* IN_QUEUE | EXISTS */
-        gchar *newuri;
-
-        if (uri && (strchr (uri, ':') || (uri[0] == '/')))
-            newuri = uri;
-        else {
-            GFile *base, *new;
-            gchar *cur = g_get_current_dir ();
-            base = g_file_new_for_path (cur);
-            new = g_file_resolve_relative_path (base, uri);
-            newuri = g_file_get_uri (new);
-            g_free (cur);
-        }
-
-        ret = g_dbus_connection_call_sync (priv->connection,
-                                           "org.gnome.Yelp",
-                                           "/org/gnome/Yelp",
-                                           "org.gnome.Yelp",
-                                           "LoadUri",
-                                           g_variant_new ("(su)", newuri, gtk_get_current_event_time ()),
-                                           NULL,
-                                           G_DBUS_CALL_FLAGS_NONE,
-                                           -1, NULL, &error);
-        if (error) {
-            g_warning ("Unable to notify existing process: %s\n", error->message);
-            g_error_free (error);
-        }
-
-        if (newuri != uri)
-            g_free (newuri);
-        g_variant_unref (ret);
-        return 1;
-    }
-
-    introspection_data = g_dbus_node_info_new_for_xml (introspection_xml, NULL);
-    g_dbus_connection_register_object (priv->connection,
-                                       "/org/gnome/Yelp",
-                                       introspection_data->interfaces[0],
-                                       &yelp_dbus_vtable,
-                                       app, NULL, NULL);
-
-    application_setup (app);
-
-    yelp_settings_set_editor_mode (yelp_settings_get_default (), editor_mode);
-
-    yelp_application_load_uri (app, uri, gtk_get_current_event_time (), NULL);
-
-    gtk_main ();
-
-    return 0;
 }
 
 static void
-yelp_application_method (GDBusConnection *connection,
-                         const gchar *sender,
-                         const gchar *object_path,
-                         const gchar *interface_name,
-                         const gchar *method_name,
-                         GVariant *parameters,
-                         GDBusMethodInvocation *invocation,
-                         YelpApplication *app)
+yelp_application_activate (GApplication *application)
 {
-    if (g_str_equal (interface_name, "org.gnome.Yelp")) {
-        if (g_str_equal (method_name, "LoadUri")) {
-            GError *error = NULL;
-            gchar *uri;
-            guint32 timestamp;
-            g_variant_get (parameters, "(&su)", &uri, &timestamp);
-            yelp_application_load_uri (app, uri, timestamp, &error);
-            if (error) {
-                g_dbus_method_invocation_return_error (invocation,
-                                                       error->domain,
-                                                       error->code,
-                                                       "%s", error->message);
-                g_error_free (error);
-            }
-            else
-                g_dbus_method_invocation_return_value (invocation, NULL);
-            return;
-        }
-    }
-    g_dbus_method_invocation_return_error (invocation,
-                                           G_IO_ERROR,
-                                           G_IO_ERROR_NOT_SUPPORTED,
-                                           "Method not supported");
-}
+  GFile *default_uri;
 
-gboolean
-yelp_application_load_uri (YelpApplication  *app,
-                           const gchar      *uri,
-                           guint32           timestamp,
-                           GError          **error)
-{
-    YelpApplicationLoad *data;
-    YelpUri *yuri;
-
-    data = g_new (YelpApplicationLoad, 1);
-    data->app = app;
-    data->timestamp = timestamp;
-    data->new = FALSE;
-    
-    yuri = yelp_uri_new (uri);
-    
-    g_signal_connect (yuri, "resolved",
-                      G_CALLBACK (application_uri_resolved),
-                      data);
-    yelp_uri_resolve (yuri);
-
-    return TRUE;
+  default_uri = g_file_new_for_uri (DEFAULT_URI);
+  g_application_open (application, &default_uri, 1, "");
+  g_object_unref (default_uri);
 }
 
 void
@@ -491,15 +401,7 @@ void
 yelp_application_new_window_uri (YelpApplication  *app,
                                  YelpUri          *uri)
 {
-    YelpApplicationLoad *data;
-    data = g_new (YelpApplicationLoad, 1);
-    data->app = app;
-    data->timestamp = gtk_get_current_event_time ();
-    data->new = TRUE;
-    g_signal_connect (uri, "resolved",
-                      G_CALLBACK (application_uri_resolved),
-                      data);
-    yelp_uri_resolve (uri);
+    open_uri (app, g_object_ref (uri), TRUE);
 }
 
 static void
@@ -510,6 +412,9 @@ application_uri_resolved (YelpUri             *uri,
     gchar *doc_uri;
     GdkWindow *gdk_window;
     YelpApplicationPrivate *priv = GET_PRIV (data->app);
+
+    /* We held the application while resolving the URI, so unhold now. */
+    g_application_release (G_APPLICATION (data->app));
 
     doc_uri = yelp_uri_get_document_uri (uri);
 
@@ -535,8 +440,9 @@ application_uri_resolved (YelpUri             *uri,
         else {
             g_free (doc_uri);
         }
-        g_signal_connect (window, "delete-event",
-                          G_CALLBACK (application_window_deleted), data->app);
+
+        gtk_window_set_application (GTK_WINDOW (window),
+                                    GTK_APPLICATION (data->app));
     }
     else {
         g_free (doc_uri);
@@ -561,6 +467,7 @@ application_uri_resolved (YelpUri             *uri,
 
     gtk_window_present_with_time (GTK_WINDOW (window), data->timestamp);
 
+    g_object_unref (uri);
     g_free (data);
 }
 
@@ -591,36 +498,6 @@ application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
         g_free (settings_path);
     }
     return settings;
-}
-
-static gboolean
-application_window_deleted (YelpWindow      *window,
-                            GdkEvent        *event,
-                            YelpApplication *app)
-{
-    gchar *doc_uri; /* owned by windows_by_document */
-    YelpApplicationPrivate *priv = GET_PRIV (app);
-
-    priv->windows = g_slist_remove (priv->windows, window);
-    doc_uri = g_object_get_data (G_OBJECT (window), "doc_uri");
-    if (doc_uri)
-        g_hash_table_remove (priv->windows_by_document, doc_uri);
-
-    if (priv->windows == NULL)
-        g_timeout_add_seconds (5, (GSourceFunc) application_maybe_quit, app);
-
-    return FALSE;
-}
-
-static gboolean
-application_maybe_quit (YelpApplication *app)
-{
-    YelpApplicationPrivate *priv = GET_PRIV (app);
-
-    if (priv->windows == NULL)
-        gtk_main_quit ();
-
-    return FALSE;
 }
 
 /******************************************************************************/
