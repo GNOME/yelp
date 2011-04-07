@@ -67,6 +67,9 @@ static void          yelp_application_iface_init       (YelpBookmarksInterface *
 static void          yelp_application_dispose          (GObject                *object);
 static void          yelp_application_finalize         (GObject                *object);
 
+static gboolean      yelp_application_cmdline          (GApplication          *app,
+                                                        gchar               ***arguments,
+                                                        gint                  *exit_status);
 static void          yelp_application_startup          (GApplication          *app);
 static void          yelp_application_open             (GApplication          *app,
                                                         GFile                **files,
@@ -105,6 +108,8 @@ struct _YelpApplicationPrivate {
     GSettingsBackend *backend;
     GSettings *gsettings;
     GHashTable *docsettings;
+
+    gboolean editor_mode;
 };
 
 static const GtkActionEntry action_entries[] = {
@@ -135,6 +140,7 @@ yelp_application_class_init (YelpApplicationClass *klass)
     GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+    application_class->local_command_line = yelp_application_cmdline;
     application_class->startup = yelp_application_startup;
     application_class->activate = yelp_application_activate;
     application_class->open = yelp_application_open;
@@ -191,6 +197,30 @@ yelp_application_finalize (GObject *object)
 }
 
 
+static gboolean
+yelp_application_cmdline (GApplication     *app,
+                          gchar          ***arguments,
+                          gint             *exit_status)
+{
+    gint i, j;
+    gchar **argv;
+
+    argv = *arguments;
+
+    for (i = 0; argv[i]; i++) {
+        if (g_str_equal (argv[i], "--editor-mode")) {
+            YelpApplicationPrivate *priv = GET_PRIV (app);
+            priv->editor_mode = TRUE;
+            g_free (argv[i]);
+            for (j = i; argv[j]; j++)
+                argv[j] = argv[j + 1];
+        }
+    }
+
+    return G_APPLICATION_CLASS (yelp_application_parent_class)
+        ->local_command_line (app, arguments, exit_status);
+}
+
 static void
 yelp_application_startup (GApplication *application)
 {
@@ -206,6 +236,8 @@ yelp_application_startup (GApplication *application)
       ->startup (application);
 
     settings = yelp_settings_get_default ();
+    if (priv->editor_mode)
+        yelp_settings_set_editor_mode (settings, TRUE);
     priv->windows_by_document = g_hash_table_new_full (g_str_hash,
                                                        g_str_equal,
                                                        g_free,
