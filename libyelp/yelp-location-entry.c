@@ -1191,6 +1191,12 @@ entry_match_func (GtkEntryCompletion *completion,
     gchar **strs;
     GtkTreeModel *model = gtk_entry_completion_get_model (completion);
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+    static GRegex *nonword = NULL;
+
+    if (nonword == NULL)
+        nonword = g_regex_new ("\\W", 0, 0, NULL);
+    if (nonword == NULL)
+        return FALSE;
 
     gtk_tree_model_get (model, iter,
                         HISTORY_COL_TITLE, &title,
@@ -1205,7 +1211,7 @@ entry_match_func (GtkEntryCompletion *completion,
         g_free (desc);
     }
 
-    strs = g_strsplit (key, " ", -1);
+    strs = g_regex_split (nonword, key, 0);
     ret = TRUE;
     for (stri = 0; strs[stri]; stri++) {
         if (!titlecase || !strstr (titlecase, strs[stri])) {
