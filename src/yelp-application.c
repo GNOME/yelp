@@ -31,6 +31,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
+#include <stdlib.h>
 
 #include "yelp-bookmarks.h"
 #include "yelp-settings.h"
@@ -49,8 +50,20 @@ enum {
 };
 static gint signals[LAST_SIGNAL] = { 0 };
 
+G_GNUC_NORETURN static gboolean
+option_version_cb (const gchar *option_name,
+	           const gchar *value,
+	           gpointer     data,
+	           GError     **error)
+{
+	g_print ("%s %s\n", PACKAGE, VERSION);
+
+	exit (0);
+}
+
 static const GOptionEntry entries[] = {
     {"editor-mode", 0, 0, G_OPTION_ARG_NONE, &editor_mode, N_("Turn on editor mode"), NULL},
+    { "version", 0, G_OPTION_FLAG_NO_ARG | G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_CALLBACK, option_version_cb, NULL, NULL },
     { NULL }
 };
 
@@ -71,11 +84,8 @@ static gboolean      yelp_application_cmdline          (GApplication          *a
                                                         gchar               ***arguments,
                                                         gint                  *exit_status);
 static void          yelp_application_startup          (GApplication          *app);
-static void          yelp_application_open             (GApplication          *app,
-                                                        GFile                **files,
-                                                        gint                   n_files,
-                                                        const gchar           *hint);
-static void          yelp_application_activate         (GApplication          *app);
+static int           yelp_application_command_line     (GApplication          *app,
+                                                        GApplicationCommandLine *cmdline);
 static void          application_uri_resolved          (YelpUri               *uri,
                                                         YelpApplicationLoad   *data);
 GSettings *          application_get_doc_settings      (YelpApplication       *app,
@@ -108,8 +118,6 @@ struct _YelpApplicationPrivate {
     GSettingsBackend *backend;
     GSettings *gsettings;
     GHashTable *docsettings;
-
-    gboolean editor_mode;
 };
 
 static const GtkActionEntry action_entries[] = {
@@ -142,8 +150,7 @@ yelp_application_class_init (YelpApplicationClass *klass)
 
     application_class->local_command_line = yelp_application_cmdline;
     application_class->startup = yelp_application_startup;
-    application_class->activate = yelp_application_activate;
-    application_class->open = yelp_application_open;
+    application_class->command_line = yelp_application_command_line;
 
     object_class->dispose = yelp_application_dispose;
     object_class->finalize = yelp_application_finalize;
@@ -202,18 +209,28 @@ yelp_application_cmdline (GApplication     *app,
                           gchar          ***arguments,
                           gint             *exit_status)
 {
-    gint i, j;
-    gchar **argv;
+    GOptionContext *context;
+    gint argc = g_strv_length (*arguments);
+    gint i;
 
-    argv = *arguments;
+    context = g_option_context_new (NULL);
+    g_option_context_add_group (context, gtk_get_option_group (TRUE));
+    g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);
+    g_option_context_parse (context, &argc, arguments, NULL);
 
-    for (i = 0; argv[i]; i++) {
-        if (g_str_equal (argv[i], "--editor-mode")) {
-            YelpApplicationPrivate *priv = GET_PRIV (app);
-            priv->editor_mode = TRUE;
-            g_free (argv[i]);
-            for (j = i; argv[j]; j++)
-                argv[j] = argv[j + 1];
+    for (i = 1; i < argc; i++) {
+        if (!strchr ((*arguments)[i], ':') && !((*arguments)[i][0] == '/')) {
+            GFile *base, *new;
+            gchar *cur, *newuri;
+            cur = g_get_current_dir ();
+            base = g_file_new_for_path (cur);
+            new = g_file_resolve_relative_path (base, (*arguments)[i]);
+            newuri = g_file_get_uri (new);
+            g_free (arguments[i]);
+            (*arguments)[i] = newuri;
+            g_free (cur);
+            g_object_unref (new);
+            g_object_unref (base);
         }
     }
 
@@ -237,7 +254,7 @@ yelp_application_startup (GApplication *application)
       ->startup (application);
 
     settings = yelp_settings_get_default ();
-    if (priv->editor_mode)
+    if (editor_mode)
         yelp_settings_set_editor_mode (settings, TRUE);
     priv->windows_by_document = g_hash_table_new_full (g_str_hash,
                                                        g_str_equal,
@@ -326,7 +343,7 @@ yelp_application_new (void)
 
     app = g_object_new (YELP_TYPE_APPLICATION,
                         "application-id", "org.gnome.Yelp",
-                        "flags", G_APPLICATION_HANDLES_OPEN,
+                        "flags", G_APPLICATION_HANDLES_COMMAND_LINE,
                         "inactivity-timeout", 5000,
                         NULL);
 
@@ -358,32 +375,25 @@ open_uri (YelpApplication *app,
 }
 
 
-static void
-yelp_application_open (GApplication  *application,
-                       GFile        **files,
-                       gint           n_files,
-                       const gchar   *hint)
+static int
+yelp_application_command_line (GApplication            *application,
+                               GApplicationCommandLine *cmdline)
 {
     YelpApplication *app = YELP_APPLICATION (application);
-    gint i;
+    gchar **argv;
+    int i;
 
-    for (i = 0; i < n_files; i++) {
-        gchar *uri;
+    argv = g_application_command_line_get_arguments (cmdline, NULL);
 
-        uri = g_file_get_uri (files[i]);
-        open_uri (app, yelp_uri_new (uri), FALSE);
-        g_free (uri);
-    }
-}
+    if (argv[1] == NULL)
+        open_uri (app, yelp_uri_new ("ghelp:gnome-help"), FALSE);
 
-static void
-yelp_application_activate (GApplication *application)
-{
-  GFile *default_uri;
+    for (i = 1; argv[i]; i++)
+        open_uri (app, yelp_uri_new (argv[i]), FALSE);
 
-  default_uri = g_file_new_for_uri (DEFAULT_URI);
-  g_application_open (application, &default_uri, 1, "");
-  g_object_unref (default_uri);
+    g_strfreev (argv);
+
+    return 0;
 }
 
 void
