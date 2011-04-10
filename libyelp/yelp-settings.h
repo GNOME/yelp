@@ -24,7 +24,6 @@
 #define __YELP_SETTINGS_H__
 
 #include <glib-object.h>
-#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
@@ -118,9 +117,6 @@ const gchar *       yelp_settings_get_icon_param       (YelpSettingsIcon    icon
 gchar **            yelp_settings_get_all_params       (YelpSettings       *settings,
                                                         gint                extra,
                                                         gint               *end);
-
-GdkPixbuf *         yelp_settings_get_icon_pixbuf      (YelpSettings       *settings,
-                                                        const gchar        *icon_name);
 
 gboolean            yelp_settings_get_show_text_cursor (YelpSettings       *settings);
 void                yelp_settings_set_show_text_cursor (YelpSettings       *settings,

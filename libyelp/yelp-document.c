@@ -733,7 +733,7 @@ yelp_document_get_page_icon (YelpDocument *document,
     g_assert (document != NULL && YELP_IS_DOCUMENT (document));
 
     if (page_id != NULL && g_str_has_prefix (page_id, "search="))
-        return g_strdup ("yelp-page-search");
+        return g_strdup ("yelp-page-search-symbolic");
 
     g_mutex_lock (document->priv->mutex);
     real = hash_lookup (document->priv->page_ids, page_id);
@@ -745,7 +745,7 @@ yelp_document_get_page_icon (YelpDocument *document,
     g_mutex_unlock (document->priv->mutex);
 
     if (ret == NULL)
-        ret = g_strdup ("yelp-page");
+        ret = g_strdup ("yelp-page-symbolic");
 
     return ret;
 }

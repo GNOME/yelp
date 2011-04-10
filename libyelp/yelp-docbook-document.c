@@ -956,7 +956,7 @@ docbook_index_chunk (DocbookIndexData *index)
 
         yelp_storage_update (yelp_storage_get_default (),
                              index->doc_uri, full_uri,
-                             title, "", "yelp-page",
+                             title, "", "yelp-page-symbolic",
                              body);
         if (index->cur->parent->parent == NULL)
             yelp_storage_set_root_title (yelp_storage_get_default (),

@@ -804,30 +804,30 @@ xml_node_get_icon (xmlNodePtr node)
 {
     xmlChar *style;
     gchar **styles;
-    gchar *icon = "yelp-page";
+    gchar *icon = "yelp-page-symbolic";
     style = xmlGetProp (node, BAD_CAST "style");
     if (style) {
         gint i;
         styles = g_strsplit (style, " ", -1);
         for (i = 0; styles[i] != NULL; i++) {
             if (g_str_equal (styles[i], "video")) {
-                icon = "yelp-page-video";
+                icon = "yelp-page-video-symbolic";
                 break;
             }
             else if (g_str_equal (styles[i], "task")) {
-                icon = "yelp-page-task";
+                icon = "yelp-page-task-symbolic";
                 break;
             }
             else if (g_str_equal (styles[i], "tip")) {
-                icon = "yelp-page-tip";
+                icon = "yelp-page-tip-symbolic";
                 break;
             }
             else if (g_str_equal (styles[i], "problem")) {
-                icon = "yelp-page-problem";
+                icon = "yelp-page-problem-symbolic";
                 break;
             }
             else if (g_str_equal (styles[i], "ui")) {
-                icon = "yelp-page-ui";
+                icon = "yelp-page-ui-symbolic";
                 break;
             }
         }

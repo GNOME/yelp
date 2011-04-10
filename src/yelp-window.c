@@ -846,7 +846,7 @@ window_set_bookmarks (YelpWindow  *window,
     while (g_variant_iter_loop (iter, "(&s&s&s)", &page_id, &icon, &title)) {
         YelpMenuEntry *entry = g_new0 (YelpMenuEntry, 1);
         entry->page_id = page_id;
-        entry->icon = g_strconcat (icon, "-symbolic", NULL);
+        entry->icon = g_strdup (icon);
         entry->title = title;
         entries = g_slist_insert_sorted (entries, entry, (GCompareFunc) entry_compare);
     }
