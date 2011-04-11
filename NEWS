@@ -1,3 +1,15 @@
+Changes in 3.0.1
+----------------
+* Fixed startup notification with GtkApplication (Ryan Lortie, Shaun McCance)
+* Use symbolic icons propertly; don't crash (Shaun McCnace)
+* Split words with \W regexp for quick search (Shaun McCance)
+* Actually store existing GSettings in dconf (Shaun McCance)
+* Fixed a GVariantBuilder leak (Ryan Lortie)
+* Updated translations:
+  as    (Amitakhya Phukan)
+  ca    (Jordi Serratosa)
+  fa    (Mahyar Moghimi)
+
 Changes in 3.0.0
 ----------------
 * Make sure all translations work (Kjartan Maraas)
