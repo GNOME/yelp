@@ -3,17 +3,17 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
   <rewriteSystem
       systemIdStartString="http://www.oasis-open.org/docbook/xml/4.1.2"
-      rewritePrefix="/home/shaunm/Projects/yelp/data/dtd"/>
+      rewritePrefix="@DATADIR@/dtd"/>
   <rewriteSystem
       systemIdStartString="http://www.oasis-open.org/docbook/xml/4.2"
-      rewritePrefix="/home/shaunm/Projects/yelp/data/dtd"/>
+      rewritePrefix="@DATADIR@/dtd"/>
   <rewriteSystem
       systemIdStartString="http://www.oasis-open.org/docbook/xml/4.3"
-      rewritePrefix="/home/shaunm/Projects/yelp/data/dtd"/>
+      rewritePrefix="@DATADIR@/dtd"/>
   <rewriteSystem
       systemIdStartString="http://www.oasis-open.org/docbook/xml/4.4"
-      rewritePrefix="/home/shaunm/Projects/yelp/data/dtd"/>
+      rewritePrefix="@DATADIR@/dtd"/>
   <rewriteSystem
       systemIdStartString="http://www.oasis-open.org/docbook/xml/4.5"
-      rewritePrefix="/home/shaunm/Projects/yelp/data/dtd"/>
+      rewritePrefix="@DATADIR@/dtd"/>
 </catalog>

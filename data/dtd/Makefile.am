@@ -23,4 +23,4 @@ dtd_DATA =		\
 	isotech.ent	\
 	catalog
 
-EXTRA_DIST = $(dtd_DATA)
+EXTRA_DIST = $(dtd_DATA) catalog.in

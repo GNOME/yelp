@@ -209,6 +209,7 @@ stylesheets/toc2html.xsl
 stylesheets/yelp-common.xsl
 data/Makefile
 data/dtd/Makefile
+data/dtd/catalog
 data/icons/Makefile
 data/icons/hicolor/Makefile
 data/icons/hicolor/16x16/Makefile
