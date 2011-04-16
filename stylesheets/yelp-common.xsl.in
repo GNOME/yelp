@@ -94,7 +94,10 @@ div.body {
 <!-- == html.js.custom == -->
 <xsl:template name="html.js.custom">
 <script type="text/javascript" language="javascript" src="@DATADIR@/jquery-ui-1.8.custom.min.js"/>
-<script type="text/javascript" language="javascript">
+</xsl:template>
+
+<!-- == html.js.content.custom == -->
+<xsl:template name="html.js.content.custom">
 <xsl:text>
 $(document).ready (function () {
   if (location.hash != '') {
@@ -111,7 +114,6 @@ $(document).ready (function () {
   }
 });
 </xsl:text>
-</script>
 </xsl:template>
 
 </xsl:stylesheet>
