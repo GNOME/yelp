@@ -795,9 +795,14 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
                             HISTORY_COL_PAGE, &page_id,
                             -1);
         if (flags & LOCATION_ENTRY_IS_LOADING) {
+            /* Would be nice to have a "loading" icon. I was using image-loading,
+             * but it look out of place with symbolic page icons. Plus, using
+             * image-loading-symbolic shows a broken image, because GtkEntry
+             * doesn't correctly use symbolic icons as of GNOME 3.0.
+             */
             gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                                GTK_ENTRY_ICON_PRIMARY,
-                                               "image-loading-symbolic");
+                                               "yelp-page-symbolic");
             if (priv->pulse > 0)
                 g_source_remove (priv->pulse);
             priv->pulse = g_timeout_add (80, location_entry_pulse, entry);
