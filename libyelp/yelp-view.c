@@ -2084,8 +2084,17 @@ document_callback (YelpDocument       *document,
          * let the main loop run through.
          */
         if (priv->vadjust > 0 || priv->hadjust > 0 || priv->page_title == NULL)
-            while (g_main_context_pending (NULL))
+            while (g_main_context_pending (NULL)) {
+                WebKitLoadStatus status;
+                status = webkit_web_view_get_load_status (WEBKIT_WEB_VIEW (view));
                 g_main_context_iteration (NULL, FALSE);
+                /* Sometimes some runaway JavaScript causes there to always
+                 * be pending sources. Break out of the document is loaded.
+                 */
+                if (status == WEBKIT_LOAD_FINISHED ||
+                    status == WEBKIT_LOAD_FAILED)
+                    break;
+            }
 
         /* Setting adjustments only work after the page is loaded. These
          * are set by view_history_action, and they're reset to 0 after
