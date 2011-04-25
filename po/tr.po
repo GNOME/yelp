@@ -4,23 +4,25 @@
 # Görkem Çetin <gorkem@gelecek.com.tr>, 2002.
 # Arman Aksoy <armish@linux-sevenler.de>, 2003.
 # Serkan Kenar <serkan@ieee.metu.edu.tr>, 2005, 2006.
-# Serdar ÇİÇEK <serdar@nerd.com.tr>, 2007.
+# Serdar ÇİÇEK <serdar@nerd.com.tr>, 2007, 2008.
 # Fatih Ergüven <fatih@erguven.org>, 2007.
-# Serdar CICEK <serdar@nerd.com.tr>, 2008.
 # Baris Cicek <baris@teamforce.name.tr>, 2004, 2005, 2007, 2008, 2009.
 # Server ACİM <serveracim@gmail.com>, 2010
+# Muhammet Kara <muhammet.k@gmail.com>, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.tr\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-01 18:04+0300\n"
-"PO-Revision-Date: 2010-08-25 11:31+0200\n"
-"Last-Translator: Server Acim <serveracim@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-04-01 15:05+0000\n"
+"PO-Revision-Date: 2011-04-26 01:54+0300\n"
+"Last-Translator: Muhammet Kara <muhammet.k@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/info.xml.in.h:1
@@ -932,29 +934,28 @@ msgstr "İstenen sayfa' %s' belgesi içinde bulunamadı."
 
 #: ../libyelp/yelp-document.c:266
 msgid "Indexed"
-msgstr ""
+msgstr "Dizinli"
 
 #: ../libyelp/yelp-document.c:267
 msgid "Whether the document content has been indexed"
-msgstr ""
+msgstr "Belge içeriğinin dizinlenip dizinlenmediğini gösterir"
 
 #: ../libyelp/yelp-document.c:275
-#, fuzzy
 msgid "Document URI"
-msgstr "Belge Bölümleri"
+msgstr "Belge Adresi"
 
 #: ../libyelp/yelp-document.c:276
 msgid "The URI which identifies the document"
-msgstr ""
+msgstr "Belgeyi tanımlayan adres"
 
 #: ../libyelp/yelp-document.c:966
 #, c-format
 msgid "No matching help pages found in “%s”."
-msgstr ""
+msgstr "“%s”de eşleşen yardım sayfası bulunamadı."
 
 #: ../libyelp/yelp-document.c:972
 msgid "No matching help pages found."
-msgstr ""
+msgstr "Eşleşen yardım sayfası bulunamadı."
 
 #: ../libyelp/yelp-error.c:37
 #, c-format
@@ -962,9 +963,8 @@ msgid "An unknown error occurred."
 msgstr "Bilinmeyen bir hata oluştu."
 
 #: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
-#, fuzzy
 msgid "All Help Documents"
-msgstr "_Tüm Belgeler"
+msgstr "Bütün Yardım Belgeleri"
 
 #: ../libyelp/yelp-info-document.c:397
 #, c-format
@@ -1003,19 +1003,16 @@ msgid "Search..."
 msgstr "Ara..."
 
 #: ../libyelp/yelp-location-entry.c:789
-#, fuzzy
 msgid "Clear the search text"
-msgstr "%s üzerinde tekrar çevrimiçi ara"
+msgstr "Arama metnini temizle"
 
 #: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1560
-#, fuzzy
 msgid "Bookmark this page"
-msgstr "Yer İmleri"
+msgstr "Bu sayfayı yer İmlerine ekle"
 
 #: ../libyelp/yelp-location-entry.c:850 ../libyelp/yelp-location-entry.c:1571
-#, fuzzy
 msgid "Remove bookmark"
-msgstr "_Yer İmini Kaldır"
+msgstr "Yer imini kaldır"
 
 #: ../libyelp/yelp-location-entry.c:1416
 msgid "Loading"
@@ -1055,9 +1052,8 @@ msgid "Show Text Cursor"
 msgstr "Metin İmlecini Göster"
 
 #: ../libyelp/yelp-settings.c:182
-#, fuzzy
 msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Uygun gezinim bir metin imlecini göster"
+msgstr "Erişilebilir gezinme için metin imlecini ya da kareti göster"
 
 #: ../libyelp/yelp-settings.c:190
 msgid "Editor Mode"
@@ -1068,13 +1064,12 @@ msgid "Enable features useful to editors"
 msgstr "Düzenleyiciler için özellikleri kullandır"
 
 #: ../libyelp/yelp-sqlite-storage.c:150
-#, fuzzy
 msgid "Database filename"
-msgstr "Veritabanları"
+msgstr "Veritabanı dosya adı"
 
 #: ../libyelp/yelp-sqlite-storage.c:151
 msgid "The filename of the sqlite database"
-msgstr ""
+msgstr "Sqlite veritabanının dosya adı"
 
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
@@ -1174,10 +1169,9 @@ msgid "The icon of the page being viewed"
 msgstr "Görüntülenen sayfanın simgesi"
 
 #: ../libyelp/yelp-view.c:713
-#, fuzzy
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
-"PackageKit kurulmamış.  Paket kurulum bağlantısı PackageKit kurulumunu "
+"PackageKit kurulmamış. Paket kurulum bağlantıları PackageKit kurulumunu "
 "gerekli kılıyor."
 
 #: ../libyelp/yelp-view.c:991
@@ -1246,14 +1240,12 @@ msgid "Could not load a document"
 msgstr "Belge yüklenemiyor"
 
 #: ../libyelp/yelp-view.c:1623
-#, fuzzy
 msgid "Document Not Found"
-msgstr "Belge Bölümleri"
+msgstr "Belge Bulunamadı"
 
 #: ../libyelp/yelp-view.c:1625
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Bulunamadı"
+msgstr "Sayfa Bulunamadı"
 
 #: ../libyelp/yelp-view.c:1628
 msgid "Cannot Read"
@@ -1264,9 +1256,8 @@ msgid "Unknown Error"
 msgstr "Bilinmeyen Hata"
 
 #: ../libyelp/yelp-view.c:1654
-#, fuzzy
 msgid "Search for packages containing this document."
-msgstr "Diğer belgeleri ara"
+msgstr "Bu belgeyi içeren paketleri ara."
 
 #: ../libyelp/yelp-view.c:1807
 #, c-format
@@ -1300,7 +1291,6 @@ msgid "_Smaller Text"
 msgstr "_Daha Küçük Metin"
 
 #: ../src/yelp-application.c:145
-#, fuzzy
 msgid "Decrease the size of the text"
 msgstr "Metnin boyutunu küçült"
 
