@@ -1,3 +1,16 @@
+Changes in 3.0.2
+----------------
+* Adapt to JavaScript fixes in yelp-xsl
+* Fixed problem with loading animation getting stuck
+* Don't use image-loading icon in location entry
+* Fixed DTD catalog references to not point to /home/shaunm
+* Fixed crasher with relative file paths, #647761
+* Updated translations:
+  fi    (Timo Jyrinki)
+  tr    (Muhammet Kara)
+  ug    (Abduxukur Abdurixit)
+  vi    (Lê Trường An, Nguyễn Thái Ngọc Duy)
+
 Changes in 3.0.1
 ----------------
 * Fixed startup notification with GtkApplication (Ryan Lortie, Shaun McCance)
