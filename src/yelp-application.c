@@ -350,7 +350,7 @@ yelp_application_new (void)
     return app;
 }
 
-// consumes the uri
+/* consumes the uri */
 static void
 open_uri (YelpApplication *app,
           YelpUri         *uri,
