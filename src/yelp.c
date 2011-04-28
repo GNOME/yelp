@@ -38,6 +38,11 @@ main (int argc, char **argv)
     g_thread_init (NULL);
     g_type_init ();
 
+    setlocale (LC_ALL, "");
+    textdomain (GETTEXT_PACKAGE);
+    bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+    bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+
     app = yelp_application_new ();
 
     return g_application_run (G_APPLICATION (app), argc, argv);
