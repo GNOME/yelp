@@ -53,7 +53,7 @@ struct _YelpSettingsPriv {
 
     gboolean      editor_mode;
 
-    GHashTable   *bookmarks;
+    GHashTable   *env;
 };
 
 enum {
@@ -80,6 +80,7 @@ G_DEFINE_TYPE (YelpSettings, yelp_settings, G_TYPE_OBJECT);
 
 static void           yelp_settings_class_init   (YelpSettingsClass    *klass);
 static void           yelp_settings_init         (YelpSettings         *settings);
+static void           yelp_settings_constructed  (GObject              *object);
 static void           yelp_settings_dispose      (GObject              *object);
 static void           yelp_settings_finalize     (GObject              *object);
 static void           yelp_settings_get_property (GObject              *object,
@@ -119,6 +120,7 @@ yelp_settings_class_init (YelpSettingsClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
     gint i;
 
+    object_class->constructed  = yelp_settings_constructed;
     object_class->dispose  = yelp_settings_dispose;
     object_class->finalize = yelp_settings_finalize;
     object_class->get_property = yelp_settings_get_property;
@@ -234,8 +236,55 @@ yelp_settings_init (YelpSettings *settings)
 	settings->priv->fonts[i] = NULL;
     }
 
-    settings->priv->bookmarks = g_hash_table_new_full (g_str_hash, g_str_equal,
-                                                       g_free, NULL);
+    settings->priv->env = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                                 g_free, NULL);
+}
+
+static void
+yelp_settings_constructed (GObject *object)
+{
+    YelpSettings *settings = YELP_SETTINGS (object);
+    GDBusConnection *connection;
+    GVariant *ret, *names;
+    GVariantIter iter;
+    gchar *name;
+    GError *error = NULL;
+
+    connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
+    if (connection == NULL) {
+        g_warning ("Unable to connect to dbus: %s", error->message);
+        g_error_free (error);
+        return;
+    }
+
+    ret = g_dbus_connection_call_sync (connection,
+                                       "org.freedesktop.DBus",
+                                       "/org/freedesktop/DBus",
+                                       "org.freedesktop.DBus",
+                                       "ListNames",
+                                       NULL,
+                                       G_VARIANT_TYPE ("(as)"),
+                                       G_DBUS_CALL_FLAGS_NONE,
+                                       -1, NULL, &error);
+    if (ret == NULL) {
+        g_warning ("Unable to query dbus: %s", error->message);
+        g_error_free (error);
+        return;
+    }
+    names = g_variant_get_child_value (ret, 0);
+    g_variant_iter_init (&iter, names);
+    while (g_variant_iter_loop (&iter, "&s", &name)) {
+        if (g_str_equal (name, "org.gnome.Panel"))
+            yelp_settings_set_env (settings, "gnome-panel");
+        else if (g_str_equal (name, "org.gnome.Shell"))
+            yelp_settings_set_env (settings, "gnome-shell");
+        else if (g_str_equal (name, "com.canonical.Unity"))
+            yelp_settings_set_env (settings, "unity");
+        else if (g_str_equal (name, "org.xfce.Panel"))
+            yelp_settings_set_env (settings, "xfce");
+    }
+    g_variant_unref (names);
+    g_variant_unref (ret);
 }
 
 static void
@@ -252,6 +301,8 @@ yelp_settings_finalize (GObject *object)
     YelpSettings *settings = YELP_SETTINGS (object);
 
     g_mutex_free (settings->priv->mutex);
+
+    g_hash_table_destroy (settings->priv->env);
 
     G_OBJECT_CLASS (yelp_settings_parent_class)->finalize (object);
 }
@@ -708,6 +759,32 @@ yelp_settings_set_editor_mode (YelpSettings *settings,
 
 /******************************************************************************/
 
+void
+yelp_settings_set_env (YelpSettings *settings,
+                       const gchar  *env)
+{
+    if (g_hash_table_lookup (settings->priv->env, env) == NULL) {
+        gchar *ins = g_strdup (env);
+        g_hash_table_insert (settings->priv->env, ins, ins);
+    }
+}
+
+void
+yelp_settings_unset_env (YelpSettings *settings,
+                         const gchar  *env)
+{
+    g_hash_table_remove (settings->priv->env, env);
+}
+
+gboolean
+yelp_settings_check_env (YelpSettings *settings,
+                         const gchar  *env)
+{
+    return (g_hash_table_lookup (settings->priv->env, env) != NULL);
+}
+
+/******************************************************************************/
+
 gchar **
 yelp_settings_get_all_params (YelpSettings *settings,
 			      gint          extra,
@@ -715,9 +792,11 @@ yelp_settings_get_all_params (YelpSettings *settings,
 {
     gchar **params;
     gint i, ix;
+    GString *envstr;
+    GList *envs, *envi;
 
     params = g_new0 (gchar *,
-                     (2*YELP_SETTINGS_NUM_COLORS) + (2*YELP_SETTINGS_NUM_ICONS) + extra + 5);
+                     (2*YELP_SETTINGS_NUM_COLORS) + (2*YELP_SETTINGS_NUM_ICONS) + extra + 7);
 
     for (i = 0; i < YELP_SETTINGS_NUM_COLORS; i++) {
         gchar *val;
@@ -743,6 +822,18 @@ yelp_settings_get_all_params (YelpSettings *settings,
         params[ix++] = g_strdup ("true()");
     else
         params[ix++] = g_strdup ("false()");
+
+    envstr = g_string_new ("'html");
+    envs = g_hash_table_get_keys (settings->priv->env);
+    for (envi = envs; envi != NULL; envi = envi->next) {
+        g_string_append_c (envstr, ' ');
+        g_string_append (envstr, (gchar *) envi->data);
+    }
+    g_string_append_c (envstr, '\'');
+    g_list_free (envs);
+    params[ix++] = g_strdup ("mal.if.env");
+    params[ix++] = g_string_free (envstr, FALSE);
+
     params[ix] = NULL;
 
     if (end != NULL)
