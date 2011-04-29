@@ -24,6 +24,8 @@
 #include <config.h>
 #endif
 
+#include <locale.h>
+
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
