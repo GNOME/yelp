@@ -1076,7 +1076,7 @@ resolve_info_uri (YelpUri *uri)
     if (g_str_has_prefix (priv->res_arg, "info:/")) {
         gchar *newuri;
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_INFO;
-        newuri = g_strdup_printf ("file:%s", priv->res_arg + 4);
+        newuri = g_strdup_printf ("file:%s", priv->res_arg + 5);
         g_free (priv->res_arg);
         priv->res_arg = newuri;
         resolve_file_uri (uri);
