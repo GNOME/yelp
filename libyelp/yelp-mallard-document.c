@@ -429,6 +429,11 @@ mallard_try_run (YelpMallardDocument *mallard,
         return;
     }
 
+    if (page_data->transform != NULL) {
+        /* It's already running. Just let it be. */
+        return;
+    }
+
     mallard_page_data_run (page_data);
 }
 
