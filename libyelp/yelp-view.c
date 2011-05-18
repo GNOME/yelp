@@ -1214,7 +1214,7 @@ view_populate_popup (YelpView *view,
 
             child = (WebKitDOMNode *)
                 webkit_dom_element_query_selector (WEBKIT_DOM_ELEMENT (link_node),
-                                                   "div.linkdiv div.title", NULL);
+                                                   "span.title", NULL);
             if (child != NULL)
                 priv->popup_link_text = webkit_dom_node_get_text_content (child);
 
