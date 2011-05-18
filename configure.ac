@@ -123,8 +123,6 @@ AC_SUBST([DATADIR])
 
 
 XSL_PATH="`$PKG_CONFIG --variable=xsltdir yelp-xsl`"
-XSL_DB_TITLE="$XSLT_PATH""/docbook/common/db-title.xsl"
-AC_SUBST(XSL_DB_TITLE)
 
 XSL_DB2XHTML="`$PKG_CONFIG --variable=db2xhtml yelp-xsl`"
 AC_SUBST(XSL_DB2XHTML)
@@ -199,14 +197,6 @@ docs/libyelp/Makefile
 docs/libyelp/version.xml
 libyelp/Makefile
 src/Makefile
-stylesheets/Makefile
-stylesheets/db2html.xsl
-stylesheets/db-title.xsl
-stylesheets/info2html.xsl
-stylesheets/mal2html.xsl
-stylesheets/man2html.xsl
-stylesheets/toc2html.xsl
-stylesheets/yelp-common.xsl
 data/Makefile
 data/dtd/Makefile
 data/dtd/catalog
@@ -217,6 +207,13 @@ data/icons/hicolor/16x16/status/Makefile
 data/icons/hicolor/scalable/Makefile
 data/icons/hicolor/scalable/actions/Makefile
 data/icons/hicolor/scalable/status/Makefile
+data/js/Makefile
+data/xslt/Makefile
+data/xslt/db2html.xsl
+data/xslt/info2html.xsl
+data/xslt/mal2html.xsl
+data/xslt/man2html.xsl
+data/xslt/yelp-common.xsl
 po/Makefile.in
 tests/Makefile
 yelp.desktop.in

@@ -5,14 +5,6 @@ yelp_SOURCES =						\
 	yelp-window.c		yelp-window.h		\
 	yelp.c
 
-#	yelp-toc.h		yelp-toc.c			\
-#	yelp-db-print.c		yelp-db-print.h			\
-#	yelp-man-parser.c 	yelp-man-parser.h		\
-#	yelp-man.c 		yelp-man.h			\
-#	yelp-search.c		yelp-search.h			\
-#	yelp-search-parser.c 	yelp-search-parser.h
-
-
 YELP_DEFINES =								\
 	-DG_LOG_DOMAIN=\"Yelp\"						\
 	-DPREFIX=\""$(prefix)"\"					\
