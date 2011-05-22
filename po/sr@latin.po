@@ -1,884 +1,28 @@
 # Serbian translation of yelp
 # Courtesy of Prevod.org team (http://prevod.org/) -- 2003 - 2009.
-#
 # This file is distributed under the same license as the yelp package.
-#
 # Maintainer: Goran Rakić <gox@devbase.net>
 # Reviewed on 2004-03-20 by: Slobodan D. Sredojević <slobo@akrep.be>
 # Reviewed on 2005-03-06 by: Danilo Šegan <danilo@gnome.org>
 # Reviewed on 2005-07-24 by: Slobodan D. Sredojević <slobo@akrep.be>
 # Reviewed on 2011-02-06 by: Miroslav Nikolić <miroslavnikolic@rocketmail.com>
 # Danilo Šegan <danilo@gnome.org>, 2011.
-#
+# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&component=general\n"
-"POT-Creation-Date: 2011-01-26 23:41+0000\n"
-"PO-Revision-Date: 2011-02-06 10:40+0100\n"
-"Last-Translator: Danilo Šegan <danilo@gnome.org>\n"
-"Language-Team: Serbian (sr) <gnom@prevod.org>\n"
+"product=yelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-05-18 20:01+0000\n"
+"PO-Revision-Date: 2011-05-18 10:42+0200\n"
+"Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
+"Language-Team: Serbian <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: Serbian (sr)\n"
 "Plural-Forms: nplurals=4;    plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 :    n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\\n\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "GNU info strane"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "Tradicionalna pomoć u komandnoj liniji (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "Programi"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "BLT funkcije"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "Datoteke sa podešavanjima"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "Curses funkcije"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "Razvoj"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "Fortran funkcije"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "Igre"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "Hardverski uređaji"
-
-# note(slobo): U akademskoj literaturi potprogrami imaju opštije značenje
-# od funkcija, procedura...
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "Potprogrami jezgra"
-
-# bug(slobo): Proveri ovo
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "Stranice uputstva"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "Funkcije mrežnog audio zvuka"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "OpenSSL programi"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "OpenSSL podešavanja"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "OpenSSL funkcije"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "OpenSSL pregledi"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "Pregledi"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "POSIKS funkcije"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "POSIKS zaglavlja"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "Perl funkcije"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Qt funkcije"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "Readline funkcije"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "Odeljak 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "Odeljak 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "Odeljak 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "Odeljak 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "Odeljak 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "Odeljak 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "Odeljak 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "Odeljak 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "Odeljak 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "Odeljak 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "Odeljak 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "Odeljak 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "Odeljak 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "Odeljak 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "Odeljak 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "Odeljak 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "Odeljak 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "Odeljak 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "Odeljak 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "Odeljak 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "Odeljak 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "Odeljak 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "Odeljak 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "Odeljci 1, 1p, 1g i 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "Odeljci 3, 3o, i 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "Odeljci 3form i 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "Odeljci 3ncurses i 3curses"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "Odeljci 3pm i 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "Odeljci 3x i 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "Odeljci 7 i 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "Odeljci 8 i 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "Administracija sistema"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "Sistemski pozivi"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "Sistem 5 funkcije za forme i menije"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "TIFF funkcije"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Termcap programi"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "Tradicionalna pomoć u komandnoj liniji (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "H11 programi"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "H11 podešavanja"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "H11 uređaji"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "H11 funkcije"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "H11 igre"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "H11 pregledi"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "2D grafika"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "3D grafika"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "Pristupačnost"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "Akcione igre"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "Avanturističke igre"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "Zabava"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "Programi za pregled i obradu grafike"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "Programi vezani za zvuk i video"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "Programi za obrazovanje i učenje"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "Arkadne igre"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "Alati za arhive"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "Umetnost"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "Veštačka inteligencija"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "Astronomija"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "Biologija"
-
-# Ne dolazi mi trenutno :)
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "Igre kockama"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "Igre na tabli"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "Izgradnja"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "Kalkulator"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "Kalendar"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "Igre sa kartama"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "Alati za grafikone"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "Ćaskanje"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "Hemija"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "Satovi"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "Alati za kompresiju"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "Nauka o računarima"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "Izgradnja"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "Upravljanje kontaktima"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "Prikazivanje podataka"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "Baze podataka"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "Uklanjanje grešaka"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "Radna površ"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "Podešavanja radne površi"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "Povezivanje na internet"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "Rečnici"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "Nareži disk"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "Ekonomija"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "Obrazovanje"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "Elektricitet"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "Elektronika"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "Alati za e-poštu"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "Emulatori"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "Inžinjerstvo"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "Razgledač datoteka"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "Alati za datoteke"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "Prenos datoteka"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "Sistem datoteka"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "Finansijski alati"
-
-# Može ovako?
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "Alati za grafike protoka"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "Gnomovi programi"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "Gtk"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "Dizajn grafičkog sučelja"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "Programi pisani za Gnom okruženje"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "Programi pisani za KDE okruženje"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "Geografija"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "Geologija"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "Nauka o Zemlji"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "Grafika"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Uputstva za programe koji se povezuju sa spoljnim svetom"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "Uputstva za uzimanje učešća u razvoju"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "Amaterski radio"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "Podešavanja hardvera"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "Zabavljanje"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "Istorija"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "Razvojna okruženja"
-
-# Ja bi stavio za razgovor, ćaskanje i slično...
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "Programi za IRC"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "Obrada slike"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "Trenutne poruke"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "Internet"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "Java"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "Programi za KDE"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "Igre za decu"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr ""
-"Saznajte više o sačinjavanju sistema dostupnim za širi opseg ljudi sa "
-"poremećajima"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "Licence"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "Literatura"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "Logičke igre"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "Matematika"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "Programi za medicinu"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "Midi"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "Razna dokumentacija"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "Upravljanje zvukom"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "Monitor"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "Motif"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "Muzika"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "Novosti"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "Numerička analiza"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "Tekst iz slike"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "Kancelarijski programi"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "Kancelarijski programi"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "Ostala dokumentacija"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "Neposredna razmena (P2P)"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "PDA komunikacija"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "Upravljanje paketima"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "Paralelna proračunavanja"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "Fotografija"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "Fizika"
-
-# bug(slobo): plural-forms
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "Zvuk i video"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "Alati za prezentacije"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "Štampanje"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "Profajleri"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "Alati za upravljanje projektima"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "Izdavanje"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "Rasterska grafika"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "Snimanje zvuka i videa"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "Udaljeni pristup"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "Kontrola izdanja"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "Robotika"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "Fantazijske igre uloga"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "Skeniranje"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "Nauka"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "Bezbednost"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "Sekvenceri"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "Podešavanja"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "Podešavanja koja mogu učiniti okruženje prijatnijim"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "Igre simulacije"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "Zvuk"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "Zvuk i video"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "Obrada zvuka i videa"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "Sportovi"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "Sportske igre"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "Alati za tabelarni račun"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "Strategijske igre"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "Sistem"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "TV"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "Telefon"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "Alati za telefoniju"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "Emulator terminala"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "Uređivanje teksta"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "Alati za tekst"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "Programi koji će vam pomoći da upravljate računarom"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "Alati za lokalizaciju"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "Štelovanja"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "Pomoćni alati"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "Alati koji pomažu u završavanju poslova"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "Vektorska grafika"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "Video"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "Video konferencije"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "Pregledanje slika"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "Veb pretraživači"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "Razvoj veb okruženja"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "Dobrodošli u Gnomov pregledač pomoći"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "Obrada teksta"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -890,26 +34,26 @@ msgstr "Neispravni kompresovani podaci"
 msgid "Not enough memory"
 msgstr "Nema dovoljno memorije"
 
-#: ../libyelp/yelp-docbook-document.c:277 ../libyelp/yelp-info-document.c:233
-#: ../libyelp/yelp-mallard-document.c:260
-#: ../libyelp/yelp-mallard-document.c:415 ../libyelp/yelp-man-document.c:277
+#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:270
+#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Stranica „%s“ nije nađena u dokumentu „%s“."
 
-#: ../libyelp/yelp-docbook-document.c:311 ../libyelp/yelp-info-document.c:367
-#: ../libyelp/yelp-man-document.c:411
+#: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "Datoteka ne postoji."
 
-#: ../libyelp/yelp-docbook-document.c:321 ../libyelp/yelp-info-document.c:377
-#: ../libyelp/yelp-man-document.c:421
+#: ../libyelp/yelp-docbook-document.c:326 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Datoteka „%s“ ne postoji."
 
-#: ../libyelp/yelp-docbook-document.c:336
+#: ../libyelp/yelp-docbook-document.c:341
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -918,7 +62,7 @@ msgstr ""
 "Ne mogu da raščlanim datoteku „%s“ zato što ne predstavlja ispravno oblikovan "
 "HML dokument."
 
-#: ../libyelp/yelp-docbook-document.c:349
+#: ../libyelp/yelp-docbook-document.c:354
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -927,19 +71,44 @@ msgstr ""
 "Ne mogu da raščlanim datoteku „%s“ zato što jedna ili više njenih uključenih "
 "datoteka ne predstavlja ispravno oblikovan HML dokument."
 
-#: ../libyelp/yelp-docbook-document.c:753
+#: ../libyelp/yelp-docbook-document.c:763
 msgid "Unknown"
 msgstr "Nepoznato"
 
-#: ../libyelp/yelp-docbook-document.c:814 ../libyelp/yelp-info-document.c:310
-#: ../libyelp/yelp-man-document.c:353
+#: ../libyelp/yelp-docbook-document.c:824 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Nije nađena tražena stranica u dokumentu „%s“."
 
+#: ../libyelp/yelp-document.c:266
+msgid "Indexed"
+msgstr "Indeks"
+
+#: ../libyelp/yelp-document.c:267
+msgid "Whether the document content has been indexed"
+msgstr "Da li je sadržaj dokumenta indeksiran ili nije"
+
+#: ../libyelp/yelp-document.c:275
+msgid "Document URI"
+msgstr "Adresa dokumenta"
+
+#: ../libyelp/yelp-document.c:276
+msgid "The URI which identifies the document"
+msgstr "Adresa koja određuje dokument"
+
+#: ../libyelp/yelp-document.c:966
+#, c-format
+msgid "No matching help pages found in “%s”."
+msgstr "Nisam pronašao odgovarajuću stranicu pomoći u „%s“."
+
+#: ../libyelp/yelp-document.c:972
+msgid "No matching help pages found."
+msgstr "Nisam pronašao odgovarajuću stranicu pomoći."
+
 # note(slobo): odličan prevod (dogodila se (neka) greška);pregledaj druge 
 # prevode i ukloni sve prevode tipa: dogodila se nepoznata greška i slično
-#: ../libyelp/yelp-error.c:33
+#: ../libyelp/yelp-error.c:37
 #, c-format
 msgid "An unknown error occurred."
 msgstr "Došlo je do nepoznate greške."
@@ -948,7 +117,7 @@ msgstr "Došlo je do nepoznate greške."
 msgid "All Help Documents"
 msgstr "Sve dokumente pomoći"
 
-#: ../libyelp/yelp-info-document.c:392
+#: ../libyelp/yelp-info-document.c:397
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -956,82 +125,102 @@ msgstr ""
 "Ne mogu da raščlanim datoteku „%s“ zato što ne predstavlja ispravno "
 "oblikovanu info stranu."
 
-#: ../libyelp/yelp-location-entry.c:323
+#: ../libyelp/yelp-location-entry.c:329
 msgid "View"
 msgstr "Pregled"
 
-#: ../libyelp/yelp-location-entry.c:324
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
 msgstr "Primer Jelp pregleda za kontrolu"
 
-#: ../libyelp/yelp-location-entry.c:339
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "Obeleživači"
 
-#: ../libyelp/yelp-location-entry.c:340
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
 msgstr "Primer sprovođenja Jelp obeleživača"
 
-#: ../libyelp/yelp-location-entry.c:356
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
 msgstr "Omogući pretragu"
 
-#: ../libyelp/yelp-location-entry.c:357
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
 msgstr "Da li unos lokacije može biti korišćen kao polje za pretragu"
 
-#: ../libyelp/yelp-location-entry.c:426 ../src/yelp-window.c:300
+#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Pretraži..."
 
-#: ../libyelp/yelp-location-entry.c:1335
+#: ../libyelp/yelp-location-entry.c:774
+msgid "Clear the search text"
+msgstr "Očisti tekst pretrage"
+
+#: ../libyelp/yelp-location-entry.c:823 ../libyelp/yelp-location-entry.c:1521
+msgid "Bookmark this page"
+msgstr "Obeležite ovu stranicu"
+
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1529
+msgid "Remove bookmark"
+msgstr "Ukloni obeleživač"
+
+#: ../libyelp/yelp-location-entry.c:1386
 msgid "Loading"
 msgstr "Učitavam"
 
-#: ../libyelp/yelp-mallard-document.c:302
+#: ../libyelp/yelp-mallard-document.c:310
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Direktorijum „%s“ ne postoji."
 
-#: ../libyelp/yelp-settings.c:148
+#: ../libyelp/yelp-settings.c:154
 msgid "GtkSettings"
 msgstr "Gtk podešavanja"
 
-#: ../libyelp/yelp-settings.c:149
+#: ../libyelp/yelp-settings.c:155
 msgid "A GtkSettings object to get settings from"
 msgstr "Objekat Gtk podešavanja iz kog uzeti podešavanja"
 
-#: ../libyelp/yelp-settings.c:157
+#: ../libyelp/yelp-settings.c:163
 msgid "GtkIconTheme"
 msgstr "Tema Gtk ikone"
 
-#: ../libyelp/yelp-settings.c:158
+#: ../libyelp/yelp-settings.c:164
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Objekat Teme Gtk ikone iz kog uzeti ikone"
 
-#: ../libyelp/yelp-settings.c:166
+#: ../libyelp/yelp-settings.c:172
 msgid "Font Adjustment"
 msgstr "Doterivanje fonta"
 
-#: ../libyelp/yelp-settings.c:167
+#: ../libyelp/yelp-settings.c:173
 msgid "A size adjustment to add to font sizes"
 msgstr "Doterivanje veličine za dodavanje veličinama fonta"
 
-#: ../libyelp/yelp-settings.c:175
+#: ../libyelp/yelp-settings.c:181
 msgid "Show Text Cursor"
 msgstr "Prikaži tekstualni kursor"
 
-#: ../libyelp/yelp-settings.c:176
+#: ../libyelp/yelp-settings.c:182
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Prikaži tekstualni kursor ili karet za pristupačnu navigaciju"
 
-#: ../libyelp/yelp-settings.c:184
+#: ../libyelp/yelp-settings.c:190
 msgid "Editor Mode"
 msgstr "Režim uređivanja"
 
-#: ../libyelp/yelp-settings.c:185
+#: ../libyelp/yelp-settings.c:191
 msgid "Enable features useful to editors"
 msgstr "Omogućite funkcije korisne za uređivače"
+
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "Baza podataka"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "Naziv datoteke skulajt baze podataka"
 
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
@@ -1075,73 +264,73 @@ msgid "_Next Page"
 msgstr "_Sledeća strana"
 
 # bug(slobo): imena programa...
-#: ../libyelp/yelp-view.c:415
+#: ../libyelp/yelp-view.c:416
 msgid "Yelp URI"
 msgstr "Jelp adresa"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:417
 msgid "A YelpUri with the current location"
 msgstr "Jelp adresa sa trenutnom lokacijom"
 
-#: ../libyelp/yelp-view.c:424
+#: ../libyelp/yelp-view.c:425
 msgid "Loading State"
 msgstr "Stanje učitavanja"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:426
 msgid "The loading state of the view"
 msgstr "Stanje učitavanja pregleda"
 
-#: ../libyelp/yelp-view.c:434
+#: ../libyelp/yelp-view.c:435
 msgid "Page ID"
 msgstr "IB stranice"
 
-#: ../libyelp/yelp-view.c:435
+#: ../libyelp/yelp-view.c:436
 msgid "The ID of the root page of the page being viewed"
 msgstr "IB matične stranice pregledane stranice"
 
-#: ../libyelp/yelp-view.c:443
+#: ../libyelp/yelp-view.c:444
 msgid "Root Title"
 msgstr "Matični naslov"
 
-#: ../libyelp/yelp-view.c:444
+#: ../libyelp/yelp-view.c:445
 msgid "The title of the root page of the page being viewed"
 msgstr "Naslov matične stranice pregledane stranice"
 
-#: ../libyelp/yelp-view.c:452
+#: ../libyelp/yelp-view.c:453
 msgid "Page Title"
 msgstr "Naslov stranice"
 
-#: ../libyelp/yelp-view.c:453
+#: ../libyelp/yelp-view.c:454
 msgid "The title of the page being viewed"
 msgstr "Naslov pregledane stranice"
 
-#: ../libyelp/yelp-view.c:461
+#: ../libyelp/yelp-view.c:462
 msgid "Page Description"
 msgstr "Opis stranice"
 
-#: ../libyelp/yelp-view.c:462
+#: ../libyelp/yelp-view.c:463
 msgid "The description of the page being viewed"
 msgstr "Opis pregledane stranice"
 
-#: ../libyelp/yelp-view.c:470
+#: ../libyelp/yelp-view.c:471
 msgid "Page Icon"
 msgstr "Ikona stranice"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:472
 msgid "The icon of the page being viewed"
 msgstr "Ikona pregledane stranice"
 
-#: ../libyelp/yelp-view.c:712
+#: ../libyelp/yelp-view.c:713
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "Nemate instaliran Paket kit (PackageKit). Veze instalacije paketa zahtevaju "
 "Paket kit."
 
-#: ../libyelp/yelp-view.c:990
+#: ../libyelp/yelp-view.c:991
 msgid "Save Image"
 msgstr "Sačuvaj sliku"
 
-#: ../libyelp/yelp-view.c:1085
+#: ../libyelp/yelp-view.c:1086
 msgid "Save Code"
 msgstr "Sačuvaj šifru"
 
@@ -1151,186 +340,180 @@ msgstr "Sačuvaj šifru"
 #. * probably only be one menu item for mailto link popups anyway,
 #. * so the mnemonic's not that big of a deal.
 #.
-#: ../libyelp/yelp-view.c:1254
+#: ../libyelp/yelp-view.c:1255
 #, c-format
 msgid "Send email to %s"
 msgstr "Pošalji e-poštu %s"
 
-#: ../libyelp/yelp-view.c:1264
+#: ../libyelp/yelp-view.c:1265
 msgid "_Open Link"
 msgstr "_Otvori vezu"
 
-#: ../libyelp/yelp-view.c:1269
+#: ../libyelp/yelp-view.c:1270
 msgid "Open Link in New _Window"
 msgstr "Otvori vezu u _novom prozoru"
 
-#: ../libyelp/yelp-view.c:1320
+#: ../libyelp/yelp-view.c:1321
 msgid "_Save Image As..."
 msgstr "_Sačuvaj sliku kao..."
 
-#: ../libyelp/yelp-view.c:1322
+#: ../libyelp/yelp-view.c:1323
 msgid "_Save Video As..."
 msgstr "_Sačuvaj video kao..."
 
-#: ../libyelp/yelp-view.c:1329
+#: ../libyelp/yelp-view.c:1330
 msgid "S_end Image To..."
 msgstr "_Pošalji sliku do..."
 
-#: ../libyelp/yelp-view.c:1331
+#: ../libyelp/yelp-view.c:1332
 msgid "S_end Video To..."
 msgstr "_Pošalji video do..."
 
-#: ../libyelp/yelp-view.c:1342
+#: ../libyelp/yelp-view.c:1343
 msgid "_Copy Text"
 msgstr "_Umnoži tekst"
 
-#: ../libyelp/yelp-view.c:1355
+#: ../libyelp/yelp-view.c:1356
 msgid "C_opy Code Block"
 msgstr "U_množi blok šifre"
 
-#: ../libyelp/yelp-view.c:1360
+#: ../libyelp/yelp-view.c:1361
 msgid "Save Code _Block As..."
 msgstr "Sačuvaj blok _šifre kao..."
 
-#: ../libyelp/yelp-view.c:1542
+#: ../libyelp/yelp-view.c:1543
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Ne mogu da učitam dokument za „%s“"
 
-#: ../libyelp/yelp-view.c:1548
+#: ../libyelp/yelp-view.c:1549
 #, c-format
 msgid "Could not load a document"
 msgstr "Ne mogu da učitam dokument"
 
-#: ../libyelp/yelp-view.c:1622
+#: ../libyelp/yelp-view.c:1623
 msgid "Document Not Found"
 msgstr "Odeljci dokumenta"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1625
 msgid "Page Not Found"
 msgstr "Stranica nije nađena"
 
-#: ../libyelp/yelp-view.c:1627
+#: ../libyelp/yelp-view.c:1628
 msgid "Cannot Read"
 msgstr "Ne mogu da čitam"
 
-#: ../libyelp/yelp-view.c:1633
+#: ../libyelp/yelp-view.c:1634
 msgid "Unknown Error"
 msgstr "Nepoznata greška"
 
-#: ../libyelp/yelp-view.c:1653
+#: ../libyelp/yelp-view.c:1654
 msgid "Search for packages containing this document."
 msgstr "Traži u ostaloj dokumentaciji."
 
-#: ../libyelp/yelp-view.c:1806
+#: ../libyelp/yelp-view.c:1807
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Adresa „%s“ ne ukazuje na ispravnu stranicu."
 
-#: ../libyelp/yelp-view.c:1812
+#: ../libyelp/yelp-view.c:1813
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "Adresa ne ukazuje na ispravnu stranicu."
 
-#: ../libyelp/yelp-view.c:1818
+#: ../libyelp/yelp-view.c:1819
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Adresa „%s“ ne može biti analizirana."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "Uključi režim uređivača"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:125
 msgid "_Larger Text"
 msgstr "_Širi tekst"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:127
 msgid "Increase the size of the text"
 msgstr "Povećajte veličinu teksta"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:130
 msgid "_Smaller Text"
 msgstr "_Manji tekst"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:132
 msgid "Decrease the size of the text"
 msgstr "Smanjite veličinu teksta"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr "Prikaži Tekstualni _kursor"
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1533
+#: ../src/yelp-application.c:250 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Pomoć"
 
-#: ../src/yelp-window.c:265
+#: ../src/yelp-application.c:285
+msgid "Show Text _Cursor"
+msgstr "Prikaži tekstualni _kursor"
+
+#: ../src/yelp-window.c:236
 msgid "_Page"
 msgstr "_Stranica"
 
-#: ../src/yelp-window.c:266
+#: ../src/yelp-window.c:237
 msgid "_View"
 msgstr "_Pregled"
 
 # note(slobo): Radi se o kretanju kroz knjigu,uputstvo,članak (strane); napred, 
 # nazad, sadržaj i slično
-#: ../src/yelp-window.c:267
+#: ../src/yelp-window.c:238
 msgid "_Go"
 msgstr "_Strana"
 
-#: ../src/yelp-window.c:268
+#: ../src/yelp-window.c:239
 msgid "_Bookmarks"
 msgstr "_Obeleživači"
 
-#: ../src/yelp-window.c:271
+#: ../src/yelp-window.c:242
 msgid "_New Window"
 msgstr "_Novi prozor"
 
-#: ../src/yelp-window.c:276
+#: ../src/yelp-window.c:247
 msgid "_Close"
 msgstr "_Zatvori"
 
-#: ../src/yelp-window.c:281
+#: ../src/yelp-window.c:252
 msgid "_All Documents"
 msgstr "_Svi dokumenti"
 
-#: ../src/yelp-window.c:285
+#: ../src/yelp-window.c:256
 msgid "_Add Bookmark"
 msgstr "_Dodaj obeleživač"
 
-#: ../src/yelp-window.c:290
-msgid "_Edit Bookmarks"
-msgstr "_Uredi obeleživače"
+#: ../src/yelp-window.c:261
+msgid "_Remove Bookmark"
+msgstr "_Ukloni obeleživač"
 
-#: ../src/yelp-window.c:295
+#: ../src/yelp-window.c:265
 msgid "Find in Page..."
 msgstr "Pronađi na stranici..."
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:275
 msgid "Open Location"
 msgstr "Otvori mesto"
 
-#: ../src/yelp-window.c:331
+#: ../src/yelp-window.c:301
 msgid "Application"
 msgstr "Program"
 
-#: ../src/yelp-window.c:332
+#: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Primerak Jelp programa koji kontroliše ovaj prozor"
 
-#: ../src/yelp-window.c:585
+#: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "Čitaj kasnije"
 
-#. %s will be replaced with the name of a document
-#: ../src/yelp-window.c:802
-#, c-format
-msgid "Bookmarks for %s"
-msgstr "Obeleživači za „%s“"
-
-#: ../src/yelp-window.c:1337
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
@@ -1339,26 +522,669 @@ msgstr[1] "%i rezultata"
 msgstr[2] "%i rezultata"
 msgstr[3] "Jedan rezultat"
 
-#: ../src/yelp-window.c:1362
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "Nema rezultata"
-
-#: ../src/yelp-window.c:1652
-msgid "_Open Bookmark"
-msgstr "_Otvori obeleživač"
-
-#: ../src/yelp-window.c:1658
-msgid "Open Bookmark in New _Window"
-msgstr "Otvori obeleživač u novom _prozoru"
-
-#: ../src/yelp-window.c:1667
-msgid "_Remove Bookmark"
-msgstr "_Ukloni obeleživač"
 
 # note(slobo): tražimo pomoć od vilenjaka
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Potražite Gnomovu pomoć"
+
+#~ msgid "GNU Info Pages"
+#~ msgstr "GNU info strane"
+
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "Tradicionalna pomoć u komandnoj liniji (info)"
+
+#~ msgid "Applications"
+#~ msgstr "Programi"
+
+#~ msgid "BLT Functions"
+#~ msgstr "BLT funkcije"
+
+#~ msgid "Configuration Files"
+#~ msgstr "Datoteke sa podešavanjima"
+
+#~ msgid "Curses Functions"
+#~ msgstr "Curses funkcije"
+
+#~ msgid "Development"
+#~ msgstr "Razvoj"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "Fortran funkcije"
+
+#~ msgid "Games"
+#~ msgstr "Igre"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "Hardverski uređaji"
+
+# note(slobo): U akademskoj literaturi potprogrami imaju opštije značenje
+# od funkcija, procedura...
+#~ msgid "Kernel Routines"
+#~ msgstr "Potprogrami jezgra"
+
+# bug(slobo): Proveri ovo
+#~ msgid "Manual Pages"
+#~ msgstr "Stranice uputstva"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "Funkcije mrežnog audio zvuka"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "OpenSSL programi"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "OpenSSL podešavanja"
+
+#~ msgid "OpenSSL Functions"
+#~ msgstr "OpenSSL funkcije"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "OpenSSL pregledi"
+
+#~ msgid "Overviews"
+#~ msgstr "Pregledi"
+
+#~ msgid "POSIX Functions"
+#~ msgstr "POSIKS funkcije"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "POSIKS zaglavlja"
+
+#~ msgid "Perl Functions"
+#~ msgstr "Perl funkcije"
+
+#~ msgid "Qt Functions"
+#~ msgstr "Qt funkcije"
+
+#~ msgid "Readline Functions"
+#~ msgstr "Readline funkcije"
+
+#~ msgid "Section 0p"
+#~ msgstr "Odeljak 0p"
+
+#~ msgid "Section 1m"
+#~ msgstr "Odeljak 1m"
+
+#~ msgid "Section 1ssl"
+#~ msgstr "Odeljak 1ssl"
+
+#~ msgid "Section 1x"
+#~ msgstr "Odeljak 1x"
+
+#~ msgid "Section 2"
+#~ msgstr "Odeljak 2"
+
+#~ msgid "Section 3blt"
+#~ msgstr "Odeljak 3blt"
+
+#~ msgid "Section 3f"
+#~ msgstr "Odeljak 3f"
+
+#~ msgid "Section 3nas"
+#~ msgstr "Odeljak 3nas"
+
+#~ msgid "Section 3p"
+#~ msgstr "Odeljak 3p"
+
+#~ msgid "Section 3qt"
+#~ msgstr "Odeljak 3qt"
+
+#~ msgid "Section 3readline"
+#~ msgstr "Odeljak 3readline"
+
+#~ msgid "Section 3ssl"
+#~ msgstr "Odeljak 3ssl"
+
+#~ msgid "Section 3tiff"
+#~ msgstr "Odeljak 3tiff"
+
+#~ msgid "Section 4"
+#~ msgstr "Odeljak 4"
+
+#~ msgid "Section 4x"
+#~ msgstr "Odeljak 4x"
+
+#~ msgid "Section 5"
+#~ msgstr "Odeljak 5"
+
+#~ msgid "Section 5ssl"
+#~ msgstr "Odeljak 5ssl"
+
+#~ msgid "Section 5x"
+#~ msgstr "Odeljak 5x"
+
+#~ msgid "Section 6"
+#~ msgstr "Odeljak 6"
+
+#~ msgid "Section 6x"
+#~ msgstr "Odeljak 6x"
+
+#~ msgid "Section 7ssl"
+#~ msgstr "Odeljak 7ssl"
+
+#~ msgid "Section 7x"
+#~ msgstr "Odeljak 7x"
+
+#~ msgid "Section 9"
+#~ msgstr "Odeljak 9"
+
+#~ msgid "Sections 1, 1p, 1g and 1t"
+#~ msgstr "Odeljci 1, 1p, 1g i 1t"
+
+#~ msgid "Sections 3, 3o, and 3t"
+#~ msgstr "Odeljci 3, 3o, i 3t"
+
+#~ msgid "Sections 3form and 3menu"
+#~ msgstr "Odeljci 3form i 3menu"
+
+#~ msgid "Sections 3ncurses and 3curses"
+#~ msgstr "Odeljci 3ncurses i 3curses"
+
+#~ msgid "Sections 3pm and 3perl"
+#~ msgstr "Odeljci 3pm i 3perl"
+
+#~ msgid "Sections 3x and 3X11"
+#~ msgstr "Odeljci 3x i 3X11"
+
+#~ msgid "Sections 7 and 7gcc"
+#~ msgstr "Odeljci 7 i 7gcc"
+
+#~ msgid "Sections 8 and 8l"
+#~ msgstr "Odeljci 8 i 8l"
+
+#~ msgid "System Administration"
+#~ msgstr "Administracija sistema"
+
+#~ msgid "System Calls"
+#~ msgstr "Sistemski pozivi"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "Sistem 5 funkcije za forme i menije"
+
+#~ msgid "TIFF Functions"
+#~ msgstr "TIFF funkcije"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "Termcap programi"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "Tradicionalna pomoć u komandnoj liniji (man)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "H11 programi"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "H11 podešavanja"
+
+#~ msgid "X11 Devices"
+#~ msgstr "H11 uređaji"
+
+#~ msgid "X11 Functions"
+#~ msgstr "H11 funkcije"
+
+#~ msgid "X11 Games"
+#~ msgstr "H11 igre"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "H11 pregledi"
+
+#~ msgid "2D Graphics"
+#~ msgstr "2D grafika"
+
+#~ msgid "3D Graphics"
+#~ msgstr "3D grafika"
+
+#~ msgid "Accessibility"
+#~ msgstr "Pristupačnost"
+
+#~ msgid "Action Games"
+#~ msgstr "Akcione igre"
+
+#~ msgid "Adventure Games"
+#~ msgstr "Avanturističke igre"
+
+#~ msgid "Amusement"
+#~ msgstr "Zabava"
+
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "Programi za pregled i obradu grafike"
+
+#~ msgid "Applications related to audio and video"
+#~ msgstr "Programi vezani za zvuk i video"
+
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "Programi za obrazovanje i učenje"
+
+#~ msgid "Arcade Games"
+#~ msgstr "Arkadne igre"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "Alati za arhive"
+
+#~ msgid "Art"
+#~ msgstr "Umetnost"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "Veštačka inteligencija"
+
+#~ msgid "Astronomy"
+#~ msgstr "Astronomija"
+
+#~ msgid "Biology"
+#~ msgstr "Biologija"
+
+# Ne dolazi mi trenutno :)
+#~ msgid "Blocks Games"
+#~ msgstr "Igre kockama"
+
+#~ msgid "Board Games"
+#~ msgstr "Igre na tabli"
+
+#~ msgid "Building"
+#~ msgstr "Izgradnja"
+
+#~ msgid "Calculator"
+#~ msgstr "Kalkulator"
+
+#~ msgid "Calendar"
+#~ msgstr "Kalendar"
+
+#~ msgid "Card Games"
+#~ msgstr "Igre sa kartama"
+
+#~ msgid "Charting Tools"
+#~ msgstr "Alati za grafikone"
+
+#~ msgid "Chat"
+#~ msgstr "Ćaskanje"
+
+#~ msgid "Chemistry"
+#~ msgstr "Hemija"
+
+#~ msgid "Clocks"
+#~ msgstr "Satovi"
+
+#~ msgid "Compression Tools"
+#~ msgstr "Alati za kompresiju"
+
+#~ msgid "Computer Science"
+#~ msgstr "Nauka o računarima"
+
+#~ msgid "Construction"
+#~ msgstr "Izgradnja"
+
+#~ msgid "Contact Management"
+#~ msgstr "Upravljanje kontaktima"
+
+#~ msgid "Data Visualization"
+#~ msgstr "Prikazivanje podataka"
+
+#~ msgid "Databases"
+#~ msgstr "Baze podataka"
+
+#~ msgid "Debuggers"
+#~ msgstr "Uklanjanje grešaka"
+
+#~ msgid "Desktop"
+#~ msgstr "Radna površ"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "Podešavanja radne površi"
+
+#~ msgid "Dialup"
+#~ msgstr "Povezivanje na internet"
+
+#~ msgid "Dictionaries"
+#~ msgstr "Rečnici"
+
+#~ msgid "Disc Burning"
+#~ msgstr "Nareži disk"
+
+#~ msgid "Economy"
+#~ msgstr "Ekonomija"
+
+#~ msgid "Education"
+#~ msgstr "Obrazovanje"
+
+#~ msgid "Electricity"
+#~ msgstr "Elektricitet"
+
+#~ msgid "Electronics"
+#~ msgstr "Elektronika"
+
+#~ msgid "Email Tools"
+#~ msgstr "Alati za e-poštu"
+
+#~ msgid "Emulator"
+#~ msgstr "Emulatori"
+
+#~ msgid "Engineering"
+#~ msgstr "Inžinjerstvo"
+
+#~ msgid "File Manager"
+#~ msgstr "Razgledač datoteka"
+
+#~ msgid "File Tools"
+#~ msgstr "Alati za datoteke"
+
+#~ msgid "File Transfer"
+#~ msgstr "Prenos datoteka"
+
+#~ msgid "Filesystem"
+#~ msgstr "Sistem datoteka"
+
+#~ msgid "Financial Tools"
+#~ msgstr "Finansijski alati"
+
+# Može ovako?
+#~ msgid "Flow Charting Tools"
+#~ msgstr "Alati za grafike protoka"
+
+#~ msgid "GNOME Applications"
+#~ msgstr "Gnomovi programi"
+
+#~ msgid "GTK"
+#~ msgstr "Gtk"
+
+#~ msgid "GUI Designers"
+#~ msgstr "Dizajn grafičkog sučelja"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "Programi pisani za Gnom okruženje"
+
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "Programi pisani za KDE okruženje"
+
+#~ msgid "Geography"
+#~ msgstr "Geografija"
+
+#~ msgid "Geology"
+#~ msgstr "Geologija"
+
+#~ msgid "Geoscience"
+#~ msgstr "Nauka o Zemlji"
+
+#~ msgid "Graphics"
+#~ msgstr "Grafika"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr "Uputstva za programe koji se povezuju sa spoljnim svetom"
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "Uputstva za uzimanje učešća u razvoju"
+
+#~ msgid "Ham Radio"
+#~ msgstr "Amaterski radio"
+
+#~ msgid "Hardware Settings"
+#~ msgstr "Podešavanja hardvera"
+
+#~ msgid "Have some fun"
+#~ msgstr "Zabavljanje"
+
+#~ msgid "History"
+#~ msgstr "Istorija"
+
+#~ msgid "IDEs"
+#~ msgstr "Razvojna okruženja"
+
+# Ja bi stavio za razgovor, ćaskanje i slično...
+#~ msgid "IRC Clients"
+#~ msgstr "Programi za IRC"
+
+#~ msgid "Image Processing"
+#~ msgstr "Obrada slike"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "Trenutne poruke"
+
+#~ msgid "Internet"
+#~ msgstr "Internet"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~ msgid "KDE Applications"
+#~ msgstr "Programi za KDE"
+
+#~ msgid "Kids Games"
+#~ msgstr "Igre za decu"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr ""
+#~ "Saznajte više o sačinjavanju sistema dostupnim za širi opseg ljudi sa "
+#~ "poremećajima"
+
+#~ msgid "Licenses"
+#~ msgstr "Licence"
+
+#~ msgid "Literature"
+#~ msgstr "Literatura"
+
+#~ msgid "Logic Games"
+#~ msgstr "Logičke igre"
+
+#~ msgid "Math"
+#~ msgstr "Matematika"
+
+#~ msgid "Medical Software"
+#~ msgstr "Programi za medicinu"
+
+#~ msgid "Midi"
+#~ msgstr "Midi"
+
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "Razna dokumentacija"
+
+#~ msgid "Mixers"
+#~ msgstr "Upravljanje zvukom"
+
+#~ msgid "Monitor"
+#~ msgstr "Monitor"
+
+#~ msgid "Motif"
+#~ msgstr "Motif"
+
+#~ msgid "Music"
+#~ msgstr "Muzika"
+
+#~ msgid "News"
+#~ msgstr "Novosti"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "Numerička analiza"
+
+#~ msgid "OCR"
+#~ msgstr "Tekst iz slike"
+
+#~ msgid "Office Applications"
+#~ msgstr "Kancelarijski programi"
+
+#~ msgid "Office applications"
+#~ msgstr "Kancelarijski programi"
+
+#~ msgid "Other Documentation"
+#~ msgstr "Ostala dokumentacija"
+
+#~ msgid "P2P"
+#~ msgstr "Neposredna razmena (P2P)"
+
+#~ msgid "PDA Communication"
+#~ msgstr "PDA komunikacija"
+
+#~ msgid "Package Manager"
+#~ msgstr "Upravljanje paketima"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "Paralelna proračunavanja"
+
+#~ msgid "Photography"
+#~ msgstr "Fotografija"
+
+#~ msgid "Physics"
+#~ msgstr "Fizika"
+
+# bug(slobo): plural-forms
+#~ msgid "Players"
+#~ msgstr "Zvuk i video"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "Alati za prezentacije"
+
+#~ msgid "Printing"
+#~ msgstr "Štampanje"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "Profajleri"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "Alati za upravljanje projektima"
+
+#~ msgid "Publishing"
+#~ msgstr "Izdavanje"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~ msgid "Raster Graphics"
+#~ msgstr "Rasterska grafika"
+
+#~ msgid "Recorders"
+#~ msgstr "Snimanje zvuka i videa"
+
+#~ msgid "Remote Access"
+#~ msgstr "Udaljeni pristup"
+
+#~ msgid "Revision Control"
+#~ msgstr "Kontrola izdanja"
+
+#~ msgid "Robotics"
+#~ msgstr "Robotika"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "Fantazijske igre uloga"
+
+#~ msgid "Scanning"
+#~ msgstr "Skeniranje"
+
+#~ msgid "Science"
+#~ msgstr "Nauka"
+
+#~ msgid "Security"
+#~ msgstr "Bezbednost"
+
+#~ msgid "Sequencers"
+#~ msgstr "Sekvenceri"
+
+#~ msgid "Settings"
+#~ msgstr "Podešavanja"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr "Podešavanja koja mogu učiniti okruženje prijatnijim"
+
+#~ msgid "Simulation Games"
+#~ msgstr "Igre simulacije"
+
+#~ msgid "Sound"
+#~ msgstr "Zvuk"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Zvuk i video"
+
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "Obrada zvuka i videa"
+
+#~ msgid "Sports"
+#~ msgstr "Sportovi"
+
+#~ msgid "Sports Games"
+#~ msgstr "Sportske igre"
+
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "Alati za tabelarni račun"
+
+#~ msgid "Strategy Games"
+#~ msgstr "Strategijske igre"
+
+#~ msgid "System"
+#~ msgstr "Sistem"
+
+#~ msgid "TV"
+#~ msgstr "TV"
+
+#~ msgid "Telephony"
+#~ msgstr "Telefon"
+
+#~ msgid "Telephony Tools"
+#~ msgstr "Alati za telefoniju"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "Emulator terminala"
+
+#~ msgid "Text Editors"
+#~ msgstr "Uređivanje teksta"
+
+#~ msgid "Text Tools"
+#~ msgstr "Alati za tekst"
+
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "Programi koji će vam pomoći da upravljate računarom"
+
+#~ msgid "Translation Tools"
+#~ msgstr "Alati za lokalizaciju"
+
+#~ msgid "Tuners"
+#~ msgstr "Štelovanja"
+
+#~ msgid "Utilities"
+#~ msgstr "Pomoćni alati"
+
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "Alati koji pomažu u završavanju poslova"
+
+#~ msgid "Vector Graphics"
+#~ msgstr "Vektorska grafika"
+
+#~ msgid "Video"
+#~ msgstr "Video"
+
+#~ msgid "Video Conference"
+#~ msgstr "Video konferencije"
+
+#~ msgid "Viewer"
+#~ msgstr "Pregledanje slika"
+
+#~ msgid "Web Browser"
+#~ msgstr "Veb pretraživači"
+
+#~ msgid "Web Development"
+#~ msgstr "Razvoj veb okruženja"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "Dobrodošli u Gnomov pregledač pomoći"
+
+#~ msgid "Word Processors"
+#~ msgstr "Obrada teksta"
+
+#~ msgid "_Edit Bookmarks"
+#~ msgstr "_Uredi obeleživače"
+
+#~ msgid "Bookmarks for %s"
+#~ msgstr "Obeleživači za „%s“"
+
+#~ msgid "_Open Bookmark"
+#~ msgstr "_Otvori obeleživač"
+
+#~ msgid "Open Bookmark in New _Window"
+#~ msgstr "Otvori obeleživač u novom _prozoru"
 
 #~ msgid "Re_name"
 #~ msgstr "Pre_imenuj"
@@ -1424,815 +1250,3 @@ msgstr "Potražite Gnomovu pomoć"
 
 #~ msgid "Unrecognized desktop file Version '%s'"
 #~ msgstr "Nije prepoznato izdanje datoteke za radnu površ „%s“"
-
-#~| msgid "Settings"
-#~ msgid "Starting %s"
-#~ msgstr "Pokrećem %s"
-
-#~ msgid "Application does not accept documents on command line"
-#~ msgstr "Program ne prihvata dokumente iz komandne linije"
-
-#~ msgid "Unrecognized launch option: %d"
-#~ msgstr "Nepoznata opcija pri pokretanju: %d"
-
-#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr ""
-#~ "Ne mogu da upišem adresu dokumenta u „Type=Link“ unos unutar datoteke za "
-#~ "radnu površ"
-
-#~ msgid "Not a launchable item"
-#~ msgstr "Ne možete da pokrenete stavku"
-
-#~ msgid "Disable connection to session manager"
-#~ msgstr "Onemogući vezu sa upravnikom sesije"
-
-#~ msgid "Specify file containing saved configuration"
-#~ msgstr "Izaberite datoteku sa sačuvanim podešavanjima"
-
-#~ msgid "FILE"
-#~ msgstr "DATOTEKA"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Unesite IB upravnika sesijom"
-
-#~| msgid "IDEs"
-#~ msgid "ID"
-#~ msgstr "IB"
-
-#~ msgid "Session management options:"
-#~ msgstr "Opcije upravnika sesijom:"
-
-#~ msgid "Show session management options"
-#~ msgstr "Prikaži opcije upravnika sesijom"
-
-#~ msgid "A bookmark titled %s already exists for this page."
-#~ msgstr "Obeleživač za ovu stranu sa naslovom %s već postoji."
-
-#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
-#~ msgstr "Obeleživač za ovu stranu sa naslovom <b>%s</b> već postoji."
-
-#~ msgid "Help Topics"
-#~ msgstr "Polazne teme"
-
-#~ msgid "File not found"
-#~ msgstr "Datoteka nije nađena"
-
-#~ msgid "Could not parse file"
-#~ msgstr "Ne mogu da obradim datoteku"
-
-#~ msgid "Could Not Read File"
-#~ msgstr "Ne mogu da učitam datoteku"
-
-#~ msgid "No information is available about this error."
-#~ msgstr "Nisu dostupni podaci o ovoj grešci."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
-#~ "in an unsupported format."
-#~ msgstr ""
-#~ "Datoteka „%s“ se ne može pročitati i razumeti. Možda je datoteka sažeta "
-#~ "na nepodržani način."
-
-#~ msgid "Use a private session"
-#~ msgstr "Koristi privatnu sesiju"
-
-#~ msgid "Define which cache directory to use"
-#~ msgstr "Definišite direktorijum koji se koristi za privremeni smeštaj"
-
-#~ msgid " GNOME Help Browser"
-#~ msgstr "Gnomov pregledač pomoći"
-
-#~| msgid "File not found"
-#~ msgid "Directory not found"
-#~ msgstr "Nije pronađen direktorijum"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
-#~ "page."
-#~ msgstr ""
-#~ "Ne mogu raščlaniti datoteku „%s“ zato što ne predstavlja ispravno "
-#~ "oblikovanu man stranu."
-
-#~ msgid "Preparing to print"
-#~ msgstr "Pripremam za štampu"
-
-#~ msgid "Printing is not supported on this printer"
-#~ msgstr "Na ovom štampaču štampanje nije podržano"
-
-#~ msgid "Printer %s does not support postscript printing."
-#~ msgstr "Štampač %s ne podržava postskript izlaz."
-
-#~ msgid "Waiting to print"
-#~ msgstr "Čekam u redu za štampu"
-
-#~ msgid "An error occurred while printing"
-#~ msgstr "Dogodila se greška prilikom štampanja"
-
-#~ msgid "It was not possible to print your document: %s"
-#~ msgstr "Nije bilo moguće odštampati vaš dokument: %s"
-
-#~ msgid "the GNOME Support Forums"
-#~ msgstr "Forum za podršku oko Gnoma (eng.)"
-
-#~ msgid "No results for \"%s\""
-#~ msgstr "Nema rezultata za „%s“"
-
-#~ msgid ""
-#~ "Try using different words to describe the problem you're having or the "
-#~ "topic you want help with."
-#~ msgstr ""
-#~ "Pokušajte da koristite drugačije reči da opišete problem koji imate ili "
-#~ "temu o kojoj tražite pomoć."
-
-#~ msgid "Search results for \"%s\""
-#~ msgstr "Rezultati pretrage za „%s“"
-
-#~ msgid "Repeat the search online at %s"
-#~ msgstr "Traži na internetu, na lokaciji %s"
-
-#~ msgid ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-#~ msgstr ""
-#~ "i:kada:onda:tada:nešto:ne:kako:da:šta:od:iz:u:na:preko:radi:neće:ili"
-
-#~ msgid "re"
-#~ msgstr "ne"
-
-#~ msgid "ers:er:ing:es:s:'s"
-#~ msgstr "NULL"
-
-#~ msgid "No Comment"
-#~ msgstr "Nema komentara"
-
-#~ msgid "Search could not be processed"
-#~ msgstr "Pretraga se ne može izvesti"
-
-#~ msgid "The requested search could not be processed."
-#~ msgstr "Željena pretraga se ne može izvesti."
-
-#~ msgid "Cannot process the search"
-#~ msgstr "Ne mogu da izvedem pretragu"
-
-#~ msgid "The search processor returned invalid results"
-#~ msgstr "Izvođenje pretrage je vratilo neispravne rezultate"
-
-#~ msgid "The page %s was not found in the TOC."
-#~ msgstr "Stranica %s nije nađena u sadržaju."
-
-#~ msgid "The requested page was not found in the TOC."
-#~ msgstr "Željena stranica nije nađena u sadržaju."
-
-#~ msgid ""
-#~ "The TOC file could not be parsed because it is not a well-formed XML "
-#~ "document."
-#~ msgstr ""
-#~ "Ne mogu raščlaniti datoteku sadržaja zato što ne predstavlja ispravno "
-#~ "oblikovan XML dokument."
-
-#~ msgid "Broken Transformation"
-#~ msgstr "Pokvarena transformacija"
-
-#~ msgid ""
-#~ "An unknown error occurred while attempting to transform the document."
-#~ msgstr "Došlo je do nepoznate greške pri pokušaju transformacije dokumenta."
-
-#~ msgid "_File"
-#~ msgstr "_Datoteka"
-
-#~ msgid "_Edit"
-#~ msgstr "_Uređivanje"
-
-#~ msgid "_Help"
-#~ msgstr "_Pomoć"
-
-#~ msgid "Print This Document ..."
-#~ msgstr "Štampaj ovaj dokument..."
-
-#~ msgid "About This Document"
-#~ msgstr "O ovom dokumentu"
-
-#~ msgid "Open _Location"
-#~ msgstr "Otvori _putanju"
-
-#~ msgid "_Close Window"
-#~ msgstr "_Zatvori prozor"
-
-#~ msgid "_Select All"
-#~ msgstr "_Izaberi sve"
-
-#~ msgid "_Find..."
-#~ msgstr "_Traži..."
-
-#~ msgid "Find Pre_vious"
-#~ msgstr "Traži un_azad"
-
-#~ msgid "Find previous occurrence of the word or phrase"
-#~ msgstr "Traži prethodnu pojavu reči ili fraze"
-
-#~ msgid "Find Ne_xt"
-#~ msgstr "Traži u_napred"
-
-#~ msgid "Find next occurrence of the word or phrase"
-#~ msgstr "Traži sledeću pojavu reči ili fraze"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Postavke"
-
-#~ msgid "_Reload"
-#~ msgstr "_Osveži"
-
-#~ msgid "Show previous page in history"
-#~ msgstr "Prikaži prethodnu stranicu iz istorijata"
-
-#~ msgid "Show next page in history"
-#~ msgstr "Prikaži narednu stranicu iz istorijata"
-
-#~ msgid "_Help Topics"
-#~ msgstr "Polazne _teme"
-
-#~ msgid "Go to the listing of help topics"
-#~ msgstr "Idi na polazni sadržaj pomoći"
-
-#~ msgid "_Previous Section"
-#~ msgstr "_Prethodni odeljak"
-
-#~ msgid "_Next Section"
-#~ msgstr "_Naredni odeljak"
-
-#~ msgid "_Contents"
-#~ msgstr "_Sadržaj"
-
-#~ msgid "_Copy Link Address"
-#~ msgstr "_Umnoži adresu veze"
-
-#~ msgid "Help On this application"
-#~ msgstr "Pomoć za ovaj program"
-
-#~ msgid "_About"
-#~ msgstr "_O programu"
-
-#~ msgid "Copy _Email Address"
-#~ msgstr "Umnoži adresu _elektronske pošte"
-
-#~ msgid "Help Browser"
-#~ msgstr "Pregledač pomoći"
-
-#~ msgid "Unknown Page"
-#~ msgstr "Nepoznata stranica"
-
-#~ msgid "The requested URI \"%s\" is invalid"
-#~ msgstr "Tražena putanja „%s“ je neispravna"
-
-#~ msgid "Unable to load page"
-#~ msgstr "Ne mogu da učitam stranicu"
-
-#~ msgid "Cannot create search component"
-#~ msgstr "Ne mogu da otvorim deo za pretragu"
-
-#~ msgid "Fin_d:"
-#~ msgstr "T_raži:"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Traži un_azad"
-
-#~ msgid "Find _Next"
-#~ msgstr "Traži u_napred"
-
-#~ msgid "Phrase not found"
-#~ msgstr "Izraz nije nađen"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
-#~ "might not have permissions to read it."
-#~ msgstr ""
-#~ "Ne mogu da pročitam datoteku „%s“.  Ova datoteka možda ne postoji ili "
-#~ "niste ovlašćeni da je čitate."
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "Goran Rakić <grakic@devbase.net>\n"
-#~ "Danilo Šegan <danilo@gnome.org>\n"
-#~ "Slobodan D. Sredojević <slobo@akrep.be>\n"
-#~ "\n"
-#~ "http://prevod.org — prevodi na srpski jezik"
-
-#~ msgid "A documentation browser and viewer for the Gnome Desktop."
-#~ msgstr "Razgledač dokumentacije za okruženje Gnom."
-
-#~ msgid "<b>Accessibility</b>"
-#~ msgstr "<b>Pristupačnost</b>"
-
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Slovni lik</b>"
-
-#~ msgid "C_ase sensitive"
-#~ msgstr "Bitna je _veličina slova"
-
-# note(slobo): U pitanju je naslov prozorčeta koje omogućava traženje teksta
-# uz razlikovanje malih i velikih slova, pretragu u krug i slično. Prozorče
-# omogućava ove funkcije tako da dati naslov pokriva upotrebu a i dogovor je
-# da naslovi budu glagolske imenice.
-#~ msgid "Find"
-#~ msgstr "Pretraga teksta"
-
-#~ msgid "_Find:"
-#~ msgstr "Tr_aži:"
-
-#~ msgid "_Next"
-#~ msgstr "_Naredno"
-
-#~ msgid "_Wrap around"
-#~ msgstr "U _krug"
-
-#~ msgid "Error executing \"gnome-open\""
-#~ msgstr "Greška pri izvršavanju „gnome-open“"
-
-#~ msgid "Accessories"
-#~ msgstr "Alatke"
-
-#~ msgid "Applications for fun"
-#~ msgstr "Zabavni programi"
-
-#~ msgid "Applications for word processing and other office tasks"
-#~ msgstr "Programi za obradu teksta i ostale kancelarijske zanimacije"
-
-#~ msgid "Applications related to multimedia"
-#~ msgstr "Programi u vezi multimedije"
-
-#~ msgid "Applications related to software development"
-#~ msgstr "Programi za razvoj"
-
-#~ msgid "Applications specific to the panel"
-#~ msgstr "Programčići panela"
-
-#~ msgid "Applications that support assistive technologies"
-#~ msgstr "Programi koji podržavaju tehnologije za ispomoć"
-
-#~ msgid "KDE"
-#~ msgstr "KDE"
-
-#~ msgid "Learning applications"
-#~ msgstr "Programi za učenje"
-
-#~ msgid "Office"
-#~ msgstr "Kancelarija"
-
-#~ msgid "Panel Applets"
-#~ msgstr "Programčići panela"
-
-#~ msgid "Programming"
-#~ msgstr "Programiranje"
-
-#~ msgid "Scientific Applications."
-#~ msgstr "Naučni programi"
-
-#~ msgid "Utility applications"
-#~ msgstr "Pomoćni programi"
-
-#~ msgid "Variety of other applications"
-#~ msgstr "Raznorazni drugi programi"
-
-#~ msgid "Could not read the table of contents"
-#~ msgstr "Ne mogu da učitam sadržaj"
-
-#~ msgid "Unsupported Format"
-#~ msgstr "Nepodržani zapis"
-
-#~ msgid "Could not process document"
-#~ msgstr "Ne mogu da obradim dokument"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
-#~ "is formatted incorrectly."
-#~ msgstr ""
-#~ "Ne mogu raščlaniti datoteku „%s“.  Ili datoteka ne postoji, ili je "
-#~ "neispravno zapisana."
-
-#~ msgid "The YelpDocInfo struct of the document"
-#~ msgstr "Struktura YelpDocInfo za dokument"
-
-#~ msgid "<b>Printing</b>"
-#~ msgstr "<b>Štampanje</b>"
-
-#~ msgid ""
-#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
-#~ "not a valid XSLT stylesheet."
-#~ msgstr ""
-#~ "Ne mogu izvršiti vašu pretragu. Datoteka „%s“ ili nedostaje ili ne "
-#~ "predstavlja ispravnu XSLT stilsku stranicu."
-
-#~ msgid "Help Contents"
-#~ msgstr "Sadržaj pomoći"
-
-#~ msgid "Could not load the OMF file '%s'."
-#~ msgstr "Nisam mogao da učitam OMF datoteku „%s“."
-
-#~ msgid "yelp-watermark-blockquote-201C"
-#~ msgstr "yelp-watermark-blockquote-201E"
-
-#~ msgid "YelpTocPager: Pause count is negative."
-#~ msgstr "YelpTocPager: brojač pauza je negativan."
-
-#~ msgid ""
-#~ "The table of contents could not be processed. The file ‘%s’ is either "
-#~ "missing or is not a valid XSLT stylesheet."
-#~ msgstr ""
-#~ "Ne mogu obraditi sadržaj. Datoteka „%s“ ili nedostaje ili ne predstavlja "
-#~ "ispravnu XSLT stilsku stranicu."
-
-#~ msgid "Read man page for %s"
-#~ msgstr "Pročitaj man stranu za %s"
-
-#~ msgid "Read info page for %s"
-#~ msgstr "Pročitaj info stranu za %s"
-
-#~ msgid ""
-#~ "The table of contents could not be loaded. The file ‘%s’ is either "
-#~ "missing or is not well-formed XML."
-#~ msgstr ""
-#~ "Ne mogu učitati sadržaj. Datoteka „%s“ ili nedostaje ili ne predstavlja "
-#~ "ispravno oblikovan XML."
-
-#~ msgid "Command Line Help"
-#~ msgstr "Pomoć koju daje linija naredbi"
-
-#~ msgid "The Uniform Resource Identifier for the file is invalid."
-#~ msgstr "Jednoobrazni identifikator resursa (URI) datoteke je neispravan."
-
-#~ msgid ""
-#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-#~ "actual file."
-#~ msgstr ""
-#~ "Jednoobrazni identifikator resursa (URI) „%s“ je neispravan ili ne "
-#~ "pokazuje na postojeću datoteku."
-
-#~ msgid "Man pages are not supported in this version."
-#~ msgstr "Man strane nisu podržane u ovom izdanju."
-
-#~ msgid "GNU info pages are not supported in this version"
-#~ msgstr "GNU info stranice nisu podržane u ovom izdanju."
-
-#~ msgid "Search is not supported in this version."
-#~ msgstr "Pretraga nije podržana u ovoj verziji"
-
-#~ msgid ""
-#~ "SGML documents are no longer supported. Please ask the author of the "
-#~ "document to convert to XML."
-#~ msgstr ""
-#~ "SGML dokumenti nisu više podržani. Tražite od autora dokumenta da ga "
-#~ "pretvori u  XML."
-
-#~ msgid ""
-#~ "A transformation context could not be created for the file ‘%s’. The "
-#~ "format may not be supported."
-#~ msgstr ""
-#~ "Ne mogu da odredim smisao transformacija za datoteku „%s“. Možda zapis "
-#~ "nije podržan."
-
-#~ msgid ""
-#~ "The section ‘%s’ does not exist in this document. If you were directed to "
-#~ "this section from a Help button in an application, please report this to "
-#~ "the maintainers of that application."
-#~ msgstr ""
-#~ "Odeljak „%s“ ne postoji u ovom dokumentu. Ukoliko ste na ovaj odeljak "
-#~ "upućeni iz dugmeta za pomoć u nekom programu, prijavite ovo autorima tog "
-#~ "programa."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#~ "is improperly formatted."
-#~ msgstr ""
-#~ "Ne mogu raščlaniti datoteku „%s“. Ili datoteka ne postoji ili je "
-#~ "neispravno oblikovana."
-
-#~ msgid "Library Functions"
-#~ msgstr "Funkcije biblioteka"
-
-#~ msgid "Administration"
-#~ msgstr "Administracija"
-
-#~ msgid "Education Applications"
-#~ msgstr "Obrazovni programi"
-
-#~ msgid "Multimedia"
-#~ msgstr "Multimedija"
-
-#~ msgid "Other"
-#~ msgstr "Ostalo"
-
-# bug(slobo):imena programa...
-#~ msgid "Yelp Factory"
-#~ msgstr "Fabrika Jelpa"
-
-# bug(slobo): Imena programa...
-#~ msgid "Could not activate Yelp: '%s'"
-#~ msgstr "Nisam mogao da aktiviram Jelp: „%s“"
-
-#~ msgid "Generating PDF is not currently supported"
-#~ msgstr "Stvaranje PDF-a trenutno nije podržano"
-
-#~ msgid ""
-#~ "You were trying to print to a printer using the \"%s\" driver.  This "
-#~ "program requires a PostScript printer driver."
-#~ msgstr ""
-#~ "Pokušali ste da obavite štampu na štampaču koristeći „%s“ upravljački "
-#~ "program. Ovaj program zahteva PostScript upravljački program."
-
-#~ msgid "_From:"
-#~ msgstr "_Od:"
-
-#~ msgid "_To:"
-#~ msgstr "_Do:"
-
-#~ msgid ""
-#~ "Your search could not be processed. There is no connection to the beagle "
-#~ "daemon."
-#~ msgstr ""
-#~ "Ne mogu da obavim pretragu koju ste zatražili. Ne postoji veza ka beagle "
-#~ "pozadinskom procesu"
-
-#~ msgid "<b>_Bookmarks:</b>"
-#~ msgstr "<b>O_beleživači:</b>"
-
-#~ msgid "<b>_Title:</b>"
-#~ msgstr "<b>_Naslov:</b>"
-
-#~ msgid "_Home"
-#~ msgstr "?Polazna stranica"
-
-#~ msgid "Go to home view"
-#~ msgstr "Idi na polaznu stranicu"
-
-#~ msgid "Development Environments"
-#~ msgstr "Razvojna okruženja"
-
-#~ msgid "Games and Entertainment"
-#~ msgstr "Igre i zabava"
-
-#~ msgid "General"
-#~ msgstr "Opšte"
-
-#~ msgid "Kernels"
-#~ msgstr "Jezgra"
-
-#~ msgid "Office and Productivity Applications"
-#~ msgstr "Kancelarijski i proizvodni programi"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#~ msgid "Titlepage"
-#~ msgstr "Naslov"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "Izabrani dokument nije mogao biti otvoren"
-
-#~ msgid "The table of contents could not be read."
-#~ msgstr "Ne mogu da pročitam sadržaj."
-
-#~ msgid "DocBook SGML documents are no longer supported."
-#~ msgstr "DocBook SGML dokumenti više nisu podržani."
-
-#~ msgid "The selected file could not be read."
-#~ msgstr "Ne može se pročitati izabrana datoteka."
-
-#~ msgid "X11"
-#~ msgstr "Iks11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "Categories"
-#~ msgstr "Kategorije"
-
-#~ msgid "&#8216;"
-#~ msgstr "‘"
-
-#~ msgid "&#8217;"
-#~ msgstr "’"
-
-#~ msgid "&#8220;"
-#~ msgstr "„"
-
-#~ msgid "&#8221;"
-#~ msgstr "“"
-
-#~ msgid "About This Article"
-#~ msgstr "O ovom uputstvu"
-
-#~ msgid "About This Bibliography"
-#~ msgstr "O ovoj literaturi"
-
-#~ msgid "About This Book"
-#~ msgstr "O ovoj knjizi"
-
-#~ msgid "About This Chapter"
-#~ msgstr "O ovom poglavlju"
-
-#~ msgid "About This Entry"
-#~ msgstr "O ovom unosu"
-
-#~ msgid "About This Glossary"
-#~ msgstr "O ovom pojmovniku"
-
-#~ msgid "About This Index"
-#~ msgstr "O ovom popisu"
-
-#~ msgid "About This Part"
-#~ msgstr "O ovom delu"
-
-#~ msgid "About This Reference"
-#~ msgstr "O ovoj literaturi"
-
-#~ msgid "About This Section"
-#~ msgstr "O ovom odeljku"
-
-#~ msgid "Affiliation"
-#~ msgstr "Zaposlenje"
-
-#~ msgid "Appendix"
-#~ msgstr "Dodatak"
-
-#~ msgid "Audience"
-#~ msgstr "Publika"
-
-#~ msgid "Author"
-#~ msgstr "Autor"
-
-#~ msgid "Authors"
-#~ msgstr "Autori"
-
-#~ msgid "Collaborators"
-#~ msgstr "Saradnici"
-
-#~ msgid "Colophon"
-#~ msgstr "Znak štampara"
-
-#~ msgid "Copyright"
-#~ msgstr "Autorska prava"
-
-#~ msgid "Copyrights"
-#~ msgstr "Autorska prava"
-
-#~ msgid "Example"
-#~ msgstr "Primer"
-
-#~ msgid "Figure"
-#~ msgstr "Slika"
-
-#~ msgid "Glossary"
-#~ msgstr "Pojmovnik"
-
-#~ msgid "Important"
-#~ msgstr "Važno"
-
-#~ msgid "Index"
-#~ msgstr "Indeks"
-
-#~ msgid "Legal Notice"
-#~ msgstr "Zakonska napomena"
-
-#~ msgid "Level"
-#~ msgstr "Nivo"
-
-#~ msgid "Message Audience"
-#~ msgstr "Namena poruke"
-
-#~ msgid "Message Level"
-#~ msgstr "Nivo poruke"
-
-#~ msgid "Message Origin"
-#~ msgstr "Poreklo poruke"
-
-#~ msgid "Note"
-#~ msgstr "Beleška"
-
-#~ msgid "Origin"
-#~ msgstr "Poreklo"
-
-#~ msgid "Other Contributor"
-#~ msgstr "Ostali doprinosioci"
-
-#~ msgid "Other Contributors"
-#~ msgstr "Ostali doprinosioci"
-
-#~ msgid "Part"
-#~ msgstr "Deo"
-
-#~ msgid "Preface"
-#~ msgstr "Predgovor"
-
-#~ msgid "Publishers"
-#~ msgstr "Izdavači"
-
-#~ msgid "Reference Entry"
-#~ msgstr "Unos reference"
-
-#~ msgid "Reference Section"
-#~ msgstr "Odeljak sa referencama"
-
-#~ msgid "Release Information"
-#~ msgstr "Podaci o izdanju"
-
-#~ msgid "See"
-#~ msgstr "Videti"
-
-# bug: is "Set Index" "Index of the Set", or "set an index"
-#~ msgid "Set Index"
-#~ msgstr "Indeks skupa"
-
-#~ msgid "Table"
-#~ msgstr "Tabela"
-
-#~ msgid "Table of Contents"
-#~ msgstr "Sadržaj"
-
-#~ msgid "Tip"
-#~ msgstr "Savet"
-
-#~ msgid "Document URI"
-#~ msgstr "Adresa dokumenta"
-
-#~ msgid "The URI of the document to be processed"
-#~ msgstr "Adresa dokumenta za obradu"
-
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/Uređivanje/Nađi _sledeće"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Uređivanje/Nađi p_rethodno"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/_Idi/Nazad"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/_Idi/Napred"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/_Idi/Polazna stranica"
-
-#~ msgid "/Go/"
-#~ msgstr "/Idi/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/Idi/Sa_držaj"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "Preglednik pomoći za Gnom"
-
-#~ msgid "Could not obtain a GtkStyle."
-#~ msgstr "Ne mogu da pribavim GtkStyle."
-
-#~ msgid "<b>Find text in the document:</b>"
-#~ msgstr "<b>Pronađi tekst u dokumentu:</b>"
-
-#~ msgid "Automatically _wrap around"
-#~ msgstr "Automatski prelamaj okolo"
-
-#~ msgid "Match _entire word"
-#~ msgstr "Uporedi samo cele reči"
-
-#~ msgid "_Match upper/lower case"
-#~ msgstr "Uporedi velika/mala slova"
-
-#~ msgid "GNOME - Desktop"
-#~ msgstr "GNOM - radno okruženje"
-
-#~ msgid "GNOME is"
-#~ msgstr "GNOM je"
-
-#~ msgid "(C)"
-#~ msgstr "(C)"
-
-#~ msgid "Loading&nbsp;&nbsp;&nbsp;"
-#~ msgstr "Učitavam&nbsp;&nbsp;&nbsp;"
-
-#~ msgid "Loading.&nbsp;&nbsp;"
-#~ msgstr "Učitavam.&nbsp;&nbsp;"
-
-#~ msgid "Loading..&nbsp;"
-#~ msgstr "Učitavam...&nbsp;"
-
-#~ msgid "Previous"
-#~ msgstr "Prethodno"
-
-#~ msgid "Next"
-#~ msgstr "Sledeće"
-
-#~ msgid "Search in the index"
-#~ msgstr "Pretraži u indeksu"
