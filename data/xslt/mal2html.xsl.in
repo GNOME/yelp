@@ -42,9 +42,7 @@
 
 <xsl:template name="yelp.css.custom">
 <xsl:text>
-div.linkdiv { border: none; }
-div.linkdiv:hover {
-  border: none;
+a.linkdiv:hover {
   outline: solid 1px </xsl:text>
     <xsl:value-of select="$color.blue_background"/><xsl:text>;
   background: -webkit-gradient(linear, left top, left 80, from(</xsl:text>
