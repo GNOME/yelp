@@ -2,20 +2,21 @@
 # Copyright © 2002, 2003-2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 # Jordi Mallach <jordi@sindominio.net>, 2002, 2003, 2004, 2005, 2006.
-# Gil Forcada <gilforcada@guifi.net>, 2007, 2008, 2009.
+# Gil Forcada <gilforcada@guifi.net>, 2007, 2008, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-29 21:52+0100\n"
-"PO-Revision-Date: 2009-11-22 17:13+0100\n"
+"POT-Creation-Date: 2011-05-29 19:14+0200\n"
+"PO-Revision-Date: 2011-04-05 23:14+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../data/info.xml.in.h:1
 msgid "GNU Info Pages"
@@ -243,7 +244,7 @@ msgstr "Crides al sistema"
 
 #: ../data/man.xml.in.h:55
 msgid "System V Form/Menu Functions"
-msgstr "Functions del formulari/menú del sistema V"
+msgstr "Funcions del formulari/menú del sistema V"
 
 #: ../data/man.xml.in.h:56
 msgid "TIFF Functions"
@@ -524,7 +525,7 @@ msgstr "Guies i manuals per a aplicacions que es connecten a la resta del món"
 
 #: ../data/toc.xml.in.h:64
 msgid "Guides for getting involved in development"
-msgstr "Guies per involucrar-se en desenvolupament"
+msgstr "Guies per involucrar-s'en desenvolupament"
 
 #: ../data/toc.xml.in.h:65
 msgid "Ham Radio"
@@ -536,7 +537,7 @@ msgstr "Paràmetres de maquinari"
 
 #: ../data/toc.xml.in.h:67
 msgid "Have some fun"
-msgstr "Divertir-se"
+msgstr "Diversió"
 
 #: ../data/toc.xml.in.h:68
 msgid "History"
@@ -632,7 +633,7 @@ msgstr "Notícies"
 
 #: ../data/toc.xml.in.h:90
 msgid "Numerical Analysis"
-msgstr "Anàlisis numèrica"
+msgstr "Anàlisi numèrica"
 
 #: ../data/toc.xml.in.h:91
 msgid "OCR"
@@ -869,34 +870,33 @@ msgstr "Processadors de text"
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
 msgid "Invalid compressed data"
-msgstr ""
+msgstr "Les dades comprimides no són vàlides"
 
 #: ../libyelp/yelp-bz2-decompressor.c:152
 #: ../libyelp/yelp-lzma-decompressor.c:161
-#, fuzzy
 msgid "Not enough memory"
-msgstr "S'ha exhaurit la memòria"
+msgstr "No hi ha prou memòria"
 
-#: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:233
-#: ../libyelp/yelp-mallard-document.c:254
-#: ../libyelp/yelp-mallard-document.c:401 ../libyelp/yelp-man-document.c:269
-#, fuzzy, c-format
+#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:270
+#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "No s'ha trobat la pàgina %s en el document %s."
+msgstr "No s'ha trobat la pàgina «%s» en el document «%s»."
 
-#: ../libyelp/yelp-docbook-document.c:298 ../libyelp/yelp-info-document.c:367
-#: ../libyelp/yelp-man-document.c:403
-#, fuzzy, c-format
+#: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
+#, c-format
 msgid "The file does not exist."
-msgstr "No existeix el fitxer «%s»."
+msgstr "No existeix el fitxer."
 
-#: ../libyelp/yelp-docbook-document.c:308 ../libyelp/yelp-info-document.c:377
-#: ../libyelp/yelp-man-document.c:413
+#: ../libyelp/yelp-docbook-document.c:326 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "No existeix el fitxer «%s»."
 
-#: ../libyelp/yelp-docbook-document.c:323
+#: ../libyelp/yelp-docbook-document.c:341
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -904,7 +904,7 @@ msgid ""
 msgstr ""
 "No s'ha pogut analitzar el fitxer «%s» perquè no és un document XML vàlid."
 
-#: ../libyelp/yelp-docbook-document.c:336
+#: ../libyelp/yelp-docbook-document.c:354
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -913,22 +913,51 @@ msgstr ""
 "No s'ha pogut analitzar el fitxer «%s» perquè algun dels seus fitxers "
 "inclosos no és un document XML vàlid."
 
-#: ../libyelp/yelp-docbook-document.c:743
+#: ../libyelp/yelp-docbook-document.c:763
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: ../libyelp/yelp-docbook-document.c:804 ../libyelp/yelp-info-document.c:310
-#: ../libyelp/yelp-man-document.c:345
-#, fuzzy, c-format
+#: ../libyelp/yelp-docbook-document.c:824 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
+#, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr "No s'ha trobat la pàgina sol·licitada en el document %s."
+msgstr "No s'ha trobat la pàgina sol·licitada en el document «%s»."
 
-#: ../libyelp/yelp-error.c:33
-#, fuzzy, c-format
+#: ../libyelp/yelp-document.c:266
+msgid "Indexed"
+msgstr "Indexat"
+
+#: ../libyelp/yelp-document.c:267
+msgid "Whether the document content has been indexed"
+msgstr "Si els continguts del document s'han indexat"
+
+#: ../libyelp/yelp-document.c:275
+msgid "Document URI"
+msgstr "URI del document"
+
+#: ../libyelp/yelp-document.c:276
+msgid "The URI which identifies the document"
+msgstr "L'URI que identifica el document"
+
+#: ../libyelp/yelp-document.c:966
+#, c-format
+msgid "No matching help pages found in “%s”."
+msgstr "No s'ha trobat cap pàgina d'ajuda a «%s»."
+
+#: ../libyelp/yelp-document.c:972
+msgid "No matching help pages found."
+msgstr "No s'ha trobat cap pàgina d'ajuda coincident."
+
+#: ../libyelp/yelp-error.c:37
+#, c-format
 msgid "An unknown error occurred."
-msgstr "S'ha produït un error desconegut"
+msgstr "S'ha produït un error desconegut."
 
-#: ../libyelp/yelp-info-document.c:392
+#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+msgid "All Help Documents"
+msgstr "Tots els documents d'ajuda"
+
+#: ../libyelp/yelp-info-document.c:397
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -936,106 +965,113 @@ msgstr ""
 "No s'ha pogut analitzar el fitxer «%s» perquè no és una pàgina d'informació "
 "vàlida."
 
-#: ../libyelp/yelp-location-entry.c:323
-#, fuzzy
+#: ../libyelp/yelp-location-entry.c:329
 msgid "View"
-msgstr "Visualitzadors"
+msgstr "Visualització"
 
-#: ../libyelp/yelp-location-entry.c:324
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
-msgstr ""
+msgstr "Una instància de YelpView a controlar"
 
-#: ../libyelp/yelp-location-entry.c:339
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "Adreces d'interés"
 
-#: ../libyelp/yelp-location-entry.c:340
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
-msgstr ""
+msgstr "Una instància d'implementació de YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:356
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
-msgstr ""
+msgstr "Habilita la cerca"
 
-#: ../libyelp/yelp-location-entry.c:357
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
-msgstr ""
+msgstr "Si l'entrada d'ubicació es pot utilitzar com a camp de cerca"
 
-#: ../libyelp/yelp-location-entry.c:426 ../src/yelp-window.c:302
-#, fuzzy
+#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
 msgid "Search..."
-msgstr "_Cerca:"
+msgstr "Cerca..."
 
-#: ../libyelp/yelp-location-entry.c:1335
-#, fuzzy
+#: ../libyelp/yelp-location-entry.c:774
+msgid "Clear the search text"
+msgstr "Neteja el text de cerca"
+
+#: ../libyelp/yelp-location-entry.c:823 ../libyelp/yelp-location-entry.c:1521
+msgid "Bookmark this page"
+msgstr "Afig esta pàgina a les adreces d'interés"
+
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1529
+msgid "Remove bookmark"
+msgstr "Suprimeix l'adreça d'interés"
+
+#: ../libyelp/yelp-location-entry.c:1386
 msgid "Loading"
-msgstr "S'està carregant..."
+msgstr "S'està carregant"
 
-#: ../libyelp/yelp-mallard-document.c:296
+#: ../libyelp/yelp-mallard-document.c:310
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "No existeix el directori «%s»."
 
-#: ../libyelp/yelp-man-document.c:444
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr ""
-"No s'ha pogut analitzar el fitxer «%s» perquè no és una pàgina de manual "
-"vàlida."
-
-#: ../libyelp/yelp-settings.c:148
-#, fuzzy
+#: ../libyelp/yelp-settings.c:152
 msgid "GtkSettings"
-msgstr "Paràmetres"
+msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:149
+#: ../libyelp/yelp-settings.c:153
 msgid "A GtkSettings object to get settings from"
-msgstr ""
+msgstr "Un objecte GtkSettings des d'on obtindre els paràmetres"
 
-#: ../libyelp/yelp-settings.c:157
+#: ../libyelp/yelp-settings.c:161
 msgid "GtkIconTheme"
-msgstr ""
+msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:158
+#: ../libyelp/yelp-settings.c:162
 msgid "A GtkIconTheme object to get icons from"
-msgstr ""
+msgstr "Un objecte GtkIconTheme des d'on obtindre icones"
 
-#: ../libyelp/yelp-settings.c:166
+#: ../libyelp/yelp-settings.c:170
 msgid "Font Adjustment"
-msgstr ""
+msgstr "Ajustament dels tipus de lletra"
 
-#: ../libyelp/yelp-settings.c:167
+#: ../libyelp/yelp-settings.c:171
 msgid "A size adjustment to add to font sizes"
-msgstr ""
+msgstr "Un ajustament de mida per afegir a les mides dels tipus de lletra"
 
-#: ../libyelp/yelp-settings.c:175
+#: ../libyelp/yelp-settings.c:179
 msgid "Show Text Cursor"
-msgstr ""
+msgstr "Mostra el cursor de text"
 
-#: ../libyelp/yelp-settings.c:176
+#: ../libyelp/yelp-settings.c:180
 msgid "Show the text cursor or caret for accessible navigation"
-msgstr ""
+msgstr "Mostra el cursor de text per la navegació accessible"
 
-#: ../libyelp/yelp-settings.c:184
+#: ../libyelp/yelp-settings.c:188
 msgid "Editor Mode"
-msgstr ""
+msgstr "Mode d'edició"
 
-#: ../libyelp/yelp-settings.c:185
+#: ../libyelp/yelp-settings.c:189
 msgid "Enable features useful to editors"
-msgstr ""
+msgstr "Habilita les característiques útils per als editors"
+
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "Nom de la base de dades"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "El nom del fitxer de la base de dades SQLite"
 
 #: ../libyelp/yelp-transform.c:171
-#, fuzzy
 msgid "XSLT Stylesheet"
-msgstr "Full d'estil invàlid"
+msgstr "Full d'estil XSLT"
 
 #: ../libyelp/yelp-transform.c:172
 msgid "The location of the XSLT stylesheet"
-msgstr ""
+msgstr "La ubicació del full d'estil XSLT"
 
 #: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
-#, fuzzy, c-format
+#, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr ""
 "O bé no existeix el full d'estil XSLT «%s» o no és un fitxer d'estil vàlid."
@@ -1048,97 +1084,95 @@ msgstr "No s'ha trobat cap atribut href a yelp:document\n"
 msgid "Out of memory"
 msgstr "S'ha exhaurit la memòria"
 
-#: ../libyelp/yelp-view.c:118
-#, fuzzy
+#: ../libyelp/yelp-view.c:126
 msgid "_Print..."
-msgstr "Imprimir"
+msgstr "_Imprimeix..."
 
-#: ../libyelp/yelp-view.c:123
+#: ../libyelp/yelp-view.c:131
 msgid "_Back"
 msgstr "_Endarrere"
 
-#: ../libyelp/yelp-view.c:128
+#: ../libyelp/yelp-view.c:136
 msgid "_Forward"
 msgstr "E_ndavant"
 
-#: ../libyelp/yelp-view.c:133
-#, fuzzy
+#: ../libyelp/yelp-view.c:141
 msgid "_Previous Page"
-msgstr "_Anterior"
+msgstr "Pàgina _anterior"
 
-#: ../libyelp/yelp-view.c:138
-#, fuzzy
+#: ../libyelp/yelp-view.c:146
 msgid "_Next Page"
-msgstr "_Següent"
+msgstr "Pàgina _següent"
 
-#: ../libyelp/yelp-view.c:401
-#, fuzzy
+#: ../libyelp/yelp-view.c:416
 msgid "Yelp URI"
-msgstr "Yelp"
+msgstr "URI del Yelp"
 
-#: ../libyelp/yelp-view.c:402
+#: ../libyelp/yelp-view.c:417
 msgid "A YelpUri with the current location"
-msgstr ""
+msgstr "Un YelpUri amb la ubicació actual"
 
-#: ../libyelp/yelp-view.c:410
-#, fuzzy
+#: ../libyelp/yelp-view.c:425
 msgid "Loading State"
-msgstr "S'està carregant..."
+msgstr "S'està carregant l'estat"
 
-#: ../libyelp/yelp-view.c:411
+#: ../libyelp/yelp-view.c:426
 msgid "The loading state of the view"
-msgstr ""
+msgstr "L'estat de càrrega de la vista"
 
-#: ../libyelp/yelp-view.c:420
+#: ../libyelp/yelp-view.c:435
 msgid "Page ID"
-msgstr ""
+msgstr "Identificador de la pàgina"
 
-#: ../libyelp/yelp-view.c:421
-#, fuzzy
+#: ../libyelp/yelp-view.c:436
 msgid "The ID of the root page of the page being viewed"
-msgstr "Estableix el final del rang de pàgines a imprimir"
+msgstr "L'identificador de la pàgina inicial de la que s'està visualitzant"
 
-#: ../libyelp/yelp-view.c:429
+#: ../libyelp/yelp-view.c:444
 msgid "Root Title"
-msgstr ""
+msgstr "Títol inicial"
 
-#: ../libyelp/yelp-view.c:430
-#, fuzzy
+#: ../libyelp/yelp-view.c:445
 msgid "The title of the root page of the page being viewed"
-msgstr "Establei l'inici del rang de pàgines a imprimir"
+msgstr "El títol de la pàgina inicial de la que s'està visualitzant"
 
-#: ../libyelp/yelp-view.c:438
+#: ../libyelp/yelp-view.c:453
 msgid "Page Title"
-msgstr ""
+msgstr "Títol de la pàgina"
 
-#: ../libyelp/yelp-view.c:439
+#: ../libyelp/yelp-view.c:454
 msgid "The title of the page being viewed"
-msgstr ""
+msgstr "El títol de la pàgina que s'està visualitzant"
 
-#: ../libyelp/yelp-view.c:447
+#: ../libyelp/yelp-view.c:462
 msgid "Page Description"
-msgstr ""
+msgstr "Descripció de la pàgina"
 
-#: ../libyelp/yelp-view.c:448
+#: ../libyelp/yelp-view.c:463
 msgid "The description of the page being viewed"
-msgstr ""
+msgstr "La descripció de la pàgina que s'està visualitzant"
 
-#: ../libyelp/yelp-view.c:456
-#, fuzzy
+#: ../libyelp/yelp-view.c:471
 msgid "Page Icon"
-msgstr "No s'ha trobat la pàgina"
+msgstr "Icona de la pàgina"
 
-#: ../libyelp/yelp-view.c:457
+#: ../libyelp/yelp-view.c:472
 msgid "The icon of the page being viewed"
-msgstr ""
+msgstr "La icona de la pàgina que s'està visualitzant"
 
-#: ../libyelp/yelp-view.c:813
+#: ../libyelp/yelp-view.c:713
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr ""
+"No teniu el PackageKit instal·lat. Cal tindre el PackageKit per utilitzar "
+"els enllaços d'instal·lació de paquets."
+
+#: ../libyelp/yelp-view.c:991
 msgid "Save Image"
-msgstr ""
+msgstr "Alça la imatge"
 
-#: ../libyelp/yelp-view.c:895
+#: ../libyelp/yelp-view.c:1086
 msgid "Save Code"
-msgstr ""
+msgstr "Alça el codi"
 
 #. Not using a mnemonic because underscores are common in email
 #. * addresses, and we'd have to escape them. There doesn't seem
@@ -1146,230 +1180,220 @@ msgstr ""
 #. * probably only be one menu item for mailto link popups anyway,
 #. * so the mnemonic's not that big of a deal.
 #.
-#: ../libyelp/yelp-view.c:1056
+#: ../libyelp/yelp-view.c:1255
 #, c-format
 msgid "Send email to %s"
-msgstr ""
+msgstr "Envia un correu a %s"
 
-#: ../libyelp/yelp-view.c:1066
+#: ../libyelp/yelp-view.c:1265
 msgid "_Open Link"
 msgstr "_Obri l'enllaç"
 
-#: ../libyelp/yelp-view.c:1071
-#, fuzzy
+#: ../libyelp/yelp-view.c:1270
 msgid "Open Link in New _Window"
 msgstr "Obri l'enllaç a una finestra _nova"
 
-#: ../libyelp/yelp-view.c:1122
+#: ../libyelp/yelp-view.c:1321
 msgid "_Save Image As..."
-msgstr ""
+msgstr "_Anomena i alça la imatge..."
 
-#: ../libyelp/yelp-view.c:1124
+#: ../libyelp/yelp-view.c:1323
 msgid "_Save Video As..."
-msgstr ""
+msgstr "_Anomena i alça el vídeo..."
 
-#: ../libyelp/yelp-view.c:1131
+#: ../libyelp/yelp-view.c:1330
 msgid "S_end Image To..."
-msgstr ""
+msgstr "_Envia la imatge a..."
 
-#: ../libyelp/yelp-view.c:1133
+#: ../libyelp/yelp-view.c:1332
 msgid "S_end Video To..."
-msgstr ""
+msgstr "_Envia el vídeo a..."
 
-#: ../libyelp/yelp-view.c:1144
-#, fuzzy
+#: ../libyelp/yelp-view.c:1343
 msgid "_Copy Text"
-msgstr "_Copia"
+msgstr "_Copia el text"
 
-#: ../libyelp/yelp-view.c:1157
+#: ../libyelp/yelp-view.c:1356
 msgid "C_opy Code Block"
-msgstr ""
+msgstr "_Copia el bloc de codi"
 
-#: ../libyelp/yelp-view.c:1162
+#: ../libyelp/yelp-view.c:1361
 msgid "Save Code _Block As..."
-msgstr ""
+msgstr "_Anomena i alça el bloc de codi..."
 
-#: ../libyelp/yelp-view.c:1333
-#, fuzzy, c-format
+#: ../libyelp/yelp-view.c:1543
+#, c-format
 msgid "Could not load a document for ‘%s’"
-msgstr "No s'ha pogut carregar el document"
+msgstr "No s'ha pogut carregar un document per a «%s»"
 
-#: ../libyelp/yelp-view.c:1339
-#, fuzzy, c-format
+#: ../libyelp/yelp-view.c:1549
+#, c-format
 msgid "Could not load a document"
 msgstr "No s'ha pogut carregar el document"
 
-#: ../libyelp/yelp-view.c:1406
-#, fuzzy
-msgid "Not Found"
+#: ../libyelp/yelp-view.c:1623
+msgid "Document Not Found"
+msgstr "No s'ha trobat el document"
+
+#: ../libyelp/yelp-view.c:1625
+msgid "Page Not Found"
 msgstr "No s'ha trobat la pàgina"
 
-#: ../libyelp/yelp-view.c:1409
-#, fuzzy
+#: ../libyelp/yelp-view.c:1628
 msgid "Cannot Read"
-msgstr "No s'ha pogut crear una finestra nova"
+msgstr "No es pot llegir"
 
-#: ../libyelp/yelp-view.c:1415
+#: ../libyelp/yelp-view.c:1634
 msgid "Unknown Error"
 msgstr "Error desconegut"
 
-#: ../libyelp/yelp-view.c:1507
-#, fuzzy, c-format
-msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "No existeix el fitxer «%s»."
+#: ../libyelp/yelp-view.c:1654
+msgid "Search for packages containing this document."
+msgstr "Cerca paquets que continguen este document."
 
-#: ../libyelp/yelp-view.c:1513
+#: ../libyelp/yelp-view.c:1807
+#, c-format
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "L'URI «%s» no apunta a una pàgina vàlida."
+
+#: ../libyelp/yelp-view.c:1813
 #, c-format
 msgid "The URI does not point to a valid page."
-msgstr ""
+msgstr "L'URI no apunta a una pàgina vàlida."
 
-#: ../libyelp/yelp-view.c:1521
-#, fuzzy, c-format
+#: ../libyelp/yelp-view.c:1819
+#, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "No existeix el fitxer «%s»."
+msgstr "No s'ha pogut analitzar l'URI «%s»."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
-msgstr ""
+msgstr "Activa el mode d'edició"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:125
 msgid "_Larger Text"
-msgstr ""
+msgstr "Text més _gran"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:127
 msgid "Increase the size of the text"
-msgstr ""
+msgstr "Augmenta la mida del text"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:130
 msgid "_Smaller Text"
-msgstr ""
+msgstr "Text més _petit"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:132
 msgid "Decrease the size of the text"
-msgstr ""
+msgstr "Disminueix la mida del text"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr ""
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1524
+#: ../src/yelp-application.c:250 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ajuda"
 
-#: ../src/yelp-application.c:785
-msgid ""
-"You do not have PackageKit installed. Package installation links require "
-"PackageKit."
-msgstr ""
+#: ../src/yelp-application.c:285
+msgid "Show Text _Cursor"
+msgstr "Mostra el _cursor de text"
 
-#: ../src/yelp-window.c:267
+#: ../src/yelp-window.c:236
 msgid "_Page"
-msgstr ""
+msgstr "_Pàgina"
 
-#: ../src/yelp-window.c:268
-#, fuzzy
+#: ../src/yelp-window.c:237
 msgid "_View"
-msgstr "Visualitzadors"
+msgstr "Visualització"
 
-#: ../src/yelp-window.c:269
+#: ../src/yelp-window.c:238
 msgid "_Go"
 msgstr "_Vés"
 
-#: ../src/yelp-window.c:270
+#: ../src/yelp-window.c:239
 msgid "_Bookmarks"
 msgstr "A_dreces d'interés"
 
-#: ../src/yelp-window.c:273
+#: ../src/yelp-window.c:242
 msgid "_New Window"
 msgstr "Finestra _nova"
 
-#: ../src/yelp-window.c:278
-#, fuzzy
+#: ../src/yelp-window.c:247
 msgid "_Close"
-msgstr "_Tanca la finestra"
+msgstr "_Tanca"
 
-#: ../src/yelp-window.c:283
-#, fuzzy
+#: ../src/yelp-window.c:252
 msgid "_All Documents"
-msgstr "Documents"
+msgstr "_Tots els documents"
 
-#: ../src/yelp-window.c:287
+#: ../src/yelp-window.c:256
 msgid "_Add Bookmark"
 msgstr "_Afig una adreça d'interés"
 
-#: ../src/yelp-window.c:292
-#, fuzzy
-msgid "_Edit Bookmarks"
-msgstr "_Edita les adreces d'interés..."
+#: ../src/yelp-window.c:261
+msgid "_Remove Bookmark"
+msgstr "_Suprimeix l'adreça d'interés"
 
-#: ../src/yelp-window.c:297
-#, fuzzy
+#: ../src/yelp-window.c:265
 msgid "Find in Page..."
-msgstr "Imprimeix esta pàgina ..."
+msgstr "Cerca a la pàgina ..."
 
-#: ../src/yelp-window.c:307
+#: ../src/yelp-window.c:275
 msgid "Open Location"
 msgstr "Obri una ubicació"
 
-#: ../src/yelp-window.c:333
-#, fuzzy
+#: ../src/yelp-window.c:301
 msgid "Application"
 msgstr "Aplicacions"
 
-#: ../src/yelp-window.c:334
+#: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
-msgstr ""
+msgstr "Una instància de YelpApplication que controla esta finestra"
 
-#: ../src/yelp-window.c:580
+#: ../src/yelp-window.c:548
 msgid "Read Later"
-msgstr ""
+msgstr "Per llegir més tard"
 
-#. %s will be replaced with the name of a document
-#: ../src/yelp-window.c:797
-#, fuzzy, c-format
-msgid "Bookmarks for %s"
-msgstr "Adreces d'interés"
-
-#: ../src/yelp-window.c:1331
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i coincidència"
+msgstr[1] "%i coincidències"
 
-#: ../src/yelp-window.c:1356
+#: ../src/yelp-window.c:1188
 msgid "No matches"
-msgstr ""
-
-#: ../src/yelp-window.c:1641
-#, fuzzy
-msgid "_Open Bookmark"
-msgstr "Canvia el nom de l'adreça d'interés"
-
-#: ../src/yelp-window.c:1647
-#, fuzzy
-msgid "Open Bookmark in New _Window"
-msgstr "Obri l'adreça d'interés a una finestra nova"
-
-#: ../src/yelp-window.c:1656
-#, fuzzy
-msgid "_Remove Bookmark"
-msgstr "Suprimeix l'adreça d'interés"
+msgstr "No hi ha cap coincidència"
 
 # ...sobre el GNOME? (josep)
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obtingueu ajuda per al GNOME"
 
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
+#~ "page."
+#~ msgstr ""
+#~ "No s'ha pogut analitzar el fitxer «%s» perquè no és una pàgina de manual "
+#~ "vàlida."
+
+#~ msgid "_Edit Bookmarks"
+#~ msgstr "_Edita les adreces d'interès"
+
+#~ msgid "Bookmarks for %s"
+#~ msgstr "Adreces d'interès per %s"
+
+#~ msgid "_Open Bookmark"
+#~ msgstr "_Obre l'adreça d'interès"
+
+#~ msgid "Open Bookmark in New _Window"
+#~ msgstr "Obre l'adreça d'interès a una _finestra nova"
+
 #~ msgid "Re_name"
 #~ msgstr "Canvia el _nom"
 
 #~ msgid "_Bookmarks:"
-#~ msgstr "A_dreces d'interés:"
+#~ msgstr "A_dreces d'interès:"
 
 #~ msgid "Add Bookmark"
-#~ msgstr "Afig una adreça d'interés"
+#~ msgstr "Afegeix una adreça d'interès"
 
 #~ msgid "_Title:"
 #~ msgstr "_Títol:"
@@ -1431,7 +1455,7 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgstr "S'està iniciant %s"
 
 #~ msgid "Application does not accept documents on command line"
-#~ msgstr "L'aplicació no accepta documents des de la línia d'ordes"
+#~ msgstr "L'aplicació no accepta documents des de la línia d'ordres"
 
 #~ msgid "Unrecognized launch option: %d"
 #~ msgstr "No s'ha reconegut l'opció de llançament: %d"
@@ -1448,7 +1472,7 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgstr "Inhabilita la connexió al gestor de sessió"
 
 #~ msgid "Specify file containing saved configuration"
-#~ msgstr "Especifica el fitxer que conté la configuració alçada"
+#~ msgstr "Especifica el fitxer que conté la configuració desada"
 
 #~ msgid "FILE"
 #~ msgstr "FITXER"
@@ -1466,17 +1490,16 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgstr "Mostra les opcions del gestor de sessió"
 
 #~ msgid "A bookmark titled %s already exists for this page."
-#~ msgstr "Ja existeix una adreça d'interés amb el títol %s per a esta pàgina."
+#~ msgstr ""
+#~ "Ja existeix una adreça d'interès amb el títol %s per a aquesta pàgina."
 
 #~ msgid "A bookmark titled <b>%s</b> already exists for this page."
 #~ msgstr ""
-#~ "Ja existeix una adreça d'interés amb el títol <b>%s</b> per a esta adreça."
+#~ "Ja existeix una adreça d'interès amb el títol <b>%s</b> per a aquesta "
+#~ "adreça."
 
 #~ msgid "Help Topics"
 #~ msgstr "Temes d'ajuda"
-
-#~ msgid "Document Sections"
-#~ msgstr "Seccions del document"
 
 #~ msgid "File not found"
 #~ msgstr "No s'ha trobat el fitxer"
@@ -1488,7 +1511,7 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgstr "No s'ha pogut llegir el fitxer"
 
 #~ msgid "No information is available about this error."
-#~ msgstr "No hi ha informació disponible sobre este error."
+#~ msgstr "No hi ha informació disponible sobre aquest error."
 
 #~ msgid ""
 #~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
@@ -1510,16 +1533,16 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgstr "No s'ha trobat el directori"
 
 #~ msgid "Preparing to print"
-#~ msgstr "S'està preparant per imprimir"
+#~ msgstr "S'està preparant per a imprimir"
 
 #~ msgid "Printing is not supported on this printer"
-#~ msgstr "No es pot imprimir en esta impressora"
+#~ msgstr "No es pot imprimir en aquesta impressora"
 
 #~ msgid "Printer %s does not support postscript printing."
 #~ msgstr "La impressora %s no permet la impressió amb postscript."
 
 #~ msgid "Waiting to print"
-#~ msgstr "S'està esperant per imprimir"
+#~ msgstr "S'està esperant per a imprimir"
 
 #~ msgid "An error occurred while printing"
 #~ msgstr "S'ha produït un error mentre s'imprimia"
@@ -1543,18 +1566,15 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgid "Search results for \"%s\""
 #~ msgstr "Resultats de la cerca «%s»"
 
-#~ msgid "Repeat the search online at %s"
-#~ msgstr "Repeteix la cerca en línia a %s"
-
 #~ msgid ""
 #~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
 #~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
 #~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
 #~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
 #~ msgstr ""
-#~ "a:això:allò:amb:este:esta:cap:com:de:del:dels:el:els:en:es:fer:fes:ha:han:"
-#~ "has:i:la:les:na:no:o:on:per:quan:què:qui:sa:si:sí:tindre:un:una:unes:uns:"
-#~ "va"
+#~ "a:això:allò:amb:aquest:aquesta:cap:com:de:del:dels:el:els:en:es:fer:fes:"
+#~ "ha:han:has:i:la:les:na:no:o:on:per:quan:què:qui:sa:si:sí:tenir:un:una:"
+#~ "unes:uns:va"
 
 #~ msgid "re"
 #~ msgstr "a:anti:bi:ex:in:pre:pro:re:sub"
@@ -1610,13 +1630,13 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgstr "A_juda"
 
 #~ msgid "Print This Document ..."
-#~ msgstr "Imprimeix este document ..."
+#~ msgstr "Imprimeix aquest document ..."
 
 #~ msgid "About This Document"
-#~ msgstr "Quant a este document"
+#~ msgstr "Quant a aquest document"
 
 #~ msgid "Open _Location"
-#~ msgstr "Obri una _ubicació"
+#~ msgstr "Obre una _ubicació"
 
 #~ msgid "_Select All"
 #~ msgstr "_Selecciona-ho tot"
@@ -1628,14 +1648,14 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgstr "Cerca l'an_terior"
 
 #~ msgid "Find previous occurrence of the word or phrase"
-#~ msgstr "Cerca l'anterior coincidència d'esta paraula o frase"
+#~ msgstr "Cerca l'anterior coincidència d'aquesta paraula o frase"
 
 # "la" paraula/frase (josep)
 #~ msgid "Find Ne_xt"
 #~ msgstr "Cerca la següe_nt"
 
 #~ msgid "Find next occurrence of the word or phrase"
-#~ msgstr "Cerca la següent coincidència d'esta paraula o frase"
+#~ msgstr "Cerca la següent coincidència d'aquesta paraula o frase"
 
 #~ msgid "_Preferences"
 #~ msgstr "_Preferències"
@@ -1668,7 +1688,7 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgstr "_Copia l'adreça de l'enllaç"
 
 #~ msgid "Help On this application"
-#~ msgstr "Ajuda per a esta aplicació"
+#~ msgstr "Ajuda per a aquesta aplicació"
 
 #~ msgid "_About"
 #~ msgstr "_Quant a"
@@ -1687,9 +1707,6 @@ msgstr "Obtingueu ajuda per al GNOME"
 
 #~ msgid "Unable to load page"
 #~ msgstr "No s'ha pogut carregar la pàgina"
-
-#~ msgid "Search for other documentation"
-#~ msgstr "Cerca altra documentació"
 
 #~ msgid "Cannot create search component"
 #~ msgstr "No s'ha pogut crear el component de cerca"
@@ -1710,8 +1727,8 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ "The file ‘%s’ could not be read.  This file might be missing, or you "
 #~ "might not have permissions to read it."
 #~ msgstr ""
-#~ "No s'ha pogut llegir el fitxer «%s». Pot ser que manque este fitxer, o "
-#~ "potser no teniu permís per legir-lo."
+#~ "No s'ha pogut llegir el fitxer «%s». Pot ser que manqui aquest fitxer, o "
+#~ "potser no teniu permís per a llegir-lo."
 
 #~ msgid "translator-credits"
 #~ msgstr ""
@@ -2003,9 +2020,6 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgid "Titlepage"
 #~ msgstr "Pàgina de títol"
 
-#~ msgid "The selected document could not be opened"
-#~ msgstr "No s'ha pogut obrir el document seleccionat"
-
 #~ msgid "The table of contents could not be read."
 #~ msgstr "No s'ha pogut llegir la taula de continguts."
 
@@ -2114,9 +2128,6 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgid "Important"
 #~ msgstr "Important"
 
-#~ msgid "Index"
-#~ msgstr "Índex"
-
 #~ msgid "Legal Notice"
 #~ msgstr "Nota legal"
 
@@ -2176,9 +2187,6 @@ msgstr "Obtingueu ajuda per al GNOME"
 
 #~ msgid "Tip"
 #~ msgstr "Suggeriment"
-
-#~ msgid "Document URI"
-#~ msgstr "URI del document"
 
 #~ msgid "The URI of the document to be processed"
 #~ msgstr "L'URI del document a processar"
