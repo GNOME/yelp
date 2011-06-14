@@ -369,7 +369,7 @@ yelp_man_parser_new (void)
 static GInputStream*
 get_troff (gchar *path, GError **error)
 {
-    gint stdout;
+    gint ystdout;
     GError *err = NULL;
     gchar *argv[] = { "man", "-Z", "-Tutf8", "-EUTF-8", NULL, NULL };
 
@@ -377,7 +377,7 @@ get_troff (gchar *path, GError **error)
 
     if (!g_spawn_async_with_pipes (NULL, argv, NULL,
                                    G_SPAWN_SEARCH_PATH, NULL, NULL,
-                                   NULL, NULL, &stdout, NULL, &err)) {
+                                   NULL, NULL, &ystdout, NULL, &err)) {
         /* We failed to run the man program. Return a "Huh?" error. */
         *error = g_error_new (YELP_ERROR, YELP_ERROR_UNKNOWN,
                               err->message);
@@ -385,7 +385,7 @@ get_troff (gchar *path, GError **error)
         return NULL;
     }
 
-    return (GInputStream*) g_unix_input_stream_new (stdout, TRUE);
+    return (GInputStream*) g_unix_input_stream_new (ystdout, TRUE);
 }
 
 xmlDocPtr

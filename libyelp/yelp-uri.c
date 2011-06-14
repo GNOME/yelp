@@ -876,7 +876,7 @@ static gchar*
 find_man_path (gchar* name, gchar* section)
 {
     gchar* argv[] = { "man", "-w", NULL, NULL, NULL };
-    gchar *stdout = NULL;
+    gchar *ystdout = NULL;
     gint status;
     gchar **lines;
     GError *error = NULL;
@@ -893,21 +893,21 @@ find_man_path (gchar* name, gchar* section)
     if (!g_spawn_sync (NULL, argv, NULL,
                        G_SPAWN_SEARCH_PATH | G_SPAWN_STDERR_TO_DEV_NULL,
                        NULL, NULL,
-                       &stdout, NULL, &status, &error)) {
+                       &ystdout, NULL, &status, &error)) {
         g_warning ("Couldn't find path for %s(%s). Error: %s",
                    name, section, error->message);
         g_error_free (error);
     }
 
     if (status == 0) {
-        lines = g_strsplit (stdout, "\n", 2);
-        g_free (stdout);
-        stdout = g_strdup (lines[0]);
+        lines = g_strsplit (ystdout, "\n", 2);
+        g_free (ystdout);
+        ystdout = g_strdup (lines[0]);
 
         g_strfreev (lines);
-        return stdout;
+        return ystdout;
     } else {
-        g_free (stdout);
+        g_free (ystdout);
         return NULL;
     }
 }
