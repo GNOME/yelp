@@ -619,18 +619,18 @@ docbook_walk_divisionQ (YelpDocbookDocument *docbook, xmlNodePtr node)
             !xmlStrcmp (node->name, (const xmlChar *) "article")      ||
             !xmlStrcmp (node->name, (const xmlChar *) "book")         ||
             !xmlStrcmp (node->name, (const xmlChar *) "bibliography") ||
+            !xmlStrcmp (node->name, (const xmlChar *) "bibliodiv")    ||
             !xmlStrcmp (node->name, (const xmlChar *) "chapter")      ||
             !xmlStrcmp (node->name, (const xmlChar *) "colophon")     ||
+            !xmlStrcmp (node->name, (const xmlChar *) "dedication")   ||
             !xmlStrcmp (node->name, (const xmlChar *) "glossary")     ||
+            !xmlStrcmp (node->name, (const xmlChar *) "glossdiv")     ||
+            !xmlStrcmp (node->name, (const xmlChar *) "lot")          ||
             !xmlStrcmp (node->name, (const xmlChar *) "index")        ||
             !xmlStrcmp (node->name, (const xmlChar *) "part")         ||
             !xmlStrcmp (node->name, (const xmlChar *) "preface")      ||
             !xmlStrcmp (node->name, (const xmlChar *) "reference")    ||
             !xmlStrcmp (node->name, (const xmlChar *) "refentry")     ||
-            !xmlStrcmp (node->name, (const xmlChar *) "refsect1")     ||
-            !xmlStrcmp (node->name, (const xmlChar *) "refsect2")     ||
-            !xmlStrcmp (node->name, (const xmlChar *) "refsect3")     ||
-            !xmlStrcmp (node->name, (const xmlChar *) "refsection")   ||
             !xmlStrcmp (node->name, (const xmlChar *) "sect1")        ||
             !xmlStrcmp (node->name, (const xmlChar *) "sect2")        ||
             !xmlStrcmp (node->name, (const xmlChar *) "sect3")        ||
@@ -639,7 +639,8 @@ docbook_walk_divisionQ (YelpDocbookDocument *docbook, xmlNodePtr node)
             !xmlStrcmp (node->name, (const xmlChar *) "section")      ||
             !xmlStrcmp (node->name, (const xmlChar *) "set")          ||
             !xmlStrcmp (node->name, (const xmlChar *) "setindex")     ||
-            !xmlStrcmp (node->name, (const xmlChar *) "simplesect")   );
+            !xmlStrcmp (node->name, (const xmlChar *) "simplesect")   ||
+            !xmlStrcmp (node->name, (const xmlChar *) "toc")          );
 }
 
 static gchar *
