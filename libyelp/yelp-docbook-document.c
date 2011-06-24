@@ -34,6 +34,7 @@
 #include "yelp-docbook-document.h"
 #include "yelp-error.h"
 #include "yelp-settings.h"
+#include "yelp-storage.h"
 #include "yelp-transform.h"
 #include "yelp-debug.h"
 
