@@ -88,6 +88,9 @@ static int           yelp_application_command_line     (GApplication          *a
                                                         GApplicationCommandLine *cmdline);
 static void          application_uri_resolved          (YelpUri               *uri,
                                                         YelpApplicationLoad   *data);
+static gboolean      application_window_deleted        (YelpWindow            *window,
+                                                        GdkEvent              *event,
+                                                        YelpApplication       *app);
 GSettings *          application_get_doc_settings      (YelpApplication       *app,
                                                         const gchar           *doc_uri);
 static void          application_adjust_font           (GtkAction             *action,
@@ -451,6 +454,8 @@ application_uri_resolved (YelpUri             *uri,
             g_free (doc_uri);
         }
 
+        g_signal_connect (window, "delete-event",
+                          G_CALLBACK (application_window_deleted), data->app);
         gtk_window_set_application (GTK_WINDOW (window),
                                     GTK_APPLICATION (data->app));
     }
@@ -479,6 +484,22 @@ application_uri_resolved (YelpUri             *uri,
 
     g_object_unref (uri);
     g_free (data);
+}
+
+static gboolean
+application_window_deleted (YelpWindow      *window,
+                            GdkEvent        *event,
+                            YelpApplication *app)
+{
+    gchar *doc_uri; /* owned by windows_by_document */
+    YelpApplicationPrivate *priv = GET_PRIV (app);
+
+    priv->windows = g_slist_remove (priv->windows, window);
+    doc_uri = g_object_get_data (G_OBJECT (window), "doc_uri");
+    if (doc_uri)
+        g_hash_table_remove (priv->windows_by_document, doc_uri);
+
+    return FALSE;
 }
 
 GSettings *
