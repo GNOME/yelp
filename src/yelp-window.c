@@ -523,7 +523,7 @@ window_construct (YelpWindow *window)
                   "margin-right", 16,
                   NULL);
 
-    label = gtk_label_new ("Find:");
+    label = gtk_label_new (_("Find:"));
     gtk_box_pack_start (GTK_BOX (priv->find_bar), label, FALSE, FALSE, 6);
 
     priv->find_entry = gtk_entry_new ();

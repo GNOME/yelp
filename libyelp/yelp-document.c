@@ -882,7 +882,7 @@ document_read_contents (YelpDocument *document,
     g_mutex_lock (document->priv->mutex);
 
     if (page_id != NULL && g_str_has_prefix (page_id, "search=")) {
-        gchar *tmp, *txt;
+        gchar *tmp, *tmp2, *txt;
         GVariant *value;
         GVariantIter *iter;
         gchar *url, *title, *desc, *icon; /* do not free */
@@ -953,8 +953,10 @@ document_read_contents (YelpDocument *document,
         }
 
         txt = g_uri_unescape_string (page_id + 7, NULL);
-        tmp = g_markup_printf_escaped ("<h1>Search results for “%s”</h1>", txt);
+        tmp2 = g_strdup_printf (_("Search results for “%s”"), txt);
+        tmp = g_markup_printf_escaped ("<h1>%s</h1>", tmp2);
         g_string_append (ret, tmp);
+        g_free (tmp2);
         g_free (tmp);
 
         value = yelp_storage_search (yelp_storage_get_default (),
