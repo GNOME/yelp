@@ -3,906 +3,22 @@
 #
 # Peteris Krisjanis <peteris.krisjanis@ttc.lv>, 2002.
 # Raivis Dejus <orvils@gmail.com>, 2006.
+# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
-"Report-Msgid-Bugs-To: "
-"http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&component=general\n"
-"POT-Creation-Date: 2011-02-21 21:28+0000\n"
-"PO-Revision-Date: 2011-03-11 01:16+0200\n"
-"Last-Translator: Rudolfs <rudolfs.mazurs@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=yelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-07-05 14:30+0000\n"
+"PO-Revision-Date: 2011-07-10 00:43+0300\n"
+"Last-Translator: Rūdofls Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-i18n@groups.google.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: KBabel 1.11.4\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "GNU Info lapas"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "Tradicionālā komandrindas palīdzība (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "Lietotnes"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "BLT funkcijas"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "Konfigurācijas faili"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "Kursu funkcijas"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "Izstrāde"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "FORTRAN funkcijas"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "Spēles"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "Aparatūras iekārtas"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "Kodola rutīnas"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "Rokasgrāmatas lapas"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "Tīkla audio skaņas funkcijas"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "OpenSSL lietotnes"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "OpenSSL konfigurācija"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "OpenSSL funkcijas"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "OpenSSL apskati"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "Apskati"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "POSIX funkcijas"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "POSIX galvenes"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "Perl funkcijas"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Qt funkcijas"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "Readline Funkcijas"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "Sadaļa 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "Sadaļa 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "Sadaļa 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "Sadaļa 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "Sadaļa 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "Sadaļa 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "Sadaļa 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "Sadaļa 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "Sadaļa 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "Sadaļa 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "Sadaļa 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "Sadaļa 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "Sadaļa 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "Sadaļa 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "Sadaļa 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "Sadaļa 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "Sadaļa 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "Sadaļa 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "Sadaļa 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "Sadaļa 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "Sadaļa 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "Sadaļa 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "Sadaļa 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "Sadaļas 1, 1p, 1g un 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "Sadaļas 3, 3o, un 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "Sadaļas 3form un 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "Sadaļas 3ncurses un 3curses"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "Sadaļas 3pm un 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "Sadaļas 3x un 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "Sadaļas 7 un 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "Sadaļas 8 un 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "Sistēmas administrēšana"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "Sistēmu izsaukumi"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "Sistēmas V formas/izvēlnes funkcijas"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "TIFF funkcijas"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Termcap lietotnes"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "Tradicionālā komandrindas palīdzība (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "X11 lietotnes"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "X11 konfigurācija"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "X11 iekārtas"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "X11 funkcijas"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "X11 spēles"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "X11 apskati"
-
-#: ../data/toc.xml.in.h:1
-#| msgid "Graphics"
-msgid "2D Graphics"
-msgstr "2D grafika"
-
-#: ../data/toc.xml.in.h:2
-#| msgid "Graphics"
-msgid "3D Graphics"
-msgstr "3D grafika"
-
-#: ../data/toc.xml.in.h:3
-#: ../data/ui/yelp-preferences.ui.h:1
-msgid "Accessibility"
-msgstr "Pieejamība"
-
-#: ../data/toc.xml.in.h:4
-#| msgid "Section 3nas"
-msgid "Action Games"
-msgstr "Darbības spēles"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "Piedzīvojumu spēles"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "Laika kavēkļi"
-
-#: ../data/toc.xml.in.h:7
-#| msgid "Applications for manipulating or viewing graphics"
-msgid "Applications for viewing and manipulating graphics"
-msgstr "Lietotnes grafikas apskatei un apstrādei"
-
-#: ../data/toc.xml.in.h:8
-#| msgid "Applications related to X Windows"
-msgid "Applications related to audio and video"
-msgstr "Lietotnes saistītas ar audio un video"
-
-#: ../data/toc.xml.in.h:9
-#| msgid "Applications related to the internet"
-msgid "Applications that teach or aid in learning"
-msgstr "Lietotnes tas māca vai palīdz mācībās"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "Arkādes spēles"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "Arhivēšanas rīki"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "Māksla"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "Mākslīgais intelekts"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "Astronomija"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "Bioloģija"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "Bloku spēles"
-
-#: ../data/toc.xml.in.h:17
-#| msgid "Games"
-msgid "Board Games"
-msgstr "Galda spēles"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "Būvēšana"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "Kalkulators"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "Kalendārs"
-
-#: ../data/toc.xml.in.h:21
-#| msgid "Games"
-msgid "Card Games"
-msgstr "Kāršu spēles"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "Diagrammu rīki"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "Pļāpāšana"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "Ķīmija"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "Pulksteņi"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "Saspiešanas rīki"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "Datorzinātne"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "Konstrukcija"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "Kontaktu pārvaldība"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "Datu vizualizācija"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "Datubāzes"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "Atkļūdotāji"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "Darbvirsma"
-
-#: ../data/toc.xml.in.h:34
-#| msgid "Desktop"
-msgid "Desktop Settings"
-msgstr "Darbvirsmas iestatījumi"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "Iezvanpieeja"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "Vārdnīcas"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "Disku rakstīšana"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "Ekonomika"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "Izglītība"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "Elektrība"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "Elektronika"
-
-#: ../data/toc.xml.in.h:44
-#| msgid "System Tools"
-msgid "Email Tools"
-msgstr "E-pasta rīki"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "Emulātors"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "Inženierija"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "Failu pārvaldnieks"
-
-#: ../data/toc.xml.in.h:48
-#| msgid "System Tools"
-msgid "File Tools"
-msgstr "Failu rīki"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "Failu pārraide"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "Failu sistēma"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "Finanšu rīki"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "Blokshēmu rīki"
-
-#: ../data/toc.xml.in.h:53
-#| msgid "X Applications"
-msgid "GNOME Applications"
-msgstr "GNOME lietotnes"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "Saskarnes veidotāji"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "Vispārīgas nozīmes lietotnes GNOME videi"
-
-#: ../data/toc.xml.in.h:58
-#| msgid "Documents specific to the KDE Desktop Environment"
-msgid "Generic applications for the KDE environment"
-msgstr "Vispārīgas nozīmes lietotnes KDE videi"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "Ģeogrāfija"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "Ģeoloģija"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "Ģeozinātne"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "Grafika"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Rokasgrāmatas lietotnēm, ar kurām savienoties ar ārējo pasauli"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "Pamācības, kā iesaistīties izstrādē"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "Ham radio"
-
-#: ../data/toc.xml.in.h:66
-#| msgid "Hardware Devices"
-msgid "Hardware Settings"
-msgstr "Aparatūras iestatījumi"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "Ļaujieties priekam"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "Vēsture"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "Programmatūras izstrādes vides"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "IRC klienti"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "Attēlu apstrāde"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "Tūlītēja ziņojumapmaiņa"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "Internets"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "Java"
-
-#: ../data/toc.xml.in.h:75
-#| msgid "X Applications"
-msgid "KDE Applications"
-msgstr "KDE lietotnes"
-
-#: ../data/toc.xml.in.h:76
-#| msgid "Games"
-msgid "Kids Games"
-msgstr "Bērnu spēles"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr ""
-"Uzziniet vairāk par iespēju padarīt jūsu sistēmu pieejamāku virknei "
-"invaliditāšu."
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "Licences"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "Literatūra"
-
-#: ../data/toc.xml.in.h:80
-#| msgid "Games"
-msgid "Logic Games"
-msgstr "Loģiskās spēles"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "Matemātika"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "Medicīniskā programmatūra"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "Midi"
-
-#: ../data/toc.xml.in.h:84
-#| msgid "Miscellaneous documents"
-msgid "Miscellaneous Documentation"
-msgstr "Dažāda dokumentācija"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "Mikseri"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "Monitors"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "Motif"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "Mūzika"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "Ziņas"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "Skaitliskā analīze"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "OCR"
-
-#: ../data/toc.xml.in.h:92
-#| msgid "Other Applications"
-msgid "Office Applications"
-msgstr "Biroja lietotnes"
-
-#: ../data/toc.xml.in.h:93
-#| msgid "Other Applications"
-msgid "Office applications"
-msgstr "Biroja lietotnes"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "Cita dokumentācija"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "P2P"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "PDA komunikācija"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "Pakotņu pārvaldnieks"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "Paralēldarbība"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "Fotogrāfija"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "Fizika"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "Spēlētāji"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "Prezentācijas rīki"
-
-#: ../data/toc.xml.in.h:104
-#: ../src/yelp-print.c:339
-#: ../src/yelp-print.c:366
-msgid "Printing"
-msgstr "Drukāšana"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "Profilēšanas rīki"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "Projektu vadības rīki"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "Publicēšana"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-#| msgid "Graphics"
-msgid "Raster Graphics"
-msgstr "Rastergrafika"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "Ierakstītāji"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "Attālināta piekļuve"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "Revīziju kontrole"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "Robotika"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "Lomu spēles"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "Skenēšana"
-
-#: ../data/toc.xml.in.h:117
-#| msgid "Scientific"
-msgid "Science"
-msgstr "Zinātne"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "Drošība"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "Sekvenceri"
-
-#: ../data/toc.xml.in.h:120
-#| msgid "Section 1ssl"
-msgid "Settings"
-msgstr "Iestatījumi"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr ""
-"Iestatījumi, kurus mainot lietotājs var padarīt viņu virtuālo vidi vairāk "
-"patīkamu"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "Simulācijas spēles"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "Skaņa"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "Skaņa &amp; video"
-
-#: ../data/toc.xml.in.h:125
-#| msgid "Sound &amp; Video"
-msgid "Sound &amp; Video Editing"
-msgstr "Skaņas &amp; video rediģēšana"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "Sports"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "Sporta spēles"
-
-#: ../data/toc.xml.in.h:128
-#| msgid "System Tools"
-msgid "Spreadsheet Tools"
-msgstr "Izklājlapu rīki"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "Stratēģijas spēles"
-
-#: ../data/toc.xml.in.h:130
-#| msgid "System Calls"
-msgid "System"
-msgstr "Sistēma"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "TV"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "Telefonija"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "Telefonijas rīki"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "Termināla emulators"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "Teksta redaktori"
-
-#: ../data/toc.xml.in.h:136
-#| msgid "System Tools"
-msgid "Text Tools"
-msgstr "Teksta rīki"
-
-#: ../data/toc.xml.in.h:137
-#| msgid "Utilities to manage your computer"
-msgid "Tools to help you manage your computer"
-msgstr "Rīki, lai palīdzētu jums pārvaldīt jūsu datoru"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "Tulkošanas rīki"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "Tūneri"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "Utilītas"
-
-#: ../data/toc.xml.in.h:141
-#| msgid "Utilities to manage your computer"
-msgid "Utilities to help you get work done"
-msgstr "Utilītas, lai palīdzētu jums padarīt darbu"
-
-#: ../data/toc.xml.in.h:142
-#| msgid "Graphics"
-msgid "Vector Graphics"
-msgstr "Vektorgrafika"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "Video"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "Video konference"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "Skatītājs"
-
-#: ../data/toc.xml.in.h:147
-#| msgid "Help Browser"
-msgid "Web Browser"
-msgstr "Tīmekļa pārlūks"
-
-#: ../data/toc.xml.in.h:148
-#| msgid "Development"
-msgid "Web Development"
-msgstr "Tīmekļa izstrādne"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "Laipni lūgti GNOME palīdzības pārlūkā"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "Teksta procesori"
+"X-Generator: Lokalize 1.1\n"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -911,41 +27,30 @@ msgstr "Nederīgi saspiestie dati"
 
 #: ../libyelp/yelp-bz2-decompressor.c:152
 #: ../libyelp/yelp-lzma-decompressor.c:161
-#| msgid "Out of memory"
 msgid "Not enough memory"
 msgstr "Nepietiek atmiņas"
 
-#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:270
-#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:271
+#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Lapa ‘%s‘ netika atrasta dokumentā ‘%s’."
 
-#: ../libyelp/yelp-docbook-document.c:315 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:416
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "Fails neeksistē."
 
-#: ../libyelp/yelp-docbook-document.c:325 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:426
-#: ../src/yelp-db-print.c:393
-#: ../src/yelp-docbook.c:411
-#: ../src/yelp-info.c:381
-#: ../src/yelp-man.c:430
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Fails '%s' neeksistē."
 
-#: ../libyelp/yelp-docbook-document.c:340
-#: ../src/yelp-db-print.c:407
-#: ../src/yelp-docbook.c:425
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
-#, c-format
-#| msgid ""
-#| "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#| "is not well-formed XML."
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
@@ -953,14 +58,8 @@ msgstr ""
 "Failu ar nosaukumu '%s' nevar parsēt, tāpēc ka tas nav korekti noformētsXML "
 "dokuments(-i)."
 
-#: ../libyelp/yelp-docbook-document.c:353
-#: ../src/yelp-db-print.c:419
-#: ../src/yelp-docbook.c:437
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
-#, c-format
-#| msgid ""
-#| "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#| "is not well-formed XML."
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
@@ -968,14 +67,12 @@ msgstr ""
 "Failu ar nosaukumu '%s' nevar parsēt, tāpēc ka viens vai vairāki iekļautie "
 "failinav korekti noformēts XML dokuments(-i)."
 
-#: ../libyelp/yelp-docbook-document.c:762
-#: ../src/yelp-db-print.c:766
-#: ../src/yelp-docbook.c:787
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "Nezināms"
 
-#: ../libyelp/yelp-docbook-document.c:823 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:358
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Pieprasītā lapa netika atrasta dokumentā ‘%s’."
@@ -989,7 +86,6 @@ msgid "Whether the document content has been indexed"
 msgstr "Vai dokumenta saturs ir ticis indeksēts"
 
 #: ../libyelp/yelp-document.c:275
-#| msgid "Document Information"
 msgid "Document URI"
 msgstr "Dokumenta URI"
 
@@ -997,133 +93,124 @@ msgstr "Dokumenta URI"
 msgid "The URI which identifies the document"
 msgstr "URI, kas identificē dokumentu"
 
-#: ../libyelp/yelp-document.c:966
+#: ../libyelp/yelp-document.c:956
+#, c-format
+#| msgid "Search results for \"%s\""
+msgid "Search results for “%s”"
+msgstr "Meklēšanas rezultāti meklējot \"%s\""
+
+#: ../libyelp/yelp-document.c:968
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Netika atrastas atbilstošas palīdzības lapas iekš “%s”."
 
-#: ../libyelp/yelp-document.c:972
+#: ../libyelp/yelp-document.c:974
 msgid "No matching help pages found."
 msgstr "Netika atrastas atbilstošas palīdzības lapas."
 
-#: ../libyelp/yelp-error.c:33
+#: ../libyelp/yelp-error.c:37
 #, c-format
-#, c-format
-#| msgid "An unknown error occured"
 msgid "An unknown error occurred."
 msgstr "Gadījās nezināma kļūda."
 
 #: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
-#| msgid "Help Contents"
 msgid "All Help Documents"
 msgstr "Visi palīdzības dokumenti"
 
 #: ../libyelp/yelp-info-document.c:397
-#: ../src/yelp-info.c:396
 #, c-format
-#, c-format
-#| msgid ""
-#| "The file  ‘%s’ could not be parsed. Either the file does not exist, or it "
-#| "is not a well-formed info page."
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
 "Failu ar nosaukumu '%s' nevar parsēt, tāpēc ka tā nav pareizi noformēta info "
 "lapa."
 
-#: ../libyelp/yelp-location-entry.c:326
+#: ../libyelp/yelp-location-entry.c:329
 msgid "View"
 msgstr "Skats"
 
-#: ../libyelp/yelp-location-entry.c:327
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
 msgstr "YelpView instance, ko vadīt"
 
-#: ../libyelp/yelp-location-entry.c:342
-#: ../data/ui/yelp-bookmarks.ui.h:1
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "Grāmatzīmes"
 
-#: ../libyelp/yelp-location-entry.c:343
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
 msgstr "YelpBookmarks realizācijas instance"
 
-#: ../libyelp/yelp-location-entry.c:359
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
 msgstr "Aktivēt meklēšanu"
 
-#: ../libyelp/yelp-location-entry.c:360
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
 msgstr "Vai atrašanās vietas ieraksts var tikt izmantots ka meklēšanas lauks"
 
-#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
-#| msgid "_Search:"
+#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Meklēt..."
 
-#: ../libyelp/yelp-location-entry.c:785
-#| msgid "Repeat the search online at %s"
+#: ../libyelp/yelp-location-entry.c:774
 msgid "Clear the search text"
 msgstr "Attīrīt meklēšanas tekstu"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
-#| msgid "Bookmarks"
+#: ../libyelp/yelp-location-entry.c:823 ../libyelp/yelp-location-entry.c:1521
 msgid "Bookmark this page"
 msgstr "Pievienot lapu grāmatzīmēm"
 
-#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
-#| msgid "Remove Bookmark"
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1529
 msgid "Remove bookmark"
 msgstr "Izņemt grāmatzīmi"
 
-#: ../libyelp/yelp-location-entry.c:1412
-#| msgid "Loading..."
+#: ../libyelp/yelp-location-entry.c:1386
 msgid "Loading"
 msgstr "Ielādē"
 
-#: ../libyelp/yelp-mallard-document.c:310
-#: ../src/yelp-mallard.c:316
+#: ../libyelp/yelp-mallard-document.c:311
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Direktorija '%s' neeksistē."
 
-#: ../libyelp/yelp-settings.c:150
+#: ../libyelp/yelp-settings.c:154
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:151
+#: ../libyelp/yelp-settings.c:155
 msgid "A GtkSettings object to get settings from"
 msgstr "GtkSettings objekts, no kā saņemt iestatījumus"
 
-#: ../libyelp/yelp-settings.c:159
+#: ../libyelp/yelp-settings.c:163
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:160
+#: ../libyelp/yelp-settings.c:164
 msgid "A GtkIconTheme object to get icons from"
 msgstr "GtkIconTheme objekts, no kā saņemt ikonas"
 
-#: ../libyelp/yelp-settings.c:168
+#: ../libyelp/yelp-settings.c:172
 msgid "Font Adjustment"
 msgstr "Fontu pieregulēšana"
 
-#: ../libyelp/yelp-settings.c:169
+#: ../libyelp/yelp-settings.c:173
 msgid "A size adjustment to add to font sizes"
 msgstr "Izmēra pieregulējums, ko pievienot fonta izmēram"
 
-#: ../libyelp/yelp-settings.c:177
+#: ../libyelp/yelp-settings.c:181
 msgid "Show Text Cursor"
 msgstr "Radīt teksta kursoru"
 
-#: ../libyelp/yelp-settings.c:178
+#: ../libyelp/yelp-settings.c:182
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Rādīt teksta kursoru pieejamākai navigācijai"
 
-#: ../libyelp/yelp-settings.c:186
+#: ../libyelp/yelp-settings.c:190
 msgid "Editor Mode"
 msgstr "Redaktora režīms"
 
-#: ../libyelp/yelp-settings.c:187
+#: ../libyelp/yelp-settings.c:191
 msgid "Enable features useful to editors"
 msgstr "Aktivēt iespējas, kas noder redaktoram"
 
@@ -1145,117 +232,103 @@ msgstr "XSLT stilu saraksta atrašanās vieta"
 
 #: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
-#, c-format
-#| msgid ""
-#| "The table of contents could not be loaded. The file ‘%s’ is either "
-#| "missing or is not well-formed XML."
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "XSLT stilu saraksts '%s' vai nu neeksistē, vai arī nav pareizs."
 
 #: ../libyelp/yelp-transform.c:528
-#: ../src/yelp-transform.c:389
-#| msgid "No href attribute found on yelp:document"
 msgid "No href attribute found on yelp:document\n"
 msgstr "yelp:document nesatur href atribūtu\n"
 
 #: ../libyelp/yelp-transform.c:543
-#: ../src/yelp-transform.c:404
 msgid "Out of memory"
 msgstr "Nepietiek atmiņas"
 
 #: ../libyelp/yelp-view.c:126
-#| msgid "_Find..."
 msgid "_Print..."
 msgstr "_Drukāt..."
 
 #: ../libyelp/yelp-view.c:131
-#: ../src/yelp-window.c:385
 msgid "_Back"
 msgstr "_Atpakaļ"
 
 #: ../libyelp/yelp-view.c:136
-#: ../src/yelp-window.c:390
 msgid "_Forward"
 msgstr "_Uz priekšu"
 
 #: ../libyelp/yelp-view.c:141
-#| msgid "_Previous"
 msgid "_Previous Page"
 msgstr "_Iepriekšējo lapu"
 
 #: ../libyelp/yelp-view.c:146
-#| msgid "_Next"
 msgid "_Next Page"
 msgstr "_Nākamo lapu"
 
-#: ../libyelp/yelp-view.c:415
-#| msgid "Yelp"
+#: ../libyelp/yelp-view.c:416
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:417
 msgid "A YelpUri with the current location"
 msgstr "YelpUri ar pašreizējo atrašanās vietu"
 
-#: ../libyelp/yelp-view.c:424
-#| msgid "Loading..."
+#: ../libyelp/yelp-view.c:425
 msgid "Loading State"
 msgstr "Ielādē stāvokli"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:426
 msgid "The loading state of the view"
 msgstr "Ielādē skata stāvokli"
 
-#: ../libyelp/yelp-view.c:434
+#: ../libyelp/yelp-view.c:435
 msgid "Page ID"
 msgstr "Lapas ID"
 
-#: ../libyelp/yelp-view.c:435
+#: ../libyelp/yelp-view.c:436
 msgid "The ID of the root page of the page being viewed"
 msgstr "Saknes lapas ID lapai, kas tagad tiek skatīta"
 
-#: ../libyelp/yelp-view.c:443
+#: ../libyelp/yelp-view.c:444
 msgid "Root Title"
 msgstr "Saknes virsraksts"
 
-#: ../libyelp/yelp-view.c:444
+#: ../libyelp/yelp-view.c:445
 msgid "The title of the root page of the page being viewed"
 msgstr "Saknes lapas virsraksts lapai, kas tagad tiek skatīta"
 
-#: ../libyelp/yelp-view.c:452
+#: ../libyelp/yelp-view.c:453
 msgid "Page Title"
 msgstr "Lapas virsraksts"
 
-#: ../libyelp/yelp-view.c:453
+#: ../libyelp/yelp-view.c:454
 msgid "The title of the page being viewed"
 msgstr "Virsraksts lapai, kas tagad tiek skatīta"
 
-#: ../libyelp/yelp-view.c:461
+#: ../libyelp/yelp-view.c:462
 msgid "Page Description"
 msgstr "Lapa apraksts"
 
-#: ../libyelp/yelp-view.c:462
+#: ../libyelp/yelp-view.c:463
 msgid "The description of the page being viewed"
 msgstr "Apraksts lapai, kas tagad tiek skatīta"
 
-#: ../libyelp/yelp-view.c:470
+#: ../libyelp/yelp-view.c:471
 msgid "Page Icon"
 msgstr "Lapas ikona"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:472
 msgid "The icon of the page being viewed"
 msgstr "Ikona lapai, kas tagad tiek skatīta"
 
-#: ../libyelp/yelp-view.c:712
+#: ../libyelp/yelp-view.c:713
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "Jums nav PackageKit. Pakotņu instalēšanas saitēm ir nepieciešams PackageKit."
 
-#: ../libyelp/yelp-view.c:990
+#: ../libyelp/yelp-view.c:991
 msgid "Save Image"
 msgstr "Saglabāt attēlu"
 
-#: ../libyelp/yelp-view.c:1085
+#: ../libyelp/yelp-view.c:1086
 msgid "Save Code"
 msgstr "Saglabāt kodu"
 
@@ -1265,199 +338,177 @@ msgstr "Saglabāt kodu"
 #. * probably only be one menu item for mailto link popups anyway,
 #. * so the mnemonic's not that big of a deal.
 #.
-#: ../libyelp/yelp-view.c:1254
+#: ../libyelp/yelp-view.c:1255
 #, c-format
 msgid "Send email to %s"
 msgstr "Sūtīt e-pasta vēstuli uz %s"
 
-#: ../libyelp/yelp-view.c:1264
-#: ../src/yelp-window.c:427
+#: ../libyelp/yelp-view.c:1265
 msgid "_Open Link"
 msgstr "_Atvērt saiti"
 
-#: ../libyelp/yelp-view.c:1269
-#| msgid "Open Link in _New Window"
+#: ../libyelp/yelp-view.c:1270
 msgid "Open Link in New _Window"
 msgstr "Atvērt saiti jaunā _logā"
 
-#: ../libyelp/yelp-view.c:1320
+#: ../libyelp/yelp-view.c:1321
 msgid "_Save Image As..."
 msgstr "_Saglabāt attēlu kā..."
 
-#: ../libyelp/yelp-view.c:1322
+#: ../libyelp/yelp-view.c:1323
 msgid "_Save Video As..."
 msgstr "Saglabāt video kā..."
 
-#: ../libyelp/yelp-view.c:1329
+#: ../libyelp/yelp-view.c:1330
 msgid "S_end Image To..."
 msgstr "Sūtīt attēlu _uz..."
 
-#: ../libyelp/yelp-view.c:1331
+#: ../libyelp/yelp-view.c:1332
 msgid "S_end Video To..."
 msgstr "Sūtīt vid_eo uz..."
 
-#: ../libyelp/yelp-view.c:1342
-#| msgid "_Copy"
+#: ../libyelp/yelp-view.c:1343
 msgid "_Copy Text"
 msgstr "_Kopēt tekstu"
 
-#: ../libyelp/yelp-view.c:1355
+#: ../libyelp/yelp-view.c:1356
 msgid "C_opy Code Block"
 msgstr "K_opēt koda bloku"
 
-#: ../libyelp/yelp-view.c:1360
+#: ../libyelp/yelp-view.c:1361
 msgid "Save Code _Block As..."
 msgstr "Saglabāt koda _bloku kā..."
 
-#: ../libyelp/yelp-view.c:1542
+#: ../libyelp/yelp-view.c:1543
 #, c-format
-#, c-format
-#| msgid "Could not load document"
 msgid "Could not load a document for ‘%s’"
 msgstr "Nevarēja ielādēt dokumentu priekš ‘%s’"
 
-#: ../libyelp/yelp-view.c:1548
+#: ../libyelp/yelp-view.c:1549
 #, c-format
-#, c-format
-#| msgid "Could not load document"
 msgid "Could not load a document"
 msgstr "Nevarēja ielādēt dokumentu"
 
-#: ../libyelp/yelp-view.c:1622
-#| msgid "Document Sections"
+#: ../libyelp/yelp-view.c:1623
 msgid "Document Not Found"
 msgstr "Dokuments nav atrasts"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1625
 msgid "Page Not Found"
 msgstr "Lapa nav atrasta"
 
-#: ../libyelp/yelp-view.c:1627
+#: ../libyelp/yelp-view.c:1628
 msgid "Cannot Read"
 msgstr "Nevar nolasīt"
 
-#: ../libyelp/yelp-view.c:1633
-#: ../src/yelp-error.c:132
-#: ../src/yelp-error.c:139
+#: ../libyelp/yelp-view.c:1634
 msgid "Unknown Error"
 msgstr "Nezināma kļūda"
 
-#: ../libyelp/yelp-view.c:1653
-#| msgid "Search for other documentation"
+#: ../libyelp/yelp-view.c:1654
 msgid "Search for packages containing this document."
 msgstr "Meklēt pakotnes, kas satur šo dokumentu."
 
-#: ../libyelp/yelp-view.c:1806
+#: ../libyelp/yelp-view.c:1807
 #, c-format
-#, c-format
-#| msgid ""
-#| "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-#| "actual file."
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI '%s' nenorāda uz derīgu lapu."
 
-#: ../libyelp/yelp-view.c:1812
+#: ../libyelp/yelp-view.c:1813
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI nenorāda uz derīgu lapu."
 
-#: ../libyelp/yelp-view.c:1818
+#: ../libyelp/yelp-view.c:1819
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Nevarēja pasēt URI '%s'."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "Ieslēgt redaktora režīmu"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
 msgstr "_ Lielāks teksts"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
 msgstr "Palielināt teksta izmēru"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
 msgstr "Mazāk_s teksts"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
 msgstr "Samazināt teksta izmēru"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr "Rādīt teksta _kursoru"
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
-#: ../src/yelp-main.c:384
 msgid "Help"
 msgstr "Palīdzība"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "Rādīt teksta _kursoru"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
 msgstr "La_pa"
 
 #: ../src/yelp-window.c:237
-#| msgid "_File"
 msgid "_View"
 msgstr "_Skats"
 
 #: ../src/yelp-window.c:238
-#: ../src/yelp-window.c:306
 msgid "_Go"
 msgstr "_Iet"
 
 #: ../src/yelp-window.c:239
-#: ../src/yelp-window.c:307
 msgid "_Bookmarks"
 msgstr "_Grāmatzīmes"
 
 #: ../src/yelp-window.c:242
-#: ../src/yelp-window.c:311
 msgid "_New Window"
 msgstr "Jau_ns logs"
 
 #: ../src/yelp-window.c:247
-#| msgid "_Close Window"
 msgid "_Close"
 msgstr "_Aizvērt"
 
 #: ../src/yelp-window.c:252
-#| msgid "About This Document"
 msgid "_All Documents"
 msgstr "_Visi dokumenti"
 
 #: ../src/yelp-window.c:256
-#: ../src/yelp-window.c:416
 msgid "_Add Bookmark"
 msgstr "Pievienot grām_atzīmi"
 
 #: ../src/yelp-window.c:261
-#| msgid "Remove Bookmark"
 msgid "_Remove Bookmark"
 msgstr "Izņemt g_rāmatzīmi"
 
 #: ../src/yelp-window.c:265
-#| msgid "_Find..."
 msgid "Find in Page..."
 msgstr "Meklēt lapā..."
 
 #: ../src/yelp-window.c:275
-#: ../data/ui/yelp-open-location.ui.h:1
 msgid "Open Location"
 msgstr "Atvērt lokāciju"
 
 #: ../src/yelp-window.c:301
-#| msgid "Applications"
 msgid "Application"
 msgstr "Lietotne"
 
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "YelpApplication instance, kas vada šo logu"
+
+#: ../src/yelp-window.c:526
+#| msgid "_Find:"
+msgid "Find:"
+msgstr "Meklēt:"
 
 #: ../src/yelp-window.c:548
 msgid "Read Later"
@@ -1478,6 +529,676 @@ msgstr "Nav atbilstību"
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Saņemt palīdzību ar GNOME"
+
+#~ msgid "GNU Info Pages"
+#~ msgstr "GNU Info lapas"
+
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "Tradicionālā komandrindas palīdzība (info)"
+
+#~ msgid "Applications"
+#~ msgstr "Lietotnes"
+
+#~ msgid "BLT Functions"
+#~ msgstr "BLT funkcijas"
+
+#~ msgid "Configuration Files"
+#~ msgstr "Konfigurācijas faili"
+
+#~ msgid "Curses Functions"
+#~ msgstr "Kursu funkcijas"
+
+#~ msgid "Development"
+#~ msgstr "Izstrāde"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "FORTRAN funkcijas"
+
+#~ msgid "Games"
+#~ msgstr "Spēles"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "Aparatūras iekārtas"
+
+#~ msgid "Kernel Routines"
+#~ msgstr "Kodola rutīnas"
+
+#~ msgid "Manual Pages"
+#~ msgstr "Rokasgrāmatas lapas"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "Tīkla audio skaņas funkcijas"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "OpenSSL lietotnes"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "OpenSSL konfigurācija"
+
+#~ msgid "OpenSSL Functions"
+#~ msgstr "OpenSSL funkcijas"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "OpenSSL apskati"
+
+#~ msgid "Overviews"
+#~ msgstr "Apskati"
+
+#~ msgid "POSIX Functions"
+#~ msgstr "POSIX funkcijas"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "POSIX galvenes"
+
+#~ msgid "Perl Functions"
+#~ msgstr "Perl funkcijas"
+
+#~ msgid "Qt Functions"
+#~ msgstr "Qt funkcijas"
+
+#~ msgid "Readline Functions"
+#~ msgstr "Readline Funkcijas"
+
+#~ msgid "Section 0p"
+#~ msgstr "Sadaļa 0p"
+
+#~ msgid "Section 1m"
+#~ msgstr "Sadaļa 1m"
+
+#~ msgid "Section 1ssl"
+#~ msgstr "Sadaļa 1ssl"
+
+#~ msgid "Section 1x"
+#~ msgstr "Sadaļa 1x"
+
+#~ msgid "Section 2"
+#~ msgstr "Sadaļa 2"
+
+#~ msgid "Section 3blt"
+#~ msgstr "Sadaļa 3blt"
+
+#~ msgid "Section 3f"
+#~ msgstr "Sadaļa 3f"
+
+#~ msgid "Section 3nas"
+#~ msgstr "Sadaļa 3nas"
+
+#~ msgid "Section 3p"
+#~ msgstr "Sadaļa 3p"
+
+#~ msgid "Section 3qt"
+#~ msgstr "Sadaļa 3qt"
+
+#~ msgid "Section 3readline"
+#~ msgstr "Sadaļa 3readline"
+
+#~ msgid "Section 3ssl"
+#~ msgstr "Sadaļa 3ssl"
+
+#~ msgid "Section 3tiff"
+#~ msgstr "Sadaļa 3tiff"
+
+#~ msgid "Section 4"
+#~ msgstr "Sadaļa 4"
+
+#~ msgid "Section 4x"
+#~ msgstr "Sadaļa 4x"
+
+#~ msgid "Section 5"
+#~ msgstr "Sadaļa 5"
+
+#~ msgid "Section 5ssl"
+#~ msgstr "Sadaļa 5ssl"
+
+#~ msgid "Section 5x"
+#~ msgstr "Sadaļa 5x"
+
+#~ msgid "Section 6"
+#~ msgstr "Sadaļa 6"
+
+#~ msgid "Section 6x"
+#~ msgstr "Sadaļa 6x"
+
+#~ msgid "Section 7ssl"
+#~ msgstr "Sadaļa 7ssl"
+
+#~ msgid "Section 7x"
+#~ msgstr "Sadaļa 7x"
+
+#~ msgid "Section 9"
+#~ msgstr "Sadaļa 9"
+
+#~ msgid "Sections 1, 1p, 1g and 1t"
+#~ msgstr "Sadaļas 1, 1p, 1g un 1t"
+
+#~ msgid "Sections 3, 3o, and 3t"
+#~ msgstr "Sadaļas 3, 3o, un 3t"
+
+#~ msgid "Sections 3form and 3menu"
+#~ msgstr "Sadaļas 3form un 3menu"
+
+#~ msgid "Sections 3ncurses and 3curses"
+#~ msgstr "Sadaļas 3ncurses un 3curses"
+
+#~ msgid "Sections 3pm and 3perl"
+#~ msgstr "Sadaļas 3pm un 3perl"
+
+#~ msgid "Sections 3x and 3X11"
+#~ msgstr "Sadaļas 3x un 3X11"
+
+#~ msgid "Sections 7 and 7gcc"
+#~ msgstr "Sadaļas 7 un 7gcc"
+
+#~ msgid "Sections 8 and 8l"
+#~ msgstr "Sadaļas 8 un 8l"
+
+#~ msgid "System Administration"
+#~ msgstr "Sistēmas administrēšana"
+
+#~ msgid "System Calls"
+#~ msgstr "Sistēmu izsaukumi"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "Sistēmas V formas/izvēlnes funkcijas"
+
+#~ msgid "TIFF Functions"
+#~ msgstr "TIFF funkcijas"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "Termcap lietotnes"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "Tradicionālā komandrindas palīdzība (man)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "X11 lietotnes"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "X11 konfigurācija"
+
+#~ msgid "X11 Devices"
+#~ msgstr "X11 iekārtas"
+
+#~ msgid "X11 Functions"
+#~ msgstr "X11 funkcijas"
+
+#~ msgid "X11 Games"
+#~ msgstr "X11 spēles"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "X11 apskati"
+
+#~| msgid "Graphics"
+#~ msgid "2D Graphics"
+#~ msgstr "2D grafika"
+
+#~| msgid "Graphics"
+#~ msgid "3D Graphics"
+#~ msgstr "3D grafika"
+
+#~ msgid "Accessibility"
+#~ msgstr "Pieejamība"
+
+#~| msgid "Section 3nas"
+#~ msgid "Action Games"
+#~ msgstr "Darbības spēles"
+
+#~ msgid "Adventure Games"
+#~ msgstr "Piedzīvojumu spēles"
+
+#~ msgid "Amusement"
+#~ msgstr "Laika kavēkļi"
+
+#~| msgid "Applications for manipulating or viewing graphics"
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "Lietotnes grafikas apskatei un apstrādei"
+
+#~| msgid "Applications related to X Windows"
+#~ msgid "Applications related to audio and video"
+#~ msgstr "Lietotnes saistītas ar audio un video"
+
+#~| msgid "Applications related to the internet"
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "Lietotnes tas māca vai palīdz mācībās"
+
+#~ msgid "Arcade Games"
+#~ msgstr "Arkādes spēles"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "Arhivēšanas rīki"
+
+#~ msgid "Art"
+#~ msgstr "Māksla"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "Mākslīgais intelekts"
+
+#~ msgid "Astronomy"
+#~ msgstr "Astronomija"
+
+#~ msgid "Biology"
+#~ msgstr "Bioloģija"
+
+#~ msgid "Blocks Games"
+#~ msgstr "Bloku spēles"
+
+#~| msgid "Games"
+#~ msgid "Board Games"
+#~ msgstr "Galda spēles"
+
+#~ msgid "Building"
+#~ msgstr "Būvēšana"
+
+#~ msgid "Calculator"
+#~ msgstr "Kalkulators"
+
+#~ msgid "Calendar"
+#~ msgstr "Kalendārs"
+
+#~| msgid "Games"
+#~ msgid "Card Games"
+#~ msgstr "Kāršu spēles"
+
+#~ msgid "Charting Tools"
+#~ msgstr "Diagrammu rīki"
+
+#~ msgid "Chat"
+#~ msgstr "Pļāpāšana"
+
+#~ msgid "Chemistry"
+#~ msgstr "Ķīmija"
+
+#~ msgid "Clocks"
+#~ msgstr "Pulksteņi"
+
+#~ msgid "Compression Tools"
+#~ msgstr "Saspiešanas rīki"
+
+#~ msgid "Computer Science"
+#~ msgstr "Datorzinātne"
+
+#~ msgid "Construction"
+#~ msgstr "Konstrukcija"
+
+#~ msgid "Contact Management"
+#~ msgstr "Kontaktu pārvaldība"
+
+#~ msgid "Data Visualization"
+#~ msgstr "Datu vizualizācija"
+
+#~ msgid "Databases"
+#~ msgstr "Datubāzes"
+
+#~ msgid "Debuggers"
+#~ msgstr "Atkļūdotāji"
+
+#~ msgid "Desktop"
+#~ msgstr "Darbvirsma"
+
+#~| msgid "Desktop"
+#~ msgid "Desktop Settings"
+#~ msgstr "Darbvirsmas iestatījumi"
+
+#~ msgid "Dialup"
+#~ msgstr "Iezvanpieeja"
+
+#~ msgid "Dictionaries"
+#~ msgstr "Vārdnīcas"
+
+#~ msgid "Disc Burning"
+#~ msgstr "Disku rakstīšana"
+
+#~ msgid "Economy"
+#~ msgstr "Ekonomika"
+
+#~ msgid "Education"
+#~ msgstr "Izglītība"
+
+#~ msgid "Electricity"
+#~ msgstr "Elektrība"
+
+#~ msgid "Electronics"
+#~ msgstr "Elektronika"
+
+#~| msgid "System Tools"
+#~ msgid "Email Tools"
+#~ msgstr "E-pasta rīki"
+
+#~ msgid "Emulator"
+#~ msgstr "Emulātors"
+
+#~ msgid "Engineering"
+#~ msgstr "Inženierija"
+
+#~ msgid "File Manager"
+#~ msgstr "Failu pārvaldnieks"
+
+#~| msgid "System Tools"
+#~ msgid "File Tools"
+#~ msgstr "Failu rīki"
+
+#~ msgid "File Transfer"
+#~ msgstr "Failu pārraide"
+
+#~ msgid "Filesystem"
+#~ msgstr "Failu sistēma"
+
+#~ msgid "Financial Tools"
+#~ msgstr "Finanšu rīki"
+
+#~ msgid "Flow Charting Tools"
+#~ msgstr "Blokshēmu rīki"
+
+#~| msgid "X Applications"
+#~ msgid "GNOME Applications"
+#~ msgstr "GNOME lietotnes"
+
+#~ msgid "GTK"
+#~ msgstr "GTK"
+
+#~ msgid "GUI Designers"
+#~ msgstr "Saskarnes veidotāji"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "Vispārīgas nozīmes lietotnes GNOME videi"
+
+#~| msgid "Documents specific to the KDE Desktop Environment"
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "Vispārīgas nozīmes lietotnes KDE videi"
+
+#~ msgid "Geography"
+#~ msgstr "Ģeogrāfija"
+
+#~ msgid "Geology"
+#~ msgstr "Ģeoloģija"
+
+#~ msgid "Geoscience"
+#~ msgstr "Ģeozinātne"
+
+#~ msgid "Graphics"
+#~ msgstr "Grafika"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr "Rokasgrāmatas lietotnēm, ar kurām savienoties ar ārējo pasauli"
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "Pamācības, kā iesaistīties izstrādē"
+
+#~ msgid "Ham Radio"
+#~ msgstr "Ham radio"
+
+#~| msgid "Hardware Devices"
+#~ msgid "Hardware Settings"
+#~ msgstr "Aparatūras iestatījumi"
+
+#~ msgid "Have some fun"
+#~ msgstr "Ļaujieties priekam"
+
+#~ msgid "History"
+#~ msgstr "Vēsture"
+
+#~ msgid "IDEs"
+#~ msgstr "Programmatūras izstrādes vides"
+
+#~ msgid "IRC Clients"
+#~ msgstr "IRC klienti"
+
+#~ msgid "Image Processing"
+#~ msgstr "Attēlu apstrāde"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "Tūlītēja ziņojumapmaiņa"
+
+#~ msgid "Internet"
+#~ msgstr "Internets"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~| msgid "X Applications"
+#~ msgid "KDE Applications"
+#~ msgstr "KDE lietotnes"
+
+#~| msgid "Games"
+#~ msgid "Kids Games"
+#~ msgstr "Bērnu spēles"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr ""
+#~ "Uzziniet vairāk par iespēju padarīt jūsu sistēmu pieejamāku virknei "
+#~ "invaliditāšu."
+
+#~ msgid "Licenses"
+#~ msgstr "Licences"
+
+#~ msgid "Literature"
+#~ msgstr "Literatūra"
+
+#~| msgid "Games"
+#~ msgid "Logic Games"
+#~ msgstr "Loģiskās spēles"
+
+#~ msgid "Math"
+#~ msgstr "Matemātika"
+
+#~ msgid "Medical Software"
+#~ msgstr "Medicīniskā programmatūra"
+
+#~ msgid "Midi"
+#~ msgstr "Midi"
+
+#~| msgid "Miscellaneous documents"
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "Dažāda dokumentācija"
+
+#~ msgid "Mixers"
+#~ msgstr "Mikseri"
+
+#~ msgid "Monitor"
+#~ msgstr "Monitors"
+
+#~ msgid "Motif"
+#~ msgstr "Motif"
+
+#~ msgid "Music"
+#~ msgstr "Mūzika"
+
+#~ msgid "News"
+#~ msgstr "Ziņas"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "Skaitliskā analīze"
+
+#~ msgid "OCR"
+#~ msgstr "OCR"
+
+#~| msgid "Other Applications"
+#~ msgid "Office Applications"
+#~ msgstr "Biroja lietotnes"
+
+#~| msgid "Other Applications"
+#~ msgid "Office applications"
+#~ msgstr "Biroja lietotnes"
+
+#~ msgid "Other Documentation"
+#~ msgstr "Cita dokumentācija"
+
+#~ msgid "P2P"
+#~ msgstr "P2P"
+
+#~ msgid "PDA Communication"
+#~ msgstr "PDA komunikācija"
+
+#~ msgid "Package Manager"
+#~ msgstr "Pakotņu pārvaldnieks"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "Paralēldarbība"
+
+#~ msgid "Photography"
+#~ msgstr "Fotogrāfija"
+
+#~ msgid "Physics"
+#~ msgstr "Fizika"
+
+#~ msgid "Players"
+#~ msgstr "Spēlētāji"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "Prezentācijas rīki"
+
+#~ msgid "Printing"
+#~ msgstr "Drukāšana"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "Profilēšanas rīki"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "Projektu vadības rīki"
+
+#~ msgid "Publishing"
+#~ msgstr "Publicēšana"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~| msgid "Graphics"
+#~ msgid "Raster Graphics"
+#~ msgstr "Rastergrafika"
+
+#~ msgid "Recorders"
+#~ msgstr "Ierakstītāji"
+
+#~ msgid "Remote Access"
+#~ msgstr "Attālināta piekļuve"
+
+#~ msgid "Revision Control"
+#~ msgstr "Revīziju kontrole"
+
+#~ msgid "Robotics"
+#~ msgstr "Robotika"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "Lomu spēles"
+
+#~ msgid "Scanning"
+#~ msgstr "Skenēšana"
+
+#~| msgid "Scientific"
+#~ msgid "Science"
+#~ msgstr "Zinātne"
+
+#~ msgid "Security"
+#~ msgstr "Drošība"
+
+#~ msgid "Sequencers"
+#~ msgstr "Sekvenceri"
+
+#~| msgid "Section 1ssl"
+#~ msgid "Settings"
+#~ msgstr "Iestatījumi"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr ""
+#~ "Iestatījumi, kurus mainot lietotājs var padarīt viņu virtuālo vidi vairāk "
+#~ "patīkamu"
+
+#~ msgid "Simulation Games"
+#~ msgstr "Simulācijas spēles"
+
+#~ msgid "Sound"
+#~ msgstr "Skaņa"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Skaņa &amp; video"
+
+#~| msgid "Sound &amp; Video"
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "Skaņas &amp; video rediģēšana"
+
+#~ msgid "Sports"
+#~ msgstr "Sports"
+
+#~ msgid "Sports Games"
+#~ msgstr "Sporta spēles"
+
+#~| msgid "System Tools"
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "Izklājlapu rīki"
+
+#~ msgid "Strategy Games"
+#~ msgstr "Stratēģijas spēles"
+
+#~| msgid "System Calls"
+#~ msgid "System"
+#~ msgstr "Sistēma"
+
+#~ msgid "TV"
+#~ msgstr "TV"
+
+#~ msgid "Telephony"
+#~ msgstr "Telefonija"
+
+#~ msgid "Telephony Tools"
+#~ msgstr "Telefonijas rīki"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "Termināla emulators"
+
+#~ msgid "Text Editors"
+#~ msgstr "Teksta redaktori"
+
+#~| msgid "System Tools"
+#~ msgid "Text Tools"
+#~ msgstr "Teksta rīki"
+
+#~| msgid "Utilities to manage your computer"
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "Rīki, lai palīdzētu jums pārvaldīt jūsu datoru"
+
+#~ msgid "Translation Tools"
+#~ msgstr "Tulkošanas rīki"
+
+#~ msgid "Tuners"
+#~ msgstr "Tūneri"
+
+#~ msgid "Utilities"
+#~ msgstr "Utilītas"
+
+#~| msgid "Utilities to manage your computer"
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "Utilītas, lai palīdzētu jums padarīt darbu"
+
+#~| msgid "Graphics"
+#~ msgid "Vector Graphics"
+#~ msgstr "Vektorgrafika"
+
+#~ msgid "Video"
+#~ msgstr "Video"
+
+#~ msgid "Video Conference"
+#~ msgstr "Video konference"
+
+#~ msgid "Viewer"
+#~ msgstr "Skatītājs"
+
+#~| msgid "Help Browser"
+#~ msgid "Web Browser"
+#~ msgstr "Tīmekļa pārlūks"
+
+#~| msgid "Development"
+#~ msgid "Web Development"
+#~ msgstr "Tīmekļa izstrādne"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "Laipni lūgti GNOME palīdzības pārlūkā"
+
+#~ msgid "Word Processors"
+#~ msgstr "Teksta procesori"
 
 #~ msgid "Accessories"
 #~ msgstr "Piederumi"
@@ -1550,9 +1271,6 @@ msgstr "Saņemt palīdzību ar GNOME"
 
 #~ msgid "_Browse with caret"
 #~ msgstr "_Pārlūkot ar jumtiņu"
-
-#~ msgid "_Find:"
-#~ msgstr "_Meklēt:"
 
 #~ msgid "_Fixed width:"
 #~ msgstr "_Fiksēts platums:"
@@ -1692,9 +1410,6 @@ msgstr "Saņemt palīdzību ar GNOME"
 #~ msgstr ""
 #~ "Mēģiniet izmantot citus vārdus, lai aprakstītu savu problēmu vai tēmu, "
 #~ "kuru vēlaties atrast."
-
-#~ msgid "Search results for \"%s\""
-#~ msgstr "Meklēšanas rezultāti meklējot \"%s\""
 
 #~ msgid ""
 #~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
