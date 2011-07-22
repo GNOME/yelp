@@ -622,6 +622,8 @@ location_entry_search_activated  (YelpLocationEntry *entry)
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
 
     g_object_get (priv->view, "yelp-uri", &base, NULL);
+    if (base == NULL)
+        return;
     uri = yelp_uri_new_search (base,
                                gtk_entry_get_text (GTK_ENTRY (priv->text_entry)));
     g_object_unref (base);
