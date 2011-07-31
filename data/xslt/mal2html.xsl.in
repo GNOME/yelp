@@ -14,15 +14,21 @@
 
 <xsl:param name="mal2html.editor_mode" select="$yelp.editor_mode"/>
 
+<xsl:param name="mal.if.supports.custom"
+           select="'action:install'"/>
+
 <xsl:param name="mal.cache" select="yelp:input()"/>
-<xsl:key name="mal.cache.key" match="mal:page | mal:section" use="@id"/>
 
 <!-- == mal.link.target == -->
 <xsl:template name="mal.link.target">
   <xsl:param name="link" select="."/>
+  <xsl:param name="action" select="$link/@action"/>
   <xsl:param name="xref" select="$link/@xref"/>
   <xsl:param name="href" select="$link/@href"/>
   <xsl:choose>
+    <xsl:when test="starts-with($action, 'install:')">
+      <xsl:value-of select="$action"/>
+    </xsl:when>
     <xsl:when test="string($xref) = ''">
       <xsl:value-of select="$href"/>
     </xsl:when>
