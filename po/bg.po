@@ -1,7 +1,7 @@
 # Bulgarian translation of yelp po-file
 # Copyright (C) 2002, 2004, 2005, 2006 Free Software Foundation, Inc.
 # Copyright (C) 2007, 2008, 2009, 2011 Free Software Foundation, Inc.
-# Alexander Shopov <ash@contact.bg>, 2002, 2006, 2007, 2008, 2009.
+# Alexander Shopov <ash@kambanaria.org>, 2002, 2006, 2007, 2008, 2009.
 # Yanko Kaneti <yaneti@declera.com>, 2002.
 # Vladimir Petkov <vpetkov@i-space.org>, 2004, 2005, 2006.
 # Rostislav Raykov <zbrox@i-space.org>, 2006.
@@ -11,863 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-23 07:36+0200\n"
-"PO-Revision-Date: 2011-02-23 07:36+0200\n"
-"Last-Translator: Ivaylo Valkov <ivaylo@e-valkov.org>\n"
+"POT-Creation-Date: 2011-08-11 06:44+0300\n"
+"PO-Revision-Date: 2011-08-11 06:44+0300\n"
+"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "Информационни страници на GNU"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "Традиционни ръководства (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "Програми"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "Функции на BLT"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "Конфигурационни файлове"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "Функции на Curses"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "Разработка"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "Функции на FORTRAN"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "Игри"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "Хардуерни устройства"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "Функции на ядрото"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "Страници на ръководства"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "Функции за звук по мрежата"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "Програми за OpenSSL"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "Настройка на OpenSSL"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "Функции на OpenSSL"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "Преглед на OpenSSL"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "Прегледи"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "Функции на POSIX"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "Заглавни файлове на POSIX"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "Функции на Perl"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Функции на Qt"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "Функции на Readline"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "Раздел 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "Раздел 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "Раздел 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "Раздел 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "Раздел 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "Раздел 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "Раздел 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "Раздел 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "Раздел 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "Раздел 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "Раздел 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "Раздел 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "Раздел 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "Раздел 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "Раздел 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "Раздел 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "Раздел 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "Раздел 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "Раздел 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "Раздел 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "Раздел 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "Раздел 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "Раздел 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "Раздели 1, 1p, 1g и 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "Раздели 3, 3o, и 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "Раздели 3form и 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "Раздели 3ncurses и 3curses"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "Раздели 3pm и 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "Раздели 3x и 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "Раздели 7 и 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "Раздели 8 и 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "Системна администрация"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "Системни извиквания"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "Функции на System V за формуляри и менюта"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "Функции на TIFF"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Програми на Termcap"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "Традиционни ръководства (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "Графични програми (X11)"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "Настройка на X11"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "Устройства на X11"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "Функции на X11"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "Игри за X11"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "Преглед на X11"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "Двумерна графика"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "Тримерна графика"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "Достъпност"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "Екшън игри"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "Приключенски игри"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "Забавления"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "Програми за визуализацията и обработката на изображения"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "Програми свързани с аудио и видео"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "Програми помагащи при обучението"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "Аркадни игри"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "Архивиращи инструменти"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "Изкуство"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "Изкуствен интелект"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "Астрономия"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "Биология"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "Игри с плочки"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "Игри на маса"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "Строеж  "
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "Калкулатор"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "Календар"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "Игри с карти"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "Чертожни инструменти"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "Разговори"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "Химия"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "Часовници"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "Компресиращи инструменти"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "Компютърни науки"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "Конструиране"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "Управление на контакти"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "Визуализация на данни"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "Бази от данни"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "Програми за изчистване на грешки"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "Работен плот"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "Настройки на работния плот"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "Комутируем достъп"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "Речници"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "Запис на дискове"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "Икономика"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "Образование"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "Електричество"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "Електроника"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "Инструменти за е-поща"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "Емулатор"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "Инженерни науки"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "Файлов мениджър"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "Файлови инструменти"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "Пренос на файлове"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "Файлови системи"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "Финансови инструменти"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "Чертане на диаграми"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "Програми към GNOME"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "Проектиране на ГПИ"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "Общи приложения за средата GNOME"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "Общи програми за работната среда KDE"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "География"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "Геология"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "Земни науки"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "Графика"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Ръководства за приложенията, които се свързват с външния свят"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "Ръководства за включване в разработката"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "Радио за любители"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "Хардуерни настройки"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "Забавления"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "История"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "Интегрирани среди за разработка"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "Клиенти за IRC"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "Обработка на изображения"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "Бързи съобщения"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "Интернет"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "Java"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "Програми към KDE"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "Игри за деца"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr "Научете как да направите системата си по-достъпна за хора с увреждания"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "Лицензи"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "Литература"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "Логически игри"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "Математика"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "Медицински софтуер"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "Midi"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "Разна документация"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "Смесители"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "Монитор"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "Motif"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "Музика"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "Новини"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "Числен анализ"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "Разпознаване на текст"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "Програми за офиса"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "Програми за офиса"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "Друга документация"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "P2P"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "Връзка с цифрови помощници"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "Програми за управление на пакети"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "Паралелни изчисления"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "Фотография"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "Физика"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "Плеъри"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "Инструменти за презентации"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "Печатане"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "Засичане на бързодействие"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "Инструменти за управление на проекти"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "Публикуване"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "Растерна графика"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "Записващи програми"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "Отдалечен достъп"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "Контрол на версиите"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "Роботика"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "Ролеви игри"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "Сканиране"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "Наука"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "Сигурност"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "Секвенсъри"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "Настройки"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr ""
-"Настройки, с които потребителите могат да си направят работната среда по-"
-"приятна"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "Игри със симулация"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "Звук"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "Звук и видео"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "Редактиране на аудио и видео"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "Спорт"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "Спортни игри"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "Инструменти за електронни таблици"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "Стратегически игри"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "Система"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "Телевизия"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "Телефония"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "Инструменти за телефония"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "Терминални емулатори"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "Текстови редактори"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "Текстови инструменти"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "Инструменти за управлението на компютъра"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "Инструменти за превод"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "Тунери"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "Помощни програми"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "Помощни програми за завършването на задачи"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "Векторна графика"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "Видео"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "Видеоконференции"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "Визуализация"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "Браузър за Интернет"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "Разработка за уеб"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "Добре дошли в браузъра на помощта на GNOME"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "Програми за текстообработка"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -879,26 +31,26 @@ msgstr "Неправилни компресирани данни"
 msgid "Not enough memory"
 msgstr "Няма достатъчно памет"
 
-#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:270
-#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:271
+#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Страницата „%s“ не е открита в документа „%s“."
 
-#: ../libyelp/yelp-docbook-document.c:315 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:416
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "Файлът не съществува."
 
-#: ../libyelp/yelp-docbook-document.c:325 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:426
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Файлът „%s“ не съществува."
 
-#: ../libyelp/yelp-docbook-document.c:340
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -907,7 +59,7 @@ msgstr ""
 "Файлът „%s“ не може да бъде анализиран, защото е лошо формиран като документ "
 "на XML."
 
-#: ../libyelp/yelp-docbook-document.c:353
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -916,12 +68,12 @@ msgstr ""
 "Файлът „%s“ не може да бъде анализиран, защото поне един от файловете "
 "включени в него е лошо формиран като документ на XML."
 
-#: ../libyelp/yelp-docbook-document.c:762
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "Без заглавие"
 
-#: ../libyelp/yelp-docbook-document.c:823 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:358
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Поисканата страница не е открита в документа „%s“."
@@ -942,16 +94,21 @@ msgstr "Адрес на документа"
 msgid "The URI which identifies the document"
 msgstr "Адресът, който идентифицира този документ"
 
-#: ../libyelp/yelp-document.c:966
+#: ../libyelp/yelp-document.c:956
+#, c-format
+msgid "Search results for “%s”"
+msgstr "Резултати от търсенето на „%s“"
+
+#: ../libyelp/yelp-document.c:968
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Няма съвпадащи страници в „%s“."
 
-#: ../libyelp/yelp-document.c:972
+#: ../libyelp/yelp-document.c:974
 msgid "No matching help pages found."
 msgstr "Няма съвпадащи страници в помощта."
 
-#: ../libyelp/yelp-error.c:33
+#: ../libyelp/yelp-error.c:37
 #, c-format
 msgid "An unknown error occurred."
 msgstr "Възникна неизвестна грешка"
@@ -968,95 +125,95 @@ msgstr ""
 "Файлът „%s“ не може да бъде анализиран, защото е лошо формиран като страница "
 "от info."
 
-#: ../libyelp/yelp-location-entry.c:326
+#: ../libyelp/yelp-location-entry.c:329
 msgid "View"
 msgstr "Изглед"
 
-#: ../libyelp/yelp-location-entry.c:327
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
 msgstr "Обект от вида „YelpView“, който да бъде управляван"
 
-#: ../libyelp/yelp-location-entry.c:342
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "Отметки"
 
-#: ../libyelp/yelp-location-entry.c:343
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
 msgstr "Обект от вид реализация на „YelpBookmarks“"
 
-#: ../libyelp/yelp-location-entry.c:359
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
 msgstr "Включване на търсенето"
 
-#: ../libyelp/yelp-location-entry.c:360
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
 msgstr ""
 "Дали полето за въвеждане на местоположение може да се използва като поле за "
 "търсене"
 
-#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Търсене…"
 
-#: ../libyelp/yelp-location-entry.c:785
+#: ../libyelp/yelp-location-entry.c:776
 msgid "Clear the search text"
 msgstr "Изчистване на търсения текст"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
+#: ../libyelp/yelp-location-entry.c:825 ../libyelp/yelp-location-entry.c:1523
 msgid "Bookmark this page"
 msgstr "Отмятане на страницата"
 
-#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
+#: ../libyelp/yelp-location-entry.c:833 ../libyelp/yelp-location-entry.c:1531
 msgid "Remove bookmark"
 msgstr "Премахване на отметката"
 
-#: ../libyelp/yelp-location-entry.c:1412
+#: ../libyelp/yelp-location-entry.c:1388
 msgid "Loading"
 msgstr "Зареждане"
 
-#: ../libyelp/yelp-mallard-document.c:310
+#: ../libyelp/yelp-mallard-document.c:311
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Папката „%s“ не съществува."
 
-#: ../libyelp/yelp-settings.c:150
+#: ../libyelp/yelp-settings.c:154
 msgid "GtkSettings"
 msgstr "Обект GtkSettings"
 
-#: ../libyelp/yelp-settings.c:151
+#: ../libyelp/yelp-settings.c:155
 msgid "A GtkSettings object to get settings from"
 msgstr "Обект от вида „GtkSettings“, от който да се взимат настройки"
 
-#: ../libyelp/yelp-settings.c:159
+#: ../libyelp/yelp-settings.c:163
 msgid "GtkIconTheme"
 msgstr "Обект GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:160
+#: ../libyelp/yelp-settings.c:164
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Обект от вида „GtkIconTheme“, от който да се взимат икони"
 
-#: ../libyelp/yelp-settings.c:168
+#: ../libyelp/yelp-settings.c:172
 msgid "Font Adjustment"
 msgstr "Увеличаване на шрифта"
 
-#: ../libyelp/yelp-settings.c:169
+#: ../libyelp/yelp-settings.c:173
 msgid "A size adjustment to add to font sizes"
 msgstr ""
 "Увеличаване на размера, което да се добавя към големината на шрифтовете"
 
-#: ../libyelp/yelp-settings.c:177
+#: ../libyelp/yelp-settings.c:181
 msgid "Show Text Cursor"
 msgstr "Показване на курсор в текста"
 
-#: ../libyelp/yelp-settings.c:178
+#: ../libyelp/yelp-settings.c:182
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Показване на курсор за достъпност и навигация в текста"
 
-#: ../libyelp/yelp-settings.c:186
+#: ../libyelp/yelp-settings.c:190
 msgid "Editor Mode"
 msgstr "Режим на редактиране"
 
-#: ../libyelp/yelp-settings.c:187
+#: ../libyelp/yelp-settings.c:191
 msgid "Enable features useful to editors"
 msgstr "Включване на функции полезни за редактори"
 
@@ -1109,72 +266,72 @@ msgstr "П_редишнa страница"
 msgid "_Next Page"
 msgstr "С_ледваща страница"
 
-#: ../libyelp/yelp-view.c:415
+#: ../libyelp/yelp-view.c:416
 msgid "Yelp URI"
 msgstr "Адрес на Yelp"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:417
 msgid "A YelpUri with the current location"
 msgstr "Обект от вида „YelpUri“ с текущото местоположение"
 
-#: ../libyelp/yelp-view.c:424
+#: ../libyelp/yelp-view.c:425
 msgid "Loading State"
 msgstr "Зареждащо състояние"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:426
 msgid "The loading state of the view"
 msgstr "Състоянието на зареждане на изгледа"
 
-#: ../libyelp/yelp-view.c:434
+#: ../libyelp/yelp-view.c:435
 msgid "Page ID"
 msgstr "Идентификатор на страницата"
 
-#: ../libyelp/yelp-view.c:435
+#: ../libyelp/yelp-view.c:436
 msgid "The ID of the root page of the page being viewed"
 msgstr "Идентификаторът на кореновата страница за разглежданата страница"
 
-#: ../libyelp/yelp-view.c:443
+#: ../libyelp/yelp-view.c:444
 msgid "Root Title"
 msgstr "Заглавие на корена"
 
-#: ../libyelp/yelp-view.c:444
+#: ../libyelp/yelp-view.c:445
 msgid "The title of the root page of the page being viewed"
 msgstr "Заглавие на кореновата страница за разглежданата страница"
 
-#: ../libyelp/yelp-view.c:452
+#: ../libyelp/yelp-view.c:453
 msgid "Page Title"
 msgstr "Заглавие на страницата"
 
-#: ../libyelp/yelp-view.c:453
+#: ../libyelp/yelp-view.c:454
 msgid "The title of the page being viewed"
 msgstr "Заглавието на разглежданата страница"
 
-#: ../libyelp/yelp-view.c:461
+#: ../libyelp/yelp-view.c:462
 msgid "Page Description"
 msgstr "Описание на страницата"
 
-#: ../libyelp/yelp-view.c:462
+#: ../libyelp/yelp-view.c:463
 msgid "The description of the page being viewed"
 msgstr "Описанието на разглежданата страница"
 
-#: ../libyelp/yelp-view.c:470
+#: ../libyelp/yelp-view.c:471
 msgid "Page Icon"
 msgstr "Икона на страницата"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:472
 msgid "The icon of the page being viewed"
 msgstr "Иконата на разглежданата страница"
 
-#: ../libyelp/yelp-view.c:712
+#: ../libyelp/yelp-view.c:713
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "Пакетът „PackageKit“ не е инсталиран, а връзките за инсталиране го изискват."
 
-#: ../libyelp/yelp-view.c:990
+#: ../libyelp/yelp-view.c:991
 msgid "Save Image"
 msgstr "Запазване на изображението"
 
-#: ../libyelp/yelp-view.c:1085
+#: ../libyelp/yelp-view.c:1086
 msgid "Save Code"
 msgstr "Запазване на изходния код"
 
@@ -1184,120 +341,120 @@ msgstr "Запазване на изходния код"
 #. * probably only be one menu item for mailto link popups anyway,
 #. * so the mnemonic's not that big of a deal.
 #.
-#: ../libyelp/yelp-view.c:1254
+#: ../libyelp/yelp-view.c:1255
 #, c-format
 msgid "Send email to %s"
 msgstr "Изпращане на е-поща до %s"
 
-#: ../libyelp/yelp-view.c:1264
+#: ../libyelp/yelp-view.c:1265
 msgid "_Open Link"
 msgstr "_Отваряне на връзка"
 
-#: ../libyelp/yelp-view.c:1269
+#: ../libyelp/yelp-view.c:1270
 msgid "Open Link in New _Window"
 msgstr "Отваряне на връзката в нов _прозорец"
 
-#: ../libyelp/yelp-view.c:1320
+#: ../libyelp/yelp-view.c:1321
 msgid "_Save Image As..."
 msgstr "_Запазване на изображението като…"
 
-#: ../libyelp/yelp-view.c:1322
+#: ../libyelp/yelp-view.c:1323
 msgid "_Save Video As..."
 msgstr "_Запазване на видео клипа като…"
 
-#: ../libyelp/yelp-view.c:1329
+#: ../libyelp/yelp-view.c:1330
 msgid "S_end Image To..."
 msgstr "Изпращан_e на изображението до…"
 
-#: ../libyelp/yelp-view.c:1331
+#: ../libyelp/yelp-view.c:1332
 msgid "S_end Video To..."
 msgstr "Изпращан_e на видео клипа до…"
 
-#: ../libyelp/yelp-view.c:1342
+#: ../libyelp/yelp-view.c:1343
 msgid "_Copy Text"
 msgstr "_Копиране на текста"
 
-#: ../libyelp/yelp-view.c:1355
+#: ../libyelp/yelp-view.c:1356
 msgid "C_opy Code Block"
 msgstr "К_опиране на блок с код"
 
-#: ../libyelp/yelp-view.c:1360
+#: ../libyelp/yelp-view.c:1361
 msgid "Save Code _Block As..."
 msgstr "Запазване на _блока с код като…"
 
-#: ../libyelp/yelp-view.c:1542
+#: ../libyelp/yelp-view.c:1543
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Неуспех при зареждане на документ за „%s“"
 
-#: ../libyelp/yelp-view.c:1548
+#: ../libyelp/yelp-view.c:1549
 #, c-format
 msgid "Could not load a document"
 msgstr "Неуспех при зареждане на документ"
 
-#: ../libyelp/yelp-view.c:1622
+#: ../libyelp/yelp-view.c:1623
 msgid "Document Not Found"
 msgstr "Документът не беше открит"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1625
 msgid "Page Not Found"
 msgstr "Страницата не е открита"
 
-#: ../libyelp/yelp-view.c:1627
+#: ../libyelp/yelp-view.c:1628
 msgid "Cannot Read"
 msgstr "Неуспех при четене"
 
-#: ../libyelp/yelp-view.c:1633
+#: ../libyelp/yelp-view.c:1634
 msgid "Unknown Error"
 msgstr "Непозната грешка"
 
-#: ../libyelp/yelp-view.c:1653
+#: ../libyelp/yelp-view.c:1654
 msgid "Search for packages containing this document."
 msgstr "Търсене за пакети съдържащи този документ."
 
-#: ../libyelp/yelp-view.c:1806
+#: ../libyelp/yelp-view.c:1807
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Адресът „%s“ сочи към неправилна страница."
 
-#: ../libyelp/yelp-view.c:1812
+#: ../libyelp/yelp-view.c:1813
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "Адресът не сочи към правилна страница."
 
-#: ../libyelp/yelp-view.c:1818
+#: ../libyelp/yelp-view.c:1819
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Адресът „%s“ не може да бъде обработен."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "Включване на режим за редактиране"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
 msgstr "По-го_лям текст"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
 msgstr "Увеличаване на размера на текста"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
 msgstr "По-_малък текст"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
 msgstr "Намаляване на размера на текста"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr "Показване на _курсор в текста"
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Потребителско ръководство"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "Показване на _курсор в текста"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
@@ -1350,6 +507,10 @@ msgstr "Програми"
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Обект от вида „YelpApplication“, който управлява този прозорец"
+
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "Търсене:"
 
 #: ../src/yelp-window.c:548
 msgid "Read Later"
