@@ -1,3 +1,23 @@
+3.1.2
+=====
+* Added Unity to OnlyShowIn
+* Added support for the install: action scheme
+* Don't try to search with NULL URI, bug #655124
+* Fixed crash when opening URI after closing a window
+* Fixed search crash on 64-bit systems
+* Changed the DocBook chunking rules to match yelp-xsl
+* Updated translations:
+  be    (Ihar Hrachyshka)
+  bg    (Alexander Shopov)
+  es    (Jorge González)
+  he    (Yaron Shahrabani)
+  lt    (Aurimas Černius)
+  lv    (Rudolfs Mazurs)
+  nb    (Kjartan Maraas)
+  pl    (Piotr Drąg)
+  sl    (Matej Urbančič)
+  sv    (Daniel Nylander)
+
 3.1.1
 =====
 * Update for changes in yelp-xsl (Shaun McCance)
