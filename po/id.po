@@ -6,14 +6,14 @@
 # Ahmad Riza H Nst <ari@160c.afraid.org>, 2005.
 # Dirgita <dirgitadevina@yahoo.co.id>, 2010, 2011.
 # Andika Triwidada <andika@gmail.com>, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-11 12:04+0000\n"
-"PO-Revision-Date: 2011-03-05 10:13+0700\n"
-"Last-Translator: Dirgita <dirgitadevina@yahoo.co.id>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-07-05 14:30+0000\n"
+"PO-Revision-Date: 2011-08-18 11:31+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,856 +23,6 @@ msgstr ""
 "X-Poedit-Country: Indonesia\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 1.1\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "Halaman Info GNU"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "Baris bantuan perintah tradisional (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "Aplikasi"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "Fungsi BLT"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "Berkas Konfigurasi"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "Fungsi Curses"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "Pengembangan"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "Fungsi FORTRAN"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "Permainan"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "Perangkat Keras"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "Rutin Kernel"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "Halaman Manual"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "Fungsi Jaringan Suara"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "Aplikasi OpenSSL"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "Konfigurasi OpenSSL"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "Fungsi OpenSSL"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "Ringkasan OpenSSL"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "Ringkasan"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "Fungsi POSIX"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "Tajuk POSIX"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "Fungsi Perl"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Fungsi Qt"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "Fungsi Readline"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "Bagian 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "Bagian 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "Bagian 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "Bagian 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "Bagian 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "Bagian 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "Bagian 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "Bagian 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "Bagian 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "Bagian 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "Bagian 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "Bagian 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "Bagian 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "Bagian 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "Bagian 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "Bagian 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "Bagian 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "Bagian 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "Bagian 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "Bagian 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "Bagian 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "Bagian 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "Bagian 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "Bagian 1, 1p, 1g, dan 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "Bagian 3, 3o, dan 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "Bagian 3form dan 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "Bagian 3ncurses dan 3curses"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "Bagian 3pm dan 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "Bagian 3x dan 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "Bagian 7 dan 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "Bagian 8 dan 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "Administrasi Sistem"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "Panggilan Sistem"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "Fungsi Form/Menu System V"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "Fungsi TIFF"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Aplikasi Termcap"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "Bantuan baris perintah tradisional (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "Aplikasi X11"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "Konfigurasi X11"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "Perangkat X11"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "Fungsi X11"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "Permainan X11"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "Ringkasan X11"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "Grafik 2D"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "Grafik 3D"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "Aksesibilitas"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "Permainan Laga"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "Permainan Petualangan"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "Hiburan"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "Aplikasi untuk menilik atau memanipulasi grafis"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "Aplikasi terkait audio dan video"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "Aplikasi yang mengajarkan atau membantu proses belajar"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "Permainan Arcade"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "Perkakas Pengarsipan"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "Seni"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "Kecerdasan Buatan"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "Astronomi"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "Biologi"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "Permainan Blok"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "Permainan Papan"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "Membangun"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "Kalkulator"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "Kalender"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "Permainan Kartu"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "Perkakas Diagram"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "Mengobrol"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "Kimia"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "Jam"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "Perkakas Kompresi"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "Sains Komputer"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "Pembangunan"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "Manajemen Kontak"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "Visualisasi Data"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "Basis Data"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "Pengawa Kutu"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "Desktop"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "Pengaturan Desktop"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "Dialup"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "Kamus"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "Membakar Cakram"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "Ekonomi"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "Pendidikan"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "Kelistrikan"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "Elektronik"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "Perkakas Surel"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "Emulator"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "Rekayasa"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "Manajer Berkas"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "Perkakas Berkas"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "Transfer Berkas"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "Sistem Berkas"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "Perkakas Keuangan"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "Perkakas Diagram Alir"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "Aplikasi GNOME"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "Perancang GUI"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "Aplikasi generik bagi lingkungan GNOME"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "Aplikasi generik bagi lingkungan KDE"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "Geografi"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "Geologi"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "Ilmu Kebumian"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "Grafik"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Panduan dan pegangan bagi aplikasi yang menyambung ke dunia luar"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "Panduan untuk terlibat dalam pengembangan"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "Radio Amatir"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "Pengaturan Perangkat Keras"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "Ayo bermain"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "Sejarah"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "IDE"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "Klien IRC"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "Pengolahan Gambar"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "Pesan Instan"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "Internet"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "Java"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "Aplikasi KDE"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "Permainan Anak-anak"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr ""
-"Belajar lebih jauh tentang membuat sistem Anda lebih mudah dipakai "
-"penyandang cacat"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "Lisensi"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "Literatur"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "Permainan Logika"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "Matematika"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "Perangkat Lunak Kedokteran"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "Midi"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "Dokumentasi Lain-lain"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "Mikser"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "Monitor"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "Motif"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "Musik"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "Berita"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "Analisa Numerik"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "OCR"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "Aplikasi Perkantoran"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "Aplikasi perkantoran"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "Dokumen Lainnya"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "P2P"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "Komunikasi PDA"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "Manajer Paket"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "Parallel Computing"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "Fotografi"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "Fisika"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "Pemutar"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "Perkakas Presentasi"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "Pencetakan"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "Perkakas Pemrofilan"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "Perkakas Manajemen Proyek"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "Penerbitan"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "Grafik Raster"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "Perekam"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "Akses Jarak Jauh"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "Kendali Revisi"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "Robotika"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "Permainan Role Playing"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "Pemindaian"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "Sains"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "Keamanan"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "Sekuenser"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "Pengaturan"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr ""
-"Tatanan yang dapat dimanipulasi pengguna untuk membuat lingkungan mereka "
-"lebih nyaman"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "Permainan Simulasi"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "Suara"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "Suara $amp; Video"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "Penyuntingan Suara $amp; Video"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "Olah Raga"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "Permainan Olah Raga"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "Perkakas Lembar Kerja"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "Permainan Strategi"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "Sistem"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "TV"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "Telefoni"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "Perkakas Telefoni"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "Emulator Terminal"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "Penyunting Teks"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "Perkakas Teks"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "Peralatan untuk membantu mengelola komputer Anda"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "Perkakas Penerjemahan"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "Radio"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "Utilitas"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "Utilitas untuk membantu Anda menyelesaikan pekerjaan"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "Grafik Vektor"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "Video"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "Konferensi Video"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "Penilik"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "Peramban Web"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "Pengembangan Web"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "Selamat datang ke Peramban Bantuan GNOME"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "Pengolah Kata"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -884,48 +34,45 @@ msgstr "Data terkompresi tak valid"
 msgid "Not enough memory"
 msgstr "Tidak cukup memori"
 
-#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:270
-#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:282
+#: ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:271
+#: ../libyelp/yelp-mallard-document.c:423
+#: ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Halaman '%s' tak ditemukan di dokumen '%s'."
 
-#: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-docbook-document.c:317
+#: ../libyelp/yelp-info-document.c:372
 #: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "Berkas tidak ada."
 
-#: ../libyelp/yelp-docbook-document.c:326 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-docbook-document.c:327
+#: ../libyelp/yelp-info-document.c:382
 #: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Berkas '%s' tidak ada."
 
-#: ../libyelp/yelp-docbook-document.c:341
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"Berkas ‘%s’ tidak dapat diuraikan karena bukan dokumen XML yang baik "
-"bentuknya."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgstr "Berkas ‘%s’ tidak dapat diuraikan karena bukan dokumen XML yang baik bentuknya."
 
-#: ../libyelp/yelp-docbook-document.c:354
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files "
-"is not a well-formed XML document."
-msgstr ""
-"Berkas ‘%s’ tidak dapat diuraikan karena satu atau lebih berkas terkait "
-"bukan dokumen XLM yang baik bentuknya."
+msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
+msgstr "Berkas ‘%s’ tidak dapat diuraikan karena satu atau lebih berkas terkait bukan dokumen XLM yang baik bentuknya."
 
-#: ../libyelp/yelp-docbook-document.c:763
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "Tak dikenal"
 
-#: ../libyelp/yelp-docbook-document.c:824 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-docbook-document.c:826
+#: ../libyelp/yelp-info-document.c:315
 #: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
@@ -948,118 +95,124 @@ msgstr "URI Dokumen"
 msgid "The URI which identifies the document"
 msgstr "URI milik dokumen"
 
-#: ../libyelp/yelp-document.c:966
+#: ../libyelp/yelp-document.c:956
+#, c-format
+msgid "Search results for “%s”"
+msgstr "Hasil pencarian \"%s\""
+
+#: ../libyelp/yelp-document.c:968
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Tidak ada halaman bantuan pada “%s”."
 
-#: ../libyelp/yelp-document.c:972
+#: ../libyelp/yelp-document.c:974
 msgid "No matching help pages found."
 msgstr "Tidak ada halaman bantuan."
 
-#: ../libyelp/yelp-error.c:33
+#: ../libyelp/yelp-error.c:37
 #, c-format
 msgid "An unknown error occurred."
 msgstr "Terjadi galat yang tak dikenal."
 
-#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:478
+#: ../libyelp/yelp-help-list.c:487
 msgid "All Help Documents"
 msgstr "Semua Dokumen Bantuan"
 
 #: ../libyelp/yelp-info-document.c:397
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"Berkas ‘%s’ tidak dapat diuraikan karena bukan halaman info yang baik "
-"bentuknya."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr "Berkas ‘%s’ tidak dapat diuraikan karena bukan halaman info yang baik bentuknya."
 
-#: ../libyelp/yelp-location-entry.c:326
+#: ../libyelp/yelp-location-entry.c:329
 msgid "View"
 msgstr "Tampilan"
 
-#: ../libyelp/yelp-location-entry.c:327
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
 msgstr "Instansi YelpView yang ingin dikendalikan"
 
-#: ../libyelp/yelp-location-entry.c:342
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "Penanda"
 
-#: ../libyelp/yelp-location-entry.c:343
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
 msgstr "Suatu instansi implementasi YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:359
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
 msgstr "Aktifkan Pencarian"
 
-#: ../libyelp/yelp-location-entry.c:360
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
 msgstr "Apakah entri lokasi dapat dipakai sebagai ruas pencarian"
 
-#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:433
+#: ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Cari..."
 
-#: ../libyelp/yelp-location-entry.c:785
+#: ../libyelp/yelp-location-entry.c:774
 msgid "Clear the search text"
 msgstr "Membersihkan teks pencarian"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
+#: ../libyelp/yelp-location-entry.c:823
+#: ../libyelp/yelp-location-entry.c:1521
 msgid "Bookmark this page"
 msgstr "Menandai halaman ini"
 
-#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
+#: ../libyelp/yelp-location-entry.c:831
+#: ../libyelp/yelp-location-entry.c:1529
 msgid "Remove bookmark"
 msgstr "Menghapus penanda"
 
-#: ../libyelp/yelp-location-entry.c:1412
+#: ../libyelp/yelp-location-entry.c:1386
 msgid "Loading"
 msgstr "Sedang memuat"
 
-#: ../libyelp/yelp-mallard-document.c:310
+#: ../libyelp/yelp-mallard-document.c:311
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Direktori '%s' tidak ada."
 
-#: ../libyelp/yelp-settings.c:150
+#: ../libyelp/yelp-settings.c:154
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:151
+#: ../libyelp/yelp-settings.c:155
 msgid "A GtkSettings object to get settings from"
 msgstr "Objek GtkSettings tempat mendapat tatanan"
 
-#: ../libyelp/yelp-settings.c:159
+#: ../libyelp/yelp-settings.c:163
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:160
+#: ../libyelp/yelp-settings.c:164
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Objek GtkIconTheme tempat mendapat tatanan"
 
-#: ../libyelp/yelp-settings.c:168
+#: ../libyelp/yelp-settings.c:172
 msgid "Font Adjustment"
 msgstr "Penyesuaian Fonta"
 
-#: ../libyelp/yelp-settings.c:169
+#: ../libyelp/yelp-settings.c:173
 msgid "A size adjustment to add to font sizes"
 msgstr "Penyesuaian ukuran untuk ditambahkan ke ukuran fonta"
 
-#: ../libyelp/yelp-settings.c:177
+#: ../libyelp/yelp-settings.c:181
 msgid "Show Text Cursor"
 msgstr "Tampilkan Kursor Teks"
 
-#: ../libyelp/yelp-settings.c:178
+#: ../libyelp/yelp-settings.c:182
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Tampilkan kursor teks atau caret untuk navigasi yang lebih membantu"
 
-#: ../libyelp/yelp-settings.c:186
+#: ../libyelp/yelp-settings.c:190
 msgid "Editor Mode"
 msgstr "Mode Penyunting"
 
-#: ../libyelp/yelp-settings.c:187
+#: ../libyelp/yelp-settings.c:191
 msgid "Enable features useful to editors"
 msgstr "Aktifkan fitur yang berguna bagi para penyunting"
 
@@ -1079,7 +232,8 @@ msgstr "Stylesheet XSLT"
 msgid "The location of the XSLT stylesheet"
 msgstr "Lokasi dari stylesheet XSLT"
 
-#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
+#: ../libyelp/yelp-transform.c:379
+#: ../libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Stylesheet XSLT '%s' mungkin hilang atau tak valid."
@@ -1170,9 +324,7 @@ msgstr "Ikon dari halaman yang sedang ditilik"
 
 #: ../libyelp/yelp-view.c:713
 msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr ""
-"Anda tidak memiliki PackageKit. Tautan pemasangan paket memerlukan "
-"PackageKit."
+msgstr "Anda tidak memiliki PackageKit. Tautan pemasangan paket memerlukan PackageKit."
 
 #: ../libyelp/yelp-view.c:991
 msgid "Save Image"
@@ -1274,34 +426,35 @@ msgstr "URI tidak merujuk pada halaman yang sah."
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI '%s' tidak dapat diuraikan."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "Nyalakan mode penyunting"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
 msgstr "Teks Besa_r"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
 msgstr "Perbesar ukuran teks"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
 msgstr "Tek_s Kecil"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
 msgstr "Perkecil ukuran teks"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr "Tampilkan _Kursor Teks"
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253
+#: ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Bantuan"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "Tampilkan _Kursor Teks"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
@@ -1355,6 +508,10 @@ msgstr "Aplikasi"
 msgid "A YelpApplication instance that controls this window"
 msgstr "Instansi YelpApplication yang mengendalikan jendela ini"
 
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "Cari:"
+
 #: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "Baca Nanti"
@@ -1372,3 +529,4 @@ msgstr "Tak ada yang cocok"
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Buka bantuan GNOME"
+
