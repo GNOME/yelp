@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 22:09+0100\n"
-"PO-Revision-Date: 2011-04-05 23:14+0200\n"
+"POT-Creation-Date: 2011-08-21 13:41+0200\n"
+"PO-Revision-Date: 2011-08-21 13:41+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
@@ -17,855 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "Pàgines info de GNU"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "Ajuda de línia d'ordres tradicional (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "Aplicacions"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "Funcions del BLT"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "Fitxers de configuració"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "Funcions del Curses"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "Desenvolupament"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "Funcions del FORTRAN"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "Jocs"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "Dispositius de maquinari"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "Rutines del nucli"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "Pàgines de manual"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "Funcions de so d'àudio de xarxa"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "Aplicacions per a l'OpenSSL"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "Configuració de l'OpenSSL"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "Funcions de l'OpenSSL"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "Resums de l'OpenSSL"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "Resums"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "Funcions POSIX"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "Capçaleres POSIX"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "Funcions del Perl"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Funcions del Qt"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "Funcions del readline"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "Secció 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "Secció 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "Secció 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "Secció 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "Secció 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "Secció 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "Secció 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "Secció 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "Secció 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "Secció 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "Secció 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "Secció 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "Secció 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "Secció 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "Secció 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "Secció 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "Secció 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "Secció 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "Secció 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "Secció 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "Secció 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "Secció 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "Secció 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "Seccions 1, 1p, 1g i 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "Seccions 3, 3o, i 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "Seccions 3form i 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "Seccions 3ncurses i 3curses"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "Seccions 3pm i 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "Seccions 3x i 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "Seccions 7 i 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "Seccions 8 i 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "Administració del sistema"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "Crides al sistema"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "Funcions del formulari/menú del sistema V"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "Funcions TIFF"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Aplicacions per a Termcap"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "Ajuda de línia d'ordres tradicional (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "Aplicacions per a X11"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "Configuració d'X11"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "Dispositius d'X11"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "Funcions d'X11"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "Jocs per a X11"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "Resums d'X11"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "Gràfics 2D"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "Gràfics 3D"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "Accessibilitat"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "Jocs d'acció"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "Jocs d'aventures"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "Entreteniment"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "Aplicacions per visualitzar i modificar gràfics"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "Aplicacions relacionades amb l'àudio i el vídeo"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "Aplicacions que ensenyen o ajuden en l'aprenentatge"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "Jocs recreatius"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "Eines d'arxivació"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "Art"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "Intel·ligència artificial"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "Astronomia"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "Biologia"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "Jocs de blocs"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "Jocs de tauler"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "Muntatge"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "Calculadora"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "Calendari"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "Jocs de cartes"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "Eines de creació de diagrames"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "Xat"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "Química"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "Rellotges"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "Eines de compressió"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "Informàtica"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "Construcció"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "Gestió de contactes"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "Visualització de dades"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "Bases de dades"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "Depuradors"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "Escriptori"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "Paràmetres d'escriptori"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "Marcatge directe"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "Diccionaris"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "Enregistrament de discs"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "Economia"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "Educació"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "Electricitat"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "Electrònica"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "Eines de correu electrònic"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "Emulador"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "Enginyeria"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "Gestió de fitxers"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "Eines de fitxers"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "Transferència de fitxers"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "Sistema de fitxers"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "Eines financeres"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "Eines de diagrames de flux"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "Aplicacions per a GNOME"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "Dissenyadors d'interfícies gràfiques"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "Aplicacions genèriques per a l'entorn GNOME"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "Aplicacions genèriques per a l'entorn KDE"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "Geografia"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "Geologia"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "Ciències de la Terra"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "Gràfics"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Guies i manuals per a aplicacions que es connecten a la resta del món"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "Guies per involucrar-se en desenvolupament"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "Radioaficionat"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "Paràmetres de maquinari"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "Diversió"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "Història"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "Entorns integrats de desenvolupament"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "Clients de l'IRC"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "Processament d'imatges"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "Missatgeria instantània"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "Internet"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "Java"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "Aplicacions per a KDE"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "Jocs per a canalla"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr ""
-"Apreneu com fer que el sistema sigui més accessible a moltes discapacitats"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "Llicències"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "Literatura"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "Jocs lògics"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "Matemàtiques"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "Programari mèdic"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "MIDI"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "Documentació diversa"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "Mescladors"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "Pantalla"
-
-# es refereix a un joc d'eines de la mateixa manera que hi ha GTK+ i Qt
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "Motif"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "Música"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "Notícies"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "Anàlisi numèrica"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "Reconeixement de text (OCR)"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "Aplicacions ofimàtiques"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "Aplicacions ofimàtiques"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "Altra documentació"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "P2P"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "Comunicació amb PDA"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "Gestió de paquets"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "Computació paral·lela"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "Fotografia"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "Física"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "Reproductors"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "Eines de presentació"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "Impressió"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "Eines de perfils"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "Eines de gestió de projectes"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "Publicació"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "Gràfics de píxels"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "Codificadors"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "Accés remot"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "Control de revisions"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "Robòtica"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "Jocs de rol"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "Escaneig"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "Ciència"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "Seguretat"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "Seqüenciadors"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "Paràmetres"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr ""
-"Paràmetres que poden canviar els usuaris per fer el seu entorn més còmode"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "Jocs de simulació"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "So"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "So i vídeo"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "Edició de so i vídeo"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "Esports"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "Jocs d'esports"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "Eines de full de càlcul"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "Jocs d'estratègia"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "Sistema"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "Televisió"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "Telefonia"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "Eines de telefonia"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "Emulador de terminal"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "Editors de text"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "Eines de text"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "Eines per ajudar-vos a gestionar l'ordinador"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "Eines de traducció"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "Sintonitzadors"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "Utilitats"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "Utilitats per ajudar-vos a fer la feina"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "Gràfics vectorials"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "Vídeo"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "Conferència de vídeo"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "Visualitzadors"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "Navegador web"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "Desenvolupament web"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "Us donem la benvinguda al navegador de l'ajuda del GNOME"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "Processadors de text"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -877,26 +28,26 @@ msgstr "Les dades comprimides no són vàlides"
 msgid "Not enough memory"
 msgstr "No hi ha prou memòria"
 
-#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:270
-#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:271
+#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "No s'ha trobat la pàgina «%s» en el document «%s»."
 
-#: ../libyelp/yelp-docbook-document.c:315 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:416
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "No existeix el fitxer."
 
-#: ../libyelp/yelp-docbook-document.c:325 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:426
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "No existeix el fitxer «%s»."
 
-#: ../libyelp/yelp-docbook-document.c:340
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -904,7 +55,7 @@ msgid ""
 msgstr ""
 "No s'ha pogut analitzar el fitxer «%s» perquè no és un document XML vàlid."
 
-#: ../libyelp/yelp-docbook-document.c:353
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -913,12 +64,12 @@ msgstr ""
 "No s'ha pogut analitzar el fitxer «%s» perquè algun dels seus fitxers "
 "inclosos no és un document XML vàlid."
 
-#: ../libyelp/yelp-docbook-document.c:762
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: ../libyelp/yelp-docbook-document.c:823 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:358
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "No s'ha trobat la pàgina sol·licitada en el document «%s»."
@@ -939,16 +90,21 @@ msgstr "URI del document"
 msgid "The URI which identifies the document"
 msgstr "L'URI que identifica el document"
 
-#: ../libyelp/yelp-document.c:966
+#: ../libyelp/yelp-document.c:956
+#, c-format
+msgid "Search results for “%s”"
+msgstr "Resultats de la cerca «%s»"
+
+#: ../libyelp/yelp-document.c:968
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "No s'ha trobat cap pàgina d'ajuda a «%s»."
 
-#: ../libyelp/yelp-document.c:972
+#: ../libyelp/yelp-document.c:974
 msgid "No matching help pages found."
 msgstr "No s'ha trobat cap pàgina d'ajuda coincident."
 
-#: ../libyelp/yelp-error.c:33
+#: ../libyelp/yelp-error.c:37
 #, c-format
 msgid "An unknown error occurred."
 msgstr "S'ha produït un error desconegut."
@@ -965,92 +121,92 @@ msgstr ""
 "No s'ha pogut analitzar el fitxer «%s» perquè no és una pàgina d'informació "
 "vàlida."
 
-#: ../libyelp/yelp-location-entry.c:326
+#: ../libyelp/yelp-location-entry.c:329
 msgid "View"
 msgstr "Visualització"
 
-#: ../libyelp/yelp-location-entry.c:327
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
 msgstr "Una instància de YelpView a controlar"
 
-#: ../libyelp/yelp-location-entry.c:342
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "Adreces d'interès"
 
-#: ../libyelp/yelp-location-entry.c:343
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
 msgstr "Una instància d'implementació de YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:359
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
 msgstr "Habilita la cerca"
 
-#: ../libyelp/yelp-location-entry.c:360
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
 msgstr "Si l'entrada d'ubicació es pot utilitzar com a camp de cerca"
 
-#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Cerca..."
 
-#: ../libyelp/yelp-location-entry.c:785
+#: ../libyelp/yelp-location-entry.c:776
 msgid "Clear the search text"
 msgstr "Neteja el text de cerca"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
+#: ../libyelp/yelp-location-entry.c:825 ../libyelp/yelp-location-entry.c:1523
 msgid "Bookmark this page"
 msgstr "Afegeix aquesta pàgina a les adreces d'interès"
 
-#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
+#: ../libyelp/yelp-location-entry.c:833 ../libyelp/yelp-location-entry.c:1531
 msgid "Remove bookmark"
 msgstr "Suprimeix l'adreça d'interès"
 
-#: ../libyelp/yelp-location-entry.c:1412
+#: ../libyelp/yelp-location-entry.c:1388
 msgid "Loading"
 msgstr "S'està carregant"
 
-#: ../libyelp/yelp-mallard-document.c:310
+#: ../libyelp/yelp-mallard-document.c:311
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "No existeix el directori «%s»."
 
-#: ../libyelp/yelp-settings.c:150
+#: ../libyelp/yelp-settings.c:154
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:151
+#: ../libyelp/yelp-settings.c:155
 msgid "A GtkSettings object to get settings from"
 msgstr "Un objecte GtkSettings des d'on obtenir els paràmetres"
 
-#: ../libyelp/yelp-settings.c:159
+#: ../libyelp/yelp-settings.c:163
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:160
+#: ../libyelp/yelp-settings.c:164
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Un objecte GtkIconTheme des d'on obtenir icones"
 
-#: ../libyelp/yelp-settings.c:168
+#: ../libyelp/yelp-settings.c:172
 msgid "Font Adjustment"
 msgstr "Ajustament dels tipus de lletra"
 
-#: ../libyelp/yelp-settings.c:169
+#: ../libyelp/yelp-settings.c:173
 msgid "A size adjustment to add to font sizes"
 msgstr "Un ajustament de mida per afegir a les mides dels tipus de lletra"
 
-#: ../libyelp/yelp-settings.c:177
+#: ../libyelp/yelp-settings.c:181
 msgid "Show Text Cursor"
 msgstr "Mostra el cursor de text"
 
-#: ../libyelp/yelp-settings.c:178
+#: ../libyelp/yelp-settings.c:182
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Mostra el cursor de text per la navegació accessible"
 
-#: ../libyelp/yelp-settings.c:186
+#: ../libyelp/yelp-settings.c:190
 msgid "Editor Mode"
 msgstr "Mode d'edició"
 
-#: ../libyelp/yelp-settings.c:187
+#: ../libyelp/yelp-settings.c:191
 msgid "Enable features useful to editors"
 msgstr "Habilita les característiques útils per als editors"
 
@@ -1104,73 +260,73 @@ msgstr "Pàgina _anterior"
 msgid "_Next Page"
 msgstr "Pàgina _següent"
 
-#: ../libyelp/yelp-view.c:415
+#: ../libyelp/yelp-view.c:416
 msgid "Yelp URI"
 msgstr "URI del Yelp"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:417
 msgid "A YelpUri with the current location"
 msgstr "Un YelpUri amb la ubicació actual"
 
-#: ../libyelp/yelp-view.c:424
+#: ../libyelp/yelp-view.c:425
 msgid "Loading State"
 msgstr "S'està carregant l'estat"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:426
 msgid "The loading state of the view"
 msgstr "L'estat de càrrega de la vista"
 
-#: ../libyelp/yelp-view.c:434
+#: ../libyelp/yelp-view.c:435
 msgid "Page ID"
 msgstr "Identificador de la pàgina"
 
-#: ../libyelp/yelp-view.c:435
+#: ../libyelp/yelp-view.c:436
 msgid "The ID of the root page of the page being viewed"
 msgstr "L'identificador de la pàgina inicial de la que s'està visualitzant"
 
-#: ../libyelp/yelp-view.c:443
+#: ../libyelp/yelp-view.c:444
 msgid "Root Title"
 msgstr "Títol inicial"
 
-#: ../libyelp/yelp-view.c:444
+#: ../libyelp/yelp-view.c:445
 msgid "The title of the root page of the page being viewed"
 msgstr "El títol de la pàgina inicial de la que s'està visualitzant"
 
-#: ../libyelp/yelp-view.c:452
+#: ../libyelp/yelp-view.c:453
 msgid "Page Title"
 msgstr "Títol de la pàgina"
 
-#: ../libyelp/yelp-view.c:453
+#: ../libyelp/yelp-view.c:454
 msgid "The title of the page being viewed"
 msgstr "El títol de la pàgina que s'està visualitzant"
 
-#: ../libyelp/yelp-view.c:461
+#: ../libyelp/yelp-view.c:462
 msgid "Page Description"
 msgstr "Descripció de la pàgina"
 
-#: ../libyelp/yelp-view.c:462
+#: ../libyelp/yelp-view.c:463
 msgid "The description of the page being viewed"
 msgstr "La descripció de la pàgina que s'està visualitzant"
 
-#: ../libyelp/yelp-view.c:470
+#: ../libyelp/yelp-view.c:471
 msgid "Page Icon"
 msgstr "Icona de la pàgina"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:472
 msgid "The icon of the page being viewed"
 msgstr "La icona de la pàgina que s'està visualitzant"
 
-#: ../libyelp/yelp-view.c:712
+#: ../libyelp/yelp-view.c:713
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "No teniu el PackageKit instal·lat. Cal tenir el PackageKit per utilitzar els "
 "enllaços d'instal·lació de paquets."
 
-#: ../libyelp/yelp-view.c:990
+#: ../libyelp/yelp-view.c:991
 msgid "Save Image"
 msgstr "Desa la imatge"
 
-#: ../libyelp/yelp-view.c:1085
+#: ../libyelp/yelp-view.c:1086
 msgid "Save Code"
 msgstr "Desa el codi"
 
@@ -1180,120 +336,120 @@ msgstr "Desa el codi"
 #. * probably only be one menu item for mailto link popups anyway,
 #. * so the mnemonic's not that big of a deal.
 #.
-#: ../libyelp/yelp-view.c:1254
+#: ../libyelp/yelp-view.c:1255
 #, c-format
 msgid "Send email to %s"
 msgstr "Envia un correu a %s"
 
-#: ../libyelp/yelp-view.c:1264
+#: ../libyelp/yelp-view.c:1265
 msgid "_Open Link"
 msgstr "_Obre l'enllaç"
 
-#: ../libyelp/yelp-view.c:1269
+#: ../libyelp/yelp-view.c:1270
 msgid "Open Link in New _Window"
 msgstr "Obre l'enllaç a una finestra _nova"
 
-#: ../libyelp/yelp-view.c:1320
+#: ../libyelp/yelp-view.c:1321
 msgid "_Save Image As..."
 msgstr "_Anomena i desa la imatge..."
 
-#: ../libyelp/yelp-view.c:1322
+#: ../libyelp/yelp-view.c:1323
 msgid "_Save Video As..."
 msgstr "_Anomena i desa el vídeo..."
 
-#: ../libyelp/yelp-view.c:1329
+#: ../libyelp/yelp-view.c:1330
 msgid "S_end Image To..."
 msgstr "_Envia la imatge a..."
 
-#: ../libyelp/yelp-view.c:1331
+#: ../libyelp/yelp-view.c:1332
 msgid "S_end Video To..."
 msgstr "_Envia el vídeo a..."
 
-#: ../libyelp/yelp-view.c:1342
+#: ../libyelp/yelp-view.c:1343
 msgid "_Copy Text"
 msgstr "_Copia el text"
 
-#: ../libyelp/yelp-view.c:1355
+#: ../libyelp/yelp-view.c:1356
 msgid "C_opy Code Block"
 msgstr "_Copia el bloc de codi"
 
-#: ../libyelp/yelp-view.c:1360
+#: ../libyelp/yelp-view.c:1361
 msgid "Save Code _Block As..."
 msgstr "_Anomena i desa el bloc de codi..."
 
-#: ../libyelp/yelp-view.c:1542
+#: ../libyelp/yelp-view.c:1543
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "No s'ha pogut carregar un document per a «%s»"
 
-#: ../libyelp/yelp-view.c:1548
+#: ../libyelp/yelp-view.c:1549
 #, c-format
 msgid "Could not load a document"
 msgstr "No s'ha pogut carregar el document"
 
-#: ../libyelp/yelp-view.c:1622
+#: ../libyelp/yelp-view.c:1623
 msgid "Document Not Found"
 msgstr "No s'ha trobat el document"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1625
 msgid "Page Not Found"
 msgstr "No s'ha trobat la pàgina"
 
-#: ../libyelp/yelp-view.c:1627
+#: ../libyelp/yelp-view.c:1628
 msgid "Cannot Read"
 msgstr "No es pot llegir"
 
-#: ../libyelp/yelp-view.c:1633
+#: ../libyelp/yelp-view.c:1634
 msgid "Unknown Error"
 msgstr "Error desconegut"
 
-#: ../libyelp/yelp-view.c:1653
+#: ../libyelp/yelp-view.c:1654
 msgid "Search for packages containing this document."
 msgstr "Cerca paquets que continguin aquest document."
 
-#: ../libyelp/yelp-view.c:1806
+#: ../libyelp/yelp-view.c:1807
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "L'URI «%s» no apunta a una pàgina vàlida."
 
-#: ../libyelp/yelp-view.c:1812
+#: ../libyelp/yelp-view.c:1813
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "L'URI no apunta a una pàgina vàlida."
 
-#: ../libyelp/yelp-view.c:1818
+#: ../libyelp/yelp-view.c:1819
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "No s'ha pogut analitzar l'URI «%s»."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "Activa el mode d'edició"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
 msgstr "Text més _gran"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
 msgstr "Augmenta la mida del text"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
 msgstr "Text més _petit"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
 msgstr "Disminueix la mida del text"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr "Mostra el _cursor de text"
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Ajuda"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "Mostra el _cursor de text"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
@@ -1347,6 +503,10 @@ msgstr "Aplicacions"
 msgid "A YelpApplication instance that controls this window"
 msgstr "Una instància de YelpApplication que controla aquesta finestra"
 
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "Cerca:"
+
 #: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "Per llegir més tard"
@@ -1366,6 +526,644 @@ msgstr "No hi ha cap coincidència"
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Obtingueu ajuda per al GNOME"
+
+#~ msgid "GNU Info Pages"
+#~ msgstr "Pàgines info de GNU"
+
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "Ajuda de línia d'ordres tradicional (info)"
+
+#~ msgid "Applications"
+#~ msgstr "Aplicacions"
+
+#~ msgid "BLT Functions"
+#~ msgstr "Funcions del BLT"
+
+#~ msgid "Configuration Files"
+#~ msgstr "Fitxers de configuració"
+
+#~ msgid "Curses Functions"
+#~ msgstr "Funcions del Curses"
+
+#~ msgid "Development"
+#~ msgstr "Desenvolupament"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "Funcions del FORTRAN"
+
+#~ msgid "Games"
+#~ msgstr "Jocs"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "Dispositius de maquinari"
+
+#~ msgid "Kernel Routines"
+#~ msgstr "Rutines del nucli"
+
+#~ msgid "Manual Pages"
+#~ msgstr "Pàgines de manual"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "Funcions de so d'àudio de xarxa"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "Aplicacions per a l'OpenSSL"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "Configuració de l'OpenSSL"
+
+#~ msgid "OpenSSL Functions"
+#~ msgstr "Funcions de l'OpenSSL"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "Resums de l'OpenSSL"
+
+#~ msgid "Overviews"
+#~ msgstr "Resums"
+
+#~ msgid "POSIX Functions"
+#~ msgstr "Funcions POSIX"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "Capçaleres POSIX"
+
+#~ msgid "Perl Functions"
+#~ msgstr "Funcions del Perl"
+
+#~ msgid "Qt Functions"
+#~ msgstr "Funcions del Qt"
+
+#~ msgid "Readline Functions"
+#~ msgstr "Funcions del readline"
+
+#~ msgid "Section 0p"
+#~ msgstr "Secció 0p"
+
+#~ msgid "Section 1m"
+#~ msgstr "Secció 1m"
+
+#~ msgid "Section 1ssl"
+#~ msgstr "Secció 1ssl"
+
+#~ msgid "Section 1x"
+#~ msgstr "Secció 1x"
+
+#~ msgid "Section 2"
+#~ msgstr "Secció 2"
+
+#~ msgid "Section 3blt"
+#~ msgstr "Secció 3blt"
+
+#~ msgid "Section 3f"
+#~ msgstr "Secció 3f"
+
+#~ msgid "Section 3nas"
+#~ msgstr "Secció 3nas"
+
+#~ msgid "Section 3p"
+#~ msgstr "Secció 3p"
+
+#~ msgid "Section 3qt"
+#~ msgstr "Secció 3qt"
+
+#~ msgid "Section 3readline"
+#~ msgstr "Secció 3readline"
+
+#~ msgid "Section 3ssl"
+#~ msgstr "Secció 3ssl"
+
+#~ msgid "Section 3tiff"
+#~ msgstr "Secció 3tiff"
+
+#~ msgid "Section 4"
+#~ msgstr "Secció 4"
+
+#~ msgid "Section 4x"
+#~ msgstr "Secció 4x"
+
+#~ msgid "Section 5"
+#~ msgstr "Secció 5"
+
+#~ msgid "Section 5ssl"
+#~ msgstr "Secció 5ssl"
+
+#~ msgid "Section 5x"
+#~ msgstr "Secció 5x"
+
+#~ msgid "Section 6"
+#~ msgstr "Secció 6"
+
+#~ msgid "Section 6x"
+#~ msgstr "Secció 6x"
+
+#~ msgid "Section 7ssl"
+#~ msgstr "Secció 7ssl"
+
+#~ msgid "Section 7x"
+#~ msgstr "Secció 7x"
+
+#~ msgid "Section 9"
+#~ msgstr "Secció 9"
+
+#~ msgid "Sections 1, 1p, 1g and 1t"
+#~ msgstr "Seccions 1, 1p, 1g i 1t"
+
+#~ msgid "Sections 3, 3o, and 3t"
+#~ msgstr "Seccions 3, 3o, i 3t"
+
+#~ msgid "Sections 3form and 3menu"
+#~ msgstr "Seccions 3form i 3menu"
+
+#~ msgid "Sections 3ncurses and 3curses"
+#~ msgstr "Seccions 3ncurses i 3curses"
+
+#~ msgid "Sections 3pm and 3perl"
+#~ msgstr "Seccions 3pm i 3perl"
+
+#~ msgid "Sections 3x and 3X11"
+#~ msgstr "Seccions 3x i 3X11"
+
+#~ msgid "Sections 7 and 7gcc"
+#~ msgstr "Seccions 7 i 7gcc"
+
+#~ msgid "Sections 8 and 8l"
+#~ msgstr "Seccions 8 i 8l"
+
+#~ msgid "System Administration"
+#~ msgstr "Administració del sistema"
+
+#~ msgid "System Calls"
+#~ msgstr "Crides al sistema"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "Funcions del formulari/menú del sistema V"
+
+#~ msgid "TIFF Functions"
+#~ msgstr "Funcions TIFF"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "Aplicacions per a Termcap"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "Ajuda de línia d'ordres tradicional (man)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "Aplicacions per a X11"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "Configuració d'X11"
+
+#~ msgid "X11 Devices"
+#~ msgstr "Dispositius d'X11"
+
+#~ msgid "X11 Functions"
+#~ msgstr "Funcions d'X11"
+
+#~ msgid "X11 Games"
+#~ msgstr "Jocs per a X11"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "Resums d'X11"
+
+#~ msgid "2D Graphics"
+#~ msgstr "Gràfics 2D"
+
+#~ msgid "3D Graphics"
+#~ msgstr "Gràfics 3D"
+
+#~ msgid "Accessibility"
+#~ msgstr "Accessibilitat"
+
+#~ msgid "Action Games"
+#~ msgstr "Jocs d'acció"
+
+#~ msgid "Adventure Games"
+#~ msgstr "Jocs d'aventures"
+
+#~ msgid "Amusement"
+#~ msgstr "Entreteniment"
+
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "Aplicacions per visualitzar i modificar gràfics"
+
+#~ msgid "Applications related to audio and video"
+#~ msgstr "Aplicacions relacionades amb l'àudio i el vídeo"
+
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "Aplicacions que ensenyen o ajuden en l'aprenentatge"
+
+#~ msgid "Arcade Games"
+#~ msgstr "Jocs recreatius"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "Eines d'arxivació"
+
+#~ msgid "Art"
+#~ msgstr "Art"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "Intel·ligència artificial"
+
+#~ msgid "Astronomy"
+#~ msgstr "Astronomia"
+
+#~ msgid "Biology"
+#~ msgstr "Biologia"
+
+#~ msgid "Blocks Games"
+#~ msgstr "Jocs de blocs"
+
+#~ msgid "Board Games"
+#~ msgstr "Jocs de tauler"
+
+#~ msgid "Building"
+#~ msgstr "Muntatge"
+
+#~ msgid "Calculator"
+#~ msgstr "Calculadora"
+
+#~ msgid "Calendar"
+#~ msgstr "Calendari"
+
+#~ msgid "Card Games"
+#~ msgstr "Jocs de cartes"
+
+#~ msgid "Charting Tools"
+#~ msgstr "Eines de creació de diagrames"
+
+#~ msgid "Chat"
+#~ msgstr "Xat"
+
+#~ msgid "Chemistry"
+#~ msgstr "Química"
+
+#~ msgid "Clocks"
+#~ msgstr "Rellotges"
+
+#~ msgid "Compression Tools"
+#~ msgstr "Eines de compressió"
+
+#~ msgid "Computer Science"
+#~ msgstr "Informàtica"
+
+#~ msgid "Construction"
+#~ msgstr "Construcció"
+
+#~ msgid "Contact Management"
+#~ msgstr "Gestió de contactes"
+
+#~ msgid "Data Visualization"
+#~ msgstr "Visualització de dades"
+
+#~ msgid "Databases"
+#~ msgstr "Bases de dades"
+
+#~ msgid "Debuggers"
+#~ msgstr "Depuradors"
+
+#~ msgid "Desktop"
+#~ msgstr "Escriptori"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "Paràmetres d'escriptori"
+
+#~ msgid "Dialup"
+#~ msgstr "Marcatge directe"
+
+#~ msgid "Dictionaries"
+#~ msgstr "Diccionaris"
+
+#~ msgid "Disc Burning"
+#~ msgstr "Enregistrament de discs"
+
+#~ msgid "Economy"
+#~ msgstr "Economia"
+
+#~ msgid "Education"
+#~ msgstr "Educació"
+
+#~ msgid "Electricity"
+#~ msgstr "Electricitat"
+
+#~ msgid "Electronics"
+#~ msgstr "Electrònica"
+
+#~ msgid "Email Tools"
+#~ msgstr "Eines de correu electrònic"
+
+#~ msgid "Emulator"
+#~ msgstr "Emulador"
+
+#~ msgid "Engineering"
+#~ msgstr "Enginyeria"
+
+#~ msgid "File Manager"
+#~ msgstr "Gestió de fitxers"
+
+#~ msgid "File Tools"
+#~ msgstr "Eines de fitxers"
+
+#~ msgid "File Transfer"
+#~ msgstr "Transferència de fitxers"
+
+#~ msgid "Filesystem"
+#~ msgstr "Sistema de fitxers"
+
+#~ msgid "Financial Tools"
+#~ msgstr "Eines financeres"
+
+#~ msgid "Flow Charting Tools"
+#~ msgstr "Eines de diagrames de flux"
+
+#~ msgid "GNOME Applications"
+#~ msgstr "Aplicacions per a GNOME"
+
+#~ msgid "GTK"
+#~ msgstr "GTK"
+
+#~ msgid "GUI Designers"
+#~ msgstr "Dissenyadors d'interfícies gràfiques"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "Aplicacions genèriques per a l'entorn GNOME"
+
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "Aplicacions genèriques per a l'entorn KDE"
+
+#~ msgid "Geography"
+#~ msgstr "Geografia"
+
+#~ msgid "Geology"
+#~ msgstr "Geologia"
+
+#~ msgid "Geoscience"
+#~ msgstr "Ciències de la Terra"
+
+#~ msgid "Graphics"
+#~ msgstr "Gràfics"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr ""
+#~ "Guies i manuals per a aplicacions que es connecten a la resta del món"
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "Guies per involucrar-se en desenvolupament"
+
+#~ msgid "Ham Radio"
+#~ msgstr "Radioaficionat"
+
+#~ msgid "Hardware Settings"
+#~ msgstr "Paràmetres de maquinari"
+
+#~ msgid "Have some fun"
+#~ msgstr "Diversió"
+
+#~ msgid "History"
+#~ msgstr "Història"
+
+#~ msgid "IDEs"
+#~ msgstr "Entorns integrats de desenvolupament"
+
+#~ msgid "IRC Clients"
+#~ msgstr "Clients de l'IRC"
+
+#~ msgid "Image Processing"
+#~ msgstr "Processament d'imatges"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "Missatgeria instantània"
+
+#~ msgid "Internet"
+#~ msgstr "Internet"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~ msgid "KDE Applications"
+#~ msgstr "Aplicacions per a KDE"
+
+#~ msgid "Kids Games"
+#~ msgstr "Jocs per a canalla"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr ""
+#~ "Apreneu com fer que el sistema sigui més accessible a moltes discapacitats"
+
+#~ msgid "Licenses"
+#~ msgstr "Llicències"
+
+#~ msgid "Literature"
+#~ msgstr "Literatura"
+
+#~ msgid "Logic Games"
+#~ msgstr "Jocs lògics"
+
+#~ msgid "Math"
+#~ msgstr "Matemàtiques"
+
+#~ msgid "Medical Software"
+#~ msgstr "Programari mèdic"
+
+#~ msgid "Midi"
+#~ msgstr "MIDI"
+
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "Documentació diversa"
+
+#~ msgid "Mixers"
+#~ msgstr "Mescladors"
+
+#~ msgid "Monitor"
+#~ msgstr "Pantalla"
+
+# es refereix a un joc d'eines de la mateixa manera que hi ha GTK+ i Qt
+#~ msgid "Motif"
+#~ msgstr "Motif"
+
+#~ msgid "Music"
+#~ msgstr "Música"
+
+#~ msgid "News"
+#~ msgstr "Notícies"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "Anàlisi numèrica"
+
+#~ msgid "OCR"
+#~ msgstr "Reconeixement de text (OCR)"
+
+#~ msgid "Office Applications"
+#~ msgstr "Aplicacions ofimàtiques"
+
+#~ msgid "Office applications"
+#~ msgstr "Aplicacions ofimàtiques"
+
+#~ msgid "Other Documentation"
+#~ msgstr "Altra documentació"
+
+#~ msgid "P2P"
+#~ msgstr "P2P"
+
+#~ msgid "PDA Communication"
+#~ msgstr "Comunicació amb PDA"
+
+#~ msgid "Package Manager"
+#~ msgstr "Gestió de paquets"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "Computació paral·lela"
+
+#~ msgid "Photography"
+#~ msgstr "Fotografia"
+
+#~ msgid "Physics"
+#~ msgstr "Física"
+
+#~ msgid "Players"
+#~ msgstr "Reproductors"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "Eines de presentació"
+
+#~ msgid "Printing"
+#~ msgstr "Impressió"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "Eines de perfils"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "Eines de gestió de projectes"
+
+#~ msgid "Publishing"
+#~ msgstr "Publicació"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~ msgid "Raster Graphics"
+#~ msgstr "Gràfics de píxels"
+
+#~ msgid "Recorders"
+#~ msgstr "Codificadors"
+
+#~ msgid "Remote Access"
+#~ msgstr "Accés remot"
+
+#~ msgid "Revision Control"
+#~ msgstr "Control de revisions"
+
+#~ msgid "Robotics"
+#~ msgstr "Robòtica"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "Jocs de rol"
+
+#~ msgid "Scanning"
+#~ msgstr "Escaneig"
+
+#~ msgid "Science"
+#~ msgstr "Ciència"
+
+#~ msgid "Security"
+#~ msgstr "Seguretat"
+
+#~ msgid "Sequencers"
+#~ msgstr "Seqüenciadors"
+
+#~ msgid "Settings"
+#~ msgstr "Paràmetres"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr ""
+#~ "Paràmetres que poden canviar els usuaris per fer el seu entorn més còmode"
+
+#~ msgid "Simulation Games"
+#~ msgstr "Jocs de simulació"
+
+#~ msgid "Sound"
+#~ msgstr "So"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "So i vídeo"
+
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "Edició de so i vídeo"
+
+#~ msgid "Sports"
+#~ msgstr "Esports"
+
+#~ msgid "Sports Games"
+#~ msgstr "Jocs d'esports"
+
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "Eines de full de càlcul"
+
+#~ msgid "Strategy Games"
+#~ msgstr "Jocs d'estratègia"
+
+#~ msgid "System"
+#~ msgstr "Sistema"
+
+#~ msgid "TV"
+#~ msgstr "Televisió"
+
+#~ msgid "Telephony"
+#~ msgstr "Telefonia"
+
+#~ msgid "Telephony Tools"
+#~ msgstr "Eines de telefonia"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "Emulador de terminal"
+
+#~ msgid "Text Editors"
+#~ msgstr "Editors de text"
+
+#~ msgid "Text Tools"
+#~ msgstr "Eines de text"
+
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "Eines per ajudar-vos a gestionar l'ordinador"
+
+#~ msgid "Translation Tools"
+#~ msgstr "Eines de traducció"
+
+#~ msgid "Tuners"
+#~ msgstr "Sintonitzadors"
+
+#~ msgid "Utilities"
+#~ msgstr "Utilitats"
+
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "Utilitats per ajudar-vos a fer la feina"
+
+#~ msgid "Vector Graphics"
+#~ msgstr "Gràfics vectorials"
+
+#~ msgid "Video"
+#~ msgstr "Vídeo"
+
+#~ msgid "Video Conference"
+#~ msgstr "Conferència de vídeo"
+
+#~ msgid "Viewer"
+#~ msgstr "Visualitzadors"
+
+#~ msgid "Web Browser"
+#~ msgstr "Navegador web"
+
+#~ msgid "Web Development"
+#~ msgstr "Desenvolupament web"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "Us donem la benvinguda al navegador de l'ajuda del GNOME"
+
+#~ msgid "Word Processors"
+#~ msgstr "Processadors de text"
 
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
@@ -1563,9 +1361,6 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ "Proveu de fer servir paraules diferents per descriure el problema que "
 #~ "tingueu o el tema per al qual vulgueu ajuda."
 
-#~ msgid "Search results for \"%s\""
-#~ msgstr "Resultats de la cerca «%s»"
-
 #~ msgid ""
 #~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
 #~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
@@ -1750,9 +1545,6 @@ msgstr "Obtingueu ajuda per al GNOME"
 
 #~ msgid "Find"
 #~ msgstr "Cerca"
-
-#~ msgid "_Find:"
-#~ msgstr "_Cerca:"
 
 #~ msgid "_Wrap around"
 #~ msgstr "_Torna al principi"
