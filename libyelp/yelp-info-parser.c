@@ -611,11 +611,11 @@ get_value_after (const char* source, const char *key)
 static int
 node2page (GHashTable *nodes2pages, char *node)
 {
-  gint page;
+  gpointer p;
 
   if (g_hash_table_lookup_extended (nodes2pages, node,
-                                    NULL, (gpointer*) &page))
-    return page;
+                                    NULL, &p))
+    return GPOINTER_TO_INT(p);
 
   /* This shouldn't happen: we should only ever have to look up pages
    * that exist. */
