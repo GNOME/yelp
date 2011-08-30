@@ -1416,12 +1416,13 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
         /* Massive space.  Fix. */
         gchar *next = break_point;
         gchar *url_copy;
+        gchar *old = url;
         while (*next == ' ')
           next++;
         next--;
         url_copy = g_strndup (url, break_point-url);
-        g_free (url);
         url = g_strconcat (url_copy, next, NULL);
+        g_free (old);
         break_point = strchr (url, ' ');
         g_free (url_copy);
       } else {
