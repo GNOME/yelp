@@ -1167,6 +1167,13 @@ resolve_xref_uri (YelpUri *uri)
                                      priv->frag_id ? "#" : "",
                                      priv->frag_id ? priv->frag_id : "",
                                      NULL);
+    else if (g_str_has_prefix (priv->docuri, "help:"))
+        priv->fulluri = g_strconcat (priv->docuri,
+                                     priv->page_id ? "/" : "",
+                                     priv->page_id ? priv->page_id : "",
+                                     priv->frag_id ? "#" : "",
+                                     priv->frag_id ? priv->frag_id : "",
+                                     NULL);
     else if (g_str_has_prefix (priv->docuri, "file:") ||
              g_str_has_prefix (priv->docuri, "info:") )
         priv->fulluri = g_strconcat (priv->docuri,
