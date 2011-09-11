@@ -12,13 +12,13 @@ msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-05 14:30+0000\n"
-"PO-Revision-Date: 2011-07-05 16:37+0200\n"
+"POT-Creation-Date: 2011-08-23 19:57+0000\n"
+"PO-Revision-Date: 2011-09-11 10:21+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
@@ -97,7 +97,6 @@ msgstr "El URI que identifica el documento"
 
 #: ../libyelp/yelp-document.c:956
 #, c-format
-#| msgid "Search results for \"%s\""
 msgid "Search results for “%s”"
 msgstr "Resultados de la búsqueda para «%s»"
 
@@ -156,19 +155,19 @@ msgstr ""
 msgid "Search..."
 msgstr "Buscar…"
 
-#: ../libyelp/yelp-location-entry.c:774
+#: ../libyelp/yelp-location-entry.c:776
 msgid "Clear the search text"
 msgstr "Limpiar el texto de búsqueda"
 
-#: ../libyelp/yelp-location-entry.c:823 ../libyelp/yelp-location-entry.c:1521
+#: ../libyelp/yelp-location-entry.c:825 ../libyelp/yelp-location-entry.c:1523
 msgid "Bookmark this page"
 msgstr "Marcar esta página"
 
-#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1529
+#: ../libyelp/yelp-location-entry.c:833 ../libyelp/yelp-location-entry.c:1531
 msgid "Remove bookmark"
 msgstr "Quitar marcador"
 
-#: ../libyelp/yelp-location-entry.c:1386
+#: ../libyelp/yelp-location-entry.c:1388
 msgid "Loading"
 msgstr "Cargando"
 
@@ -361,7 +360,7 @@ msgstr "Guardar imagen _como…"
 
 #: ../libyelp/yelp-view.c:1323
 msgid "_Save Video As..."
-msgstr "Guardar vídeo _como…"
+msgstr "Guardar vídeo _como…"
 
 #: ../libyelp/yelp-view.c:1330
 msgid "S_end Image To..."
@@ -510,7 +509,6 @@ msgid "A YelpApplication instance that controls this window"
 msgstr "Una instancia de YelpApplication que controla esta ventana"
 
 #: ../src/yelp-window.c:526
-#| msgid "Fin_d:"
 msgid "Find:"
 msgstr "Buscar:"
 
