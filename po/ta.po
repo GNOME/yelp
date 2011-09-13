@@ -9,869 +9,24 @@
 # Dinesh Nadarajah <dinesh_list@sbcglobal.net>, 2004.
 # Felix <ifelix@redhat.com>, 2006.
 # drtvasudevan <agnihot3@gmail.com>, 2006.
-# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2008, 2009.
+# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2008, 2009, 2011.
 # I. Felix <ifelix@redhat.com>, 2009, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-30 17:10+0530\n"
-"PO-Revision-Date: 2011-03-31 20:21+0530\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2011-09-13 17:21+0530\n"
+"PO-Revision-Date: 2011-09-13 17:23+0530\n"
+"Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\\n"
 "\n"
 "\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "ஜிஎன்யு தகவல் பக்கங்கள்"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "பாரம்பரிய ஆணை வரி உதவி (தகவல்)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "பிஎல்டி செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "வடிவமைப்பு கோப்புகள்"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "கர்ஸஸ் செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "உருவாக்கம்"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "போர்ட்ரான் செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "விளையாட்டுகள்"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "வன்பொருள் சாதனங்கள்"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "கெர்னல் வழக்கமான நடைமுறைகள்"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "கையேடு பக்கங்கள்"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "வலைப்பின்னல் கேட்பொலி செயல்கள்"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "OpenSSL பயன்பாடுகள்"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "OpenSSL கட்டமைப்பு"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "OpenSSL பயன்பாடுகள்"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "OpenSSL மேல்பார்வைகள்"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "மேல்பார்வைகள்"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "POSIX செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "POSIX தலைப்புகள்"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "பெர்ல் செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "க்யூடி செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "ரீட்லைன் செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "பிரிவு  0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "பிரிவு 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "பிரிவு 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "பிரிவு  1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "பிரிவு 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "பிரிவு 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "பிரிவு 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "பிரிவு 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "பிரிவு 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "பிரிவு 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "பிரிவு 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "பிரிவு 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "பிரிவு 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "பிரிவு 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "பிரிவு 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "பிரிவு 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "பிரிவு 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "பிரிவு 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "பிரிவு 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "பிரிவு 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "பிரிவு 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "பிரிவு 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr " பிரிவு 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "பிரிவுகள் 1, 1p, 1g மற்றும் 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "பிரிவுகள் 3, 3o, மற்றும் 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "பிரிவுகள் 3form மற்றும் 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "பிரிவுகள் 3ncurses மற்றும் 3curses"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "பிரிவுகள் 3pm மற்றும் 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "பிரிவுகள் 3x மற்றும் 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "பிரிவுகள் 7 மற்றும் 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "பிரிவுகள் 8l மற்றும் 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "கணினி நிர்வாகம்"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "கணினி அழைப்புகள்"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "அமைப்பு V படிவம் /பட்டி செயல்கள்"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "டிஐஎஃப்எஃப் செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Termcap செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "பாரம்பரிய ஆணை வரி உதவி (தகவல்)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "X11 செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "X11 கட்டமைப்பு"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "X11 சாதனங்கள்"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "X11 செயல்பாடுகள்"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "X11 விளையாட்டுகள்"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "X11 மேல் பார்வைகள்"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "இரு பரிமாண வரைகலைகள்"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "முப் பரிமாண வரைகலைகள்"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "அணுகல்"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "செயல் விளையாட்டுகள் "
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "துணிகரப் பயணம் விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "கேளிக்கை"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "சித்திரங்களை பார்க்க வனைக்க பயன்பாடுகள்"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "ஒலி, ஔதத்தோற்ற சம்பந்தப்பட்ட பயன்பாடுகள்"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "கற்பித்தல் அல்லது கற்றல் சம்பந்தப்பட்ட பயன்பாடுகள் "
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "வில் வளைவு சாலை விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "பெட்டக கருவிகள்"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "சித்திரம்"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "செயற்கை அறிவு"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "வானவியல்"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "உயிரியல்"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "தொகுதிகள் விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "மேசை விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "கட்டிடம்"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "கணக்கிடும் கருவி"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "நாள்காட்டி"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "சீட்டு விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "வரைபட கருவிகள்"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "அரட்டை"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "இரசாயனம்"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "கடிகாரங்கள்"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "சுருக்கக் கருவிகள்"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "கணினி அறிவியல்"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "கட்டுமானம்"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "தொடர்பு மேலாண்மை"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "தரவு காட்சியாக்கம்"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "தரவுத்தளங்கள்"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "வழு திருத்திகள்"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "மேல்மேசை"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "மேல் மேசை அமைப்புகள்"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "டயலப்"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "அகராதிகள்"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "வட்டு எழுதுதல்"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "பொருளாதாரம்"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "கல்வி"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "மின்சாரம்"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "மின்னணுவியல்"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "மின்னஞ்சல் கருவிகள்"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "போன்றி"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "பொறியியல்"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "கோப்பு மேலாளர்"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "கோப்பு  கருவிகள்"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "கோப்பு இடமாற்றம்"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "கோப்பு அமைப்பு முறை"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "நிதிசார் கருவிகள்"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "வேலை திட்ட கருவிகள்"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "க்னோம் பயன்பாடுகள்"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "ஜிடிகே(GTK)"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "வரைகலை பயனர் இடைமுக நிபுணர்கள்"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "க்னோம் சூழலுக்கு பாரம்பரிய பயன்பாடுகள்"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "கேடிஇ மேல்மேசை சூழல் குறித்த பாரம்பரிய பயன்பாடுகள்"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "புவி இயல் "
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "புவி ஆராய்வு  இயல் "
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "புவி அறிவியல்"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "வரைகலைகள்"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "வெளியுலகுக்கு தொடர்பு கொள்ளும் பயன்பாடுகளுக்கு வழிகாட்டிகளும் கையேடுகளும்."
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "வளர்ச்சியில் பங்கு கொள்ள வழிகாட்டிகள்"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "ஹாம் வானொலி"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "வன்பொருள் சாதனங்களின் அமைப்பு"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "கொஞ்சம் களிக்க"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "வரலாறு"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "ஐடீஇ கள் (IDEs)"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "ஐஆர்சி (IRC) சார்ந்தோன்கள்"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "பிம்பம் செயல்படுத்தல்"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "உடனடி செய்தி பரிமாற்றம்"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "இணையம்"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "ஜாவா"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "கேடிஈ நிரல்கள்"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "சிறு குழந்தைகளின் விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr "பல உடல் ஊனங்களுக்கு  கணினியை அணுகல் எளிதாக்க மேலும் கற்போம்"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "அனுமதிகள் "
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "இலக்கியம்"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "தர்க்க விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "கணிதம்"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "மருத்துவ மென்பொருள்"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "மிடி"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "பிற ஆவணங்கள்"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "கலவைகள்"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "காட்சி திரை"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "மோடிஃப்"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "இசை"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "செய்திகள்"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "எண் ஆராய்வு"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "ஓசிஆர் (OCR)"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "அலுவலக பயன்பாடுகள்"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "அலுவலக பயன்பாடுகள்"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "பிற ஆவணங்கள்"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "பி2பி (P2P)"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "பிடிஏ தகவல் தொடர்பு"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "தொகுப்பு மேலாளர்"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "இணை கணினி செயல்பாடு"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "புகைப்படகலை"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "பௌதிகம்"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "போட்டியாளர்"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "முன்வைப்பு கருவிகள்"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "அச்சிடுகிறது"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "வரியுருவாக்கும் கருவிகள்"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "செயல்திட்ட மேலாண்மை கருவிகள்"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "வெளியிடுதல்"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "க்யூடி(Qt)"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "ராஸ்டர் வரைகலைகள்"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "பதிவு கருவிகள்"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "தொலைதூர அணுகல்"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "மீள்பார்வை கட்டுப்பாடு"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "இயந்திரமனிதவியல்"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "வேடமிடும் ு  விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "வருடுகிறது"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "அறிவியல்"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "பாதுகாப்பு"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "தொடர் வரிசை படுத்தி "
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "அமைப்புகள்"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "சூழலை இன்னும் மகிழ்வானதாக்க பயனர் மாற்றக்கூடிய அமைப்புகள் "
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "பாவனை விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "ஒலி"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "ஒலி &amp; பார்வை"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "ஒலி &amp; விடியோ திருத்தம்"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "விளையாட்டு விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "விரிதாள் கருவிகள்"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "போர் தந்திரம் விளையாட்டுகள்"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "கணினி அமைப்பு"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "தொலைக்காட்சி பெட்டி"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "தொலைபேசி "
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "தொலைபேசி கருவிகள்"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "முனைய போன்றி"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "உரை திருத்திகள்"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "உரை கருவிகள்"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "உங்கள் கணிணியை மேலாள உதவிக்கருவிகள்"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "மொழிபெயர்ப்பு கருவிகள்"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "நுண் பொருத்திகள்"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "கருவிகள்ப்"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "உங்கள் வேலையை செய்து முடிக்க உதவிக்கருவிகள்"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "வெக்டார் வரைகலைகள்"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "வீடியோ"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "வீடியோ கூடுதல்"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "காட்சியாளன்"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "வலை உலாவி"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "வலை உருவாக்கம்"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "நோம் உதவி உலாவிக்கு நல்வரவு"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "சொல் செயலாக்கிகள்"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -883,33 +38,33 @@ msgstr "செல்லுபடியாகாத சுருக்கிய �
 msgid "Not enough memory"
 msgstr "நினைவகம் போதாது"
 
-#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:270
-#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:271
+#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr " ‘%s’ பக்கம் ஆவணம் ‘%s’ இல் இல்லை"
 
-#: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
 #: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "கோப்பு இருப்பில் இல்லை"
 
-#: ../libyelp/yelp-docbook-document.c:326 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
 #: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "கோப்பு ‘%s’ இருப்பில் இல்லை."
 
-#: ../libyelp/yelp-docbook-document.c:341
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஏனெனில் அது சரியாக உருவாகாத எக்ஸ்எம்எல் ஆவணம்"
 
-#: ../libyelp/yelp-docbook-document.c:354
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -918,11 +73,11 @@ msgstr ""
 "கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஏனெனில் அதில் ஒன்றோ மேற்பட்டோ சரியாக உருவாகாத "
 "எக்ஸ்எம்எல் ஆவணம் உள்ளது"
 
-#: ../libyelp/yelp-docbook-document.c:763
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "தெரியாத"
 
-#: ../libyelp/yelp-docbook-document.c:824 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
 #: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
@@ -944,12 +99,17 @@ msgstr "ஆவண யூஆர்ஐ"
 msgid "The URI which identifies the document"
 msgstr "யூஆர்ஐ ஆவணத்தை அடையாளம் காட்டுகிறது"
 
-#: ../libyelp/yelp-document.c:966
+#: ../libyelp/yelp-document.c:956
+#, c-format
+msgid "Search results for “%s”"
+msgstr "\"%s\"க்கான தேடுதல் முடிவு"
+
+#: ../libyelp/yelp-document.c:968
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "“%s” இல் பொருத்தமான உதவி பக்கங்கள் காணப்படவில்லை"
 
-#: ../libyelp/yelp-document.c:972
+#: ../libyelp/yelp-document.c:974
 msgid "No matching help pages found."
 msgstr "பொருத்தமான உதவி பக்கங்கள் காணப்படவில்லை"
 
@@ -967,51 +127,51 @@ msgstr "அனைத்து உதவி ஆவணங்கள்"
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "கோப்பு ‘%s’ ஐ அலகிட இயலவில்லை. ஏனெனில் அது சரியாக உருவாகாத விவரணப் பக்கம்"
 
-#: ../libyelp/yelp-location-entry.c:330
+#: ../libyelp/yelp-location-entry.c:329
 msgid "View"
 msgstr "காட்சி"
 
-#: ../libyelp/yelp-location-entry.c:331
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
 msgstr "கட்டுப்பாட்டுக்கு ஒரு யெல்ப்வ்யூ  சான்று நிகழ்வு"
 
-#: ../libyelp/yelp-location-entry.c:346
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "புத்தகக்குறிகள்"
 
-#: ../libyelp/yelp-location-entry.c:347
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
 msgstr "ஒரு யெல்ப்புக்மார்க்ஸ் செயலாக்க சான்று நிகழ்வு"
 
-#: ../libyelp/yelp-location-entry.c:363
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
 msgstr "தேடல் இயலுமைப்படுத்து"
 
-#: ../libyelp/yelp-location-entry.c:364
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
 msgstr "இட உள்ளீடு ஐ தேடல் புலமாக பயன்படுத்தலாமா"
 
-#: ../libyelp/yelp-location-entry.c:436 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "தேடு..."
 
-#: ../libyelp/yelp-location-entry.c:789
+#: ../libyelp/yelp-location-entry.c:776
 msgid "Clear the search text"
 msgstr "தேடும் உரையை நீக்குக"
 
-#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1560
+#: ../libyelp/yelp-location-entry.c:825 ../libyelp/yelp-location-entry.c:1523
 msgid "Bookmark this page"
 msgstr "இந்தப் பக்கத்துக்கு புத்தகக்குறி சேர்க்கவும்"
 
-#: ../libyelp/yelp-location-entry.c:850 ../libyelp/yelp-location-entry.c:1571
+#: ../libyelp/yelp-location-entry.c:833 ../libyelp/yelp-location-entry.c:1531
 msgid "Remove bookmark"
 msgstr "புத்தகக்குறியை நீக்கு"
 
-#: ../libyelp/yelp-location-entry.c:1416
+#: ../libyelp/yelp-location-entry.c:1388
 msgid "Loading"
 msgstr "ஏற்றுகிறது"
 
-#: ../libyelp/yelp-mallard-document.c:310
+#: ../libyelp/yelp-mallard-document.c:311
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "அடைவு ‘%s’ இருப்பில் இல்லை."
@@ -1265,34 +425,34 @@ msgstr "யூஆர்ஐ செல்லுபடியாகும் பக�
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "யூஆர்ஐ ‘%s’ ஐ அலகிட முடியவில்லை"
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "திருத்தி பாங்கை இயக்கு"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
 msgstr "(_L) பெரிய உரை"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
 msgstr "உரையின் அளவை பெரிதாக்கு"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
 msgstr "_S சிறிய உரை"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
 msgstr "உரை அளவை சிறிதாக்கவும்"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr "_C உரை நிலைக்காட்டியை காட்டு"
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "உதவி"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "_C உரை நிலைக்காட்டியை காட்டு"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
@@ -1346,6 +506,10 @@ msgstr "பயன்பாடு"
 msgid "A YelpApplication instance that controls this window"
 msgstr "இந்த சாளரத்தை கட்டுப்படுத்தும் யெல்ப் பயன்பாட்டு சான்று நிகழ்வு"
 
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "தேடுக:"
+
 #: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "பின்னர் படி"
@@ -1364,6 +528,640 @@ msgstr "பொருத்தங்கள் இல்லை"
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "கனோமைப் பற்றி உதவி பெறு"
+
+#~ msgid "GNU Info Pages"
+#~ msgstr "ஜிஎன்யு தகவல் பக்கங்கள்"
+
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "பாரம்பரிய ஆணை வரி உதவி (தகவல்)"
+
+#~ msgid "Applications"
+#~ msgstr "செயல்பாடுகள்"
+
+#~ msgid "BLT Functions"
+#~ msgstr "பிஎல்டி செயல்பாடுகள்"
+
+#~ msgid "Configuration Files"
+#~ msgstr "வடிவமைப்பு கோப்புகள்"
+
+#~ msgid "Curses Functions"
+#~ msgstr "கர்ஸஸ் செயல்பாடுகள்"
+
+#~ msgid "Development"
+#~ msgstr "உருவாக்கம்"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "போர்ட்ரான் செயல்பாடுகள்"
+
+#~ msgid "Games"
+#~ msgstr "விளையாட்டுகள்"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "வன்பொருள் சாதனங்கள்"
+
+#~ msgid "Kernel Routines"
+#~ msgstr "கெர்னல் வழக்கமான நடைமுறைகள்"
+
+#~ msgid "Manual Pages"
+#~ msgstr "கையேடு பக்கங்கள்"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "வலைப்பின்னல் கேட்பொலி செயல்கள்"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "OpenSSL பயன்பாடுகள்"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "OpenSSL கட்டமைப்பு"
+
+#~ msgid "OpenSSL Functions"
+#~ msgstr "OpenSSL பயன்பாடுகள்"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "OpenSSL மேல்பார்வைகள்"
+
+#~ msgid "Overviews"
+#~ msgstr "மேல்பார்வைகள்"
+
+#~ msgid "POSIX Functions"
+#~ msgstr "POSIX செயல்பாடுகள்"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "POSIX தலைப்புகள்"
+
+#~ msgid "Perl Functions"
+#~ msgstr "பெர்ல் செயல்பாடுகள்"
+
+#~ msgid "Qt Functions"
+#~ msgstr "க்யூடி செயல்பாடுகள்"
+
+#~ msgid "Readline Functions"
+#~ msgstr "ரீட்லைன் செயல்பாடுகள்"
+
+#~ msgid "Section 0p"
+#~ msgstr "பிரிவு  0p"
+
+#~ msgid "Section 1m"
+#~ msgstr "பிரிவு 1m"
+
+#~ msgid "Section 1ssl"
+#~ msgstr "பிரிவு 1ssl"
+
+#~ msgid "Section 1x"
+#~ msgstr "பிரிவு  1x"
+
+#~ msgid "Section 2"
+#~ msgstr "பிரிவு 2"
+
+#~ msgid "Section 3blt"
+#~ msgstr "பிரிவு 3blt"
+
+#~ msgid "Section 3f"
+#~ msgstr "பிரிவு 3f"
+
+#~ msgid "Section 3nas"
+#~ msgstr "பிரிவு 3nas"
+
+#~ msgid "Section 3p"
+#~ msgstr "பிரிவு 3p"
+
+#~ msgid "Section 3qt"
+#~ msgstr "பிரிவு 3qt"
+
+#~ msgid "Section 3readline"
+#~ msgstr "பிரிவு 3readline"
+
+#~ msgid "Section 3ssl"
+#~ msgstr "பிரிவு 3ssl"
+
+#~ msgid "Section 3tiff"
+#~ msgstr "பிரிவு 3tiff"
+
+#~ msgid "Section 4"
+#~ msgstr "பிரிவு 4"
+
+#~ msgid "Section 4x"
+#~ msgstr "பிரிவு 4x"
+
+#~ msgid "Section 5"
+#~ msgstr "பிரிவு 5"
+
+#~ msgid "Section 5ssl"
+#~ msgstr "பிரிவு 5ssl"
+
+#~ msgid "Section 5x"
+#~ msgstr "பிரிவு 5x"
+
+#~ msgid "Section 6"
+#~ msgstr "பிரிவு 6"
+
+#~ msgid "Section 6x"
+#~ msgstr "பிரிவு 6x"
+
+#~ msgid "Section 7ssl"
+#~ msgstr "பிரிவு 7ssl"
+
+#~ msgid "Section 7x"
+#~ msgstr "பிரிவு 7x"
+
+#~ msgid "Section 9"
+#~ msgstr " பிரிவு 9"
+
+#~ msgid "Sections 1, 1p, 1g and 1t"
+#~ msgstr "பிரிவுகள் 1, 1p, 1g மற்றும் 1t"
+
+#~ msgid "Sections 3, 3o, and 3t"
+#~ msgstr "பிரிவுகள் 3, 3o, மற்றும் 3t"
+
+#~ msgid "Sections 3form and 3menu"
+#~ msgstr "பிரிவுகள் 3form மற்றும் 3menu"
+
+#~ msgid "Sections 3ncurses and 3curses"
+#~ msgstr "பிரிவுகள் 3ncurses மற்றும் 3curses"
+
+#~ msgid "Sections 3pm and 3perl"
+#~ msgstr "பிரிவுகள் 3pm மற்றும் 3perl"
+
+#~ msgid "Sections 3x and 3X11"
+#~ msgstr "பிரிவுகள் 3x மற்றும் 3X11"
+
+#~ msgid "Sections 7 and 7gcc"
+#~ msgstr "பிரிவுகள் 7 மற்றும் 7gcc"
+
+#~ msgid "Sections 8 and 8l"
+#~ msgstr "பிரிவுகள் 8l மற்றும் 8l"
+
+#~ msgid "System Administration"
+#~ msgstr "கணினி நிர்வாகம்"
+
+#~ msgid "System Calls"
+#~ msgstr "கணினி அழைப்புகள்"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "அமைப்பு V படிவம் /பட்டி செயல்கள்"
+
+#~ msgid "TIFF Functions"
+#~ msgstr "டிஐஎஃப்எஃப் செயல்பாடுகள்"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "Termcap செயல்பாடுகள்"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "பாரம்பரிய ஆணை வரி உதவி (தகவல்)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "X11 செயல்பாடுகள்"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "X11 கட்டமைப்பு"
+
+#~ msgid "X11 Devices"
+#~ msgstr "X11 சாதனங்கள்"
+
+#~ msgid "X11 Functions"
+#~ msgstr "X11 செயல்பாடுகள்"
+
+#~ msgid "X11 Games"
+#~ msgstr "X11 விளையாட்டுகள்"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "X11 மேல் பார்வைகள்"
+
+#~ msgid "2D Graphics"
+#~ msgstr "இரு பரிமாண வரைகலைகள்"
+
+#~ msgid "3D Graphics"
+#~ msgstr "முப் பரிமாண வரைகலைகள்"
+
+#~ msgid "Accessibility"
+#~ msgstr "அணுகல்"
+
+#~ msgid "Action Games"
+#~ msgstr "செயல் விளையாட்டுகள் "
+
+#~ msgid "Adventure Games"
+#~ msgstr "துணிகரப் பயணம் விளையாட்டுகள்"
+
+#~ msgid "Amusement"
+#~ msgstr "கேளிக்கை"
+
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "சித்திரங்களை பார்க்க வனைக்க பயன்பாடுகள்"
+
+#~ msgid "Applications related to audio and video"
+#~ msgstr "ஒலி, ஔதத்தோற்ற சம்பந்தப்பட்ட பயன்பாடுகள்"
+
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "கற்பித்தல் அல்லது கற்றல் சம்பந்தப்பட்ட பயன்பாடுகள் "
+
+#~ msgid "Arcade Games"
+#~ msgstr "வில் வளைவு சாலை விளையாட்டுகள்"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "பெட்டக கருவிகள்"
+
+#~ msgid "Art"
+#~ msgstr "சித்திரம்"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "செயற்கை அறிவு"
+
+#~ msgid "Astronomy"
+#~ msgstr "வானவியல்"
+
+#~ msgid "Biology"
+#~ msgstr "உயிரியல்"
+
+#~ msgid "Blocks Games"
+#~ msgstr "தொகுதிகள் விளையாட்டுகள்"
+
+#~ msgid "Board Games"
+#~ msgstr "மேசை விளையாட்டுகள்"
+
+#~ msgid "Building"
+#~ msgstr "கட்டிடம்"
+
+#~ msgid "Calculator"
+#~ msgstr "கணக்கிடும் கருவி"
+
+#~ msgid "Calendar"
+#~ msgstr "நாள்காட்டி"
+
+#~ msgid "Card Games"
+#~ msgstr "சீட்டு விளையாட்டுகள்"
+
+#~ msgid "Charting Tools"
+#~ msgstr "வரைபட கருவிகள்"
+
+#~ msgid "Chat"
+#~ msgstr "அரட்டை"
+
+#~ msgid "Chemistry"
+#~ msgstr "இரசாயனம்"
+
+#~ msgid "Clocks"
+#~ msgstr "கடிகாரங்கள்"
+
+#~ msgid "Compression Tools"
+#~ msgstr "சுருக்கக் கருவிகள்"
+
+#~ msgid "Computer Science"
+#~ msgstr "கணினி அறிவியல்"
+
+#~ msgid "Construction"
+#~ msgstr "கட்டுமானம்"
+
+#~ msgid "Contact Management"
+#~ msgstr "தொடர்பு மேலாண்மை"
+
+#~ msgid "Data Visualization"
+#~ msgstr "தரவு காட்சியாக்கம்"
+
+#~ msgid "Databases"
+#~ msgstr "தரவுத்தளங்கள்"
+
+#~ msgid "Debuggers"
+#~ msgstr "வழு திருத்திகள்"
+
+#~ msgid "Desktop"
+#~ msgstr "மேல்மேசை"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "மேல் மேசை அமைப்புகள்"
+
+#~ msgid "Dialup"
+#~ msgstr "டயலப்"
+
+#~ msgid "Dictionaries"
+#~ msgstr "அகராதிகள்"
+
+#~ msgid "Disc Burning"
+#~ msgstr "வட்டு எழுதுதல்"
+
+#~ msgid "Economy"
+#~ msgstr "பொருளாதாரம்"
+
+#~ msgid "Education"
+#~ msgstr "கல்வி"
+
+#~ msgid "Electricity"
+#~ msgstr "மின்சாரம்"
+
+#~ msgid "Electronics"
+#~ msgstr "மின்னணுவியல்"
+
+#~ msgid "Email Tools"
+#~ msgstr "மின்னஞ்சல் கருவிகள்"
+
+#~ msgid "Emulator"
+#~ msgstr "போன்றி"
+
+#~ msgid "Engineering"
+#~ msgstr "பொறியியல்"
+
+#~ msgid "File Manager"
+#~ msgstr "கோப்பு மேலாளர்"
+
+#~ msgid "File Tools"
+#~ msgstr "கோப்பு  கருவிகள்"
+
+#~ msgid "File Transfer"
+#~ msgstr "கோப்பு இடமாற்றம்"
+
+#~ msgid "Filesystem"
+#~ msgstr "கோப்பு அமைப்பு முறை"
+
+#~ msgid "Financial Tools"
+#~ msgstr "நிதிசார் கருவிகள்"
+
+#~ msgid "Flow Charting Tools"
+#~ msgstr "வேலை திட்ட கருவிகள்"
+
+#~ msgid "GNOME Applications"
+#~ msgstr "க்னோம் பயன்பாடுகள்"
+
+#~ msgid "GTK"
+#~ msgstr "ஜிடிகே(GTK)"
+
+#~ msgid "GUI Designers"
+#~ msgstr "வரைகலை பயனர் இடைமுக நிபுணர்கள்"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "க்னோம் சூழலுக்கு பாரம்பரிய பயன்பாடுகள்"
+
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "கேடிஇ மேல்மேசை சூழல் குறித்த பாரம்பரிய பயன்பாடுகள்"
+
+#~ msgid "Geography"
+#~ msgstr "புவி இயல் "
+
+#~ msgid "Geology"
+#~ msgstr "புவி ஆராய்வு  இயல் "
+
+#~ msgid "Geoscience"
+#~ msgstr "புவி அறிவியல்"
+
+#~ msgid "Graphics"
+#~ msgstr "வரைகலைகள்"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr "வெளியுலகுக்கு தொடர்பு கொள்ளும் பயன்பாடுகளுக்கு வழிகாட்டிகளும் கையேடுகளும்."
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "வளர்ச்சியில் பங்கு கொள்ள வழிகாட்டிகள்"
+
+#~ msgid "Ham Radio"
+#~ msgstr "ஹாம் வானொலி"
+
+#~ msgid "Hardware Settings"
+#~ msgstr "வன்பொருள் சாதனங்களின் அமைப்பு"
+
+#~ msgid "Have some fun"
+#~ msgstr "கொஞ்சம் களிக்க"
+
+#~ msgid "History"
+#~ msgstr "வரலாறு"
+
+#~ msgid "IDEs"
+#~ msgstr "ஐடீஇ கள் (IDEs)"
+
+#~ msgid "IRC Clients"
+#~ msgstr "ஐஆர்சி (IRC) சார்ந்தோன்கள்"
+
+#~ msgid "Image Processing"
+#~ msgstr "பிம்பம் செயல்படுத்தல்"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "உடனடி செய்தி பரிமாற்றம்"
+
+#~ msgid "Internet"
+#~ msgstr "இணையம்"
+
+#~ msgid "Java"
+#~ msgstr "ஜாவா"
+
+#~ msgid "KDE Applications"
+#~ msgstr "கேடிஈ நிரல்கள்"
+
+#~ msgid "Kids Games"
+#~ msgstr "சிறு குழந்தைகளின் விளையாட்டுகள்"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr "பல உடல் ஊனங்களுக்கு  கணினியை அணுகல் எளிதாக்க மேலும் கற்போம்"
+
+#~ msgid "Licenses"
+#~ msgstr "அனுமதிகள் "
+
+#~ msgid "Literature"
+#~ msgstr "இலக்கியம்"
+
+#~ msgid "Logic Games"
+#~ msgstr "தர்க்க விளையாட்டுகள்"
+
+#~ msgid "Math"
+#~ msgstr "கணிதம்"
+
+#~ msgid "Medical Software"
+#~ msgstr "மருத்துவ மென்பொருள்"
+
+#~ msgid "Midi"
+#~ msgstr "மிடி"
+
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "பிற ஆவணங்கள்"
+
+#~ msgid "Mixers"
+#~ msgstr "கலவைகள்"
+
+#~ msgid "Monitor"
+#~ msgstr "காட்சி திரை"
+
+#~ msgid "Motif"
+#~ msgstr "மோடிஃப்"
+
+#~ msgid "Music"
+#~ msgstr "இசை"
+
+#~ msgid "News"
+#~ msgstr "செய்திகள்"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "எண் ஆராய்வு"
+
+#~ msgid "OCR"
+#~ msgstr "ஓசிஆர் (OCR)"
+
+#~ msgid "Office Applications"
+#~ msgstr "அலுவலக பயன்பாடுகள்"
+
+#~ msgid "Office applications"
+#~ msgstr "அலுவலக பயன்பாடுகள்"
+
+#~ msgid "Other Documentation"
+#~ msgstr "பிற ஆவணங்கள்"
+
+#~ msgid "P2P"
+#~ msgstr "பி2பி (P2P)"
+
+#~ msgid "PDA Communication"
+#~ msgstr "பிடிஏ தகவல் தொடர்பு"
+
+#~ msgid "Package Manager"
+#~ msgstr "தொகுப்பு மேலாளர்"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "இணை கணினி செயல்பாடு"
+
+#~ msgid "Photography"
+#~ msgstr "புகைப்படகலை"
+
+#~ msgid "Physics"
+#~ msgstr "பௌதிகம்"
+
+#~ msgid "Players"
+#~ msgstr "போட்டியாளர்"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "முன்வைப்பு கருவிகள்"
+
+#~ msgid "Printing"
+#~ msgstr "அச்சிடுகிறது"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "வரியுருவாக்கும் கருவிகள்"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "செயல்திட்ட மேலாண்மை கருவிகள்"
+
+#~ msgid "Publishing"
+#~ msgstr "வெளியிடுதல்"
+
+#~ msgid "Qt"
+#~ msgstr "க்யூடி(Qt)"
+
+#~ msgid "Raster Graphics"
+#~ msgstr "ராஸ்டர் வரைகலைகள்"
+
+#~ msgid "Recorders"
+#~ msgstr "பதிவு கருவிகள்"
+
+#~ msgid "Remote Access"
+#~ msgstr "தொலைதூர அணுகல்"
+
+#~ msgid "Revision Control"
+#~ msgstr "மீள்பார்வை கட்டுப்பாடு"
+
+#~ msgid "Robotics"
+#~ msgstr "இயந்திரமனிதவியல்"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "வேடமிடும் ு  விளையாட்டுகள்"
+
+#~ msgid "Scanning"
+#~ msgstr "வருடுகிறது"
+
+#~ msgid "Science"
+#~ msgstr "அறிவியல்"
+
+#~ msgid "Security"
+#~ msgstr "பாதுகாப்பு"
+
+#~ msgid "Sequencers"
+#~ msgstr "தொடர் வரிசை படுத்தி "
+
+#~ msgid "Settings"
+#~ msgstr "அமைப்புகள்"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr "சூழலை இன்னும் மகிழ்வானதாக்க பயனர் மாற்றக்கூடிய அமைப்புகள் "
+
+#~ msgid "Simulation Games"
+#~ msgstr "பாவனை விளையாட்டுகள்"
+
+#~ msgid "Sound"
+#~ msgstr "ஒலி"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "ஒலி &amp; பார்வை"
+
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "ஒலி &amp; விடியோ திருத்தம்"
+
+#~ msgid "Sports"
+#~ msgstr "விளையாட்டுகள்"
+
+#~ msgid "Sports Games"
+#~ msgstr "விளையாட்டு விளையாட்டுகள்"
+
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "விரிதாள் கருவிகள்"
+
+#~ msgid "Strategy Games"
+#~ msgstr "போர் தந்திரம் விளையாட்டுகள்"
+
+#~ msgid "System"
+#~ msgstr "கணினி அமைப்பு"
+
+#~ msgid "TV"
+#~ msgstr "தொலைக்காட்சி பெட்டி"
+
+#~ msgid "Telephony"
+#~ msgstr "தொலைபேசி "
+
+#~ msgid "Telephony Tools"
+#~ msgstr "தொலைபேசி கருவிகள்"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "முனைய போன்றி"
+
+#~ msgid "Text Editors"
+#~ msgstr "உரை திருத்திகள்"
+
+#~ msgid "Text Tools"
+#~ msgstr "உரை கருவிகள்"
+
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "உங்கள் கணிணியை மேலாள உதவிக்கருவிகள்"
+
+#~ msgid "Translation Tools"
+#~ msgstr "மொழிபெயர்ப்பு கருவிகள்"
+
+#~ msgid "Tuners"
+#~ msgstr "நுண் பொருத்திகள்"
+
+#~ msgid "Utilities"
+#~ msgstr "கருவிகள்ப்"
+
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "உங்கள் வேலையை செய்து முடிக்க உதவிக்கருவிகள்"
+
+#~ msgid "Vector Graphics"
+#~ msgstr "வெக்டார் வரைகலைகள்"
+
+#~ msgid "Video"
+#~ msgstr "வீடியோ"
+
+#~ msgid "Video Conference"
+#~ msgstr "வீடியோ கூடுதல்"
+
+#~ msgid "Viewer"
+#~ msgstr "காட்சியாளன்"
+
+#~ msgid "Web Browser"
+#~ msgstr "வலை உலாவி"
+
+#~ msgid "Web Development"
+#~ msgstr "வலை உருவாக்கம்"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "நோம் உதவி உலாவிக்கு நல்வரவு"
+
+#~ msgid "Word Processors"
+#~ msgstr "சொல் செயலாக்கிகள்"
 
 #~ msgid "Re_name"
 #~ msgstr "_மறுபெயரிடு"
@@ -1547,9 +1345,6 @@ msgstr "கனோமைப் பற்றி உதவி பெறு"
 #~ msgstr ""
 #~ "உதவி தேவையான உங்கள் பிரச்சினை அல்லது தலைப்பை வேறு சொற்களில் விவரித்து முயற்சி செய்."
 
-#~ msgid "Search results for \"%s\""
-#~ msgstr "\"%s\"க்கான தேடுதல் முடிவு"
-
 #~ msgid ""
 #~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
 #~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
@@ -1621,9 +1416,6 @@ msgstr "கனோமைப் பற்றி உதவி பெறு"
 
 #~ msgid "_Select All"
 #~ msgstr "அனைத்தையும் தேர்ந்தெடு"
-
-#~ msgid "_Find..."
-#~ msgstr "தேடு..."
 
 #~ msgid "Find Pre_vious"
 #~ msgstr "முந்தையதை தேடு"
