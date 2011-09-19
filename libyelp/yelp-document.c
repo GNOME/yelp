@@ -181,8 +181,10 @@ yelp_document_get_for_uri (YelpUri *uri)
          * holding the file, to allow a directory of HTML files to act
          * as a single document. So we cache these by a fuller URI.
          */
+        docuri = yelp_uri_get_document_uri (uri);
         page_id = yelp_uri_get_page_id (uri);
         tmp = g_strconcat (docuri, "/", page_id, NULL);
+        g_free (docuri);
         g_free (page_id);
         docuri = tmp;
         break;

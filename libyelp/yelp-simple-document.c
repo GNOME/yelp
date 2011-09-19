@@ -44,6 +44,7 @@ struct _Request {
 struct _YelpSimpleDocumentPriv {
     GFile        *file;
     GInputStream *stream;
+    gchar        *page_id;
 
     gchar        *contents;
     gssize        contents_len;
@@ -158,6 +159,7 @@ yelp_simple_document_finalize (GObject *object)
 
     g_free (document->priv->contents);
     g_free (document->priv->mime_type);
+    g_free (document->priv->page_id);
 
     G_OBJECT_CLASS (yelp_simple_document_parent_class)->finalize (object);
 }
@@ -175,6 +177,7 @@ yelp_simple_document_new (YelpUri *uri)
     g_free (doc_uri);
 
     document->priv->file = yelp_uri_get_file (uri);
+    document->priv->page_id = yelp_uri_get_page_id (uri);
 
     return (YelpDocument *) document;
 }
@@ -294,14 +297,29 @@ file_info_cb (GFile              *file,
         document->priv->mime_type = g_strdup (type);
     g_object_unref (info);
 
-    if (g_str_equal (document->priv->mime_type, "text/plain")) {
-        gchar *basename = g_file_get_basename (document->priv->file);
+    if (document->priv->page_id) {
+        yelp_document_set_page_id (YELP_DOCUMENT (document),
+                                   document->priv->page_id,
+                                   document->priv->page_id);
+        yelp_document_set_page_id (YELP_DOCUMENT (document),
+                                   "//index",
+                                   document->priv->page_id);
+        yelp_document_set_page_id (YELP_DOCUMENT (document),
+                                   NULL,
+                                   document->priv->page_id);
+    }
+    else {
         yelp_document_set_page_id (YELP_DOCUMENT (document), "//index", "//index");
         yelp_document_set_page_id (YELP_DOCUMENT (document), NULL, "//index");
+    }
+
+    if (g_str_equal (document->priv->mime_type, "text/plain")) {
+        gchar *basename = g_file_get_basename (document->priv->file);
         yelp_document_set_page_title (YELP_DOCUMENT (document), "//index", basename);
-        yelp_document_set_page_icon (YELP_DOCUMENT (document), "//index", "text-x-generic");
         g_free (basename);
     }
+
+    yelp_document_set_page_icon (YELP_DOCUMENT (document), "//index", "yelp-page-symbolic");
 
     g_file_read_async (document->priv->file,
 		       G_PRIORITY_DEFAULT,
