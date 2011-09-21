@@ -1,4 +1,4 @@
-# translation of yelp.master.hi.po to Hindi
+# translation of yelp.master.po to Hindi
 # Copyright (C) 2004, 2005, 2006, 2007, 2008, 2009, 2011 Free Software Foundation, Inc.
 # Ravishankar Shrivastava <raviratlami@yahoo.com>, 2004.
 # Rajesh Ranjan <rranjan@redhat.com>, 2005, 2006, 2008, 2009, 2011.
@@ -6,919 +6,74 @@
 # G Karunakar <karunakar@indlinux.org>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.master.hi\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&k"
-"eywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-18 00:06+0000\n"
-"PO-Revision-Date: 2011-03-28 15:29+0530\n"
-"Last-Translator: Rajesh Ranjan <rranjan@redhat.com>\n"
-"Language-Team: indlinux-hindi@lists.sourceforge.net\n"
-"Language: hi\n"
+"Project-Id-Version: yelp.master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=yelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-07-05 14:30+0000\n"
+"PO-Revision-Date: 2011-09-21 13:14+0530\n"
+"Last-Translator: Rajesh <rranjan>\n"
+"Language-Team: Hindi <hindi>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.6.1\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "GNU सूचना पृष्ठ"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "पांरपरिक कमांड लाइन मदद (सूचना)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "अनुप्रयोग"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "BLT प्रकार्य"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "विन्यास फ़ाइलें"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "कर्सेस प्रकार्य"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "विकास"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "FORTRAN प्रकार्य"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "खेल"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "हार्डवेयर उपकरण"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "कर्नेल रूटीन्स"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "मैनुअल पृष्ठ"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "नेटवर्क ध्वनि प्रकार्य"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "OpenSSL अनुप्रयोग"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "OpenSSL विन्यास"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "OpenSSL प्रकार्य"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "OpenSSL सार"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "संक्षेप"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "POSIX प्रकार्य"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "POSIX शीर्षक"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "पर्ल प्रकार्य"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Qt प्रकार्य"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "रीडलाइन प्रकार्य"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr " खंड 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr " खंड 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "खंड 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "खंड 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "खंड 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "खंड 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "खंड 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "खंड 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "खंड 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "खंड 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "खंड 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "खंड 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "खंड 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "खंड 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "खडं 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "खंड 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "खंड 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "खंड 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "खंड 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "खंड 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "खंड 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "खंड 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "खंड 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "खंड 1, 1p, 1g और 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "खंड 3, 3o, और 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "खंड 3form और 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "खंड 3एनकर्सेस और 3कर्सेस"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "खंड 3pm और 3पर्ल"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "खंड 3x और 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "खंड 7 और 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "खंड 8 और 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "तंत्र प्रशासन"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "सिस्टम काल्स"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "तंत्र ५ फार्म मेनु प्रकार्य"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "टिफ प्रकार्य"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Termcap अनुप्रयोग"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "पारंपरित कमांड लाइ मदद (man )"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "एक्स११ अनुप्रयोग"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "X11 कॉन्फ़िगरेशन"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "X11 युक्ति"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "X11 प्रकार्य"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "X11 खेल"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "X11 सार"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "2D ग्राफिक्स"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "3डी ग्राफिक्स"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "एक्सेसिबिलिटी"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "क्रिया खेल"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "रोमांचक खेल"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "मनोरंजन"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "चित्रादि देखने और काम करने के लिए अनुप्रयोग"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "ध्वनि और विडियो से संबंधित अनुप्रयोग"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "अनुप्रयोग जो प्रशिक्षण देते हैं या मददगार होते हैं"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "ऑर्केड खेल"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "अभिलेख औज़ार"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "कला"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "कृत्रिम मेधा"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "खगोलशास्त्र"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "जीवविज्ञान"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "ब्लॉक्स खेल"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "बिसात के खेल"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "बिल्डिंग"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "गणक"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "कैलेन्डर"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "ताश के खेल"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "चार्टिंग औज़ार"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "गपशप"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "रसायन"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "घड़ी"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "संपीडन औज़ार"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "कम्प्यूटर विज्ञान"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "निर्माण"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "सम्पर्क प्रबंधन"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "डेटा विज़ुअलाइज़ेशन"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "डाटाबेसेस"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "डिबगर"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "डेस्कटॉप"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "डेस्कटॉप सेटिंग"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "डायलअप"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "शब्दकोश"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "डिस्क बर्निंग"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "अर्थशास्त्र"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "शिक्षा"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "विद्युत"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "इलेक्ट्रानिक्स"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "ईमेल औज़ार"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "एमुलेटर"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "इंजीनियरिंग"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "फ़ाइल प्रबंधक"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "फ़ाइल औज़ार"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "फाइल हस्तांतरण"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "फ़ाइलसिस्टम"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "वित्तीय औज़ार"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "फ्लो चार्ट औज़ार"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "गनोम अनुप्रयोग"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "GUI डिजायनर"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "गनोम वातावरण के लिए सामान्य अनुप्रयोग"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "केडीई वातावरण के लिए सामान्य अनुप्रयोग"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "भूगोल"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "भूगर्भविज्ञान"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "भूविज्ञान"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "सुचित्र"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "अनुप्रयोगों के लिए गाइड व मैनुअल जो बाहरी दुनिया से जोड़ते हैं"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "विकास में शामिल रहने के लिए गाइड"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "हैम रेडियो"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "हार्डवेयर सेटिंग"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "कुछ आनंद लें"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "इतिहास "
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "IDE"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "आईआरसी क्लाइंट"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "छवि प्रक्रमण"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "इंस्टेंट मैसेजिंग"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "इन्टरनेट्"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "जावा"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "केडीई अनुप्रयोग"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "बाल क्रीड़ा"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr "कई प्रकार की अक्षमता के लिए अपने तंत्र अधिक पहुँच योग्य बनाने के बारे में सीखें"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "लाइसेंस"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "साहित्य"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "तार्किक खेल"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "गणित"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "चिकित्सा सॉफ्टवेयर"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "मिडी"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "विविध दस्तावेज़ीकरण"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "मिक्सर्स"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "मॉनीटर"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "मोटिफ"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "संगीत"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "समाचार"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "आंकिक विश्लेषण"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "OCR"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "कार्यालय अनुप्रयोग"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "कार्यालय अनुप्रयोग"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "अन्य दस्तावेज"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "P2P"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "PDA संचार"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "संकुल प्रबंधक"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "समानांतर कंप्यूटर"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "छायांकन"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "भौतिकी"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "खिलाड़ी"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "प्रस्तुतीकरण औज़ार"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "छाप रहा है"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "प्रोफ़ाइलिंग औज़ार"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "परियोजना प्रबंधन औज़ार"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "प्रकाशन"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "क्यूटी"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "रास्टर ग्राफिक्स"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "रिकार्डर"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "रिमोट पहुँच औज़ार"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "संशोधन नियंत्रण"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "रोबोटिक्स"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "रोल प्लेयिंग खेल"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "स्कैन कर रहा है"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "विज्ञान"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "सुरक्षा"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "शृंखलाकर्ता"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "सेटिंग"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "सेटिंग जिसे उपयोक्ता अपने वातावरण को अधिक सुखद बनाने के लिए काम कर सकता है"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "सिमुलेशन खेल"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "ध्वनि"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "ध्वनि &amp; दृश्य"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "ध्वनि &amp; वीडियो संपादन"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "खेलकूद"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "स्पोर्ट्स खेल"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "स्प्रेडशीट औज़ार"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "रणनीति खेल"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "तंत्र"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "टीवी"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "टेलिफोनी"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "टेलिफोनी औज़ार"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "टर्मिनल एमुलेटर"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "पाठ संपादक"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "पाठ औज़ार"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "आपके कंप्यूटर की प्रबंधन के लिए औज़ार"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "अनुवाद औज़ार"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "ट्यूनर"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "यूटिलिटीज़"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "आपको कार्य संपन्न करने में मदद करने वाली उपयोगिता"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "सदिश ग्राफिक्स"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "वीडियो"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "वीडियो सम्मेलन"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "दर्शक"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "वेब ब्राउज़र"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "वेब विकास"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "GNOME मदद ब्राउज़र में आपका स्वागत है"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "वर्ड प्रोसेसर"
+"Language: hi\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"\n"
+"X-Generator: Lokalize 1.2\n"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
 msgid "Invalid compressed data"
-msgstr ""
+msgstr "अवैध संकुचित डाटा"
 
 #: ../libyelp/yelp-bz2-decompressor.c:152
 #: ../libyelp/yelp-lzma-decompressor.c:161
-#| msgid "Out of memory"
 msgid "Not enough memory"
 msgstr "पर्याप्त स्मृति नहीं है"
 
-#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:270
-#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:271
+#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
 #, fuzzy, c-format
 #| msgid "The page %s was not found in the document %s."
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "%s पृष्ठ %s दस्तावेज़ में नहीं मिला."
 
-#: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
 #: ../libyelp/yelp-man-document.c:417
-#, fuzzy, c-format
+#, c-format
 #| msgid "The file ‘%s’ does not exist."
 msgid "The file does not exist."
 msgstr "फ़ाइल मौज़ूद नहीं है."
 
-#: ../libyelp/yelp-docbook-document.c:326 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
 #: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "फ़ाइल ‘%s’ मौजूद नहीं है."
 
-#: ../libyelp/yelp-docbook-document.c:341
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "‘%s’ फ़ाइल विश्लेषित नहीं कर सका क्योंकि यह सही XML दस्तावेज़ नहीं है."
 
-#: ../libyelp/yelp-docbook-document.c:354
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"‘%s’ फ़ाइल विश्लेषित नहीं कर सका क्योंकि इसमें शामिल एक या अधिक फ़ाइल सही XML दस्तावेज़ "
+"‘%s’ फ़ाइल विश्लेषित नहीं कर सका क्योंकि इसमें शामिल एक या अधिक फ़ाइल सही XML "
+"दस्तावेज़ "
 "नहीं है."
 
-#: ../libyelp/yelp-docbook-document.c:763
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "अज्ञात"
 
-#: ../libyelp/yelp-docbook-document.c:824 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
 #: ../libyelp/yelp-man-document.c:359
 #, fuzzy, c-format
 #| msgid "The requested page was not found in the document %s."
@@ -934,157 +89,155 @@ msgid "Whether the document content has been indexed"
 msgstr ""
 
 #: ../libyelp/yelp-document.c:275
-#, fuzzy
 #| msgid "Document Sections"
 msgid "Document URI"
-msgstr "दस्तावेज खंड"
+msgstr "दस्तावेज URI"
 
 #: ../libyelp/yelp-document.c:276
 msgid "The URI which identifies the document"
 msgstr ""
 
-#: ../libyelp/yelp-document.c:966
+#: ../libyelp/yelp-document.c:956
+#, c-format
+msgid "Search results for “%s”"
+msgstr "“%s” के लिए खोजें"
+
+#: ../libyelp/yelp-document.c:968
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr ""
 
-#: ../libyelp/yelp-document.c:972
+#: ../libyelp/yelp-document.c:974
 msgid "No matching help pages found."
 msgstr ""
 
-#: ../libyelp/yelp-error.c:33
+#: ../libyelp/yelp-error.c:37
 #, c-format
 msgid "An unknown error occurred."
 msgstr "एक अज्ञात त्रुटि पायी गई."
 
 #: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
 msgid "All Help Documents"
-msgstr ""
+msgstr "सभी मदद दस्तावेज़"
 
 #: ../libyelp/yelp-info-document.c:397
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "‘%s’ फ़ाइल विश्लेषित नहीं कर सका क्योंकि यह सही सूचना पृष्ठ नहीं है."
 
-#: ../libyelp/yelp-location-entry.c:326
-#, fuzzy
+#: ../libyelp/yelp-location-entry.c:329
 #| msgid "Viewer"
 msgid "View"
 msgstr "दृश्य"
 
-#: ../libyelp/yelp-location-entry.c:327
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
 msgstr ""
 
-#: ../libyelp/yelp-location-entry.c:342
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "पसंद"
 
-#: ../libyelp/yelp-location-entry.c:343
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
 msgstr ""
 
-#: ../libyelp/yelp-location-entry.c:359
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
 msgstr "ढूंढना सक्षम करें"
 
-#: ../libyelp/yelp-location-entry.c:360
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
 msgstr ""
 
-#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
-#, fuzzy
+#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
 #| msgid "_Search:"
 msgid "Search..."
-msgstr "ढूंढें..."
+msgstr "खोजें..."
 
-#: ../libyelp/yelp-location-entry.c:785
+#: ../libyelp/yelp-location-entry.c:774
 #, fuzzy
 #| msgid "Repeat the search online at %s"
 msgid "Clear the search text"
 msgstr "सर्च को %s पर दुहराएं"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
+#: ../libyelp/yelp-location-entry.c:823 ../libyelp/yelp-location-entry.c:1521
 #, fuzzy
 #| msgid "Bookmarks"
 msgid "Bookmark this page"
 msgstr "पसंद"
 
-#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
-#, fuzzy
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1529
 #| msgid "Remove Bookmark"
 msgid "Remove bookmark"
-msgstr "पसंदीदा मिटाएँ"
+msgstr "पुस्तचिह्न मिटाएँ"
 
-#: ../libyelp/yelp-location-entry.c:1412
-#, fuzzy
+#: ../libyelp/yelp-location-entry.c:1386
 #| msgid "Loading..."
 msgid "Loading"
 msgstr "लोड हो रहा है"
 
-#: ../libyelp/yelp-mallard-document.c:310
-#, fuzzy, c-format
+#: ../libyelp/yelp-mallard-document.c:311
+#, c-format
 #| msgid "The file ‘%s’ does not exist."
 msgid "The directory ‘%s’ does not exist."
-msgstr "फ़ाइल ‘%s’ मौजूद नहीं है."
+msgstr "निर्देशिका ‘%s’ मौजूद नहीं है."
 
-#: ../libyelp/yelp-settings.c:150
-#, fuzzy
+#: ../libyelp/yelp-settings.c:154
 #| msgid "Settings"
 msgid "GtkSettings"
-msgstr "सेटिंग"
+msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:151
+#: ../libyelp/yelp-settings.c:155
 msgid "A GtkSettings object to get settings from"
 msgstr ""
 
-#: ../libyelp/yelp-settings.c:159
+#: ../libyelp/yelp-settings.c:163
 msgid "GtkIconTheme"
-msgstr ""
+msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:160
+#: ../libyelp/yelp-settings.c:164
 msgid "A GtkIconTheme object to get icons from"
 msgstr ""
 
-#: ../libyelp/yelp-settings.c:168
+#: ../libyelp/yelp-settings.c:172
 msgid "Font Adjustment"
-msgstr ""
+msgstr "फॉन्ट समायोजन"
 
-#: ../libyelp/yelp-settings.c:169
+#: ../libyelp/yelp-settings.c:173
 msgid "A size adjustment to add to font sizes"
 msgstr ""
 
-#: ../libyelp/yelp-settings.c:177
+#: ../libyelp/yelp-settings.c:181
 msgid "Show Text Cursor"
-msgstr ""
+msgstr "पाठ कर्सर दिखाएँ"
 
-#: ../libyelp/yelp-settings.c:178
+#: ../libyelp/yelp-settings.c:182
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr ""
 
-#: ../libyelp/yelp-settings.c:186
+#: ../libyelp/yelp-settings.c:190
 msgid "Editor Mode"
-msgstr ""
+msgstr "संपादक विधि"
 
-#: ../libyelp/yelp-settings.c:187
+#: ../libyelp/yelp-settings.c:191
 msgid "Enable features useful to editors"
 msgstr ""
 
 #: ../libyelp/yelp-sqlite-storage.c:150
-#, fuzzy
 #| msgid "Databases"
 msgid "Database filename"
-msgstr "डाटाबेसेस"
+msgstr "डाटाबेसे फ़ाइलनाम"
 
 #: ../libyelp/yelp-sqlite-storage.c:151
 msgid "The filename of the sqlite database"
 msgstr ""
 
 #: ../libyelp/yelp-transform.c:171
-#, fuzzy
 #| msgid "Invalid Stylesheet"
 msgid "XSLT Stylesheet"
-msgstr "अवैध स्टाइलशीट"
+msgstr "XSLT स्टाइलशीट"
 
 #: ../libyelp/yelp-transform.c:172
 msgid "The location of the XSLT stylesheet"
@@ -1105,7 +258,6 @@ msgid "Out of memory"
 msgstr "मेमोरी कम पड़ गई"
 
 #: ../libyelp/yelp-view.c:126
-#, fuzzy
 #| msgid "Print"
 msgid "_Print..."
 msgstr "छापें... (_P)"
@@ -1119,32 +271,28 @@ msgid "_Forward"
 msgstr "आगे (_F)"
 
 #: ../libyelp/yelp-view.c:141
-#, fuzzy
 #| msgid "_Previous"
 msgid "_Previous Page"
 msgstr "पिछला पृष्ठ (_P)"
 
 #: ../libyelp/yelp-view.c:146
-#, fuzzy
 #| msgid "_Next"
 msgid "_Next Page"
 msgstr "अगला पृष्ठ (_N)"
 
 #: ../libyelp/yelp-view.c:416
-#, fuzzy
 #| msgid "Yelp"
 msgid "Yelp URI"
-msgstr "येल्प"
+msgstr "Yelp URI"
 
 #: ../libyelp/yelp-view.c:417
 msgid "A YelpUri with the current location"
 msgstr ""
 
 #: ../libyelp/yelp-view.c:425
-#, fuzzy
 #| msgid "Loading..."
 msgid "Loading State"
-msgstr "लोड कर रहे..."
+msgstr "स्थिति लोड कर रहा है"
 
 #: ../libyelp/yelp-view.c:426
 msgid "The loading state of the view"
@@ -1152,7 +300,7 @@ msgstr ""
 
 #: ../libyelp/yelp-view.c:435
 msgid "Page ID"
-msgstr ""
+msgstr "पृष्ठ ID"
 
 #: ../libyelp/yelp-view.c:436
 msgid "The ID of the root page of the page being viewed"
@@ -1160,7 +308,7 @@ msgstr ""
 
 #: ../libyelp/yelp-view.c:444
 msgid "Root Title"
-msgstr ""
+msgstr "रूट शीर्षक"
 
 #: ../libyelp/yelp-view.c:445
 msgid "The title of the root page of the page being viewed"
@@ -1183,10 +331,9 @@ msgid "The description of the page being viewed"
 msgstr ""
 
 #: ../libyelp/yelp-view.c:471
-#, fuzzy
 #| msgid "Page not found"
 msgid "Page Icon"
-msgstr "पृष्ठ नहीं मिला"
+msgstr "पृष्ठ प्रतीक"
 
 #: ../libyelp/yelp-view.c:472
 msgid "The icon of the page being viewed"
@@ -1202,7 +349,7 @@ msgstr "छवि सहेजें"
 
 #: ../libyelp/yelp-view.c:1086
 msgid "Save Code"
-msgstr ""
+msgstr "कोड सहेजें"
 
 #. Not using a mnemonic because underscores are common in email
 #. * addresses, and we'd have to escape them. There doesn't seem
@@ -1220,10 +367,9 @@ msgid "_Open Link"
 msgstr "लिंक खोलें (_O)"
 
 #: ../libyelp/yelp-view.c:1270
-#, fuzzy
 #| msgid "Open Link in _New Window"
 msgid "Open Link in New _Window"
-msgstr "लिंक नई विंडो में खोलें (_N)"
+msgstr "लिंक नई विंडो में खोलें (_W)"
 
 #: ../libyelp/yelp-view.c:1321
 msgid "_Save Image As..."
@@ -1242,10 +388,9 @@ msgid "S_end Video To..."
 msgstr ""
 
 #: ../libyelp/yelp-view.c:1343
-#, fuzzy
 #| msgid "_Copy"
 msgid "_Copy Text"
-msgstr "प्रतिलिपि (_C)"
+msgstr "पाठ की नक़ल लें (_C)"
 
 #: ../libyelp/yelp-view.c:1356
 msgid "C_opy Code Block"
@@ -1266,22 +411,19 @@ msgid "Could not load a document"
 msgstr ""
 
 #: ../libyelp/yelp-view.c:1623
-#, fuzzy
 #| msgid "Document Sections"
 msgid "Document Not Found"
-msgstr "दस्तावेज खंड"
+msgstr "दस्तावेज नहीं मिला"
 
 #: ../libyelp/yelp-view.c:1625
-#, fuzzy
 #| msgid "Page not found"
 msgid "Page Not Found"
 msgstr "पृष्ठ नहीं मिला"
 
 #: ../libyelp/yelp-view.c:1628
-#, fuzzy
 #| msgid "Cannot create window"
 msgid "Cannot Read"
-msgstr "विंडो बना नहीं सकता है"
+msgstr "पढ़ नहीं सकता है"
 
 #: ../libyelp/yelp-view.c:1634
 msgid "Unknown Error"
@@ -1310,41 +452,40 @@ msgstr ""
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "फ़ाइल ‘%s’ मौजूद नहीं है."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr ""
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
 msgstr "बड़ा पाठ (_L)"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
 msgstr ""
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
 msgstr ""
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
 msgstr ""
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr ""
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "मदद"
 
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "पाठ कर्सर दिखाएँ (_C)"
+
 #: ../src/yelp-window.c:236
 msgid "_Page"
-msgstr ""
+msgstr "पृष्ठ"
 
 #: ../src/yelp-window.c:237
-#, fuzzy
 #| msgid "Viewer"
 msgid "_View"
 msgstr "देखें (_V)"
@@ -1362,26 +503,23 @@ msgid "_New Window"
 msgstr "नया विंडो (_N)"
 
 #: ../src/yelp-window.c:247
-#, fuzzy
 #| msgid "Clocks"
 msgid "_Close"
 msgstr "बंद करें (_C)"
 
 #: ../src/yelp-window.c:252
-#, fuzzy
 #| msgid "About This Document"
 msgid "_All Documents"
-msgstr "इस दस्तावेज के बारे में"
+msgstr "सभी दस्तावेज"
 
 #: ../src/yelp-window.c:256
 msgid "_Add Bookmark"
 msgstr "पसंद जोड़ें (_A)"
 
 #: ../src/yelp-window.c:261
-#, fuzzy
 #| msgid "Remove Bookmark"
 msgid "_Remove Bookmark"
-msgstr "पसंदीदा मिटाएँ"
+msgstr "पुस्तचिह्न मिटाएँ"
 
 #: ../src/yelp-window.c:265
 #, fuzzy
@@ -1394,7 +532,6 @@ msgid "Open Location"
 msgstr "स्थान खोलें"
 
 #: ../src/yelp-window.c:301
-#, fuzzy
 #| msgid "Applications"
 msgid "Application"
 msgstr "अनुप्रयोग"
@@ -1403,16 +540,20 @@ msgstr "अनुप्रयोग"
 msgid "A YelpApplication instance that controls this window"
 msgstr ""
 
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "ढूंढें:"
+
 #: ../src/yelp-window.c:548
 msgid "Read Later"
-msgstr ""
+msgstr "इसे बाद में पढ़ें"
 
 #: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i match"
+msgstr[1] "%i matches"
 
 #: ../src/yelp-window.c:1188
 msgid "No matches"
@@ -1421,3 +562,5 @@ msgstr "कोई मेल नहीं"
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "गनोम से मदद लें"
+
+
