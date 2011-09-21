@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-31 17:50+0000\n"
-"PO-Revision-Date: 2011-07-26 20:44+0100\n"
+"POT-Creation-Date: 2011-09-19 02:02+0000\n"
+"PO-Revision-Date: 2011-09-18 22:33+0200\n"
 "Last-Translator: Pavol Klačanský <pavol@klacansky.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -78,34 +78,33 @@ msgstr "Neznámy"
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Požadovaná strana sa v dokumente „%s“ nenašla."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "Indexovaný"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "Či bol obsah dokumentu indexovaný"
 
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "URI dokumentu"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "URI, ktorý identifikuje dokument"
 
-#: ../libyelp/yelp-document.c:956
+#: ../libyelp/yelp-document.c:958
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Výsledky vyhľadávania výrazu „%s“"
 
-#: ../libyelp/yelp-document.c:968
+#: ../libyelp/yelp-document.c:970
 #, c-format
-#| msgid "No matching help pages found in „%s“."
 msgid "No matching help pages found in “%s”."
 msgstr "Neboli nájdené žiadne zodpovedajúce stránky pomocníka v „%s“."
 
-#: ../libyelp/yelp-document.c:974
+#: ../libyelp/yelp-document.c:976
 msgid "No matching help pages found."
 msgstr "Neboli nájdené žiadne zodpovedajúce stránky pomocníka."
 
@@ -198,9 +197,8 @@ msgid "Font Adjustment"
 msgstr "Prispôsobenie písma"
 
 #: ../libyelp/yelp-settings.c:173
-#, fuzzy
 msgid "A size adjustment to add to font sizes"
-msgstr "Prispôsobenie veľkosti, ktorá sa pridá do veľkostí písiem"
+msgstr "Prispôsobenie veľkosti, ktorá sa pridá k veľkostiam písma"
 
 #: ../libyelp/yelp-settings.c:181
 msgid "Show Text Cursor"
