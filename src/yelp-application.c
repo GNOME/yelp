@@ -40,7 +40,7 @@
 #include "yelp-application.h"
 #include "yelp-window.h"
 
-#define DEFAULT_URI "ghelp:gnome-help"
+#define DEFAULT_URI "help:gnome-help"
 
 static gboolean editor_mode = FALSE;
 
@@ -389,7 +389,7 @@ yelp_application_command_line (GApplication            *application,
     argv = g_application_command_line_get_arguments (cmdline, NULL);
 
     if (argv[1] == NULL)
-        open_uri (app, yelp_uri_new ("ghelp:gnome-help"), FALSE);
+        open_uri (app, yelp_uri_new (DEFAULT_URI), FALSE);
 
     for (i = 1; argv[i]; i++)
         open_uri (app, yelp_uri_new (argv[i]), FALSE);
