@@ -5,882 +5,26 @@
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004-2005.
 # Lasse Bang Mikkelsen <lbm@fatalerror.dk>, 2006.
 # Ask Hjorth Larsen <asklarsen@gmail.com>, 2007-2008.
-#
+# Aputsiaq Niels Janussen <aj@isit.gl>, 2011.
 # Husk at tilføje dig i credit-listen (besked id "translator-credits")
-#
 # Konventioner:
-#
-#   help topics -> emner i hjælp (ikke hjælpeemner)
-#
+# help topics -> emner i hjælp (ikke hjælpeemner)
 # Bemærk: der er en del engelske strenge der bruges til at filtrere almindelige ord fra i søgninger (såsom "is", "are", osv.) og lignende formål, og disse bør oversættes til dansk; denne oversættelse bliver dog først meningsfuld når dokumentationen *også* bliver oversat til dansk, hvilket ikke sker foreløbig. Hvis du læser dette på et tidspunkt hvor dokumentationen er mere eller mindre oversat til dansk, så ændr venligst disse strenge.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-01 12:16+0200\n"
-"PO-Revision-Date: 2011-03-30 14:41+0100\n"
-"Last-Translator: Anders Jenbo <anders@jenbo.dk>\n"
+"POT-Creation-Date: 2011-09-24 17:52+0200\n"
+"PO-Revision-Date: 2011-09-24 11:18-0200\n"
+"Last-Translator: Aputsiaq Niels Janussen <aj@isit.gl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.6.1\n"
 "X-Launchpad-Export-Date: 2011-03-30 00:28+0000\n"
-"X-Generator: Launchpad (build 12684)\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "GNU informationssider"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "Traditionel kommandolinjehjælp (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "Programmer"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "BLT-funktioner"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "Konfigurationsfiler"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "Curses-funktioner"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "Udvikling"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "FORTRAN-funktioner"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "Spil"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "Hardwareenheder"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "Kernerutiner"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "Manual-sider"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "Netværkslydfunktioner"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "OpenSSL-programmer"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "OpenSSL-opsætning"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "OpenSSL-funktioner"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "OpenSSL-oversigter"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "Oversigter"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "POSIX-funktioner"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "POSIX-hoveder"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "Perl-funktioner"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Qt-funktioner"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "Readline-funktioner"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "Afsnit 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "Afsnit 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "Afsnit 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "Afsnit 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "Afsnit 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "Afsnit 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "Afsnit 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "Afsnit 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "Afsnit 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "Afsnit 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "Afsnit 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "Afsnit 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "Afsnit 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "Afsnit 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "Afsnit 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "Afsnit 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "Afsnit 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "Afsnit 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "Afsnit 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "Afsnit 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "Afsnit 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "Afsnit 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "Afsnit 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "Afsnit 1, 1p, 1g og 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "Afsnit 3, 3o og 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "Afsnit 3form og 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "Afsnit 3ncurses og 3curses"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "Afsnit 3pm og 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "Afsnit 3x og 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "Afsnit 7 og 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "Afsnit 8 og 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "Systemadministration"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "Systemkald"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "System V Form/Menu-funktioner"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "TIFF-funktioner"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Termcap-programmer"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "Traditionel kommandolinjehjælp (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "X11-programmer"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "X11-opsætning"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "X11-enheder"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "X11-funktioner"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "X11-spil"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "X11-oversigter"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "2D-grafik"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "3D-grafik"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "Tilgængelighed"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "Actionspil"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "Eventyrspil"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "Underholdning"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "Programmer til manipulation eller visning af grafik"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "Programmer relateret til lyd og video"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "Programmer der underviser eller hjælper med indlæring"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "Arkadespil"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "Arkiveringsværktøjer"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "Kunst"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "Kunstig intelligens"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "Astronomi"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "Biologi"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "Blokspil"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "Brætspil"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "Bygning"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "Lommeregner"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "Kalender"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "Kortspil"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "Diagramværktøjer"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "Chat"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "Kemi"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "Ure"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "Komprimeringsværktøjer"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "Computervidenskab"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "Konstruktion"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "Kontakthåndtering"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "Datavisualisering"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "Databaser"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "Debuggere"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "Skrivebord"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "Skrivebordsindstillinger"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "Dial-up"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "Ordbøger"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "Diskbrænding"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "Økonomi"
-
-# ...eller uddannelse. Men undervisning lyder bedre her
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "Undervisning"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "Elektricitet"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "Elektronik"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "E-postværktøjer"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "Emulator"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "Ingeniørarbejde"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "Filhåndtering"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "Filværktøjer"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "Filoverførsel"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "Filsystem"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "Finansværktøjer"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "Pildiagramværktøjer"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "GNOME-programmer"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "GUI-designere"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "Generiske programmer til GNOME-miljøet"
-
-# Egentlig er KDE Desktop Environment jo navnet i sig selv, men lad os bare oversætte det alligevel
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "Specifikke programmer til KDE-miljøet"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "Geografi"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "Geologi"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "Geovidenskab"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "Grafik"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Guider og manualer til programmer der forbinder til resten af verden"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "Guider til at komme i gang med udvikling"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "Amatørradio"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "Hardwareindstillinger"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "Hav det morsomt"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "Historie"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "IDE'er"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "IRC-klienter"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "Billedbehandling"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "Tekstbeskeder"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "Internet"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "Java"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "KDE-programmer"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "Børnespil"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr "Læs mere om at gøre dit system tilgængeligt for en række handicaps"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "Licenser"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "Litteratur"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "Logiske spil"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "Matematik"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "Medicinsk software"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "Midi"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "Forskellig dokumentation"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "Miksere"
-
-# Vi ved ikke helt om monitor betegner måling af noget, og i så fald hvad, eller om det har noget med computerskærme at gøre, men det er næppe kriminelt at bruge ordet på dansk
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "Monitor"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "Motif"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "Musik"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "Nyheder"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "Numerisk analyse"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "Tekstgenkendelse"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "Kontorprogrammer"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "Kontorprogrammer"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "Anden dokumentation"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "P2P"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "PDA-kommunikation"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "Pakkehåndtering"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "Parallelle beregninger"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "Fotografi"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "Fysik"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "Spillere"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "Præsentationsværktøjer"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "Udskriver"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "Profileringsværktøjer"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "Projekthåndteringsværktøjer"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "Publikation"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-# Bitmap er velsagtens et lidt mere genkendt ord på dansk
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "Bitmap-grafik"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "Optagere"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "Fjerntilgang"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "Versionsstyring"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "Robotteknik"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "Rollespil"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "Skanning"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "Videnskab"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "Sikkerhed"
-
-# ??? http://en.wikipedia.org/wiki/Music_sequencer
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "Musik-sequencere"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "Indstillinger"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr ""
-"Indstillinger, brugere kan manipulere for at gøre deres miljø mere behageligt"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "Simulationsspil"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "Lyd"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "Lyd &amp; video"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "Lyd- &amp; videoredigering"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "Sport"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "Sportsspil"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "Regnearksværktøjer"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "Strategispil"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "System"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "TV"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "Telefoni"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "Telefoniværktøjer"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "Terminalemulator"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "Tekstredigeringsprogrammer"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "Tekstværktøjer"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "Værktøjer til håndtering af din computer"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "Oversættelsesværktøjer"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "Tunere"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "Værktøjer"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "Værktøjer til at få lavet noget arbejde"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "Vektorgrafik"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "Video"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "Videokonference"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "Grafikvisning"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "Browser"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "Webudvikling"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "Velkommen til GNOME-hjælpebrowseren"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "Skriveprogrammer"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -892,26 +36,26 @@ msgstr "Ugyldige komprimerede data"
 msgid "Not enough memory"
 msgstr "Ikke nok hukommelse"
 
-#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:270
-#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:271
+#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Siden \"%s\" blev ikke fundet i dokumentet \"%s\"."
 
-#: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
 #: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "Filen findes ikke."
 
-#: ../libyelp/yelp-docbook-document.c:326 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
 #: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Filen \"%s\" eksisterer ikke."
 
-#: ../libyelp/yelp-docbook-document.c:341
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -919,7 +63,7 @@ msgid ""
 msgstr ""
 "Filen \"%s\" kunne ikke fortolkes fordi den ikke er et korrekt XML-dokument."
 
-#: ../libyelp/yelp-docbook-document.c:354
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -928,38 +72,43 @@ msgstr ""
 "Filen \"%s\" kunne ikke fortolkes fordi en eller flere af dens inkluderede "
 "filer ikke er et korrekt XML-dokument."
 
-#: ../libyelp/yelp-docbook-document.c:763
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "Ukendt"
 
-#: ../libyelp/yelp-docbook-document.c:824 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
 #: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Den efterspurgte side kunne ikke findes i dokumentet \"%s\"."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "Indekseret"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "Hvorvidt indholdet af dokumentet er blevet indekseret"
 
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "Dokument-URI"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "Adressen der identificerer dokumentet"
 
-#: ../libyelp/yelp-document.c:966
+#: ../libyelp/yelp-document.c:958
+#, c-format
+msgid "Search results for “%s”"
+msgstr "Søgeresultater for \"%s\""
+
+#: ../libyelp/yelp-document.c:970
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Ingen hjælpesider fundet for \"%s\"."
 
-#: ../libyelp/yelp-document.c:972
+#: ../libyelp/yelp-document.c:976
 msgid "No matching help pages found."
 msgstr "Ingen hjælpesider fundet."
 
@@ -979,51 +128,51 @@ msgid ""
 msgstr ""
 "Filen \"%s\" kunne ikke fortolkes fordi den ikke er en korrekt info-side."
 
-#: ../libyelp/yelp-location-entry.c:330
+#: ../libyelp/yelp-location-entry.c:329
 msgid "View"
 msgstr "Vis"
 
-#: ../libyelp/yelp-location-entry.c:331
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
 msgstr "En instans af YelpView til styring"
 
-#: ../libyelp/yelp-location-entry.c:346
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "Bogmærker"
 
-#: ../libyelp/yelp-location-entry.c:347
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
 msgstr "En implementeringsinstans af YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:363
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
 msgstr "Aktivér søgning"
 
-#: ../libyelp/yelp-location-entry.c:364
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
 msgstr "Om placeringstekstfeltet skal kunne bruges som et søgefelt"
 
-#: ../libyelp/yelp-location-entry.c:436 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Søg..."
 
-#: ../libyelp/yelp-location-entry.c:789
+#: ../libyelp/yelp-location-entry.c:776
 msgid "Clear the search text"
 msgstr "Ryd søgeteksten"
 
-#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1560
+#: ../libyelp/yelp-location-entry.c:825 ../libyelp/yelp-location-entry.c:1523
 msgid "Bookmark this page"
 msgstr "Føj denne side til bogmærker"
 
-#: ../libyelp/yelp-location-entry.c:850 ../libyelp/yelp-location-entry.c:1571
+#: ../libyelp/yelp-location-entry.c:833 ../libyelp/yelp-location-entry.c:1531
 msgid "Remove bookmark"
 msgstr "Fjern bogmærke"
 
-#: ../libyelp/yelp-location-entry.c:1416
+#: ../libyelp/yelp-location-entry.c:1388
 msgid "Loading"
 msgstr "Indlæser"
 
-#: ../libyelp/yelp-mallard-document.c:310
+#: ../libyelp/yelp-mallard-document.c:311
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Mappen \"%s\" findes ikke."
@@ -1277,34 +426,34 @@ msgstr "URI'et peger ikke på en gyldig side."
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Adressen \"%s\" kunne ikke tolkes."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "Aktivér redigeringstilstand"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
 msgstr "_Større tekst"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
 msgstr "Forøg skriftstørrelsen"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
 msgstr "_Mindre tekst"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
 msgstr "Mindsk skriftstørrelsen"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr "Vis tekst_markør"
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjælp"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "Vis tekst_markør"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
@@ -1358,6 +507,10 @@ msgstr "Program"
 msgid "A YelpApplication instance that controls this window"
 msgstr "En YelpApplication-instans, der styrer dette vindue"
 
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "Find:"
+
 #: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "Læs senere"
@@ -1376,6 +529,648 @@ msgstr "Ingen fundet"
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Få hjælp til GNOME"
+
+#~ msgid "GNU Info Pages"
+#~ msgstr "GNU informationssider"
+
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "Traditionel kommandolinjehjælp (info)"
+
+#~ msgid "Applications"
+#~ msgstr "Programmer"
+
+#~ msgid "BLT Functions"
+#~ msgstr "BLT-funktioner"
+
+#~ msgid "Configuration Files"
+#~ msgstr "Konfigurationsfiler"
+
+#~ msgid "Curses Functions"
+#~ msgstr "Curses-funktioner"
+
+#~ msgid "Development"
+#~ msgstr "Udvikling"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "FORTRAN-funktioner"
+
+#~ msgid "Games"
+#~ msgstr "Spil"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "Hardwareenheder"
+
+#~ msgid "Kernel Routines"
+#~ msgstr "Kernerutiner"
+
+#~ msgid "Manual Pages"
+#~ msgstr "Manual-sider"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "Netværkslydfunktioner"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "OpenSSL-programmer"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "OpenSSL-opsætning"
+
+#~ msgid "OpenSSL Functions"
+#~ msgstr "OpenSSL-funktioner"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "OpenSSL-oversigter"
+
+#~ msgid "Overviews"
+#~ msgstr "Oversigter"
+
+#~ msgid "POSIX Functions"
+#~ msgstr "POSIX-funktioner"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "POSIX-hoveder"
+
+#~ msgid "Perl Functions"
+#~ msgstr "Perl-funktioner"
+
+#~ msgid "Qt Functions"
+#~ msgstr "Qt-funktioner"
+
+#~ msgid "Readline Functions"
+#~ msgstr "Readline-funktioner"
+
+#~ msgid "Section 0p"
+#~ msgstr "Afsnit 0p"
+
+#~ msgid "Section 1m"
+#~ msgstr "Afsnit 1m"
+
+#~ msgid "Section 1ssl"
+#~ msgstr "Afsnit 1ssl"
+
+#~ msgid "Section 1x"
+#~ msgstr "Afsnit 1x"
+
+#~ msgid "Section 2"
+#~ msgstr "Afsnit 2"
+
+#~ msgid "Section 3blt"
+#~ msgstr "Afsnit 3blt"
+
+#~ msgid "Section 3f"
+#~ msgstr "Afsnit 3f"
+
+#~ msgid "Section 3nas"
+#~ msgstr "Afsnit 3nas"
+
+#~ msgid "Section 3p"
+#~ msgstr "Afsnit 3p"
+
+#~ msgid "Section 3qt"
+#~ msgstr "Afsnit 3qt"
+
+#~ msgid "Section 3readline"
+#~ msgstr "Afsnit 3readline"
+
+#~ msgid "Section 3ssl"
+#~ msgstr "Afsnit 3ssl"
+
+#~ msgid "Section 3tiff"
+#~ msgstr "Afsnit 3tiff"
+
+#~ msgid "Section 4"
+#~ msgstr "Afsnit 4"
+
+#~ msgid "Section 4x"
+#~ msgstr "Afsnit 4x"
+
+#~ msgid "Section 5"
+#~ msgstr "Afsnit 5"
+
+#~ msgid "Section 5ssl"
+#~ msgstr "Afsnit 5ssl"
+
+#~ msgid "Section 5x"
+#~ msgstr "Afsnit 5x"
+
+#~ msgid "Section 6"
+#~ msgstr "Afsnit 6"
+
+#~ msgid "Section 6x"
+#~ msgstr "Afsnit 6x"
+
+#~ msgid "Section 7ssl"
+#~ msgstr "Afsnit 7ssl"
+
+#~ msgid "Section 7x"
+#~ msgstr "Afsnit 7x"
+
+#~ msgid "Section 9"
+#~ msgstr "Afsnit 9"
+
+#~ msgid "Sections 1, 1p, 1g and 1t"
+#~ msgstr "Afsnit 1, 1p, 1g og 1t"
+
+#~ msgid "Sections 3, 3o, and 3t"
+#~ msgstr "Afsnit 3, 3o og 3t"
+
+#~ msgid "Sections 3form and 3menu"
+#~ msgstr "Afsnit 3form og 3menu"
+
+#~ msgid "Sections 3ncurses and 3curses"
+#~ msgstr "Afsnit 3ncurses og 3curses"
+
+#~ msgid "Sections 3pm and 3perl"
+#~ msgstr "Afsnit 3pm og 3perl"
+
+#~ msgid "Sections 3x and 3X11"
+#~ msgstr "Afsnit 3x og 3X11"
+
+#~ msgid "Sections 7 and 7gcc"
+#~ msgstr "Afsnit 7 og 7gcc"
+
+#~ msgid "Sections 8 and 8l"
+#~ msgstr "Afsnit 8 og 8l"
+
+#~ msgid "System Administration"
+#~ msgstr "Systemadministration"
+
+#~ msgid "System Calls"
+#~ msgstr "Systemkald"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "System V Form/Menu-funktioner"
+
+#~ msgid "TIFF Functions"
+#~ msgstr "TIFF-funktioner"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "Termcap-programmer"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "Traditionel kommandolinjehjælp (man)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "X11-programmer"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "X11-opsætning"
+
+#~ msgid "X11 Devices"
+#~ msgstr "X11-enheder"
+
+#~ msgid "X11 Functions"
+#~ msgstr "X11-funktioner"
+
+#~ msgid "X11 Games"
+#~ msgstr "X11-spil"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "X11-oversigter"
+
+#~ msgid "2D Graphics"
+#~ msgstr "2D-grafik"
+
+#~ msgid "3D Graphics"
+#~ msgstr "3D-grafik"
+
+#~ msgid "Accessibility"
+#~ msgstr "Tilgængelighed"
+
+#~ msgid "Action Games"
+#~ msgstr "Actionspil"
+
+#~ msgid "Adventure Games"
+#~ msgstr "Eventyrspil"
+
+#~ msgid "Amusement"
+#~ msgstr "Underholdning"
+
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "Programmer til manipulation eller visning af grafik"
+
+#~ msgid "Applications related to audio and video"
+#~ msgstr "Programmer relateret til lyd og video"
+
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "Programmer der underviser eller hjælper med indlæring"
+
+#~ msgid "Arcade Games"
+#~ msgstr "Arkadespil"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "Arkiveringsværktøjer"
+
+#~ msgid "Art"
+#~ msgstr "Kunst"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "Kunstig intelligens"
+
+#~ msgid "Astronomy"
+#~ msgstr "Astronomi"
+
+#~ msgid "Biology"
+#~ msgstr "Biologi"
+
+#~ msgid "Blocks Games"
+#~ msgstr "Blokspil"
+
+#~ msgid "Board Games"
+#~ msgstr "Brætspil"
+
+#~ msgid "Building"
+#~ msgstr "Bygning"
+
+#~ msgid "Calculator"
+#~ msgstr "Lommeregner"
+
+#~ msgid "Calendar"
+#~ msgstr "Kalender"
+
+#~ msgid "Card Games"
+#~ msgstr "Kortspil"
+
+#~ msgid "Charting Tools"
+#~ msgstr "Diagramværktøjer"
+
+#~ msgid "Chat"
+#~ msgstr "Chat"
+
+#~ msgid "Chemistry"
+#~ msgstr "Kemi"
+
+#~ msgid "Clocks"
+#~ msgstr "Ure"
+
+#~ msgid "Compression Tools"
+#~ msgstr "Komprimeringsværktøjer"
+
+#~ msgid "Computer Science"
+#~ msgstr "Computervidenskab"
+
+#~ msgid "Construction"
+#~ msgstr "Konstruktion"
+
+#~ msgid "Contact Management"
+#~ msgstr "Kontakthåndtering"
+
+#~ msgid "Data Visualization"
+#~ msgstr "Datavisualisering"
+
+#~ msgid "Databases"
+#~ msgstr "Databaser"
+
+#~ msgid "Debuggers"
+#~ msgstr "Debuggere"
+
+#~ msgid "Desktop"
+#~ msgstr "Skrivebord"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "Skrivebordsindstillinger"
+
+#~ msgid "Dialup"
+#~ msgstr "Dial-up"
+
+#~ msgid "Dictionaries"
+#~ msgstr "Ordbøger"
+
+#~ msgid "Disc Burning"
+#~ msgstr "Diskbrænding"
+
+#~ msgid "Economy"
+#~ msgstr "Økonomi"
+
+# ...eller uddannelse. Men undervisning lyder bedre her
+#~ msgid "Education"
+#~ msgstr "Undervisning"
+
+#~ msgid "Electricity"
+#~ msgstr "Elektricitet"
+
+#~ msgid "Electronics"
+#~ msgstr "Elektronik"
+
+#~ msgid "Email Tools"
+#~ msgstr "E-postværktøjer"
+
+#~ msgid "Emulator"
+#~ msgstr "Emulator"
+
+#~ msgid "Engineering"
+#~ msgstr "Ingeniørarbejde"
+
+#~ msgid "File Manager"
+#~ msgstr "Filhåndtering"
+
+#~ msgid "File Tools"
+#~ msgstr "Filværktøjer"
+
+#~ msgid "File Transfer"
+#~ msgstr "Filoverførsel"
+
+#~ msgid "Filesystem"
+#~ msgstr "Filsystem"
+
+#~ msgid "Financial Tools"
+#~ msgstr "Finansværktøjer"
+
+#~ msgid "Flow Charting Tools"
+#~ msgstr "Pildiagramværktøjer"
+
+#~ msgid "GNOME Applications"
+#~ msgstr "GNOME-programmer"
+
+#~ msgid "GTK"
+#~ msgstr "GTK"
+
+#~ msgid "GUI Designers"
+#~ msgstr "GUI-designere"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "Generiske programmer til GNOME-miljøet"
+
+# Egentlig er KDE Desktop Environment jo navnet i sig selv, men lad os bare oversætte det alligevel
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "Specifikke programmer til KDE-miljøet"
+
+#~ msgid "Geography"
+#~ msgstr "Geografi"
+
+#~ msgid "Geology"
+#~ msgstr "Geologi"
+
+#~ msgid "Geoscience"
+#~ msgstr "Geovidenskab"
+
+#~ msgid "Graphics"
+#~ msgstr "Grafik"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr ""
+#~ "Guider og manualer til programmer der forbinder til resten af verden"
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "Guider til at komme i gang med udvikling"
+
+#~ msgid "Ham Radio"
+#~ msgstr "Amatørradio"
+
+#~ msgid "Hardware Settings"
+#~ msgstr "Hardwareindstillinger"
+
+#~ msgid "Have some fun"
+#~ msgstr "Hav det morsomt"
+
+#~ msgid "History"
+#~ msgstr "Historie"
+
+#~ msgid "IDEs"
+#~ msgstr "IDE'er"
+
+#~ msgid "IRC Clients"
+#~ msgstr "IRC-klienter"
+
+#~ msgid "Image Processing"
+#~ msgstr "Billedbehandling"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "Tekstbeskeder"
+
+#~ msgid "Internet"
+#~ msgstr "Internet"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~ msgid "KDE Applications"
+#~ msgstr "KDE-programmer"
+
+#~ msgid "Kids Games"
+#~ msgstr "Børnespil"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr "Læs mere om at gøre dit system tilgængeligt for en række handicaps"
+
+#~ msgid "Licenses"
+#~ msgstr "Licenser"
+
+#~ msgid "Literature"
+#~ msgstr "Litteratur"
+
+#~ msgid "Logic Games"
+#~ msgstr "Logiske spil"
+
+#~ msgid "Math"
+#~ msgstr "Matematik"
+
+#~ msgid "Medical Software"
+#~ msgstr "Medicinsk software"
+
+#~ msgid "Midi"
+#~ msgstr "Midi"
+
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "Forskellig dokumentation"
+
+#~ msgid "Mixers"
+#~ msgstr "Miksere"
+
+# Vi ved ikke helt om monitor betegner måling af noget, og i så fald hvad, eller om det har noget med computerskærme at gøre, men det er næppe kriminelt at bruge ordet på dansk
+#~ msgid "Monitor"
+#~ msgstr "Monitor"
+
+#~ msgid "Motif"
+#~ msgstr "Motif"
+
+#~ msgid "Music"
+#~ msgstr "Musik"
+
+#~ msgid "News"
+#~ msgstr "Nyheder"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "Numerisk analyse"
+
+#~ msgid "OCR"
+#~ msgstr "Tekstgenkendelse"
+
+#~ msgid "Office Applications"
+#~ msgstr "Kontorprogrammer"
+
+#~ msgid "Office applications"
+#~ msgstr "Kontorprogrammer"
+
+#~ msgid "Other Documentation"
+#~ msgstr "Anden dokumentation"
+
+#~ msgid "P2P"
+#~ msgstr "P2P"
+
+#~ msgid "PDA Communication"
+#~ msgstr "PDA-kommunikation"
+
+#~ msgid "Package Manager"
+#~ msgstr "Pakkehåndtering"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "Parallelle beregninger"
+
+#~ msgid "Photography"
+#~ msgstr "Fotografi"
+
+#~ msgid "Physics"
+#~ msgstr "Fysik"
+
+#~ msgid "Players"
+#~ msgstr "Spillere"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "Præsentationsværktøjer"
+
+#~ msgid "Printing"
+#~ msgstr "Udskriver"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "Profileringsværktøjer"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "Projekthåndteringsværktøjer"
+
+#~ msgid "Publishing"
+#~ msgstr "Publikation"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+# Bitmap er velsagtens et lidt mere genkendt ord på dansk
+#~ msgid "Raster Graphics"
+#~ msgstr "Bitmap-grafik"
+
+#~ msgid "Recorders"
+#~ msgstr "Optagere"
+
+#~ msgid "Remote Access"
+#~ msgstr "Fjerntilgang"
+
+#~ msgid "Revision Control"
+#~ msgstr "Versionsstyring"
+
+#~ msgid "Robotics"
+#~ msgstr "Robotteknik"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "Rollespil"
+
+#~ msgid "Scanning"
+#~ msgstr "Skanning"
+
+#~ msgid "Science"
+#~ msgstr "Videnskab"
+
+#~ msgid "Security"
+#~ msgstr "Sikkerhed"
+
+# ??? http://en.wikipedia.org/wiki/Music_sequencer
+#~ msgid "Sequencers"
+#~ msgstr "Musik-sequencere"
+
+#~ msgid "Settings"
+#~ msgstr "Indstillinger"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr ""
+#~ "Indstillinger, brugere kan manipulere for at gøre deres miljø mere "
+#~ "behageligt"
+
+#~ msgid "Simulation Games"
+#~ msgstr "Simulationsspil"
+
+#~ msgid "Sound"
+#~ msgstr "Lyd"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Lyd &amp; video"
+
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "Lyd- &amp; videoredigering"
+
+#~ msgid "Sports"
+#~ msgstr "Sport"
+
+#~ msgid "Sports Games"
+#~ msgstr "Sportsspil"
+
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "Regnearksværktøjer"
+
+#~ msgid "Strategy Games"
+#~ msgstr "Strategispil"
+
+#~ msgid "System"
+#~ msgstr "System"
+
+#~ msgid "TV"
+#~ msgstr "TV"
+
+#~ msgid "Telephony"
+#~ msgstr "Telefoni"
+
+#~ msgid "Telephony Tools"
+#~ msgstr "Telefoniværktøjer"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "Terminalemulator"
+
+#~ msgid "Text Editors"
+#~ msgstr "Tekstredigeringsprogrammer"
+
+#~ msgid "Text Tools"
+#~ msgstr "Tekstværktøjer"
+
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "Værktøjer til håndtering af din computer"
+
+#~ msgid "Translation Tools"
+#~ msgstr "Oversættelsesværktøjer"
+
+#~ msgid "Tuners"
+#~ msgstr "Tunere"
+
+#~ msgid "Utilities"
+#~ msgstr "Værktøjer"
+
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "Værktøjer til at få lavet noget arbejde"
+
+#~ msgid "Vector Graphics"
+#~ msgstr "Vektorgrafik"
+
+#~ msgid "Video"
+#~ msgstr "Video"
+
+#~ msgid "Video Conference"
+#~ msgstr "Videokonference"
+
+#~ msgid "Viewer"
+#~ msgstr "Grafikvisning"
+
+#~ msgid "Web Browser"
+#~ msgstr "Browser"
+
+#~ msgid "Web Development"
+#~ msgstr "Webudvikling"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "Velkommen til GNOME-hjælpebrowseren"
+
+#~ msgid "Word Processors"
+#~ msgstr "Skriveprogrammer"
 
 #~ msgid "<b>Fonts</b>"
 #~ msgstr "<b>Skrifttyper</b>"
@@ -1600,10 +1395,6 @@ msgstr "Få hjælp til GNOME"
 #~ msgid "_Browse with caret"
 #~ msgstr "_Gennemse med markør"
 
-#, fuzzy
-#~ msgid "_Find:"
-#~ msgstr "_Søg..."
-
 #~ msgid "_Fixed width:"
 #~ msgstr "_Fastbredde:"
 
@@ -1720,9 +1511,6 @@ msgstr "Få hjælp til GNOME"
 #~ msgstr ""
 #~ "Prøv at bruge forskellige ord til at beskrive det problem du har eller "
 #~ "emnet du ønsker hjælp til."
-
-#~ msgid "Search results for \"%s\""
-#~ msgstr "Søgeresultater for \"%s\""
 
 # Man kunne oversætte disse, men da GNOME dokumentationen ikke bliver oversat til dansk foreløbig, vil søgningerne alligevel foregå på engelsk. Derfor lader jeg denne streng stå i dens engelske form
 #~ msgid ""
