@@ -13,863 +13,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-04 03:31+0200\n"
-"PO-Revision-Date: 2011-04-04 03:27+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-07-05 14:30+0000\n"
+"PO-Revision-Date: 2011-09-24 23:30+0200\n"
 "Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Lokalize 1.1\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "Stránky GNU info"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "Tradiční nápověda v příkazové řádce (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "Aplikace"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "Funkce BTL"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "Soubory s nastavením"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "Funkce curses"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "Vývoj"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "Funkce FORTRAN"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "Hry"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "Hardwarová zařízení"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "Rutiny jádra"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "Manuálové stránky"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "Funkce síťového zvuku"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "Aplikace OpenSSL"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "Nastavení OpenSSL"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "Funkce OpenSSL"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "Přehledy OpenSSL"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "Přehledy"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "Funkce POSIX"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "Záhlaví POSIX"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "Funkce Perlu"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Funkce Qt"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "Funkce readline"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "Oddíl 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "Oddíl 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "Oddíl 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "Oddíl 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "Oddíl 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "Oddíl 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "Oddíl 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "Oddíl 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "Oddíl 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "Oddíl 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "Oddíl 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "Oddíl 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "Oddíl 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "Oddíl 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "Oddíl 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "Oddíl 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "Oddíl 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "Oddíl 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "Oddíl 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "Oddíl 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "Oddíl 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "Oddíl 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "Oddíl 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "Oddíly 1, 1p, 1g a 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "Oddíly 3, 3o a 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "Oddíly 3form a 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "Oddíly 3ncurses a 3curses"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "Oddíly 3pm a 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "Oddíly 3x a 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "Oddíly 7 a 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "Oddíly 8 a 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "Správa systému"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "Systémová volání"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "Funkce System V Form/Menu"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "Funkce TIFF"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Aplikace Termcap"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "Tradiční nápověda v příkazové řádce (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "Aplikace X11"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "Nastavení X11"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "Zařízení X11"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "Funkce X11"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "Hry X11"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "Přehledy X11"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "Grafika 2D"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "Grafika 3D"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "Zpřístupnění"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "Akční hry"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "Dobrodružné hry"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "Zábava"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "Aplikace k prohlížení a úpravě grafiky"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "Aplikace související se zvukem a videem"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "Aplikace k výuce a učení"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "Arkádové hry"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "Archivační nástroje"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "Umění"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "Umělá inteligence"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "Astronomie"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "Biologie"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "Hry s kostkami"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "Deskové hry"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "Stavebnictví"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "Kalkulačka"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "Kalendář"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "Karetní hry"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "Kreslící nástroje"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "Chat"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "Chemie"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "Hodiny"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "Komprimační nástroje"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "Informatika"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "Konstrukce"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "Správa kontaktů"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "Vizualizace dat"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "Databáze"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "Ladicí programy"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "Pracovní prostředí"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "Nastavení pracovního prostředí"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "Vytáčené připojení"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "Slovníky"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "Vypalování disků"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "Ekonomika"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "Vzdělávání"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "Elektrotechnika"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "Elektronika"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "E-mailové nástroje"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "Emulátor"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "Strojírenství"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "Správce souborů"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "Souborové nástroje"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "Přenos souborů"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "Systém souborů"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "Finanční nástroje"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "Nástroje vývojových diagramů"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "Aplikace GNOME"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "Návrh GUI"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "Obecné aplikace prostředí GNOME"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "Obecné aplikace prostředí KDE"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "Geografie"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "Geologie"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "Vědy o Zemi"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "Grafika"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Průvodci a příručky k aplikacím spojujícím se s okolním světem"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "Průvodci zapojením se do vývoje"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "Amatérské rádio"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "Hardwarová nastavení"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "Bavte se"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "Historie"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "IDE"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "Klienti IRC"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "Zpracování obrázků"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "Rychlé zasílání zpráv"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "Internet"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "Java"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "Aplikace KDE"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "Dětské hry"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr "Dozvědět se více o zpřístupnění počítače hendikepovaným"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "Licence"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "Literatura"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "Logické hry"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "Matematika"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "Zdravotnický software"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "Midi"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "Různá dokumentace"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "Směšovače"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "Sledování"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "Motif"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "Hudba"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "Zprávy"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "Numerická analýza"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "OCR"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "Kancelářské aplikace"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "Kancelářské aplikace"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "Ostatní dokumentace"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "Sdílení"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "Komunikace PDA"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "Správce balíčků"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "Paralelní výpočty"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "Fotografie"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "Fyzika"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "Přehrávače"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "Prezentační nástroje"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "Tisk"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "Profilovací nástroje"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "Nástroje na správu projektů"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "Publikování"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "Rastrová grafika"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "Záznam"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "Vzdálený přístup"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "Správa zdrojových kódů"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "Robotika"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "Hry na hrdiny"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "Skenování"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "Věda"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "Bezpečnost"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "Řadiče"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "Nastavení"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "Uživatelem upravitelná nastavení ke zpříjemnění prostředí"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "Simulátory"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "Zvuk"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "Zvuk a obraz"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "Úprava zvuku a videa"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "Sporty"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "Sportovní hry"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "Tabulkové nástroje"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "Strategické hry"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "Systém"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "TV"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "Telefonie"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "Nástroje telefonie"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "Emulátor terminálu"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "Textové editory"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "Textové nástroje"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "Nástroje na správu počítače"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "Překladatelské nástroje"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "Tunery"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "Nástroje"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "Nástroje pomáhající s řešením úkolů"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "Vektorová grafika"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "Video"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "Videokonference"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "Prohlížeč"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "Webový prohlížeč"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "Vývoj webu"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "Vítá vás prohlížeč nápovědy GNOME"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "Textové procesory"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -881,26 +36,26 @@ msgstr "Neplatná komprimovaná data"
 msgid "Not enough memory"
 msgstr "Nedostatek paměti"
 
-#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:270
-#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:271
+#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Stránka „%s“ nebyla v dokumentu „%s“ nalezena."
 
-#: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
 #: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "Soubor neexistuje."
 
-#: ../libyelp/yelp-docbook-document.c:326 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
 #: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Soubor „%s“ neexistuje."
 
-#: ../libyelp/yelp-docbook-document.c:341
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -908,7 +63,7 @@ msgid ""
 msgstr ""
 "Soubor „%s“ nelze analyzovat, neboť není správně utvořeným dokumentem XML."
 
-#: ../libyelp/yelp-docbook-document.c:354
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -917,11 +72,11 @@ msgstr ""
 "Soubor „%s“ nelze analyzovat, neboť jeden (nebo více) zahrnutý soubor není "
 "správně utvořeným dokumentem XML."
 
-#: ../libyelp/yelp-docbook-document.c:763
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "Neznámé"
 
-#: ../libyelp/yelp-docbook-document.c:824 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
 #: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
@@ -937,18 +92,23 @@ msgstr "Zda byl obsah dokumentu indexován"
 
 #: ../libyelp/yelp-document.c:275
 msgid "Document URI"
-msgstr "URI dokumentu"
+msgstr "Adresa URI dokumentu"
 
 #: ../libyelp/yelp-document.c:276
 msgid "The URI which identifies the document"
-msgstr "URI identifikující dokument"
+msgstr "Adresa URI identifikující dokument"
 
-#: ../libyelp/yelp-document.c:966
+#: ../libyelp/yelp-document.c:956
+#, c-format
+msgid "Search results for “%s”"
+msgstr "Výsledky hledání pro „%s“"
+
+#: ../libyelp/yelp-document.c:968
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "V „%s“ nebyly nalezeny žádné odpovídající stránky nápovědy."
 
-#: ../libyelp/yelp-document.c:972
+#: ../libyelp/yelp-document.c:974
 msgid "No matching help pages found."
 msgstr "Nenalezeny žádné odpovídající stránky nápovědy."
 
@@ -968,54 +128,54 @@ msgid ""
 msgstr ""
 "Soubor „%s“ nelze analyzovat, neboť není správně utvořenou stránkou info."
 
-#: ../libyelp/yelp-location-entry.c:330
+#: ../libyelp/yelp-location-entry.c:329
 msgid "View"
 msgstr "Zobrazit"
 
-#: ../libyelp/yelp-location-entry.c:331
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
 msgstr "Instance YelpView, která se má ovládat"
 
-#: ../libyelp/yelp-location-entry.c:346
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "Záložky"
 
-#: ../libyelp/yelp-location-entry.c:347
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
 msgstr "Instance implementace YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:363
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
 msgstr "Povolit hledání"
 
-#: ../libyelp/yelp-location-entry.c:364
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
 msgstr "Zda může být vstupní pole umístění použito jako pole hledání"
 
-#: ../libyelp/yelp-location-entry.c:436 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Hledat…"
 
-#: ../libyelp/yelp-location-entry.c:789
+#: ../libyelp/yelp-location-entry.c:774
 msgid "Clear the search text"
 msgstr "Vymazat hledaný text"
 
-#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1560
+#: ../libyelp/yelp-location-entry.c:823 ../libyelp/yelp-location-entry.c:1521
 msgid "Bookmark this page"
 msgstr "Vložit tuto stránku mezi záložky"
 
-#: ../libyelp/yelp-location-entry.c:850 ../libyelp/yelp-location-entry.c:1571
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1529
 msgid "Remove bookmark"
 msgstr "Odstranit záložku"
 
-#: ../libyelp/yelp-location-entry.c:1416
+#: ../libyelp/yelp-location-entry.c:1386
 msgid "Loading"
 msgstr "Načítání"
 
-#: ../libyelp/yelp-mallard-document.c:310
+#: ../libyelp/yelp-mallard-document.c:311
 #, c-format
 msgid "The directory ‘%s’ does not exist."
-msgstr "Adresář „%s“ neexistuje."
+msgstr "Složka „%s“ neexistuje."
 
 #: ../libyelp/yelp-settings.c:154
 msgid "GtkSettings"
@@ -1067,16 +227,16 @@ msgstr "Název souboru databáze sqlite"
 
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
-msgstr "Styl XSLT"
+msgstr "Stylopis XSLT"
 
 #: ../libyelp/yelp-transform.c:172
 msgid "The location of the XSLT stylesheet"
-msgstr "Umístění stylu XSLT"
+msgstr "Umístění stylopisu XSLT"
 
 #: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr "Styl XSLT „%s“ buď schází, nebo je neplatný."
+msgstr "Stylopis XSLT „%s“ buď schází, nebo je neplatný."
 
 #: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
@@ -1264,36 +424,36 @@ msgstr "Adresa URI neodkazuje na platnou stránku."
 #: ../libyelp/yelp-view.c:1819
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "URI „%s“ se nezdařilo analyzovat."
+msgstr "Adresu URI „%s“ se nezdařilo analyzovat."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "Zapnout režim úprav"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
 msgstr "Větší t_ext"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
 msgstr "Zvětšit velikost textu"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
 msgstr "_Menší text"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
 msgstr "Zmenšit velikost textu"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr "Zobrazovat te_xtový kurzor"
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Nápověda"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "Zobrazovat te_xtový kurzor"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
@@ -1333,7 +493,7 @@ msgstr "Odst_ranit záložku"
 
 #: ../src/yelp-window.c:265
 msgid "Find in Page..."
-msgstr "Nalézt na stránce…"
+msgstr "Najít na stránce…"
 
 #: ../src/yelp-window.c:275
 msgid "Open Location"
@@ -1346,6 +506,10 @@ msgstr "Aplikace"
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Instance YelpApplication kontrolující toto okno"
+
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "Najít:"
 
 #: ../src/yelp-window.c:548
 msgid "Read Later"
