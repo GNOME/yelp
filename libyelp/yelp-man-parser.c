@@ -380,7 +380,7 @@ get_troff (gchar *path, GError **error)
                                    NULL, NULL, &ystdout, NULL, &err)) {
         /* We failed to run the man program. Return a "Huh?" error. */
         *error = g_error_new (YELP_ERROR, YELP_ERROR_UNKNOWN,
-                              err->message);
+                              "%s", err->message);
         g_error_free (err);
         return NULL;
     }
