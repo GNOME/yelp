@@ -251,7 +251,7 @@ yelp_settings_constructed (GObject *object)
     gboolean env_shell, env_panel, env_unity, env_xfce;
     GError *error = NULL;
 
-    connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
+    connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
     if (connection == NULL) {
         g_warning ("Unable to connect to dbus: %s", error->message);
         g_error_free (error);
