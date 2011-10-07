@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-15 22:30+0100\n"
-"PO-Revision-Date: 2011-03-15 22:33+0100\n"
+"POT-Creation-Date: 2011-10-08 00:57+0200\n"
+"PO-Revision-Date: 2011-10-08 00:57+0200\n"
 "Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "Language: nl\n"
@@ -23,870 +23,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.1\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "GNU info-pagina's"
-
-# ouderwetse/traditionele
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "Ouderwetse opdrachtregelhulp (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "Toepassingen"
-
-# BLT?
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "BLT-functies"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "Configuratiebestanden"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "Curses-functies"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "Ontwikkeling"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "FORTRAN-functies"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "Spelletjes"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "Hardware-apparatuur"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "Kernelroutines"
-
-# man-pagina's
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "Handleiding-pagina's"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "Netwerkaudio-geluidsfuncties"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "OpenSSL-toepassingen"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "OpenSSL-configuratie"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "OpenSSL-functies"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "OpenSSL-overzicht"
-
-# meervoud?
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "Overzichten"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "POSIX-functies"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "POSIX-headers"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "Perl-functies"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Qt-functies"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "Readline-functies"
-
-# nul-p
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "Sectie 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "Sectie 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "Sectie 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "Sectie 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "Sectie 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "Sectie 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "Sectie 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "Sectie 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "Sectie 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "Sectie 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "Sectie 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "Sectie 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "Sectie 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "Sectie 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "Sectie 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "Sectie 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "Sectie 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "Sectie 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "Sectie 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "Sectie 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "Sectie 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "Sectie 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "Sectie 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "Secties 1, 1p, 1g en 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "Secties 3, 3o en 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "Secties 3form en 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "Secties 3ncurses en 3curses"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "Secties 3pm en 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "Secties 3x en 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "Secties 7 en 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "Secties 8 en 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "Systeemadministratie"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "Systeemaanroepen"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "System V vorm/menu-functies"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "TIFF-functies"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Termcap-toepassingen"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "Ouderwetse opdrachtregelhulp (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "X11-toepassingen"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "X11-configuratie"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "X11-apparaten"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "X11-functies"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "X11-spelletjes"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "X11-overzicht"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "2D-graphics"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "3D-graphics"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "Toegankelijkheid"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "Actiespellen"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "Avonturenspellen"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "Amusement"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "Toepassingen voor het manipuleren of weergeven van afbeeldingen"
-
-# die te maken hebben met/die betrekking hebben op
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "Toepassingen die te maken hebben met audio en video"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "Toepassingen die te maken hebben met lesgeven of hulp bij het leren"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "Arcadespellen"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "Archiveerprogramma's"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "Kunst"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "Kunstmatige intelligentie"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "Astronomie"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "Biologie"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "Blokkenspellen"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "Bordspellen"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "Bouwen"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "Rekenmachine"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "Agenda"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "Kaartspelletjes"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "Grafiekprogramma's"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "Chatten"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "Scheikunde"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "Klokken"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "Compressieprogramma's"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "Informatica"
-
-# Bouwen?
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "Constructie"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "Contactenbeheer"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "Datavisualisatie"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "Databases"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "Debuggers"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "Bureaublad"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "Bureaubladinstellingen"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "Inbellen"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "Woordenboeken"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "Audio/video branden"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "Economie"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "Educatief"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "Elektriciteit"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "Elektronica"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "E-mailprogramma's"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "Emulator"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "Techniek"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "Bestandsbeheer"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "Bestandsgereedschap"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "Bestandsoverdracht"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "Bestandssysteem"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "Financiële programma's"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "Programma's voor stroomdiagrammen"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "Gnome-toepassingen"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "GUI-ontwerpprogramma's"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "Algemene toepassingen voor de Gnome-werkomgeving"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "Algemene toepassingen voor de KDE-werkomgeving"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "Aardrijkskunde"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "Geologie"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "Aardwetenschappen"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "Grafisch"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr ""
-"Gidsen en handleidingen voor toepassingen die verbinding maken met de "
-"buitenwereld"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "Gidsen voor het betrokken raken bij ontwikkeling"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "Ham-radio"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "Hardware-instellingen"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "Ontspanning en plezier"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "Geschiedenis"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "Ontwikkelomgevingen"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "IRC-programma's"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "Afbeeldingsverwerking"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "Directe berichten"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "Internet"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "Java"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "KDE-toepassingen"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "Kinderspelletjes"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr ""
-"Meer te weten komen over het toegankelijk maken van uw systeem voor een "
-"scala aan functiebeperkingen"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "Licenties"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "Literatuur"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "Logica-spelletjes"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "Wiskunde"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "Medische software"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "Midi"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "Overige documenten"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "Mengpanelen"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "Monitor"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "Motif"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "Muziek"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "Nieuws"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "Numerieke analyse"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "OCR"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "Kantoortoepassingen"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "Kantoortoepassingen"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "Overige documentatie"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "P2P"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "PDA-communicatie"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "Pakketbeheer"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "Parallel computing"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "Fotografie"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "Natuurkunde"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "Afspeelprogramma's"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "Presentatieprogramma's"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "Afdrukken"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "Profileringsprogramma's"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "Projectbeheerprogramma's"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "Publiceren"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "Rasterafbeeldingen"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "Opnameprogramma's"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "Toegang op afstand"
-
-# herziening
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "Revisiebeheer"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "Robotica"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "Rollenspellen"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "Scannen"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "Wetenschap"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "Beveiliging"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "Sequencers"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "Instellingen"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr ""
-"Instellingen die gebruikers kunnen manipuleren om hun werkomgeving naar hun "
-"smaak aan te passen"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "Simulatiespellen"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "Audio"
-
-# audio en video/beeld en geluid
-# het menu-onderdeel is: Audio en video
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "Audio en video"
-
-# audio en video/beeld en geluid
-# het menu-onderdeel is: Audio en video
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "Audio- en videobewerking"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "Sport"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "Sportspellen"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "Rekenbladprogramma's"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "Strategiespellen"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "Systeem"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "Tv"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "Telefonie"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "Telefonieprogramma's"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "Terminal-emulator"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "Teksteditors"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "Tekstgereedschap"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "Hulpmiddelen om uw computer te beheren"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "Vertaalprogramma's"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "Tuners"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "Hulpmiddelen"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "Hulpmiddelen om werk gedaan te krijgen"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "Vectorafbeeldingen"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "Video"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "Videoconferentie"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "Afbeeldingsweergave"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "Webbrowser"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "Web-ontwikkeling"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "Welkom bij de hulpbrowser van Gnome"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "Tekstverwerkers"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -900,26 +36,26 @@ msgstr "Te weinig geheugen"
 
 # werd niet gevonden?
 # aangetroffen?
-#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:270
-#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:271
+#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Pagina ‘%s’ kon niet worden gevonden in document ‘%s’."
 
-#: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
 #: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "Het bestand bestaat niet."
 
-#: ../libyelp/yelp-docbook-document.c:326 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
 #: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Het bestand ‘%s’ bestaat niet."
 
-#: ../libyelp/yelp-docbook-document.c:341
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -927,7 +63,7 @@ msgid ""
 msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt, omdat het ongeldige XML bevat."
 
-#: ../libyelp/yelp-docbook-document.c:354
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -936,44 +72,49 @@ msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt, omdat een van de bestanden waar "
 "het naar verwijst ongeldige XML bevat."
 
-#: ../libyelp/yelp-docbook-document.c:763
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "Onbekend"
 
 # werd niet gevonden?
 # aangetroffen?
-#: ../libyelp/yelp-docbook-document.c:824 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
 #: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "De gezochte pagina kon niet worden gevonden in document ‘%s’."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "Geïndexeerd"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "Of de documentinhoud geïndexeerd is"
 
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "Document URI"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "De URI die verwijst naar het document"
 
-#: ../libyelp/yelp-document.c:966
+#: ../libyelp/yelp-document.c:958
+#, c-format
+msgid "Search results for “%s”"
+msgstr "Zoekresultaten voor ‘%s’"
+
+#: ../libyelp/yelp-document.c:970
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Geen overeenkomende hulppagina's gevonden in “%s”."
 
-#: ../libyelp/yelp-document.c:972
+#: ../libyelp/yelp-document.c:976
 msgid "No matching help pages found."
 msgstr "Geen overeenkomende hulppagina's gevonden."
 
-#: ../libyelp/yelp-error.c:33
+#: ../libyelp/yelp-error.c:37
 #, c-format
 msgid "An unknown error occurred."
 msgstr "Er is een onbekende fout opgetreden."
@@ -990,92 +131,92 @@ msgstr ""
 "Het bestand ‘%s’ kon niet worden verwerkt, omdat het een ongeldige info-"
 "pagina is."
 
-#: ../libyelp/yelp-location-entry.c:326
+#: ../libyelp/yelp-location-entry.c:329
 msgid "View"
 msgstr "Weergave"
 
-#: ../libyelp/yelp-location-entry.c:327
+#: ../libyelp/yelp-location-entry.c:330
 msgid "A YelpView instance to control"
 msgstr "Een YelpView-instance voor beheer"
 
-#: ../libyelp/yelp-location-entry.c:342
+#: ../libyelp/yelp-location-entry.c:345
 msgid "Bookmarks"
 msgstr "Bladwijzers"
 
-#: ../libyelp/yelp-location-entry.c:343
+#: ../libyelp/yelp-location-entry.c:346
 msgid "A YelpBookmarks implementation instance"
 msgstr "Een YelpBookmarks-implementation-instance"
 
-#: ../libyelp/yelp-location-entry.c:359
+#: ../libyelp/yelp-location-entry.c:362
 msgid "Enable Search"
 msgstr "Zoeken inschakelen"
 
-#: ../libyelp/yelp-location-entry.c:360
+#: ../libyelp/yelp-location-entry.c:363
 msgid "Whether the location entry can be used as a search field"
 msgstr "Of de locatiebalk als zoekveld gebruikt kan worden"
 
-#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Zoeken…"
 
-#: ../libyelp/yelp-location-entry.c:785
+#: ../libyelp/yelp-location-entry.c:776
 msgid "Clear the search text"
 msgstr "De zoektekst wissen"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
+#: ../libyelp/yelp-location-entry.c:825 ../libyelp/yelp-location-entry.c:1523
 msgid "Bookmark this page"
 msgstr "Bladwijzer voor deze bladzijde toevoegen"
 
-#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
+#: ../libyelp/yelp-location-entry.c:833 ../libyelp/yelp-location-entry.c:1531
 msgid "Remove bookmark"
 msgstr "Bladwijzer verwijderen"
 
-#: ../libyelp/yelp-location-entry.c:1412
+#: ../libyelp/yelp-location-entry.c:1388
 msgid "Loading"
 msgstr "Bezig met laden…"
 
-#: ../libyelp/yelp-mallard-document.c:310
+#: ../libyelp/yelp-mallard-document.c:311
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "De map ‘%s’ bestaat niet."
 
-#: ../libyelp/yelp-settings.c:150
+#: ../libyelp/yelp-settings.c:154
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:151
+#: ../libyelp/yelp-settings.c:155
 msgid "A GtkSettings object to get settings from"
 msgstr "Een GtkSettings-object om instellingen van op te halen"
 
-#: ../libyelp/yelp-settings.c:159
+#: ../libyelp/yelp-settings.c:163
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:160
+#: ../libyelp/yelp-settings.c:164
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Een GtkIconTheme-object om pictogrammen van op te halen"
 
-#: ../libyelp/yelp-settings.c:168
+#: ../libyelp/yelp-settings.c:172
 msgid "Font Adjustment"
 msgstr "Lettertype aanpassen"
 
-#: ../libyelp/yelp-settings.c:169
+#: ../libyelp/yelp-settings.c:173
 msgid "A size adjustment to add to font sizes"
 msgstr "Een aanpassing van de grootte om aan tekengroottes toe te voegen"
 
-#: ../libyelp/yelp-settings.c:177
+#: ../libyelp/yelp-settings.c:181
 msgid "Show Text Cursor"
 msgstr "tekstcursor tonen"
 
-#: ../libyelp/yelp-settings.c:178
+#: ../libyelp/yelp-settings.c:182
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "De tekstcursor of caret tonen voor eenvoudige navigatie"
 
-#: ../libyelp/yelp-settings.c:186
+#: ../libyelp/yelp-settings.c:190
 msgid "Editor Mode"
 msgstr "Bewerk-modus"
 
-#: ../libyelp/yelp-settings.c:187
+#: ../libyelp/yelp-settings.c:191
 msgid "Enable features useful to editors"
 msgstr "Activeer opties die van pas komen bij bewerken"
 
@@ -1290,34 +431,34 @@ msgstr "De URI wijst niet naar een geldige pagina."
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "De URI ‘%s’ kan niet verwerkt worden."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "Activeer bewerkings-modus"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
 msgstr "_Grotere tekst"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
 msgstr "Maak het lettertype groter"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
 msgstr "_Kleinere tekst"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
 msgstr "Maak het lettertype kleiner"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr "Toon de _cursor"
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hulp"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "Toon de _cursor"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
@@ -1371,6 +512,10 @@ msgstr "Toepassing"
 msgid "A YelpApplication instance that controls this window"
 msgstr "Een YelpApplication-instance die dit venster beheert"
 
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "Zoeken:"
+
 #: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "Lees later"
@@ -1389,6 +534,658 @@ msgstr "Geen resultaten"
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "Hulp bij Gnome"
+
+#~ msgid "GNU Info Pages"
+#~ msgstr "GNU info-pagina's"
+
+# ouderwetse/traditionele
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "Ouderwetse opdrachtregelhulp (info)"
+
+#~ msgid "Applications"
+#~ msgstr "Toepassingen"
+
+# BLT?
+#~ msgid "BLT Functions"
+#~ msgstr "BLT-functies"
+
+#~ msgid "Configuration Files"
+#~ msgstr "Configuratiebestanden"
+
+#~ msgid "Curses Functions"
+#~ msgstr "Curses-functies"
+
+#~ msgid "Development"
+#~ msgstr "Ontwikkeling"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "FORTRAN-functies"
+
+#~ msgid "Games"
+#~ msgstr "Spelletjes"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "Hardware-apparatuur"
+
+#~ msgid "Kernel Routines"
+#~ msgstr "Kernelroutines"
+
+# man-pagina's
+#~ msgid "Manual Pages"
+#~ msgstr "Handleiding-pagina's"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "Netwerkaudio-geluidsfuncties"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "OpenSSL-toepassingen"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "OpenSSL-configuratie"
+
+#~ msgid "OpenSSL Functions"
+#~ msgstr "OpenSSL-functies"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "OpenSSL-overzicht"
+
+# meervoud?
+#~ msgid "Overviews"
+#~ msgstr "Overzichten"
+
+#~ msgid "POSIX Functions"
+#~ msgstr "POSIX-functies"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "POSIX-headers"
+
+#~ msgid "Perl Functions"
+#~ msgstr "Perl-functies"
+
+#~ msgid "Qt Functions"
+#~ msgstr "Qt-functies"
+
+#~ msgid "Readline Functions"
+#~ msgstr "Readline-functies"
+
+# nul-p
+#~ msgid "Section 0p"
+#~ msgstr "Sectie 0p"
+
+#~ msgid "Section 1m"
+#~ msgstr "Sectie 1m"
+
+#~ msgid "Section 1ssl"
+#~ msgstr "Sectie 1ssl"
+
+#~ msgid "Section 1x"
+#~ msgstr "Sectie 1x"
+
+#~ msgid "Section 2"
+#~ msgstr "Sectie 2"
+
+#~ msgid "Section 3blt"
+#~ msgstr "Sectie 3blt"
+
+#~ msgid "Section 3f"
+#~ msgstr "Sectie 3f"
+
+#~ msgid "Section 3nas"
+#~ msgstr "Sectie 3nas"
+
+#~ msgid "Section 3p"
+#~ msgstr "Sectie 3p"
+
+#~ msgid "Section 3qt"
+#~ msgstr "Sectie 3qt"
+
+#~ msgid "Section 3readline"
+#~ msgstr "Sectie 3readline"
+
+#~ msgid "Section 3ssl"
+#~ msgstr "Sectie 3ssl"
+
+#~ msgid "Section 3tiff"
+#~ msgstr "Sectie 3tiff"
+
+#~ msgid "Section 4"
+#~ msgstr "Sectie 4"
+
+#~ msgid "Section 4x"
+#~ msgstr "Sectie 4x"
+
+#~ msgid "Section 5"
+#~ msgstr "Sectie 5"
+
+#~ msgid "Section 5ssl"
+#~ msgstr "Sectie 5ssl"
+
+#~ msgid "Section 5x"
+#~ msgstr "Sectie 5x"
+
+#~ msgid "Section 6"
+#~ msgstr "Sectie 6"
+
+#~ msgid "Section 6x"
+#~ msgstr "Sectie 6x"
+
+#~ msgid "Section 7ssl"
+#~ msgstr "Sectie 7ssl"
+
+#~ msgid "Section 7x"
+#~ msgstr "Sectie 7x"
+
+#~ msgid "Section 9"
+#~ msgstr "Sectie 9"
+
+#~ msgid "Sections 1, 1p, 1g and 1t"
+#~ msgstr "Secties 1, 1p, 1g en 1t"
+
+#~ msgid "Sections 3, 3o, and 3t"
+#~ msgstr "Secties 3, 3o en 3t"
+
+#~ msgid "Sections 3form and 3menu"
+#~ msgstr "Secties 3form en 3menu"
+
+#~ msgid "Sections 3ncurses and 3curses"
+#~ msgstr "Secties 3ncurses en 3curses"
+
+#~ msgid "Sections 3pm and 3perl"
+#~ msgstr "Secties 3pm en 3perl"
+
+#~ msgid "Sections 3x and 3X11"
+#~ msgstr "Secties 3x en 3X11"
+
+#~ msgid "Sections 7 and 7gcc"
+#~ msgstr "Secties 7 en 7gcc"
+
+#~ msgid "Sections 8 and 8l"
+#~ msgstr "Secties 8 en 8l"
+
+#~ msgid "System Administration"
+#~ msgstr "Systeemadministratie"
+
+#~ msgid "System Calls"
+#~ msgstr "Systeemaanroepen"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "System V vorm/menu-functies"
+
+#~ msgid "TIFF Functions"
+#~ msgstr "TIFF-functies"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "Termcap-toepassingen"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "Ouderwetse opdrachtregelhulp (man)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "X11-toepassingen"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "X11-configuratie"
+
+#~ msgid "X11 Devices"
+#~ msgstr "X11-apparaten"
+
+#~ msgid "X11 Functions"
+#~ msgstr "X11-functies"
+
+#~ msgid "X11 Games"
+#~ msgstr "X11-spelletjes"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "X11-overzicht"
+
+#~ msgid "2D Graphics"
+#~ msgstr "2D-graphics"
+
+#~ msgid "3D Graphics"
+#~ msgstr "3D-graphics"
+
+#~ msgid "Accessibility"
+#~ msgstr "Toegankelijkheid"
+
+#~ msgid "Action Games"
+#~ msgstr "Actiespellen"
+
+#~ msgid "Adventure Games"
+#~ msgstr "Avonturenspellen"
+
+#~ msgid "Amusement"
+#~ msgstr "Amusement"
+
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "Toepassingen voor het manipuleren of weergeven van afbeeldingen"
+
+# die te maken hebben met/die betrekking hebben op
+#~ msgid "Applications related to audio and video"
+#~ msgstr "Toepassingen die te maken hebben met audio en video"
+
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "Toepassingen die te maken hebben met lesgeven of hulp bij het leren"
+
+#~ msgid "Arcade Games"
+#~ msgstr "Arcadespellen"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "Archiveerprogramma's"
+
+#~ msgid "Art"
+#~ msgstr "Kunst"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "Kunstmatige intelligentie"
+
+#~ msgid "Astronomy"
+#~ msgstr "Astronomie"
+
+#~ msgid "Biology"
+#~ msgstr "Biologie"
+
+#~ msgid "Blocks Games"
+#~ msgstr "Blokkenspellen"
+
+#~ msgid "Board Games"
+#~ msgstr "Bordspellen"
+
+#~ msgid "Building"
+#~ msgstr "Bouwen"
+
+#~ msgid "Calculator"
+#~ msgstr "Rekenmachine"
+
+#~ msgid "Calendar"
+#~ msgstr "Agenda"
+
+#~ msgid "Card Games"
+#~ msgstr "Kaartspelletjes"
+
+#~ msgid "Charting Tools"
+#~ msgstr "Grafiekprogramma's"
+
+#~ msgid "Chat"
+#~ msgstr "Chatten"
+
+#~ msgid "Chemistry"
+#~ msgstr "Scheikunde"
+
+#~ msgid "Clocks"
+#~ msgstr "Klokken"
+
+#~ msgid "Compression Tools"
+#~ msgstr "Compressieprogramma's"
+
+#~ msgid "Computer Science"
+#~ msgstr "Informatica"
+
+# Bouwen?
+#~ msgid "Construction"
+#~ msgstr "Constructie"
+
+#~ msgid "Contact Management"
+#~ msgstr "Contactenbeheer"
+
+#~ msgid "Data Visualization"
+#~ msgstr "Datavisualisatie"
+
+#~ msgid "Databases"
+#~ msgstr "Databases"
+
+#~ msgid "Debuggers"
+#~ msgstr "Debuggers"
+
+#~ msgid "Desktop"
+#~ msgstr "Bureaublad"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "Bureaubladinstellingen"
+
+#~ msgid "Dialup"
+#~ msgstr "Inbellen"
+
+#~ msgid "Dictionaries"
+#~ msgstr "Woordenboeken"
+
+#~ msgid "Disc Burning"
+#~ msgstr "Audio/video branden"
+
+#~ msgid "Economy"
+#~ msgstr "Economie"
+
+#~ msgid "Education"
+#~ msgstr "Educatief"
+
+#~ msgid "Electricity"
+#~ msgstr "Elektriciteit"
+
+#~ msgid "Electronics"
+#~ msgstr "Elektronica"
+
+#~ msgid "Email Tools"
+#~ msgstr "E-mailprogramma's"
+
+#~ msgid "Emulator"
+#~ msgstr "Emulator"
+
+#~ msgid "Engineering"
+#~ msgstr "Techniek"
+
+#~ msgid "File Manager"
+#~ msgstr "Bestandsbeheer"
+
+#~ msgid "File Tools"
+#~ msgstr "Bestandsgereedschap"
+
+#~ msgid "File Transfer"
+#~ msgstr "Bestandsoverdracht"
+
+#~ msgid "Filesystem"
+#~ msgstr "Bestandssysteem"
+
+#~ msgid "Financial Tools"
+#~ msgstr "Financiële programma's"
+
+#~ msgid "Flow Charting Tools"
+#~ msgstr "Programma's voor stroomdiagrammen"
+
+#~ msgid "GNOME Applications"
+#~ msgstr "Gnome-toepassingen"
+
+#~ msgid "GTK"
+#~ msgstr "GTK"
+
+#~ msgid "GUI Designers"
+#~ msgstr "GUI-ontwerpprogramma's"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "Algemene toepassingen voor de Gnome-werkomgeving"
+
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "Algemene toepassingen voor de KDE-werkomgeving"
+
+#~ msgid "Geography"
+#~ msgstr "Aardrijkskunde"
+
+#~ msgid "Geology"
+#~ msgstr "Geologie"
+
+#~ msgid "Geoscience"
+#~ msgstr "Aardwetenschappen"
+
+#~ msgid "Graphics"
+#~ msgstr "Grafisch"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr ""
+#~ "Gidsen en handleidingen voor toepassingen die verbinding maken met de "
+#~ "buitenwereld"
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "Gidsen voor het betrokken raken bij ontwikkeling"
+
+#~ msgid "Ham Radio"
+#~ msgstr "Ham-radio"
+
+#~ msgid "Hardware Settings"
+#~ msgstr "Hardware-instellingen"
+
+#~ msgid "Have some fun"
+#~ msgstr "Ontspanning en plezier"
+
+#~ msgid "History"
+#~ msgstr "Geschiedenis"
+
+#~ msgid "IDEs"
+#~ msgstr "Ontwikkelomgevingen"
+
+#~ msgid "IRC Clients"
+#~ msgstr "IRC-programma's"
+
+#~ msgid "Image Processing"
+#~ msgstr "Afbeeldingsverwerking"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "Directe berichten"
+
+#~ msgid "Internet"
+#~ msgstr "Internet"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~ msgid "KDE Applications"
+#~ msgstr "KDE-toepassingen"
+
+#~ msgid "Kids Games"
+#~ msgstr "Kinderspelletjes"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr ""
+#~ "Meer te weten komen over het toegankelijk maken van uw systeem voor een "
+#~ "scala aan functiebeperkingen"
+
+#~ msgid "Licenses"
+#~ msgstr "Licenties"
+
+#~ msgid "Literature"
+#~ msgstr "Literatuur"
+
+#~ msgid "Logic Games"
+#~ msgstr "Logica-spelletjes"
+
+#~ msgid "Math"
+#~ msgstr "Wiskunde"
+
+#~ msgid "Medical Software"
+#~ msgstr "Medische software"
+
+#~ msgid "Midi"
+#~ msgstr "Midi"
+
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "Overige documenten"
+
+#~ msgid "Mixers"
+#~ msgstr "Mengpanelen"
+
+#~ msgid "Monitor"
+#~ msgstr "Monitor"
+
+#~ msgid "Motif"
+#~ msgstr "Motif"
+
+#~ msgid "Music"
+#~ msgstr "Muziek"
+
+#~ msgid "News"
+#~ msgstr "Nieuws"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "Numerieke analyse"
+
+#~ msgid "OCR"
+#~ msgstr "OCR"
+
+#~ msgid "Office Applications"
+#~ msgstr "Kantoortoepassingen"
+
+#~ msgid "Office applications"
+#~ msgstr "Kantoortoepassingen"
+
+#~ msgid "Other Documentation"
+#~ msgstr "Overige documentatie"
+
+#~ msgid "P2P"
+#~ msgstr "P2P"
+
+#~ msgid "PDA Communication"
+#~ msgstr "PDA-communicatie"
+
+#~ msgid "Package Manager"
+#~ msgstr "Pakketbeheer"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "Parallel computing"
+
+#~ msgid "Photography"
+#~ msgstr "Fotografie"
+
+#~ msgid "Physics"
+#~ msgstr "Natuurkunde"
+
+#~ msgid "Players"
+#~ msgstr "Afspeelprogramma's"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "Presentatieprogramma's"
+
+#~ msgid "Printing"
+#~ msgstr "Afdrukken"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "Profileringsprogramma's"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "Projectbeheerprogramma's"
+
+#~ msgid "Publishing"
+#~ msgstr "Publiceren"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~ msgid "Raster Graphics"
+#~ msgstr "Rasterafbeeldingen"
+
+#~ msgid "Recorders"
+#~ msgstr "Opnameprogramma's"
+
+#~ msgid "Remote Access"
+#~ msgstr "Toegang op afstand"
+
+# herziening
+#~ msgid "Revision Control"
+#~ msgstr "Revisiebeheer"
+
+#~ msgid "Robotics"
+#~ msgstr "Robotica"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "Rollenspellen"
+
+#~ msgid "Scanning"
+#~ msgstr "Scannen"
+
+#~ msgid "Science"
+#~ msgstr "Wetenschap"
+
+#~ msgid "Security"
+#~ msgstr "Beveiliging"
+
+#~ msgid "Sequencers"
+#~ msgstr "Sequencers"
+
+#~ msgid "Settings"
+#~ msgstr "Instellingen"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr ""
+#~ "Instellingen die gebruikers kunnen manipuleren om hun werkomgeving naar "
+#~ "hun smaak aan te passen"
+
+#~ msgid "Simulation Games"
+#~ msgstr "Simulatiespellen"
+
+#~ msgid "Sound"
+#~ msgstr "Audio"
+
+# audio en video/beeld en geluid
+# het menu-onderdeel is: Audio en video
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Audio en video"
+
+# audio en video/beeld en geluid
+# het menu-onderdeel is: Audio en video
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "Audio- en videobewerking"
+
+#~ msgid "Sports"
+#~ msgstr "Sport"
+
+#~ msgid "Sports Games"
+#~ msgstr "Sportspellen"
+
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "Rekenbladprogramma's"
+
+#~ msgid "Strategy Games"
+#~ msgstr "Strategiespellen"
+
+#~ msgid "System"
+#~ msgstr "Systeem"
+
+#~ msgid "TV"
+#~ msgstr "Tv"
+
+#~ msgid "Telephony"
+#~ msgstr "Telefonie"
+
+#~ msgid "Telephony Tools"
+#~ msgstr "Telefonieprogramma's"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "Terminal-emulator"
+
+#~ msgid "Text Editors"
+#~ msgstr "Teksteditors"
+
+#~ msgid "Text Tools"
+#~ msgstr "Tekstgereedschap"
+
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "Hulpmiddelen om uw computer te beheren"
+
+#~ msgid "Translation Tools"
+#~ msgstr "Vertaalprogramma's"
+
+#~ msgid "Tuners"
+#~ msgstr "Tuners"
+
+#~ msgid "Utilities"
+#~ msgstr "Hulpmiddelen"
+
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "Hulpmiddelen om werk gedaan te krijgen"
+
+#~ msgid "Vector Graphics"
+#~ msgstr "Vectorafbeeldingen"
+
+#~ msgid "Video"
+#~ msgstr "Video"
+
+#~ msgid "Video Conference"
+#~ msgstr "Videoconferentie"
+
+#~ msgid "Viewer"
+#~ msgstr "Afbeeldingsweergave"
+
+#~ msgid "Web Browser"
+#~ msgstr "Webbrowser"
+
+#~ msgid "Web Development"
+#~ msgstr "Web-ontwikkeling"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "Welkom bij de hulpbrowser van Gnome"
+
+#~ msgid "Word Processors"
+#~ msgstr "Tekstverwerkers"
 
 #~| msgid "_Edit Bookmarks..."
 #~ msgid "_Edit Bookmarks"
@@ -1569,10 +1366,6 @@ msgstr "Hulp bij Gnome"
 #~ msgstr ""
 #~ "Probeer met andere woorden te omschrijven wat het probleem is of waar u "
 #~ "hulp bij zoekt."
-
-# op/voor
-#~ msgid "Search results for \"%s\""
-#~ msgstr "Zoekresultaten voor ‘%s’"
 
 #~ msgid ""
 #~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
@@ -1981,9 +1774,6 @@ msgstr "Hulp bij Gnome"
 # sneltoets T wordt gebruikt voor _Toevoegen
 #~ msgid "<b>_Title:</b>"
 #~ msgstr "<b>_Naam:</b>"
-
-#~ msgid "Find:"
-#~ msgstr "Zoeken:"
 
 #~ msgid "_Home"
 #~ msgstr "_Startpagina"
