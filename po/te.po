@@ -1,19 +1,21 @@
 # translation of yelp.gnome-2-26.te.po to Telugu
 # Telugu translation of yelp.
-# Copyright (C) 2007 Swecha Telugu Localisation Team <localisation@swecha.org>
+# Copyright (C) 2007,2011 Swecha Telugu Localisation Team <localization@swecha.net>.
 # This file is distributed under the same license as the yelp package.
 #
 # Bharat Kumar <jonnalagaddabharat@gmail.com>, 2007.
 # Krishna Babu K <kkrothap@redhat.com>, 2009.
+# Hari krishna <hari@swecha.net>, 2011.
+# Krishna Babu K <kkrothap@redhat.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.gnome-2-26.te\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&component=general\n"
-"POT-Creation-Date: 2009-08-07 00:18+0000\n"
+"product=yelp&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-07-05 14:30+0000\n"
 "PO-Revision-Date: 2009-06-11 13:25+0530\n"
-"Last-Translator: Krishna Babu K <kkrothap@redhat.com>\n"
-"Language-Team: Telugu <en@li.org>\n"
+"Last-Translator: Hari Krishna <hari@swecha.net>\n"
+"Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,1074 +24,41 @@ msgstr ""
 "\n"
 "\n"
 
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "GNU సమాచార పుటలు"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "సాంప్రదాయక ఆదేశ వరుస సహాయము (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "కార్యక్షేత్రాలు"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "బియల్టి  పరిక్రియలు"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "రూపకరణ  దస్త్రాలు"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "కర్సెస్ పరిక్రియలు"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "అభివృధ్ధి"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "ఫొర్ట్రాన్  పరిక్రియలు"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "ఆటలు"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "హార్డ్వేర్  పరికరాలు"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "కెర్నల్ రొటీన్స్"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "నిర్దేశిక పుటలు"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "అల్లికలో శ్రవణ ధ్వని కార్యములు"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "OpenSSL కార్యక్షేత్రాలు"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "OpenSSL రూపకరణ"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "OpenSSL పరిక్రియలు"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "OpenSSL ఉపరితలదర్శనాలు"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "ఉపరితలదర్శనాలు"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "POSIX పరిక్రియలు"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "POSIX పీఠికలు"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "పెర్ల్ పరిక్రియలు"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Qt పరిక్రియలు"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "రీడ్‌లైన్ పరిక్రియలు"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "Op భాగము"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "1m భాగము"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "1ssl భాగము"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "1x భాగము"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "2 భాగము"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "3blt భాగము"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "3f భాగము"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "3nas భాగము"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "3p భాగము"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "3qt భాగము"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "3readline భాగము"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "3ssl భాగము"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "3tiff భాగము"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "4 భాగము"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "4x భాగము"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "5 భాగము"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "5ssl భాగము"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "5x భాగము"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "6 భాగము"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "6x భాగము"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "7ssl భాగము"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "7x భాగము"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "9 భాగము"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "1, 1p, 1g మరియు  1t భాగాలు"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "3, 3o మరియు 3t భాగాలు"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "3form మరియు 3menu భాగములు"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "3ncurses and 3curses భాగములు"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "3pm మరియు 3perl భాగములు"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "3x మరియు 3X11 భాగములు"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "7 మరియు 7gcc భాగములు"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "8 మరియు 8l భాగములు"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "వ్యవస్థ  నిర్వహణ"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "సిస్టమ్ కాల్స్"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "సిస్టమ్ V ఫాం/మెనూ పరిక్రియలు"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "TIFF పరిక్రియలు"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Termcap కార్యక్షేత్రాలు"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "సాంప్రదాయక ఆదేశ వరుస సహాయము (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "X11 కార్యక్షేత్రాలు"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "X11 రూపకరణ"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "X11 పరికరాలు"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "X11 ప్రరిక్రియలు"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "X11 ఆటలు"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "X11 ఉపరితలదర్శనాలు"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "2D గ్రాఫిక్స్"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "3D గ్రాఫిక్స్"
-
-#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
-msgid "Accessibility"
-msgstr "సాంగత్యము"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "పోరాటపు ఆటలు"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "సాహసపు ఆటలు"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "వినోదము"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "గ్రాఫిక్సును దర్శించుటకు మరియు మానిప్యులేట్ చేయుటకు అనువర్తనములు"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "ఆడియో మరియు వీడియోకు సంభందించిన అనువర్తనములు"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "నేర్చుకొనునప్పుడు భోదించే లేదా చేర్చే అనువర్తనములు"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "ఆర్కేడ్ ఆటలు"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "పొందుపరచిన సాధనములు"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "కళ"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "ఆర్టిఫిషియల్ యింటిలిజెన్స్"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "ఆస్ట్రోనమి"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "బయోలజి"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "బ్లాక్స్ ఆటలు"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "బోర్డు ఆటలు"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "నిర్మించుట"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "గణనపరికరం"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "క్యాలెండర్"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "పేక ఆటలు"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "చార్టింగ్ సాధనములు"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "మాటామంతి"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "కెమిస్ట్రి"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "గడియారములు"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "కుదించు సాధనములు"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "కంప్యూటర్ సైన్స్"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "నిర్మాణం"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "సంప్రదింపు నిర్వహణ"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "డాటా కనబరచువిధము"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "దత్తాంశస్థానాలు"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "డీబగ్గర్స్"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "రంగస్థలం"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "రంగస్థలం అమరికలు"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "డైలప్"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "వివరణలు"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "డిస్క్ బర్నింగ్"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "ఆర్ధికస్థితి"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "విద్యాభ్యాసం"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "విద్యుశ్చక్తి"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "ఎలక్ట్రానిక్స్"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "ఈమెయిల్ సాధనములు"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "ఎమ్యులేటర్"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "ఇంజినీరింగ్"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "దస్త్రాల అభికర్త"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "ఫైలు సాధనములు"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "ఫైలు బదలీకరణ"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "దస్త్ర వ్యవస్థ"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "ఆర్ధికపరమైన సాధనములు"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "ఫ్లో చార్టింగ్ సాధనములు"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "GNOME అనువర్తనములు"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "GUI రూపకర్తలు"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "GNOME వాతావరణము కొరకు సాదారణ అనువర్తనములు"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "KDE వాతావరణం కొరకు సాదారణ అనువర్తనములు"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "ఖగోళశాస్త్రము"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "భూగర్భశాస్త్రము"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "జియోసైన్స్"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "చిత్రరూపాలు"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "బయటి ప్రపంచాన్ని అనుసంధానింపచేసే అనువర్తనముల కొరకు మార్గదర్శిలు మరియు వివరణపత్రములు"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "అభివృద్దినందు పాల్గోనుటకు మార్గదర్శిలు"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "హామ్ రేడియో"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "హార్డ్‌ వేర్ అమరికలు"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "కొంత హాస్యాన్ని కలిగివుండుము"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "చరిత్ర"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "IDEs"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "IRC కక్షిదారులు"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "ఇమేజ్ ప్రోసెసింగ్"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "సత్వర సందేశీకరణ"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "మహాతలం"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "జావా "
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "KDE అనువర్తనములు"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "పిల్లల ఆటలు"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr "అంగవైకల్యం కలవారికి మీ సిస్టమ్ మరింత సహాయపడునదిగా యెలా చేయాలో మరింత తెలుసుకోండి"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "లైసెన్సులు"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "సాహిత్యము"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "తార్కిక ఆటలు"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "మ్యాత్"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "మెడికల్ సాఫ్ట్ వేర్"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "Midi"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "వివిధమైన పత్రికీకరణ"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "మిశ్రమాలు"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "మానిటర్"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "మోటిఫ్"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "సంగీతం"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "వార్తలు"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "సంఖ్యా విశ్లేషణ"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "OCR"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "కార్యాలయపు అనువర్తనములు"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "కార్యాలయపు అనువర్తనములు"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "ఇతర పత్రరచన"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "P2P"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "PDA సంప్రదింపు"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "ప్యాకేజ్ నిర్వాహకి"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "సమాంతర కంప్యూటింగ్"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "ఛాయాచిత్రీకరణ"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "భౌతికశాస్త్రము"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "ప్లేయర్లు"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "సమర్పణ సాధనములు"
-
-#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:337 ../src/yelp-print.c:364
-msgid "Printing"
-msgstr "ముద్రణ"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "ప్రొఫైలింగ్ సాధనములు"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "ప్రోజెక్టు నిర్వహణా సాధనములు"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "ప్రచురీకరణ"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "రాస్టర్ గ్రాఫిక్స్"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "రికార్డర్స్"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "సుదూర ప్రవేశము"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "పునఃవిమర్శ నియంత్రణ"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "రోబోటిక్స్"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "రోల్ ప్లేయింగ్ ఆటలు"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "స్కానింగ్"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "సాంకేతికశాస్త్రం"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "రక్షిత"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "వరుసగావచ్చునవి"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "అమరికలు"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "వినియోగదారులు వారి వాతావరణనాన్ని మరింత అహ్లాదభరితంగా చేసుకొవటానికి అమరికలను మార్చుకొనవచ్చు"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "సిమ్యులేషన్ ఆటలు"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "శబ్దము"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "శబ్ధము &amp; వీడియో"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "శబ్ధము &amp; వీడియో సరికూర్పు"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "క్రీడలు"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "క్రీడాపరమైన ఆటలు"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "స్ప్రెడ్‌షీట్ సాధనములు"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "యుక్తిపరమైన ఆటలు"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "సిస్టమ్"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "TV"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "టెలిపొని"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "టెలిఫొని సాధనములు"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "టెర్మినల్ ఎములేటర్"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "పాఠ్యపు సరికూర్పరిలు"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "పాఠ్యపు సాధనములు"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "కంప్యూటర్ ను నిర్వహించుటకు సౌధనములు"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "అనువాదపు సాధనములు"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "ట్యూనర్స్"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "సౌలభ్యాలు"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "మీ పని జరుగుటకు మీ సహాయపడె సౌలభ్యాలు"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "వెక్టార్ గ్రాఫిక్స్"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "వీడియో"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "వీడియో సమావేశము"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "దర్శకుడు"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "వెబ్ బ్రౌజర్"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "వెబ్ అభివృద్ది"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "గ్నోమ్ సహాయ  అన్వేషికి స్వాగతం"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "వెబ్ ప్రోసెసెస్"
-
-#: ../data/ui/yelp-bookmarks.ui.h:1
-msgid "Bookmarks"
-msgstr "పుస్తకచిహ్నాలు"
-
-#: ../data/ui/yelp-bookmarks.ui.h:2
-msgid "Re_name"
-msgstr "పునర్నామకరణ (_n)"
-
-#: ../data/ui/yelp-bookmarks.ui.h:3
-msgid "_Bookmarks:"
-msgstr "బుక్‌మార్కులు (_B):"
-
-#: ../data/ui/yelp-bookmarks-add.ui.h:1
-msgid "Add Bookmark"
-msgstr "బుక్‌మార్క్ జతచేయుము"
-
-#: ../data/ui/yelp-bookmarks-add.ui.h:2
-msgid "_Title:"
-msgstr "శీర్షిక (_T):"
-
-#: ../data/ui/yelp-open-location.ui.h:1
-msgid "Open Location"
-msgstr "స్థానాన్ని తెరువుము"
-
-#: ../data/ui/yelp-open-location.ui.h:2
-msgid "_Location:"
-msgstr "స్థానము (_L):"
-
-#: ../data/ui/yelp-preferences.ui.h:2
-msgid "Fonts"
-msgstr ""
-
-#: ../data/ui/yelp-preferences.ui.h:3
-msgid "Preferences"
-msgstr "అభీష్టాలు"
-
-#: ../data/ui/yelp-preferences.ui.h:4
-msgid "_Browse with caret"
-msgstr "కారెట్ ద్వారా అన్వేషించు (_B)"
-
-#: ../data/ui/yelp-preferences.ui.h:5
-msgid "_Fixed width:"
-msgstr "స్థిర  వెడల్పు (_F):"
-
-#: ../data/ui/yelp-preferences.ui.h:6
-msgid "_Use system fonts"
-msgstr "వ్యవస్థ అక్షరశైలులను ఉపయోగించు (_U)"
-
-#: ../data/ui/yelp-preferences.ui.h:7
-msgid "_Variable width:"
-msgstr "అస్థిర  వెడెల్పు (_V):"
-
-#: ../data/yelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "స్థిర పాఠముకు అక్షరశైలి"
-
-#: ../data/yelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "పాఠముకు అక్షరశైలి"
-
-#: ../data/yelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "పాఠముకు స్థిర  వెడెల్పుతో  అక్షరశైలి"
-
-#: ../data/yelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "పాఠముకు  అస్థిర  వెడెల్పుతో  అక్షరశైలి"
-
-#: ../data/yelp.schemas.in.h:5
-msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "పేజీలను దర్శించుచున్నప్పుడు కీబోర్డ్-నింయంత్రిత అక్షరమును వాడుము."
-
-#: ../data/yelp.schemas.in.h:6
-msgid "Use caret"
-msgstr "హంసపాదును  ఉపయోగించు"
-
-#: ../data/yelp.schemas.in.h:7
-msgid "Use system fonts"
-msgstr "వ్యవస్థ అక్షరశైలులను ఉపయోగించు"
-
-#: ../data/yelp.schemas.in.h:8
-msgid "Use the default fonts set for the system."
-msgstr "వ్యవస్థకు అప్రమేయ అక్షరశైలులను ఉపయోగించు."
-
-#: ../src/eggdesktopfile.c:165
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr ""
-
-#: ../src/eggdesktopfile.c:188
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr ""
-
-#: ../src/eggdesktopfile.c:958
-#, fuzzy, c-format
-msgid "Starting %s"
-msgstr "అమరికలు"
-
-#: ../src/eggdesktopfile.c:1100
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr ""
-
-#: ../src/eggdesktopfile.c:1168
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr ""
-
-#: ../src/eggdesktopfile.c:1373
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-
-#: ../src/eggdesktopfile.c:1392
-#, c-format
-msgid "Not a launchable item"
-msgstr ""
-
-#: ../src/eggsmclient.c:225
-msgid "Disable connection to session manager"
-msgstr ""
-
-#: ../src/eggsmclient.c:228
-msgid "Specify file containing saved configuration"
-msgstr ""
-
-#: ../src/eggsmclient.c:228
-msgid "FILE"
-msgstr ""
-
-#: ../src/eggsmclient.c:231
-msgid "Specify session management ID"
-msgstr ""
-
-#: ../src/eggsmclient.c:231
-#, fuzzy
-msgid "ID"
-msgstr "IDEs"
-
-#: ../src/eggsmclient.c:252
-msgid "Session management options:"
-msgstr ""
-
-#: ../src/eggsmclient.c:253
-msgid "Show session management options"
-msgstr ""
-
-#: ../src/yelp-bookmarks.c:148
-msgid "Open Bookmark in New Window"
-msgstr "బుక్‌మార్కును కొత్త విండోనందు తెరువుము"
-
-#: ../src/yelp-bookmarks.c:152
-msgid "Rename Bookmark"
-msgstr "పుస్తకచిహ్నా పునర్నామకరణ"
-
-#: ../src/yelp-bookmarks.c:156
-msgid "Remove Bookmark"
-msgstr "బుక్‌మార్కును తీసివేయుము"
-
-#: ../src/yelp-bookmarks.c:314
-#, c-format
-msgid "A bookmark titled %s already exists for this page."
-msgstr "ఈ పుట కొరకు యిప్పటికే %s శీర్షికగల బుక్‌మార్క్ వుంది."
-
-#: ../src/yelp-bookmarks.c:390
-#, c-format
-msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "<b>%s</b> శీర్షికగల బుక్‌మార్క్ యిప్పటికే ఈ పేజీకు వుంది."
-
-#: ../src/yelp-bookmarks.c:403
-msgid "Help Topics"
-msgstr "సహాయ సంగతులు"
-
-#: ../src/yelp-bookmarks.c:418
-msgid "Document Sections"
-msgstr "పత్రము యొక్క భాగములు"
-
-#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:280 ../src/yelp-man.c:292
-#: ../src/yelp-man.c:385 ../src/yelp-toc.c:266 ../src/yelp-toc.c:365
-msgid "Page not found"
-msgstr "పేజీ కనబడలేదు"
-
-#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-mallard.c:281 ../src/yelp-man.c:293
-#, c-format
-msgid "The page %s was not found in the document %s."
-msgstr "పేజీ %s పత్రము %s నందు కనబడలేదు."
-
-#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
-#: ../src/yelp-man.c:386
-#, c-format
-msgid "The requested page was not found in the document %s."
-msgstr "అభ్యర్ధించిన పేజీ పత్రము %s నందు కనబడలేదు."
-
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
-#: ../src/yelp-man.c:429
-msgid "File not found"
-msgstr "దస్త్రం దొరుకలేదు"
-
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
-#: ../src/yelp-man.c:430
+#: ../libyelp/yelp-bz2-decompressor.c:146
+#: ../libyelp/yelp-lzma-decompressor.c:155
+msgid "Invalid compressed data"
+msgstr "కుచించిన దత్తాంశం నిస్సారం "
+
+#: ../libyelp/yelp-bz2-decompressor.c:152
+#: ../libyelp/yelp-lzma-decompressor.c:161
+msgid "Not enough memory"
+msgstr "సరిపడ మెమొరీ లేదు"
+
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:271
+#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr "పేజీ ‘%s‘ పత్రము‘%s‘ నందు కనబడలేదు."
+
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
+msgid "The file does not exist."
+msgstr "ఫైలు  లేదు."
+
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "ఫైలు ‘%s’ లేదు."
 
-#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
-#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
-msgid "Could not parse file"
-msgstr "ఫైలు పార్శ్ చేయలేక పోయింది"
-
-#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "ఫైలు ‘%s’ పార్శ్ చేయబడలేక పోయింది యెంచేతంటే అది సరిగా-రూపొందిన XML పత్రము కాదు."
 
-#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -1098,465 +67,1384 @@ msgstr ""
 "ఫైలు ‘%s’ పార్శ్ చేయబడలేక పోయింది యెంచేతంటే దానిలో చేర్చిన వొకటి లేదా యెక్కువ ఫైళ్ళు సరిగా-రూపొందిన XML "
 "పత్రము కాదు."
 
-#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "తెలియని"
 
-#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
-msgid "Unknown Error"
-msgstr "తెలియన్ దోషము"
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
+msgid "The requested page was not found in the document ‘%s’."
+msgstr "అభ్యర్ధించిన పేజీ పత్రము ‘%s‘ నందు కనబడలేదు."
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1710
-msgid "Could Not Read File"
-msgstr "ఫైలు చదవలేకపోయింది"
+#: ../libyelp/yelp-document.c:266
+msgid "Indexed"
+msgstr "సూచించబడిన"
 
-#: ../src/yelp-error.c:146
-msgid "No information is available about this error."
-msgstr "ఈ దోషము గూర్చి యెటువంటి సమాచారము అందుబాటులోలేదు."
+#: ../libyelp/yelp-document.c:267
+msgid "Whether the document content has been indexed"
+msgstr "పత్రము యొక్క సారము సూచించబదినది ఏమో"
 
-#: ../src/yelp-info.c:396
+#: ../libyelp/yelp-document.c:275
+msgid "Document URI"
+msgstr "పత్రము యొక్క URI"
+
+#: ../libyelp/yelp-document.c:276
+msgid "The URI which identifies the document"
+msgstr "పత్రమును గుర్తించు వంటి  URI"
+
+#: ../libyelp/yelp-document.c:956
+msgid "Search results for “%s”"
+msgstr "“%s“ కు ఫలితాలు  వెతుకుము"
+
+#: ../libyelp/yelp-document.c:968
+#, c-format
+msgid "No matching help pages found in “%s”."
+msgstr "ఉపమించు సహాయ  పేజీలు ఇక్కడ లభించలేదు “%s”"
+
+#: ../libyelp/yelp-document.c:974
+msgid "No matching help pages found."
+msgstr "ఉపమించు సహాయ  పేజీలు లభించలేదు"
+
+#: ../libyelp/yelp-error.c:37
+#, c-format
+msgid "An unknown error occurred."
+msgstr "తెలియని దోషం సంభవించినది"
+
+#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+msgid "All Help Documents"
+msgstr "అన్ని సహాయ పత్రములు"
+
+#: ../libyelp/yelp-info-document.c:397
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "ఫైలు ‘%s’ పార్శ్ చేయబడలేక పోయింది యెంచేతంటే అది సరిగా-రూపొందించిన సామాచార పేజీకాదు."
 
-#: ../src/yelp-io-channel.c:132
-#, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
-msgstr ""
-"ఫైలు ‘%s’ చదువబడలేక పోయింది మరియు డీకోడ్ చేయబడలేక పోయింది. ఆ ఫైలు బహుశా మద్దతీయనటువంటి రూపంలో "
-"కుదించబడి వుండవచ్చు."
+#: ../libyelp/yelp-location-entry.c:329"
+msgid "View"
+msgstr "దర్శనం "
 
-#: ../src/yelp-main.c:88
-msgid "Use a private session"
-msgstr "స్వంత సమకూర్పును ఉపయోగించుము"
+#: ../libyelp/yelp-location-entry.c:330
+msgid "A YelpView instance to control"
+msgstr "యెల్ప్ వ్యూ నియంత్రణకు సంధర్భము"
 
-#: ../src/yelp-main.c:97
-msgid "Define which cache directory to use"
-msgstr "ఏ గల్లాపెట్టె వివరమును  ఉపయోగించాలో నిర్వచించుము"
+#: ../libyelp/yelp-location-entry.c:345
+msgid "Bookmarks"
+msgstr "ఇష్టాంశములు"
 
-#. Commandline parsing is done here
-#: ../src/yelp-main.c:355
-msgid " GNOME Help Browser"
-msgstr "గ్నోమ్ సహాయ  అన్వేషి"
+#: ../libyelp/yelp-location-entry.c:346
+msgid "A YelpBookmarks implementation instance"
+msgstr "యెల్ప్ గుర్తులను అమలు చేయు సంధర్భము"
 
-#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
-msgid "Help"
-msgstr "సహాయం"
+#: ../libyelp/yelp-location-entry.c:362
+msgid "Enable Search"
+msgstr "వెతుకుట క్రియాశీలీకరించు"
 
-#: ../src/yelp-mallard.c:311
-#, fuzzy
-msgid "Directory not found"
-msgstr "దస్త్రం దొరుకలేదు"
+#: ../libyelp/yelp-location-entry.c:363
+msgid "Whether the location entry can be used as a search field"
+msgstr "ప్రవేశ స్థానం వెతుకు క్షేత్రం కొరకు ఉపయోగించవచ్చును ఏమో "
 
-#: ../src/yelp-mallard.c:312
-#, fuzzy, c-format
+#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
+msgid "Search..."
+msgstr "వెతుకు ..."
+
+#: ../libyelp/yelp-location-entry.c:774
+msgid "Clear the search text"
+msgstr "వెతుకుతున్న పాఠమును చెరుపుము"
+
+#: ../libyelp/yelp-location-entry.c:823 ../libyelp/yelp-location-entry.c:1521
+msgid "Bookmark this page"
+msgstr "ఈ పేజీకు ఇష్టాంశము"
+
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1529
+msgid "Remove bookmark"
+msgstr "ఇష్టాంశమును తీసివేయుము"
+
+#: ../libyelp/yelp-location-entry.c:1386
+msgid "Loading"
+msgstr "లోడవుతున్నది"
+
+#: ../libyelp/yelp-mallard-document.c:311
 msgid "The directory ‘%s’ does not exist."
-msgstr "ఫైలు ‘%s’ లేదు."
+msgstr "ఫైలు ‘%s’లేదు."
 
-#: ../src/yelp-man.c:459
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr "పైలు ‘%s’ పార్శ్ చేయబడలేక పోయింది యెంచేతంటే అది సరిగా-రూపొందించిన ముఖ్య పేజీకాదు."
+#: ../libyelp/yelp-settings.c:154
+msgid "GtkSettings"
+msgstr "Gtkఅమరికలు"
 
-#: ../src/yelp-print.c:97
-msgid "Print"
-msgstr "ముద్రణ"
+#: ../libyelp/yelp-settings.c:155
+msgid "A GtkSettings object to get settings from"
+msgstr "అమరికల ఫారమునకు Gtkఅమరికలు తాత్పర్యము "
 
-#: ../src/yelp-print.c:167
-msgid "Preparing to print"
-msgstr "ముద్రణకు సిద్దమవుతుంది"
+#: ../libyelp/yelp-settings.c:163
+msgid "GtkIconTheme"
+msgstr "Gtkప్రతిమఐచ్చిక శైలి "
 
-#: ../src/yelp-print.c:261
-msgid "Printing is not supported on this printer"
-msgstr "ముద్రణకు ఈ ముద్రణాయంత్రములో సహకారం లేదు"
+#: ../libyelp/yelp-settings.c:164
+msgid "A GtkIconTheme object to get icons from"
+msgstr "ప్రతిమ ఫారమునుకు Gtkప్రతిమఐచ్చిక శైలి తాత్పర్యము"
 
-#: ../src/yelp-print.c:264
-#, c-format
-msgid "Printer %s does not support postscript printing."
-msgstr "ముద్రకం %s పోస్ట్ స్క్రిప్ట్ ముద్రణను మద్దతించదు."
+#: ../libyelp/yelp-settings.c:172
+msgid "Font Adjustment"
+msgstr "అక్షర శైలి సవరణ"
 
-#: ../src/yelp-print.c:366
-msgid "Waiting to print"
-msgstr "ముద్రణ కొరకు నిరీక్షిస్తుంది"
+#: ../libyelp/yelp-settings.c:173
+msgid "A size adjustment to add to font sizes"
+msgstr "అక్షరశైలి పరిమానములను కూర్చుటకు పరిమాణ సవరణ"
 
-#: ../src/yelp-print.c:578
-msgid "An error occurred while printing"
-msgstr "ముద్రిస్తున్నప్పుడు దోషము వచ్చినది"
+#: ../libyelp/yelp-settings.c:181
+msgid "Show Text Cursor"
+msgstr "పాఠ్య ములుకును చూపుము"
 
-#: ../src/yelp-print.c:582
-#, c-format
-msgid "It was not possible to print your document: %s"
-msgstr "మీ పత్రమును ముద్రించుట సాధ్యము కాదు: %s"
+#: ../libyelp/yelp-settings.c:182
+msgid "Show the text cursor or caret for accessible navigation"
+msgstr "విహరించుటకు సాంగత్యమునకు హంస పాదు లేదా పాఠ్య ములుకును ప్రదర్శించు"
 
-#: ../src/yelp-search-parser.c:67
-msgid "the GNOME Support Forums"
-msgstr "GNOME మద్దతుదారి ఫోరములు"
+#: ../libyelp/yelp-settings.c:190
+msgid "Editor Mode"
+msgstr "సంకలన మోడ్"
 
-#: ../src/yelp-search-parser.c:285
-#, c-format
-msgid "No results for \"%s\""
-msgstr "\"%s\" కు ఫలితాలు  లేవు"
+#: ../libyelp/yelp-settings.c:191
+msgid "Enable features useful to editors"
+msgstr "సంకలన వ్యవస్థకు ఉపయోగపడే విశిష్ఠతలను క్రియాశీలీకరించు"
 
-#: ../src/yelp-search-parser.c:286
-msgid ""
-"Try using different words to describe the problem you're having or the topic "
-"you want help with."
-msgstr ""
-"మీరు కలిగివున్న సమస్యను వివరించుటకు లేదా మీరు సహాయ కావాలనుకొనుచున్న టాపిక్ కొరకు విభిన్న పదాలను "
-"వుపయోగించి ప్రయత్నించండి."
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "దత్తాంశ ఫైలుపేరు"
 
-#: ../src/yelp-search-parser.c:289
-#, c-format
-msgid "Search results for \"%s\""
-msgstr "\"%s\" కు ఫలితాలు  వెతుకుము"
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "sqlite దత్తాంశస్థానం  యొక్క ఫైలుపేరు "
 
-#. TRANSLATORS: Please don't do anything funny with the
-#. * format arguement.  It isn't really going through a printf
-#. * The %s is used to indicate where the name of the site (linked)
-#. * should be.  This is done in the XSLT
-#.
-#: ../src/yelp-search-parser.c:303
-#, c-format
-msgid "Repeat the search online at %s"
-msgstr "%s వద్ద శోధన ఆన్‌లైన్‌ను పునరావృతం చేయుము"
+#: ../libyelp/yelp-transform.c:171
+msgid "XSLT Stylesheet"
+msgstr "XSLT స్టైల్‌షీట్"
 
-#. Translators: Do not translate this list exactly.  These are
-#. * colon-separated words that aren't useful for choosing search
-#. * results; they will be different for each language. Include
-#. * pronouns, articles, very common verbs and prepositions,
-#. * words from question structures like "tell me about" and
-#. * "how do I", and words for functional states like "not",
-#. * "work", and "broken".
-#.
-#: ../src/yelp-search-parser.c:874
-msgid ""
-"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
-"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
-"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
-"where:who:will:with:won't:wont:why:work:working:works"
-msgstr ""
-"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
-"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
-"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
-"where:who:will:with:won't:wont:why:work:working:works"
+#: ../libyelp/yelp-transform.c:172
+msgid "The location of the XSLT stylesheet"
+msgstr "XSLT శైలి పేజీ యొక్క స్థానము"
 
-#. Translators: This is a list of common prefixes for words.
-#. * Do not translate this directly.  Instead, use a colon
-#. * seperated list of word-starts.  In English, an example
-#. * is re-.  If there is none, please use the term NULL
-#. * If there is only one, please put a colon after.
-#. * E.g. if the common prefix is re then the string would be
-#. * "re:"
-#.
-#: ../src/yelp-search-parser.c:890
-msgid "re"
-msgstr "re"
+#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
+msgstr "XSLT స్టైల్‌షీట్ ‘%s’ తప్పిపోయింది, లేదా చెల్లునదికాదు"
 
-#. Translators: This is a list of (guess what?) common suffixes
-#. * to words.  Things that may be put at ends of words to slightly
-#. * alter their meaning (like -ing and -s in English).  This is a
-#. * colon seperated list (I like colons).  If there are none,
-#. * please use the string NULL.  If there is only 1, please
-#. * add a colon at the end of the list
-#.
-#: ../src/yelp-search-parser.c:899
-msgid "ers:er:ing:es:s:'s"
-msgstr "ers:er:ing:es:s:'s"
-
-#: ../src/yelp-search-parser.c:1095
-msgid "No Comment"
-msgstr "వ్యాఖ్యానించుట లేదు"
-
-#. Much bigger problems
-#: ../src/yelp-search.c:238
-msgid "Search could not be processed"
-msgstr "శోధన నిర్వహించబడలేక పోయింది"
-
-#: ../src/yelp-search.c:239
-msgid "The requested search could not be processed."
-msgstr "అభ్యర్ధించిన శోధన ప్రోసెస్ చేయబడలేక పోయింది."
-
-#: ../src/yelp-search.c:366
-msgid "Cannot process the search"
-msgstr "శోధనను ప్రోసెస్ చేయలేక పోయింది"
-
-#: ../src/yelp-search.c:367
-msgid "The search processor returned invalid results"
-msgstr "శోధన ప్రోసెసర్ చెల్లని ఫలితాలను యిచ్చినది"
-
-#: ../src/yelp-toc.c:267
-#, c-format
-msgid "The page %s was not found in the TOC."
-msgstr "పేజీ %s TOC నందు కనబడలేదు."
-
-#: ../src/yelp-toc.c:366
-msgid "The requested page was not found in the TOC."
-msgstr "అభ్యర్ధించిన పేజీ TOC నందు కనబడలేదు."
-
-#: ../src/yelp-toc.c:438
-msgid ""
-"The TOC file could not be parsed because it is not a well-formed XML "
-"document."
-msgstr "TOC ఫైలు పార్శ్ చేయబడలేక పోయింది యెంచేతంటే అది సరిగా-రూపొందించిన XML పత్రముకాదు."
-
-#: ../src/yelp-transform.c:86
-msgid "Invalid Stylesheet"
-msgstr "చెల్లని స్టైల్‌షీట్"
-
-#: ../src/yelp-transform.c:87
-#, c-format
-msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr "XSLT స్టైల్‌షీట్ ‘%s’ తప్పిపోయింది, లేదా అది చెల్లునదికాదు"
-
-#: ../src/yelp-transform.c:122
-msgid "Broken Transformation"
-msgstr "విరిగిపోయిన బదిలీకరణ"
-
-#: ../src/yelp-transform.c:123
-msgid "An unknown error occurred while attempting to transform the document."
-msgstr "పత్రమును బదిలీకరించునప్పుడు వొక తెలియని దోషము యెదురైంది."
-
-#: ../src/yelp-transform.c:389
+#: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
 msgstr "yelp:document నందు యెటువంటి href యాట్రిబ్యూట్ కనబడలేదు\n"
 
-#: ../src/yelp-transform.c:404
+#: ../libyelp/yelp-transform.c:543
 msgid "Out of memory"
 msgstr "మెమొరీ మించినది"
 
-#: ../src/yelp-window.c:304
-msgid "_File"
-msgstr "దస్త్రం (_F)"
+#: ../libyelp/yelp-view.c:126
+msgid "_Print..."
+msgstr "ముద్రణ...(_P)"
 
-#: ../src/yelp-window.c:305
-msgid "_Edit"
-msgstr "సరిచేయు (_E)"
-
-#: ../src/yelp-window.c:306
-msgid "_Go"
-msgstr "వెళ్ళు (_G)"
-
-#: ../src/yelp-window.c:307
-msgid "_Bookmarks"
-msgstr "గుర్తింపులు (_B)"
-
-#: ../src/yelp-window.c:308
-msgid "_Help"
-msgstr "సహాయం (_H)"
-
-#: ../src/yelp-window.c:311
-msgid "_New Window"
-msgstr "కొత్త గవాక్షం (_N)"
-
-#: ../src/yelp-window.c:316
-msgid "Print This Document ..."
-msgstr "ఈ పత్రాన్ని ముద్రించు ..."
-
-#: ../src/yelp-window.c:321
-msgid "Print This Page ..."
-msgstr "ఈ పుటను ముద్రించు ..."
-
-#: ../src/yelp-window.c:326
-msgid "About This Document"
-msgstr "ఈ పత్రము గురించి"
-
-#: ../src/yelp-window.c:331
-msgid "Open _Location"
-msgstr "స్థానాన్ని తెరువుము (_L)"
-
-#: ../src/yelp-window.c:336
-msgid "_Close Window"
-msgstr "గవాక్షమును మూయుము (_C)"
-
-#: ../src/yelp-window.c:342
-msgid "_Copy"
-msgstr "నకలు (_C)"
-
-#: ../src/yelp-window.c:348
-msgid "_Select All"
-msgstr "అన్నింటిని ఎంచుకొనుము (_S)"
-
-#: ../src/yelp-window.c:353
-msgid "_Find..."
-msgstr "వెతుకు... (_F)"
-
-#: ../src/yelp-window.c:358
-msgid "Find Pre_vious"
-msgstr "పూర్వపుదాన్ని వెతుకు (_V)"
-
-#: ../src/yelp-window.c:360
-msgid "Find previous occurrence of the word or phrase"
-msgstr "పూర్వపు వచ్చిన పదాన్ని వెతుకుము"
-
-#: ../src/yelp-window.c:363
-msgid "Find Ne_xt"
-msgstr "తర్వాతదాన్ని వెతుకు (_X)"
-
-#: ../src/yelp-window.c:365
-msgid "Find next occurrence of the word or phrase"
-msgstr "తర్వాత వచ్చే పదాన్ని వెతుకుము"
-
-#: ../src/yelp-window.c:368
-msgid "_Preferences"
-msgstr "అభీష్టాలు (_P)"
-
-#: ../src/yelp-window.c:373
-msgid "_Reload"
-msgstr "తిరిగిలోడుచేయి (_R)"
-
-#: ../src/yelp-window.c:385
+#: ../libyelp/yelp-view.c:131
 msgid "_Back"
 msgstr "వెనక్కి (_B)"
 
-#: ../src/yelp-window.c:387
-msgid "Show previous page in history"
-msgstr "పూర్వపు పుటను చరిత్రలో చూపుము "
-
-#: ../src/yelp-window.c:390
+#: ../libyelp/yelp-view.c:136
 msgid "_Forward"
 msgstr "మునుముందుకు (_F)"
 
-#: ../src/yelp-window.c:392
-msgid "Show next page in history"
-msgstr "తర్వాత పుటను చరిత్రలోచూపుము"
+#: ../libyelp/yelp-view.c:141
+msgid "_Previous Page"
+msgstr "పూర్వపు  పేజీ(_P)"
 
-#: ../src/yelp-window.c:395
-msgid "_Help Topics"
-msgstr "సహాయక సంగతులు (_H)"
+#: ../libyelp/yelp-view.c:146
+msgid "_Next Page"
+msgstr "తరువాత  పేజీ(_N)"
 
-#: ../src/yelp-window.c:397
-msgid "Go to the listing of help topics"
-msgstr "సహాయ సంగతుల జాబితాకు వెళ్ళుము"
+#: ../libyelp/yelp-view.c:416
+msgid "Yelp URI"
+msgstr "యెల్ప్ URI"
 
-#: ../src/yelp-window.c:400
-msgid "_Previous Section"
-msgstr "పూర్వపు  భాగము (_P)"
+#: ../libyelp/yelp-view.c:417
+msgid "A YelpUri with the current location"
+msgstr "ప్రస్తుత స్థానం  తో YelpUri"
 
-#: ../src/yelp-window.c:405
-msgid "_Next Section"
-msgstr "తర్వాతి భాగము (_N)"
+#: ../libyelp/yelp-view.c:425
+msgid "Loading State"
+msgstr "లోడవుతున్నది స్థితి..."
 
-#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
-msgid "_Contents"
-msgstr "సారాంశాలు (_C)"
+#: ../libyelp/yelp-view.c:426
+msgid "The loading state of the view"
+msgstr "దర్శనం యొక్క లోడవు స్థితి"
 
-#: ../src/yelp-window.c:416
-msgid "_Add Bookmark"
-msgstr "గుర్తును జతచేయి (_A)"
+#: ../libyelp/yelp-view.c:435
+msgid "Page ID"
+msgstr "పేజీ  గుచి"
 
-#: ../src/yelp-window.c:421
-msgid "_Edit Bookmarks..."
-msgstr "గుర్తులను సరిచేయు... (_E)"
+#: ../libyelp/yelp-view.c:436
+msgid "The ID of the root page of the page being viewed"
+msgstr "పేజీ లోని మూల పేజీ యొక్క గుచి నివీక్షించుచున్నారు "
 
-#: ../src/yelp-window.c:427
+#: ../libyelp/yelp-view.c:444
+msgid "Root Title"
+msgstr "మూల శీర్షిక"
+
+#: ../libyelp/yelp-view.c:445
+msgid "The title of the root page of the page being viewed"
+msgstr "పేజీ లోని మూల పేజీ యొక్క శీర్షిక నివీక్షించుచున్నారు "
+
+#: ../libyelp/yelp-view.c:453
+msgid "Page Title"
+msgstr "పేజీ శీర్షిక"
+
+#: ../libyelp/yelp-view.c:454
+msgid "The title of the page being viewed"
+msgstr " పేజీ యొక్క శీర్షిక నివీక్షించుచున్నారు "
+
+#: ../libyelp/yelp-view.c:462
+msgid "Page Description"
+msgstr "పేజీ యొక్క వివరణ"
+
+#: ../libyelp/yelp-view.c:463
+msgid "The description of the page being viewed"
+msgstr "పేజీ యొక్క వివరణ నువీక్షించుచున్నారు"
+
+#: ../libyelp/yelp-view.c:471
+msgid "Page Icon"
+msgstr "పేజీ లభించలేదు"
+
+#: ../libyelp/yelp-view.c:472
+msgid "The icon of the page being viewed"
+msgstr "పేజీ యొక్క ప్రతిమనువీక్షించుచున్నారు"
+
+#: ../libyelp/yelp-view.c:713
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr "మీ వద్ద Packagekit లేదు.ప్యాకేజీ నెలకొల్పేజీకు Packagekit అవసరము"
+
+#: ../libyelp/yelp-view.c:991
+msgid "Save Image"
+msgstr "ప్రతిరూపమును దా"
+
+#: ../libyelp/yelp-view.c:1086
+msgid "Save Code"
+msgstr "సంకేతమును దాచు"
+
+#. Not using a mnemonic because underscores are common in email
+#. * addresses, and we'd have to escape them. There doesn't seem
+#. * to be a quick GTK+ function for this. In practice, there will
+#. * probably only be one menu item for mailto link popups anyway,
+#. * so the mnemonic's not that big of a deal.
+#.
+#: ../libyelp/yelp-view.c:1255
+#, c-format
+msgid "Send email to %s"
+msgstr "ఈమేయి లు %s కు  పంపుము"
+
+#: ../libyelp/yelp-view.c:1265
 msgid "_Open Link"
 msgstr "జోడికను తెరువుము (_O)"
 
-#: ../src/yelp-window.c:432
-msgid "Open Link in _New Window"
-msgstr "జోడికను కొత్త గవాక్షంలో తెరువుము (_N)"
+#: ../libyelp/yelp-view.c:1270
+msgid "Open Link in New _Window"
+msgstr "జోడికను కొత్త విండోలో తెరువుము (_W)"
 
-#: ../src/yelp-window.c:437
-msgid "_Copy Link Address"
-msgstr "జోడిక చిరునామాను నకలు తీయుము (_C)"
+#: ../libyelp/yelp-view.c:1321
+msgid "_Save Image As..."
+msgstr "ప్రతిరూపమును ఇలా దాచు (_S)"
 
-#: ../src/yelp-window.c:444
-msgid "Help On this application"
-msgstr "ఈ కార్యక్షేత్రముపై సహాయము"
+#: ../libyelp/yelp-view.c:1323
+msgid "_Save Video As..."
+msgstr "దృశ్యమును ఇలా దాచు (_S)"
 
-#: ../src/yelp-window.c:447
-msgid "_About"
-msgstr "గురించి (_A)"
+#: ../libyelp/yelp-view.c:1330
+msgid "S_end Image To..."
+msgstr "ప్రతిరూపమును పంపేజీకు (_e)"
 
-#: ../src/yelp-window.c:452
-msgid "Copy _Email Address"
-msgstr "ఇమెయిల్ చిరునామాను నకలుతీయుము (_E)"
+#: ../libyelp/yelp-view.c:1332
+msgid "S_end Video To..."
+msgstr "దృశ్యమును పంపేజీకు (_e)"
 
-#: ../src/yelp-window.c:524
-msgid "Help Browser"
-msgstr "సహాయ అన్వేషి"
+#: ../libyelp/yelp-view.c:1343
+msgid "_Copy Text"
+msgstr "పాఠము నకలుచేయు(_C)"
 
-#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1772
-msgid "Loading..."
-msgstr "లోడవుతున్నది..."
+#: ../libyelp/yelp-view.c:1356
+msgid "C_opy Code Block"
+msgstr "సంకేత విభాగ నకలు(_o)"
 
-#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
-msgid "Unknown Page"
-msgstr "తెలియని పేజి"
+#: ../libyelp/yelp-view.c:1361
+msgid "Save Code _Block As..."
+msgstr "సంకేత విభాగమును ఇలా దాచు (_B)"
 
-#: ../src/yelp-window.c:1042 ../src/yelp-window.c:1104
-#: ../src/yelp-window.c:1113
+#: ../libyelp/yelp-view.c:1543
 #, c-format
-msgid "The requested URI \"%s\" is invalid"
-msgstr "అభ్యర్ధించిన URI \"%s\" చెల్లనిది"
-
-#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1106
-#: ../src/yelp-window.c:1114
-msgid "Unable to load page"
-msgstr "పేజీను లోడు చేయలేక పోయింది"
-
-#: ../src/yelp-window.c:1330
-msgid "_Search:"
-msgstr "వెతుకు (_S)"
-
-#: ../src/yelp-window.c:1331
-msgid "Search for other documentation"
-msgstr "ఇతర పత్రరచన కొరకు వెతుకుము"
-
-#: ../src/yelp-window.c:1351
-msgid "Cannot create window"
-msgstr "విండోను సృష్టించలేక పోయింది"
-
-#: ../src/yelp-window.c:1357
-msgid "Cannot create search component"
-msgstr "శోధన మూలకంను సృష్టించలేక పోయింది"
-
-#: ../src/yelp-window.c:1529
-msgid "Fin_d:"
-msgstr "కనిపెట్టు (_d)"
-
-#: ../src/yelp-window.c:1551
-msgid "Find _Previous"
-msgstr "పూర్వపుది కనిపెట్టు (_P)"
-
-#: ../src/yelp-window.c:1563
-msgid "Find _Next"
-msgstr "తర్వాతది కనిపెట్టు (_N)"
-
-#: ../src/yelp-window.c:1576
-msgid "Phrase not found"
-msgstr "పద సముదాయము దొరకలేదు"
-
-#: ../src/yelp-window.c:1707
+msgid "Could not load a document for ‘%s’"
+msgstr "పత్రమును లోడు చేయడం కుదురుట లేదు ‘%s’కు"
+#: ../libyelp/yelp-view.c:1549
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
-msgstr ""
-"'%s' దస్త్రాన్ని  చదవలేకపోయింది. ఈ దస్త్రం తొలగించబడియుంటుంది లేదా మీరు ఈ  దస్త్రాన్ని చదువుటకు "
-"అనుమతి ఉండకపోవచ్చు"
+msgid "Could not load a document"
+msgstr "పత్రము లోడు చేయడం కుదురుట లేదు"
 
-#. Note to translators: put here your name (and address) so it
-#. * will show up in the "about" box
-#: ../src/yelp-window.c:2577
-msgid "translator-credits"
-msgstr "Bharat Kumar <jonnalagaddabharat@gmail.com>"
+#: ../libyelp/yelp-view.c:1623
+msgid "Document Not Found"
+msgstr "పత్రము లభించలేదు"
 
-#: ../src/yelp-window.c:2580
-msgid "Yelp"
-msgstr "యెల్ప్"
+#: ../libyelp/yelp-view.c:1625
+msgid "Page Not Found"
+msgstr "పేజీ కనబడలేదు"
 
-#: ../src/yelp-window.c:2582
-msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "గ్నోమ్ రంగస్థలముకు పత్రరచన అన్వేషి మరియు దర్శని"
+#: ../libyelp/yelp-view.c:1628
+msgid "Cannot Read"
+msgstr "చదువుట కుదురుటలేదు"
+
+#: ../libyelp/yelp-view.c:1634
+msgid "Unknown Error"
+msgstr "తెలియని దోషము"
+
+#: ../libyelp/yelp-view.c:1654
+msgid "Search for packages containing this document."
+msgstr "పత్రమునందు ఉన్న ప్యాకేజీల కొరకు వెతుకుము"
+
+#: ../libyelp/yelp-view.c:1807
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "‘%s’ URI వర్తించు  ఫైలుమునకు చూపేజీలేదు."
+
+#: ../libyelp/yelp-view.c:1813
+#, c-format
+msgid "The URI does not point to a valid page."
+msgstr "URI వర్తించు పేజీనకు సూచించుట లేదు"
+
+#: ../libyelp/yelp-view.c:1819
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "‘%s’ URI పార్స్ అవ్వటలేదు."
+
+#: ../src/yelp-application.c:65
+msgid "Turn on editor mode"
+msgstr "సరిచేయు మోడ్ ను ప్రారంభించు"
+
+#: ../src/yelp-application.c:128
+msgid "_Larger Text"
+msgstr "పెద్ద పాఠము(_L)"
+
+#: ../src/yelp-application.c:130
+msgid "Increase the size of the text"
+msgstr "మూల పరిమానము పెంచుము"
+
+#: ../src/yelp-application.c:133
+msgid "_Smaller Text"
+msgstr "చిన్న మూలము(_S)"
+
+#: ../src/yelp-application.c:135
+msgid "Decrease the size of the text"
+msgstr "మూల పరిమానము తగ్గించుము"
+
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
+#: ../yelp.desktop.in.in.h:2
+msgid "Help"
+msgstr "సహాయం"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "మూలము ములుకు చూపించు(_C)"
+
+#: ../src/yelp-window.c:236
+msgid "_Page"
+msgstr "పేజీ(_P)"
+
+#: ../src/yelp-window.c:237
+msgid "_View"
+msgstr "దర్శించు(_V)"
+
+#: ../src/yelp-window.c:238
+msgid "_Go"
+msgstr "వెళ్ళు (_G)"
+
+#: ../src/yelp-window.c:239
+msgid "_Bookmarks"
+msgstr "గుర్తింపులు (_B)"
+
+#: ../src/yelp-window.c:242
+msgid "_New Window"
+msgstr "కొత్త విండో (_N)"
+
+#: ../src/yelp-window.c:247
+msgid "_Close"
+msgstr "మూయుము(_C)"
+
+#: ../src/yelp-window.c:252
+msgid "_All Documents"
+msgstr "అన్ని పత్రములు"
+
+#: ../src/yelp-window.c:256
+msgid "_Add Bookmark"
+msgstr "గుర్తును జతచేయి (_A)"
+
+#: ../src/yelp-window.c:261
+msgid "_Remove Bookmark"
+msgstr "ఇష్టాంశమును తీసివేయుము(_R)"
+
+#: ../src/yelp-window.c:265
+msgid "Find in Page..."
+msgstr "ఈ పేజీలో వెతుకు ..."
+
+#: ../src/yelp-window.c:275
+msgid "Open Location"
+msgstr "స్థానాన్ని తెరువుము"
+
+#: ../src/yelp-window.c:301
+msgid "Application"
+msgstr "కార్యక్షేత్రము"
+
+#: ../src/yelp-window.c:302
+msgid "A YelpApplication instance that controls this window"
+msgstr "ఈ విండోను ని నియంత్రించుటకు ఒక Yelpకార్యక్షేత్ర ప్రతిరూపాంశము"
+
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "కనిపెట్టు :"
+
+#: ../src/yelp-window.c:548
+msgid "Read Later"
+msgstr "తరువాత చదువు"
+
+#: ../src/yelp-window.c:1179
+#, c-format
+msgid "%i match"
+msgid_plural "%i matches"
+msgstr[0] "%i సరిపోలిన"
+msgstr[1] "%i సరిపోలినవి "
+
+#: ../src/yelp-window.c:1188
+msgid "No matches"
+msgstr "ఏవీ సరిపొలేదు"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "గ్నోమ్ తో  సహాయం పొందుము"
+
+#~ msgid "GNU Info Pages"
+#~ msgstr "GNU సమాచార పేజీలు"
+
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "సాంప్రదాయక ఆదేశ వరుస సహాయము (info)"
+
+#~ msgid "BLT Functions"
+#~ msgstr "బియల్టి  పరిక్రియలు"
+
+#~ msgid "Configuration Files"
+#~ msgstr "రూపకరణ  దస్త్రాలు"
+
+#~ msgid "Curses Functions"
+#~ msgstr "కర్సెస్ పరిక్రియలు"
+
+#~ msgid "Development"
+#~ msgstr "అభివృధ్ధి"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "ఫొర్ట్రాన్  పరిక్రియలు"
+
+#~ msgid "Games"
+#~ msgstr "ఆటలు"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "హార్డ్వేర్  పరికరాలు"
+
+#~ msgid "Kernel Routines"
+#~ msgstr "కెర్నల్ రొటీన్స్"
+
+#~ msgid "Manual Pages"
+#~ msgstr "నిర్దేశిక పేజీలు"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "అల్లికలో శ్రవణ ధ్వని కార్యములు"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "OpenSSL కార్యక్షేత్రాలు"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "OpenSSL రూపకరణ"
+
+#~ msgid "OpenSSL Functions"
+#~ msgstr "OpenSSL పరిక్రియలు"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "OpenSSL ఉపరితలదర్శనాలు"
+
+#~ msgid "Overviews"
+#~ msgstr "ఉపరితలదర్శనాలు"
+
+#~ msgid "POSIX Functions"
+#~ msgstr "POSIX పరిక్రియలు"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "POSIX పీఠికలు"
+
+#~ msgid "Perl Functions"
+#~ msgstr "పెర్ల్ పరిక్రియలు"
+
+#~ msgid "Qt Functions"
+#~ msgstr "Qt పరిక్రియలు"
+
+#~ msgid "Readline Functions"
+#~ msgstr "రీడ్‌లైన్ పరిక్రియలు"
+
+#~ msgid "Section 0p"
+#~ msgstr "Op భాగము"
+
+#~ msgid "Section 1m"
+#~ msgstr "1m భాగము"
+
+#~ msgid "Section 1ssl"
+#~ msgstr "1ssl భాగము"
+
+#~ msgid "Section 1x"
+#~ msgstr "1x భాగము"
+
+#~ msgid "Section 2"
+#~ msgstr "2 భాగము"
+
+#~ msgid "Section 3blt"
+#~ msgstr "3blt భాగము"
+
+#~ msgid "Section 3f"
+#~ msgstr "3f భాగము"
+
+#~ msgid "Section 3nas"
+#~ msgstr "3nas భాగము"
+
+#~ msgid "Section 3p"
+#~ msgstr "3p భాగము"
+
+#~ msgid "Section 3qt"
+#~ msgstr "3qt భాగము"
+
+#~ msgid "Section 3readline"
+#~ msgstr "3readline భాగము"
+
+#~ msgid "Section 3ssl"
+#~ msgstr "3ssl భాగము"
+
+#~ msgid "Section 3tiff"
+#~ msgstr "3tiff భాగము"
+
+#~ msgid "Section 4"
+#~ msgstr "4 భాగము"
+
+#~ msgid "Section 4x"
+#~ msgstr "4x భాగము"
+
+#~ msgid "Section 5"
+#~ msgstr "5 భాగము"
+
+#~ msgid "Section 5ssl"
+#~ msgstr "5ssl భాగము"
+
+#~ msgid "Section 5x"
+#~ msgstr "5x భాగము"
+
+#~ msgid "Section 6"
+#~ msgstr "6 భాగము"
+
+#~ msgid "Section 6x"
+#~ msgstr "6x భాగము"
+
+#~ msgid "Section 7ssl"
+#~ msgstr "7ssl భాగము"
+
+#~ msgid "Section 7x"
+#~ msgstr "7x భాగము"
+
+#~ msgid "Section 9"
+#~ msgstr "9 భాగము"
+
+#~ msgid "Sections 1, 1p, 1g and 1t"
+#~ msgstr "1, 1p, 1g మరియు  1t భాగాలు"
+
+#~ msgid "Sections 3, 3o, and 3t"
+#~ msgstr "3, 3o మరియు 3t భాగాలు"
+
+#~ msgid "Sections 3form and 3menu"
+#~ msgstr "3form మరియు 3menu భాగములు"
+
+#~ msgid "Sections 3ncurses and 3curses"
+#~ msgstr "3ncurses and 3curses భాగములు"
+
+#~ msgid "Sections 3pm and 3perl"
+#~ msgstr "3pm మరియు 3perl భాగములు"
+
+#~ msgid "Sections 3x and 3X11"
+#~ msgstr "3x మరియు 3X11 భాగములు"
+
+#~ msgid "Sections 7 and 7gcc"
+#~ msgstr "7 మరియు 7gcc భాగములు"
+
+#~ msgid "Sections 8 and 8l"
+#~ msgstr "8 మరియు 8l భాగములు"
+
+#~ msgid "System Administration"
+#~ msgstr "వ్యవస్థ  నిర్వహణ"
+
+#~ msgid "System Calls"
+#~ msgstr "సిస్టమ్ కాల్స్"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "సిస్టమ్ V ఫాం/మెనూ పరిక్రియలు"
+
+#~ msgid "TIFF Functions"
+#~ msgstr "TIFF పరిక్రియలు"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "Termcap కార్యక్షేత్రాలు"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "సాంప్రదాయక ఆదేశ వరుస సహాయము (man)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "X11 కార్యక్షేత్రాలు"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "X11 రూపకరణ"
+
+#~ msgid "X11 Devices"
+#~ msgstr "X11 పరికరాలు"
+
+#~ msgid "X11 Functions"
+#~ msgstr "X11 ప్రరిక్రియలు"
+
+#~ msgid "X11 Games"
+#~ msgstr "X11 ఆటలు"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "X11 ఉపరితలదర్శనాలు"
+
+#~ msgid "2D Graphics"
+#~ msgstr "2D గ్రాఫిక్స్"
+
+#~ msgid "3D Graphics"
+#~ msgstr "3D గ్రాఫిక్స్"
+
+#~ msgid "Accessibility"
+#~ msgstr "సాంగత్యము"
+
+#~ msgid "Action Games"
+#~ msgstr "పోరాటపు ఆటలు"
+
+#~ msgid "Adventure Games"
+#~ msgstr "సాహసపు ఆటలు"
+
+#~ msgid "Amusement"
+#~ msgstr "వినోదము"
+
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "గ్రాఫిక్సును దర్శించుటకు మరియు మానిప్యులేట్ చేయుటకు అనువర్తనములు"
+
+#~ msgid "Applications related to audio and video"
+#~ msgstr "ఆడియో మరియు వీడియోకు సంభందించిన అనువర్తనములు"
+
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "నేర్చుకొనునప్పుడు భోదించే లేదా చేర్చే అనువర్తనములు"
+
+#~ msgid "Arcade Games"
+#~ msgstr "ఆర్కేడ్ ఆటలు"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "పొందుపరచిన సాధనములు"
+
+#~ msgid "Art"
+#~ msgstr "కళ"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "ఆర్టిఫిషియల్ యింటిలిజెన్స్"
+
+#~ msgid "Astronomy"
+#~ msgstr "ఆస్ట్రోనమి"
+
+#~ msgid "Biology"
+#~ msgstr "బయోలజి"
+
+#~ msgid "Blocks Games"
+#~ msgstr "బ్లాక్స్ ఆటలు"
+
+#~ msgid "Board Games"
+#~ msgstr "బోర్డు ఆటలు"
+
+#~ msgid "Building"
+#~ msgstr "నిర్మించుట"
+
+#~ msgid "Calculator"
+#~ msgstr "గణనపరికరం"
+
+#~ msgid "Calendar"
+#~ msgstr "క్యాలెండర్"
+
+#~ msgid "Card Games"
+#~ msgstr "పేక ఆటలు"
+
+#~ msgid "Charting Tools"
+#~ msgstr "చార్టింగ్ సాధనములు"
+
+#~ msgid "Chat"
+#~ msgstr "మాటామంతి"
+
+#~ msgid "Chemistry"
+#~ msgstr "కెమిస్ట్రి"
+
+#~ msgid "Compression Tools"
+#~ msgstr "కుదించు సాధనములు"
+
+#~ msgid "Computer Science"
+#~ msgstr "కంప్యూటర్ సైన్స్"
+
+#~ msgid "Construction"
+#~ msgstr "నిర్మాణం"
+
+#~ msgid "Contact Management"
+#~ msgstr "సంప్రదింపు నిర్వహణ"
+
+#~ msgid "Data Visualization"
+#~ msgstr "డాటా కనబరచువిధము"
+
+#~ msgid "Debuggers"
+#~ msgstr "డీబగ్గర్స్"
+
+#~ msgid "Desktop"
+#~ msgstr "రంగస్థలం"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "రంగస్థలం అమరికలు"
+
+#~ msgid "Dialup"
+#~ msgstr "డైలప్"
+
+#~ msgid "Dictionaries"
+#~ msgstr "వివరణలు"
+
+#~ msgid "Disc Burning"
+#~ msgstr "డిస్క్ బర్నింగ్"
+
+#~ msgid "Economy"
+#~ msgstr "ఆర్ధికస్థితి"
+
+#~ msgid "Education"
+#~ msgstr "విద్యాభ్యాసం"
+
+#~ msgid "Electricity"
+#~ msgstr "విద్యుశ్చక్తి"
+
+#~ msgid "Electronics"
+#~ msgstr "ఎలక్ట్రానిక్స్"
+
+#~ msgid "Email Tools"
+#~ msgstr "ఈమెయిల్ సాధనములు"
+
+#~ msgid "Emulator"
+#~ msgstr "ఎమ్యులేటర్"
+
+#~ msgid "Engineering"
+#~ msgstr "ఇంజినీరింగ్"
+
+#~ msgid "File Manager"
+#~ msgstr "దస్త్రాల అభికర్త"
+
+#~ msgid "File Tools"
+#~ msgstr "ఫైలు సాధనములు"
+
+#~ msgid "File Transfer"
+#~ msgstr "ఫైలు బదలీకరణ"
+
+#~ msgid "Filesystem"
+#~ msgstr "ఫైలు వ్యవస్థ"
+
+#~ msgid "Financial Tools"
+#~ msgstr "ఆర్ధికపరమైన సాధనములు"
+
+#~ msgid "Flow Charting Tools"
+#~ msgstr "ఫ్లో చార్టింగ్ సాధనములు"
+
+#~ msgid "GNOME Applications"
+#~ msgstr "GNOME అనువర్తనములు"
+
+#~ msgid "GTK"
+#~ msgstr "GTK"
+
+#~ msgid "GUI Designers"
+#~ msgstr "GUI రూపకర్తలు"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "GNOME వాతావరణము కొరకు సాదారణ అనువర్తనములు"
+
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "KDE వాతావరణం కొరకు సాదారణ అనువర్తనములు"
+
+#~ msgid "Geography"
+#~ msgstr "ఖగోళశాస్త్రము"
+
+#~ msgid "Geology"
+#~ msgstr "భూగర్భశాస్త్రము"
+
+#~ msgid "Geoscience"
+#~ msgstr "జియోసైన్స్"
+
+#~ msgid "Graphics"
+#~ msgstr "చిత్రరూపాలు"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr "బయటి ప్రపంచాన్ని అనుసంధానింపచేసే అనువర్తనముల కొరకు మార్గదర్శిలు మరియు వివరణపత్రములు"
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "అభివృద్దినందు పాల్గోనుటకు మార్గదర్శిలు"
+
+#~ msgid "Ham Radio"
+#~ msgstr "హామ్ రేడియో"
+
+#~ msgid "Hardware Settings"
+#~ msgstr "హార్డ్‌ వేర్ అమరికలు"
+
+#~ msgid "Have some fun"
+#~ msgstr "కొంత హాస్యాన్ని కలిగివుండుము"
+
+#~ msgid "History"
+#~ msgstr "చరిత్ర"
+
+#~ msgid "IDEs"
+#~ msgstr "IDEs"
+
+#~ msgid "IRC Clients"
+#~ msgstr "IRC కక్షిదారులు"
+
+#~ msgid "Image Processing"
+#~ msgstr "ఇమేజ్ ప్రోసెసింగ్"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "సత్వర సందేశీకరణ"
+
+#~ msgid "Internet"
+#~ msgstr "మహాతలం"
+
+#~ msgid "Java"
+#~ msgstr "జావా "
+
+#~ msgid "KDE Applications"
+#~ msgstr "KDE అనువర్తనములు"
+
+#~ msgid "Kids Games"
+#~ msgstr "పిల్లల ఆటలు"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr "అంగవైకల్యం కలవారికి మీ సిస్టమ్ మరింత సహాయపడునదిగా యెలా చేయాలో మరింత తెలుసుకోండి"
+
+#~ msgid "Licenses"
+#~ msgstr "లైసెన్సులు"
+
+#~ msgid "Literature"
+#~ msgstr "సాహిత్యము"
+
+#~ msgid "Logic Games"
+#~ msgstr "తార్కిక ఆటలు"
+
+#~ msgid "Math"
+#~ msgstr "మ్యాత్"
+
+#~ msgid "Medical Software"
+#~ msgstr "మెడికల్ సాఫ్ట్ వేర్"
+
+#~ msgid "Midi"
+#~ msgstr "Midi"
+
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "వివిధమైన పత్రికీకరణ"
+
+#~ msgid "Mixers"
+#~ msgstr "మిశ్రమాలు"
+
+#~ msgid "Monitor"
+#~ msgstr "మానిటర్"
+
+#~ msgid "Motif"
+#~ msgstr "మోటిఫ్"
+
+#~ msgid "Music"
+#~ msgstr "సంగీతం"
+
+#~ msgid "News"
+#~ msgstr "వార్తలు"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "సంఖ్యా విశ్లేషణ"
+
+#~ msgid "OCR"
+#~ msgstr "OCR"
+
+#~ msgid "Office Applications"
+#~ msgstr "కార్యాలయపు అనువర్తనములు"
+
+#~ msgid "Office applications"
+#~ msgstr "కార్యాలయపు అనువర్తనములు"
+
+#~ msgid "Other Documentation"
+#~ msgstr "ఇతర పత్రరచన"
+
+#~ msgid "P2P"
+#~ msgstr "P2P"
+
+#~ msgid "PDA Communication"
+#~ msgstr "PDA సంప్రదింపు"
+
+#~ msgid "Package Manager"
+#~ msgstr "ప్యాకేజ్ నిర్వాహకి"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "సమాంతర కంప్యూటింగ్"
+
+#~ msgid "Photography"
+#~ msgstr "ఛాయాచిత్రీకరణ"
+
+#~ msgid "Physics"
+#~ msgstr "భౌతికశాస్త్రము"
+
+#~ msgid "Players"
+#~ msgstr "ప్లేయర్లు"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "సమర్పణ సాధనములు"
+
+#~ msgid "Printing"
+#~ msgstr "ముద్రణ"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "ప్రొఫైలింగ్ సాధనములు"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "ప్రోజెక్టు నిర్వహణా సాధనములు"
+
+#~ msgid "Publishing"
+#~ msgstr "ప్రచురీకరణ"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~ msgid "Raster Graphics"
+#~ msgstr "రాస్టర్ గ్రాఫిక్స్"
+
+#~ msgid "Recorders"
+#~ msgstr "రికార్డర్స్"
+
+#~ msgid "Remote Access"
+#~ msgstr "సుదూర ప్రవేశము"
+
+#~ msgid "Revision Control"
+#~ msgstr "పునఃవిమర్శ నియంత్రణ"
+
+#~ msgid "Robotics"
+#~ msgstr "రోబోటిక్స్"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "రోల్ ప్లేయింగ్ ఆటలు"
+
+#~ msgid "Scanning"
+#~ msgstr "స్కానింగ్"
+
+#~ msgid "Science"
+#~ msgstr "సాంకేతికశాస్త్రం"
+
+#~ msgid "Security"
+#~ msgstr "రక్షిత"
+
+#~ msgid "Sequencers"
+#~ msgstr "వరుసగావచ్చునవి"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr "వినియోగదారులు వారి వాతావరణనాన్ని మరింత అహ్లాదభరితంగా చేసుకొవటానికి అమరికలను మార్చుకొనవచ్చు"
+
+#~ msgid "Simulation Games"
+#~ msgstr "సిమ్యులేషన్ ఆటలు"
+
+#~ msgid "Sound"
+#~ msgstr "శబ్దము"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "శబ్ధము &amp; వీడియో"
+
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "శబ్ధము &amp; వీడియో సరికూర్పు"
+
+#~ msgid "Sports"
+#~ msgstr "క్రీడలు"
+
+#~ msgid "Sports Games"
+#~ msgstr "క్రీడాపరమైన ఆటలు"
+
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "స్ప్రెడ్‌షీట్ సాధనములు"
+
+#~ msgid "Strategy Games"
+#~ msgstr "యుక్తిపరమైన ఆటలు"
+
+#~ msgid "System"
+#~ msgstr "సిస్టమ్"
+
+#~ msgid "TV"
+#~ msgstr "TV"
+
+#~ msgid "Telephony"
+#~ msgstr "టెలిపొని"
+
+#~ msgid "Telephony Tools"
+#~ msgstr "టెలిఫొని సాధనములు"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "టెర్మినల్ ఎములేటర్"
+
+#~ msgid "Text Editors"
+#~ msgstr "పాఠ్యపు సరికూర్పరిలు"
+
+#~ msgid "Text Tools"
+#~ msgstr "పాఠ్యపు సాధనములు"
+
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "కంప్యూటర్ ను నిర్వహించుటకు సౌధనములు"
+
+#~ msgid "Translation Tools"
+#~ msgstr "అనువాదపు సాధనములు"
+
+#~ msgid "Tuners"
+#~ msgstr "ట్యూనర్స్"
+
+#~ msgid "Utilities"
+#~ msgstr "సౌలభ్యాలు"
+
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "మీ పని జరుగుటకు మీ సహాయపడె సౌలభ్యాలు"
+
+#~ msgid "Vector Graphics"
+#~ msgstr "వెక్టార్ గ్రాఫిక్స్"
+
+#~ msgid "Video"
+#~ msgstr "వీడియో"
+
+#~ msgid "Video Conference"
+#~ msgstr "వీడియో సమావేశము"
+
+#~ msgid "Web Browser"
+#~ msgstr "వెబ్ బ్రౌజర్"
+
+#~ msgid "Web Development"
+#~ msgstr "వెబ్ అభివృద్ది"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "గ్నోమ్ సహాయ  అన్వేషికి స్వాగతం"
+
+#~ msgid "Word Processors"
+#~ msgstr "వెబ్ ప్రోసెసెస్"
+
+#~ msgid "Re_name"
+#~ msgstr "పునర్నామకరణ (_n)"
+
+#~ msgid "_Bookmarks:"
+#~ msgstr "బుక్‌మార్కులు (_B):"
+
+#~ msgid "Add Bookmark"
+#~ msgstr "బుక్‌మార్క్ జతచేయుము"
+
+#~ msgid "_Title:"
+#~ msgstr "శీర్షిక (_T):"
+
+#~ msgid "_Location:"
+#~ msgstr "స్థానము (_L):"
+
+#~ msgid "Preferences"
+#~ msgstr "అభీష్టాలు"
+
+#~ msgid "_Browse with caret"
+#~ msgstr "కారెట్ ద్వారా అన్వేషించు (_B)"
+
+#~ msgid "_Fixed width:"
+#~ msgstr "స్థిర  వెడల్పు (_F):"
+
+#~ msgid "_Use system fonts"
+#~ msgstr "వ్యవస్థ అక్షరశైలులను ఉపయోగించు (_U)"
+
+#~ msgid "_Variable width:"
+#~ msgstr "అస్థిర  వెడెల్పు (_V):"
+
+#~ msgid "Font for fixed text"
+#~ msgstr "స్థిర పాఠముకు అక్షరశైలి"
+
+#~ msgid "Font for text"
+#~ msgstr "పాఠముకు అక్షరశైలి"
+
+#~ msgid "Font for text with fixed width."
+#~ msgstr "పాఠముకు స్థిర  వెడెల్పుతో  అక్షరశైలి"
+
+#~ msgid "Font for text with variable width."
+#~ msgstr "పాఠముకు  అస్థిర  వెడెల్పుతో  అక్షరశైలి"
+
+#~ msgid "Use a keyboard-controllable caret when viewing pages."
+#~ msgstr "పేజీలను దర్శించుచున్నప్పుడు కీబోర్డ్-నింయంత్రిత అక్షరమును వాడుము."
+
+#~ msgid "Use caret"
+#~ msgstr "హంసపాదును  ఉపయోగించు"
+
+#~ msgid "Use system fonts"
+#~ msgstr "వ్యవస్థ అక్షరశైలులను ఉపయోగించు"
+
+#~ msgid "Use the default fonts set for the system."
+#~ msgstr "వ్యవస్థకు అప్రమేయ అక్షరశైలులను ఉపయోగించు."
+
+#, fuzzy
+#~ msgid "Starting %s"
+#~ msgstr "అమరికలు"
+
+#, fuzzy
+#~ msgid "ID"
+#~ msgstr "IDEs"
+
+#~ msgid "Open Bookmark in New Window"
+#~ msgstr "ఇష్టాంశమును కొత్త విండోనందు తెరువుము"
+
+#~ msgid "Rename Bookmark"
+#~ msgstr "పుస్తకచిహ్నా పునర్నామకరణ"
+
+#~ msgid "A bookmark titled %s already exists for this page."
+#~ msgstr "ఈ పేజీ కొరకు యిప్పటికే %s శీర్షికగల బుక్‌మార్క్ వుంది."
+
+#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
+#~ msgstr "<b>%s</b> శీర్షికగల బుక్‌మార్క్ యిప్పటికే ఈ పేజీకు వుంది."
+
+#~ msgid "Help Topics"
+#~ msgstr "సహాయ సంగతులు"
+
+#~ msgid "File not found"
+#~ msgstr "దస్త్రం దొరుకలేదు"
+
+#~ msgid "Could not parse file"
+#~ msgstr "ఫైలు పార్శ్ చేయలేక పోయింది"
+
+#~ msgid "Could Not Read File"
+#~ msgstr "ఫైలు చదవలేకపోయింది"
+
+#~ msgid "No information is available about this error."
+#~ msgstr "ఈ దోషము గూర్చి యెటువంటి సమాచారము అందుబాటులోలేదు."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
+#~ "in an unsupported format."
+#~ msgstr ""
+#~ "ఫైలు ‘%s’ చదువబడలేక పోయింది మరియు డీకోడ్ చేయబడలేక పోయింది. ఆ ఫైలు బహుశా మద్దతీయనటువంటి రూపంలో "
+#~ "కుదించబడి వుండవచ్చు."
+
+#~ msgid "Use a private session"
+#~ msgstr "స్వంత సమకూర్పును ఉపయోగించుము"
+
+#~ msgid "Define which cache directory to use"
+#~ msgstr "ఏ గల్లాపెట్టె వివరమును  ఉపయోగించాలో నిర్వచించుము"
+
+#~ msgid " GNOME Help Browser"
+#~ msgstr "గ్నోమ్ సహాయ  అన్వేషి"
+
+#, fuzzy
+#~ msgid "Directory not found"
+#~ msgstr "దస్త్రం దొరుకలేదు"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
+#~ "page."
+#~ msgstr "పైలు ‘%s’ పార్శ్ చేయబడలేక పోయింది యెంచేతంటే అది సరిగా-రూపొందించిన ముఖ్య పేజీకాదు."
+
+#~ msgid "Preparing to print"
+#~ msgstr "ముద్రణకు సిద్దమవుతుంది"
+
+#~ msgid "Printing is not supported on this printer"
+#~ msgstr "ముద్రణకు ఈ ముద్రణాయంత్రములో సహకారం లేదు"
+
+#~ msgid "Printer %s does not support postscript printing."
+#~ msgstr "ముద్రకం %s పోస్ట్ స్క్రిప్ట్ ముద్రణను మద్దతించదు."
+
+#~ msgid "Waiting to print"
+#~ msgstr "ముద్రణ కొరకు నిరీక్షిస్తుంది"
+
+#~ msgid "An error occurred while printing"
+#~ msgstr "ముద్రిస్తున్నప్పుడు దోషము వచ్చినది"
+
+#~ msgid "It was not possible to print your document: %s"
+#~ msgstr "మీ పత్రమును ముద్రించుట సాధ్యము కాదు: %s"
+
+#~ msgid "the GNOME Support Forums"
+#~ msgstr "GNOME మద్దతుదారి ఫోరములు"
+
+#~ msgid "No results for \"%s\""
+#~ msgstr "\"%s\" కు ఫలితాలు  లేవు"
+
+#~ msgid ""
+#~ "Try using different words to describe the problem you're having or the "
+#~ "topic you want help with."
+#~ msgstr ""
+#~ "మీరు కలిగివున్న సమస్యను వివరించుటకు లేదా మీరు సహాయ కావాలనుకొనుచున్న టాపిక్ కొరకు విభిన్న పదాలను "
+#~ "వుపయోగించి ప్రయత్నించండి."
+
+#~ msgid ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ msgstr ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+
+#~ msgid "re"
+#~ msgstr "re"
+
+#~ msgid "ers:er:ing:es:s:'s"
+#~ msgstr "ers:er:ing:es:s:'s"
+
+#~ msgid "No Comment"
+#~ msgstr "వ్యాఖ్యానించుట లేదు"
+
+#~ msgid "Search could not be processed"
+#~ msgstr "శోధన నిర్వహించబడలేక పోయింది"
+
+#~ msgid "The requested search could not be processed."
+#~ msgstr "అభ్యర్ధించిన శోధన ప్రోసెస్ చేయబడలేక పోయింది."
+
+#~ msgid "Cannot process the search"
+#~ msgstr "శోధనను ప్రోసెస్ చేయలేక పోయింది"
+
+#~ msgid "The search processor returned invalid results"
+#~ msgstr "శోధన ప్రోసెసర్ చెల్లని ఫలితాలను యిచ్చినది"
+
+#~ msgid "The page %s was not found in the TOC."
+#~ msgstr "పేజీ %s TOC నందు కనబడలేదు."
+
+#~ msgid "The requested page was not found in the TOC."
+#~ msgstr "అభ్యర్ధించిన పేజీ TOC నందు కనబడలేదు."
+
+#~ msgid ""
+#~ "The TOC file could not be parsed because it is not a well-formed XML "
+#~ "document."
+#~ msgstr "TOC ఫైలు పార్శ్ చేయబడలేక పోయింది యెంచేతంటే అది సరిగా-రూపొందించిన XML పత్రముకాదు."
+
+#~ msgid "Broken Transformation"
+#~ msgstr "విరిగిపోయిన బదిలీకరణ"
+
+#~ msgid ""
+#~ "An unknown error occurred while attempting to transform the document."
+#~ msgstr "పత్రమును బదిలీకరించునప్పుడు వొక తెలియని దోషము యెదురైంది."
+
+#~ msgid "_File"
+#~ msgstr "దస్త్రం (_F)"
+
+#~ msgid "_Edit"
+#~ msgstr "సరిచేయు (_E)"
+
+#~ msgid "_Help"
+#~ msgstr "సహాయం (_H)"
+
+#~ msgid "Print This Document ..."
+#~ msgstr "ఈ పత్రాన్ని ముద్రించు ..."
+
+#~ msgid "Open _Location"
+#~ msgstr "స్థానాన్ని తెరువుము (_L)"
+
+#~ msgid "_Close Window"
+#~ msgstr "గవాక్షమును మూయుము (_C)"
+
+#~ msgid "_Select All"
+#~ msgstr "అన్నింటిని ఎంచుకొనుము (_S)"
+
+#~ msgid "_Find..."
+#~ msgstr "వెతుకు... (_F)"
+
+#~ msgid "Find Pre_vious"
+#~ msgstr "పూర్వపుదాన్ని వెతుకు (_V)"
+
+#~ msgid "Find previous occurrence of the word or phrase"
+#~ msgstr "పూర్వపు వచ్చిన పదాన్ని వెతుకుము"
+
+#~ msgid "Find Ne_xt"
+#~ msgstr "తర్వాతదాన్ని వెతుకు (_X)"
+
+#~ msgid "Find next occurrence of the word or phrase"
+#~ msgstr "తర్వాత వచ్చే పదాన్ని వెతుకుము"
+
+#~ msgid "_Preferences"
+#~ msgstr "అభీష్టాలు (_P)"
+
+#~ msgid "_Reload"
+#~ msgstr "తిరిగిలోడుచేయి (_R)"
+
+#~ msgid "Show previous page in history"
+#~ msgstr "పూర్వపు పేజీను చరిత్రలో చూపుము "
+
+#~ msgid "Show next page in history"
+#~ msgstr "తర్వాత పేజీను చరిత్రలోచూపుము"
+
+#~ msgid "_Help Topics"
+#~ msgstr "సహాయక సంగతులు (_H)"
+
+#~ msgid "Go to the listing of help topics"
+#~ msgstr "సహాయ సంగతుల జాబితాకు వెళ్ళుము"
+
+#~ msgid "_Previous Section"
+#~ msgstr "పూర్వపు  భాగము (_P)"
+
+#~ msgid "_Next Section"
+#~ msgstr "తర్వాతి భాగము (_N)"
+
+#~ msgid "_Contents"
+#~ msgstr "సారాంశాలు (_C)"
+
+#~ msgid "_Edit Bookmarks..."
+#~ msgstr "గుర్తులను సరిచేయు... (_E)"
+
+#~ msgid "_Copy Link Address"
+#~ msgstr "జోడిక చిరునామాను నకలు తీయుము (_C)"
+
+#~ msgid "Help On this application"
+#~ msgstr "ఈ కార్యక్షేత్రముపై సహాయము"
+
+#~ msgid "_About"
+#~ msgstr "గురించి (_A)"
+
+#~ msgid "Copy _Email Address"
+#~ msgstr "ఇమెయిల్ చిరునామాను నకలుతీయుము (_E)"
+
+#~ msgid "Help Browser"
+#~ msgstr "సహాయ అన్వేషి"
+
+#~ msgid "Unknown Page"
+#~ msgstr "తెలియని పేజి"
+
+#~ msgid "The requested URI \"%s\" is invalid"
+#~ msgstr "అభ్యర్ధించిన URI \"%s\" చెల్లనిది"
+
+#~ msgid "Unable to load page"
+#~ msgstr "పేజీను లోడు చేయలేక పోయింది"
+
+#~ msgid "Cannot create search component"
+#~ msgstr "శోధన మూలకంను సృష్టించలేక పోయింది"
+
+#~ msgid "Find _Previous"
+#~ msgstr "పూర్వపుది కనిపెట్టు (_P)"
+
+#~ msgid "Find _Next"
+#~ msgstr "తర్వాతది కనిపెట్టు (_N)"
+
+#~ msgid "Phrase not found"
+#~ msgstr "పద సముదాయము దొరకలేదు"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
+#~ "might not have permissions to read it."
+#~ msgstr ""
+#~ "'%s' దస్త్రాన్ని  చదవలేకపోయింది. ఈ దస్త్రం తొలగించబడియుంటుంది లేదా మీరు ఈ  దస్త్రాన్ని చదువుటకు "
+#~ "అనుమతి ఉండకపోవచ్చు"
+
+#~ msgid "translator-credits"
+#~ msgstr "Bharat Kumar <jonnalagaddabharat@gmail.com>"
+
+#~ msgid "A documentation browser and viewer for the Gnome Desktop."
+#~ msgstr "గ్నోమ్ రంగస్థలముకు పత్రరచన అన్వేషి మరియు దర్శని"
 
 #~ msgid "<b>Accessibility</b>"
 #~ msgstr "<b>సాంగత్యం</b>"
@@ -1572,12 +1460,6 @@ msgstr "గ్నోమ్ తో  సహాయం పొందుము"
 
 #~ msgid "_Find:"
 #~ msgstr "వెతుకు (_F):"
-
-#~ msgid "_Next"
-#~ msgstr "తరువాత (_N)"
-
-#~ msgid "_Previous"
-#~ msgstr "పూర్వపు (_P)"
 
 #~ msgid "_Wrap around"
 #~ msgstr "చుట్టూతా అమర్చు(_W)"
