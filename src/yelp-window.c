@@ -426,7 +426,7 @@ window_construct (YelpWindow *window)
 
     priv->view = (YelpView *) yelp_view_new ();
 
-    action = gtk_action_new ("ReadLinkLater", "Read Link _Later", NULL, NULL);
+    action = gtk_action_new ("ReadLinkLater", _("Read Link _Later"), NULL, NULL);
     g_signal_connect (action, "activate", G_CALLBACK (window_read_later), window);
     yelp_view_add_link_action (priv->view, action,
                                (YelpViewActionValidFunc) view_is_xref_uri,
