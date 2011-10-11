@@ -1,21 +1,19 @@
-# translation of yelp.HEAD.hu.po to Hungarian
 # Hungarian translation of yelp.
 # Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2011 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 #
-# Szabolcs Ban <shooby@gnome.hu>, 2002.
-# Emese Kovacs <emese@gnome.hu>, 2002.
-# Andras Timar <timar@gnome.hu>, 2002, 2003, 2004.
-# Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006, 2007, 2008.
+# Szabolcs Ban <shooby at gnome dot hu>, 2002.
+# Emese Kovacs <emese at gnome dot hu>, 2002.
+# Andras Timar <timar at gnome dot hu>, 2002, 2003, 2004.
+# Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2004, 2005, 2006, 2007, 2008, 2011.
 # Mate ORY <orymate at gmail d0t com>, 2006.
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.HEAD\n"
+"Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-21 03:36+0200\n"
-"PO-Revision-Date: 2011-09-21 03:36+0200\n"
+"POT-Creation-Date: 2011-10-11 20:38+0200\n"
+"PO-Revision-Date: 2011-10-11 20:40+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: \n"
@@ -508,6 +506,10 @@ msgstr "Alkalmazás"
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Az ablakot vezérlő YelpApplication példány"
+
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Hivatkozás _elolvasása később"
 
 #: ../src/yelp-window.c:526
 msgid "Find:"
