@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-11 22:37+0200\n"
-"PO-Revision-Date: 2011-08-11 22:38+0200\n"
+"POT-Creation-Date: 2011-10-12 20:29+0200\n"
+"PO-Revision-Date: 2011-10-12 20:30+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -78,33 +78,33 @@ msgstr "Nieznany"
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Żądana strona nie została odnaleziona w dokumencie \"%s\"."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "Zindeksowany"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "Określa, czy treść dokumentu została zindeksowana"
 
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "Adres URI dokumentu"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "Adres URI identyfikujący dokument"
 
-#: ../libyelp/yelp-document.c:956
+#: ../libyelp/yelp-document.c:958
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Wyniki wyszukiwania dla \"%s\""
 
-#: ../libyelp/yelp-document.c:968
+#: ../libyelp/yelp-document.c:970
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Nie odnaleziono pasujących stron pomocy w \"%s\"."
 
-#: ../libyelp/yelp-document.c:974
+#: ../libyelp/yelp-document.c:976
 msgid "No matching help pages found."
 msgstr "Nie odnaleziono pasujących stron pomocy."
 
@@ -505,6 +505,10 @@ msgstr "Program"
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Wystąpienie YelpApplication sterujące tym oknem"
+
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Przeczytaj _odnośnik później"
 
 #: ../src/yelp-window.c:526
 msgid "Find:"
