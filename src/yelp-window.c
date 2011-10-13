@@ -30,6 +30,9 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
+#include <folks/folks.h>
+#include <gee.h>
+
 #include "yelp-location-entry.h"
 #include "yelp-settings.h"
 #include "yelp-uri.h"
@@ -112,6 +115,8 @@ static gboolean      entry_focus_in               (GtkEntry           *entry,
                                                    YelpWindow         *window);
 static gboolean      entry_focus_out              (YelpLocationEntry  *entry,
                                                    GdkEventFocus      *event,
+                                                   YelpWindow         *window);
+static void          share_button_clicked         (GtkWidget          *button,
                                                    YelpWindow         *window);
 
 static void          view_new_window              (YelpView           *view,
@@ -484,6 +489,14 @@ window_construct (YelpWindow *window)
     gtk_box_pack_start (GTK_BOX (priv->hbox),
                         button,
                         FALSE, FALSE, 0);
+
+    button = (GtkWidget *) gtk_tool_button_new (NULL, _("Share"));
+    gtk_tool_button_set_icon_name ((GtkToolButton *) button, "emblem-shared");
+    g_signal_connect (button, "clicked",
+                      G_CALLBACK (share_button_clicked), window);
+    gtk_box_pack_end (GTK_BOX (priv->hbox),
+                      button,
+                      FALSE, FALSE, 0);
 
     priv->entry = (YelpLocationEntry *) yelp_location_entry_new (priv->view,
                                                                  YELP_BOOKMARKS (priv->application));
@@ -1399,3 +1412,298 @@ hidden_key_press (GtkWidget    *widget,
     }
     return FALSE;
 }
+
+static void
+share_email_clicked (GtkToolButton  *button,
+                     GtkDialog      *dialog)
+{
+    GtkEntry *email = g_object_get_data (G_OBJECT (dialog), "email");
+    gchar *title  = g_object_get_data (G_OBJECT (dialog), "title");
+    gchar *uri = g_object_get_data (G_OBJECT (dialog), "uri");
+    gchar *email_esc, *title_esc, *uri_esc, *mailto;
+    email_esc = g_uri_escape_string (gtk_entry_get_text (email), NULL, FALSE);
+    title_esc = g_uri_escape_string (title, NULL, FALSE);
+    uri_esc = g_uri_escape_string (uri, NULL, FALSE);
+    mailto = g_strdup_printf ("mailto:%s?subject=%s&body=%s",
+                              email_esc, title_esc, uri_esc);
+    gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (dialog)),
+                  mailto, GDK_CURRENT_TIME, NULL);
+    g_free (email_esc);
+    g_free (title_esc);
+    g_free (uri_esc);
+    g_free (mailto);
+}
+
+static void
+share_copy_clicked (GtkToolButton  *button,
+                    GtkEntry       *entry)
+{
+    gtk_editable_copy_clipboard (GTK_EDITABLE (entry));
+}
+
+static void
+share_tab_toggled (GtkToggleToolButton *tab,
+                   YelpWindow          *window)
+{
+    GtkWidget *widget;
+    gboolean visible;
+
+    visible = gtk_toggle_tool_button_get_active (tab);
+
+    widget = g_object_get_data (G_OBJECT (tab), "pane");
+    if (widget != NULL)
+        gtk_widget_set_visible (widget, visible);
+    widget = g_object_get_data (G_OBJECT (tab), "button");
+    if (widget != NULL)
+        gtk_widget_set_visible (widget, visible);
+}
+
+static void
+share_folks_prepared (FolksIndividualAggregator *folks,
+                      GAsyncResult              *res,
+                      gpointer                   data)
+{
+    folks_individual_aggregator_prepare_finish (folks, res, NULL);
+}
+
+static void
+share_folks_quiescent (FolksIndividualAggregator *folks,
+                       GParamSpec                *pspec,
+                       GtkListStore              *list)
+{
+    GeeMap *individuals;
+    GeeMapIterator *mapiter;
+
+    individuals = folks_individual_aggregator_get_individuals (folks);
+    mapiter = gee_map_map_iterator (individuals);
+
+    while (gee_map_iterator_next (mapiter)) {
+        FolksIndividual *person;
+        gchar *pid, *name;
+        GeeSet *emails;
+        GeeIterator *emailiter;
+        person = gee_map_iterator_get_value (mapiter);
+        g_object_get (person,
+                      "id", &pid,
+                      "full-name", &name,
+                      "email-addresses", &emails,
+                      NULL);
+        emailiter = gee_iterable_iterator (GEE_ITERABLE (emails));
+        while (gee_iterator_next (emailiter)) {
+            FolksEmailFieldDetails *field = gee_iterator_get (emailiter);
+            const gchar *addr = folks_abstract_field_details_get_value ((FolksAbstractFieldDetails *) field);
+            GtkTreeIter iter;
+            gtk_list_store_append (list, &iter);
+            if (name != NULL && name[0] != '\0') {
+                gchar *fulltext = g_strdup_printf ("%s <%s>", name, addr);
+                gtk_list_store_set (list, &iter,
+                                    0, pid,
+                                    1, fulltext,
+                                    -1);
+                g_free (fulltext);
+            }
+            else {
+                gtk_list_store_set (list, &iter,
+                                    0, pid,
+                                    1, addr,
+                                    -1);
+            }
+        }
+        g_object_unref (emailiter);
+        g_object_unref (emails);
+        g_free (pid);
+        g_free (name);
+    }
+
+    g_object_unref (mapiter);
+    g_object_unref (individuals);
+}
+
+static void
+share_button_clicked (GtkWidget   *button,
+                      YelpWindow  *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    GtkToolItem *tab;
+    GtkWidget *dialog, *content, *hbox, *vbox, *pane, *cont, *widget, *entry, *image;
+    GSList *tabs = NULL;
+    YelpUri *yuri;
+    gchar *title = NULL;
+    gchar *uri = NULL;
+    FolksIndividualAggregator *folks;
+    GtkListStore *list;
+    GtkEntryCompletion *completion;
+
+    g_object_get (priv->view,
+                  "yelp-uri", &uri,
+                  "page-title", &title,
+                  NULL);
+    g_object_get (priv->view,
+                  "yelp-uri", &yuri,
+                  NULL);
+    if (yuri) {
+        uri = yelp_uri_get_canonical_uri (yuri);
+        g_object_unref (yuri);
+    }
+    if (uri == NULL) {
+        g_free (title);
+        return;
+    }
+
+    dialog = gtk_dialog_new_with_buttons (_("Share"), GTK_WINDOW (window),
+                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                          _("Close"), GTK_RESPONSE_CLOSE,
+                                          NULL);
+    g_signal_connect_swapped (dialog,
+                              "response",
+                              G_CALLBACK (gtk_widget_destroy),
+                              dialog);
+    g_object_set_data_full (G_OBJECT (dialog), "uri", uri, g_free);
+    g_object_set_data_full (G_OBJECT (dialog), "title", title, g_free);
+
+    folks = folks_individual_aggregator_new ();
+    list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+    g_signal_connect (folks, "notify::is-quiescent",
+                      G_CALLBACK (share_folks_quiescent),
+                      list);
+    folks_individual_aggregator_prepare (folks,
+                                         (GAsyncReadyCallback) share_folks_prepared,
+                                         NULL);
+    g_object_set_data_full (G_OBJECT (dialog), "folks", folks, g_object_unref);
+
+    content = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
+    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    g_object_set (hbox,
+                  "halign", GTK_ALIGN_CENTER,
+                  "margin-left", 36,
+                  "margin-right", 36,
+                  "margin-bottom", 12,
+                  NULL);
+    gtk_container_add (GTK_CONTAINER (content), hbox);
+
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+    g_object_set (vbox,
+                  "halign", GTK_ALIGN_FILL,
+                  "hexpand", TRUE,
+                  "hexpand-set", TRUE,
+                  "margin-left", 6,
+                  "margin-right", 6,
+                  "margin-bottom", 12,
+                  NULL);
+    gtk_container_add (GTK_CONTAINER (content), vbox);
+
+    /* Chat */
+    tab = gtk_radio_tool_button_new (tabs);
+    tabs = gtk_radio_tool_button_get_group ((GtkRadioToolButton *) tab);
+    g_signal_connect (tab, "toggled", G_CALLBACK (share_tab_toggled), window);
+    g_object_set (tab,
+                  "icon-name", "empathy",
+                  "label", _("Chat"),
+                  NULL);
+    gtk_container_add (GTK_CONTAINER (hbox), GTK_WIDGET (tab));
+
+    pane = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    gtk_container_add (GTK_CONTAINER (vbox), pane);
+    g_object_set_data (G_OBJECT (tab), "pane", pane);
+    widget = gtk_label_new (_("Send a help link to a chat contact:"));
+    g_object_set (widget, "halign", GTK_ALIGN_START, NULL);
+    gtk_container_add (GTK_CONTAINER (pane), widget);
+
+    gtk_widget_show_all (pane);
+    share_tab_toggled ((GtkToggleToolButton *) tab, window);
+
+    /* Email */
+    tab = gtk_radio_tool_button_new (tabs);
+    tabs = gtk_radio_tool_button_get_group ((GtkRadioToolButton *) tab);
+    g_signal_connect (tab, "toggled", G_CALLBACK (share_tab_toggled), window);
+    g_object_set (tab,
+                  "icon-name", "emblem-mail",
+                  "label", _("Email"),
+                  NULL);
+    gtk_container_add (GTK_CONTAINER (hbox), GTK_WIDGET (tab));
+
+    pane = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    gtk_container_add (GTK_CONTAINER (vbox), pane);
+    g_object_set_data (G_OBJECT (tab), "pane", pane);
+
+    widget = gtk_label_new (_("Send a help link to an email contact:"));
+    g_object_set (widget, "halign", GTK_ALIGN_START, NULL);
+    gtk_container_add (GTK_CONTAINER (pane), widget);
+
+    cont = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_container_add (GTK_CONTAINER (pane), cont);
+
+    entry = gtk_entry_new ();
+    g_object_set (entry,
+                  "hexpand", TRUE,
+                  "hexpand-set", TRUE,
+                  NULL);
+    completion = gtk_entry_completion_new ();
+    gtk_entry_completion_set_model (completion, GTK_TREE_MODEL (list));
+    gtk_entry_set_completion (GTK_ENTRY (entry), completion);
+    g_object_unref (completion);
+    gtk_entry_completion_set_text_column (completion, 1);
+    gtk_container_add (GTK_CONTAINER (cont), entry);
+    g_object_set_data (G_OBJECT (dialog), "email", entry);
+
+    image = gtk_image_new_from_icon_name ("mail-unread-symbolic", GTK_ICON_SIZE_INVALID);
+    gtk_image_set_pixel_size (GTK_IMAGE (image), 12);
+    widget = (GtkWidget *) gtk_tool_button_new (image, _("Compose new email"));
+    g_object_set (widget,
+                  "icon-name", "emblem-mail",
+                  "tooltip-text", _("Compose new email"),
+                  NULL);
+    g_signal_connect (widget, "clicked", G_CALLBACK (share_email_clicked), dialog);
+    gtk_container_add (GTK_CONTAINER (cont), widget);
+
+    gtk_widget_show_all (pane);
+    share_tab_toggled ((GtkToggleToolButton *) tab, window);
+
+    /* Copy */
+    tab = gtk_radio_tool_button_new (tabs);
+    tabs = gtk_radio_tool_button_get_group ((GtkRadioToolButton *) tab);
+    g_signal_connect (tab, "toggled", G_CALLBACK (share_tab_toggled), window);
+    g_object_set (tab,
+                  "icon-name", "edit-copy",
+                  "label", _("Copy"),
+                  NULL);
+    gtk_container_add (GTK_CONTAINER (hbox), GTK_WIDGET (tab));
+
+    pane = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
+    gtk_container_add (GTK_CONTAINER (vbox), pane);
+    g_object_set_data (G_OBJECT (tab), "pane", pane);
+
+    widget = gtk_label_new (_("Copy the help location to the clipboard:"));
+    g_object_set (widget, "halign", GTK_ALIGN_START, NULL);
+    gtk_container_add (GTK_CONTAINER (pane), widget);
+
+    cont = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_container_add (GTK_CONTAINER (pane), cont);
+
+    entry = gtk_entry_new ();
+    g_object_set (entry,
+                  "editable", FALSE,
+                  "hexpand", TRUE,
+                  "hexpand-set", TRUE,
+                  NULL);
+    gtk_entry_set_text (GTK_ENTRY (entry), uri);
+    gtk_editable_select_region (GTK_EDITABLE (entry), 0, -1);
+    gtk_container_add (GTK_CONTAINER (cont), entry);
+
+    image = gtk_image_new_from_icon_name ("edit-copy-symbolic", GTK_ICON_SIZE_INVALID);
+    gtk_image_set_pixel_size (GTK_IMAGE (image), 12);
+    widget = (GtkWidget *) gtk_tool_button_new (image, _("Copy"));
+    g_object_set (widget,
+                  "tooltip-text", _("Copy location to clipboard"),
+                  NULL);
+    g_signal_connect (widget, "clicked", G_CALLBACK (share_copy_clicked), entry);
+    gtk_container_add (GTK_CONTAINER (cont), widget);
+
+    gtk_widget_show_all (pane);
+    share_tab_toggled ((GtkToggleToolButton *) tab, window);
+
+    gtk_widget_show_all (hbox);
+    gtk_widget_show (vbox);
+    gtk_dialog_run (GTK_DIALOG (dialog));
+}
+

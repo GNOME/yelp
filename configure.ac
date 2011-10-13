@@ -27,6 +27,8 @@ GLIB_GSETTINGS
 # Library dependecies
 PKG_CHECK_MODULES(YELP,
 [
+	folks >= 0.6.3
+	gee-1.0
 	gio-2.0 >= 2.25.11
 	gio-unix-2.0
 	gtk+-unix-print-3.0
