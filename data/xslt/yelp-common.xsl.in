@@ -89,6 +89,9 @@ div.body {
   padding: 0 0 12px 0;
   border: none;
 }
+.current-location-hash div.hgroup {
+  background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>
+}
 </xsl:text>
 <xsl:call-template name="yelp.css.custom"/>
 </xsl:template>
@@ -105,16 +108,16 @@ div.body {
 <xsl:text>
 $(document).ready (function () {
   if (location.hash != '') {
-    $('#' + location.hash).find('div.hgroup').css({
-      backgroundColor: '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>'
-    }).animate({
-      backgroundColor: '</xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>'
-    }, 8000);
-    $('#' + location.hash).css({
-      backgroundColor: '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>'
-    }).animate({
-      backgroundColor: '</xsl:text><xsl:value-of select="$color.background"/><xsl:text>'
-    }, 4000);
+    var sect = $('#' + location.hash);
+    var hgrp = sect.find('div.hgroup:first')
+    sect.css('background-color',  '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>');
+    hgrp.css('background-color',  '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>')
+    window.setTimeout(function () {
+      sect.css('-webkit-transition', 'background-color 2s linear')
+      .css('background-color',  '</xsl:text><xsl:value-of select="$color.background"/><xsl:text>');
+      hgrp.css('-webkit-transition', 'background-color 2s linear')
+      .css('background-color',  '</xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>');
+    }, 200);
   }
 });
 </xsl:text>

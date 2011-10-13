@@ -207,7 +207,6 @@ data/icons/hicolor/16x16/status/Makefile
 data/icons/hicolor/scalable/Makefile
 data/icons/hicolor/scalable/actions/Makefile
 data/icons/hicolor/scalable/status/Makefile
-data/js/Makefile
 data/xslt/Makefile
 data/xslt/db2html.xsl
 data/xslt/info2html.xsl

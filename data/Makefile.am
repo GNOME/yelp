@@ -1,4 +1,4 @@
-SUBDIRS = dtd icons js xslt
+SUBDIRS = dtd icons xslt
 
 #This has to be defined, because GSETTINGS_CHECK_RULE adds to it
 MOSTLYCLEANFILES =
