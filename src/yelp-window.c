@@ -116,7 +116,7 @@ static gboolean      entry_focus_in               (GtkEntry           *entry,
 static gboolean      entry_focus_out              (YelpLocationEntry  *entry,
                                                    GdkEventFocus      *event,
                                                    YelpWindow         *window);
-static void          share_button_clicked         (GtkWidget          *button,
+static void          share_button_clicked         (GtkAction          *action,
                                                    YelpWindow         *window);
 
 static void          view_new_window              (YelpView           *view,
@@ -164,6 +164,7 @@ static const gchar *YELP_UI =
     "<menuitem action='NewWindow'/>"
     "<menuitem action='Find'/>"
     "<separator/>"
+    "<menuitem action='Share'/>"
     "<menuitem action='YelpViewPrint'/>"
     "<separator/>"
     "<menuitem action='CloseWindow'/>"
@@ -253,6 +254,10 @@ static const GtkActionEntry entries[] = {
       "<Control>W",
       NULL,
       G_CALLBACK (window_close) },
+    { "Share", NULL,
+      N_("_Share..."),
+      NULL, NULL,
+      G_CALLBACK (share_button_clicked) },
     { "GoAll", NULL,
       N_("_All Documents"),
       NULL, NULL,
@@ -490,10 +495,9 @@ window_construct (YelpWindow *window)
                         button,
                         FALSE, FALSE, 0);
 
-    button = (GtkWidget *) gtk_tool_button_new (NULL, _("Share"));
-    gtk_tool_button_set_icon_name ((GtkToolButton *) button, "emblem-shared");
-    g_signal_connect (button, "clicked",
-                      G_CALLBACK (share_button_clicked), window);
+    action = gtk_action_group_get_action (priv->action_group, "Share");
+    gtk_action_set_icon_name (action, "emblem-shared");
+    button = gtk_action_create_tool_item (action);
     gtk_box_pack_end (GTK_BOX (priv->hbox),
                       button,
                       FALSE, FALSE, 0);
@@ -1520,7 +1524,7 @@ share_folks_quiescent (FolksIndividualAggregator *folks,
 }
 
 static void
-share_button_clicked (GtkWidget   *button,
+share_button_clicked (GtkAction   *action,
                       YelpWindow  *window)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
