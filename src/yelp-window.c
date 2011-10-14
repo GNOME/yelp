@@ -1478,7 +1478,15 @@ share_folks_quiescent (FolksIndividualAggregator *folks,
     GeeMap *individuals;
     GeeMapIterator *mapiter;
 
-    individuals = folks_individual_aggregator_get_individuals (folks);
+    /* I realize there's folks_individual_aggregator_get_individuals,
+       but I think it doesn't ref, or it does, or something else. Who
+       knows? I don't feel like untangling the web of libgee and vala.
+       I know g_object_get always refs objects. Life is easier when
+       things are predictable.
+    */
+    g_object_get (folks,
+                  "individuals", &individuals,
+                  NULL);
     mapiter = gee_map_map_iterator (individuals);
 
     while (gee_map_iterator_next (mapiter)) {
