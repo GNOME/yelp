@@ -14,20 +14,21 @@
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Antón Méixome <meixome@mancomun.org>, 2009.
 # Fran Diéguez <frandieguez@gnome.org>, 2010, 2011.
+# Fran Dieguez <frandieguez@gnome.org>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-16 19:14+0200\n"
-"PO-Revision-Date: 2011-08-16 19:15+0200\n"
-"Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
+"POT-Creation-Date: 2011-10-16 00:16+0200\n"
+"PO-Revision-Date: 2011-10-16 00:17+0200\n"
+"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
@@ -86,33 +87,33 @@ msgstr "Descoñecido"
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Non se atopou a páxina solicitada no documento «%s»."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "Indexado"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "Indica se o contido do documento foi indexado"
 
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "_Todos os documentos"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "O URI que identifica o documento"
 
-#: ../libyelp/yelp-document.c:956
+#: ../libyelp/yelp-document.c:958
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Resultados para a busca de «%s»"
 
-#: ../libyelp/yelp-document.c:968
+#: ../libyelp/yelp-document.c:970
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Non hai ningunha páxina de axuda que coincida con «%s»."
 
-#: ../libyelp/yelp-document.c:974
+#: ../libyelp/yelp-document.c:976
 msgid "No matching help pages found."
 msgstr "Non foi posíbel atopar ningunha páxina de axuda."
 
@@ -514,6 +515,10 @@ msgstr "Aplicativos"
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Unha instancia de YelpApplications que controla esta xanela"
+
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Ler ligazón _máis tarde"
 
 #: ../src/yelp-window.c:526
 msgid "Find:"
