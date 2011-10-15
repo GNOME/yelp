@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-11 06:44+0300\n"
-"PO-Revision-Date: 2011-08-11 06:44+0300\n"
+"POT-Creation-Date: 2011-10-15 09:46+0300\n"
+"PO-Revision-Date: 2011-10-15 09:46+0300\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -78,33 +78,33 @@ msgstr "Без заглавие"
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Поисканата страница не е открита в документа „%s“."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "Индексиран"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "Дали съдържанието на документа е индексирано"
 
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "Адрес на документа"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "Адресът, който идентифицира този документ"
 
-#: ../libyelp/yelp-document.c:956
+#: ../libyelp/yelp-document.c:958
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Резултати от търсенето на „%s“"
 
-#: ../libyelp/yelp-document.c:968
+#: ../libyelp/yelp-document.c:970
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Няма съвпадащи страници в „%s“."
 
-#: ../libyelp/yelp-document.c:974
+#: ../libyelp/yelp-document.c:976
 msgid "No matching help pages found."
 msgstr "Няма съвпадащи страници в помощта."
 
@@ -507,6 +507,10 @@ msgstr "Програми"
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Обект от вида „YelpApplication“, който управлява този прозорец"
+
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Прочитане по-_късно"
 
 #: ../src/yelp-window.c:526
 msgid "Find:"
