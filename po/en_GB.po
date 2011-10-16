@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-09 13:25+0100\n"
-"PO-Revision-Date: 2011-09-09 13:25+0100\n"
+"POT-Creation-Date: 2011-10-16 14:58+0100\n"
+"PO-Revision-Date: 2011-10-16 14:58+0100\n"
 "Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: British English <en@li.org>\n"
 "Language: eo\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1-beta1\n"
+"X-Generator: Virtaal 0.7.1-rc1\n"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -75,33 +75,33 @@ msgstr "Unknown"
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "The requested page was not found in the document ‘%s’."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "Indexed"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "Whether the document content has been indexed"
 
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "Document URI"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "The URI which identifies the document"
 
-#: ../libyelp/yelp-document.c:956
+#: ../libyelp/yelp-document.c:958
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Search results for “%s”"
 
-#: ../libyelp/yelp-document.c:968
+#: ../libyelp/yelp-document.c:970
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "No matching help pages found in “%s”."
 
-#: ../libyelp/yelp-document.c:974
+#: ../libyelp/yelp-document.c:976
 msgid "No matching help pages found."
 msgstr "No matching help pages found."
 
@@ -499,6 +499,10 @@ msgstr "Application"
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "A YelpApplication instance that controls this window"
+
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Read Link _Later"
 
 #: ../src/yelp-window.c:526
 msgid "Find:"
