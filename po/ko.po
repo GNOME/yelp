@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-07-05 14:30+0000\n"
-"PO-Revision-Date: 2011-09-23 02:19+0900\n"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2011-10-13 17:03+0000\n"
+"PO-Revision-Date: 2011-10-17 03:05+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -74,33 +74,33 @@ msgstr "알 수 없음"
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "요청한 페이지를 ‘%s’ 문서에서 찾을 수 없습니다."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "색인"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "문서 차례에 색인이 있는지 여부"
 
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "문서 URI"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "문서를 가리키는 URI"
 
-#: ../libyelp/yelp-document.c:956
+#: ../libyelp/yelp-document.c:958
 #, c-format
 msgid "Search results for “%s”"
 msgstr "“%s”에 대한 검색 결과"
 
-#: ../libyelp/yelp-document.c:968
+#: ../libyelp/yelp-document.c:970
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "해당되는 도움말 페이지가 “%s” 안에 없습니다."
 
-#: ../libyelp/yelp-document.c:974
+#: ../libyelp/yelp-document.c:976
 msgid "No matching help pages found."
 msgstr "해당되는 도움말 페이지가 없습니다."
 
@@ -148,21 +148,21 @@ msgid "Search..."
 msgstr "검색..."
 
 # tooltip
-#: ../libyelp/yelp-location-entry.c:774
+#: ../libyelp/yelp-location-entry.c:776
 msgid "Clear the search text"
 msgstr "검색 텍스트를 지웁니다"
 
 # tooltip
-#: ../libyelp/yelp-location-entry.c:823 ../libyelp/yelp-location-entry.c:1521
+#: ../libyelp/yelp-location-entry.c:825 ../libyelp/yelp-location-entry.c:1523
 msgid "Bookmark this page"
 msgstr "이 페이지를 책갈피에 넣습니다"
 
 # tooltip
-#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1529
+#: ../libyelp/yelp-location-entry.c:833 ../libyelp/yelp-location-entry.c:1531
 msgid "Remove bookmark"
 msgstr "책갈피를 제거합니다"
 
-#: ../libyelp/yelp-location-entry.c:1386
+#: ../libyelp/yelp-location-entry.c:1388
 msgid "Loading"
 msgstr "읽어들이기"
 
@@ -502,6 +502,10 @@ msgstr "Application"
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "이 창을 컨트롤하는 YelpApplication 인스턴스"
+
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "링크 나중에 읽기(_L)"
 
 #: ../src/yelp-window.c:526
 msgid "Find:"
