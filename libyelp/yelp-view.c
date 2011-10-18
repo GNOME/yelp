@@ -835,8 +835,13 @@ view_install_uri (YelpView    *view,
         g_variant_builder_unref (strv);
     }
     else {
+        gchar **pkgs;
+        gint i;
         strv = g_variant_builder_new (G_VARIANT_TYPE ("as"));
-        g_variant_builder_add (strv, "s", pkg);
+        pkgs = g_strsplit (pkg, ",", 0);
+        for (i = 0; pkgs[i]; i++)
+            g_variant_builder_add (strv, "s", pkgs[i]);
+        g_strfreev (pkgs);
         g_dbus_connection_call (connection,
                                 "org.freedesktop.PackageKit",
                                 "/org/freedesktop/PackageKit",
