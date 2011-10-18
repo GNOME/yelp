@@ -1263,15 +1263,22 @@ view_populate_popup (YelpView *view,
         }
 
         if (g_str_has_prefix (priv->popup_link_uri, "mailto:")) {
+            gchar *label = g_strdup_printf (_("Send email to %s"),
+                                            priv->popup_link_uri + 7);
             /* Not using a mnemonic because underscores are common in email
              * addresses, and we'd have to escape them. There doesn't seem
              * to be a quick GTK+ function for this. In practice, there will
              * probably only be one menu item for mailto link popups anyway,
              * so the mnemonic's not that big of a deal.
              */
-            gchar *label = g_strdup_printf (_("Send email to %s"),
-                                            priv->popup_link_uri + 7);
             item = gtk_menu_item_new_with_label (label);
+            g_signal_connect (item, "activate",
+                              G_CALLBACK (popup_open_link), view);
+            gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+            g_free (label);
+        }
+        else if (g_str_has_prefix (priv->popup_link_uri, "install:")) {
+            item = gtk_menu_item_new_with_mnemonic (_("_Install Packages"));
             g_signal_connect (item, "activate",
                               G_CALLBACK (popup_open_link), view);
             gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
