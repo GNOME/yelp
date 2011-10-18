@@ -71,6 +71,8 @@ static void        popup_open_link                (GtkMenuItem        *item,
                                                    YelpView           *view);
 static void        popup_open_link_new            (GtkMenuItem        *item,
                                                    YelpView           *view);
+static void        popup_copy_link                (GtkMenuItem        *item,
+                                                   YelpView           *view);
 static void        popup_save_image               (GtkMenuItem        *item,
                                                    YelpView           *view);
 static void        popup_send_image               (GtkMenuItem        *item,
@@ -938,6 +940,16 @@ popup_open_link_new (GtkMenuItem *item,
     g_object_unref (uri);
 }
 
+static void
+popup_copy_link (GtkMenuItem *item,
+                 YelpView    *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    gtk_clipboard_set_text (gtk_widget_get_clipboard (GTK_WIDGET (view), GDK_SELECTION_CLIPBOARD),
+                            priv->popup_link_uri,
+                            -1);
+}
+
 typedef struct _YelpSaveData YelpSaveData;
 struct _YelpSaveData {
     GFile     *orig;
@@ -1267,10 +1279,19 @@ view_populate_popup (YelpView *view,
                               G_CALLBACK (popup_open_link), view);
             gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
-            item = gtk_menu_item_new_with_mnemonic (_("Open Link in New _Window"));
-            g_signal_connect (item, "activate",
-                              G_CALLBACK (popup_open_link_new), view);
-            gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+            if (g_str_has_prefix (priv->popup_link_uri, "http://") ||
+                g_str_has_prefix (priv->popup_link_uri, "https://")) {
+                item = gtk_menu_item_new_with_mnemonic (_("_Copy Link Location"));
+                g_signal_connect (item, "activate",
+                                  G_CALLBACK (popup_copy_link), view);
+                gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+            }
+            else {
+                item = gtk_menu_item_new_with_mnemonic (_("Open Link in New _Window"));
+                g_signal_connect (item, "activate",
+                                  G_CALLBACK (popup_open_link_new), view);
+                gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+            }
 
             for (cur = priv->link_actions; cur != NULL; cur = cur->next) {
                 gboolean add;
