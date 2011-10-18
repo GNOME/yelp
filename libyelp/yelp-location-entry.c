@@ -242,6 +242,8 @@ static GHashTable *completions;
 
 static guint location_entry_signals[LAST_SIGNAL] = {0,};
 
+#define MAX_HISTORY 8
+
 G_DEFINE_TYPE (YelpLocationEntry, yelp_location_entry, GTK_TYPE_COMBO_BOX)
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE((object), YELP_TYPE_LOCATION_ENTRY, YelpLocationEntryPrivate))
 
@@ -1390,11 +1392,11 @@ view_uri_selected (YelpView          *view,
                             HISTORY_COL_URI, struri,
                             HISTORY_COL_FLAGS, LOCATION_ENTRY_IS_LOADING,
                             -1);
-        /* Limit to 15 entries. There are two extra for the search entry and
-         * the separator above it.
+        /* Limit to MAX_HISTORY entries. There are two extra for the search entry
+         * and the separator above it.
          */
         num = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (priv->history), NULL);
-        if (num > 17) {
+        if (num > MAX_HISTORY + 2) {
             if (gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (priv->history),
                                                                &last, NULL,
                                                                num - 3)) {
