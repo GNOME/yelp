@@ -2058,7 +2058,7 @@ document_callback (YelpDocument       *document,
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
         YelpUriDocumentType doctype;
 	const gchar *contents;
-        gchar *mime_type, *page_id, *frag_id, *full_uri;
+        gchar *mime_type, *page_id, *frag_id, *full_uri, *search_terms;
         page_id = yelp_uri_get_page_id (priv->uri);
         debug_print (DB_ARG, "    document.uri.page_id=\"%s\"\n", page_id);
         mime_type = yelp_document_get_mime_type (document, page_id);
@@ -2112,17 +2112,20 @@ document_callback (YelpDocument       *document,
         g_signal_handler_unblock (view, priv->navigation_requested);
         g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
 
+        search_terms = yelp_uri_get_query (priv->uri, "terms");
+
         /* If we need to set the GtkAdjustment or trigger the page title
          * from what WebKit thinks it is (see comment below), we need to
          * let the main loop run through.
          */
-        if (priv->vadjust > 0 || priv->hadjust > 0 || priv->page_title == NULL)
+        if (priv->vadjust > 0 || priv->hadjust > 0 ||
+            priv->page_title == NULL || search_terms != NULL)
             while (g_main_context_pending (NULL)) {
                 WebKitLoadStatus status;
                 status = webkit_web_view_get_load_status (WEBKIT_WEB_VIEW (view));
                 g_main_context_iteration (NULL, FALSE);
                 /* Sometimes some runaway JavaScript causes there to always
-                 * be pending sources. Break out of the document is loaded.
+                 * be pending sources. Break out if the document is loaded.
                  */
                 if (status == WEBKIT_LOAD_FINISHED ||
                     status == WEBKIT_LOAD_FAILED)
@@ -2156,6 +2159,36 @@ document_callback (YelpDocument       *document,
             spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
                                                  "page-title");
             g_signal_emit_by_name (view, "notify::page-title", spec);
+        }
+
+        if (search_terms) {
+            WebKitDOMDocument *doc;
+            WebKitDOMElement *body, *div, *link;
+            doc = webkit_web_view_get_dom_document (WEBKIT_WEB_VIEW (view));
+            body = webkit_dom_document_query_selector (doc, "div.body", NULL);
+            if (body) {
+                gchar *tmp, *uri, *txt;
+                div = webkit_dom_document_create_element (doc, "div", NULL);
+                webkit_dom_element_set_attribute (div, "class", "fullsearch", NULL);
+                link = webkit_dom_document_create_element (doc, "a", NULL);
+                tmp = g_uri_escape_string (search_terms, NULL, FALSE);
+                uri = g_strconcat ("xref:search=", tmp, NULL);
+                webkit_dom_element_set_attribute (link, "href", uri, NULL);
+                g_free (tmp);
+                g_free (uri);
+                txt = g_strdup_printf (_("See all search results for “%s”"),
+                                       search_terms);
+                webkit_dom_node_set_text_content (WEBKIT_DOM_NODE (link), txt, NULL);
+                g_free (txt);
+                webkit_dom_node_append_child (WEBKIT_DOM_NODE (div),
+                                              WEBKIT_DOM_NODE (link),
+                                              NULL);
+                webkit_dom_node_insert_before (WEBKIT_DOM_NODE (body),
+                                               WEBKIT_DOM_NODE (div),
+                                               webkit_dom_node_get_first_child (WEBKIT_DOM_NODE (body)),
+                                               NULL);
+            }
+            g_free (search_terms);
         }
 
         g_free (frag_id);

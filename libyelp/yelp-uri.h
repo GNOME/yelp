@@ -85,6 +85,8 @@ GFile *              yelp_uri_get_file           (YelpUri      *uri);
 gchar **             yelp_uri_get_search_path    (YelpUri      *uri);
 gchar *              yelp_uri_get_page_id        (YelpUri      *uri);
 gchar *              yelp_uri_get_frag_id        (YelpUri      *uri);
+gchar *              yelp_uri_get_query          (YelpUri      *uri,
+                                                  const gchar  *key);
 
 gchar *              yelp_uri_locate_file_uri    (YelpUri      *uri,
                                                   const gchar  *filename);

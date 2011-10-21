@@ -83,6 +83,8 @@ struct _YelpUriPrivate {
     gchar                *page_id;
     gchar                *frag_id;
 
+    GHashTable           *query;
+
     /* Unresolved */
     YelpUri              *res_base;
     gchar                *res_arg;
@@ -144,6 +146,10 @@ yelp_uri_class_init (YelpUriClass *klass)
 static void
 yelp_uri_init (YelpUri *uri)
 {
+    YelpUriPrivate *priv = GET_PRIV (uri);
+
+    priv->query = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
+
     return;
 }
 
@@ -160,6 +166,11 @@ yelp_uri_dispose (GObject *object)
     if (priv->res_base) {
         g_object_unref (priv->res_base);
         priv->res_base = NULL;
+    }
+
+    if (priv->query) {
+        g_hash_table_destroy (priv->query);
+        priv->query = NULL;
     }
 
     G_OBJECT_CLASS (yelp_uri_parent_class)->dispose (object);
@@ -482,6 +493,18 @@ yelp_uri_get_frag_id (YelpUri *uri)
     if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
         return NULL;
     return g_strdup (priv->frag_id);
+}
+
+gchar *
+yelp_uri_get_query (YelpUri      *uri,
+                    const gchar  *key)
+{
+    YelpUriPrivate *priv = GET_PRIV (uri);
+    const gchar *ret = g_hash_table_lookup (priv->query, key);
+    if (ret)
+        return g_strdup (ret);
+    else
+        return NULL;
 }
 
 /******************************************************************************/
@@ -826,6 +849,24 @@ resolve_help_uri (YelpUri *uri)
                            hash - query - 1);
     else if (query)
         query = g_strdup (query + 1);
+
+    if (query) {
+        gchar **keyvals = g_strsplit (query, "&", 0);
+        gint i;
+
+        for (i = 0; keyvals[i]; i++) {
+            gchar *key, *val;
+            val = strchr (keyvals[i], '=');
+            if (val == NULL)
+                continue;
+            key = g_uri_unescape_segment (keyvals[i], val, NULL);
+            val = g_uri_unescape_string (val + 1, NULL);
+
+            g_hash_table_insert (priv->query, key, val);
+        }
+
+        g_strfreev (keyvals);
+    }
 
     if (hash)
         hash = g_strdup (hash + 1);
