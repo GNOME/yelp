@@ -100,6 +100,9 @@ static void        view_resource_request          (WebKitWebView             *vi
                                                    WebKitNetworkRequest      *request,
                                                    WebKitNetworkResponse     *response,
                                                    gpointer                   user_data);
+static void        view_document_loaded           (WebKitWebView             *view,
+                                                   WebKitWebFrame            *frame,
+                                                   gpointer                   user_data);
 
 static void        view_print                     (GtkAction          *action,
                                                    YelpView           *view);
@@ -275,6 +278,8 @@ yelp_view_init (YelpView *view)
                           G_CALLBACK (view_navigation_requested), NULL);
     g_signal_connect (view, "resource-request-starting",
                       G_CALLBACK (view_resource_request), NULL);
+    g_signal_connect (view, "document-load-finished",
+                      G_CALLBACK (view_document_loaded), NULL);
     g_signal_connect (view, "notify::hadjustment",
                       G_CALLBACK (view_set_hadjustment), NULL);
     g_signal_connect (view, "notify::vadjustment",
@@ -1466,6 +1471,43 @@ view_resource_request (WebKitWebView         *view,
 }
 
 static void
+view_document_loaded (WebKitWebView   *view,
+                      WebKitWebFrame  *frame,
+                      gpointer         user_data)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    gchar *search_terms;
+
+    search_terms = yelp_uri_get_query (priv->uri, "terms");
+
+    if (search_terms) {
+        WebKitDOMDocument *doc;
+        WebKitDOMElement *body, *link;
+        doc = webkit_web_view_get_dom_document (WEBKIT_WEB_VIEW (view));
+        body = webkit_dom_document_query_selector (doc, "div.body", NULL);
+        if (body) {
+            gchar *tmp, *uri, *txt;
+            link = webkit_dom_document_create_element (doc, "a", NULL);
+            webkit_dom_element_set_attribute (link, "class", "fullsearch", NULL);
+            tmp = g_uri_escape_string (search_terms, NULL, FALSE);
+            uri = g_strconcat ("xref:search=", tmp, NULL);
+            webkit_dom_element_set_attribute (link, "href", uri, NULL);
+            g_free (tmp);
+            g_free (uri);
+            txt = g_strdup_printf (_("See all search results for “%s”"),
+                                   search_terms);
+            webkit_dom_node_set_text_content (WEBKIT_DOM_NODE (link), txt, NULL);
+            g_free (txt);
+            webkit_dom_node_insert_before (WEBKIT_DOM_NODE (body),
+                                           WEBKIT_DOM_NODE (link),
+                                           webkit_dom_node_get_first_child (WEBKIT_DOM_NODE (body)),
+                                           NULL);
+        }
+        g_free (search_terms);
+    }
+}
+
+static void
 view_print (GtkAction *action, YelpView  *view)
 {
     webkit_web_frame_print (webkit_web_view_get_main_frame (WEBKIT_WEB_VIEW (view)));
@@ -2058,7 +2100,7 @@ document_callback (YelpDocument       *document,
     else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
         YelpUriDocumentType doctype;
 	const gchar *contents;
-        gchar *mime_type, *page_id, *frag_id, *full_uri, *search_terms;
+        gchar *mime_type, *page_id, *frag_id, *full_uri;
         page_id = yelp_uri_get_page_id (priv->uri);
         debug_print (DB_ARG, "    document.uri.page_id=\"%s\"\n", page_id);
         mime_type = yelp_document_get_mime_type (document, page_id);
@@ -2112,14 +2154,11 @@ document_callback (YelpDocument       *document,
         g_signal_handler_unblock (view, priv->navigation_requested);
         g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
 
-        search_terms = yelp_uri_get_query (priv->uri, "terms");
-
         /* If we need to set the GtkAdjustment or trigger the page title
          * from what WebKit thinks it is (see comment below), we need to
          * let the main loop run through.
          */
-        if (priv->vadjust > 0 || priv->hadjust > 0 ||
-            priv->page_title == NULL || search_terms != NULL)
+        if (priv->vadjust > 0 || priv->hadjust > 0 ||  priv->page_title == NULL)
             while (g_main_context_pending (NULL)) {
                 WebKitLoadStatus status;
                 status = webkit_web_view_get_load_status (WEBKIT_WEB_VIEW (view));
@@ -2159,36 +2198,6 @@ document_callback (YelpDocument       *document,
             spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
                                                  "page-title");
             g_signal_emit_by_name (view, "notify::page-title", spec);
-        }
-
-        if (search_terms) {
-            WebKitDOMDocument *doc;
-            WebKitDOMElement *body, *div, *link;
-            doc = webkit_web_view_get_dom_document (WEBKIT_WEB_VIEW (view));
-            body = webkit_dom_document_query_selector (doc, "div.body", NULL);
-            if (body) {
-                gchar *tmp, *uri, *txt;
-                div = webkit_dom_document_create_element (doc, "div", NULL);
-                webkit_dom_element_set_attribute (div, "class", "fullsearch", NULL);
-                link = webkit_dom_document_create_element (doc, "a", NULL);
-                tmp = g_uri_escape_string (search_terms, NULL, FALSE);
-                uri = g_strconcat ("xref:search=", tmp, NULL);
-                webkit_dom_element_set_attribute (link, "href", uri, NULL);
-                g_free (tmp);
-                g_free (uri);
-                txt = g_strdup_printf (_("See all search results for “%s”"),
-                                       search_terms);
-                webkit_dom_node_set_text_content (WEBKIT_DOM_NODE (link), txt, NULL);
-                g_free (txt);
-                webkit_dom_node_append_child (WEBKIT_DOM_NODE (div),
-                                              WEBKIT_DOM_NODE (link),
-                                              NULL);
-                webkit_dom_node_insert_before (WEBKIT_DOM_NODE (body),
-                                               WEBKIT_DOM_NODE (div),
-                                               webkit_dom_node_get_first_child (WEBKIT_DOM_NODE (body)),
-                                               NULL);
-            }
-            g_free (search_terms);
         }
 
         g_free (frag_id);
