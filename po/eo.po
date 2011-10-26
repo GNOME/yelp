@@ -9,23 +9,24 @@
 # Fabio Ruiz ORTEGA < >, 2009.
 # Michael MORONI, <haikara90@gmail.com>, 2009.
 # Kim RIBEIRO <ribekim@gmail.com>, 2009.
-# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2010, 2011.
 # Tiffany Antopolski <tiffany.antopolski@gmail.com>, 2011.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2010, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.3.6\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&k"
-"eywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-08-23 19:57+0000\n"
-"PO-Revision-Date: 2011-09-06 23:35-0400\n"
-"Last-Translator: Tiffany Antopolski <tiffany.antopolski@gmail.com>\n"
-"Language-Team: Esperanto\n"
-"Language: eo\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2011-10-20 14:29+0000\n"
+"PO-Revision-Date: 2011-10-26 20:07+0200\n"
+"Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
+"Language-Team: Esperanto <ubuntu-l10n-eo@lists.launchpad.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0\n"
+"Content-Transfer-Encoding: 8bits\n"
+"Language: eo\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Virtaal 0.7.1-rc1\n"
 "X-Launchpad-Export-Date: 2011-05-28 08:24+0000\n"
 "X-Project-Style: gnome\n"
 
@@ -86,34 +87,33 @@ msgstr "Nekonata"
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "La petita paĝo ne estis trovita en dokumento '%s'."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "Indeksite"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "Ĉu indeksi la enhavon de la dokumento?"
 
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "URI de dokumento"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "La URI kiu identigas la dokumenton"
 
-#: ../libyelp/yelp-document.c:956
+#: ../libyelp/yelp-document.c:958
 #, c-format
-#| msgid "Search results for \"%s\""
 msgid "Search results for “%s”"
 msgstr "Serĉrezultoj por “%s”"
 
-#: ../libyelp/yelp-document.c:968
+#: ../libyelp/yelp-document.c:970
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Neniuj kongruaj helppaĝoj trovataj en \"%s\"."
 
-#: ../libyelp/yelp-document.c:974
+#: ../libyelp/yelp-document.c:976
 msgid "No matching help pages found."
 msgstr "Neniuj kongruaj helppaĝoj trovataj."
 
@@ -512,14 +512,17 @@ msgstr "Aplikaĵo"
 msgid "A YelpApplication instance that controls this window"
 msgstr "\"YelpApplication\"-instanco kiu regas ĉi tiun fenestron"
 
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Legi ligon _poste"
+
 #: ../src/yelp-window.c:526
-#| msgid "Fin_d:"
 msgid "Find:"
 msgstr "Serĉi:"
 
 #: ../src/yelp-window.c:548
 msgid "Read Later"
-msgstr "Ledi poste"
+msgstr "Legi poste"
 
 #: ../src/yelp-window.c:1179
 #, c-format
@@ -962,7 +965,7 @@ msgstr "Ricevi helpon pri GNOME"
 #~ "Eksciu, kiel plibonigi aliron al via sistemo malgraŭ iuj handikapoj."
 
 #~ msgid "Licenses"
-#~ msgstr "Licencoj"
+#~ msgstr "Permesiloj"
 
 #~ msgid "Literature"
 #~ msgstr "Literaturo"
@@ -1182,7 +1185,7 @@ msgstr "Ricevi helpon pri GNOME"
 #~ msgstr "No povis krei serĉa komponanton"
 
 #~ msgid "Cannot create window"
-#~ msgstr "Ne povas krei fenestron."
+#~ msgstr "Ne eblas krei fenestron."
 
 #~ msgid "Search for other documentation"
 #~ msgstr "Serĉi alian dokumentaron"
@@ -1292,7 +1295,7 @@ msgstr "Ricevi helpon pri GNOME"
 #~ msgstr "La serĉilo donis nevalidan rezulton."
 
 #~ msgid "Cannot process the search"
-#~ msgstr "Ne povas plenumi la serĉon."
+#~ msgstr "Ne eblas plenumi la serĉon."
 
 #~ msgid "The requested search could not be processed."
 #~ msgstr "Ne eblis plenumi la petitan serĉadon."
@@ -1354,7 +1357,7 @@ msgstr "Ricevi helpon pri GNOME"
 #~ msgstr "Preparado por presi"
 
 #~ msgid "Print"
-#~ msgstr "Printi"
+#~ msgstr "Presi"
 
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
@@ -1486,7 +1489,7 @@ msgstr "Ricevi helpon pri GNOME"
 #~ msgstr "Temoj"
 
 #~ msgid "To find help, insert a keyword in the search bar"
-#~ msgstr "Por trovi helpon, enmetu ŝlosilvorton en la serĉlistelo"
+#~ msgstr "Por trovi helpon, enmetu ŝlosilvorton en la serĉbreto"
 
 #~ msgid ""
 #~ "These guides used to be on the front page. Put here for safe keeping in "
@@ -1585,7 +1588,8 @@ msgstr "Ricevi helpon pri GNOME"
 
 #~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 #~ msgstr ""
-#~ "Ne eblas transdoni URI-dokumentojn al labortabla elemento 'Type=Link'"
+#~ "Ne eblas transdoni URI-ojn de dokumentoj al labortabla elemento "
+#~ "'Type=Link'"
 
 #~ msgid "Not a launchable item"
 #~ msgstr "Nelanĉebla ero"
