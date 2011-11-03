@@ -37,7 +37,6 @@ main (int argc, char **argv)
 {
     YelpApplication *app;
 
-    g_thread_init (NULL);
     g_type_init ();
 
     setlocale (LC_ALL, "");
