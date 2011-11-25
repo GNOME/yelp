@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-17 06:32+0200\n"
-"PO-Revision-Date: 2011-10-17 06:33+0100\n"
+"POT-Creation-Date: 2011-11-25 09:49+0100\n"
+"PO-Revision-Date: 2011-11-25 09:51+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -117,50 +117,50 @@ msgstr "Alla hjälpdokument"
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "Filen \"%s\" kunde inte tolkas därför att den inte en korrekt formaterad infosida."
 
-#: ../libyelp/yelp-location-entry.c:329
+#: ../libyelp/yelp-location-entry.c:331
 msgid "View"
 msgstr "Visa"
 
-#: ../libyelp/yelp-location-entry.c:330
+#: ../libyelp/yelp-location-entry.c:332
 msgid "A YelpView instance to control"
 msgstr "En YelpView-instans att kontrollera"
 
-#: ../libyelp/yelp-location-entry.c:345
+#: ../libyelp/yelp-location-entry.c:347
 msgid "Bookmarks"
 msgstr "Bokmärken"
 
-#: ../libyelp/yelp-location-entry.c:346
+#: ../libyelp/yelp-location-entry.c:348
 msgid "A YelpBookmarks implementation instance"
 msgstr "En instans för YelpBookmarks-implementation"
 
-#: ../libyelp/yelp-location-entry.c:362
+#: ../libyelp/yelp-location-entry.c:364
 msgid "Enable Search"
 msgstr "Aktivera sökning"
 
-#: ../libyelp/yelp-location-entry.c:363
+#: ../libyelp/yelp-location-entry.c:365
 msgid "Whether the location entry can be used as a search field"
 msgstr "Huruvida platsinmatningen kan användas som ett sökfält"
 
-#: ../libyelp/yelp-location-entry.c:433
-#: ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:435
+#: ../src/yelp-window.c:280
 msgid "Search..."
 msgstr "Sök..."
 
-#: ../libyelp/yelp-location-entry.c:776
+#: ../libyelp/yelp-location-entry.c:778
 msgid "Clear the search text"
 msgstr "Töm sökfältet"
 
-#: ../libyelp/yelp-location-entry.c:825
-#: ../libyelp/yelp-location-entry.c:1523
+#: ../libyelp/yelp-location-entry.c:827
+#: ../libyelp/yelp-location-entry.c:1525
 msgid "Bookmark this page"
 msgstr "Bokmärk denna sida"
 
-#: ../libyelp/yelp-location-entry.c:833
-#: ../libyelp/yelp-location-entry.c:1531
+#: ../libyelp/yelp-location-entry.c:835
+#: ../libyelp/yelp-location-entry.c:1533
 msgid "Remove bookmark"
 msgstr "Ta bort bokmärke"
 
-#: ../libyelp/yelp-location-entry.c:1388
+#: ../libyelp/yelp-location-entry.c:1390
 msgid "Loading"
 msgstr "Läser in"
 
@@ -239,182 +239,189 @@ msgstr "Inget href-attribut hittat på yelp:document\n"
 msgid "Out of memory"
 msgstr "Slut på minne"
 
-#: ../libyelp/yelp-view.c:126
+#: ../libyelp/yelp-view.c:131
 msgid "_Print..."
 msgstr "Skriv _ut..."
 
-#: ../libyelp/yelp-view.c:131
+#: ../libyelp/yelp-view.c:136
 msgid "_Back"
 msgstr "_Bakåt"
 
-#: ../libyelp/yelp-view.c:136
+#: ../libyelp/yelp-view.c:141
 msgid "_Forward"
 msgstr "_Framåt"
 
-#: ../libyelp/yelp-view.c:141
+#: ../libyelp/yelp-view.c:146
 msgid "_Previous Page"
 msgstr "_Föregående sida"
 
-#: ../libyelp/yelp-view.c:146
+#: ../libyelp/yelp-view.c:151
 msgid "_Next Page"
 msgstr "_Nästa sida"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:423
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:417
+#: ../libyelp/yelp-view.c:424
 msgid "A YelpUri with the current location"
 msgstr "En YelpUri med den aktuella platsen"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:432
 msgid "Loading State"
 msgstr "Inläsningstillstånd"
 
-#: ../libyelp/yelp-view.c:426
+#: ../libyelp/yelp-view.c:433
 msgid "The loading state of the view"
 msgstr "Inläsningstillståndet för vyn"
 
-#: ../libyelp/yelp-view.c:435
+#: ../libyelp/yelp-view.c:442
 msgid "Page ID"
 msgstr "Sidans id"
 
-#: ../libyelp/yelp-view.c:436
+#: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
 msgstr "ID för rotsidan för sidan som visas"
 
-#: ../libyelp/yelp-view.c:444
+#: ../libyelp/yelp-view.c:451
 msgid "Root Title"
 msgstr "Rottitel"
 
-#: ../libyelp/yelp-view.c:445
+#: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
 msgstr "Titeln för rotsidan för sidan som visas"
 
-#: ../libyelp/yelp-view.c:453
+#: ../libyelp/yelp-view.c:460
 msgid "Page Title"
 msgstr "Sidtitel"
 
-#: ../libyelp/yelp-view.c:454
+#: ../libyelp/yelp-view.c:461
 msgid "The title of the page being viewed"
 msgstr "Titeln för sidan som visas"
 
-#: ../libyelp/yelp-view.c:462
+#: ../libyelp/yelp-view.c:469
 msgid "Page Description"
 msgstr "Sidbeskrivning"
 
-#: ../libyelp/yelp-view.c:463
+#: ../libyelp/yelp-view.c:470
 msgid "The description of the page being viewed"
 msgstr "Beskrivningen för sidan som visas"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
 msgstr "Sidikon"
 
-#: ../libyelp/yelp-view.c:472
+#: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
 msgstr "Ikonen för sidan som visas"
 
-#: ../libyelp/yelp-view.c:713
+#: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "Du har inte PackageKit. Länkar för paketinstallationer kräver PackageKit."
 
-#: ../libyelp/yelp-view.c:991
+#: ../libyelp/yelp-view.c:1013
 msgid "Save Image"
 msgstr "Spara bild"
 
-#: ../libyelp/yelp-view.c:1086
+#: ../libyelp/yelp-view.c:1108
 msgid "Save Code"
 msgstr "Spara källkod"
 
-#. Not using a mnemonic because underscores are common in email
-#. * addresses, and we'd have to escape them. There doesn't seem
-#. * to be a quick GTK+ function for this. In practice, there will
-#. * probably only be one menu item for mailto link popups anyway,
-#. * so the mnemonic's not that big of a deal.
-#.
-#: ../libyelp/yelp-view.c:1255
+#: ../libyelp/yelp-view.c:1271
 #, c-format
 msgid "Send email to %s"
 msgstr "Skicka e-post till %s"
 
-#: ../libyelp/yelp-view.c:1265
+#: ../libyelp/yelp-view.c:1286
+msgid "_Install Packages"
+msgstr "_Installera paket"
+
+#: ../libyelp/yelp-view.c:1294
 msgid "_Open Link"
 msgstr "_Öppna länk"
 
-#: ../libyelp/yelp-view.c:1270
+#: ../libyelp/yelp-view.c:1301
+msgid "_Copy Link Location"
+msgstr "_Kopiera länkplats"
+
+#: ../libyelp/yelp-view.c:1307
 msgid "Open Link in New _Window"
 msgstr "Öppna länk i nytt _fönster"
 
-#: ../libyelp/yelp-view.c:1321
+#: ../libyelp/yelp-view.c:1359
 msgid "_Save Image As..."
 msgstr "_Spara bild som..."
 
-#: ../libyelp/yelp-view.c:1323
+#: ../libyelp/yelp-view.c:1361
 msgid "_Save Video As..."
 msgstr "_Spara video som..."
 
-#: ../libyelp/yelp-view.c:1330
+#: ../libyelp/yelp-view.c:1368
 msgid "S_end Image To..."
 msgstr "S_kicka bild till..."
 
-#: ../libyelp/yelp-view.c:1332
+#: ../libyelp/yelp-view.c:1370
 msgid "S_end Video To..."
 msgstr "S_kicka video till..."
 
-#: ../libyelp/yelp-view.c:1343
+#: ../libyelp/yelp-view.c:1381
 msgid "_Copy Text"
 msgstr "_Kopiera text"
 
-#: ../libyelp/yelp-view.c:1356
+#: ../libyelp/yelp-view.c:1394
 msgid "C_opy Code Block"
 msgstr "K_opiera källkodsblock"
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1399
 msgid "Save Code _Block As..."
 msgstr "Spara källkods_block som..."
 
-#: ../libyelp/yelp-view.c:1543
+#: ../libyelp/yelp-view.c:1497
+#, c-format
+msgid "See all search results for “%s”"
+msgstr "Se alla sökresultat för \"%s\""
+
+#: ../libyelp/yelp-view.c:1618
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Kunde inte läsa in ett dokument för \"%s\""
 
-#: ../libyelp/yelp-view.c:1549
+#: ../libyelp/yelp-view.c:1624
 #, c-format
 msgid "Could not load a document"
 msgstr "Kunde inte läsa in ett dokument"
 
-#: ../libyelp/yelp-view.c:1623
+#: ../libyelp/yelp-view.c:1698
 msgid "Document Not Found"
 msgstr "Dokumentet hittades inte"
 
-#: ../libyelp/yelp-view.c:1625
+#: ../libyelp/yelp-view.c:1700
 msgid "Page Not Found"
 msgstr "Sidan hittades inte"
 
-#: ../libyelp/yelp-view.c:1628
+#: ../libyelp/yelp-view.c:1703
 msgid "Cannot Read"
 msgstr "Kan inte läsa"
 
-#: ../libyelp/yelp-view.c:1634
+#: ../libyelp/yelp-view.c:1709
 msgid "Unknown Error"
 msgstr "Okänt fel"
 
-#: ../libyelp/yelp-view.c:1654
+#: ../libyelp/yelp-view.c:1729
 msgid "Search for packages containing this document."
 msgstr "Sök efter paket som innehåller detta dokument."
 
-#: ../libyelp/yelp-view.c:1807
+#: ../libyelp/yelp-view.c:1882
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI:n \"%s\" pekar inte till en giltig sida."
 
-#: ../libyelp/yelp-view.c:1813
+#: ../libyelp/yelp-view.c:1888
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI:n pekar inte på en giltig sida."
 
-#: ../libyelp/yelp-view.c:1819
+#: ../libyelp/yelp-view.c:1894
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI:n \"%s\" kunde inte tolkas."
@@ -440,7 +447,7 @@ msgid "Decrease the size of the text"
 msgstr "Minska storleken på texten"
 
 #: ../src/yelp-application.c:253
-#: ../src/yelp-window.c:1359
+#: ../src/yelp-window.c:1376
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjälp"
@@ -449,80 +456,126 @@ msgstr "Hjälp"
 msgid "Show Text _Cursor"
 msgstr "Visa text_markör"
 
-#: ../src/yelp-window.c:236
+#: ../src/yelp-window.c:242
 msgid "_Page"
 msgstr "Si_da"
 
-#: ../src/yelp-window.c:237
+#: ../src/yelp-window.c:243
 msgid "_View"
 msgstr "_Visa"
 
-#: ../src/yelp-window.c:238
+#: ../src/yelp-window.c:244
 msgid "_Go"
 msgstr "_Gå"
 
-#: ../src/yelp-window.c:239
+#: ../src/yelp-window.c:245
 msgid "_Bookmarks"
 msgstr "_Bokmärken"
 
-#: ../src/yelp-window.c:242
+#: ../src/yelp-window.c:248
 msgid "_New Window"
 msgstr "_Nytt fönster"
 
-#: ../src/yelp-window.c:247
+#: ../src/yelp-window.c:253
 msgid "_Close"
 msgstr "S_täng"
 
-#: ../src/yelp-window.c:252
+#: ../src/yelp-window.c:258
+msgid "_Share..."
+msgstr "_Dela..."
+
+#: ../src/yelp-window.c:262
 msgid "_All Documents"
 msgstr "_Alla dokument"
 
-#: ../src/yelp-window.c:256
+#: ../src/yelp-window.c:266
 msgid "_Add Bookmark"
 msgstr "_Lägg till bokmärke"
 
-#: ../src/yelp-window.c:261
+#: ../src/yelp-window.c:271
 msgid "_Remove Bookmark"
 msgstr "_Ta bort bokmärke"
 
-#: ../src/yelp-window.c:265
+#: ../src/yelp-window.c:275
 msgid "Find in Page..."
 msgstr "Sök på sida..."
 
-#: ../src/yelp-window.c:275
+#: ../src/yelp-window.c:285
 msgid "Open Location"
 msgstr "Öppna plats"
 
-#: ../src/yelp-window.c:301
+#: ../src/yelp-window.c:311
 msgid "Application"
 msgstr "Program"
 
-#: ../src/yelp-window.c:302
+#: ../src/yelp-window.c:312
 msgid "A YelpApplication instance that controls this window"
 msgstr "En YelpApplication-instans som kontrollerar detta fönster"
 
-#: ../src/yelp-window.c:429
+#: ../src/yelp-window.c:439
 msgid "Read Link _Later"
 msgstr "Läs _länk senare"
 
-#: ../src/yelp-window.c:526
+#: ../src/yelp-window.c:543
 msgid "Find:"
 msgstr "Sök:"
 
-#: ../src/yelp-window.c:548
+#: ../src/yelp-window.c:565
 msgid "Read Later"
 msgstr "Läs senare"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1196
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i sökträff"
 msgstr[1] "%i sökträffar"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1205
 msgid "No matches"
 msgstr "Inga sökträffar"
+
+#: ../src/yelp-window.c:1565
+msgid "Share"
+msgstr "Dela"
+
+#: ../src/yelp-window.c:1567
+msgid "Close"
+msgstr "Stäng"
+
+#: ../src/yelp-window.c:1613
+msgid "Chat"
+msgstr "Chatt"
+
+#: ../src/yelp-window.c:1620
+msgid "Send a help link to a chat contact:"
+msgstr "Skicka en hjälplänk till en chattkontakt:"
+
+#: ../src/yelp-window.c:1633
+msgid "Email"
+msgstr "E-post"
+
+#: ../src/yelp-window.c:1641
+msgid "Send a help link to an email contact:"
+msgstr "Skicka en hjälplänk till en e-postkontakt:"
+
+#: ../src/yelp-window.c:1663
+#: ../src/yelp-window.c:1666
+msgid "Compose new email"
+msgstr "Skriv nytt e-postmeddelande"
+
+#: ../src/yelp-window.c:1680
+#: ../src/yelp-window.c:1707
+msgid "Copy"
+msgstr "Kopiera"
+
+#: ../src/yelp-window.c:1688
+msgid "Copy the help location to the clipboard:"
+msgstr "Kopiera hjälpplatsen till urklipp:"
+
+#: ../src/yelp-window.c:1709
+msgid "Copy location to clipboard"
+msgstr "Kopiera plats till urklipp"
 
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
@@ -560,9 +613,6 @@ msgstr "Få hjälp med GNOME"
 
 #~ msgid "Kernel Routines"
 #~ msgstr "Kärnrutiner"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Manualsidor"
 
 #~ msgid "Network Audio Sound Functions"
 #~ msgstr "Nätverksljudfunktioner"
@@ -792,9 +842,6 @@ msgstr "Få hjälp med GNOME"
 #~ msgid "Charting Tools"
 #~ msgstr "Diagramverktyg"
 
-#~ msgid "Chat"
-#~ msgstr "Chatt"
-
 #~ msgid "Chemistry"
 #~ msgstr "Kemi"
 
@@ -848,9 +895,6 @@ msgstr "Få hjälp med GNOME"
 
 #~ msgid "Electronics"
 #~ msgstr "Electronik"
-
-#~ msgid "Email Tools"
-#~ msgstr "E-postverktyg"
 
 #~ msgid "Emulator"
 #~ msgstr "Emulator"
