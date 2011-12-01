@@ -248,6 +248,7 @@ yelp_settings_constructed (GObject *object)
     GVariant *ret, *names;
     GVariantIter iter;
     gchar *name;
+    gboolean env_shell, env_panel, env_unity, env_xfce;
     GError *error = NULL;
 
     connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
@@ -271,20 +272,29 @@ yelp_settings_constructed (GObject *object)
         g_error_free (error);
         return;
     }
+    env_shell = env_panel = env_unity = env_xfce = FALSE;
     names = g_variant_get_child_value (ret, 0);
     g_variant_iter_init (&iter, names);
     while (g_variant_iter_loop (&iter, "&s", &name)) {
         if (g_str_equal (name, "org.gnome.Panel"))
-            yelp_settings_set_env (settings, "gnome-panel");
+            env_panel = TRUE;
         else if (g_str_equal (name, "org.gnome.Shell"))
-            yelp_settings_set_env (settings, "gnome-shell");
+            env_shell = TRUE;
         else if (g_str_equal (name, "com.canonical.Unity"))
-            yelp_settings_set_env (settings, "unity");
+            env_unity = TRUE;
         else if (g_str_equal (name, "org.xfce.Panel"))
-            yelp_settings_set_env (settings, "xfce");
+            env_xfce = TRUE;
     }
     g_variant_unref (names);
     g_variant_unref (ret);
+    if (env_shell)
+        yelp_settings_set_env (settings, "gnome-shell");
+    else if (env_xfce)
+        yelp_settings_set_env (settings, "xfce");
+    else if (env_unity)
+        yelp_settings_set_env (settings, "unity");
+    else if (env_panel)
+        yelp_settings_set_env (settings, "gnome-panel");
 }
 
 static void
