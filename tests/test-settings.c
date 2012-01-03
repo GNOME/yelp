@@ -207,7 +207,6 @@ main (int argc, char **argv)
     GtkWidget *window, *hbox, *vbox, *widget, *scroll, *table;
     gint i;
 
-    g_thread_init (NULL);
     gtk_init (&argc, &argv);
 
     settings = yelp_settings_get_default ();

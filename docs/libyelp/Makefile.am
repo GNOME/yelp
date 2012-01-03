@@ -6,7 +6,7 @@ DOC_MAIN_SGML_FILE = libyelp-docs.xml
 
 SCAN_OPTIONS = --deprecated-guards="G_DISABLE_DEPRECATED" --rebuild-types
 
-SCANGOBJ_OPTIONS = --type-init-func="g_type_init();g_thread_init(NULL);"
+SCANGOBJ_OPTIONS = --type-init-func="g_type_init();"
 
 DOC_SOURCE_DIR = $(top_srcdir)/libyelp
 

@@ -119,7 +119,6 @@ main (gint argc, gchar **argv)
     gchar *file;
 
     g_type_init ();
-    g_thread_init (NULL);
 
     context = g_option_context_new ("[STYLESHEET] FILE");
     g_option_context_add_main_entries (context, options, NULL);

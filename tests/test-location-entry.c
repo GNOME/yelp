@@ -220,7 +220,6 @@ main (int argc, char **argv)
   GtkListStore *model;
   GtkTreeIter iter;
 
-  g_thread_init (NULL);
   gtk_init (&argc, &argv);
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
