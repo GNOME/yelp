@@ -94,11 +94,6 @@ a.trail { color:  </xsl:text>
   <xsl:value-of select="$color.text_light"/><xsl:text>; }
 a.trail:hover { text-decoration: none; color:  </xsl:text>
   <xsl:value-of select="$color.link"/><xsl:text>; }
-div.body {
-  margin: 0 12px 0 12px;
-  padding: 0 0 12px 0;
-  border: none;
-}
 .current-location-hash div.hgroup {
   background-color: </xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>
 }
