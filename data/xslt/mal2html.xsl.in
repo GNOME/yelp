@@ -42,9 +42,12 @@
   <xsl:param name="xref" select="$node/@xref"/>
   <xsl:choose>
     <xsl:when test="starts-with($action, 'install:')">
-      <!-- FIXME: i18n -->
-      <xsl:text>INSTALL </xsl:text>
-      <xsl:value-of select="substring($action, 9)"/>
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="domain" select="'yelp'"/>
+        <xsl:with-param name="msgid" select="'install.tooltip'"/>
+        <xsl:with-param name="string" select="substring($action, 9)"/>
+        <xsl:with-param name="format" select="true()"/>
+      </xsl:call-template>
     </xsl:when>
     <xsl:when test="starts-with($xref, 'ghelp:') or starts-with($xref, 'help:')">
       <xsl:value-of select="$xref"/>
@@ -58,9 +61,12 @@
   <xsl:param name="xref" select="$node/@xref"/>
   <xsl:choose>
     <xsl:when test="starts-with($action, 'install:')">
-      <!-- FIXME: i18n -->
-      <xsl:text>INSTALL </xsl:text>
-      <xsl:value-of select="substring($action, 9)"/>
+      <xsl:call-template name="l10n.gettext">
+        <xsl:with-param name="domain" select="'yelp'"/>
+        <xsl:with-param name="msgid" select="'install.tooltip'"/>
+        <xsl:with-param name="string" select="substring($action, 9)"/>
+        <xsl:with-param name="format" select="true()"/>
+      </xsl:call-template>
     </xsl:when>
     <xsl:when test="starts-with($xref, 'ghelp:') or starts-with($xref, 'help:')">
       <xsl:value-of select="$xref"/>

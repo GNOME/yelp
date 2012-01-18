@@ -70,6 +70,11 @@ AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE",
                    [The gettext translation domain])
 
+AC_ARG_VAR([ITSTOOL], [Path to the `itstool` command])
+AC_CHECK_PROG([ITSTOOL], [itstool], [itstool])
+if test x"$ITSTOOL" = x; then
+  AC_MSG_ERROR([itstool is required to build the translation XML files])
+fi
 
 LIBLZMA_REQUIRED=4.9
 AC_ARG_ENABLE(lzma,
@@ -141,6 +146,8 @@ AC_SUBST(XSL_JSDIR)
 
 XSL_GETTEXT="`$PKG_CONFIG --variable=gettext yelp-xsl`"
 AC_SUBST(XSL_GETTEXT)
+XSL_DOMAINS="`$PKG_CONFIG --variable=domains yelp-xsl`"
+AC_SUBST(XSL_DOMAINS)
 
 YELP_ICON_PATH="`$PKG_CONFIG --variable=icondir yelp-xsl`"
 AC_SUBST(YELP_ICON_PATH)
@@ -198,6 +205,7 @@ docs/libyelp/version.xml
 libyelp/Makefile
 src/Makefile
 data/Makefile
+data/domains/Makefile
 data/dtd/Makefile
 data/dtd/catalog
 data/icons/Makefile

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- -*- indent-tabs-mode: nil -*- -->
+
+<l10n xmlns="http://projects.gnome.org/yelp/gettext/"
+      xmlns:msg="http://projects.gnome.org/yelp/gettext/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      xmlns:itst="http://itstool.org/extensions/">
+
+<its:rules xmlns:its="http://www.w3.org/2005/11/its"  version="1.0">
+  <its:langRule selector="//*" langPointer="@xml:lang"/>
+
+  <its:translateRule selector="/msg:l10n/msg:msg/msg:msgstr" translate="yes"/>
+  <its:withinTextRule selector="/msg:l10n/msg:msg/msg:msgstr//*" withinText="yes"/>
+
+  <itst:preserveSpaceRule selector="/msg:l10n/msg:msg/its:locNote" preserveSpace="yes"/>
+  <its:locNoteRule selector="/msg:l10n/msg:msg/msg:msgstr" locNotePointer="../its:locNote"/>
+</its:rules>
+
+<msg id="install.tooltip">
+<its:locNote>
+ID: install.tooltip
+This is a format message used to format tooltips on install: links. These
+links allow users to install packages by clicking a link in the help. The
+tooltip may also be used as the link text, if there's no link text in the
+document. Special elements in the message will be replaced with the
+appropriate content, as follows:
+
+&lt;string/> - The package to install
+</its:locNote>
+<msgstr>Install <string/></msgstr>
+</msg>
+
+</l10n>

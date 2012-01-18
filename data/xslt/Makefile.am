@@ -1,5 +1,3 @@
-@INTLTOOL_XML_RULE@
-
 xsldir=$(datadir)/yelp/xslt
 
 xsl_DATA =			\
