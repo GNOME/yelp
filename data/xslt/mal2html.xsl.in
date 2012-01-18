@@ -19,30 +19,52 @@
 
 <xsl:param name="mal.cache" select="yelp:input()"/>
 
-<!-- == mal.link.target == -->
-<xsl:template name="mal.link.target">
-  <xsl:param name="link" select="."/>
-  <xsl:param name="action" select="$link/@action"/>
-  <xsl:param name="xref" select="$link/@xref"/>
-  <xsl:param name="href" select="$link/@href"/>
+<xsl:param name="mal.link.prefix" select="'xref:'"/>
+<xsl:param name="mal.link.extension" select="''"/>
+
+<xsl:template name="mal.link.target.custom">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="action" select="$node/@action"/>
+  <xsl:param name="xref" select="$node/@xref"/>
   <xsl:choose>
     <xsl:when test="starts-with($action, 'install:')">
       <xsl:value-of select="$action"/>
     </xsl:when>
-    <xsl:when test="string($xref) = ''">
-      <xsl:value-of select="$href"/>
+    <xsl:when test="starts-with($xref, 'ghelp:') or starts-with($xref, 'help:')">
+      <xsl:value-of select="$xref"/>
     </xsl:when>
-    <xsl:when test="contains($xref, '/')">
-      <xsl:value-of select="$href"/>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="mal.link.content.custom">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="action" select="$node/@action"/>
+  <xsl:param name="xref" select="$node/@xref"/>
+  <xsl:choose>
+    <xsl:when test="starts-with($action, 'install:')">
+      <!-- FIXME: i18n -->
+      <xsl:text>INSTALL </xsl:text>
+      <xsl:value-of select="substring($action, 9)"/>
     </xsl:when>
-    <xsl:when test="contains($xref, '#')">
-      <xsl:variable name="pageid" select="substring-before($xref, '#')"/>
-      <xsl:variable name="sectionid" select="substring-after($xref, '#')"/>
-      <xsl:value-of select="concat('xref:', $pageid, '#', $sectionid)"/>
+    <xsl:when test="starts-with($xref, 'ghelp:') or starts-with($xref, 'help:')">
+      <xsl:value-of select="$xref"/>
     </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="concat('xref:', $xref)"/>
-    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template name="mal.link.tooltip.custom">
+  <xsl:param name="node" select="."/>
+  <xsl:param name="action" select="$node/@action"/>
+  <xsl:param name="xref" select="$node/@xref"/>
+  <xsl:choose>
+    <xsl:when test="starts-with($action, 'install:')">
+      <!-- FIXME: i18n -->
+      <xsl:text>INSTALL </xsl:text>
+      <xsl:value-of select="substring($action, 9)"/>
+    </xsl:when>
+    <xsl:when test="starts-with($xref, 'ghelp:') or starts-with($xref, 'help:')">
+      <xsl:value-of select="$xref"/>
+    </xsl:when>
   </xsl:choose>
 </xsl:template>
 
