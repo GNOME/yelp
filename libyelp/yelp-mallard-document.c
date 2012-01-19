@@ -104,6 +104,11 @@ static void           mallard_page_data_info    (MallardPageData      *page_data
                                                  xmlNodePtr            cache_node);
 static void           mallard_page_data_run     (MallardPageData      *page_data);
 static void           mallard_page_data_free    (MallardPageData      *page_data);
+static void           mallard_monitor_changed   (GFileMonitor         *monitor,
+                                                 GFile                *file,
+                                                 GFile                *other_file,
+                                                 GFileMonitorEvent     event_type,
+                                                 YelpMallardDocument  *mallard);
 
 static const char *   xml_node_get_icon         (xmlNodePtr            node);
 static gboolean       xml_node_is_ns_name       (xmlNodePtr            node,
@@ -129,6 +134,8 @@ struct _YelpMallardDocumentPrivate {
     xmlDocPtr      cache;
     xmlNsPtr       cache_ns;
     GHashTable    *pages_hash;
+
+    GFileMonitor **monitors;
 
     xmlXPathCompExprPtr  normalize;
 };
@@ -176,6 +183,17 @@ yelp_mallard_document_init (YelpMallardDocument *mallard)
 static void
 yelp_mallard_document_dispose (GObject *object)
 {
+    gint i;
+    YelpMallardDocumentPrivate *priv = GET_PRIV (object);
+
+    if (priv->monitors != NULL) {
+        for (i = 0; priv->monitors[i]; i++) {
+            g_object_unref (priv->monitors[i]);
+        }
+        g_free (priv->monitors);
+        priv->monitors = NULL;
+    }
+
     G_OBJECT_CLASS (yelp_mallard_document_parent_class)->dispose (object);
 }
 
@@ -188,6 +206,7 @@ yelp_mallard_document_finalize (GObject *object)
     g_mutex_free (priv->mutex);
     g_hash_table_destroy (priv->pages_hash);
 
+    xmlFreeDoc (priv->cache);
     if (priv->normalize)
         xmlXPathFreeCompExpr (priv->normalize);
 
@@ -202,6 +221,8 @@ yelp_mallard_document_new (YelpUri *uri)
     YelpMallardDocument *mallard;
     YelpMallardDocumentPrivate *priv;
     gchar *doc_uri;
+    gchar **path;
+    gint path_i;
 
     g_return_val_if_fail (uri != NULL, NULL);
 
@@ -215,6 +236,21 @@ yelp_mallard_document_new (YelpUri *uri)
 
     yelp_document_set_page_id ((YelpDocument *) mallard, NULL, "index");
     yelp_document_set_page_id ((YelpDocument *) mallard, "index", "index");
+
+    path = yelp_uri_get_search_path (uri);
+    priv->monitors = g_new0 (GFileMonitor*, g_strv_length (path) + 1);
+    for (path_i = 0; path[path_i]; path_i++) {
+        GFile *file;
+        file = g_file_new_for_path (path[path_i]);
+        priv->monitors[path_i] = g_file_monitor (file,
+                                                 G_FILE_MONITOR_SEND_MOVED,
+                                                 NULL, NULL);
+        g_signal_connect (priv->monitors[path_i], "changed",
+                          G_CALLBACK (mallard_monitor_changed),
+                          mallard);
+        g_object_unref (file);
+    }
+    g_strfreev (path);
 
     return (YelpDocument *) mallard;
 }
@@ -1069,3 +1105,50 @@ mallard_index (YelpDocument *document)
     priv->index_running = TRUE;
 }
 
+static void
+mallard_monitor_changed (GFileMonitor         *monitor,
+                         GFile                *file,
+                         GFile                *other_file,
+                         GFileMonitorEvent     event_type,
+                         YelpMallardDocument  *mallard)
+{
+    gchar **ids;
+    gint i;
+    xmlNodePtr cur;
+    YelpMallardDocumentPrivate *priv = GET_PRIV (mallard);
+
+    /* Exiting the thinking thread would require a fair amount of retooling.
+       For now, we'll just fail to auto-reload if that's still happening.
+    */
+    if (priv->thread_running)
+        return;
+
+    g_mutex_lock (priv->mutex);
+
+    g_hash_table_remove_all (priv->pages_hash);
+    g_object_set (mallard, "indexed", FALSE, NULL);
+
+    ids = yelp_document_get_requests (YELP_DOCUMENT (mallard));
+    for (i = 0; ids[i]; i++) {
+        priv->pending = g_slist_prepend (priv->pending, ids[i]);
+    }
+    g_free (ids);
+
+    yelp_document_clear_contents (YELP_DOCUMENT (mallard));
+
+    xmlFreeDoc (priv->cache);
+    priv->cache = xmlNewDoc (BAD_CAST "1.0");
+    priv->cache_ns = xmlNewNs (NULL, BAD_CAST MALLARD_NS, BAD_CAST "mal");
+    cur = xmlNewDocNode (priv->cache, priv->cache_ns, BAD_CAST "cache", NULL);
+    xmlDocSetRootElement (priv->cache, cur);
+    priv->cache_ns->next = cur->nsDef;
+    cur->nsDef = priv->cache_ns;
+
+    priv->state = MALLARD_STATE_THINKING;
+    priv->thread_running = TRUE;
+    g_object_ref (mallard);
+    priv->thread = g_thread_create ((GThreadFunc) mallard_think,
+                                    mallard, FALSE, NULL);
+
+    g_mutex_unlock (priv->mutex);
+}

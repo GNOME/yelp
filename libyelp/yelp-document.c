@@ -479,8 +479,9 @@ yelp_document_set_page_id (YelpDocument *document,
 	    request->page_id = g_strdup (page_id);
 	    hash_slist_insert (document->priv->reqs_by_page_id, page_id, request);
 	}
-	if (reqs)
+	if (reqs) {
 	    hash_remove (document->priv->reqs_by_page_id, id);
+        }
     }
 
     if (page_id != NULL) {
@@ -857,6 +858,41 @@ document_request_page (YelpDocument         *document,
 	g_idle_add ((GSourceFunc) request_idle_contents, request);
 	ret = TRUE;
     }
+
+    g_mutex_unlock (document->priv->mutex);
+
+    return ret;
+}
+
+void
+yelp_document_clear_contents (YelpDocument *document)
+{
+    g_mutex_lock (document->priv->mutex);
+
+    if (document->priv->contents->null) {
+        str_unref (document->priv->contents->null);
+        document->priv->contents->null = NULL;
+    }
+    g_hash_table_remove_all (document->priv->contents->hash);
+
+    g_mutex_unlock (document->priv->mutex);
+}
+
+gchar **
+yelp_document_get_requests (YelpDocument *document)
+{
+    GList *reqs, *cur;
+    gchar **ret;
+    gint i;
+
+    g_mutex_lock (document->priv->mutex);
+
+    reqs = g_hash_table_get_keys (document->priv->reqs_by_page_id->hash);
+    ret = g_new0 (gchar*, g_list_length (reqs) + 1);
+    for (cur = reqs, i = 0; cur; cur = cur->next, i++) {
+        ret[i] = g_strdup ((gchar *) cur->data);
+    }
+    g_list_free (reqs);
 
     g_mutex_unlock (document->priv->mutex);
 

@@ -85,6 +85,8 @@ gboolean          yelp_document_request_page   (YelpDocument         *document,
                                                 GCancellable         *cancellable,
                                                 YelpDocumentCallback  callback,
                                                 gpointer              user_data);
+void              yelp_document_clear_contents (YelpDocument         *document);
+gchar **          yelp_document_get_requests   (YelpDocument         *document);
 
 void              yelp_document_give_contents  (YelpDocument         *document,
                                                 const gchar          *page_id,
