@@ -90,6 +90,12 @@ div.trail {
   margin: 0 1em 0.2em 1em;
   padding: 0;
 }
+@media only screen and (max-width: 400px) {
+  div.trails {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+}
 a.trail { color:  </xsl:text>
   <xsl:value-of select="$color.text_light"/><xsl:text>; }
 a.trail:hover { text-decoration: none; color:  </xsl:text>
