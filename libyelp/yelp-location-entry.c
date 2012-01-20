@@ -722,7 +722,6 @@ location_entry_set_completion (YelpLocationEntry *entry,
     GtkCellRenderer *icon_cell, *bookmark_cell;
 
     priv->completion = gtk_entry_completion_new ();
-    gtk_entry_completion_insert_action_text (priv->completion, -1, "SEARCH");
     gtk_entry_completion_set_minimum_key_length (priv->completion, 3);
     gtk_entry_completion_set_model (priv->completion, model);
     gtk_entry_completion_set_text_column (priv->completion, COMPLETION_COL_TITLE);
