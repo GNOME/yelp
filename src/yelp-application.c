@@ -672,7 +672,8 @@ yelp_application_update_bookmarks (YelpApplication   *app,
         g_variant_iter_free (iter);
 
         if (updated)
-            g_settings_set (settings, "bookmarks", "a(sss)", builder);
+            g_settings_set_value (settings, "bookmarks",
+                                  g_variant_builder_end (&builder));
         else
             g_variant_builder_clear (&builder);
     }
