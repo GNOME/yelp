@@ -225,6 +225,10 @@ enum {
 };
 
 enum {
+    COMPLETION_FLAG_ACTIVATE_SEARCH = 1<<0
+};
+
+enum {
     LOCATION_SELECTED,
     SEARCH_ACTIVATED,
     BOOKMARK_CLICKED,
@@ -1132,7 +1136,19 @@ cell_set_completion_text_cell (GtkCellLayout     *layout,
                                YelpLocationEntry *entry)
 {
     gchar *title, *desc, *color, *text;
+    gint flags;
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    gtk_tree_model_get (model, iter, COMPLETION_COL_FLAGS, &flags, -1);
+    if (flags & COMPLETION_FLAG_ACTIVATE_SEARCH) {
+        title = g_strdup_printf (_("Search for “%s”"),
+                                 gtk_entry_get_text (GTK_ENTRY (priv->text_entry)));
+        text = g_markup_printf_escaped ("<span size='larger' font_weight='bold'>%s</span>", title);
+        g_object_set (cell, "markup", text, NULL);
+        g_free (text);
+        g_free (title);
+        return;
+    }
 
     gtk_tree_model_get (model, iter,
                         COMPLETION_COL_TITLE, &title,
@@ -1165,6 +1181,7 @@ entry_match_func (GtkEntryCompletion *completion,
     gchar *title, *desc, *titlecase = NULL, *desccase = NULL;
     gboolean ret = FALSE;
     gchar **strs;
+    gint flags;
     GtkTreeModel *model = gtk_entry_completion_get_model (completion);
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
     static GRegex *nonword = NULL;
@@ -1174,9 +1191,13 @@ entry_match_func (GtkEntryCompletion *completion,
     if (nonword == NULL)
         return FALSE;
 
+    gtk_tree_model_get (model, iter, COMPLETION_COL_FLAGS, &flags, -1);
+    if (flags & COMPLETION_FLAG_ACTIVATE_SEARCH)
+        return TRUE;
+
     gtk_tree_model_get (model, iter,
-                        HISTORY_COL_TITLE, &title,
-                        HISTORY_COL_DESC, &desc,
+                        COMPLETION_COL_TITLE, &title,
+                        COMPLETION_COL_DESC, &desc,
                         -1);
     if (title) {
         titlecase = g_utf8_casefold (title, -1);
@@ -1212,7 +1233,15 @@ entry_completion_sort (GtkTreeModel *model,
                        gpointer      user_data)
 {
     gint ret = 0;
+    gint flags1, flags2;
     gchar *key1, *key2;
+
+    gtk_tree_model_get (model, iter1, COMPLETION_COL_FLAGS, &flags1, -1);
+    gtk_tree_model_get (model, iter2, COMPLETION_COL_FLAGS, &flags2, -1);
+    if (flags1 & COMPLETION_FLAG_ACTIVATE_SEARCH)
+        return 1;
+    else if (flags2 & COMPLETION_FLAG_ACTIVATE_SEARCH)
+        return -1;
 
     gtk_tree_model_get (model, iter1, COMPLETION_COL_ICON, &key1, -1);
     gtk_tree_model_get (model, iter2, COMPLETION_COL_ICON, &key2, -1);
@@ -1245,7 +1274,14 @@ entry_match_selected (GtkEntryCompletion *completion,
 {
     YelpUri *base, *uri;
     gchar *page, *xref;
+    gint flags;
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
+
+    gtk_tree_model_get (model, iter, COMPLETION_COL_FLAGS, &flags, -1);
+    if (flags & COMPLETION_FLAG_ACTIVATE_SEARCH) {
+        entry_activate_cb (GTK_ENTRY (priv->text_entry), entry);
+        return TRUE;
+    }
 
     g_object_get (priv->view, "yelp-uri", &base, NULL);
     gtk_tree_model_get (model, iter, COMPLETION_COL_PAGE, &page, -1);
@@ -1315,9 +1351,9 @@ view_loaded (YelpView          *view,
                                                      NULL, NULL);
             g_hash_table_insert (completions, g_strdup (doc_uri), completion);
             if (document != NULL) {
+                GtkTreeIter iter;
                 ids = yelp_document_list_page_ids (document);
                 for (i = 0; ids[i]; i++) {
-                    GtkTreeIter iter;
                     gchar *title, *desc, *icon;
                     gtk_list_store_insert (GTK_LIST_STORE (base), &iter, 0);
                     title = yelp_document_get_page_title (document, ids[i]);
@@ -1334,6 +1370,10 @@ view_loaded (YelpView          *view,
                     g_free (title);
                 }
                 g_strfreev (ids);
+                gtk_list_store_insert (GTK_LIST_STORE (base), &iter, 0);
+                gtk_list_store_set (base, &iter,
+                                    COMPLETION_COL_FLAGS, COMPLETION_FLAG_ACTIVATE_SEARCH,
+                                    -1);
             }
             g_object_unref (base);
         }
