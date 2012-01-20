@@ -722,6 +722,7 @@ location_entry_set_completion (YelpLocationEntry *entry,
     GtkCellRenderer *icon_cell, *bookmark_cell;
 
     priv->completion = gtk_entry_completion_new ();
+    gtk_entry_completion_insert_action_text (priv->completion, -1, "SEARCH");
     gtk_entry_completion_set_minimum_key_length (priv->completion, 3);
     gtk_entry_completion_set_model (priv->completion, model);
     gtk_entry_completion_set_text_column (priv->completion, COMPLETION_COL_TITLE);
@@ -1137,6 +1138,7 @@ cell_set_completion_text_cell (GtkCellLayout     *layout,
 {
     gchar *title, *desc, *color, *text;
     gint flags;
+    GList *cells, *cur;
     YelpLocationEntryPrivate *priv = GET_PRIV (entry);
 
     gtk_tree_model_get (model, iter, COMPLETION_COL_FLAGS, &flags, -1);
@@ -1147,6 +1149,18 @@ cell_set_completion_text_cell (GtkCellLayout     *layout,
         g_object_set (cell, "markup", text, NULL);
         g_free (text);
         g_free (title);
+
+        color = yelp_settings_get_color (yelp_settings_get_default (),
+                                         YELP_SETTINGS_COLOR_YELLOW_BASE);
+        cells = gtk_cell_layout_get_cells (layout);
+        for (cur = cells; cur; cur = cur->next) {
+            g_object_set (cur->data,
+                          "cell-background", color,
+                          "cell-background-set", TRUE,
+                          NULL);
+        }
+        g_list_free (cells);
+        g_free (color);
         return;
     }
 
@@ -1169,6 +1183,11 @@ cell_set_completion_text_cell (GtkCellLayout     *layout,
     g_object_set (cell, "markup", text, NULL);
     g_free (text);
     g_free (title);
+
+    cells = gtk_cell_layout_get_cells (layout);
+    for (cur = cells; cur; cur = cur->next)
+        g_object_set (cur->data, "cell-background-set", FALSE, NULL);
+    g_list_free (cells);
 }
 
 static gboolean
@@ -1372,6 +1391,7 @@ view_loaded (YelpView          *view,
                 g_strfreev (ids);
                 gtk_list_store_insert (GTK_LIST_STORE (base), &iter, 0);
                 gtk_list_store_set (base, &iter,
+                                    COMPLETION_COL_ICON, "edit-find-symbolic",
                                     COMPLETION_COL_FLAGS, COMPLETION_FLAG_ACTIVATE_SEARCH,
                                     -1);
             }
