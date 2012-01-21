@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-01-18 15:55+0000\n"
-"PO-Revision-Date: 2012-01-18 17:46+0100\n"
+"POT-Creation-Date: 2012-01-20 16:03+0000\n"
+"PO-Revision-Date: 2012-01-21 11:44+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -46,8 +46,8 @@ msgid "Not enough memory"
 msgstr "No hay suficiente memoria"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:271
-#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:307
+#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "La página «%s» no se encontró en el documento «%s»."
@@ -108,17 +108,17 @@ msgstr "URI del documento"
 msgid "The URI which identifies the document"
 msgstr "El URI que identifica el documento"
 
-#: ../libyelp/yelp-document.c:958
+#: ../libyelp/yelp-document.c:994
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Resultados de la búsqueda para «%s»"
 
-#: ../libyelp/yelp-document.c:970
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "No se encontraron páginas de ayuda coincidentes en «%s»."
 
-#: ../libyelp/yelp-document.c:976
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "No se encontraron páginas de ayuda coincidentes."
 
@@ -139,52 +139,58 @@ msgstr ""
 "El archivo «%s» no se pudo analizar porque no es una página de información "
 "bien formada."
 
-#: ../libyelp/yelp-location-entry.c:331
+#: ../libyelp/yelp-location-entry.c:335
 msgid "View"
 msgstr "Ver"
 
-#: ../libyelp/yelp-location-entry.c:332
+#: ../libyelp/yelp-location-entry.c:336
 msgid "A YelpView instance to control"
 msgstr "Una instancia de YelpApplication para controlar"
 
-#: ../libyelp/yelp-location-entry.c:347
+#: ../libyelp/yelp-location-entry.c:351
 msgid "Bookmarks"
 msgstr "Marcadores"
 
-#: ../libyelp/yelp-location-entry.c:348
+#: ../libyelp/yelp-location-entry.c:352
 msgid "A YelpBookmarks implementation instance"
 msgstr "Una implementación de instancia de YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:364
+#: ../libyelp/yelp-location-entry.c:368
 msgid "Enable Search"
 msgstr "Activar búsqueda"
 
-#: ../libyelp/yelp-location-entry.c:365
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Whether the location entry can be used as a search field"
 msgstr ""
 "Indica si la entrada de ubicación se puede usar como un campo de búsqueda"
 
-#: ../libyelp/yelp-location-entry.c:435 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:439 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Buscar…"
 
-#: ../libyelp/yelp-location-entry.c:778
+#: ../libyelp/yelp-location-entry.c:782
 msgid "Clear the search text"
 msgstr "Limpiar el texto de búsqueda"
 
-#: ../libyelp/yelp-location-entry.c:827 ../libyelp/yelp-location-entry.c:1525
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1565
 msgid "Bookmark this page"
 msgstr "Marcar esta página"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1533
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1573
 msgid "Remove bookmark"
 msgstr "Quitar marcador"
 
-#: ../libyelp/yelp-location-entry.c:1390
+#: ../libyelp/yelp-location-entry.c:1144
+#, c-format
+#| msgid "Search results for “%s”"
+msgid "Search for “%s”"
+msgstr "Buscar «%s»"
+
+#: ../libyelp/yelp-location-entry.c:1430
 msgid "Loading"
 msgstr "Cargando"
 
-#: ../libyelp/yelp-mallard-document.c:311
+#: ../libyelp/yelp-mallard-document.c:347
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "La carpeta «%s» no existe."
