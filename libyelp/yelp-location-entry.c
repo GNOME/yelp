@@ -88,6 +88,7 @@ static void     location_entry_start_search    (YelpLocationEntry *entry,
 static void     location_entry_cancel_search   (YelpLocationEntry *entry);
 static void     location_entry_set_entry       (YelpLocationEntry *entry,
                                                 gboolean           emit);
+static gboolean location_entry_start_pulse     (gpointer           data);
 static gboolean location_entry_pulse           (gpointer           data);
 static void     location_entry_set_completion  (YelpLocationEntry *entry,
                                                 GtkTreeModel      *model);
@@ -811,9 +812,8 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
             gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
                                                GTK_ENTRY_ICON_PRIMARY,
                                                "yelp-page-symbolic");
-            if (priv->pulse > 0)
-                g_source_remove (priv->pulse);
-            priv->pulse = g_timeout_add (80, location_entry_pulse, entry);
+            if (priv->pulse == 0)
+                priv->pulse = g_timeout_add (500, location_entry_start_pulse, entry);
         }
         else {
             gtk_entry_set_icon_from_icon_name (GTK_ENTRY (priv->text_entry),
@@ -863,6 +863,14 @@ location_entry_set_entry (YelpLocationEntry *entry, gboolean emit)
 }
 
 static gboolean
+location_entry_start_pulse (gpointer data)
+{
+    YelpLocationEntryPrivate *priv = GET_PRIV (data);
+    priv->pulse = g_timeout_add (80, location_entry_pulse, data);
+    return FALSE;
+}
+
+static gboolean
 location_entry_pulse (gpointer data)
 {
     YelpLocationEntryPrivate *priv = GET_PRIV (data);
@@ -886,6 +894,7 @@ location_entry_pulse (gpointer data)
     }
     else {
         gtk_entry_set_progress_fraction (GTK_ENTRY (priv->text_entry), 0.0);
+        priv->pulse = 0;
     }
 
     return flags & LOCATION_ENTRY_IS_LOADING;
