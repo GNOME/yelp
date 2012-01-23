@@ -77,6 +77,7 @@ div.code {
 div.code:hover {
   -webkit-box-shadow: 0px 0px 4px </xsl:text><xsl:value-of select="$color.blue_border"/><xsl:text>;
 }
+div.synopsis div.code, div.synopsis div.code:hover { -webkit-box-shadow: none; }
 div.trails {
   margin: 0;
   padding: 0.2em 12px 0 12px;
