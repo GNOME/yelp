@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-16 00:40+0300\n"
-"PO-Revision-Date: 2011-11-16 00:43+0300\n"
+"POT-Creation-Date: 2012-01-30 19:26+0300\n"
+"PO-Revision-Date: 2012-01-30 19:26+0300\n"
 "Last-Translator: kasia <1>\n"
 "Language-Team: 1\n"
 "Language: be\n"
@@ -17,6 +17,19 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Virtaal 0.6.1\n"
+
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <string/> - The package to install
+#.
+#: yelp.xml.in:29(msg/msgstr)
+msgid "Install <string/>"
+msgstr "Усталяваць <string/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -29,8 +42,8 @@ msgid "Not enough memory"
 msgstr "Не стае памяці"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:271
-#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:307
+#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Старонка \"%s\" не знойдзена ў дакуменце \"%s\"."
@@ -91,17 +104,17 @@ msgstr "URI-адрас дакумента"
 msgid "The URI which identifies the document"
 msgstr "URI-адрас дакумента"
 
-#: ../libyelp/yelp-document.c:958
+#: ../libyelp/yelp-document.c:994
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Вынікі пошуку \"%s\""
 
-#: ../libyelp/yelp-document.c:970
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Адпаведныя даведачныя старонкі не знойдзены ў \"%s\"."
 
-#: ../libyelp/yelp-document.c:976
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "Адпаведныя даведачныя старонкі не знойдзены."
 
@@ -122,51 +135,56 @@ msgstr ""
 "Не ўдалося разабраць файл \"%s\", бо ён не ўяўляе сабой карэктнай info-"
 "старонкі."
 
-#: ../libyelp/yelp-location-entry.c:331
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "Аб'ект прагляду"
 
-#: ../libyelp/yelp-location-entry.c:332
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
 msgstr "Кіраваны аб'ект YelpView"
 
-#: ../libyelp/yelp-location-entry.c:347
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "Закладкі"
 
-#: ../libyelp/yelp-location-entry.c:348
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr "Аб'ект рэалізацыі YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:364
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "Уключыць пошук"
 
-#: ../libyelp/yelp-location-entry.c:365
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
 msgstr "Ці можна выкарыстоўваць поле адрасу для пошуку"
 
-#: ../libyelp/yelp-location-entry.c:435 ../src/yelp-window.c:280
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Шукаць..."
 
-#: ../libyelp/yelp-location-entry.c:778
+#: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr "Ачысціць поле пошуку"
 
-#: ../libyelp/yelp-location-entry.c:827 ../libyelp/yelp-location-entry.c:1525
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "Стварыць закладку для старонкі"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1533
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "Выдаліць закладку"
 
-#: ../libyelp/yelp-location-entry.c:1390
+#: ../libyelp/yelp-location-entry.c:1154
+#, c-format
+msgid "Search for “%s”"
+msgstr "Шукаць \"%s\""
+
+#: ../libyelp/yelp-location-entry.c:1458
 msgid "Loading"
 msgstr "Загрузка"
 
-#: ../libyelp/yelp-mallard-document.c:311
+#: ../libyelp/yelp-mallard-document.c:347
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Каталог \"%s\" не існуе."
@@ -448,8 +466,8 @@ msgstr "Па_меншыць тэкст"
 msgid "Decrease the size of the text"
 msgstr "Паменшыць памер тэксту"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1376
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Дапамога"
 
@@ -457,75 +475,71 @@ msgstr "Дапамога"
 msgid "Show Text _Cursor"
 msgstr "Паказаць _курсор у тэксце"
 
-#: ../src/yelp-window.c:242
+#: ../src/yelp-window.c:236
 msgid "_Page"
 msgstr "_Старонка"
 
-#: ../src/yelp-window.c:243
+#: ../src/yelp-window.c:237
 msgid "_View"
 msgstr "_Від"
 
-#: ../src/yelp-window.c:244
+#: ../src/yelp-window.c:238
 msgid "_Go"
 msgstr "Пера_ход"
 
-#: ../src/yelp-window.c:245
+#: ../src/yelp-window.c:239
 msgid "_Bookmarks"
 msgstr "_Закладкі"
 
-#: ../src/yelp-window.c:248
+#: ../src/yelp-window.c:242
 msgid "_New Window"
 msgstr "_Новае акно"
 
-#: ../src/yelp-window.c:253
+#: ../src/yelp-window.c:247
 msgid "_Close"
 msgstr "За_крыць"
 
-#: ../src/yelp-window.c:258
-msgid "_Share..."
-msgstr "Пад_зяліцца..."
-
-#: ../src/yelp-window.c:262
+#: ../src/yelp-window.c:252
 msgid "_All Documents"
 msgstr "_Усе дакументы"
 
-#: ../src/yelp-window.c:266
+#: ../src/yelp-window.c:256
 msgid "_Add Bookmark"
 msgstr "_Дадаць закладку"
 
-#: ../src/yelp-window.c:271
+#: ../src/yelp-window.c:261
 msgid "_Remove Bookmark"
 msgstr "_Выдаліць закладку"
 
-#: ../src/yelp-window.c:275
+#: ../src/yelp-window.c:265
 msgid "Find in Page..."
 msgstr "Знайсці на старонцы..."
 
-#: ../src/yelp-window.c:285
+#: ../src/yelp-window.c:275
 msgid "Open Location"
 msgstr "Адкрыць месцазнаходжанне"
 
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:301
 msgid "Application"
 msgstr "Праграма"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Аб'ект YelpApplication, які кіруе гэтым акном"
 
-#: ../src/yelp-window.c:439
+#: ../src/yelp-window.c:429
 msgid "Read Link _Later"
 msgstr "Пра_чытаць спасылку пазней"
 
-#: ../src/yelp-window.c:543
+#: ../src/yelp-window.c:526
 msgid "Find:"
 msgstr "Шукаць:"
 
-#: ../src/yelp-window.c:565
+#: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "Прачытаць пазней"
 
-#: ../src/yelp-window.c:1196
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
@@ -533,50 +547,10 @@ msgstr[0] "%i адпаведнік"
 msgstr[1] "%i адпаведнікі"
 msgstr[2] "%i адпаведнікаў"
 
-#: ../src/yelp-window.c:1205
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "Няма адпаведнікаў"
 
-#: ../src/yelp-window.c:1565
-msgid "Share"
-msgstr "Падзяліцца"
-
-#: ../src/yelp-window.c:1567
-msgid "Close"
-msgstr "Закрыць"
-
-#: ../src/yelp-window.c:1613
-msgid "Chat"
-msgstr "Чат"
-
-#: ../src/yelp-window.c:1620
-msgid "Send a help link to a chat contact:"
-msgstr "Прыслаць даведачную спасылку кантакту ў чаце:"
-
-#: ../src/yelp-window.c:1633
-msgid "Email"
-msgstr "Электронны ліст"
-
-#: ../src/yelp-window.c:1641
-msgid "Send a help link to an email contact:"
-msgstr "Прыслаць даведачную спасылку ў электронным лісце:"
-
-#: ../src/yelp-window.c:1663 ../src/yelp-window.c:1666
-msgid "Compose new email"
-msgstr "Напісаць новы электронны ліст"
-
-#: ../src/yelp-window.c:1680 ../src/yelp-window.c:1707
-msgid "Copy"
-msgstr "Скапіраваць"
-
-#: ../src/yelp-window.c:1688
-msgid "Copy the help location to the clipboard:"
-msgstr "Скапіраваць адрас даведкі ў буфер абмену:"
-
-#: ../src/yelp-window.c:1709
-msgid "Copy location to clipboard"
-msgstr "Скапіраваць адрас у буфер абмену"
-
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Даведка GNOME"
