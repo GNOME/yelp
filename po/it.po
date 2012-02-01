@@ -2,23 +2,23 @@
 # Copyright (C) 2002, 2003, 2004, 2005, 2005, 2007, 2008, 2009, 2011 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 # Psyk[o] <shaihulud@supereva.it>, 2002.
-# Luca Ferretti <elle.uca@libero.it>, 2005-2006.
 # Milo Casagrande <milo@ubuntu.com>, 2007-2008, 2009, 2011.
+# Luca Ferretti <lferrett@gnome.org>, 2005-2006, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-08-18 19:01+0000\n"
-"PO-Revision-Date: 2011-08-22 11:19+0200\n"
-"Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2011-10-17 04:32+0000\n"
+"PO-Revision-Date: 2012-02-01 13:01+0100\n"
+"Last-Translator: Luca Ferretti <lferrett@gnome.org>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -75,34 +75,34 @@ msgstr "Sconosciuto"
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "La pagina richiesta non è stata trovata nel documento «%s»."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "Indicizzato"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "Indica se il contenuto del documento è stato indicizzato o meno"
 
 # Collegamento al frontespizio di un <set>
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "URI del documento"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "L'URI che identifica il documento"
 
-#: ../libyelp/yelp-document.c:956
+#: ../libyelp/yelp-document.c:958
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Risultati ricerca per «%s»"
 
-#: ../libyelp/yelp-document.c:968
+#: ../libyelp/yelp-document.c:970
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Non è stata trovata alcuna pagina di aiuto corrispondente in «%s»"
 
-#: ../libyelp/yelp-document.c:974
+#: ../libyelp/yelp-document.c:976
 msgid "No matching help pages found."
 msgstr "Non è stata trovata alcuna pagina di aiuto corrispondente."
 
@@ -506,6 +506,10 @@ msgstr "Application"
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Un'istanza di YelpApplication che controlla questa finestra"
+
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Leggi _dopo"
 
 #: ../src/yelp-window.c:526
 msgid "Find:"
