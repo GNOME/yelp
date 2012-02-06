@@ -14,14 +14,14 @@
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Antón Méixome <meixome@mancomun.org>, 2009.
 # Fran Diéguez <frandieguez@gnome.org>, 2010, 2011.
-# Fran Dieguez <frandieguez@gnome.org>, 2011.
+# Fran Dieguez <frandieguez@gnome.org>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-04 12:41+0100\n"
-"PO-Revision-Date: 2011-11-04 12:43+0100\n"
+"POT-Creation-Date: 2012-02-06 12:19+0100\n"
+"PO-Revision-Date: 2012-02-06 12:19+0100\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
@@ -30,6 +30,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: KBabel 1.11.4\n"
+
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <string/> - The package to install
+#.
+#: yelp.xml.in:29(msg/msgstr)
+msgid "Install <string/>"
+msgstr "Instalar <string/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -42,8 +55,8 @@ msgid "Not enough memory"
 msgstr "Non hai suficiente memoria"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:271
-#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:307
+#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Non se atopou a páxina «%s» no documento «%s»."
@@ -103,17 +116,17 @@ msgstr "_Todos os documentos"
 msgid "The URI which identifies the document"
 msgstr "O URI que identifica o documento"
 
-#: ../libyelp/yelp-document.c:958
+#: ../libyelp/yelp-document.c:994
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Resultados para a busca de «%s»"
 
-#: ../libyelp/yelp-document.c:970
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Non hai ningunha páxina de axuda que coincida con «%s»."
 
-#: ../libyelp/yelp-document.c:976
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "Non foi posíbel atopar ningunha páxina de axuda."
 
@@ -134,52 +147,57 @@ msgstr ""
 "Non foi posíbel analizar o ficheiro ‘%s’ porque non é unha páxina de "
 "información ben elaborada."
 
-#: ../libyelp/yelp-location-entry.c:331
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "Ver"
 
-#: ../libyelp/yelp-location-entry.c:332
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
 msgstr "Unha instancia de YelpView que controla esta xanela"
 
-#: ../libyelp/yelp-location-entry.c:347
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "Marcadores"
 
-#: ../libyelp/yelp-location-entry.c:348
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr "Unha instancia da implementación de YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:364
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "Activar a busca"
 
-#: ../libyelp/yelp-location-entry.c:365
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
 msgstr ""
 "Indica se a entrada de localización pode ser usada como un campo de busca"
 
-#: ../libyelp/yelp-location-entry.c:435 ../src/yelp-window.c:280
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Buscar…"
 
-#: ../libyelp/yelp-location-entry.c:778
+#: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr "Limpar o texto de busca"
 
-#: ../libyelp/yelp-location-entry.c:827 ../libyelp/yelp-location-entry.c:1525
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "Marcar esta páxina"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1533
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "Quitar marcador"
 
-#: ../libyelp/yelp-location-entry.c:1390
+#: ../libyelp/yelp-location-entry.c:1154
+#, c-format
+msgid "Search for “%s”"
+msgstr "Buscar por «%s»"
+
+#: ../libyelp/yelp-location-entry.c:1458
 msgid "Loading"
 msgstr "Cargando"
 
-#: ../libyelp/yelp-mallard-document.c:311
+#: ../libyelp/yelp-mallard-document.c:347
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "O cartafol «%s» non existe."
@@ -462,8 +480,8 @@ msgstr "Texto máis peque_no"
 msgid "Decrease the size of the text"
 msgstr "Reducir o tamaño do texto"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1376
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Axuda"
 
@@ -471,128 +489,117 @@ msgstr "Axuda"
 msgid "Show Text _Cursor"
 msgstr "Mostrar o _cursor de texto"
 
-#: ../src/yelp-window.c:242
+#: ../src/yelp-window.c:236
 msgid "_Page"
 msgstr "_Páxina"
 
-#: ../src/yelp-window.c:243
+#: ../src/yelp-window.c:237
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/yelp-window.c:244
+#: ../src/yelp-window.c:238
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/yelp-window.c:245
+#: ../src/yelp-window.c:239
 msgid "_Bookmarks"
 msgstr "_Marcadores"
 
-#: ../src/yelp-window.c:248
+#: ../src/yelp-window.c:242
 msgid "_New Window"
 msgstr "Xanela _nova"
 
-#: ../src/yelp-window.c:253
+#: ../src/yelp-window.c:247
 msgid "_Close"
 msgstr "_Pechar"
 
-#: ../src/yelp-window.c:258
-msgid "_Share..."
-msgstr "C_ompartir…"
-
-#: ../src/yelp-window.c:262
+#: ../src/yelp-window.c:252
 msgid "_All Documents"
 msgstr "_Todos os documentos"
 
-#: ../src/yelp-window.c:266
+#: ../src/yelp-window.c:256
 msgid "_Add Bookmark"
 msgstr "_Engadir marcador"
 
-#: ../src/yelp-window.c:271
+#: ../src/yelp-window.c:261
 msgid "_Remove Bookmark"
 msgstr "_Eliminar marcador"
 
-#: ../src/yelp-window.c:275
+#: ../src/yelp-window.c:265
 msgid "Find in Page..."
 msgstr "Buscar na páxina…"
 
-#: ../src/yelp-window.c:285
+#: ../src/yelp-window.c:275
 msgid "Open Location"
 msgstr "Abrir localización"
 
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:301
 msgid "Application"
 msgstr "Aplicativos"
 
-#: ../src/yelp-window.c:312
+#: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
 msgstr "Unha instancia de YelpApplications que controla esta xanela"
 
-#: ../src/yelp-window.c:439
+#: ../src/yelp-window.c:429
 msgid "Read Link _Later"
 msgstr "Ler ligazón _máis tarde"
 
-#: ../src/yelp-window.c:543
+#: ../src/yelp-window.c:526
 msgid "Find:"
 msgstr "Buscar:"
 
-#: ../src/yelp-window.c:565
+#: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "Ler máis tarde"
 
-#: ../src/yelp-window.c:1196
+#: ../src/yelp-window.c:1179
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i aparición"
 msgstr[1] "%i aparicións"
 
-#: ../src/yelp-window.c:1205
+#: ../src/yelp-window.c:1188
 msgid "No matches"
 msgstr "Non se atoparon aparicións"
 
-#: ../src/yelp-window.c:1565
-msgid "Share"
-msgstr "Compartir"
-
-#: ../src/yelp-window.c:1567
-msgid "Close"
-msgstr "Pechar"
-
-#: ../src/yelp-window.c:1613
-msgid "Chat"
-msgstr "Conversas"
-
-#: ../src/yelp-window.c:1620
-msgid "Send a help link to a chat contact:"
-msgstr "Enviar unha ligazón de axuda a un contacto do chat:"
-
-#: ../src/yelp-window.c:1633
-msgid "Email"
-msgstr "Correo-e"
-
-#: ../src/yelp-window.c:1641
-msgid "Send a help link to an email contact:"
-msgstr "Enviar unha ligazón de axuda por correo electrónico a un contacto:"
-
-#: ../src/yelp-window.c:1663 ../src/yelp-window.c:1666
-msgid "Compose new email"
-msgstr "Editar un correo electrónico nuevo"
-
-#: ../src/yelp-window.c:1680 ../src/yelp-window.c:1707
-msgid "Copy"
-msgstr "Copiar"
-
-#: ../src/yelp-window.c:1688
-msgid "Copy the help location to the clipboard:"
-msgstr "Copiar a localización da axuda ao portapapeis:"
-
-#: ../src/yelp-window.c:1709
-msgid "Copy location to clipboard"
-msgstr "Copiar a localización ao portapapeis"
-
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Obter axuda co Gnome"
+
+#~ msgid "_Share..."
+#~ msgstr "C_ompartir…"
+
+#~ msgid "Share"
+#~ msgstr "Compartir"
+
+#~ msgid "Close"
+#~ msgstr "Pechar"
+
+#~ msgid "Chat"
+#~ msgstr "Conversas"
+
+#~ msgid "Send a help link to a chat contact:"
+#~ msgstr "Enviar unha ligazón de axuda a un contacto do chat:"
+
+#~ msgid "Email"
+#~ msgstr "Correo-e"
+
+#~ msgid "Send a help link to an email contact:"
+#~ msgstr "Enviar unha ligazón de axuda por correo electrónico a un contacto:"
+
+#~ msgid "Compose new email"
+#~ msgstr "Editar un correo electrónico nuevo"
+
+#~ msgid "Copy"
+#~ msgstr "Copiar"
+
+#~ msgid "Copy the help location to the clipboard:"
+#~ msgstr "Copiar a localización da axuda ao portapapeis:"
+
+#~ msgid "Copy location to clipboard"
+#~ msgstr "Copiar a localización ao portapapeis"
 
 #~ msgid "GNU Info Pages"
 #~ msgstr "Páxinas de información de GNU"
