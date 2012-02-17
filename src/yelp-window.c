@@ -562,6 +562,7 @@ window_construct (YelpWindow *window)
     g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), window);
     g_signal_connect_swapped (priv->view, "notify::page-id",
                               G_CALLBACK (window_set_bookmark_action), window);
+    window_set_bookmark_action (window);
     g_signal_connect (priv->view, "notify::root-title", G_CALLBACK (view_root_title), window);
     gtk_container_add (GTK_CONTAINER (scroll), GTK_WIDGET (priv->view));
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
@@ -910,7 +911,7 @@ window_set_bookmark_action (YelpWindow *window)
                   "yelp-uri", &uri,
                   "page-id", &page_id,
                   NULL);
-    if (page_id == NULL) {
+    if (page_id == NULL || uri == NULL) {
         gtk_action_set_sensitive (action_add, FALSE);
         gtk_action_set_sensitive (action_del, FALSE);
         goto done;

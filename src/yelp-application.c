@@ -543,6 +543,9 @@ yelp_application_add_bookmark (YelpBookmarks     *bookmarks,
     GSettings *settings;
     YelpApplication *app = YELP_APPLICATION (bookmarks);
 
+    g_return_if_fail (page_id);
+    g_return_if_fail (doc_uri);
+
     settings = application_get_doc_settings (app, doc_uri);
 
     if (settings) {
@@ -788,7 +791,13 @@ window_resized (YelpWindow        *window,
     GSettings *settings;
 
     uri = yelp_window_get_uri (window);
+    if (uri == NULL)
+        return FALSE;
     doc_uri = yelp_uri_get_document_uri (uri);
+    if (doc_uri == NULL) {
+        g_object_unref (uri);
+        return FALSE;
+    }
     settings = g_hash_table_lookup (priv->docsettings, doc_uri);
 
     if (settings) {
