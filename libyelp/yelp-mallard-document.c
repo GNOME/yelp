@@ -40,7 +40,6 @@
 
 #define STYLESHEET DATADIR"/yelp/xslt/mal2html.xsl"
 #define MALLARD_NS "http://projectmallard.org/1.0/"
-#define MALLARD_FACET_NS "http://projectmallard.org/facet/1.0/"
 
 typedef enum {
     MALLARD_STATE_BLANK,
@@ -692,10 +691,10 @@ mallard_page_data_info (MallardPageData *page_data,
         else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "revision")) {
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
         }
-        else if (xml_node_is_ns_name (child, MALLARD_FACET_NS, BAD_CAST "tag") ||
-                 xml_node_is_ns_name (child, MALLARD_FACET_NS, BAD_CAST "match") ||
-                 xml_node_is_ns_name (child, MALLARD_FACET_NS, BAD_CAST "choice") ) {
-            xmlAddChild (cache_node, xmlCopyNode (child, 1));
+        else {
+            if (child->ns != NULL && !xmlStrEqual(child->ns->href, MALLARD_NS)) {
+                xmlAddChild (cache_node, xmlCopyNode (child, 1));
+            }
         }
     }
 }
