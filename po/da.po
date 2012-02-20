@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-24 17:52+0200\n"
-"PO-Revision-Date: 2011-09-24 11:18-0200\n"
+"POT-Creation-Date: 2012-02-20 22:40+0100\n"
+"PO-Revision-Date: 2012-02-17 18:43+0100\n"
 "Last-Translator: Aputsiaq Niels Janussen <aj@isit.gl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -25,6 +25,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Virtaal 0.6.1\n"
 "X-Launchpad-Export-Date: 2011-03-30 00:28+0000\n"
+
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <string/> - The package to install
+#.
+#: yelp.xml.in:29(msg/msgstr)
+msgid "Install <string/>"
+msgstr "Installér <string/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -37,8 +50,8 @@ msgid "Not enough memory"
 msgstr "Ikke nok hukommelse"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:271
-#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Siden \"%s\" blev ikke fundet i dokumentet \"%s\"."
@@ -98,17 +111,17 @@ msgstr "Dokument-URI"
 msgid "The URI which identifies the document"
 msgstr "Adressen der identificerer dokumentet"
 
-#: ../libyelp/yelp-document.c:958
+#: ../libyelp/yelp-document.c:994
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Søgeresultater for \"%s\""
 
-#: ../libyelp/yelp-document.c:970
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Ingen hjælpesider fundet for \"%s\"."
 
-#: ../libyelp/yelp-document.c:976
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "Ingen hjælpesider fundet."
 
@@ -128,51 +141,56 @@ msgid ""
 msgstr ""
 "Filen \"%s\" kunne ikke fortolkes fordi den ikke er en korrekt info-side."
 
-#: ../libyelp/yelp-location-entry.c:329
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "Vis"
 
-#: ../libyelp/yelp-location-entry.c:330
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
 msgstr "En instans af YelpView til styring"
 
-#: ../libyelp/yelp-location-entry.c:345
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "Bogmærker"
 
-#: ../libyelp/yelp-location-entry.c:346
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr "En implementeringsinstans af YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:362
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "Aktivér søgning"
 
-#: ../libyelp/yelp-location-entry.c:363
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
 msgstr "Om placeringstekstfeltet skal kunne bruges som et søgefelt"
 
-#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Søg..."
 
-#: ../libyelp/yelp-location-entry.c:776
+#: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr "Ryd søgeteksten"
 
-#: ../libyelp/yelp-location-entry.c:825 ../libyelp/yelp-location-entry.c:1523
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "Føj denne side til bogmærker"
 
-#: ../libyelp/yelp-location-entry.c:833 ../libyelp/yelp-location-entry.c:1531
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "Fjern bogmærke"
 
-#: ../libyelp/yelp-location-entry.c:1388
+#: ../libyelp/yelp-location-entry.c:1154
+#, c-format
+msgid "Search for “%s”"
+msgstr "Søg efter “%s”"
+
+#: ../libyelp/yelp-location-entry.c:1458
 msgid "Loading"
 msgstr "Indlæser"
 
-#: ../libyelp/yelp-mallard-document.c:311
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Mappen \"%s\" findes ikke."
@@ -246,182 +264,189 @@ msgstr "Ingen \"href\"-egenskab fundet i yelp:document\n"
 msgid "Out of memory"
 msgstr "Løbet tør for hukommelse"
 
-#: ../libyelp/yelp-view.c:126
+#: ../libyelp/yelp-view.c:131
 msgid "_Print..."
 msgstr "_Udskriv..."
 
-#: ../libyelp/yelp-view.c:131
+#: ../libyelp/yelp-view.c:136
 msgid "_Back"
 msgstr "_Tilbage"
 
-#: ../libyelp/yelp-view.c:136
+#: ../libyelp/yelp-view.c:141
 msgid "_Forward"
 msgstr "F_remad"
 
-#: ../libyelp/yelp-view.c:141
+#: ../libyelp/yelp-view.c:146
 msgid "_Previous Page"
 msgstr "_Forrige side"
 
-#: ../libyelp/yelp-view.c:146
+#: ../libyelp/yelp-view.c:151
 msgid "_Next Page"
 msgstr "_Næste side"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:423
 msgid "Yelp URI"
 msgstr "Yelp-adresse"
 
-#: ../libyelp/yelp-view.c:417
+#: ../libyelp/yelp-view.c:424
 msgid "A YelpUri with the current location"
 msgstr "Et YelpUri med den nuværende placering"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:432
 msgid "Loading State"
 msgstr "Indlæsningsfase"
 
-#: ../libyelp/yelp-view.c:426
+#: ../libyelp/yelp-view.c:433
 msgid "The loading state of the view"
 msgstr "Indlæsningsfasen af visningen"
 
-#: ../libyelp/yelp-view.c:435
+#: ../libyelp/yelp-view.c:442
 msgid "Page ID"
 msgstr "Side-id"
 
-#: ../libyelp/yelp-view.c:436
+#: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
 msgstr "Id'en af rodsiden for siden, der bliver vist"
 
-#: ../libyelp/yelp-view.c:444
+#: ../libyelp/yelp-view.c:451
 msgid "Root Title"
 msgstr "Rodtitel"
 
-#: ../libyelp/yelp-view.c:445
+#: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
 msgstr "Titlen af rodsiden for siden, der bliver vist"
 
-#: ../libyelp/yelp-view.c:453
+#: ../libyelp/yelp-view.c:460
 msgid "Page Title"
 msgstr "Sidetitel"
 
-#: ../libyelp/yelp-view.c:454
+#: ../libyelp/yelp-view.c:461
 msgid "The title of the page being viewed"
 msgstr "Titlen for siden der bliver vist"
 
-#: ../libyelp/yelp-view.c:462
+#: ../libyelp/yelp-view.c:469
 msgid "Page Description"
 msgstr "Sidebeskrivelse"
 
-#: ../libyelp/yelp-view.c:463
+#: ../libyelp/yelp-view.c:470
 msgid "The description of the page being viewed"
 msgstr "Beskrivelsen for siden der bliver vist"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
 msgstr "Sideikon"
 
-#: ../libyelp/yelp-view.c:472
+#: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
 msgstr "Ikonet for siden der bliver vist"
 
-#: ../libyelp/yelp-view.c:713
+#: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "Du har ikke PackageKit. Pakkeinstallationslinks kræver PackageKit."
 
-#: ../libyelp/yelp-view.c:991
+#: ../libyelp/yelp-view.c:1013
 msgid "Save Image"
 msgstr "Gem billede"
 
-#: ../libyelp/yelp-view.c:1086
+#: ../libyelp/yelp-view.c:1108
 msgid "Save Code"
 msgstr "Gem kode"
 
-#. Not using a mnemonic because underscores are common in email
-#. * addresses, and we'd have to escape them. There doesn't seem
-#. * to be a quick GTK+ function for this. In practice, there will
-#. * probably only be one menu item for mailto link popups anyway,
-#. * so the mnemonic's not that big of a deal.
-#.
-#: ../libyelp/yelp-view.c:1255
+#: ../libyelp/yelp-view.c:1271
 #, c-format
 msgid "Send email to %s"
 msgstr "Send e-mail til %s"
 
-#: ../libyelp/yelp-view.c:1265
+#: ../libyelp/yelp-view.c:1286
+msgid "_Install Packages"
+msgstr "_Installér pakker"
+
+#: ../libyelp/yelp-view.c:1294
 msgid "_Open Link"
 msgstr "_Åbn link"
 
-#: ../libyelp/yelp-view.c:1270
-msgid "Open Link in New _Window"
-msgstr "Gå til henvisning i nyt _vindue"
+#: ../libyelp/yelp-view.c:1301
+msgid "_Copy Link Location"
+msgstr "_Kopiér linkplacering"
 
-#: ../libyelp/yelp-view.c:1321
+#: ../libyelp/yelp-view.c:1307
+msgid "Open Link in New _Window"
+msgstr "Gå til link i nyt _vindue"
+
+#: ../libyelp/yelp-view.c:1359
 msgid "_Save Image As..."
 msgstr "_Gem billede som..."
 
-#: ../libyelp/yelp-view.c:1323
+#: ../libyelp/yelp-view.c:1361
 msgid "_Save Video As..."
 msgstr "_Gem video som..."
 
-#: ../libyelp/yelp-view.c:1330
+#: ../libyelp/yelp-view.c:1368
 msgid "S_end Image To..."
 msgstr "_Send billede til..."
 
-#: ../libyelp/yelp-view.c:1332
+#: ../libyelp/yelp-view.c:1370
 msgid "S_end Video To..."
 msgstr "_Send video til..."
 
-#: ../libyelp/yelp-view.c:1343
+#: ../libyelp/yelp-view.c:1381
 msgid "_Copy Text"
 msgstr "_Kopiér tekst"
 
-#: ../libyelp/yelp-view.c:1356
+#: ../libyelp/yelp-view.c:1394
 msgid "C_opy Code Block"
 msgstr "K_opiér kodeblok"
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1399
 msgid "Save Code _Block As..."
 msgstr "Gem kode_blok som..."
 
-#: ../libyelp/yelp-view.c:1543
+#: ../libyelp/yelp-view.c:1497
+#, c-format
+msgid "See all search results for “%s”"
+msgstr "Vis alle søgeresultater for “%s”"
+
+#: ../libyelp/yelp-view.c:1618
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Kunne ikke indlæse et dokument for \"%s\""
 
-#: ../libyelp/yelp-view.c:1549
+#: ../libyelp/yelp-view.c:1624
 #, c-format
 msgid "Could not load a document"
 msgstr "Kunne ikke indlæse et dokument"
 
-#: ../libyelp/yelp-view.c:1623
+#: ../libyelp/yelp-view.c:1698
 msgid "Document Not Found"
 msgstr "Dokument ikke fundet"
 
-#: ../libyelp/yelp-view.c:1625
+#: ../libyelp/yelp-view.c:1700
 msgid "Page Not Found"
 msgstr "Side ikke fundet"
 
-#: ../libyelp/yelp-view.c:1628
+#: ../libyelp/yelp-view.c:1703
 msgid "Cannot Read"
 msgstr "Kunne ikke læse"
 
-#: ../libyelp/yelp-view.c:1634
+#: ../libyelp/yelp-view.c:1709
 msgid "Unknown Error"
 msgstr "Ukendt fejl"
 
-#: ../libyelp/yelp-view.c:1654
+#: ../libyelp/yelp-view.c:1729
 msgid "Search for packages containing this document."
 msgstr "Søg efter pakker der indeholder dette dokument."
 
-#: ../libyelp/yelp-view.c:1807
+#: ../libyelp/yelp-view.c:1882
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI'et \"%s\" peger ikke på en gyldig side."
 
-#: ../libyelp/yelp-view.c:1813
+#: ../libyelp/yelp-view.c:1888
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI'et peger ikke på en gyldig side."
 
-#: ../libyelp/yelp-view.c:1819
+#: ../libyelp/yelp-view.c:1894
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Adressen \"%s\" kunne ikke tolkes."
@@ -446,7 +471,7 @@ msgstr "_Mindre tekst"
 msgid "Decrease the size of the text"
 msgstr "Mindsk skriftstørrelsen"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hjælp"
@@ -507,6 +532,10 @@ msgstr "Program"
 msgid "A YelpApplication instance that controls this window"
 msgstr "En YelpApplication-instans, der styrer dette vindue"
 
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Læs link _senere"
+
 #: ../src/yelp-window.c:526
 msgid "Find:"
 msgstr "Find:"
@@ -515,14 +544,14 @@ msgstr "Find:"
 msgid "Read Later"
 msgstr "Læs senere"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i fundet"
 msgstr[1] "%i fundet"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "Ingen fundet"
 
@@ -562,9 +591,6 @@ msgstr "Få hjælp til GNOME"
 
 #~ msgid "Kernel Routines"
 #~ msgstr "Kernerutiner"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Manual-sider"
 
 #~ msgid "Network Audio Sound Functions"
 #~ msgstr "Netværkslydfunktioner"
@@ -1372,16 +1398,8 @@ msgstr "Få hjælp til GNOME"
 #~ msgid "Enter phrase to search for in all documents"
 #~ msgstr "Skriv de ord du vil søge efter i alle dokumenter"
 
-#, fuzzy
-#~ msgid "<b>Accessibility</b>"
-#~ msgstr "Tilgængelighed"
-
 #~ msgid "Add Bookmark"
 #~ msgstr "Tilføj bogmærke"
-
-#, fuzzy
-#~ msgid "Find"
-#~ msgstr "_Søg..."
 
 #~ msgid "Preferences"
 #~ msgstr "Indstillinger"
@@ -1706,203 +1724,6 @@ msgstr "Få hjælp til GNOME"
 # skidt med "browser"-delen
 #~ msgid "A documentation browser and viewer for the Gnome Desktop."
 #~ msgstr "En dokumentationsfremviser til Gnome."
-
-#, fuzzy
-#~ msgid "Applications for fun"
-#~ msgstr "Programmer"
-
-#, fuzzy
-#~ msgid "Applications related to multimedia"
-#~ msgstr "Programmer relateret til lyd og video"
-
-#, fuzzy
-#~ msgid "Applications related to software development"
-#~ msgstr "Programmer relateret til lyd og video"
-
-#, fuzzy
-#~ msgid "Applications specific to the panel"
-#~ msgstr "Programmer relateret til lyd og video"
-
-#, fuzzy
-#~ msgid "Applications that support assistive technologies"
-#~ msgstr "Programmer der underviser eller hjælper med indlæring"
-
-#, fuzzy
-#~ msgid "Learning applications"
-#~ msgstr "Kontorprogrammer"
-
-#, fuzzy
-#~ msgid "Scientific Applications."
-#~ msgstr "Kontorprogrammer"
-
-#, fuzzy
-#~ msgid "Utility applications"
-#~ msgstr "Kontorprogrammer"
-
-#, fuzzy
-#~ msgid "Variety of other applications"
-#~ msgstr "Hjælp til dette program"
-
-#, fuzzy
-#~ msgid "Could not read the table of contents"
-#~ msgstr "Kunne ikke indlæse et dokument"
-
-#, fuzzy
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
-#~ "is formatted incorrectly."
-#~ msgstr ""
-#~ "Filen \"%s\" kunne ikke fortolkes fordi den ikke er en korrekt info-side."
-
-#, fuzzy
-#~ msgid ""
-#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
-#~ "not a valid XSLT stylesheet."
-#~ msgstr "XSLT-stilarket \"%s\" enten mangler eller er ugyldigt."
-
-#, fuzzy
-#~ msgid "Could not load the OMF file '%s'."
-#~ msgstr "Kunne ikke fortolke filen"
-
-#, fuzzy
-#~ msgid ""
-#~ "The table of contents could not be processed. The file ‘%s’ is either "
-#~ "missing or is not a valid XSLT stylesheet."
-#~ msgstr "XSLT-stilarket \"%s\" enten mangler eller er ugyldigt."
-
-#, fuzzy
-#~ msgid ""
-#~ "The table of contents could not be loaded. The file ‘%s’ is either "
-#~ "missing or is not well-formed XML."
-#~ msgstr "XSLT-stilarket \"%s\" enten mangler eller er ugyldigt."
-
-#, fuzzy
-#~ msgid ""
-#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-#~ "actual file."
-#~ msgstr "URI'et \"%s\" peger ikke på en gyldig side."
-
-#, fuzzy
-#~ msgid "Man pages are not supported in this version."
-#~ msgstr "Udskrivning til denne printer er ikke understøttet"
-
-#, fuzzy
-#~ msgid "GNU info pages are not supported in this version"
-#~ msgstr "Udskrivning til denne printer er ikke understøttet"
-
-#, fuzzy
-#~ msgid "Search is not supported in this version."
-#~ msgstr "Udskrivning til denne printer er ikke understøttet"
-
-#, fuzzy
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#~ "is improperly formatted."
-#~ msgstr ""
-#~ "Filen \"%s\" kunne ikke fortolkes fordi den ikke er en korrekt man-side."
-
-#, fuzzy
-#~ msgid "Library Functions"
-#~ msgstr "BLT-funktioner"
-
-#, fuzzy
-#~ msgid "Administration"
-#~ msgstr "Systemadministration"
-
-#, fuzzy
-#~ msgid "<b>Printing</b>"
-#~ msgstr "Udskriver"
-
-#, fuzzy
-#~ msgid "<b>_Bookmarks:</b>"
-#~ msgstr "_Bogmærker:"
-
-#, fuzzy
-#~ msgid "<b>_Title:</b>"
-#~ msgstr "_Titel:"
-
-#, fuzzy
-#~ msgid "Collaborators"
-#~ msgstr "Lommeregner"
-
-#, fuzzy
-#~ msgid "Important"
-#~ msgstr "Import af billeder"
-
-#, fuzzy
-#~ msgid "Other Contributor"
-#~ msgstr "Hvordan du kan bidrage"
-
-#, fuzzy
-#~ msgid "Other Contributors"
-#~ msgstr "Hvordan du kan bidrage"
-
-#, fuzzy
-#~ msgid "Preface"
-#~ msgstr "Indstillinger"
-
-#, fuzzy
-#~ msgid "Publishers"
-#~ msgstr "Publikation"
-
-#, fuzzy
-#~ msgid "Reference Entry"
-#~ msgstr "Indstillinger"
-
-#, fuzzy
-#~ msgid "Reference Section"
-#~ msgstr "_Næste afsnit"
-
-#, fuzzy
-#~ msgid "Release Information"
-#~ msgstr "Forfejlet transformation"
-
-#, fuzzy
-#~ msgid "See"
-#~ msgstr "Videnskab"
-
-#, fuzzy
-#~ msgid "Set Index"
-#~ msgstr "Indekseret"
-
-#, fuzzy
-#~ msgid "Table of Contents"
-#~ msgstr "_Indhold"
-
-#, fuzzy
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "Find næ_ste"
-
-#, fuzzy
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "Find fo_rrige"
-
-#, fuzzy
-#~ msgid "/Go/_Back"
-#~ msgstr "_Tilbage"
-
-#, fuzzy
-#~ msgid "/Go/_Forward"
-#~ msgstr "F_remad"
-
-#, fuzzy
-#~ msgid "/Go/_Contents"
-#~ msgstr "_Indhold"
-
-#, fuzzy
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "Hjælpelæser"
-
-#, fuzzy
-#~ msgid "GNOME - Desktop"
-#~ msgstr "Skrivebord"
-
-#, fuzzy
-#~ msgid "Overview of contents"
-#~ msgstr "Oversigter"
-
-#~ msgid "Yelp"
-#~ msgstr "Yelp"
 
 #~ msgid "Cannot create window"
 #~ msgstr "Kun ikke danne vinduet"
