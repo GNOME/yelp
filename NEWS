@@ -1,3 +1,36 @@
+3.3.4
+=====
+* Auto-reload Mallard documents
+* Allow all extensions in Mallard documents
+* Added a 'Search for ...' entry to completion
+* Style updates for mobile rendering
+* Fixed updating of titles/info for bookmarks
+* Don't crash when doing stuff to empty windows
+* Delay progress pulse for 500ms, bug #645803
+* Don't call g_thread_init(), bug #663285 (Martin Pitt)
+* Updated translations:
+  be       (Ihar Hrachyshka)
+  be       (Ihar Hrachyshka)
+  bg       (Ivaylo Valkov)
+  da       (Ask H. Larsen)
+  eo       (Kristjan SCHMIDT)
+  es       (Daniel Mustieles)
+  gl       (Fran Diéguez)
+  he       (Yaron Shahrabani)
+  it       (Luca Ferretti)
+  ja       (Hideki Yamane)
+  nb       (Kjartan Maraas)
+  nl       (Hannie Dumoleyn)
+  ru       (Yuri Myasoedov)
+  sl       (Matej Urbančič)
+  sr       (Мирослав Николић)
+  sr@latin (Мирослав Николић)
+  sv       (Daniel Nylander)
+  tr       (Muhammet Kara)
+  ug       (Gheyret Kenji)
+  zh_HK    (Chao-Hsiung Liao)
+  zh_TW    (Chao-Hsiung Liao)
+
 3.3.3
 =====
 * Adjust CSS for yelp-xsl changes
