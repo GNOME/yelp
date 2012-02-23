@@ -1,9 +1,9 @@
 ALL_LINGUAS = @ALL_LINGUAS@
 
-$(srcdir)/yelp.pot: yelp.xml.in
-	itstool -o "$@" yelp.xml.in
+yelp.pot: yelp.xml
+	itstool -o "$@" "$^"
 
-all: $(srcdir)/yelp.pot
+all: yelp.xml yelp.pot
 
 yelp.xml: yelp.xml.in
 	@echo "  GEN    $@"; \
@@ -17,15 +17,13 @@ yelp.xml: yelp.xml.in
 	  echo '<file href="'".yelp/$$lang.xml"'"/>' >> ".yelp.files"; \
 	done; \
 	echo '</files>' >> ".yelp.files"; \
-	xsltproc -o "$@" "msgs.xsl" ".yelp.files" || exit 1; \
+	xsltproc -o "$@" "$(srcdir)/msgs.xsl" ".yelp.files" || exit 1; \
 	for lang in $(ALL_LINGUAS); do rm ".yelp/$$lang.xml"; done; \
 	rmdir .yelp; \
 	rm .yelp.files
 
-xsldir=${XSL_DOMAINS}
+xsldir=$(datadir)/yelp-xsl/xslt/common/domains
 
 xsl_DATA = yelp.xml
 
-EXTRA_DIST = yelp.xml yelp.xml.in
-
-CLEANFILES = yelp.xml yelp.pot
+EXTRA_DIST = msgs.xsl yelp.xml.in yelp.xml yelp.pot
