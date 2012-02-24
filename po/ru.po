@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-01-20 16:03+0000\n"
-"PO-Revision-Date: 2012-02-08 11:40+0300\n"
+"POT-Creation-Date: 2012-02-23 18:38+0000\n"
+"PO-Revision-Date: 2012-02-24 12:57+0300\n"
 "Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,18 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#. ID: install.tooltip
-#. This is a format message used to format tooltips on install: links. These
-#. links allow users to install packages by clicking a link in the help. The
-#. tooltip may also be used as the link text, if there's no link text in the
-#. document. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <string/> - The package to install
-#.
-#: yelp.xml.in:29(msg/msgstr)
-msgid "Install <string/>"
-msgstr "Установить <string/>"
+#: yelp.xml:2(msg/msgstr)
+#| msgid "Install <string/>"
+msgid "Install <_:string-1/>"
+msgstr "Установить <_:string-1/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -43,8 +35,8 @@ msgstr "Недостаточно памяти"
 
 #: ../libyelp/yelp-docbook-document.c:282
 #: ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:307
-#: ../libyelp/yelp-mallard-document.c:459
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458
 #: ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
@@ -130,60 +122,59 @@ msgstr "Вся справочная документация"
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "Не удалось разобрать файл «%s», потому что он не является корректной страницей в формате info."
 
-#: ../libyelp/yelp-location-entry.c:335
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "Вид"
 
-#: ../libyelp/yelp-location-entry.c:336
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
 msgstr "Управляющий экземпляр YelpView"
 
-#: ../libyelp/yelp-location-entry.c:351
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "Закладки"
 
-#: ../libyelp/yelp-location-entry.c:352
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr "Экземпляр реализации YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:368
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "Включить поиск"
 
-#: ../libyelp/yelp-location-entry.c:369
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
 msgstr "Может ли поле местоположения использоваться для поиска"
 
-#: ../libyelp/yelp-location-entry.c:439
+#: ../libyelp/yelp-location-entry.c:440
 #: ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Найти…"
 
-#: ../libyelp/yelp-location-entry.c:782
+#: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr "Очистить текст для поиска"
 
 #: ../libyelp/yelp-location-entry.c:831
-#: ../libyelp/yelp-location-entry.c:1565
+#: ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "Добавить закладку для этой страницы"
 
 #: ../libyelp/yelp-location-entry.c:839
-#: ../libyelp/yelp-location-entry.c:1573
+#: ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "Удалить закладку"
 
-#: ../libyelp/yelp-location-entry.c:1144
+#: ../libyelp/yelp-location-entry.c:1154
 #, c-format
-#| msgid "Search results for “%s”"
 msgid "Search for “%s”"
 msgstr "Поиск «%s»"
 
-#: ../libyelp/yelp-location-entry.c:1430
+#: ../libyelp/yelp-location-entry.c:1458
 msgid "Loading"
 msgstr "Загрузка"
 
-#: ../libyelp/yelp-mallard-document.c:347
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Каталог «%s» не существует."
@@ -360,7 +351,6 @@ msgid "_Open Link"
 msgstr "_Открыть ссылку"
 
 #: ../libyelp/yelp-view.c:1301
-#| msgid "Open Location"
 msgid "_Copy Link Location"
 msgstr "_Копировать адрес ссылки"
 
@@ -398,7 +388,6 @@ msgstr "Сохранить _блок кода как…"
 
 #: ../libyelp/yelp-view.c:1497
 #, c-format
-#| msgid "Search results for “%s”"
 msgid "See all search results for “%s”"
 msgstr "Показать все результаты поиска для «%s»"
 
@@ -468,8 +457,8 @@ msgid "Decrease the size of the text"
 msgstr "Уменьшить размер текста"
 
 #: ../src/yelp-application.c:253
-#: ../src/yelp-window.c:1359
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-window.c:1360
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Справка"
 
@@ -530,7 +519,6 @@ msgid "A YelpApplication instance that controls this window"
 msgstr "Экземпляр YelpApplication, управляющий этим окном"
 
 #: ../src/yelp-window.c:429
-#| msgid "Read Later"
 msgid "Read Link _Later"
 msgstr "Прочитать ссылку _позже"
 
@@ -542,7 +530,7 @@ msgstr "Найти:"
 msgid "Read Later"
 msgstr "Прочитать позже"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
@@ -550,11 +538,11 @@ msgstr[0] "%i совпадение"
 msgstr[1] "%i совпадения"
 msgstr[2] "%i совпадений"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "Нет совпадений."
 
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Получение справки в среде GNOME"
 
