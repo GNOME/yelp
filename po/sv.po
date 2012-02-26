@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-19 00:43+0100\n"
-"PO-Revision-Date: 2012-02-19 00:43+0100\n"
+"POT-Creation-Date: 2012-02-26 17:48+0100\n"
+"PO-Revision-Date: 2012-02-26 17:48+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -18,18 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. ID: install.tooltip
-#. This is a format message used to format tooltips on install: links. These
-#. links allow users to install packages by clicking a link in the help. The
-#. tooltip may also be used as the link text, if there's no link text in the
-#. document. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <string/> - The package to install
-#.
-#: yelp.xml.in:29(msg/msgstr)
-msgid "Install <string/>"
-msgstr "Installera <string/>"
+#: yelp.xml:2(msg/msgstr)
+msgid "Install <_:string-1/>"
+msgstr "Installera <_:string-1/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -43,8 +34,8 @@ msgstr "Slut på minne"
 
 #: ../libyelp/yelp-docbook-document.c:282
 #: ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:307
-#: ../libyelp/yelp-mallard-document.c:459
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458
 #: ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
@@ -182,7 +173,7 @@ msgstr "Sök efter \"%s\""
 msgid "Loading"
 msgstr "Läser in"
 
-#: ../libyelp/yelp-mallard-document.c:347
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Katalogen \"%s\" finns inte."
