@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-24 06:57+0200\n"
-"PO-Revision-Date: 2012-01-22 11:40+0200\n"
+"POT-Creation-Date: 2012-02-27 06:46+0200\n"
+"PO-Revision-Date: 2012-02-27 06:46+0200\n"
 "Last-Translator: Ivaylo Valkov <ivaylo@e-valkov.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -22,18 +22,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#. ID: install.tooltip
-#. This is a format message used to format tooltips on install: links. These
-#. links allow users to install packages by clicking a link in the help. The
-#. tooltip may also be used as the link text, if there's no link text in the
-#. document. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <string/> - The package to install
-#.
-#: yelp.xml.in:29(msg/msgstr)
-msgid "Install <string/>"
-msgstr "Инсталиране на <string/>"
+#: yelp.xml:2(msg/msgstr)
+msgid "Install <_:string-1/>"
+msgstr "Инсталиране на <_:string-1/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -46,8 +37,8 @@ msgid "Not enough memory"
 msgstr "Няма достатъчно памет"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:307
-#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Страницата „%s“ не е открита в документа „%s“."
@@ -190,7 +181,7 @@ msgstr "Търсене на „%s“"
 msgid "Loading"
 msgstr "Зареждане"
 
-#: ../libyelp/yelp-mallard-document.c:347
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Папката „%s“ не съществува."
@@ -473,8 +464,8 @@ msgstr "По-_малък текст"
 msgid "Decrease the size of the text"
 msgstr "Намаляване на размера на текста"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Потребителско ръководство"
 
@@ -546,17 +537,17 @@ msgstr "Търсене:"
 msgid "Read Later"
 msgstr "Прочитане по-късно"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i съвпадение"
 msgstr[1] "%i съвпадения"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "Няма съвпадения"
 
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Помощ за GNOME"
