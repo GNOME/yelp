@@ -1428,8 +1428,16 @@ view_navigation_requested (WebKitWebView             *view,
     YelpViewPrivate *priv = GET_PRIV (view);
     YelpUri *uri;
 
-    if (g_str_has_prefix (requri, BOGUS_URI))
+    if (priv->bogus_uri &&
+        g_str_has_prefix (requri, priv->bogus_uri) &&
+        requri[strlen(priv->bogus_uri)] == '#') {
+        gchar *tmp = g_strconcat("xref:", requri + strlen(priv->bogus_uri), NULL);
+        uri = yelp_uri_new_relative (priv->uri, tmp);
+        g_free (tmp);
+    }
+    else if (g_str_has_prefix (requri, BOGUS_URI)) {
         uri = yelp_uri_new_relative (priv->uri, requri + BOGUS_URI_LEN);
+    }
     else
         uri = yelp_uri_new_relative (priv->uri, requri);
 
