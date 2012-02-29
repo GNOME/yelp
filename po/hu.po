@@ -1,5 +1,5 @@
 # Hungarian translation of yelp.
-# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2011 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2011, 2012 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 #
 # Szabolcs Ban <shooby at gnome dot hu>, 2002.
@@ -11,31 +11,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
-"cgi?product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-01-20 16:03+0000\n"
-"PO-Revision-Date: 2012-02-29 01:28+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-29 03:27+0100\n"
+"PO-Revision-Date: 2012-02-29 03:28+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
-"Language-Team: Magyar <gnome-hu-list at gnome dot org>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#. ID: install.tooltip
-#. This is a format message used to format tooltips on install: links. These
-#. links allow users to install packages by clicking a link in the help. The
-#. tooltip may also be used as the link text, if there's no link text in the
-#. document. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <string/> - The package to install
-#.
-#: yelp.xml.in:29(msg/msgstr)
-msgid "Install <string/>"
-msgstr "<string/> telepítése"
+#: yelp.xml:2(msg/msgstr)
+msgid "Install <_:string-1/>"
+msgstr "<_:string-1/> telepítése"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -48,8 +38,8 @@ msgid "Not enough memory"
 msgstr "Nincs elég memória"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:307
-#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "A(z) „%s” oldal nem található a(z) „%s” dokumentumban."
@@ -135,63 +125,61 @@ msgstr "Minden súgódokumentum"
 
 #: ../libyelp/yelp-info-document.c:397
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
 "A(z) „%s” fájl nem dolgozható fel, mivel nem megfelelően formázott info "
 "oldal."
 
-#: ../libyelp/yelp-location-entry.c:335
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "Nézet"
 
-#: ../libyelp/yelp-location-entry.c:336
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
 msgstr "Vezérlendő YelpView példány"
 
-#: ../libyelp/yelp-location-entry.c:351
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "Könyvjelzők"
 
-#: ../libyelp/yelp-location-entry.c:352
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr "YelpBookmarks megvalósítási példány"
 
-#: ../libyelp/yelp-location-entry.c:368
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "Keresés engedélyezése"
 
-#: ../libyelp/yelp-location-entry.c:369
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
 msgstr "A hely beviteli mező használható-e keresőmezőként"
 
-#: ../libyelp/yelp-location-entry.c:439 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Keresés…"
 
-#: ../libyelp/yelp-location-entry.c:782
+#: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr "Keresőszöveg törlése"
 
-#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1565
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "Oldal könyvjelzőbe"
 
-#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1573
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "Könyvjelző eltávolítása"
 
-#: ../libyelp/yelp-location-entry.c:1144
+#: ../libyelp/yelp-location-entry.c:1154
 #, c-format
-#| msgid "Search results for “%s”"
 msgid "Search for “%s”"
 msgstr "„%s” keresése"
 
-#: ../libyelp/yelp-location-entry.c:1430
+#: ../libyelp/yelp-location-entry.c:1458
 msgid "Loading"
 msgstr "Betöltés"
 
-#: ../libyelp/yelp-mallard-document.c:347
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "A(z) „%s” könyvtár nem létezik."
@@ -369,7 +357,6 @@ msgid "_Open Link"
 msgstr "_Hivatkozás megnyitása"
 
 #: ../libyelp/yelp-view.c:1301
-#| msgid "Open Location"
 msgid "_Copy Link Location"
 msgstr "Hivatkozás _címének másolása"
 
@@ -407,7 +394,6 @@ msgstr "Kódbl_okk mentése másként…"
 
 #: ../libyelp/yelp-view.c:1497
 #, c-format
-#| msgid "Search results for “%s”"
 msgid "See all search results for “%s”"
 msgstr "Minden találat megjelenítése erre: „%s”"
 
@@ -476,7 +462,7 @@ msgstr "_Kisebb szöveg"
 msgid "Decrease the size of the text"
 msgstr "A szöveg méretének csökkentése"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Súgó"
@@ -549,14 +535,14 @@ msgstr "Keresés:"
 msgid "Read Later"
 msgstr "Elolvasás később"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i találat"
 msgstr[1] "%i találat"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "Nincs találat"
 
