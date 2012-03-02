@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 15:12+0200\n"
-"PO-Revision-Date: 2012-01-27 15:13+0200\n"
+"POT-Creation-Date: 2012-03-02 14:05+0200\n"
+"PO-Revision-Date: 2012-03-02 14:05+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
 "Language: he\n"
@@ -22,18 +22,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. ID: install.tooltip
-#. This is a format message used to format tooltips on install: links. These
-#. links allow users to install packages by clicking a link in the help. The
-#. tooltip may also be used as the link text, if there's no link text in the
-#. document. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <string/> - The package to install
-#.
-#: yelp.xml.in:29(msg/msgstr)
-msgid "Install <string/>"
-msgstr "התקנת <string/>"
+#: yelp.xml:2(msg/msgstr)
+msgid "Install <_:string-1/>"
+msgstr "התקנת <_:string-1/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -47,8 +38,8 @@ msgstr "אין מספיק זיכרון"
 
 #: ../libyelp/yelp-docbook-document.c:282
 #: ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:307
-#: ../libyelp/yelp-mallard-document.c:459
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458
 #: ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
@@ -186,7 +177,7 @@ msgstr "חיפוש אחר „%s“"
 msgid "Loading"
 msgstr "בטעינה"
 
-#: ../libyelp/yelp-mallard-document.c:347
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "התיקייה ‘%s’ לא קיימת."
@@ -398,52 +389,52 @@ msgstr "ה_עתקת מקטע קוד"
 msgid "Save Code _Block As..."
 msgstr "שמירת מקטע הקוד _בשם..."
 
-#: ../libyelp/yelp-view.c:1497
+#: ../libyelp/yelp-view.c:1505
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "הצגת כל התוצאות עבור ”%s“"
 
-#: ../libyelp/yelp-view.c:1618
+#: ../libyelp/yelp-view.c:1626
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "לא ניתן לטעון את המסמך עבור ‘%s’"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1632
 #, c-format
 msgid "Could not load a document"
 msgstr "לא ניתן לטעון את המסמך"
 
-#: ../libyelp/yelp-view.c:1698
+#: ../libyelp/yelp-view.c:1706
 msgid "Document Not Found"
 msgstr "המסמך לא נמצא"
 
-#: ../libyelp/yelp-view.c:1700
+#: ../libyelp/yelp-view.c:1708
 msgid "Page Not Found"
 msgstr "העמוד לא נמצא"
 
-#: ../libyelp/yelp-view.c:1703
+#: ../libyelp/yelp-view.c:1711
 msgid "Cannot Read"
 msgstr "לא ניתן לקרוא"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1717
 msgid "Unknown Error"
 msgstr "שגיאה לא ידועה"
 
-#: ../libyelp/yelp-view.c:1729
+#: ../libyelp/yelp-view.c:1737
 msgid "Search for packages containing this document."
 msgstr "חיפוש אחר חבילות המכילות מסמך זה."
 
-#: ../libyelp/yelp-view.c:1882
+#: ../libyelp/yelp-view.c:1890
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "הכתובת '%s' אינה מצביע אל דף תקני."
 
-#: ../libyelp/yelp-view.c:1888
+#: ../libyelp/yelp-view.c:1896
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "הכתובת אינה מצביעה אל דף תקני."
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1902
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "לא ניתן לנתח את הכתובת '%s'."
@@ -469,7 +460,7 @@ msgid "Decrease the size of the text"
 msgstr "הקטנת גודל הטקסט"
 
 #: ../src/yelp-application.c:253
-#: ../src/yelp-window.c:1359
+#: ../src/yelp-window.c:1360
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "עזרה"
@@ -542,14 +533,14 @@ msgstr "חיפוש:"
 msgid "Read Later"
 msgstr "אקרא אחר כך"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "התאמה אחת"
 msgstr[1] "%i התאמות"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "אין התאמות"
 
