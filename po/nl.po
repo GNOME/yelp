@@ -7,14 +7,14 @@
 # Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002.
 # Reinout van Schouwen <reinouts@gnome.org>, 2005, 2008.
 # Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006, 2011.
-# Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2011, 2012.
 # Redmar <redmar@ubuntu-nl.org>, 2011, 2012.
+# Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 14:47+0100\n"
-"PO-Revision-Date: 2012-01-05 17:32+0100\n"
+"POT-Creation-Date: 2012-03-04 21:14+0100\n"
+"PO-Revision-Date: 2012-03-03 10:51+0100\n"
 "Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "Language: nl\n"
@@ -24,18 +24,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.2\n"
 
-#. ID: install.tooltip
-#. This is a format message used to format tooltips on install: links. These
-#. links allow users to install packages by clicking a link in the help. The
-#. tooltip may also be used as the link text, if there's no link text in the
-#. document. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <string/> - The package to install
-#.
-#: yelp.xml.in:29(msg/msgstr)
-msgid "Install <string/>"
-msgstr "<string/> installeren"
+#: yelp.xml:2(msg/msgstr)
+msgid "Install <_:string-1/>"
+msgstr "<_:string-1/> installeren"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -45,16 +36,16 @@ msgstr "Ongeldige gecomprimeerde gegevens"
 #: ../libyelp/yelp-bz2-decompressor.c:152
 #: ../libyelp/yelp-lzma-decompressor.c:161
 msgid "Not enough memory"
-msgstr "Te weinig geheugen"
+msgstr "Onvoldoende geheugen"
 
 # werd niet gevonden?
 # aangetroffen?
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:307
-#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "Pagina ‘%s’ kon niet worden gevonden in document ‘%s’."
+msgstr "Pagina ‘%s’ werd niet aangetroffen in document ‘%s’."
 
 #: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
 #: ../libyelp/yelp-man-document.c:417
@@ -95,7 +86,7 @@ msgstr "Onbekend"
 #: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr "De gezochte pagina kon niet worden gevonden in document ‘%s’."
+msgstr "De gezochte pagina werd niet aangetroffen in document ‘%s’."
 
 #: ../libyelp/yelp-document.c:268
 msgid "Indexed"
@@ -141,8 +132,8 @@ msgstr "Alle hulpdocumenten"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Het bestand ‘%s’ kon niet worden verwerkt omdat het een ongeldige info-"
-"pagina is."
+"Het bestand ‘%s’ kon niet worden verwerkt omdat het een ongeldige infopagina "
+"is."
 
 #: ../libyelp/yelp-location-entry.c:336
 msgid "View"
@@ -193,7 +184,7 @@ msgstr "Zoeken naar ‘%s’"
 msgid "Loading"
 msgstr "Bezig met laden…"
 
-#: ../libyelp/yelp-mallard-document.c:347
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "De map ‘%s’ bestaat niet."
@@ -236,7 +227,7 @@ msgstr "Bewerk-modus"
 
 #: ../libyelp/yelp-settings.c:191
 msgid "Enable features useful to editors"
-msgstr "Functies die van pas komen bij bewerken activeren"
+msgstr "Activeren van functies die van pas komen bij bewerken"
 
 #: ../libyelp/yelp-sqlite-storage.c:150
 msgid "Database filename"
@@ -406,53 +397,53 @@ msgstr "Codeblok _kopiëren"
 msgid "Save Code _Block As..."
 msgstr "Code_blok opslaan als…"
 
-#: ../libyelp/yelp-view.c:1497
+#: ../libyelp/yelp-view.c:1505
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "Zie alle zoekresultaten voor ‘%s’"
 
-#: ../libyelp/yelp-view.c:1618
+#: ../libyelp/yelp-view.c:1626
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Kon een document voor ‘%s’niet laden"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1632
 #, c-format
 msgid "Could not load a document"
 msgstr "Kon een document niet laden"
 
 # onderdelen/secties
-#: ../libyelp/yelp-view.c:1698
+#: ../libyelp/yelp-view.c:1706
 msgid "Document Not Found"
 msgstr "Document niet gevonden"
 
-#: ../libyelp/yelp-view.c:1700
+#: ../libyelp/yelp-view.c:1708
 msgid "Page Not Found"
 msgstr "Pagina niet gevonden"
 
-#: ../libyelp/yelp-view.c:1703
+#: ../libyelp/yelp-view.c:1711
 msgid "Cannot Read"
 msgstr "Kan niet lezen"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1717
 msgid "Unknown Error"
 msgstr "Onbekende fout"
 
-#: ../libyelp/yelp-view.c:1729
+#: ../libyelp/yelp-view.c:1737
 msgid "Search for packages containing this document."
 msgstr "Zoek naar pakketten die dit document bevatten."
 
-#: ../libyelp/yelp-view.c:1882
+#: ../libyelp/yelp-view.c:1890
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "De URI ‘%s’ wijst niet naar een geldige pagina."
 
-#: ../libyelp/yelp-view.c:1888
+#: ../libyelp/yelp-view.c:1896
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "De URI wijst niet naar een geldige pagina."
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1902
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "De URI ‘%s’ kan niet verwerkt worden."
@@ -477,7 +468,7 @@ msgstr "_Kleinere tekst"
 msgid "Decrease the size of the text"
 msgstr "Maak het lettertype kleiner"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
 #: ../yelp.desktop.in.in.h:2
 msgid "Help"
 msgstr "Hulp"
@@ -550,14 +541,14 @@ msgstr "Zoeken:"
 msgid "Read Later"
 msgstr "Lees later"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i resultaat"
 msgstr[1] "%i resultaten"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "Geen resultaten"
 
