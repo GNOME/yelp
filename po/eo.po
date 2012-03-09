@@ -16,33 +16,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.3.6\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-02-01 12:03+0000\n"
-"PO-Revision-Date: 2012-02-19 17:07+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-03-07 10:35+0000\n"
+"PO-Revision-Date: 2012-03-09 18:42+0100\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-l10n-eo@lists.launchpad.net>\n"
+"Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: eo\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Virtaal 0.7.1-rc1\n"
-"X-Launchpad-Export-Date: 2012-02-19 16:04+0000\n"
+"X-Launchpad-Export-Date: 2012-03-09 17:24+0000\n"
+"X-Generator: Launchpad (build 14914)\n"
 "X-Project-Style: gnome\n"
 
-#. ID: install.tooltip
-#. This is a format message used to format tooltips on install: links. These
-#. links allow users to install packages by clicking a link in the help. The
-#. tooltip may also be used as the link text, if there's no link text in the
-#. document. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <string/> - The package to install
-#.
-#: yelp.xml.in:29(msg/msgstr)
-msgid "Install <string/>"
-msgstr "Instali na <string/>"
+#: yelp.xml:2(msg/msgstr)
+msgid "Install <_:string-1/>"
+msgstr "Instali na <_:string-1/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -54,48 +44,45 @@ msgstr "Nevalidaj densigitaj datumoj"
 msgid "Not enough memory"
 msgstr "Memoro ne sufiĉas"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:307
-#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:282
+#: ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458
+#: ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "La paĝo '%s' ne estis trovita en dokumento '%s'."
 
-#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-docbook-document.c:317
+#: ../libyelp/yelp-info-document.c:372
 #: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "La dosiero ne ekzistas."
 
-#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-docbook-document.c:327
+#: ../libyelp/yelp-info-document.c:382
 #: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
-msgstr "Dosiero \"%s\" ne ekzistas."
+msgstr "La dosiero \"%s\" ne ekzistas."
 
 #: ../libyelp/yelp-docbook-document.c:342
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"La dosiero \"%s\" ne estis komprenebla, ĉar ĝi ne enhavas bonforman XML/"
-"dokumenton."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgstr "La dosiero \"%s\" ne estis komprenebla, ĉar ĝi ne enhavas bonforman XML-dokumenton."
 
 #: ../libyelp/yelp-docbook-document.c:355
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files "
-"is not a well-formed XML document."
-msgstr ""
-"La dosiero \"%s\" ne estis komprenebla, ĉar unu aŭ pluraj importitaj "
-"dosieroj ne enhavas bonformajn XML/dokumentojn."
+msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
+msgstr "La dosiero \"%s\" ne estis komprenebla, ĉar unu aŭ pluraj importitaj dosieroj ne enhavas bonformajn XML/dokumentojn."
 
 #: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "Nekonate"
 
-#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-docbook-document.c:826
+#: ../libyelp/yelp-info-document.c:315
 #: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
@@ -107,7 +94,7 @@ msgstr "Indeksite"
 
 #: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
-msgstr "Ĉu la dokumenta enhavo estas indeksita?"
+msgstr "Ĉu la enhavo de la dokumento estas indeksita?"
 
 #: ../libyelp/yelp-document.c:277
 msgid "Document URI"
@@ -136,16 +123,15 @@ msgstr "Neniuj kongruaj helppaĝoj trovataj."
 msgid "An unknown error occurred."
 msgstr "Okazis nekonata eraro."
 
-#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:478
+#: ../libyelp/yelp-help-list.c:487
 msgid "All Help Documents"
 msgstr "Ĉiuj helpdokumentoj"
 
 #: ../libyelp/yelp-info-document.c:397
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"Dosiero \"%s\" ne estis komprenebla, ĉar ĝi ne enhavas bonforman info-paĝon."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr "Dosiero \"%s\" ne estis komprenebla, ĉar ĝi ne enhavas bonforman info-paĝon."
 
 #: ../libyelp/yelp-location-entry.c:336
 msgid "View"
@@ -171,7 +157,8 @@ msgstr "Aktivigi serĉon"
 msgid "Whether the location entry can be used as a search field"
 msgstr "Ĉu uzi la adresenigon kiel serĉkampo?"
 
-#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440
+#: ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Serĉi..."
 
@@ -179,17 +166,18 @@ msgstr "Serĉi..."
 msgid "Clear the search text"
 msgstr "Vakigi la serĉendan tekston"
 
-#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
+#: ../libyelp/yelp-location-entry.c:831
+#: ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "Aldoni legosignon por ĉi tiu paĝo"
 
-#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
+#: ../libyelp/yelp-location-entry.c:839
+#: ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "Forigi legosignon"
 
 #: ../libyelp/yelp-location-entry.c:1154
 #, c-format
-#| msgid "Search results for “%s”"
 msgid "Search for “%s”"
 msgstr "Serĉi por “%s”"
 
@@ -197,7 +185,7 @@ msgstr "Serĉi por “%s”"
 msgid "Loading"
 msgstr "Ŝargante"
 
-#: ../libyelp/yelp-mallard-document.c:347
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "La dosierujo ‘%s’ ne ekzistas."
@@ -256,12 +244,13 @@ msgstr "XSLT-stilfolio"
 
 #: ../libyelp/yelp-transform.c:172
 msgid "The location of the XSLT stylesheet"
-msgstr "La lokado de XSLT-stilfolio"
+msgstr "La loko de XSLT-stilfolio"
 
-#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
+#: ../libyelp/yelp-transform.c:379
+#: ../libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr "La XSLT/a stila folio '%s' ne ekzistas aŭ ne estas valida."
+msgstr "La XSLT-stilfolio '%s' ne ekzistas aŭ ne estas valida."
 
 #: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
@@ -297,7 +286,7 @@ msgstr "Yelp-URI"
 
 #: ../libyelp/yelp-view.c:424
 msgid "A YelpUri with the current location"
-msgstr "YelpUri kun la aktuala lokado"
+msgstr "YelpUri kun la aktuala loko"
 
 #: ../libyelp/yelp-view.c:432
 msgid "Loading State"
@@ -313,7 +302,7 @@ msgstr "Paĝ-ID"
 
 #: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
-msgstr "La identigilio de la bazpaĝo de la nun vidanta paĝo"
+msgstr "La identigilo de la bazpaĝo de la nun montrata paĝo"
 
 #: ../libyelp/yelp-view.c:451
 msgid "Root Title"
@@ -321,7 +310,7 @@ msgstr "Titolo de bazpaĝo"
 
 #: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
-msgstr "La titolo de la bazpaĝo de la nun vidanta paĝo"
+msgstr "La titolo de la bazpaĝo de la nun montrata paĝo"
 
 #: ../libyelp/yelp-view.c:460
 msgid "Page Title"
@@ -329,7 +318,7 @@ msgstr "Paĝ-titolo"
 
 #: ../libyelp/yelp-view.c:461
 msgid "The title of the page being viewed"
-msgstr "La titolo de la nun vidanta paĝo"
+msgstr "La titolo de la nun montrata paĝo"
 
 #: ../libyelp/yelp-view.c:469
 msgid "Page Description"
@@ -337,7 +326,7 @@ msgstr "Paĝ-prispkribo"
 
 #: ../libyelp/yelp-view.c:470
 msgid "The description of the page being viewed"
-msgstr "La priskribo de la nun vidanta paĝo"
+msgstr "La priskribo de la nun montrata paĝo"
 
 #: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
@@ -345,7 +334,7 @@ msgstr "Paĝ-piktogramo"
 
 #: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
-msgstr "La piktogramo de la nun vidanta paĝo"
+msgstr "La piktogramo de la nun montrata paĝo"
 
 #: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
@@ -408,52 +397,52 @@ msgstr "K_opii kodgrupon"
 msgid "Save Code _Block As..."
 msgstr "Konservi kodo_grupon kiel..."
 
-#: ../libyelp/yelp-view.c:1497
+#: ../libyelp/yelp-view.c:1505
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "Montri ĉiujn serĉrezultoj por “%s”"
 
-#: ../libyelp/yelp-view.c:1618
+#: ../libyelp/yelp-view.c:1626
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Ne eblis ŝargi dokumenton por \"%s\""
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1632
 #, c-format
 msgid "Could not load a document"
 msgstr "Ne eblis ŝargi dokumenton"
 
-#: ../libyelp/yelp-view.c:1698
+#: ../libyelp/yelp-view.c:1706
 msgid "Document Not Found"
 msgstr "Ne trovis la dokumenton"
 
-#: ../libyelp/yelp-view.c:1700
+#: ../libyelp/yelp-view.c:1708
 msgid "Page Not Found"
 msgstr "Ne trovis la paĝon"
 
-#: ../libyelp/yelp-view.c:1703
+#: ../libyelp/yelp-view.c:1711
 msgid "Cannot Read"
 msgstr "Ne eblis legi"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1717
 msgid "Unknown Error"
 msgstr "Nekonata eraro"
 
-#: ../libyelp/yelp-view.c:1729
+#: ../libyelp/yelp-view.c:1737
 msgid "Search for packages containing this document."
 msgstr "Serĉi pakaĵojn kiuj entenas tiun dokumenton."
 
-#: ../libyelp/yelp-view.c:1882
+#: ../libyelp/yelp-view.c:1890
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "La URI ‘%s’ ne indikas al valida paĝo."
 
-#: ../libyelp/yelp-view.c:1888
+#: ../libyelp/yelp-view.c:1896
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "La URI ne indikas al valida paĝo."
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1902
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "La URI ‘%s’ ne povus esti sintakte analizita."
@@ -478,8 +467,9 @@ msgstr "Pli _malgranda teksto"
 msgid "Decrease the size of the text"
 msgstr "Malpligrandigi la tekston"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-application.c:253
+#: ../src/yelp-window.c:1360
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Helpo"
 
@@ -551,18 +541,18 @@ msgstr "Serĉi:"
 msgid "Read Later"
 msgstr "Legi poste"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i kongruo"
 msgstr[1] "%i kongruoj"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "Neniu kongruo"
 
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Ricevi helpon pri GNOME"
 
