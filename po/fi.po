@@ -14,20 +14,28 @@
 # Tommi Vainikainen <thv@iki.fi>, 2009-2011.
 # Timo Jyrinki <timo.jyrinki@iki.fi>, 2011.
 # Jiri Grönroos <jiri.gronroos@iki.fi>, 2012.
+# Gnome 2012-03 Finnish translation sprint participants:
+# Jiri Grönroos
 msgid ""
 msgstr ""
+""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-12 08:34+0100\n"
-"PO-Revision-Date: 2012-01-11 19:38+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-02-23 18:38+0000\n"
+"PO-Revision-Date: 2012-03-12 09:05:17+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <>\n"
-"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.4\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: MediaWiki 1.20alpha (r113129); Translate 2012-03-02\n"
+"X-POT-Import-Date: 2012-03-05 14:44:08+0000\n"
+
+#: yelp.xml:2(msg/msgstr)
+msgid "Install <_:string-1/>"
+msgstr "Asenna <_:string-1/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -40,8 +48,8 @@ msgid "Not enough memory"
 msgstr "Muisti ei riitä"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:271
-#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Sivua ”%s” ei löytynyt asiakirjasta ”%s”."
@@ -60,21 +68,13 @@ msgstr "Tiedostoa ”%s” ei ole olemassa."
 
 #: ../libyelp/yelp-docbook-document.c:342
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"Tiedostoa ”%s” ei voitu jäsentää, koska se ei ole hyvin muotoiltu XML-"
-"tiedosto."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgstr "Tiedostoa ”%s” ei voitu jäsentää, koska se ei ole hyvin muotoiltu XML-tiedosto."
 
 #: ../libyelp/yelp-docbook-document.c:355
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files "
-"is not a well-formed XML document."
-msgstr ""
-"Tiedostoa ”%s” ei voitu jäsentää, koska yksi siihen sisällytetyistä "
-"tiedostoista ei ole hyvin muotoiltu XML-tiedosto."
+msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
+msgstr "Tiedostoa ”%s” ei voitu jäsentää, koska yksi siihen sisällytetyistä tiedostoista ei ole hyvin muotoiltu XML-tiedosto."
 
 #: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
@@ -102,17 +102,17 @@ msgstr "Asiakirjan URI"
 msgid "The URI which identifies the document"
 msgstr "Asiakirjan tunnisteena toimiva URI"
 
-#: ../libyelp/yelp-document.c:958
+#: ../libyelp/yelp-document.c:994
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Tulokset hakusanalle ”%s”"
 
-#: ../libyelp/yelp-document.c:970
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Hakusanalla ”%s” ei löytynyt yhtään ohjesivua."
 
-#: ../libyelp/yelp-document.c:976
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "Vastaavia ohjesivuja ei löytynyt."
 
@@ -127,57 +127,59 @@ msgstr "Kaikki ohjeet"
 
 #: ../libyelp/yelp-info-document.c:397
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"Tiedostoa ”%s” ei voitu jäsentää, koska se ei ole oikeinmuotoiltu info-"
-"tiedosto."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr "Tiedostoa ”%s” ei voitu jäsentää, koska se ei ole oikeinmuotoiltu info-tiedosto."
 
-#: ../libyelp/yelp-location-entry.c:331
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "Näytä"
 
-#: ../libyelp/yelp-location-entry.c:332
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
 msgstr "YelpView-instanssi hallittavaksi"
 
-#: ../libyelp/yelp-location-entry.c:347
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "Kirjanmerkit"
 
-#: ../libyelp/yelp-location-entry.c:348
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr "YelpBookmarks-toteutusinstanssi"
 
-#: ../libyelp/yelp-location-entry.c:364
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "Käytä hakua"
 
-#: ../libyelp/yelp-location-entry.c:365
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
 msgstr "Voidaanko sijaintikenttää käyttää hakukenttänä"
 
-#: ../libyelp/yelp-location-entry.c:435 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Etsi…"
 
-#: ../libyelp/yelp-location-entry.c:778
+#: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr "Tyhjennä hakukenttä"
 
-#: ../libyelp/yelp-location-entry.c:827 ../libyelp/yelp-location-entry.c:1525
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "Lisää tämä sivu kirjanmerkiksi"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1533
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "Poista kirjanmerkki"
 
-#: ../libyelp/yelp-location-entry.c:1390
+#: ../libyelp/yelp-location-entry.c:1154
+#, c-format
+msgid "Search for “%s”"
+msgstr "Etsi ”%s”"
+
+#: ../libyelp/yelp-location-entry.c:1458
 msgid "Loading"
 msgstr "Ladataan"
 
-#: ../libyelp/yelp-mallard-document.c:311
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Kansiota ”%s” ei ole olemassa."
@@ -388,52 +390,52 @@ msgstr "K_opioi koodilohko"
 msgid "Save Code _Block As..."
 msgstr "Tallenna koodi_lohko nimellä…"
 
-#: ../libyelp/yelp-view.c:1497
+#: ../libyelp/yelp-view.c:1505
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "Näytä kaikki tulokset hakusanalle ”%s”"
 
-#: ../libyelp/yelp-view.c:1618
+#: ../libyelp/yelp-view.c:1626
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Ei voitu ladata asiakirjaa ”%s”"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1632
 #, c-format
 msgid "Could not load a document"
 msgstr "Ei voitu ladata asiakirjaa"
 
-#: ../libyelp/yelp-view.c:1698
+#: ../libyelp/yelp-view.c:1706
 msgid "Document Not Found"
 msgstr "Asiakirjaa ei löydy"
 
-#: ../libyelp/yelp-view.c:1700
+#: ../libyelp/yelp-view.c:1708
 msgid "Page Not Found"
 msgstr "Sivua ei löytynyt"
 
-#: ../libyelp/yelp-view.c:1703
+#: ../libyelp/yelp-view.c:1711
 msgid "Cannot Read"
 msgstr "Luku ei onnistu"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1717
 msgid "Unknown Error"
 msgstr "Tuntematon virhe"
 
-#: ../libyelp/yelp-view.c:1729
+#: ../libyelp/yelp-view.c:1737
 msgid "Search for packages containing this document."
 msgstr "Etsi paketteja, jotka sisältävät tämän asiakirjan."
 
-#: ../libyelp/yelp-view.c:1882
+#: ../libyelp/yelp-view.c:1890
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Sijainti ”%s” ei ohjaa oikealle sivulle."
 
-#: ../libyelp/yelp-view.c:1888
+#: ../libyelp/yelp-view.c:1896
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "Sijainti ei ohjaa oikealle sivulle."
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1902
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI ”%s” ei jäsenny."
@@ -458,7 +460,7 @@ msgstr "_Pienennä tekstiä"
 msgid "Decrease the size of the text"
 msgstr "Pienennä tekstin kokoa"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
 #: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Ohje"
@@ -531,14 +533,14 @@ msgstr "Etsi:"
 msgid "Read Later"
 msgstr "Lue myöhemmin"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i osuma"
 msgstr[1] "%i osumaa"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "Ei osumia"
 
@@ -546,623 +548,3 @@ msgstr "Ei osumia"
 msgid "Get help with GNOME"
 msgstr "Apua Gnomen käyttöön"
 
-#~ msgid "Desktop"
-#~ msgstr "Työpöytä"
-
-#~ msgid "Get help with Ubuntu"
-#~ msgstr "Lue Ubuntun ohjeita"
-
-#~ msgid "Word Processors"
-#~ msgstr "Tekstinkäsittely"
-
-#~ msgid "Web Development"
-#~ msgstr "WWW-kehitys"
-
-#~ msgid "Web Browser"
-#~ msgstr "WWW-selain"
-
-#~ msgid "Viewer"
-#~ msgstr "Katselin"
-
-#~ msgid "Video Conference"
-#~ msgstr "Videoneuvottelu"
-
-#~ msgid "Video"
-#~ msgstr "Video"
-
-#~ msgid "Vector Graphics"
-#~ msgstr "Vektorigrafiikka"
-
-#~ msgid "Utilities to help you get work done"
-#~ msgstr "Työn valmiiksi saamisessa auttavat apuohjelmat"
-
-#~ msgid "Utilities"
-#~ msgstr "Apuohjelmat"
-
-#~ msgid "Tuners"
-#~ msgstr "Virittimet"
-
-#~ msgid "Translation Tools"
-#~ msgstr "Käännöstyökalut"
-
-#~ msgid "Tools to help you manage your computer"
-#~ msgstr "Tietokoneen hallinnassa auttavat työkalut"
-
-#~ msgid "Text Tools"
-#~ msgstr "Tekstityökalut"
-
-#~ msgid "Text Editors"
-#~ msgstr "Tekstimuokkaimet"
-
-#~ msgid "Terminal Emulator"
-#~ msgstr "Pääte-emulaattori"
-
-#~ msgid "Telephony Tools"
-#~ msgstr "Puhelintyökalut"
-
-#~ msgid "Telephony"
-#~ msgstr "Puhelin"
-
-#~ msgid "TV"
-#~ msgstr "TV"
-
-#~ msgid "System"
-#~ msgstr "Järjestelmä"
-
-#~ msgid "Strategy Games"
-#~ msgstr "Strategiapelit"
-
-#~ msgid "Spreadsheet Tools"
-#~ msgstr "Taulukkolaskennan työkalut"
-
-#~ msgid "Sports Games"
-#~ msgstr "Urheilupelit"
-
-#~ msgid "Sports"
-#~ msgstr "Urheilu"
-
-#~ msgid "Sound &amp; Video Editing"
-#~ msgstr "Äänen ja videon muokkaus"
-
-#~ msgid "Sound &amp; Video"
-#~ msgstr "Ääni &amp; video"
-
-#~ msgid "Sound"
-#~ msgstr "Ääni"
-
-#~ msgid "Simulation Games"
-#~ msgstr "Simulaattoripelit"
-
-#~ msgid ""
-#~ "Settings users can manipulate to make their environment more pleasant"
-#~ msgstr "Asetukset, joiden avulla ympäristöstä voi tehdä viihtyisämmän"
-
-#~ msgid "Settings"
-#~ msgstr "Asetukset"
-
-#~ msgid "Sequencers"
-#~ msgstr "Sekvensserit"
-
-#~ msgid "Security"
-#~ msgstr "Tietoturva"
-
-#~ msgid "Science"
-#~ msgstr "Tiede"
-
-#~ msgid "Scanning"
-#~ msgstr "Kuvanluku"
-
-#~ msgid "Role Playing Games"
-#~ msgstr "Roolipelit"
-
-#~ msgid "Robotics"
-#~ msgstr "Robotiikka"
-
-#~ msgid "Revision Control"
-#~ msgstr "Versionhallinta"
-
-#~ msgid "Remote Access"
-#~ msgstr "Etäkäyttö"
-
-#~ msgid "Recorders"
-#~ msgstr "Nauhoittimet"
-
-#~ msgid "Raster Graphics"
-#~ msgstr "Rasterigrafiikka"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "Publishing"
-#~ msgstr "Julkaisu"
-
-#~ msgid "Project Management Tools"
-#~ msgstr "Projektinhallinta"
-
-#~ msgid "Profiling Tools"
-#~ msgstr "Profilointityökalut"
-
-#~ msgid "Printing"
-#~ msgstr "Tulostus"
-
-#~ msgid "Presentation Tools"
-#~ msgstr "Esitystyökalut"
-
-#~ msgid "Players"
-#~ msgstr "Soittimet"
-
-#~ msgid "Physics"
-#~ msgstr "Fysiikka"
-
-#~ msgid "Photography"
-#~ msgstr "Valokuvaus"
-
-#~ msgid "Parallel Computing"
-#~ msgstr "Rinnakkaislaskenta"
-
-#~ msgid "Package Manager"
-#~ msgstr "Pakettien hallinta"
-
-#~ msgid "PDA Communication"
-#~ msgstr "PDA-yhteydet"
-
-#~ msgid "P2P"
-#~ msgstr "P2P (vertaisverkko-ohjelmat)"
-
-#~ msgid "Other Documentation"
-#~ msgstr "Muut ohjeet"
-
-#~ msgid "Office applications"
-#~ msgstr "Toimistosovellukset"
-
-#~ msgid "Office Applications"
-#~ msgstr "Toimistosovellukset"
-
-#~ msgid "OCR"
-#~ msgstr "Tekstin luku (OCR)"
-
-#~ msgid "Numerical Analysis"
-#~ msgstr "Numeerinen analyysi"
-
-#~ msgid "News"
-#~ msgstr "Uutiset"
-
-#~ msgid "Music"
-#~ msgstr "Musiikki"
-
-#~ msgid "Motif"
-#~ msgstr "Motif"
-
-#~ msgid "Monitor"
-#~ msgstr "Näyttö"
-
-#~ msgid "Miscellaneous Documentation"
-#~ msgstr "Sekalaiset dokumentit"
-
-#~ msgid "Midi"
-#~ msgstr "MIDI"
-
-#~ msgid "Medical Software"
-#~ msgstr "Lääketieteelliset ohjelmat"
-
-#~ msgid "Math"
-#~ msgstr "Matematiikka"
-
-#~ msgid "Logic Games"
-#~ msgstr "Logiikkapelit"
-
-#~ msgid "Literature"
-#~ msgstr "Kirjallisuus"
-
-#~ msgid "Licenses"
-#~ msgstr "Lisenssit"
-
-#~ msgid ""
-#~ "Learn more about making your system more accessible for a range of "
-#~ "disabilities"
-#~ msgstr ""
-#~ "Lisätietoja kuinka tehdä järjestelmästäsi käytettävämpi erilaisista "
-#~ "vammoista kärsiville"
-
-#~ msgid "Kids Games"
-#~ msgstr "Lasten pelit"
-
-#~ msgid "KDE Applications"
-#~ msgstr "KDE-sovellukset"
-
-#~ msgid "Java"
-#~ msgstr "Java"
-
-#~ msgid "Internet"
-#~ msgstr "Internet"
-
-#~ msgid "Instant Messaging"
-#~ msgstr "Pikaviestimet"
-
-#~ msgid "Image Processing"
-#~ msgstr "Kuvankäsittely"
-
-#~ msgid "IRC Clients"
-#~ msgstr "IRC-asiakkaat"
-
-#~ msgid "IDEs"
-#~ msgstr "IDE:t"
-
-#~ msgid "History"
-#~ msgstr "Historia"
-
-#~ msgid "Have some fun"
-#~ msgstr "Pidä hauskaa"
-
-#~ msgid "Hardware Settings"
-#~ msgstr "Laitteistoasetukset"
-
-#~ msgid "Ham Radio"
-#~ msgstr "Radioamatöörit"
-
-#~ msgid "Guides for getting involved in development"
-#~ msgstr "Ohjeita osallistumisesta kehitykseen"
-
-#~ msgid ""
-#~ "Guides and manuals for applications that connect to the outside world"
-#~ msgstr "Ohjeita ulkomaailman kanssa liittyville ohjelmille"
-
-#~ msgid "Graphics"
-#~ msgstr "Grafiikka"
-
-#~ msgid "Geoscience"
-#~ msgstr "Geotiede"
-
-#~ msgid "Geology"
-#~ msgstr "Geologia"
-
-#~ msgid "Geography"
-#~ msgstr "Geografia"
-
-#~ msgid "Generic applications for the KDE environment"
-#~ msgstr "Yleiset KDE-työpöydän sovellukset"
-
-#~ msgid "Generic applications for the GNOME environment"
-#~ msgstr "Yleiset Gnome-työpöydän sovellukset"
-
-#~ msgid "GUI Designers"
-#~ msgstr "GUI-suunnittelu"
-
-#~ msgid "GTK"
-#~ msgstr "GTK"
-
-#~ msgid "GNOME Applications"
-#~ msgstr "Gnome-sovellukset"
-
-#~ msgid "Flow Charting Tools"
-#~ msgstr "Vuokaaviotyökalut"
-
-#~ msgid "Financial Tools"
-#~ msgstr "Taloustyökalut"
-
-#~ msgid "Filesystem"
-#~ msgstr "Tiedostojärjestelmä"
-
-#~ msgid "File Transfer"
-#~ msgstr "Tiedostonsiirto"
-
-#~ msgid "File Tools"
-#~ msgstr "Tiedostotyökalut"
-
-#~ msgid "File Manager"
-#~ msgstr "Tiedostojen hallinta"
-
-#~ msgid "Engineering"
-#~ msgstr "Insinöörityökalut"
-
-#~ msgid "Emulator"
-#~ msgstr "Emulaattorit"
-
-#~ msgid "Email Tools"
-#~ msgstr "Sähköpostityökalut"
-
-#~ msgid "Electronics"
-#~ msgstr "Elektroniikka"
-
-#~ msgid "Electricity"
-#~ msgstr "Sähkö"
-
-#~ msgid "Education"
-#~ msgstr "Opetus"
-
-#~ msgid "Economy"
-#~ msgstr "Talous"
-
-#~ msgid "Disc Burning"
-#~ msgstr "Levyjen kirjoitus"
-
-#~ msgid "Dictionaries"
-#~ msgstr "Sanakirjat"
-
-#~ msgid "Dialup"
-#~ msgstr "Modeemikäyttö"
-
-#~ msgid "Desktop Settings"
-#~ msgstr "Työpöydän asetukset"
-
-#~ msgid "Debuggers"
-#~ msgstr "Virheenjäljitysohjelmat"
-
-#~ msgid "Databases"
-#~ msgstr "Tietokannat"
-
-#~ msgid "Data Visualization"
-#~ msgstr "Tiedon visualisointi"
-
-#~ msgid "Contact Management"
-#~ msgstr "Yhteystietojen hallinta"
-
-#~ msgid "Construction"
-#~ msgstr "Rakentaminen"
-
-#~ msgid "Computer Science"
-#~ msgstr "Tietojenkäsittelytiede"
-
-#~ msgid "Compression Tools"
-#~ msgstr "Pakkaustyökalut"
-
-#~ msgid "Clocks"
-#~ msgstr "Kellot"
-
-#~ msgid "Chemistry"
-#~ msgstr "Kemia"
-
-#~ msgid "Chat"
-#~ msgstr "Pikaviestimet"
-
-#~ msgid "Charting Tools"
-#~ msgstr "Kaaviotyökalut"
-
-#~ msgid "Card Games"
-#~ msgstr "Korttipelit"
-
-#~ msgid "Calendar"
-#~ msgstr "Kalenteri"
-
-#~ msgid "Calculator"
-#~ msgstr "Laskin"
-
-#~ msgid "Building"
-#~ msgstr "Rakentaminen"
-
-#~ msgid "Board Games"
-#~ msgstr "Lautapelit"
-
-#~ msgid "Blocks Games"
-#~ msgstr "Palikkapelit"
-
-#~ msgid "Biology"
-#~ msgstr "Biologia"
-
-#~ msgid "Astronomy"
-#~ msgstr "Astronomia"
-
-#~ msgid "Artificial Intelligence"
-#~ msgstr "Tekoäly"
-
-#~ msgid "Art"
-#~ msgstr "Taide"
-
-#~ msgid "Archiving Tools"
-#~ msgstr "Arkistointityökalut"
-
-#~ msgid "Arcade Games"
-#~ msgstr "Pelihallipelit"
-
-#~ msgid "Applications that teach or aid in learning"
-#~ msgstr "Opetukseen tai sen välineiksi tarkoitetut ohjelmat"
-
-#~ msgid "Applications related to audio and video"
-#~ msgstr "Äänen ja videon käsittelyyn liittyvät sovellukset"
-
-#~ msgid "Applications for viewing and manipulating graphics"
-#~ msgstr "Sovellukset grafiikan katseluun ja muokkaukseen"
-
-#~ msgid "Amusement"
-#~ msgstr "Viihde"
-
-#~ msgid "Adventure Games"
-#~ msgstr "Seikkailupelit"
-
-#~ msgid "Action Games"
-#~ msgstr "Toimintapelit"
-
-#~ msgid "Accessibility"
-#~ msgstr "Esteettömyys"
-
-#~ msgid "3D Graphics"
-#~ msgstr "3D-grafiikka"
-
-#~ msgid "2D Graphics"
-#~ msgstr "2D-grafiikka"
-
-#~ msgid "X11 Overviews"
-#~ msgstr "X11-yleiskatsaukset"
-
-#~ msgid "X11 Games"
-#~ msgstr "X11-pelit"
-
-#~ msgid "X11 Functions"
-#~ msgstr "X11-funktiot"
-
-#~ msgid "X11 Devices"
-#~ msgstr "X11-laitteet"
-
-#~ msgid "X11 Configuration"
-#~ msgstr "X11-asetukset"
-
-#~ msgid "X11 Applications"
-#~ msgstr "X11-sovellukset"
-
-#~ msgid "Traditional command line help (man)"
-#~ msgstr "Perinteinen komentoriviopaste (man)"
-
-#~ msgid "Termcap Applications"
-#~ msgstr "Termcap-sovellukset"
-
-#~ msgid "TIFF Functions"
-#~ msgstr "Tiff-funktiot"
-
-#~ msgid "System V Form/Menu Functions"
-#~ msgstr "System V lomake- ja valikkofunktiot"
-
-#~ msgid "System Calls"
-#~ msgstr "Järjestelmäkutsut"
-
-#~ msgid "System Administration"
-#~ msgstr "Järjestelmänvalvonta"
-
-#~ msgid "Sections 8 and 8l"
-#~ msgstr "Osat 8 ja 8l"
-
-#~ msgid "Sections 7 and 7gcc"
-#~ msgstr "Osat 7 ja 7gcc"
-
-#~ msgid "Sections 3x and 3X11"
-#~ msgstr "Osat 3x ja 3X11"
-
-#~ msgid "Sections 3pm and 3perl"
-#~ msgstr "Osat 3pm ja 3perl"
-
-#~ msgid "Sections 3ncurses and 3curses"
-#~ msgstr "Osat 3ncurses ja 3curses"
-
-#~ msgid "Sections 3form and 3menu"
-#~ msgstr "Osat 3form ja 3menu"
-
-#~ msgid "Sections 3, 3o, and 3t"
-#~ msgstr "Osat 3, 3o ja 3t"
-
-#~ msgid "Sections 1, 1p, 1g and 1t"
-#~ msgstr "Osat 1, 1p, 1g ja 1t"
-
-#~ msgid "Section 9"
-#~ msgstr "Osa 9"
-
-#~ msgid "Section 7x"
-#~ msgstr "Osa 7x"
-
-#~ msgid "Section 7ssl"
-#~ msgstr "Osa 7ssl"
-
-#~ msgid "Section 6x"
-#~ msgstr "Osa 6x"
-
-#~ msgid "Section 6"
-#~ msgstr "Osa 6"
-
-#~ msgid "Section 5x"
-#~ msgstr "Osa 5x"
-
-#~ msgid "Section 5ssl"
-#~ msgstr "Osa 5ssl"
-
-#~ msgid "Section 5"
-#~ msgstr "Osa 5"
-
-#~ msgid "Section 4x"
-#~ msgstr "Osa 4x"
-
-#~ msgid "Section 4"
-#~ msgstr "Osa 4"
-
-#~ msgid "Section 3tiff"
-#~ msgstr "Osa 3tiff"
-
-#~ msgid "Section 3ssl"
-#~ msgstr "Osa 3ssl"
-
-#~ msgid "Section 3readline"
-#~ msgstr "Osa 3readline"
-
-#~ msgid "Section 3qt"
-#~ msgstr "Osa 3qt"
-
-#~ msgid "Section 3p"
-#~ msgstr "Osa 3p"
-
-#~ msgid "Section 3nas"
-#~ msgstr "Osa 3nas"
-
-#~ msgid "Section 3f"
-#~ msgstr "Osa 3f"
-
-#~ msgid "Section 3blt"
-#~ msgstr "Osa 3blt"
-
-#~ msgid "Section 2"
-#~ msgstr "Osa 2"
-
-#~ msgid "Section 1x"
-#~ msgstr "Osa 1x"
-
-#~ msgid "Section 1ssl"
-#~ msgstr "Osa 1ssl"
-
-#~ msgid "Section 1m"
-#~ msgstr "Osa 1m"
-
-#~ msgid "Section 0p"
-#~ msgstr "Osa 0p"
-
-#~ msgid "Readline Functions"
-#~ msgstr "Readline-funktiot"
-
-#~ msgid "Overviews"
-#~ msgstr "Yleiskatsaukset"
-
-#~ msgid "OpenSSL Overviews"
-#~ msgstr "OpenSSL-yleiskatsaukset"
-
-#~ msgid "OpenSSL Functions"
-#~ msgstr "OpenSSL-funktiot"
-
-#~ msgid "OpenSSL Configuration"
-#~ msgstr "OpenSSL-asetukset"
-
-#~ msgid "OpenSSL Applications"
-#~ msgstr "OpenSSL-sovellukset"
-
-#~ msgid "Network Audio Sound Functions"
-#~ msgstr "Funktiot äänen käsittelyyn verkon yli"
-
-#~ msgid "Kernel Routines"
-#~ msgstr "Kernelrutiinit"
-
-#~ msgid "Hardware Devices"
-#~ msgstr "Laitteisto"
-
-#~ msgid "Games"
-#~ msgstr "Pelit"
-
-#~ msgid "FORTRAN Functions"
-#~ msgstr "FORTRAN-funktiot"
-
-#~ msgid "Development"
-#~ msgstr "Ohjelmakehitys"
-
-#~ msgid "Curses Functions"
-#~ msgstr "Curses-funktiot"
-
-#~ msgid "Configuration Files"
-#~ msgstr "Asetustiedostot"
-
-#~ msgid "BLT Functions"
-#~ msgstr "BLT-funktiot"
-
-#~ msgid "Applications"
-#~ msgstr "Sovellukset"
-
-#~ msgid "Traditional command line help (info)"
-#~ msgstr "Perinteinen komentoriviohje (info)"
-
-#~ msgid "GNU Info Pages"
-#~ msgstr "GNU info-sivut"
-
-#~ msgid "Mixers"
-#~ msgstr "Mikserit"
