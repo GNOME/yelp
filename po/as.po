@@ -5,14 +5,14 @@
 # Amitakhya Phukan <amitakhya@svn.gnome.org>, 2008.
 # Amitakhya Phukan <aphukan@redhat.com>, 2008.
 # Amitakhya Phukan <aphukan@fedoraproject.org>, 2009.
-# Nilamdyuti Goswami <ngoswami@redhat.com>, 2011.
+# Nilamdyuti Goswami <ngoswami@redhat.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: as\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-19 02:02+0000\n"
-"PO-Revision-Date: 2011-08-23 17:38+0530\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-02-23 18:38+0000\n"
+"PO-Revision-Date: 2012-03-12 15:59+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: as_IN <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n!=1)\n"
+
+#: yelp.xml:2(msg/msgstr)
+msgid "Install <_:string-1/>"
+msgstr "<_:string-1/> ইনস্টল কৰক"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -32,8 +36,8 @@ msgid "Not enough memory"
 msgstr "পৰ্যাপ্ত মেমৰি নাই"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:271
-#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "'%s' দস্তাবেজত '%s' পৃষ্টা পোৱা নগল।"
@@ -92,17 +96,17 @@ msgstr "দস্তাবেজ URl"
 msgid "The URI which identifies the document"
 msgstr "URl যি দস্তাবেজটো চিনাক্ত কৰে"
 
-#: ../libyelp/yelp-document.c:958
+#: ../libyelp/yelp-document.c:994
 #, c-format
 msgid "Search results for “%s”"
 msgstr "\"%s\"  -ৰ বাবে সন্ধান ফলাফলসমূহ"
 
-#: ../libyelp/yelp-document.c:970
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "“%s” -ত কোনো মিলা সহায় পৃষ্টাসমূহ পোৱা নগল।"
 
-#: ../libyelp/yelp-document.c:976
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "কোনো মিলা সহায় পৃষ্টাসমূহ পোৱা নগল।"
 
@@ -117,56 +121,60 @@ msgstr "সকলো সহায় দস্তাবেজসমূহ"
 
 #: ../libyelp/yelp-info-document.c:397
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"সঠিক info দস্তাবেজ ৰূপে গঠিত নোহোৱাৰ ফলত ‘%s’ নথিপত্ৰ বিশ্লেষণ কৰিবলৈ ব্যৰ্থ।"
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr "সঠিক info দস্তাবেজ ৰূপে গঠিত নোহোৱাৰ ফলত ‘%s’ নথিপত্ৰ বিশ্লেষণ কৰিবলৈ ব্যৰ্থ।"
 
-#: ../libyelp/yelp-location-entry.c:329
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "দৰ্শন কৰক"
 
-#: ../libyelp/yelp-location-entry.c:330
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
 msgstr "নিয়ন্ত্ৰণ কৰিব লগিয়া এটা YelpView ক্ষণ"
 
-#: ../libyelp/yelp-location-entry.c:345
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "পত্ৰচিহ্নসমূহ"
 
-#: ../libyelp/yelp-location-entry.c:346
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr "এটা YelpBookmarks সংস্থাপন ক্ষণ"
 
-#: ../libyelp/yelp-location-entry.c:362
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "সন্ধান সামৰ্থবান কৰক"
 
-#: ../libyelp/yelp-location-entry.c:363
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
 msgstr "অৱস্থান প্ৰবিষ্টিক এটা সন্দান ক্ষেত্ৰ হিচাপে ব্যৱহাৰ কৰিব পৰা যাব নে"
 
-#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "সন্ধান কৰক..."
 
-#: ../libyelp/yelp-location-entry.c:776
+#: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr "সন্ধান লিখনী পৰিষ্কাৰ কৰক"
 
-#: ../libyelp/yelp-location-entry.c:825 ../libyelp/yelp-location-entry.c:1523
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "এই পৃষ্টা পত্ৰচিহ্নিত কৰক"
 
-#: ../libyelp/yelp-location-entry.c:833 ../libyelp/yelp-location-entry.c:1531
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "পত্ৰচিহ্ন আঁতৰাওক"
 
-#: ../libyelp/yelp-location-entry.c:1388
+#: ../libyelp/yelp-location-entry.c:1154
+#, c-format
+#| msgid "Search results for “%s”"
+msgid "Search for “%s”"
+msgstr "\"%s\"  ৰ বাবে সন্ধান কৰক"
+
+#: ../libyelp/yelp-location-entry.c:1458
 msgid "Loading"
 msgstr "লোড কৰা হৈছে"
 
-#: ../libyelp/yelp-mallard-document.c:311
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "‘%s’ ডাইৰেকটৰি অনুপস্থিত।"
@@ -240,182 +248,192 @@ msgstr "yelp:document -ত href বৈশিষ্ট পোৱা নাযা�
 msgid "Out of memory"
 msgstr "মেমৰি অৱশিষ্ট নাই"
 
-#: ../libyelp/yelp-view.c:126
+#: ../libyelp/yelp-view.c:131
 msgid "_Print..."
 msgstr "প্ৰিন্ট কৰক... (_P)"
 
-#: ../libyelp/yelp-view.c:131
+#: ../libyelp/yelp-view.c:136
 msgid "_Back"
 msgstr "পিছলৈ (_B)"
 
-#: ../libyelp/yelp-view.c:136
+#: ../libyelp/yelp-view.c:141
 msgid "_Forward"
 msgstr "আগলৈ (_F)"
 
-#: ../libyelp/yelp-view.c:141
+#: ../libyelp/yelp-view.c:146
 msgid "_Previous Page"
 msgstr "পূৰ্ববৰ্তী পৃষ্টা (_P)"
 
-#: ../libyelp/yelp-view.c:146
+#: ../libyelp/yelp-view.c:151
 msgid "_Next Page"
 msgstr "পৰবৰ্তী পৃষ্টা (_N)"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:423
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:417
+#: ../libyelp/yelp-view.c:424
 msgid "A YelpUri with the current location"
 msgstr "বৰ্তমান অৱস্তান থকা এটা YelpUri"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:432
 msgid "Loading State"
 msgstr "অৱস্থা লোড কৰা হৈছে"
 
-#: ../libyelp/yelp-view.c:426
+#: ../libyelp/yelp-view.c:433
 msgid "The loading state of the view"
 msgstr "প্ৰদৰ্শনৰ লোডিং অৱস্থা"
 
-#: ../libyelp/yelp-view.c:435
+#: ../libyelp/yelp-view.c:442
 msgid "Page ID"
 msgstr "পৃষ্ঠা ID"
 
-#: ../libyelp/yelp-view.c:436
+#: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
 msgstr "বৰ্তমানে দৰ্শন কৰা পৃষ্ঠাৰ ৰুট পৃষ্ঠাৰ ID"
 
-#: ../libyelp/yelp-view.c:444
+#: ../libyelp/yelp-view.c:451
 msgid "Root Title"
 msgstr "ৰুট শীৰ্ষক"
 
-#: ../libyelp/yelp-view.c:445
+#: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
 msgstr "বৰ্তমানে দৰ্শন কৰা পৃষ্ঠাৰ ৰুট পৃষ্ঠাৰ শীৰ্ষক"
 
-#: ../libyelp/yelp-view.c:453
+#: ../libyelp/yelp-view.c:460
 msgid "Page Title"
 msgstr "পৃষ্ঠা শীৰ্ষক"
 
-#: ../libyelp/yelp-view.c:454
+#: ../libyelp/yelp-view.c:461
 msgid "The title of the page being viewed"
 msgstr "বৰ্তমানে দৰ্শন কৰা পৃষ্ঠাৰ শীৰ্ষক"
 
-#: ../libyelp/yelp-view.c:462
+#: ../libyelp/yelp-view.c:469
 msgid "Page Description"
 msgstr "পৃষ্ঠা বিৱৰণ"
 
-#: ../libyelp/yelp-view.c:463
+#: ../libyelp/yelp-view.c:470
 msgid "The description of the page being viewed"
 msgstr "বৰ্তমানে দৰ্শন কৰা পৃষ্ঠাৰ বিৱৰণ"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
 msgstr "পৃষ্ঠা আইকন"
 
-#: ../libyelp/yelp-view.c:472
+#: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
 msgstr "বৰ্তমানে দৰ্শন কৰা পৃষ্ঠাৰ আইকন"
 
-#: ../libyelp/yelp-view.c:713
+#: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "আপোনাৰ PackageKit নাই। পেকেইজ ইনস্টল লিঙ্কসমূহৰ PackageKitৰ প্ৰয়োজন।"
 
-#: ../libyelp/yelp-view.c:991
+#: ../libyelp/yelp-view.c:1013
 msgid "Save Image"
 msgstr "ছবি সংৰক্ষণ কৰক"
 
-#: ../libyelp/yelp-view.c:1086
+#: ../libyelp/yelp-view.c:1108
 msgid "Save Code"
 msgstr "কোড সংৰক্ষণ কৰক"
 
-#. Not using a mnemonic because underscores are common in email
-#. * addresses, and we'd have to escape them. There doesn't seem
-#. * to be a quick GTK+ function for this. In practice, there will
-#. * probably only be one menu item for mailto link popups anyway,
-#. * so the mnemonic's not that big of a deal.
-#.
-#: ../libyelp/yelp-view.c:1255
+#: ../libyelp/yelp-view.c:1271
 #, c-format
 msgid "Send email to %s"
 msgstr "%s লে ই-মেইল পঠাওক"
 
-#: ../libyelp/yelp-view.c:1265
+#: ../libyelp/yelp-view.c:1286
+#| msgid "Manual Pages"
+msgid "_Install Packages"
+msgstr "পেকেইজসমূহ ইনস্টল কৰক (_I)"
+
+#: ../libyelp/yelp-view.c:1294
 msgid "_Open Link"
 msgstr "লিঙ্ক খোলক (_O)"
 
-#: ../libyelp/yelp-view.c:1270
+#: ../libyelp/yelp-view.c:1301
+#| msgid "Open Location"
+msgid "_Copy Link Location"
+msgstr "সংযোগ অৱস্থান কপি কৰক (_C)"
+
+#: ../libyelp/yelp-view.c:1307
 msgid "Open Link in New _Window"
 msgstr "এটা নতুন উইন্ডোত লিঙ্ক খোলক (_W)"
 
-#: ../libyelp/yelp-view.c:1321
+#: ../libyelp/yelp-view.c:1359
 msgid "_Save Image As..."
 msgstr "ছবিক নতুন ৰূপে সংৰক্ষণ কৰক... (_S)"
 
-#: ../libyelp/yelp-view.c:1323
+#: ../libyelp/yelp-view.c:1361
 msgid "_Save Video As..."
 msgstr "ভিডিঅ'ক নতুন ৰূপে সংৰক্ষণ কৰক... (_S)"
 
-#: ../libyelp/yelp-view.c:1330
+#: ../libyelp/yelp-view.c:1368
 msgid "S_end Image To..."
 msgstr "ছবিক পঠাওক... (_e)"
 
-#: ../libyelp/yelp-view.c:1332
+#: ../libyelp/yelp-view.c:1370
 msgid "S_end Video To..."
 msgstr "ভিডিঅ'ক পঠাওক... (_e)"
 
-#: ../libyelp/yelp-view.c:1343
+#: ../libyelp/yelp-view.c:1381
 msgid "_Copy Text"
 msgstr "লিখনী কপি কৰক (_C)"
 
-#: ../libyelp/yelp-view.c:1356
+#: ../libyelp/yelp-view.c:1394
 msgid "C_opy Code Block"
 msgstr "কোড খন্ড কপি কৰক (_o)"
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1399
 msgid "Save Code _Block As..."
 msgstr "কোড খন্ড নতুন ৰূপে সংৰক্ষণ কৰক... (_B)"
 
-#: ../libyelp/yelp-view.c:1543
+#: ../libyelp/yelp-view.c:1497
+#, c-format
+#| msgid "Search results for “%s”"
+msgid "See all search results for “%s”"
+msgstr "\"%s\"  ৰ বাবে সন্ধান ফলাফলসমূহ চাওক"
+
+#: ../libyelp/yelp-view.c:1618
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "‘%s’ -ৰ কাৰণে এটা দস্তাবেজ লোড কৰিবলে ব্যৰ্থ"
 
-#: ../libyelp/yelp-view.c:1549
+#: ../libyelp/yelp-view.c:1624
 #, c-format
 msgid "Could not load a document"
 msgstr "এটা দস্তাবেজ লোড কৰিবলে ব্যৰ্থ"
 
-#: ../libyelp/yelp-view.c:1623
+#: ../libyelp/yelp-view.c:1698
 msgid "Document Not Found"
 msgstr "দস্তাবেজ পোৱা নগল"
 
-#: ../libyelp/yelp-view.c:1625
+#: ../libyelp/yelp-view.c:1700
 msgid "Page Not Found"
 msgstr "পৃষ্ঠা পোৱা নগল"
 
-#: ../libyelp/yelp-view.c:1628
+#: ../libyelp/yelp-view.c:1703
 msgid "Cannot Read"
 msgstr "পঢ়িব নোৱাৰি"
 
-#: ../libyelp/yelp-view.c:1634
+#: ../libyelp/yelp-view.c:1709
 msgid "Unknown Error"
 msgstr "অজ্ঞাত ত্ৰুটি"
 
-#: ../libyelp/yelp-view.c:1654
+#: ../libyelp/yelp-view.c:1729
 msgid "Search for packages containing this document."
 msgstr "এই দস্তাবেজ থকা পেকেইজসমূহ বিচাৰক।"
 
-#: ../libyelp/yelp-view.c:1807
+#: ../libyelp/yelp-view.c:1882
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI ‘%s’ -এ এটা বৈধ পৃষ্ঠালে ইংগিত নকৰে।"
 
-#: ../libyelp/yelp-view.c:1813
+#: ../libyelp/yelp-view.c:1888
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI টোৱে এটা বৈধ পৃষ্ঠালে ইংগিত নকৰে।"
 
-#: ../libyelp/yelp-view.c:1819
+#: ../libyelp/yelp-view.c:1894
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI ‘%s’ বিশ্লেষণ কৰিবলে ব্যৰ্থ।"
@@ -440,8 +458,8 @@ msgstr "সৰু লিখনী (_S)"
 msgid "Decrease the size of the text"
 msgstr "লিখনীৰ আকাৰ কমাওক"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "সহায়"
 
@@ -501,6 +519,11 @@ msgstr "অনুপ্ৰয়োগ"
 msgid "A YelpApplication instance that controls this window"
 msgstr "এটা YelpApplication ক্ষণ যোনে এই উইন্ডো নিয়ন্ত্ৰণ কৰে"
 
+#: ../src/yelp-window.c:429
+#| msgid "Read Later"
+msgid "Read Link _Later"
+msgstr "সংযোগ পিছত পঢ়িব (_L)"
+
 #: ../src/yelp-window.c:526
 msgid "Find:"
 msgstr "সন্ধান কৰক:"
@@ -509,18 +532,18 @@ msgstr "সন্ধান কৰক:"
 msgid "Read Later"
 msgstr "পিছত পঢ়িব"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i মিল"
 msgstr[1] "%i মিলসমুহ"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "কোনো মিল নাই"
 
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "GNOME -ৰ পৰা সহায় প্ৰাপ্ত কৰক"
 
@@ -556,9 +579,6 @@ msgstr "GNOME -ৰ পৰা সহায় প্ৰাপ্ত কৰক"
 
 #~ msgid "Kernel Routines"
 #~ msgstr "কাৰ্ণেলৰ ৰুটিন"
-
-#~ msgid "Manual Pages"
-#~ msgstr "সহায়িকা তথ্য সহ পৃষ্ঠা (man পৃষ্ঠা)"
 
 #~ msgid "Network Audio Sound Functions"
 #~ msgstr "নেটৱৰ্ক অডিও শব্দৰ আপেক্ষক"
