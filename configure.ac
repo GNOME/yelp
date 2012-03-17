@@ -236,7 +236,6 @@ yelp-$VERSION:
 
 	Documentation:            ${enable_gtk_doc}
 	Debug enabled:            ${enable_debug}
-	Search backend:           ${search_backend}
 	Enable BZ2:               ${enable_bz2}
 	Enable LZMA:              ${enable_lzma}
 
