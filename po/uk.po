@@ -3,13 +3,13 @@
 # Yuriy Syrota <rasta@renome.rovno.ua>, 2001.
 # Maxim Dzumanenko <dziumanenko@gmail.com>, 2004-2008
 # wanderlust <wanderlust@ukr.net>, 2009.
-# Korostil Daniel <ted.korostiled@gmail.com>, 2011.
+# Korostil Daniel <ted.korostiled@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-28 12:31+0300\n"
-"PO-Revision-Date: 2011-09-28 12:34+0300\n"
+"POT-Creation-Date: 2012-03-18 15:15+0200\n"
+"PO-Revision-Date: 2012-03-18 15:17+0300\n"
 "Last-Translator: Korostil Daniel <ted.korostiled@gmail.com>\n"
 "Language-Team: translation@linux.org.ua\n"
 "Language: uk\n"
@@ -18,7 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Virtaal 0.6.1\n"
+"X-Generator: Virtaal 0.7.1\n"
+
+#: yelp.xml:2(msg/msgstr)
+msgid "Install <_:string-1/>"
+msgstr "Встановити <_:string-1/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -31,8 +35,8 @@ msgid "Not enough memory"
 msgstr "Недостатньо пам'яті"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:271
-#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Сторінка «%s» не існує у документі «%s»."
@@ -93,17 +97,17 @@ msgstr "Посилання документа"
 msgid "The URI which identifies the document"
 msgstr "Посилання, яке ідентифікує документ"
 
-#: ../libyelp/yelp-document.c:958
+#: ../libyelp/yelp-document.c:994
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Результат пошуку для «%s»"
 
-#: ../libyelp/yelp-document.c:970
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Не знайдено жодного збігу сторінок довідки в «%s»."
 
-#: ../libyelp/yelp-document.c:976
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "Не знайдено жодної сторінки довідки."
 
@@ -124,51 +128,56 @@ msgstr ""
 "Не вдається проаналізувати файл «%s», оскільки це некоректно сформована "
 "інформаційна сторінка."
 
-#: ../libyelp/yelp-location-entry.c:329
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "Переглядач"
 
-#: ../libyelp/yelp-location-entry.c:330
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
 msgstr "Наприклад, YelpView для перевірки"
 
-#: ../libyelp/yelp-location-entry.c:345
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "Закладки"
 
-#: ../libyelp/yelp-location-entry.c:346
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr "Наприклад, YelpBookmarks для реалізації"
 
-#: ../libyelp/yelp-location-entry.c:362
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "Увімкнути пошук"
 
-#: ../libyelp/yelp-location-entry.c:363
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
 msgstr "Або поле вводу адреси можна використати для пошуку"
 
-#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Пошук…"
 
-#: ../libyelp/yelp-location-entry.c:776
+#: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr "Очистити текст пошуку"
 
-#: ../libyelp/yelp-location-entry.c:825 ../libyelp/yelp-location-entry.c:1523
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "Закласти"
 
-#: ../libyelp/yelp-location-entry.c:833 ../libyelp/yelp-location-entry.c:1531
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "Вилучити закладку"
 
-#: ../libyelp/yelp-location-entry.c:1388
+#: ../libyelp/yelp-location-entry.c:1154
+#, c-format
+msgid "Search for “%s”"
+msgstr "Пошук «%s»"
+
+#: ../libyelp/yelp-location-entry.c:1458
 msgid "Loading"
 msgstr "Завантаження…"
 
-#: ../libyelp/yelp-mallard-document.c:311
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Теки «%s» не існує."
@@ -242,182 +251,189 @@ msgstr "У yelp:document не знайдено атрибуту href\n"
 msgid "Out of memory"
 msgstr "Недостатньо пам'яті"
 
-#: ../libyelp/yelp-view.c:126
+#: ../libyelp/yelp-view.c:131
 msgid "_Print..."
 msgstr "_Друкувати…"
 
-#: ../libyelp/yelp-view.c:131
+#: ../libyelp/yelp-view.c:136
 msgid "_Back"
 msgstr "_Назад"
 
-#: ../libyelp/yelp-view.c:136
+#: ../libyelp/yelp-view.c:141
 msgid "_Forward"
 msgstr "_Вперед"
 
-#: ../libyelp/yelp-view.c:141
+#: ../libyelp/yelp-view.c:146
 msgid "_Previous Page"
 msgstr "_Попередня сторінка"
 
-#: ../libyelp/yelp-view.c:146
+#: ../libyelp/yelp-view.c:151
 msgid "_Next Page"
 msgstr "_Наступна сторінка"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:423
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:417
+#: ../libyelp/yelp-view.c:424
 msgid "A YelpUri with the current location"
 msgstr "YelpUri з теперішньою адресою"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:432
 msgid "Loading State"
 msgstr "Стан завантаження"
 
-#: ../libyelp/yelp-view.c:426
+#: ../libyelp/yelp-view.c:433
 msgid "The loading state of the view"
 msgstr "Стан завантаження перегляду"
 
-#: ../libyelp/yelp-view.c:435
+#: ../libyelp/yelp-view.c:442
 msgid "Page ID"
 msgstr "ID сторінки"
 
-#: ../libyelp/yelp-view.c:436
+#: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
 msgstr "ID кореневої сторінки — сторінки, що переглядається "
 
-#: ../libyelp/yelp-view.c:444
+#: ../libyelp/yelp-view.c:451
 msgid "Root Title"
 msgstr "Назва кореня"
 
-#: ../libyelp/yelp-view.c:445
+#: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
 msgstr "Назва кореневої сторінки — сторінки, що переглядається "
 
-#: ../libyelp/yelp-view.c:453
+#: ../libyelp/yelp-view.c:460
 msgid "Page Title"
 msgstr "Назва сторінки"
 
-#: ../libyelp/yelp-view.c:454
+#: ../libyelp/yelp-view.c:461
 msgid "The title of the page being viewed"
 msgstr "Назва сторінки, що переглядається"
 
-#: ../libyelp/yelp-view.c:462
+#: ../libyelp/yelp-view.c:469
 msgid "Page Description"
 msgstr "Опис сторінки"
 
-#: ../libyelp/yelp-view.c:463
+#: ../libyelp/yelp-view.c:470
 msgid "The description of the page being viewed"
 msgstr "Опис сторінки, що переглядається"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
 msgstr "Піктограма сторінки"
 
-#: ../libyelp/yelp-view.c:472
+#: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
 msgstr "Піктограма сторінки, що переглядається"
 
-#: ../libyelp/yelp-view.c:713
+#: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "Нема пакунку PackageKit. Встановлення пакунку потребує PackageKit."
 
-#: ../libyelp/yelp-view.c:991
+#: ../libyelp/yelp-view.c:1013
 msgid "Save Image"
 msgstr "Зберегти зображення"
 
-#: ../libyelp/yelp-view.c:1086
+#: ../libyelp/yelp-view.c:1108
 msgid "Save Code"
 msgstr "Зберегти код"
 
-#. Not using a mnemonic because underscores are common in email
-#. * addresses, and we'd have to escape them. There doesn't seem
-#. * to be a quick GTK+ function for this. In practice, there will
-#. * probably only be one menu item for mailto link popups anyway,
-#. * so the mnemonic's not that big of a deal.
-#.
-#: ../libyelp/yelp-view.c:1255
+#: ../libyelp/yelp-view.c:1271
 #, c-format
 msgid "Send email to %s"
 msgstr "Відправити листа на %s"
 
-#: ../libyelp/yelp-view.c:1265
+#: ../libyelp/yelp-view.c:1286
+msgid "_Install Packages"
+msgstr "_Установити пакунки"
+
+#: ../libyelp/yelp-view.c:1294
 msgid "_Open Link"
 msgstr "_Відкрити посилання"
 
-#: ../libyelp/yelp-view.c:1270
+#: ../libyelp/yelp-view.c:1301
+msgid "_Copy Link Location"
+msgstr "_Копіювати посилання"
+
+#: ../libyelp/yelp-view.c:1307
 msgid "Open Link in New _Window"
 msgstr "Відкрити посилання у _новому вікні"
 
-#: ../libyelp/yelp-view.c:1321
+#: ../libyelp/yelp-view.c:1359
 msgid "_Save Image As..."
 msgstr "_Зберегти зображення як…"
 
-#: ../libyelp/yelp-view.c:1323
+#: ../libyelp/yelp-view.c:1361
 msgid "_Save Video As..."
 msgstr "_Зберегти відео як…"
 
-#: ../libyelp/yelp-view.c:1330
+#: ../libyelp/yelp-view.c:1368
 msgid "S_end Image To..."
 msgstr "В_ідправити зображення на…"
 
-#: ../libyelp/yelp-view.c:1332
+#: ../libyelp/yelp-view.c:1370
 msgid "S_end Video To..."
 msgstr "В_ідправити відео на…"
 
-#: ../libyelp/yelp-view.c:1343
+#: ../libyelp/yelp-view.c:1381
 msgid "_Copy Text"
 msgstr "_Копіювати текст"
 
-#: ../libyelp/yelp-view.c:1356
+#: ../libyelp/yelp-view.c:1394
 msgid "C_opy Code Block"
 msgstr "К_опіювати блок коду"
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1399
 msgid "Save Code _Block As..."
 msgstr "Зберегти _блок коду як…"
 
-#: ../libyelp/yelp-view.c:1543
+#: ../libyelp/yelp-view.c:1505
+#, c-format
+msgid "See all search results for “%s”"
+msgstr "Переглянути результати пошуку «%s»"
+
+#: ../libyelp/yelp-view.c:1626
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Неможливо завантажити документ для «%s»"
 
-#: ../libyelp/yelp-view.c:1549
+#: ../libyelp/yelp-view.c:1632
 #, c-format
 msgid "Could not load a document"
 msgstr "Неможливо завантажити документ"
 
-#: ../libyelp/yelp-view.c:1623
+#: ../libyelp/yelp-view.c:1706
 msgid "Document Not Found"
 msgstr "Документ не знайдено"
 
-#: ../libyelp/yelp-view.c:1625
+#: ../libyelp/yelp-view.c:1708
 msgid "Page Not Found"
 msgstr "Сторінку не знайдено"
 
-#: ../libyelp/yelp-view.c:1628
+#: ../libyelp/yelp-view.c:1711
 msgid "Cannot Read"
 msgstr "Неможливо прочитати"
 
-#: ../libyelp/yelp-view.c:1634
+#: ../libyelp/yelp-view.c:1717
 msgid "Unknown Error"
 msgstr "Невідома помилка"
 
-#: ../libyelp/yelp-view.c:1654
+#: ../libyelp/yelp-view.c:1737
 msgid "Search for packages containing this document."
 msgstr "Пошук пакунків, містить цей документ."
 
-#: ../libyelp/yelp-view.c:1807
+#: ../libyelp/yelp-view.c:1890
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Посилання «%s» вказує неправильну сторінку."
 
-#: ../libyelp/yelp-view.c:1813
+#: ../libyelp/yelp-view.c:1896
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "Посилання вказує неправильну сторінку."
 
-#: ../libyelp/yelp-view.c:1819
+#: ../libyelp/yelp-view.c:1902
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Посилання «%s» неможливо розібрати."
@@ -442,8 +458,8 @@ msgstr "_Менший текст"
 msgid "Decrease the size of the text"
 msgstr "Зменшити розмір тексту"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Довідка"
 
@@ -503,6 +519,10 @@ msgstr "Програма"
 msgid "A YelpApplication instance that controls this window"
 msgstr "Наприклад, YelpApplication для керування цим вікном"
 
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Прочитати посилання _згодом"
+
 #: ../src/yelp-window.c:526
 msgid "Find:"
 msgstr "Знайти:"
@@ -511,7 +531,7 @@ msgstr "Знайти:"
 msgid "Read Later"
 msgstr "Прочитати згодом"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
@@ -519,11 +539,11 @@ msgstr[0] "%i збіг"
 msgstr[1] "%i збіги"
 msgstr[2] "%i збігів"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "Нема збігів"
 
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Отримати довідку GNOME"
 
@@ -559,9 +579,6 @@ msgstr "Отримати довідку GNOME"
 
 #~ msgid "Kernel Routines"
 #~ msgstr "Робота з ядром"
-
-#~ msgid "Manual Pages"
-#~ msgstr "Сторінки підручника"
 
 #~ msgid "Network Audio Sound Functions"
 #~ msgstr "Функції мережного сервера звуку (NAS)"
