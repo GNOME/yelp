@@ -1,6 +1,6 @@
 # Vietnamese translation for Yelp.
 # Copyright © 2008 GNOME i18n Project for Vietnamese.
-# Nguyễn Thái Ngọc Duy <pclouds@vnlinux.org>, 2002-2004, 2005.
+# Nguyễn Thái Ngọc Duy <pclouds@vnlinux.org>, 2002-2004, 2005, 2012.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
 # Lê Trường An <xinemdungkhoc1@gmail.com>, 2011.
 #
@@ -10,8 +10,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2012-02-23 18:38+0000\n"
-"PO-Revision-Date: 2012-03-21 13:26+0700\n"
-"Last-Translator: Lê Trường An <xinemdungkhoc1@gmail.com>\n"
+"PO-Revision-Date: 2012-03-21 13:28+0700\n"
+"Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@vnlinux.org>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: yelp.xml:2(msg/msgstr)
 msgid "Install <_:string-1/>"
-msgstr ""
+msgstr "Cài đặt <_:string-1/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -95,7 +95,7 @@ msgid "The URI which identifies the document"
 msgstr "Địa chỉ xác định tài liệu"
 
 #: ../libyelp/yelp-document.c:994
-#, fuzzy, c-format
+#, c-format
 #| msgid "Search results for \"%s\""
 msgid "Search results for “%s”"
 msgstr "Kết quả tìm kiếm “%s”"
@@ -167,10 +167,10 @@ msgid "Remove bookmark"
 msgstr "Gỡ bỏ đánh dấu"
 
 #: ../libyelp/yelp-location-entry.c:1154
-#, fuzzy, c-format
+#, c-format
 #| msgid "Search results for \"%s\""
 msgid "Search for “%s”"
-msgstr "Kết quả tìm kiếm “%s”"
+msgstr "Tìm “%s”"
 
 #: ../libyelp/yelp-location-entry.c:1458
 msgid "Loading"
@@ -345,20 +345,18 @@ msgid "Send email to %s"
 msgstr "Gửi email đến %s"
 
 #: ../libyelp/yelp-view.c:1286
-#, fuzzy
 #| msgid "Manual Pages"
 msgid "_Install Packages"
-msgstr "Trang hướng dẫn (man)"
+msgstr "Gói _cài đặt"
 
 #: ../libyelp/yelp-view.c:1294
 msgid "_Open Link"
 msgstr "Mở _liên kết"
 
 #: ../libyelp/yelp-view.c:1301
-#, fuzzy
 #| msgid "Open Location"
 msgid "_Copy Link Location"
-msgstr "Mở địa chỉ"
+msgstr "_Chép địa chỉ liên kết"
 
 #: ../libyelp/yelp-view.c:1307
 msgid "Open Link in New _Window"
@@ -393,10 +391,10 @@ msgid "Save Code _Block As..."
 msgstr "Lưu _khối mã vào..."
 
 #: ../libyelp/yelp-view.c:1497
-#, fuzzy, c-format
+#, c-format
 #| msgid "Search results for \"%s\""
 msgid "See all search results for “%s”"
-msgstr "Kết quả tìm kiếm “%s”"
+msgstr "Xem mọi kết quả tìm kiếm “%s”"
 
 #: ../libyelp/yelp-view.c:1618
 #, c-format
@@ -525,16 +523,14 @@ msgid "A YelpApplication instance that controls this window"
 msgstr "Một Ứng dụng Yelp điều khiển cửa sổ này"
 
 #: ../src/yelp-window.c:429
-#, fuzzy
 #| msgid "Read Later"
 msgid "Read Link _Later"
-msgstr "Đọc sau"
+msgstr "Đọc _sau"
 
 #: ../src/yelp-window.c:526
-#, fuzzy
 #| msgid "_Find:"
 msgid "Find:"
-msgstr "_Tìm:"
+msgstr "Tìm:"
 
 #: ../src/yelp-window.c:548
 msgid "Read Later"
