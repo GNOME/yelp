@@ -9,13 +9,16 @@
 # Djihed Afifi <djihed@gmail.com>, 2006.
 # Khaled Hosny <khaledhosny@eglug.org>, 2006, 2008, 2009, 2011.
 # Abdelmonam Kouka <abdelmonam.kouka@ubuntume.com>, 2008.
+# rofl <ambamb1402@gmail.com>, 2011.
+# Ibrahim Saed <ibraheem5000@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-27 02:29+0200\n"
-"PO-Revision-Date: 2011-02-27 02:28+0300\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-03-19 20:14+0000\n"
+"PO-Revision-Date: 2012-03-20 08:47+0200\n"
+"Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,853 +26,12 @@ msgstr ""
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Virtaal 0.6.1\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "صفحات معلومات جنو"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "مساعدة سطر الأوامر التقليدية (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "تطبيقات"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "دالّات BLT"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "ملفّات الإعدادات"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "دالّات Curses"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "تطوير"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "دالّات فورتران"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "ألعاب"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "أجهزة العتاد"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "روتين النواة"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "صفحات الكتيبات"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "دالّات الصوت الشبكية"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "تطبيقات OpenSSL"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "إعدادات OpenSSL"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "دالّات OpenSSL"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "معاينات OpenSSL"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "معاينات"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "دالّات POSIX"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "ترويسات POSIX"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "دالّات بيرل"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "دالّات Qt"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "دالّات Readline "
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "الفصل 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "الفصل 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "الفصل 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "الفصل 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "الفصل 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "الفصل 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "الفصل 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "الفصل 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "الفصل 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "الفصل 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "الفصل 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "الفصل 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "الفصل 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "الفصل 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "الفصل 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "الفصل 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "الفصل 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "الفصل 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "الفصل 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "الفصل 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "الفصل 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "الفصل 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "الفصل 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "الفصول 1، 1p، 1g  و 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "الفصول 3، 3o، و 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "الفصول 3form و 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "الفصول 3ncurses و 3curses "
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "الفصول 3pm و 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "الفصول 3x و 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "الفصول 7 و 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "الفصول 8 و 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "إدارة النظام"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "نداءات النظام"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "دالات Form/Menu النظام الخامس"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "دالّات TIFF"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "تطبيقات Termcap"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "مساعدة سطر الأوامر التقليدية (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "تطبيقات X11"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "إعدادات X11"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "أجهزة X11"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "دالّات X11"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "ألعاب X11"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "معاينات X11"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "رسوم ثنائية الأبعاد"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "رسوم ثلاثية الأبعاد"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "الإتاحة"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "ألعاب الحركة"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "ألعاب مغامرة"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "التسلية"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "تطبيقات لعرض ومعالجة الرسوم"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "تطبيقا متعلقة بالصوتيات والمرئيات"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "تطبيقات تُعَلِّم أو تُساعد على التَّعلُّم"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "ألعاب مغامرة"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "أدوات الأرشفة"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "فن"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "الذكاء الصناعي"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "علم الفلك"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "علم الأحياء"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "ألعاب القوالب"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "ألعاب اللوحة"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "صناعة البناء"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "آلة حاسبة"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "التقويم"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "ألعاب الورق"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "أدوات التخطيط"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "محادثة"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "الكيمياء"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "ساعة"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "أدوات الضغط"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "علم الحاسوب"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "البناء"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "مراسلة الإدارة"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "الرسوم المرئية للبيانات"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "قواعد البيانات"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "المنقّحات"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "سطح المكتب"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "خصائص سطح المكتب"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "الطلب الهاتفي"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "قواميس"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "نسخ الأقراص"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "الاقتصاد"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "التعليم"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "الكهرباء"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "الإلكترونيات"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "أدوات البريد الإلكتروني"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "المحاكي"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "الهندسة"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "مدير الملفات"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "أدوات الملفات"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "نقل الملفات"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "نظام الملفات"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "الأدوات المالية"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "أدوات مخطط الجريان"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "تطبيقات جنوم"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "جتك+"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "مصمِّمُو واجهة المستخدم الرسومية"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "تطبيقات عامة لبيئة سطح مكتب جنوم"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "تطبيقات عامة لبيئة سطح مكتب كدي"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "الجغرافيا"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "علم الأرض"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "علم الجغرافيا"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "رسوم"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "إرشادات وأدِلَّة للتطبيقات المرتبطة بالعالم الخارجي"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "إرشادات للبدء بالتطوير"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "إذاعة الهواة"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "إعدادات العتاد"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "امرح قليلا"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "التاريخ"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "بيئات تطوير متكاملة"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "عملاء آي آر سي IRC "
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "معالجة الصور"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "تراسل الفوري"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "الإنترنت"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "جافا"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "تطبيقات كدي"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "ألعاب الأطفال"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr "تعلم أكثر عن جعل نظامك متاحا لطيف من الإعاقات"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "الرخص"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "الأدب"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "ألعاب المنطق"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "الرياضيات"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "برمجيات طبيّة"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "ميدي"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "وثائق متنوّعة"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "المازجات"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "الشاشة"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "موتيف"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "موسيقى"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "أخبار"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "تحليل رقمي"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "التعرف الضوئي على المحارف"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "تطبيقات مكتبيّة"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "تطبيقات مكتبيّة"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "وثائق أخرى"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "ند للند"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "اتصالات المساعد الرقمي"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "مدير الحزم"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "الحوسبة المتوازية"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "التصوير الفوتوغرافي"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "الفيزياء"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "المشغلات"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "أدوات تقديم"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "طباعة"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "أدوات أمثلة"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "أدوات إدارة المشاريع"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "النشر"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "رسوميات نقطية"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "المسجّلات"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "نفاذ عن بعد"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "مراجعة المراقبة"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "الآليات"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "ألعاب تقليد تمثيلي"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "المسح"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "العلم"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "الأمن"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "مُنَظِّم التتابع"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "الإعدادات"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "الإعدادات التي يمكن للمستخدمين تغييرها لتحسين بيئة المستخدم"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "ألعاب المحاكاة"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "الصوت"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "صوت و صورة"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "تحرير الصوت و الصورة"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "الرياضة"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "ألعاب الرياضة"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "أدوات جدولة"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "الألعاب الإستراتيجية"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "النظام"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "التلفزة"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "الهاتف"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "أدوات الهاتف"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "محاكي الطرفية"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "محررات النصوص"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "أدوات النصوص"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "أدوات لمساعدتك على إدارة حاسوبك"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "أدوات ترجمة"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "الضابط"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "أدوات"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "أدوات لمساعدتك على العمل"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "رسوم متجهية"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "الفيديو"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "محاضرة مرئية"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "مستعرض"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "متصفح الوب"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "تطوير الوب"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "أهلا في متصفح مساعدة جنوم"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "معالجات النّصوص"
+"X-Generator: Virtaal 0.7.0\n"
+"X-Project-Style: gnome\n"
+
+#: yelp.xml:2(msg/msgstr)
+msgid "Install <_:string-1/>"
+msgstr "ثبّت <_:string-1/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -881,75 +43,80 @@ msgstr "بيانات مضغوطة غير سليمة"
 msgid "Not enough memory"
 msgstr "الذاكرة غير كافية"
 
-#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:270
-#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "تعذّر إيجاد الصفحة ’%s‘ في المستند ’%s‘. "
+msgstr "تعذّر إيجاد الصفحة ’%s‘ في المستند ’%s‘."
 
-#: ../libyelp/yelp-docbook-document.c:315 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:416
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "الملف غير موجود."
 
-#: ../libyelp/yelp-docbook-document.c:325 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:426
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "الملف ‘%s’ غير موجود."
 
-#: ../libyelp/yelp-docbook-document.c:340
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "تعذّر فهم الملف ‘%s’. لأنه ملف XML غير سليم."
 
-#: ../libyelp/yelp-docbook-document.c:353
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr "تعذّر فهم الملف ‘%s’. لأنه بعض الملفات التي يُضمّنها غير سليمة."
 
-#: ../libyelp/yelp-docbook-document.c:762
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "مجهول"
 
-#: ../libyelp/yelp-docbook-document.c:823 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:358
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "تعذّر إيجاد الصفحة المطلوبة في المستند ’%s‘"
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "مُفهرَس"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "ما إذا كان محتوى المستند مفهرسا أم لا"
 
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "مسار المستند"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "المسار الذي يُميّز المستند"
 
-#: ../libyelp/yelp-document.c:966
+#: ../libyelp/yelp-document.c:994
+#, c-format
+msgid "Search results for “%s”"
+msgstr "نتائج البحث عن “%s”"
+
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
-msgstr "لم يُعثَر على صفحات مساعدة في ”%s“."
+msgstr "لم يُعثَر على صفحات مساعدة في “%s”."
 
-#: ../libyelp/yelp-document.c:972
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "لم يُعثَر على صفحات مساعدة."
 
-#: ../libyelp/yelp-error.c:33
+#: ../libyelp/yelp-error.c:37
 #, c-format
 msgid "An unknown error occurred."
 msgstr "حدث عطل غير معروف."
@@ -964,94 +131,103 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "تعذّر فهم الملف ‘%s’ لأنه ملف info غير سليم."
 
-#: ../libyelp/yelp-location-entry.c:326
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
-msgstr "منظور"
+msgstr "عرض"
 
-#: ../libyelp/yelp-location-entry.c:327
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
 msgstr ""
 
-#: ../libyelp/yelp-location-entry.c:342
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "العلامات"
 
-#: ../libyelp/yelp-location-entry.c:343
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr ""
 
-#: ../libyelp/yelp-location-entry.c:359
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "فعّل البحث"
 
-#: ../libyelp/yelp-location-entry.c:360
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
-msgstr ""
+msgstr "لجعل حقل إدخال المكان قابل للاستخدام كحقل للبحث"
 
-#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "ابحث..."
 
-#: ../libyelp/yelp-location-entry.c:785
+#: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr "امسح نص البحث"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "علّم هذه الصفحة"
 
-#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "احذف العلامة"
 
-#: ../libyelp/yelp-location-entry.c:1412
-msgid "Loading"
-msgstr "يُحمّ"
+#: ../libyelp/yelp-location-entry.c:1154
+#, c-format
+msgid "Search for “%s”"
+msgstr "ابحث عن \"%s\""
 
-#: ../libyelp/yelp-mallard-document.c:310
+#: ../libyelp/yelp-location-entry.c:1458
+msgid "Loading"
+msgstr "يُحمّل"
+
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "الدليل ‘%s’ غير موجود."
 
-#: ../libyelp/yelp-settings.c:150
+#: ../libyelp/yelp-settings.c:154
+#, fuzzy
 msgid "GtkSettings"
-msgstr ""
+msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:151
+#: ../libyelp/yelp-settings.c:155
+#, fuzzy
 msgid "A GtkSettings object to get settings from"
-msgstr ""
+msgstr "كائن GtkSettings الذي ستؤخذ منه الإعدادات"
 
-#: ../libyelp/yelp-settings.c:159
+#: ../libyelp/yelp-settings.c:163
+#, fuzzy
 msgid "GtkIconTheme"
-msgstr ""
+msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:160
+#: ../libyelp/yelp-settings.c:164
+#, fuzzy
 msgid "A GtkIconTheme object to get icons from"
-msgstr ""
+msgstr "كائن GtkIconTheme الذي ستؤخذ منه الأيقونات"
 
-#: ../libyelp/yelp-settings.c:168
+#: ../libyelp/yelp-settings.c:172
 msgid "Font Adjustment"
-msgstr ""
+msgstr "ضبط الخط"
 
-#: ../libyelp/yelp-settings.c:169
+#: ../libyelp/yelp-settings.c:173
 msgid "A size adjustment to add to font sizes"
-msgstr ""
+msgstr "ضبط الحجم لإضافته إلى أحجام الخط"
 
-#: ../libyelp/yelp-settings.c:177
+#: ../libyelp/yelp-settings.c:181
 msgid "Show Text Cursor"
-msgstr ""
+msgstr "اعرض مؤشر النص"
 
-#: ../libyelp/yelp-settings.c:178
+#: ../libyelp/yelp-settings.c:182
 msgid "Show the text cursor or caret for accessible navigation"
-msgstr ""
+msgstr "عرض مؤشر النص لتسهيل التنقّل"
 
-#: ../libyelp/yelp-settings.c:186
+#: ../libyelp/yelp-settings.c:190
 msgid "Editor Mode"
-msgstr ""
+msgstr "نمط المُحرّر"
 
-#: ../libyelp/yelp-settings.c:187
+#: ../libyelp/yelp-settings.c:191
 msgid "Enable features useful to editors"
-msgstr ""
+msgstr "تمكين الميزات المفيدة للمُحرّرين"
 
 #: ../libyelp/yelp-sqlite-storage.c:150
 msgid "Database filename"
@@ -1059,15 +235,15 @@ msgstr "اسم ملف قاعدة البيانات"
 
 #: ../libyelp/yelp-sqlite-storage.c:151
 msgid "The filename of the sqlite database"
-msgstr ""
+msgstr "اسم ملف قاعدة بيانات sqlite"
 
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
-msgstr ""
+msgstr "ورقة أنماط XSLT"
 
 #: ../libyelp/yelp-transform.c:172
 msgid "The location of the XSLT stylesheet"
-msgstr ""
+msgstr "مكان ورق أنماط XSLT"
 
 #: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
@@ -1082,214 +258,223 @@ msgstr "لم يوجد إسناد href عند yelp:document\n"
 msgid "Out of memory"
 msgstr "الذاكرة غير كافية"
 
-#: ../libyelp/yelp-view.c:126
+#: ../libyelp/yelp-view.c:131
 msgid "_Print..."
 msgstr "ا_طبع..."
 
-#: ../libyelp/yelp-view.c:131
+#: ../libyelp/yelp-view.c:136
 msgid "_Back"
 msgstr "لل_خلف"
 
-#: ../libyelp/yelp-view.c:136
+#: ../libyelp/yelp-view.c:141
 msgid "_Forward"
 msgstr "للأ_مام"
 
-#: ../libyelp/yelp-view.c:141
+#: ../libyelp/yelp-view.c:146
 msgid "_Previous Page"
 msgstr "الصفحة ال_سابقة"
 
-#: ../libyelp/yelp-view.c:146
+#: ../libyelp/yelp-view.c:151
 msgid "_Next Page"
 msgstr "الصفحة ال_تالية"
 
-#: ../libyelp/yelp-view.c:415
+#: ../libyelp/yelp-view.c:423
 msgid "Yelp URI"
 msgstr "مسار يِلب"
 
-#: ../libyelp/yelp-view.c:416
-msgid "A YelpUri with the current location"
-msgstr ""
-
 #: ../libyelp/yelp-view.c:424
+msgid "A YelpUri with the current location"
+msgstr "مسار يِلب مع المكان الحالي"
+
+#: ../libyelp/yelp-view.c:432
 msgid "Loading State"
 msgstr "حالة التحميل"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:433
+#, fuzzy
 msgid "The loading state of the view"
-msgstr ""
+msgstr "حالة التحميل للعرض"
 
-#: ../libyelp/yelp-view.c:434
+#: ../libyelp/yelp-view.c:442
 msgid "Page ID"
 msgstr "معرِّف الصفحة"
 
-#: ../libyelp/yelp-view.c:435
-msgid "The ID of the root page of the page being viewed"
-msgstr ""
-
 #: ../libyelp/yelp-view.c:443
+msgid "The ID of the root page of the page being viewed"
+msgstr "معرِّف جذر الصفحة للصفحة التي تعرض"
+
+#: ../libyelp/yelp-view.c:451
 msgid "Root Title"
 msgstr "عنوان الجذر"
 
-#: ../libyelp/yelp-view.c:444
-msgid "The title of the root page of the page being viewed"
-msgstr ""
-
 #: ../libyelp/yelp-view.c:452
+msgid "The title of the root page of the page being viewed"
+msgstr "عنوان جذر الصفحة للصفحة التي تعرض "
+
+#: ../libyelp/yelp-view.c:460
 msgid "Page Title"
 msgstr "عنوان الصفحة"
 
-#: ../libyelp/yelp-view.c:453
-msgid "The title of the page being viewed"
-msgstr ""
-
 #: ../libyelp/yelp-view.c:461
+msgid "The title of the page being viewed"
+msgstr "عنوان الصفحة التي تعرض"
+
+#: ../libyelp/yelp-view.c:469
 msgid "Page Description"
 msgstr "وصف الصفحة"
 
-#: ../libyelp/yelp-view.c:462
-msgid "The description of the page being viewed"
-msgstr ""
-
 #: ../libyelp/yelp-view.c:470
+msgid "The description of the page being viewed"
+msgstr "وصف الصفحة التي تعرض"
+
+#: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
 msgstr "أيقونة الصفحة"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
-msgstr ""
+msgstr "أيقونة الصفحة التي تعرض"
 
-#: ../libyelp/yelp-view.c:712
+#: ../libyelp/yelp-view.c:720
+#, fuzzy
 msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr ""
+msgstr "ليس لديك PackageKit. وصلات تثبيت الحزمة تتطلب PackageKit."
 
-#: ../libyelp/yelp-view.c:990
+#: ../libyelp/yelp-view.c:1013
 msgid "Save Image"
 msgstr "احفظ الصورة"
 
-#: ../libyelp/yelp-view.c:1085
+#: ../libyelp/yelp-view.c:1108
 msgid "Save Code"
 msgstr "احفظ الكود"
 
-#. Not using a mnemonic because underscores are common in email
-#. * addresses, and we'd have to escape them. There doesn't seem
-#. * to be a quick GTK+ function for this. In practice, there will
-#. * probably only be one menu item for mailto link popups anyway,
-#. * so the mnemonic's not that big of a deal.
-#.
-#: ../libyelp/yelp-view.c:1254
+#: ../libyelp/yelp-view.c:1271
 #, c-format
 msgid "Send email to %s"
 msgstr "أرسل البريد إلى %s"
 
-#: ../libyelp/yelp-view.c:1264
+#: ../libyelp/yelp-view.c:1286
+msgid "_Install Packages"
+msgstr "_ثبّت الحزم"
+
+#: ../libyelp/yelp-view.c:1294
 msgid "_Open Link"
 msgstr "ا_فتح الوصلة"
 
-#: ../libyelp/yelp-view.c:1269
-msgid "Open Link in New _Window"
-msgstr "افتح الوصلة في نافذة _جديدة"
+#: ../libyelp/yelp-view.c:1301
+msgid "_Copy Link Location"
+msgstr "ا_نسخ مكان الوصلة"
 
-#: ../libyelp/yelp-view.c:1320
+#: ../libyelp/yelp-view.c:1307
+msgid "Open Link in New _Window"
+msgstr "افتح الوصلة في _نافذة جديدة"
+
+#: ../libyelp/yelp-view.c:1359
 msgid "_Save Image As..."
 msgstr "ا_حفظ الصورة باسم..."
 
-#: ../libyelp/yelp-view.c:1322
+#: ../libyelp/yelp-view.c:1361
 msgid "_Save Video As..."
 msgstr "ا_حفظ الفديو باسم..."
 
-#: ../libyelp/yelp-view.c:1329
+#: ../libyelp/yelp-view.c:1368
 msgid "S_end Image To..."
 msgstr "أر_سل الصورة إلى..."
 
-#: ../libyelp/yelp-view.c:1331
+#: ../libyelp/yelp-view.c:1370
 msgid "S_end Video To..."
 msgstr "أر_سل الفديو إلى..."
 
-#: ../libyelp/yelp-view.c:1342
+#: ../libyelp/yelp-view.c:1381
 msgid "_Copy Text"
-msgstr "ا_نسخ االنص"
+msgstr "ا_نسخ النص"
 
-#: ../libyelp/yelp-view.c:1355
+#: ../libyelp/yelp-view.c:1394
 msgid "C_opy Code Block"
 msgstr "انسخ وحدة ال_كود"
 
-#: ../libyelp/yelp-view.c:1360
+#: ../libyelp/yelp-view.c:1399
 msgid "Save Code _Block As..."
 msgstr "احفظ و_حدة الكود باسم..."
 
-#: ../libyelp/yelp-view.c:1542
+#: ../libyelp/yelp-view.c:1505
+#, c-format
+msgid "See all search results for “%s”"
+msgstr "اعرض جميع نتائج البحث عن “%s”"
+
+#: ../libyelp/yelp-view.c:1626
 #, c-format
 msgid "Could not load a document for ‘%s’"
-msgstr ""
+msgstr "لا يمكن تحميل مستند ل ‘%s’"
 
-#: ../libyelp/yelp-view.c:1548
+#: ../libyelp/yelp-view.c:1632
 #, c-format
 msgid "Could not load a document"
-msgstr ""
+msgstr "لا يمكن تحميل مستند"
 
-#: ../libyelp/yelp-view.c:1622
+#: ../libyelp/yelp-view.c:1706
 msgid "Document Not Found"
 msgstr "المستند غير موجود"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1708
 msgid "Page Not Found"
 msgstr "الصفحة غير موجودة"
 
-#: ../libyelp/yelp-view.c:1627
+#: ../libyelp/yelp-view.c:1711
 msgid "Cannot Read"
 msgstr "تعذّر القراءة"
 
-#: ../libyelp/yelp-view.c:1633
+#: ../libyelp/yelp-view.c:1717
 msgid "Unknown Error"
 msgstr "خطأ مجهول"
 
-#: ../libyelp/yelp-view.c:1653
+#: ../libyelp/yelp-view.c:1737
 msgid "Search for packages containing this document."
 msgstr "ابحث عن الحزم التي تحتوي هذا المستند."
 
-#: ../libyelp/yelp-view.c:1806
+#: ../libyelp/yelp-view.c:1890
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
-msgstr ""
+msgstr "المسار ‘%s’ لا يصل إلى صفحة سليمة."
 
-#: ../libyelp/yelp-view.c:1812
+#: ../libyelp/yelp-view.c:1896
 #, c-format
 msgid "The URI does not point to a valid page."
-msgstr ""
+msgstr "المسار لا يصل إلى صفحة سليمة."
 
-#: ../libyelp/yelp-view.c:1818
+#: ../libyelp/yelp-view.c:1902
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr ""
+msgstr "تعذر تحليل المسار ‘%s’."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
-msgstr "شغّل وضع المحرر"
+msgstr "شغّل نمط المُحرّر"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
 msgstr "نص أ_كبر"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
 msgstr "كبّر النص"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
 msgstr "نص أ_صغر"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
 msgstr "صغّر النص"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr "اعرض _مؤشر النص"
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "مساعدة"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "اعرض _مؤشر النص"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
@@ -1343,11 +528,19 @@ msgstr "تطبيق"
 msgid "A YelpApplication instance that controls this window"
 msgstr ""
 
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "اقرأ الوصلة _لاحقا"
+
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "ابحث:"
+
 #: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "اقرأ لاحقا"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
@@ -1358,13 +551,644 @@ msgstr[3] "%i نتائج"
 msgstr[4] "%i نتيجة"
 msgstr[5] "%i نتيجة"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "لا نتائج"
 
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "احصل على المساعدة في جُنوم"
+
+#~ msgid "GNU Info Pages"
+#~ msgstr "صفحات معلومات جنو"
+
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "مساعدة سطر الأوامر التقليدية (info)"
+
+#~ msgid "Applications"
+#~ msgstr "تطبيقات"
+
+#~ msgid "BLT Functions"
+#~ msgstr "دالّات BLT"
+
+#~ msgid "Configuration Files"
+#~ msgstr "ملفّات الإعدادات"
+
+#~ msgid "Curses Functions"
+#~ msgstr "دالّات Curses"
+
+#~ msgid "Development"
+#~ msgstr "تطوير"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "دالّات فورتران"
+
+#~ msgid "Games"
+#~ msgstr "ألعاب"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "أجهزة العتاد"
+
+#~ msgid "Kernel Routines"
+#~ msgstr "روتين النواة"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "دالّات الصوت الشبكية"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "تطبيقات OpenSSL"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "إعدادات OpenSSL"
+
+#~ msgid "OpenSSL Functions"
+#~ msgstr "دالّات OpenSSL"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "معاينات OpenSSL"
+
+#~ msgid "Overviews"
+#~ msgstr "معاينات"
+
+#~ msgid "POSIX Functions"
+#~ msgstr "دالّات POSIX"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "ترويسات POSIX"
+
+#~ msgid "Perl Functions"
+#~ msgstr "دالّات بيرل"
+
+#~ msgid "Qt Functions"
+#~ msgstr "دالّات Qt"
+
+#~ msgid "Readline Functions"
+#~ msgstr "دالّات Readline "
+
+#~ msgid "Section 0p"
+#~ msgstr "الفصل 0p"
+
+#~ msgid "Section 1m"
+#~ msgstr "الفصل 1m"
+
+#~ msgid "Section 1ssl"
+#~ msgstr "الفصل 1ssl"
+
+#~ msgid "Section 1x"
+#~ msgstr "الفصل 1x"
+
+#~ msgid "Section 2"
+#~ msgstr "الفصل 2"
+
+#~ msgid "Section 3blt"
+#~ msgstr "الفصل 3blt"
+
+#~ msgid "Section 3f"
+#~ msgstr "الفصل 3f"
+
+#~ msgid "Section 3nas"
+#~ msgstr "الفصل 3nas"
+
+#~ msgid "Section 3p"
+#~ msgstr "الفصل 3p"
+
+#~ msgid "Section 3qt"
+#~ msgstr "الفصل 3qt"
+
+#~ msgid "Section 3readline"
+#~ msgstr "الفصل 3readline"
+
+#~ msgid "Section 3ssl"
+#~ msgstr "الفصل 3ssl"
+
+#~ msgid "Section 3tiff"
+#~ msgstr "الفصل 3tiff"
+
+#~ msgid "Section 4"
+#~ msgstr "الفصل 4"
+
+#~ msgid "Section 4x"
+#~ msgstr "الفصل 4x"
+
+#~ msgid "Section 5"
+#~ msgstr "الفصل 5"
+
+#~ msgid "Section 5ssl"
+#~ msgstr "الفصل 5ssl"
+
+#~ msgid "Section 5x"
+#~ msgstr "الفصل 5x"
+
+#~ msgid "Section 6"
+#~ msgstr "الفصل 6"
+
+#~ msgid "Section 6x"
+#~ msgstr "الفصل 6x"
+
+#~ msgid "Section 7ssl"
+#~ msgstr "الفصل 7ssl"
+
+#~ msgid "Section 7x"
+#~ msgstr "الفصل 7x"
+
+#~ msgid "Section 9"
+#~ msgstr "الفصل 9"
+
+#~ msgid "Sections 1, 1p, 1g and 1t"
+#~ msgstr "الفصول 1، 1p، 1g  و 1t"
+
+#~ msgid "Sections 3, 3o, and 3t"
+#~ msgstr "الفصول 3، 3o، و 3t"
+
+#~ msgid "Sections 3form and 3menu"
+#~ msgstr "الفصول 3form و 3menu"
+
+#~ msgid "Sections 3ncurses and 3curses"
+#~ msgstr "الفصول 3ncurses و 3curses "
+
+#~ msgid "Sections 3pm and 3perl"
+#~ msgstr "الفصول 3pm و 3perl"
+
+#~ msgid "Sections 3x and 3X11"
+#~ msgstr "الفصول 3x و 3X11"
+
+#~ msgid "Sections 7 and 7gcc"
+#~ msgstr "الفصول 7 و 7gcc"
+
+#~ msgid "Sections 8 and 8l"
+#~ msgstr "الفصول 8 و 8l"
+
+#~ msgid "System Administration"
+#~ msgstr "إدارة النظام"
+
+#~ msgid "System Calls"
+#~ msgstr "نداءات النظام"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "دالات Form/Menu النظام الخامس"
+
+#~ msgid "TIFF Functions"
+#~ msgstr "دالّات TIFF"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "تطبيقات Termcap"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "مساعدة سطر الأوامر التقليدية (man)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "تطبيقات X11"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "إعدادات X11"
+
+#~ msgid "X11 Devices"
+#~ msgstr "أجهزة X11"
+
+#~ msgid "X11 Functions"
+#~ msgstr "دالّات X11"
+
+#~ msgid "X11 Games"
+#~ msgstr "ألعاب X11"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "معاينات X11"
+
+#~ msgid "2D Graphics"
+#~ msgstr "رسوم ثنائية الأبعاد"
+
+#~ msgid "3D Graphics"
+#~ msgstr "رسوم ثلاثية الأبعاد"
+
+#~ msgid "Accessibility"
+#~ msgstr "الإتاحة"
+
+#~ msgid "Action Games"
+#~ msgstr "ألعاب الحركة"
+
+#~ msgid "Adventure Games"
+#~ msgstr "ألعاب مغامرة"
+
+#~ msgid "Amusement"
+#~ msgstr "التسلية"
+
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "تطبيقات لعرض ومعالجة الرسوم"
+
+#~ msgid "Applications related to audio and video"
+#~ msgstr "تطبيقا متعلقة بالصوتيات والمرئيات"
+
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "تطبيقات تُعَلِّم أو تُساعد على التَّعلُّم"
+
+#~ msgid "Arcade Games"
+#~ msgstr "ألعاب مغامرة"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "أدوات الأرشفة"
+
+#~ msgid "Art"
+#~ msgstr "فن"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "الذكاء الصناعي"
+
+#~ msgid "Astronomy"
+#~ msgstr "علم الفلك"
+
+#~ msgid "Biology"
+#~ msgstr "علم الأحياء"
+
+#~ msgid "Blocks Games"
+#~ msgstr "ألعاب القوالب"
+
+#~ msgid "Board Games"
+#~ msgstr "ألعاب اللوحة"
+
+#~ msgid "Building"
+#~ msgstr "صناعة البناء"
+
+#~ msgid "Calculator"
+#~ msgstr "آلة حاسبة"
+
+#~ msgid "Calendar"
+#~ msgstr "التقويم"
+
+#~ msgid "Card Games"
+#~ msgstr "ألعاب الورق"
+
+#~ msgid "Charting Tools"
+#~ msgstr "أدوات التخطيط"
+
+#~ msgid "Chat"
+#~ msgstr "محادثة"
+
+#~ msgid "Chemistry"
+#~ msgstr "الكيمياء"
+
+#~ msgid "Clocks"
+#~ msgstr "ساعة"
+
+#~ msgid "Compression Tools"
+#~ msgstr "أدوات الضغط"
+
+#~ msgid "Computer Science"
+#~ msgstr "علم الحاسوب"
+
+#~ msgid "Construction"
+#~ msgstr "البناء"
+
+#~ msgid "Contact Management"
+#~ msgstr "مراسلة الإدارة"
+
+#~ msgid "Data Visualization"
+#~ msgstr "الرسوم المرئية للبيانات"
+
+#~ msgid "Databases"
+#~ msgstr "قواعد البيانات"
+
+#~ msgid "Debuggers"
+#~ msgstr "المنقّحات"
+
+#~ msgid "Desktop"
+#~ msgstr "سطح المكتب"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "خصائص سطح المكتب"
+
+#~ msgid "Dialup"
+#~ msgstr "الطلب الهاتفي"
+
+#~ msgid "Dictionaries"
+#~ msgstr "قواميس"
+
+#~ msgid "Disc Burning"
+#~ msgstr "نسخ الأقراص"
+
+#~ msgid "Economy"
+#~ msgstr "الاقتصاد"
+
+#~ msgid "Education"
+#~ msgstr "التعليم"
+
+#~ msgid "Electricity"
+#~ msgstr "الكهرباء"
+
+#~ msgid "Electronics"
+#~ msgstr "الإلكترونيات"
+
+#~ msgid "Email Tools"
+#~ msgstr "أدوات البريد الإلكتروني"
+
+#~ msgid "Emulator"
+#~ msgstr "المحاكي"
+
+#~ msgid "Engineering"
+#~ msgstr "الهندسة"
+
+#~ msgid "File Manager"
+#~ msgstr "مدير الملفات"
+
+#~ msgid "File Tools"
+#~ msgstr "أدوات الملفات"
+
+#~ msgid "File Transfer"
+#~ msgstr "نقل الملفات"
+
+#~ msgid "Filesystem"
+#~ msgstr "نظام الملفات"
+
+#~ msgid "Financial Tools"
+#~ msgstr "الأدوات المالية"
+
+#~ msgid "Flow Charting Tools"
+#~ msgstr "أدوات مخطط الجريان"
+
+#~ msgid "GNOME Applications"
+#~ msgstr "تطبيقات جنوم"
+
+#~ msgid "GTK"
+#~ msgstr "جتك+"
+
+#~ msgid "GUI Designers"
+#~ msgstr "مصمِّمُو واجهة المستخدم الرسومية"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "تطبيقات عامة لبيئة سطح مكتب جنوم"
+
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "تطبيقات عامة لبيئة سطح مكتب كدي"
+
+#~ msgid "Geography"
+#~ msgstr "الجغرافيا"
+
+#~ msgid "Geology"
+#~ msgstr "علم الأرض"
+
+#~ msgid "Geoscience"
+#~ msgstr "علم الجغرافيا"
+
+#~ msgid "Graphics"
+#~ msgstr "رسوم"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr "إرشادات وأدِلَّة للتطبيقات المرتبطة بالعالم الخارجي"
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "إرشادات للبدء بالتطوير"
+
+#~ msgid "Ham Radio"
+#~ msgstr "إذاعة الهواة"
+
+#~ msgid "Hardware Settings"
+#~ msgstr "إعدادات العتاد"
+
+#~ msgid "Have some fun"
+#~ msgstr "امرح قليلا"
+
+#~ msgid "History"
+#~ msgstr "التاريخ"
+
+#~ msgid "IDEs"
+#~ msgstr "بيئات تطوير متكاملة"
+
+#~ msgid "IRC Clients"
+#~ msgstr "عملاء آي آر سي IRC "
+
+#~ msgid "Image Processing"
+#~ msgstr "معالجة الصور"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "تراسل الفوري"
+
+#~ msgid "Internet"
+#~ msgstr "الإنترنت"
+
+#~ msgid "Java"
+#~ msgstr "جافا"
+
+#~ msgid "KDE Applications"
+#~ msgstr "تطبيقات كدي"
+
+#~ msgid "Kids Games"
+#~ msgstr "ألعاب الأطفال"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr "تعلم أكثر عن جعل نظامك متاحا لطيف من الإعاقات"
+
+#~ msgid "Licenses"
+#~ msgstr "الرخص"
+
+#~ msgid "Literature"
+#~ msgstr "الأدب"
+
+#~ msgid "Logic Games"
+#~ msgstr "ألعاب المنطق"
+
+#~ msgid "Math"
+#~ msgstr "الرياضيات"
+
+#~ msgid "Medical Software"
+#~ msgstr "برمجيات طبيّة"
+
+#~ msgid "Midi"
+#~ msgstr "ميدي"
+
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "وثائق متنوّعة"
+
+#~ msgid "Mixers"
+#~ msgstr "المازجات"
+
+#~ msgid "Monitor"
+#~ msgstr "الشاشة"
+
+#~ msgid "Motif"
+#~ msgstr "موتيف"
+
+#~ msgid "Music"
+#~ msgstr "موسيقى"
+
+#~ msgid "News"
+#~ msgstr "أخبار"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "تحليل رقمي"
+
+#~ msgid "OCR"
+#~ msgstr "التعرف الضوئي على المحارف"
+
+#~ msgid "Office Applications"
+#~ msgstr "تطبيقات مكتبيّة"
+
+#~ msgid "Office applications"
+#~ msgstr "تطبيقات مكتبيّة"
+
+#~ msgid "Other Documentation"
+#~ msgstr "وثائق أخرى"
+
+#~ msgid "P2P"
+#~ msgstr "ند للند"
+
+#~ msgid "PDA Communication"
+#~ msgstr "اتصالات المساعد الرقمي"
+
+#~ msgid "Package Manager"
+#~ msgstr "مدير الحزم"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "الحوسبة المتوازية"
+
+#~ msgid "Photography"
+#~ msgstr "التصوير الفوتوغرافي"
+
+#~ msgid "Physics"
+#~ msgstr "الفيزياء"
+
+#~ msgid "Players"
+#~ msgstr "المشغلات"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "أدوات تقديم"
+
+#~ msgid "Printing"
+#~ msgstr "طباعة"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "أدوات أمثلة"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "أدوات إدارة المشاريع"
+
+#~ msgid "Publishing"
+#~ msgstr "النشر"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~ msgid "Raster Graphics"
+#~ msgstr "رسوميات نقطية"
+
+#~ msgid "Recorders"
+#~ msgstr "المسجّلات"
+
+#~ msgid "Remote Access"
+#~ msgstr "نفاذ عن بعد"
+
+#~ msgid "Revision Control"
+#~ msgstr "مراجعة المراقبة"
+
+#~ msgid "Robotics"
+#~ msgstr "الآليات"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "ألعاب تقليد تمثيلي"
+
+#~ msgid "Scanning"
+#~ msgstr "المسح"
+
+#~ msgid "Science"
+#~ msgstr "العلم"
+
+#~ msgid "Security"
+#~ msgstr "الأمن"
+
+#~ msgid "Sequencers"
+#~ msgstr "مُنَظِّم التتابع"
+
+#~ msgid "Settings"
+#~ msgstr "الإعدادات"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr "الإعدادات التي يمكن للمستخدمين تغييرها لتحسين بيئة المستخدم"
+
+#~ msgid "Simulation Games"
+#~ msgstr "ألعاب المحاكاة"
+
+#~ msgid "Sound"
+#~ msgstr "الصوت"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "صوت و صورة"
+
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "تحرير الصوت و الصورة"
+
+#~ msgid "Sports"
+#~ msgstr "الرياضة"
+
+#~ msgid "Sports Games"
+#~ msgstr "ألعاب الرياضة"
+
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "أدوات جدولة"
+
+#~ msgid "Strategy Games"
+#~ msgstr "الألعاب الإستراتيجية"
+
+#~ msgid "System"
+#~ msgstr "النظام"
+
+#~ msgid "TV"
+#~ msgstr "التلفزة"
+
+#~ msgid "Telephony"
+#~ msgstr "الهاتف"
+
+#~ msgid "Telephony Tools"
+#~ msgstr "أدوات الهاتف"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "محاكي الطرفية"
+
+#~ msgid "Text Editors"
+#~ msgstr "محررات النصوص"
+
+#~ msgid "Text Tools"
+#~ msgstr "أدوات النصوص"
+
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "أدوات لمساعدتك على إدارة حاسوبك"
+
+#~ msgid "Translation Tools"
+#~ msgstr "أدوات ترجمة"
+
+#~ msgid "Tuners"
+#~ msgstr "الضابط"
+
+#~ msgid "Utilities"
+#~ msgstr "أدوات"
+
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "أدوات لمساعدتك على العمل"
+
+#~ msgid "Vector Graphics"
+#~ msgstr "رسوم متجهية"
+
+#~ msgid "Video"
+#~ msgstr "الفيديو"
+
+#~ msgid "Video Conference"
+#~ msgstr "محاضرة مرئية"
+
+#~ msgid "Viewer"
+#~ msgstr "مستعرض"
+
+#~ msgid "Web Browser"
+#~ msgstr "متصفح الوب"
+
+#~ msgid "Web Development"
+#~ msgstr "تطوير الوب"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "أهلا في متصفح مساعدة جنوم"
+
+#~ msgid "Word Processors"
+#~ msgstr "معالجات النّصوص"
 
 #~ msgid "_Edit Bookmarks"
 #~ msgstr "_حرّر العلامات"
@@ -1550,9 +1374,6 @@ msgstr "احصل على المساعدة في جُنوم"
 #~ msgstr ""
 #~ "جرب استعمال كلمات مغايرة لوصف المشكلة أو الموضوع الذي تريد المساعدة حوله."
 
-#~ msgid "Search results for \"%s\""
-#~ msgstr "نتائج البحث عن \"%s\""
-
 #~ msgid ""
 #~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
 #~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
@@ -1688,9 +1509,6 @@ msgstr "احصل على المساعدة في جُنوم"
 
 #~ msgid "Cannot create search component"
 #~ msgstr "تعذّر انشاء مكون البحث"
-
-#~ msgid "Fin_d:"
-#~ msgstr "اب_حث:"
 
 #~ msgid "Find _Previous"
 #~ msgstr "ابحث عن _السّابق"
