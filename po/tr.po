@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: yelp.HEAD.tr\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-02-01 12:03+0000\n"
-"PO-Revision-Date: 2012-02-15 14:48+0000\n"
+"POT-Creation-Date: 2012-03-05 22:33+0000\n"
+"PO-Revision-Date: 2012-03-23 22:50+0000\n"
 "Last-Translator: Muhammet Kara <muhammet.k@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,18 +26,9 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 1.2\n"
 
-#. ID: install.tooltip
-#. This is a format message used to format tooltips on install: links. These
-#. links allow users to install packages by clicking a link in the help. The
-#. tooltip may also be used as the link text, if there's no link text in the
-#. document. Special elements in the message will be replaced with the
-#. appropriate content, as follows:
-#.
-#. <string/> - The package to install
-#.
-#: yelp.xml.in:29(msg/msgstr)
-msgid "Install <string/>"
-msgstr "<string/> Kur"
+#: yelp.xml:2(msg/msgstr)
+msgid "Install <_:string-1/>"
+msgstr "<_:string-1/> Kur"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -50,8 +41,8 @@ msgid "Not enough memory"
 msgstr "Bellek yetersiz"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:307
-#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "%s sayfası %s belgesinde bulunamadı."
@@ -185,7 +176,6 @@ msgstr "Yer imini kaldır"
 
 #: ../libyelp/yelp-location-entry.c:1154
 #, c-format
-#| msgid "Search results for “%s”"
 msgid "Search for “%s”"
 msgstr "\"%s\"i ara"
 
@@ -193,7 +183,7 @@ msgstr "\"%s\"i ara"
 msgid "Loading"
 msgstr "Yükleniyor"
 
-#: ../libyelp/yelp-mallard-document.c:347
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Dizin '%s' mevcut değil."
@@ -406,52 +396,52 @@ msgstr "Kod Bloğunu K_aydet"
 msgid "Save Code _Block As..."
 msgstr "Kod Bloğuğu F_arklı Kaydet..."
 
-#: ../libyelp/yelp-view.c:1497
+#: ../libyelp/yelp-view.c:1505
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "\"%s\" için tüm arama sonuçlarını gör"
 
-#: ../libyelp/yelp-view.c:1618
+#: ../libyelp/yelp-view.c:1626
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "‘%s’ için belge yüklenemiyor"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1632
 #, c-format
 msgid "Could not load a document"
 msgstr "Belge yüklenemiyor"
 
-#: ../libyelp/yelp-view.c:1698
+#: ../libyelp/yelp-view.c:1706
 msgid "Document Not Found"
 msgstr "Belge Bulunamadı"
 
-#: ../libyelp/yelp-view.c:1700
+#: ../libyelp/yelp-view.c:1708
 msgid "Page Not Found"
 msgstr "Sayfa Bulunamadı"
 
-#: ../libyelp/yelp-view.c:1703
+#: ../libyelp/yelp-view.c:1711
 msgid "Cannot Read"
 msgstr "Okunamıyor"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1717
 msgid "Unknown Error"
 msgstr "Bilinmeyen Hata"
 
-#: ../libyelp/yelp-view.c:1729
+#: ../libyelp/yelp-view.c:1737
 msgid "Search for packages containing this document."
 msgstr "Bu belgeyi içeren paketleri ara."
 
-#: ../libyelp/yelp-view.c:1882
+#: ../libyelp/yelp-view.c:1890
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Bu URI ‘%s’ geçerli bir sayfaya yönlendirilemiyor."
 
-#: ../libyelp/yelp-view.c:1888
+#: ../libyelp/yelp-view.c:1896
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI geçerli bir sayfaya yönlendirmiyor."
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1902
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Bu URI ‘%s’ çözümlenemiyor."
@@ -476,8 +466,8 @@ msgstr "_Daha Küçük Metin"
 msgid "Decrease the size of the text"
 msgstr "Metnin boyutunu küçült"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Yardım"
 
@@ -549,1030 +539,17 @@ msgstr "Bul:"
 msgid "Read Later"
 msgstr "Sonra Oku"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i uyar"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "Uyan yok"
 
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "GNOME ile yardım alın"
 
-#~| msgid "Search..."
-#~ msgid "_Share..."
-#~ msgstr "_Paylaş..."
-
-#~ msgid "Share"
-#~ msgstr "Paylaş"
-
-#~| msgid "_Close"
-#~ msgid "Close"
-#~ msgstr "Kapat"
-
-#~ msgid "Chat"
-#~ msgstr "Sohbet"
-
-#~ msgid "Send a help link to a chat contact:"
-#~ msgstr "Bir sohbet kişisine yardım bağlantısı gönder:"
-
-#~| msgid "Email Tools"
-#~ msgid "Email"
-#~ msgstr "E-posta"
-
-#~ msgid "Send a help link to an email contact:"
-#~ msgstr "Bir e-posta kişisine yardım bağlantısı gönder:"
-
-#~ msgid "Compose new email"
-#~ msgstr "Yeni e-posta yaz"
-
-#~ msgid "Copy"
-#~ msgstr "Kopyala"
-
-#~ msgid "Copy the help location to the clipboard:"
-#~ msgstr "Yardım konumunu panoya kopyala:"
-
-#~ msgid "Copy location to clipboard"
-#~ msgstr "Konumu panoya kopyala"
-
-#~ msgid "GNU Info Pages"
-#~ msgstr "GNU Bilgi Sayfaları"
-
-#~ msgid "Traditional command line help (info)"
-#~ msgstr "Geleneksek komut satırı yardımı (info)"
-
-#~ msgid "Applications"
-#~ msgstr "Uygulamalar"
-
-#~ msgid "BLT Functions"
-#~ msgstr "BLT İşlevleri"
-
-#~ msgid "Configuration Files"
-#~ msgstr "Yapılandırma Dosyaları"
-
-#~ msgid "Curses Functions"
-#~ msgstr "Curses İşlevleri"
-
-#~ msgid "Development"
-#~ msgstr "Geliştirme"
-
-#~ msgid "FORTRAN Functions"
-#~ msgstr "FORTRAN İşlevleri"
-
-#~ msgid "Games"
-#~ msgstr "Oyunlar"
-
-#~ msgid "Hardware Devices"
-#~ msgstr "Donanım Aygıtları"
-
-#~ msgid "Kernel Routines"
-#~ msgstr "Çekirdek Yordamları"
-
-#~ msgid "Network Audio Sound Functions"
-#~ msgstr "Ağ Sesi İşitsel İşlevleri"
-
-#~ msgid "OpenSSL Applications"
-#~ msgstr "OpenSSL Uygulamaları"
-
-#~ msgid "OpenSSL Configuration"
-#~ msgstr "OpenSSL Yapılandırması"
-
-#~ msgid "OpenSSL Functions"
-#~ msgstr "OpenSSL İşlevleri"
-
-#~ msgid "OpenSSL Overviews"
-#~ msgstr "OpenSSL İzlenimleri"
-
-#~ msgid "Overviews"
-#~ msgstr "İzlenimler"
-
-#~ msgid "POSIX Functions"
-#~ msgstr "POSIX İşlevleri"
-
-#~ msgid "POSIX Headers"
-#~ msgstr "POSIX Başlıkları"
-
-#~ msgid "Perl Functions"
-#~ msgstr "Perl İşlevleri"
-
-#~ msgid "Qt Functions"
-#~ msgstr "Qt İşlevleri"
-
-#~ msgid "Readline Functions"
-#~ msgstr "Readline İşlevleri"
-
-#~ msgid "Section 0p"
-#~ msgstr "Bölüm 0p"
-
-#~ msgid "Section 1m"
-#~ msgstr "Bölüm 1m"
-
-#~ msgid "Section 1ssl"
-#~ msgstr "Bölüm 1ssl"
-
-#~ msgid "Section 1x"
-#~ msgstr "Bölüm 1x"
-
-#~ msgid "Section 2"
-#~ msgstr "Bölüm 2"
-
-#~ msgid "Section 3blt"
-#~ msgstr "Bölüm 3bit"
-
-#~ msgid "Section 3f"
-#~ msgstr "Bölüm 3f"
-
-#~ msgid "Section 3nas"
-#~ msgstr "Bölüm 3nas"
-
-#~ msgid "Section 3p"
-#~ msgstr "Bölüm 3p"
-
-#~ msgid "Section 3qt"
-#~ msgstr "Bölüm 3qt"
-
-#~ msgid "Section 3readline"
-#~ msgstr "Bölüm 3readline"
-
-#~ msgid "Section 3ssl"
-#~ msgstr "Bölüm 3ssl"
-
-#~ msgid "Section 3tiff"
-#~ msgstr "Bölüm 3tiff"
-
-#~ msgid "Section 4"
-#~ msgstr "Bölüm 4"
-
-#~ msgid "Section 4x"
-#~ msgstr "Bölüm 4x"
-
-#~ msgid "Section 5"
-#~ msgstr "Bölüm 5"
-
-#~ msgid "Section 5ssl"
-#~ msgstr "Bölüm 5ssl"
-
-#~ msgid "Section 5x"
-#~ msgstr "Bölüm 5x"
-
-#~ msgid "Section 6"
-#~ msgstr "Bölüm 6"
-
-#~ msgid "Section 6x"
-#~ msgstr "Bölüm 6x"
-
-#~ msgid "Section 7ssl"
-#~ msgstr "Bölüm 7ssl"
-
-#~ msgid "Section 7x"
-#~ msgstr "Bölüm 7x"
-
-#~ msgid "Section 9"
-#~ msgstr "Bölüm 9"
-
-#~ msgid "Sections 1, 1p, 1g and 1t"
-#~ msgstr "Bölüm 1, 1p, 1g ve 1t"
-
-#~ msgid "Sections 3, 3o, and 3t"
-#~ msgstr "Bölüm 3, 3o ve 3t"
-
-#~ msgid "Sections 3form and 3menu"
-#~ msgstr "Bölüm 3form ve 3menu"
-
-#~ msgid "Sections 3ncurses and 3curses"
-#~ msgstr "Bölüm 3bcurses ve 3curses"
-
-#~ msgid "Sections 3pm and 3perl"
-#~ msgstr "Bölüm 3pm ve 3perl"
-
-#~ msgid "Sections 3x and 3X11"
-#~ msgstr "Bölüm 3x ve 3x11"
-
-#~ msgid "Sections 7 and 7gcc"
-#~ msgstr "Bölüm 7 ve 7gcc"
-
-#~ msgid "Sections 8 and 8l"
-#~ msgstr "Bölüm 8 ve 8l"
-
-#~ msgid "System Administration"
-#~ msgstr "Sistem Yönetimi"
-
-#~ msgid "System Calls"
-#~ msgstr "Sistem Çağrıları"
-
-#~ msgid "System V Form/Menu Functions"
-#~ msgstr "Sistem V From/Menü İşlevleri"
-
-#~ msgid "TIFF Functions"
-#~ msgstr "TIFF İşlevleri"
-
-#~ msgid "Termcap Applications"
-#~ msgstr "Termcap Uygulamaları"
-
-#~ msgid "Traditional command line help (man)"
-#~ msgstr "Geleneksel komut satırı yardımı (man)"
-
-#~ msgid "X11 Applications"
-#~ msgstr "X11 Uygulamaları"
-
-#~ msgid "X11 Configuration"
-#~ msgstr "X11 Yapılandırması"
-
-#~ msgid "X11 Devices"
-#~ msgstr "X11 Aygıtları"
-
-#~ msgid "X11 Functions"
-#~ msgstr "X11 İşlevleri"
-
-#~ msgid "X11 Games"
-#~ msgstr "X11 Oyunları"
-
-#~ msgid "X11 Overviews"
-#~ msgstr "X11 İzlenimleri"
-
-#~ msgid "2D Graphics"
-#~ msgstr "2B Grafikler"
-
-#~ msgid "3D Graphics"
-#~ msgstr "3B Grafikler"
-
-#~ msgid "Accessibility"
-#~ msgstr "Erişilebilirlik"
-
-#~ msgid "Action Games"
-#~ msgstr "Aksiyon Oyunları"
-
-#~ msgid "Adventure Games"
-#~ msgstr "Macera Oyunları"
-
-#~ msgid "Amusement"
-#~ msgstr "Eğlence"
-
-#~ msgid "Applications for viewing and manipulating graphics"
-#~ msgstr "Grafik görüntülemesi ve yönetimi için uygulamalar"
-
-#~ msgid "Applications related to audio and video"
-#~ msgstr "Ses ve video ile ilgili uygulamalar"
-
-#~ msgid "Applications that teach or aid in learning"
-#~ msgstr "Öğreten ya da öğrenmeye yardım eden uygulamalar"
-
-#~ msgid "Arcade Games"
-#~ msgstr "Atari Oyunları"
-
-#~ msgid "Archiving Tools"
-#~ msgstr "Arşivleme Araçları"
-
-#~ msgid "Art"
-#~ msgstr "Sanat"
-
-#~ msgid "Artificial Intelligence"
-#~ msgstr "Yapay Zeka"
-
-#~ msgid "Astronomy"
-#~ msgstr "Astronomi"
-
-#~ msgid "Biology"
-#~ msgstr "Biyoloji"
-
-#~ msgid "Blocks Games"
-#~ msgstr "Blok Oyunları"
-
-#~ msgid "Board Games"
-#~ msgstr "Tahta Oyunları"
-
-#~ msgid "Building"
-#~ msgstr "İnşa"
-
-#~ msgid "Calculator"
-#~ msgstr "Hesap Makinesi"
-
-#~ msgid "Calendar"
-#~ msgstr "Takvim"
-
-#~ msgid "Card Games"
-#~ msgstr "Kağıt Oyunları"
-
-#~ msgid "Charting Tools"
-#~ msgstr "Grafik Araçları"
-
-#~ msgid "Chemistry"
-#~ msgstr "Kimya"
-
-#~ msgid "Clocks"
-#~ msgstr "Saatler"
-
-#~ msgid "Compression Tools"
-#~ msgstr "Sıkıştırma Araçları"
-
-#~ msgid "Computer Science"
-#~ msgstr "Bilgisayar Bilimi"
-
-#~ msgid "Construction"
-#~ msgstr "İnşaat"
-
-#~ msgid "Contact Management"
-#~ msgstr "Bağlantı Yönetimi"
-
-#~ msgid "Data Visualization"
-#~ msgstr "Veri Görselleştirme"
-
-#~ msgid "Databases"
-#~ msgstr "Veritabanları"
-
-#~ msgid "Debuggers"
-#~ msgstr "Hata Ayıklayıcılar"
-
-#~ msgid "Desktop"
-#~ msgstr "Masaüstü"
-
-#~ msgid "Desktop Settings"
-#~ msgstr "Masaüstü Ayarları"
-
-#~ msgid "Dialup"
-#~ msgstr "Çevirmeli"
-
-#~ msgid "Dictionaries"
-#~ msgstr "Sözlükler"
-
-#~ msgid "Disc Burning"
-#~ msgstr "Disk Yazma"
-
-#~ msgid "Economy"
-#~ msgstr "Ekonomi"
-
-#~ msgid "Education"
-#~ msgstr "Eğitim"
-
-#~ msgid "Electricity"
-#~ msgstr "Elektrik"
-
-#~ msgid "Electronics"
-#~ msgstr "Elektronik"
-
-#~ msgid "Emulator"
-#~ msgstr "Emülatör"
-
-#~ msgid "Engineering"
-#~ msgstr "Mühendislik"
-
-#~ msgid "File Manager"
-#~ msgstr "Dosya Yöneticisi"
-
-#~ msgid "File Tools"
-#~ msgstr "Dosya Araçları"
-
-#~ msgid "File Transfer"
-#~ msgstr "Dosya Transferi"
-
-#~ msgid "Filesystem"
-#~ msgstr "Dosya Sistemi"
-
-#~ msgid "Financial Tools"
-#~ msgstr "Finansal Araçlar"
-
-#~ msgid "Flow Charting Tools"
-#~ msgstr "Akışı Şeması Araçları"
-
-#~ msgid "GNOME Applications"
-#~ msgstr "GNOME Uygulamaları"
-
-#~ msgid "GTK"
-#~ msgstr "GTK"
-
-#~ msgid "GUI Designers"
-#~ msgstr "Arayüz Tasarımcıları"
-
-#~ msgid "Generic applications for the GNOME environment"
-#~ msgstr "GNOME ortamı için genel uygulamalar"
-
-#~ msgid "Generic applications for the KDE environment"
-#~ msgstr "KDE Masaüstü Ortamı'na özgü uygulamalar"
-
-#~ msgid "Geography"
-#~ msgstr "Coğrafya"
-
-#~ msgid "Geology"
-#~ msgstr "Jeoloji"
-
-#~ msgid "Geoscience"
-#~ msgstr "Yerbilimi"
-
-#~ msgid "Graphics"
-#~ msgstr "Grafik"
-
-#~ msgid ""
-#~ "Guides and manuals for applications that connect to the outside world"
-#~ msgstr "Dış dünyaya bağlanma uygulamaları için kılavuzlar ve el kitapları"
-
-#~ msgid "Guides for getting involved in development"
-#~ msgstr "Geliştirici olmak için kılavuzlar"
-
-#~ msgid "Ham Radio"
-#~ msgstr "Ham Radyo"
-
-#~ msgid "Hardware Settings"
-#~ msgstr "Donanım Ayarları"
-
-#~ msgid "Have some fun"
-#~ msgstr "Biraz eğlen"
-
-#~ msgid "History"
-#~ msgstr "Tarih"
-
-#~ msgid "IDEs"
-#~ msgstr "IDE'ler"
-
-#~ msgid "IRC Clients"
-#~ msgstr "IRC İstemcileri"
-
-#~ msgid "Image Processing"
-#~ msgstr "Görüntü İşlem"
-
-#~ msgid "Instant Messaging"
-#~ msgstr "Anında Mesajlaşma"
-
-#~ msgid "Internet"
-#~ msgstr "İnternet"
-
-#~ msgid "Java"
-#~ msgstr "Java"
-
-#~ msgid "KDE Applications"
-#~ msgstr "KDE Uygulamaları"
-
-#~ msgid "Kids Games"
-#~ msgstr "Çocuk Oyunları"
-
-#~ msgid ""
-#~ "Learn more about making your system more accessible for a range of "
-#~ "disabilities"
-#~ msgstr ""
-#~ "Sisteminizi bir takım engeller için daha erişebilir yapabilme hakkında "
-#~ "daha fazla bilgi öğrenin"
-
-#~ msgid "Licenses"
-#~ msgstr "Lisanslar"
-
-#~ msgid "Literature"
-#~ msgstr "Edebiyat"
-
-#~ msgid "Logic Games"
-#~ msgstr "Mantık Oyunları"
-
-#~ msgid "Math"
-#~ msgstr "Matematik"
-
-#~ msgid "Medical Software"
-#~ msgstr "Medikal Yazılım"
-
-#~ msgid "Midi"
-#~ msgstr "Midi"
-
-#~ msgid "Miscellaneous Documentation"
-#~ msgstr "Çeşitli Belgeler"
-
-#~ msgid "Mixers"
-#~ msgstr "Karıştırıcılar"
-
-#~ msgid "Monitor"
-#~ msgstr "Ekran"
-
-#~ msgid "Motif"
-#~ msgstr "Motif"
-
-#~ msgid "Music"
-#~ msgstr "Müzik"
-
-#~ msgid "News"
-#~ msgstr "Haberler"
-
-#~ msgid "Numerical Analysis"
-#~ msgstr "Sayısal Analiz"
-
-#~ msgid "OCR"
-#~ msgstr "OCR"
-
-#~ msgid "Office Applications"
-#~ msgstr "Ofis Uygulamaları"
-
-#~ msgid "Office applications"
-#~ msgstr "Ofis uygulamaları"
-
-#~ msgid "Other Documentation"
-#~ msgstr "Diğer Belgelendirmeler"
-
-#~ msgid "P2P"
-#~ msgstr "P2P"
-
-#~ msgid "PDA Communication"
-#~ msgstr "PDA İletişimi"
-
-#~ msgid "Package Manager"
-#~ msgstr "Paket Yöneticisi"
-
-#~ msgid "Parallel Computing"
-#~ msgstr "Paralel Bilişim"
-
-#~ msgid "Photography"
-#~ msgstr "Fotoğrafçılık"
-
-#~ msgid "Physics"
-#~ msgstr "Fizik"
-
-#~ msgid "Players"
-#~ msgstr "Oyuncular"
-
-#~ msgid "Presentation Tools"
-#~ msgstr "Sunum Araçları"
-
-#~ msgid "Printing"
-#~ msgstr "Yazdırma"
-
-#~ msgid "Profiling Tools"
-#~ msgstr "Profil Çıkarma Araçları"
-
-#~ msgid "Project Management Tools"
-#~ msgstr "Proje Yönetim Araçları"
-
-#~ msgid "Publishing"
-#~ msgstr "Yayımcılık"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "Raster Graphics"
-#~ msgstr "Taramalı Grafikler"
-
-#~ msgid "Recorders"
-#~ msgstr "Kaydediciler"
-
-#~ msgid "Remote Access"
-#~ msgstr "Uzaktan Erişim"
-
-#~ msgid "Revision Control"
-#~ msgstr "Sürüm Kontrolü"
-
-#~ msgid "Robotics"
-#~ msgstr "Robot Bilimi"
-
-#~ msgid "Role Playing Games"
-#~ msgstr "Rol Oynama Oyunları"
-
-#~ msgid "Scanning"
-#~ msgstr "Tarama"
-
-#~ msgid "Science"
-#~ msgstr "Bilim"
-
-#~ msgid "Security"
-#~ msgstr "Güvenlik"
-
-#~ msgid "Sequencers"
-#~ msgstr "Diziciler"
-
-#~ msgid "Settings"
-#~ msgstr "Ayarlar"
-
-#~ msgid ""
-#~ "Settings users can manipulate to make their environment more pleasant"
-#~ msgstr ""
-#~ "Ortamlarını daha çekici yapabillmek için kullanıcıların "
-#~ "değiştirebilecekleri ayarlar"
-
-#~ msgid "Simulation Games"
-#~ msgstr "Simülasyon Oyunları"
-
-#~ msgid "Sound"
-#~ msgstr "Ses"
-
-#~ msgid "Sound &amp; Video"
-#~ msgstr "Ses ve Video"
-
-#~ msgid "Sound &amp; Video Editing"
-#~ msgstr "Ses &amp; Video Düzenleme"
-
-#~ msgid "Sports"
-#~ msgstr "Spor"
-
-#~ msgid "Sports Games"
-#~ msgstr "Spor Oyunları"
-
-#~ msgid "Spreadsheet Tools"
-#~ msgstr "Çizelge Araçları"
-
-#~ msgid "Strategy Games"
-#~ msgstr "Strateji Oyunları"
-
-#~ msgid "System"
-#~ msgstr "Sistem"
-
-#~ msgid "TV"
-#~ msgstr "TV"
-
-#~ msgid "Telephony"
-#~ msgstr "Telefon"
-
-#~ msgid "Telephony Tools"
-#~ msgstr "Telefon Araçları"
-
-#~ msgid "Terminal Emulator"
-#~ msgstr "Uçbirim Emülatörü"
-
-#~ msgid "Text Editors"
-#~ msgstr "Metin Düzenleyici"
-
-#~ msgid "Text Tools"
-#~ msgstr "Metin Araçları"
-
-#~ msgid "Tools to help you manage your computer"
-#~ msgstr "Bilgisayarınızı yönetmeye yardımcı araçlar"
-
-#~ msgid "Translation Tools"
-#~ msgstr "Çeviri Araçları"
-
-#~ msgid "Tuners"
-#~ msgstr "Ayarlayıcılar"
-
-#~ msgid "Utilities"
-#~ msgstr "Araçlar"
-
-#~ msgid "Utilities to help you get work done"
-#~ msgstr "İşinizi tamamlamak için yardımcı araçlar"
-
-#~ msgid "Vector Graphics"
-#~ msgstr "Vektörel Grafikler"
-
-#~ msgid "Video"
-#~ msgstr "Video"
-
-#~ msgid "Video Conference"
-#~ msgstr "Video Konferans"
-
-#~ msgid "Viewer"
-#~ msgstr "İzleyici"
-
-#~ msgid "Web Browser"
-#~ msgstr "Web Tarayıcı"
-
-#~ msgid "Web Development"
-#~ msgstr "Web Geliştirme"
-
-#~ msgid "Welcome to the GNOME Help Browser"
-#~ msgstr "GNOME Yardım Tarayıcısı'na Hoşgeldiniz"
-
-#~ msgid "Word Processors"
-#~ msgstr "Kelime İşlemci"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
-#~ "page."
-#~ msgstr ""
-#~ "'%s' dosyası ayrıştırılamıyor çünkü düzgün biçimlendirilmiş bir kılavuz "
-#~ "sayfası değil."
-
-#~| msgid "_Edit Bookmarks..."
-#~ msgid "_Edit Bookmarks"
-#~ msgstr "Yer İmlerini _Düzenle"
-
-#~| msgid "Bookmarks"
-#~ msgid "Bookmarks for %s"
-#~ msgstr "Bunun için %s Yer İmleri"
-
-#~| msgid "Rename Bookmark"
-#~ msgid "_Open Bookmark"
-#~ msgstr "_Yer İmini Aç"
-
-#~| msgid "Open Bookmark in New Window"
-#~ msgid "Open Bookmark in New _Window"
-#~ msgstr "Yer İmini Yeni _Pencerede Aç"
-
-#~ msgid "Re_name"
-#~ msgstr "Ye_niden Adlandır"
-
-#~ msgid "_Bookmarks:"
-#~ msgstr "_Yer İmleri:"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Yer İmi Ekle"
-
-#~ msgid "_Title:"
-#~ msgstr "_Başlık:"
-
-#~ msgid "_Location:"
-#~ msgstr "_Konum:"
-
-#~ msgid "Fonts"
-#~ msgstr "Yazıtipleri"
-
-#~ msgid "Preferences"
-#~ msgstr "Tercihler"
-
-#~ msgid "_Browse with caret"
-#~ msgstr "İ_mleç ile tara"
-
-#~ msgid "_Fixed width:"
-#~ msgstr "_Sabit genişlik:"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Sistem yazıtiplerini kullan"
-
-#~ msgid "_Variable width:"
-#~ msgstr "_Değişken genişlik:"
-
-#~ msgid "Font for fixed text"
-#~ msgstr "Sabit metin için yazıtipi"
-
-#~ msgid "Font for text"
-#~ msgstr "Metin için yazıtipi"
-
-#~ msgid "Font for text with fixed width."
-#~ msgstr "Sabit genişlikli metin için yazıtipi."
-
-#~ msgid "Font for text with variable width."
-#~ msgstr "Değişken genişlikli metin için yazıtipi."
-
-#~ msgid "Use a keyboard-controllable caret when viewing pages."
-#~ msgstr "Sayfaları izlerken klavye kontrollü imleci kullan."
-
-#~ msgid "Use caret"
-#~ msgstr "İmleç kullan"
-
-#~ msgid "Use system fonts"
-#~ msgstr "Sistem yazıtiplerini kullan"
-
-#~ msgid "Use the default fonts set for the system."
-#~ msgstr "Sistem için öntanımlı yazıtiplerini kullan."
-
-#~ msgid "File is not a valid .desktop file"
-#~ msgstr "Dosya geçerli .desktop dosyası değil"
-
-#~ msgid "Unrecognized desktop file Version '%s'"
-#~ msgstr "Tanınmayan masaüstü dosyası Sürüm '%s'"
-
-#~ msgid "Starting %s"
-#~ msgstr "%s başlatılıyor"
-
-#~ msgid "Application does not accept documents on command line"
-#~ msgstr "Uygulama komut satırında belgeleri kabul etmez"
-
-#~ msgid "Unrecognized launch option: %d"
-#~ msgstr "Tanınmayan başlatma seçeneği: %d"
-
-#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr "Bir 'Type=Link' masaüstü girişine belge URI'leri geçilemez"
-
-#~ msgid "Not a launchable item"
-#~ msgstr "Başlatılabilir bir öğe değil"
-
-#~ msgid "Disable connection to session manager"
-#~ msgstr "Oturum yöneticisi bağlantısını devre dışı bırak"
-
-#~ msgid "Specify file containing saved configuration"
-#~ msgstr "Kaydedilen yapılandırmayı içeren dosyayı belirtin"
-
-#~ msgid "FILE"
-#~ msgstr "DOSYA"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Oturum yönetimi kimliğini belirtin"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Session management options:"
-#~ msgstr "Oturum yönetimi seçenekleri:"
-
-#~ msgid "Show session management options"
-#~ msgstr "Oturum yönetimi seçeneklerini göster"
-
-#~ msgid "A bookmark titled %s already exists for this page."
-#~ msgstr "Bu sayfa için %s isimli bir yer imi zaten var."
-
-#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
-#~ msgstr "Bu sayfa için <b>%s</b> isimli bir yer imi zaten var."
-
-#~ msgid "Help Topics"
-#~ msgstr "Yardım Konuları"
-
-#~ msgid "File not found"
-#~ msgstr "Dosya bulunamadı"
-
-#~ msgid "Could not parse file"
-#~ msgstr "Dosya ayrıştırılamıyor"
-
-#~ msgid "Could Not Read File"
-#~ msgstr "Dosya Okunamadı"
-
-#~ msgid "No information is available about this error."
-#~ msgstr "Bu hata hakkında hiçbir bilgi elde edilemiyor."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
-#~ "in an unsupported format."
-#~ msgstr ""
-#~ "'%s' dosyası okunamıyor ve çözülemiyor. Dosya desteklenmeyen bir biçimde "
-#~ "sıkıştırılmış olabilir."
-
-#~ msgid "Use a private session"
-#~ msgstr "Özel bir oturum kullan"
-
-#~ msgid "Define which cache directory to use"
-#~ msgstr "Hangi ön bellek dizinin kullanılacağını belirleyin"
-
-#~ msgid " GNOME Help Browser"
-#~ msgstr " GNOME Yardım Tarayıcısı"
-
-#~ msgid "Directory not found"
-#~ msgstr "Dizin bulunamadı"
-
-#~ msgid "Preparing to print"
-#~ msgstr "Baskıya hazırlanıyor"
-
-#~ msgid "Printing is not supported on this printer"
-#~ msgstr "Bu yazıcıda yazdırma desteklenmiyor"
-
-#~ msgid "Printer %s does not support postscript printing."
-#~ msgstr "%s yazıcısı postscript yazdırmayı desteklemiyor."
-
-#~ msgid "Waiting to print"
-#~ msgstr "Yazdırma bekleniyor"
-
-#~ msgid "An error occurred while printing"
-#~ msgstr "Yazdırılırken bir hata oluştu"
-
-#~ msgid "It was not possible to print your document: %s"
-#~ msgstr "Belgeyi yazdırmak mümkün değil: %s"
-
-#~ msgid "the GNOME Support Forums"
-#~ msgstr "GNOME Destek Forumları"
-
-#~ msgid "No results for \"%s\""
-#~ msgstr "\"%s\" için sonuç yok"
-
-#~ msgid ""
-#~ "Try using different words to describe the problem you're having or the "
-#~ "topic you want help with."
-#~ msgstr ""
-#~ "Yaşadığınız sorunu tanımlayan farklı kelimeleri, ya da yardım edinmek "
-#~ "istediğiniz konuyu deneyin."
-
-#~ msgid ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-#~ msgstr "nasıl:ne:mı:ve:için:ya da:değil:ben:içinde:tarafından"
-
-#~ msgid "re"
-#~ msgstr "NULL"
-
-#~ msgid "ers:er:ing:es:s:'s"
-#~ msgstr "ler:lar"
-
-#~ msgid "No Comment"
-#~ msgstr "Yorumsuz"
-
-#~ msgid "Search could not be processed"
-#~ msgstr "Arama işlenemedi"
-
-#~ msgid "The requested search could not be processed."
-#~ msgstr "İstenen arama işlenemiyor."
-
-#~ msgid "Cannot process the search"
-#~ msgstr "Arama işlenemiyor"
-
-#~ msgid "The search processor returned invalid results"
-#~ msgstr "Arama işlemcisi geçersiz sonuçlar döndürdü"
-
-#~ msgid "The page %s was not found in the TOC."
-#~ msgstr "%s sayfası içindekilerde bulunamadı."
-
-#~ msgid "The requested page was not found in the TOC."
-#~ msgstr "İstenen sayfa içindekilerde bulunamadı."
-
-#~ msgid ""
-#~ "The TOC file could not be parsed because it is not a well-formed XML "
-#~ "document."
-#~ msgstr ""
-#~ "İçindekiler dosyası ayrıştırılamıyor çünkü düzgün biçimlendirilmiş XML "
-#~ "belgesi değil."
-
-#~ msgid "Broken Transformation"
-#~ msgstr "Bozuk Dönüşüm"
-
-#~ msgid ""
-#~ "An unknown error occurred while attempting to transform the document."
-#~ msgstr "Belge dönüştürülmeye çalışılırken bilinmeyen bir hata oluştu."
-
-#~ msgid "_File"
-#~ msgstr "_Dosya"
-
-#~ msgid "_Edit"
-#~ msgstr "Dü_zenle"
-
-#~ msgid "_Help"
-#~ msgstr "_Yardım"
-
-#~ msgid "Print This Document ..."
-#~ msgstr "Bu Belgeyi Yazdır ..."
-
-#~ msgid "Open _Location"
-#~ msgstr "_Konumu Aç"
-
-#~ msgid "_Close Window"
-#~ msgstr "_Pencereyi Kapat"
-
-#~ msgid "_Select All"
-#~ msgstr "_Hepsini Seç"
-
-#~ msgid "_Find..."
-#~ msgstr "_Bul..."
-
-#~ msgid "Find Pre_vious"
-#~ msgstr "Ö_ncekini Bul"
-
-#~ msgid "Find previous occurrence of the word or phrase"
-#~ msgstr "Kelime veya ifadenin önceki yerini bul"
-
-#~ msgid "Find Ne_xt"
-#~ msgstr "Sonrakini B_ul"
-
-#~ msgid "Find next occurrence of the word or phrase"
-#~ msgstr "Kelime veya ifadenin sonraki yerini bul"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Tercihler"
-
-#~ msgid "_Reload"
-#~ msgstr "_Tekrar Yükle"
-
-#~ msgid "Show previous page in history"
-#~ msgstr "Geçmişte bulunan önceki sayfayı göster"
-
-#~ msgid "Show next page in history"
-#~ msgstr "Geçmişte bulunan sonraki sayfayı göster"
-
-#~ msgid "_Help Topics"
-#~ msgstr "_Yardım Konuları"
-
-#~ msgid "Go to the listing of help topics"
-#~ msgstr "Yardım konuları listesine git"
-
-#~ msgid "_Contents"
-#~ msgstr "İçi_ndekiler"
-
-#~ msgid "_Copy Link Address"
-#~ msgstr "Bağlantı Adresini _Kopyala"
-
-#~ msgid "Help On this application"
-#~ msgstr "Bu uygulama hakkında yardım"
-
-#~ msgid "_About"
-#~ msgstr "_Hakkında"
-
-#~ msgid "Copy _Email Address"
-#~ msgstr "_E-Posta Adresini Kopyala"
-
-#~ msgid "Help Browser"
-#~ msgstr "Yardım Tarayıcısı"
-
-#~ msgid "Unknown Page"
-#~ msgstr "Bilinmeyen Sayfa"
-
-#~ msgid "The requested URI \"%s\" is invalid"
-#~ msgstr "İstenen URI \"%s\" geçersiz"
-
-#~ msgid "Unable to load page"
-#~ msgstr "Sayfa yüklenemedi"
-
-#~ msgid "Cannot create search component"
-#~ msgstr "Arama bileşeni oluşturulamıyor"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Ö_ncekini Bul"
-
-#~ msgid "Find _Next"
-#~ msgstr "Sonrakini B_ul"
-
-#~ msgid "Phrase not found"
-#~ msgstr "İfade bulunamadı"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
-#~ "might not have permissions to read it."
-#~ msgstr ""
-#~ "'%s' dosyası okunamadı.  Dosya bulunmuyor ya da dosyayı okumak için "
-#~ "izniniz yok."
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "Serdar Çiçek <serdar@nerd.com.tr>\n"
-#~ "Serkan Kenar <serkan@ieee.metu.edu.tr>"
-
-#~ msgid "A documentation browser and viewer for the Gnome Desktop."
-#~ msgstr "Gnome Masaüstü için bir belgelendirme tarayıcısı ve göstericisi."
