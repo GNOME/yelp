@@ -3,19 +3,21 @@
 # This file is distributed under the same license as the yelp package.
 # Jordi Mallach <jordi@sindominio.net>, 2002, 2003, 2004, 2005, 2006.
 # Gil Forcada <gilforcada@guifi.net>, 2007, 2008, 2009, 2010, 2011.
+# Jordi Serratosa <jordis@softcatala.cat>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-10 11:58+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-03-10 15:50+0000\n"
 "PO-Revision-Date: 2012-03-04 12:01+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: català; valencià <tradgnome@softcatala.org>\n"
-"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bits\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: yelp.xml:2(msg/msgstr)
@@ -505,7 +507,7 @@ msgstr "_Suprimeix l'adreça d'interès"
 
 #: ../src/yelp-window.c:265
 msgid "Find in Page..."
-msgstr "Cerca a la pàgina ..."
+msgstr "Cerca a la pàgina..."
 
 #: ../src/yelp-window.c:275
 msgid "Open Location"
@@ -1506,7 +1508,7 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ msgstr "_Quant a"
 
 #~ msgid "Copy _Email Address"
-#~ msgstr "_Copia l'adreça de correu"
+#~ msgstr "_Copia l'adreça electrònica"
 
 #~ msgid "Help Browser"
 #~ msgstr "Navegador d'ajuda"
@@ -1625,15 +1627,15 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ "The file  ‘%s’ could not be parsed. Either the file does not exist, or it "
 #~ "is not a well-formed info page."
 #~ msgstr ""
-#~ "No s'ha pogut analitzar el fitxer «%s». El fitxer no existeix, o no és "
-#~ "una pàgina d'informació vàlida."
+#~ "No s'ha pogut analitzar el fitxer «%s». El fitxer no existeix, o no és una "
+#~ "pàgina d'informació vàlida."
 
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
 #~ "is formatted incorrectly."
 #~ msgstr ""
-#~ "No s'ha pogut analitzar el fitxer «%s». El fitxer no existeix, o no és "
-#~ "XML vàlid."
+#~ "No s'ha pogut analitzar el fitxer «%s». El fitxer no existeix, o no és XML "
+#~ "vàlid."
 
 #~ msgid "Document Information"
 #~ msgstr "Informació del document"
@@ -1664,8 +1666,8 @@ msgstr "Obtingueu ajuda per al GNOME"
 #~ "The table of contents could not be processed. The file ‘%s’ is either "
 #~ "missing or is not a valid XSLT stylesheet."
 #~ msgstr ""
-#~ "No s'ha pogut processar la taula de continguts. Falta el fitxer «%s», o "
-#~ "no és XML vàlid."
+#~ "No s'ha pogut processar la taula de continguts. Falta el fitxer «%s», o no "
+#~ "és XML vàlid."
 
 #~ msgid "Read man page for %s"
 #~ msgstr "Llegiu la pàgina de manual per a %s"
