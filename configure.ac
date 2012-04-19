@@ -37,6 +37,7 @@ PKG_CHECK_MODULES(YELP,
 	sqlite3
 	webkitgtk-3.0 >= 1.3.2
 	yelp-xsl >= 3.1.2
+	zeitgeist-1.0
 ])
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])

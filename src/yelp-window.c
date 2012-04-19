@@ -29,6 +29,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <zeitgeist.h>
 
 #include "yelp-location-entry.h"
 #include "yelp-settings.h"
@@ -37,6 +38,8 @@
 
 #include "yelp-application.h"
 #include "yelp-window.h"
+
+#define YELP_ZEITGEIST_PAGE "http://www.gnome.org/yelp/ns#HelpPage"
 
 static void          yelp_window_init             (YelpWindow         *window);
 static void          yelp_window_class_init       (YelpWindowClass    *klass);
@@ -101,6 +104,9 @@ static void          window_set_bookmark_action   (YelpWindow         *window);
 static gboolean      find_entry_focus_out         (GtkEntry           *entry,
                                                    GdkEventFocus      *event,
                                                    YelpWindow         *window);
+static void          window_update_zeitgeist      (YelpWindow         *window,
+                                                   YelpUri            *uri,
+                                                   const gchar        *title);
 static gboolean      find_entry_key_press         (GtkEntry           *entry,
                                                    GdkEventKey        *event,
                                                    YelpWindow         *window);
@@ -230,6 +236,8 @@ struct _YelpWindowPrivate {
     gfloat entry_color_step;
 
     gboolean configured;
+
+    ZeitgeistLog *zeitgeist;
 };
 
 static const GtkActionEntry entries[] = {
@@ -281,8 +289,10 @@ static const GtkActionEntry entries[] = {
 static void
 yelp_window_init (YelpWindow *window)
 {
+    YelpWindowPrivate *priv = GET_PRIV (window);
     g_signal_connect (window, "configure-event", G_CALLBACK (window_configure_event), NULL);
     g_signal_connect (window, "map-event", G_CALLBACK (window_map_event), NULL);
+    priv->zeitgeist = zeitgeist_log_new ();
 }
 
 static void
@@ -364,6 +374,11 @@ yelp_window_dispose (GObject *object)
     if (priv->entry_color_animate != 0) {
         g_source_remove (priv->entry_color_animate);
         priv->entry_color_animate = 0;
+    }
+
+    if (priv->zeitgeist) {
+        g_object_unref (priv->zeitgeist);
+        priv->zeitgeist = NULL;
     }
 
     G_OBJECT_CLASS (yelp_window_parent_class)->dispose (object);
@@ -1252,6 +1267,30 @@ entry_focus_out (YelpLocationEntry  *entry,
 }
 
 static void
+window_update_zeitgeist (YelpWindow  *window,
+                         YelpUri     *uri,
+                         const gchar *title)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    ZeitgeistEvent *event;
+    if (uri != NULL) {
+        gchar *fulluri = yelp_uri_get_canonical_uri (uri);
+        event = zeitgeist_event_new_full (
+              ZEITGEIST_ZG_ACCESS_EVENT,
+              ZEITGEIST_ZG_USER_ACTIVITY,
+              "application://yelp.desktop",
+              zeitgeist_subject_new_full (fulluri,
+                                          YELP_ZEITGEIST_PAGE,
+                                          ZEITGEIST_NFO_FILE_DATA_OBJECT,
+                                          NULL, NULL,
+                                          title, NULL),
+              NULL);
+        zeitgeist_log_insert_events_no_reply (priv->zeitgeist, event, NULL);
+        g_free (fulluri);
+    }
+}
+
+static void
 view_new_window (YelpView   *view,
                  YelpUri    *uri,
                  YelpWindow *window)
@@ -1294,6 +1333,7 @@ view_loaded (YelpView   *view,
                                            icon,
                                            title);
         app_read_later_changed (priv->application, doc_uri, window);
+        window_update_zeitgeist (window, uri, title);
         g_free (page_id);
         g_free (icon);
         g_free (title);
