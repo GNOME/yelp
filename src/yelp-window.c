@@ -29,6 +29,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <webkit/webkit.h>
 #include <zeitgeist.h>
 
 #include "yelp-location-entry.h"
@@ -1267,27 +1268,166 @@ entry_focus_out (YelpLocationEntry  *entry,
 }
 
 static void
+window_zeitgeist_results_cb (ZeitgeistLog *zeitgeist,
+                             GAsyncResult *res,
+                             YelpWindow   *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    ZeitgeistResultSet *results;
+    ZeitgeistEvent *event;
+    ZeitgeistSubject *subject;
+    WebKitDOMDocument *document;
+    WebKitDOMElement *section = NULL;
+
+    results = zeitgeist_log_find_events_finish (zeitgeist, res, NULL);
+    if (results && zeitgeist_result_set_size(results) > 0) {
+        document = webkit_web_view_get_dom_document (WEBKIT_WEB_VIEW (priv->view));
+        section = webkit_dom_document_query_selector (document, "div.sect-links > div.contents", NULL);
+        if (section != NULL) {
+            WebKitDOMElement *child, *span;
+
+            child = webkit_dom_document_create_element (document, "div", NULL);
+            webkit_dom_element_set_attribute (child, "class", "links zeitgeistlinks", NULL);
+            webkit_dom_node_append_child (WEBKIT_DOM_NODE (section), WEBKIT_DOM_NODE (child), NULL);
+            section = child;
+
+            child = webkit_dom_document_create_element (document, "div", NULL);
+            webkit_dom_element_set_attribute (child, "class", "inner", NULL);
+            webkit_dom_node_append_child (WEBKIT_DOM_NODE (section), WEBKIT_DOM_NODE (child), NULL);
+            section = child;
+
+            child = webkit_dom_document_create_element (document, "div", NULL);
+            webkit_dom_element_set_attribute (child, "class", "title", NULL);
+            span = webkit_dom_document_create_element (document, "span", NULL);
+            webkit_dom_element_set_attribute (span, "class", "title", NULL);
+            webkit_dom_node_set_text_content (WEBKIT_DOM_NODE (span),
+                                              _("Often Viewed With"),
+                                              NULL);
+            webkit_dom_node_append_child (WEBKIT_DOM_NODE (child), WEBKIT_DOM_NODE (span), NULL);
+            webkit_dom_node_append_child (WEBKIT_DOM_NODE (section), WEBKIT_DOM_NODE (child), NULL);
+
+            child = webkit_dom_document_create_element (document, "div", NULL);
+            webkit_dom_element_set_attribute (child, "class", "region", NULL);
+            webkit_dom_node_append_child (WEBKIT_DOM_NODE (section), WEBKIT_DOM_NODE (child), NULL);
+            section = child;
+
+            child = webkit_dom_document_create_element (document, "ul", NULL);
+            webkit_dom_node_append_child (WEBKIT_DOM_NODE (section), WEBKIT_DOM_NODE (child), NULL);
+            section = child;
+
+            while (zeitgeist_result_set_has_next (results)) {
+                event = zeitgeist_result_set_next (results);
+                if (zeitgeist_event_num_subjects (event) == 0)
+                    continue;
+                subject = zeitgeist_event_get_subject (event, 0);
+
+                child = webkit_dom_document_create_element (document, "li", NULL);
+                webkit_dom_element_set_attribute (child, "class", "links zeitgeistlinks", NULL);
+                span = webkit_dom_document_create_element (document, "a", NULL);
+                webkit_dom_element_set_attribute (span, "href",
+                                                  zeitgeist_subject_get_uri (subject),
+                                                  NULL);
+                webkit_dom_node_set_text_content (WEBKIT_DOM_NODE (span),
+                                                  zeitgeist_subject_get_text (subject),
+                                                  NULL);
+                webkit_dom_node_append_child (WEBKIT_DOM_NODE (child), WEBKIT_DOM_NODE (span), NULL);
+                webkit_dom_node_append_child (WEBKIT_DOM_NODE (section), WEBKIT_DOM_NODE (child), NULL);
+            }
+        }
+    }
+    g_object_unref (results);
+}
+
+static void
+window_zeitgeist_related_cb (ZeitgeistLog *zeitgeist,
+                             GAsyncResult *res,
+                             YelpWindow   *window)
+{
+    GPtrArray *tmpl;
+    gint i;
+    gchar **results = zeitgeist_log_find_related_uris_finish (zeitgeist, res, NULL);
+
+    if (results && results[0]) {
+        tmpl = g_ptr_array_new_full (0, g_object_unref);
+        for (i = 0; results[i]; i++) {
+            g_ptr_array_add (tmpl,
+                             zeitgeist_event_new_full (ZEITGEIST_ZG_ACCESS_EVENT,
+                                                       ZEITGEIST_ZG_USER_ACTIVITY,
+                                                       "application://yelp.desktop",
+                                                       zeitgeist_subject_new_full (results[i],
+                                                                                   YELP_ZEITGEIST_PAGE,
+                                                                                   ZEITGEIST_NFO_FILE_DATA_OBJECT,
+                                                                                   NULL, NULL, NULL, NULL),
+                                                       NULL));
+        }
+        zeitgeist_log_find_events (zeitgeist,
+                                   zeitgeist_time_range_new_anytime (),
+                                   tmpl,
+                                   ZEITGEIST_STORAGE_STATE_ANY,
+                                   i,
+                                   ZEITGEIST_RESULT_TYPE_MOST_RECENT_SUBJECTS,
+                                   NULL, /* cancellable */
+                                   (GAsyncReadyCallback) window_zeitgeist_results_cb,
+                                   window);
+    }
+    g_strfreev (results);
+}
+
+static void
 window_update_zeitgeist (YelpWindow  *window,
                          YelpUri     *uri,
                          const gchar *title)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
     ZeitgeistEvent *event;
-    if (uri != NULL) {
-        gchar *fulluri = yelp_uri_get_canonical_uri (uri);
-        event = zeitgeist_event_new_full (
-              ZEITGEIST_ZG_ACCESS_EVENT,
-              ZEITGEIST_ZG_USER_ACTIVITY,
-              "application://yelp.desktop",
-              zeitgeist_subject_new_full (fulluri,
-                                          YELP_ZEITGEIST_PAGE,
-                                          ZEITGEIST_NFO_FILE_DATA_OBJECT,
-                                          NULL, NULL,
-                                          title, NULL),
-              NULL);
-        zeitgeist_log_insert_events_no_reply (priv->zeitgeist, event, NULL);
-        g_free (fulluri);
-    }
+    GPtrArray *tmpl, *rtmpl;
+
+    gchar *docuri = yelp_uri_get_document_uri (uri);
+    gchar *fulluri = yelp_uri_get_canonical_uri (uri);
+    event = zeitgeist_event_new_full (ZEITGEIST_ZG_ACCESS_EVENT,
+                                      ZEITGEIST_ZG_USER_ACTIVITY,
+                                      "application://yelp.desktop",
+                                      zeitgeist_subject_new_full (fulluri,
+                                                                  YELP_ZEITGEIST_PAGE,
+                                                                  ZEITGEIST_NFO_FILE_DATA_OBJECT,
+                                                                  NULL, 
+                                                                  docuri,
+                                                                  title,
+                                                                  NULL),
+                                      NULL);
+    zeitgeist_log_insert_events_no_reply (priv->zeitgeist, event, NULL);
+
+    tmpl = g_ptr_array_new_full (0, g_object_unref);
+    g_ptr_array_add (tmpl,
+                     zeitgeist_event_new_full (ZEITGEIST_ZG_ACCESS_EVENT,
+                                               ZEITGEIST_ZG_USER_ACTIVITY,
+                                               "application://yelp.desktop",
+                                               zeitgeist_subject_new_full (fulluri,
+                                                                           YELP_ZEITGEIST_PAGE,
+                                                                           ZEITGEIST_NFO_FILE_DATA_OBJECT,
+                                                                           NULL, docuri, NULL, NULL),
+                                               NULL));
+    rtmpl = g_ptr_array_new_full (0, g_object_unref);
+    g_ptr_array_add (rtmpl,
+                     zeitgeist_event_new_full (ZEITGEIST_ZG_ACCESS_EVENT,
+                                               ZEITGEIST_ZG_USER_ACTIVITY,
+                                               "application://yelp.desktop",
+                                               zeitgeist_subject_new_full (NULL,
+                                                                           YELP_ZEITGEIST_PAGE,
+                                                                           ZEITGEIST_NFO_FILE_DATA_OBJECT,
+                                                                           NULL, docuri, NULL, NULL),
+                                               NULL));
+    zeitgeist_log_find_related_uris (priv->zeitgeist,
+                                     zeitgeist_time_range_new_anytime (),
+                                     tmpl, rtmpl,
+                                     ZEITGEIST_STORAGE_STATE_ANY,
+                                     4,
+                                     ZEITGEIST_RESULT_TYPE_MOST_RECENT_EVENTS,
+                                     NULL, /* cancellable */
+                                     (GAsyncReadyCallback) window_zeitgeist_related_cb,
+                                     window);
+    g_free (fulluri);
+    g_free (docuri);
 }
 
 static void
