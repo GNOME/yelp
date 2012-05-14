@@ -62,6 +62,9 @@ fi
 # i18n stuff
 IT_PROG_INTLTOOL([0.41.0])
 
+ALL_LINGUAS="`grep -v '^#' "$srcdir/po/LINGUAS" | tr '\n' ' '`"
+AC_SUBST(ALL_LINGUAS)
+
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION([0.17])
 

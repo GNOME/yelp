@@ -1,6 +1,6 @@
 ALL_LINGUAS = @ALL_LINGUAS@
 
-yelp.pot: yelp.xml
+yelp.pot: yelp.xml.in
 	itstool -o "$@" "$^"
 
 all: yelp.xml yelp.pot

@@ -21,9 +21,18 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n!=1)\n"
 
-#: yelp.xml:2(msg/msgstr)
-msgid "Install <_:string-1/>"
-msgstr "<_:string-1/> ইনস্টল কৰক"
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#. 
+#. <string/> - The package to install
+#. 
+#: yelp.xml.in:29(msg/msgstr)
+msgid "Install <string/>"
+msgstr "<string/> ইনস্টল কৰক"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
