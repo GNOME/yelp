@@ -5,21 +5,35 @@
 # Stanislav Visnovsky <visnovsky@kde.org>, 2004.
 # Ivan Noris <vix@vazka.sk>, 2005.
 # Laco Gubík <lacogubik@googlemail.com>, 2010.
-# Pavol Klačanský <pavol@klacansky.com>, 2011.
+# Pavol Klacansky <pavol@klacansky.com>, 2011.
+# Pavol Klačanský <pavol@klacansky.com>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-19 02:02+0000\n"
-"PO-Revision-Date: 2011-09-18 22:33+0200\n"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-05-14 18:17+0000\n"
+"PO-Revision-Date: 2012-02-11 17:59+0000\n"
 "Last-Translator: Pavol Klačanský <pavol@klacansky.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <string/> - The package to install
+#.
+#: yelp.xml.in:29(msg/msgstr)
+msgid "Install <string/>"
+msgstr "Nainštalovať <string/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -32,8 +46,8 @@ msgid "Not enough memory"
 msgstr "Nedostatok pamäte"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:271
-#: ../libyelp/yelp-mallard-document.c:423 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Strana „%s“ sa nenašla v dokumente „%s“."
@@ -94,17 +108,17 @@ msgstr "URI dokumentu"
 msgid "The URI which identifies the document"
 msgstr "URI, ktorý identifikuje dokument"
 
-#: ../libyelp/yelp-document.c:958
+#: ../libyelp/yelp-document.c:994
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Výsledky vyhľadávania výrazu „%s“"
 
-#: ../libyelp/yelp-document.c:970
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Neboli nájdené žiadne zodpovedajúce stránky pomocníka v „%s“."
 
-#: ../libyelp/yelp-document.c:976
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "Neboli nájdené žiadne zodpovedajúce stránky pomocníka."
 
@@ -126,52 +140,57 @@ msgstr ""
 "Nebolo možné vykonať syntaktickú analýzu súboru „%s“, lebo to nie je správne "
 "naformátovaná info stránka."
 
-#: ../libyelp/yelp-location-entry.c:329
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "Zobraziť"
 
-#: ../libyelp/yelp-location-entry.c:330
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
 msgstr "Inštancia YelpView, ktorú ovládať"
 
-#: ../libyelp/yelp-location-entry.c:345
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "Záložky"
 
-#: ../libyelp/yelp-location-entry.c:346
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr "Inštancia implementácie YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:362
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "Povoliť vyhľadávanie"
 
 # pole ukazuje, co je otvorene a da sa pouzit aj na vyhladavanie
-#: ../libyelp/yelp-location-entry.c:363
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
 msgstr "Či môže byť pole s umiestnením použité ako vyhľadávacie pole"
 
-#: ../libyelp/yelp-location-entry.c:433 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Hľadať..."
 
-#: ../libyelp/yelp-location-entry.c:776
+#: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr "Vymazať hľadaný text"
 
-#: ../libyelp/yelp-location-entry.c:825 ../libyelp/yelp-location-entry.c:1523
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "Pridať túto stránku do záložiek"
 
-#: ../libyelp/yelp-location-entry.c:833 ../libyelp/yelp-location-entry.c:1531
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "Odstrániť záložku"
 
-#: ../libyelp/yelp-location-entry.c:1388
+#: ../libyelp/yelp-location-entry.c:1154
+#, c-format
+msgid "Search for “%s”"
+msgstr "Vyhľadať „%s“"
+
+#: ../libyelp/yelp-location-entry.c:1458
 msgid "Loading"
 msgstr "Načítava sa"
 
-#: ../libyelp/yelp-mallard-document.c:311
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Adresár „%s“ neexistuje."
@@ -249,184 +268,191 @@ msgstr "V značke yelp:document chýba atribút href\n"
 msgid "Out of memory"
 msgstr "Nedostatok pamäte"
 
-#: ../libyelp/yelp-view.c:126
+#: ../libyelp/yelp-view.c:131
 msgid "_Print..."
 msgstr "_Tlačiť..."
 
-#: ../libyelp/yelp-view.c:131
+#: ../libyelp/yelp-view.c:136
 msgid "_Back"
 msgstr "Do_zadu"
 
-#: ../libyelp/yelp-view.c:136
+#: ../libyelp/yelp-view.c:141
 msgid "_Forward"
 msgstr "_Dopredu"
 
-#: ../libyelp/yelp-view.c:141
+#: ../libyelp/yelp-view.c:146
 msgid "_Previous Page"
 msgstr "_Predchádzajúca stránka"
 
-#: ../libyelp/yelp-view.c:146
+#: ../libyelp/yelp-view.c:151
 msgid "_Next Page"
 msgstr "Ď_alšia stránka"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:423
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:417
+#: ../libyelp/yelp-view.c:424
 msgid "A YelpUri with the current location"
 msgstr "YelpUri s aktuálnym umiestnením"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:432
 msgid "Loading State"
 msgstr "Stav načítania"
 
-#: ../libyelp/yelp-view.c:426
+#: ../libyelp/yelp-view.c:433
 msgid "The loading state of the view"
 msgstr "Stav načítania zobrazenia"
 
-#: ../libyelp/yelp-view.c:435
+#: ../libyelp/yelp-view.c:442
 msgid "Page ID"
 msgstr "Identifikátor stránky"
 
-#: ../libyelp/yelp-view.c:436
+#: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
 msgstr "Identifikátor koreňovej stránky práve prezeranej stránky"
 
-#: ../libyelp/yelp-view.c:444
+#: ../libyelp/yelp-view.c:451
 msgid "Root Title"
 msgstr "Názov koreňovej stránky"
 
-#: ../libyelp/yelp-view.c:445
+#: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
 msgstr "Názov koreňovej stránky práve prezeranej stránky"
 
-#: ../libyelp/yelp-view.c:453
+#: ../libyelp/yelp-view.c:460
 msgid "Page Title"
 msgstr "Názov stránky"
 
-#: ../libyelp/yelp-view.c:454
+#: ../libyelp/yelp-view.c:461
 msgid "The title of the page being viewed"
 msgstr "Názov prezeranej stránky"
 
-#: ../libyelp/yelp-view.c:462
+#: ../libyelp/yelp-view.c:469
 msgid "Page Description"
 msgstr "Popis stránky"
 
-#: ../libyelp/yelp-view.c:463
+#: ../libyelp/yelp-view.c:470
 msgid "The description of the page being viewed"
 msgstr "Popis prezeranej stránky"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
 msgstr "Ikona stránky"
 
-#: ../libyelp/yelp-view.c:472
+#: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
 msgstr "Ikona prezeranej stránky"
 
-#: ../libyelp/yelp-view.c:713
+#: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "Nemáte PackageKit. Inštalácia balíkov cez odkazy vyžaduje PackageKit."
 
-#: ../libyelp/yelp-view.c:991
+#: ../libyelp/yelp-view.c:1013
 msgid "Save Image"
 msgstr "Uložiť obrázok"
 
-#: ../libyelp/yelp-view.c:1086
+#: ../libyelp/yelp-view.c:1108
 msgid "Save Code"
 msgstr "Uložiť kód"
 
-#. Not using a mnemonic because underscores are common in email
-#. * addresses, and we'd have to escape them. There doesn't seem
-#. * to be a quick GTK+ function for this. In practice, there will
-#. * probably only be one menu item for mailto link popups anyway,
-#. * so the mnemonic's not that big of a deal.
-#.
-#: ../libyelp/yelp-view.c:1255
+#: ../libyelp/yelp-view.c:1271
 #, c-format
 msgid "Send email to %s"
 msgstr "Odoslať email na adresu %s"
 
-#: ../libyelp/yelp-view.c:1265
+#: ../libyelp/yelp-view.c:1286
+msgid "_Install Packages"
+msgstr "Na_inštalovať balíky"
+
+#: ../libyelp/yelp-view.c:1294
 msgid "_Open Link"
 msgstr "_Otvoriť odkaz"
 
-#: ../libyelp/yelp-view.c:1270
+#: ../libyelp/yelp-view.c:1301
+msgid "_Copy Link Location"
+msgstr "_Kopírovať umiestnenie odkazu"
+
+#: ../libyelp/yelp-view.c:1307
 msgid "Open Link in New _Window"
 msgstr "Otvoriť odkaz v _novom okne"
 
-#: ../libyelp/yelp-view.c:1321
+#: ../libyelp/yelp-view.c:1359
 msgid "_Save Image As..."
 msgstr "_Uložiť obrázok ako..."
 
-#: ../libyelp/yelp-view.c:1323
+#: ../libyelp/yelp-view.c:1361
 msgid "_Save Video As..."
 msgstr "_Uložiť video ako..."
 
 # tu to moze byt kontakt, adresa, zariadenie, atd. (nautilus-sendto)
-#: ../libyelp/yelp-view.c:1330
+#: ../libyelp/yelp-view.c:1368
 msgid "S_end Image To..."
 msgstr "_Odoslať obrázok do..."
 
 # tu to moze byt kontakt, adresa, zariadenie, atd. (nautilus-sendto)
-#: ../libyelp/yelp-view.c:1332
+#: ../libyelp/yelp-view.c:1370
 msgid "S_end Video To..."
 msgstr "_Odoslať video do..."
 
-#: ../libyelp/yelp-view.c:1343
+#: ../libyelp/yelp-view.c:1381
 msgid "_Copy Text"
 msgstr "_Kopírovať text"
 
-#: ../libyelp/yelp-view.c:1356
+#: ../libyelp/yelp-view.c:1394
 msgid "C_opy Code Block"
 msgstr "K_opírovať blok kódu"
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1399
 msgid "Save Code _Block As..."
 msgstr "Uložiť _blok kódu ako..."
 
-#: ../libyelp/yelp-view.c:1543
+#: ../libyelp/yelp-view.c:1505
+#, c-format
+msgid "See all search results for “%s”"
+msgstr "Zobraziť všetky výsledky vyhľadávania pre „%s“"
+
+#: ../libyelp/yelp-view.c:1626
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Nepodarilo sa načítať dokument pre „%s“"
 
-#: ../libyelp/yelp-view.c:1549
+#: ../libyelp/yelp-view.c:1632
 #, c-format
 msgid "Could not load a document"
 msgstr "Nepodarilo sa načítať dokument"
 
-#: ../libyelp/yelp-view.c:1623
+#: ../libyelp/yelp-view.c:1706
 msgid "Document Not Found"
 msgstr "Dokument sa nenašiel"
 
-#: ../libyelp/yelp-view.c:1625
+#: ../libyelp/yelp-view.c:1708
 msgid "Page Not Found"
 msgstr "Strana sa nenašla"
 
-#: ../libyelp/yelp-view.c:1628
+#: ../libyelp/yelp-view.c:1711
 msgid "Cannot Read"
 msgstr "Nedá sa prečítať"
 
-#: ../libyelp/yelp-view.c:1634
+#: ../libyelp/yelp-view.c:1717
 msgid "Unknown Error"
 msgstr "Neznáma chyba"
 
-#: ../libyelp/yelp-view.c:1654
+#: ../libyelp/yelp-view.c:1737
 msgid "Search for packages containing this document."
 msgstr "Vyhľadať balíky, ktoré obsahujú tento dokument."
 
-#: ../libyelp/yelp-view.c:1807
+#: ../libyelp/yelp-view.c:1890
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI „%s“ neukazuje na platnú stránku."
 
-#: ../libyelp/yelp-view.c:1813
+#: ../libyelp/yelp-view.c:1896
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI neukazuje na platnú stránku."
 
-#: ../libyelp/yelp-view.c:1819
+#: ../libyelp/yelp-view.c:1902
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI „%s“ sa nepodarilo analyzovať."
@@ -451,8 +477,8 @@ msgstr "_Menší text"
 msgid "Decrease the size of the text"
 msgstr "Zmenšiť veľkosť textu"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Pomocník"
 
@@ -514,6 +540,10 @@ msgstr "Aplikácia"
 msgid "A YelpApplication instance that controls this window"
 msgstr "Inštancia YelpApplication, ktorá ovláda toto okno"
 
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Prečítať odkaz _neskôr"
+
 #: ../src/yelp-window.c:526
 msgid "Find:"
 msgstr "Nájsť:"
@@ -522,7 +552,7 @@ msgstr "Nájsť:"
 msgid "Read Later"
 msgstr "Prečítať neskôr"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
@@ -530,10 +560,45 @@ msgstr[0] "%i zhôd"
 msgstr[1] "%i zhoda"
 msgstr[2] "%i zhody"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "Žiadne zhody"
 
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Zobraziť pomocníka pre GNOME"
+
+#~| msgid "Search..."
+#~ msgid "_Share..."
+#~ msgstr "_Zdieľať..."
+
+#~ msgid "Share"
+#~ msgstr "Zdieľať"
+
+#~| msgid "_Close"
+#~ msgid "Close"
+#~ msgstr "Zavrieť"
+
+#~ msgid "Chat"
+#~ msgstr "Rozhovor"
+
+#~ msgid "Send a help link to a chat contact:"
+#~ msgstr "Odoslať odkaz pomocníka do rozhovoru s kontaktom:"
+
+#~ msgid "Email"
+#~ msgstr "Email"
+
+#~ msgid "Send a help link to an email contact:"
+#~ msgstr "Odoslať odkaz pomocníka na email kontaktu:"
+
+#~ msgid "Compose new email"
+#~ msgstr "Napísať novú správu"
+
+#~ msgid "Copy"
+#~ msgstr "Kopírovať"
+
+#~ msgid "Copy the help location to the clipboard:"
+#~ msgstr "Kopírovať umiestnenie pomocníka do schránky:"
+
+#~ msgid "Copy location to clipboard"
+#~ msgstr "Kopírovať umiestnenie do schránky"
