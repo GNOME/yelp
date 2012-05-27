@@ -980,7 +980,7 @@ resolve_man_uri (YelpUri *uri)
         /* Match group 1 should contain the name; then one of groups 3
          * and 4 will contain the section if there was one. Group 6
          * will contain any hash fragment. */
-        man_not_path = g_regex_new ("man:([^ /.()#]+)"
+        man_not_path = g_regex_new ("man:((?:[^ /.()#]|\\.(?=[^0-9]))+)"
                                     "(\\(([0-9A-Za-z]+)\\)|\\.([0-9A-Za-z]+)|)"
                                     "(#([^/ ()]+))?",
                                     0, 0, &error);
