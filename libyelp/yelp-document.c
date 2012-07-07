@@ -929,7 +929,7 @@ document_read_contents (YelpDocument *document,
 
         colors = yelp_settings_get_colors (yelp_settings_get_default ());
         g_string_append_printf (ret,
-                                "html { height: 100%; } "
+                                "html { height: 100%%; } "
                                 "body { margin: 0; padding: 0;"
                                 " background-color: %s; color: %s;"
                                 " direction: %s; } "
