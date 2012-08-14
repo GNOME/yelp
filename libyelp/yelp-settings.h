@@ -126,13 +126,6 @@ gboolean            yelp_settings_get_editor_mode      (YelpSettings       *sett
 void                yelp_settings_set_editor_mode      (YelpSettings       *settings,
                                                         gboolean            editor_mode);
 
-void                yelp_settings_set_env              (YelpSettings       *settings,
-                                                        const gchar        *env);
-void                yelp_settings_unset_env            (YelpSettings       *settings,
-                                                        const gchar        *env);
-gboolean            yelp_settings_check_env            (YelpSettings       *settings,
-                                                        const gchar        *env);
-
 gint                yelp_settings_cmp_icons            (const gchar        *icon1,
                                                         const gchar        *icon2);
 

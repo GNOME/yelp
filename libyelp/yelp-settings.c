@@ -53,7 +53,7 @@ struct _YelpSettingsPriv {
 
     gboolean      editor_mode;
 
-    GHashTable   *env;
+    GHashTable   *tokens;
 };
 
 enum {
@@ -91,6 +91,8 @@ static void           yelp_settings_set_property (GObject              *object,
 						  guint                 prop_id,
 						  const GValue         *value,
 						  GParamSpec           *pspec);
+static void           yelp_settings_set_if_token (YelpSettings         *settings,
+                                                  const gchar          *token);
 
 static void           gtk_theme_changed          (GtkSettings          *gtk_settings,
 						  GParamSpec           *pspec,
@@ -236,8 +238,8 @@ yelp_settings_init (YelpSettings *settings)
 	settings->priv->fonts[i] = NULL;
     }
 
-    settings->priv->env = g_hash_table_new_full (g_str_hash, g_str_equal,
-                                                 g_free, NULL);
+    settings->priv->tokens = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                                    g_free, NULL);
 }
 
 static void
@@ -288,13 +290,13 @@ yelp_settings_constructed (GObject *object)
     g_variant_unref (names);
     g_variant_unref (ret);
     if (env_shell)
-        yelp_settings_set_env (settings, "gnome-shell");
+        yelp_settings_set_if_token (settings, "platform:gnome-shell");
     else if (env_xfce)
-        yelp_settings_set_env (settings, "xfce");
+        yelp_settings_set_if_token (settings, "platform:xfce");
     else if (env_unity)
-        yelp_settings_set_env (settings, "unity");
+        yelp_settings_set_if_token (settings, "platform:unity");
     else if (env_panel)
-        yelp_settings_set_env (settings, "gnome-panel");
+        yelp_settings_set_if_token (settings, "platform:gnome-panel");
 }
 
 static void
@@ -312,7 +314,7 @@ yelp_settings_finalize (GObject *object)
 
     g_mutex_free (settings->priv->mutex);
 
-    g_hash_table_destroy (settings->priv->env);
+    g_hash_table_destroy (settings->priv->tokens);
 
     G_OBJECT_CLASS (yelp_settings_parent_class)->finalize (object);
 }
@@ -769,28 +771,14 @@ yelp_settings_set_editor_mode (YelpSettings *settings,
 
 /******************************************************************************/
 
-void
-yelp_settings_set_env (YelpSettings *settings,
-                       const gchar  *env)
+static void
+yelp_settings_set_if_token (YelpSettings *settings,
+                            const gchar  *token)
 {
-    if (g_hash_table_lookup (settings->priv->env, env) == NULL) {
-        gchar *ins = g_strdup (env);
-        g_hash_table_insert (settings->priv->env, ins, ins);
+    if (g_hash_table_lookup (settings->priv->tokens, token) == NULL) {
+        gchar *ins = g_strdup (token);
+        g_hash_table_insert (settings->priv->tokens, ins, ins);
     }
-}
-
-void
-yelp_settings_unset_env (YelpSettings *settings,
-                         const gchar  *env)
-{
-    g_hash_table_remove (settings->priv->env, env);
-}
-
-gboolean
-yelp_settings_check_env (YelpSettings *settings,
-                         const gchar  *env)
-{
-    return (g_hash_table_lookup (settings->priv->env, env) != NULL);
 }
 
 /******************************************************************************/
@@ -833,15 +821,15 @@ yelp_settings_get_all_params (YelpSettings *settings,
     else
         params[ix++] = g_strdup ("false()");
 
-    envstr = g_string_new ("'html");
-    envs = g_hash_table_get_keys (settings->priv->env);
+    envstr = g_string_new ("'");
+    envs = g_hash_table_get_keys (settings->priv->tokens);
     for (envi = envs; envi != NULL; envi = envi->next) {
         g_string_append_c (envstr, ' ');
         g_string_append (envstr, (gchar *) envi->data);
     }
     g_string_append_c (envstr, '\'');
     g_list_free (envs);
-    params[ix++] = g_strdup ("mal.if.env");
+    params[ix++] = g_strdup ("mal.if.custom");
     params[ix++] = g_string_free (envstr, FALSE);
 
     params[ix] = NULL;
