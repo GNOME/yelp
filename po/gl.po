@@ -7,6 +7,7 @@
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en http://www.trasno.net
 #
+#
 # Jesús Bravo Álvarez <suso@trasno.net>, 2002-2004.
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
@@ -15,21 +16,21 @@
 # Antón Méixome <meixome@mancomun.org>, 2009.
 # Fran Diéguez <frandieguez@gnome.org>, 2010, 2011.
 # Fran Dieguez <frandieguez@gnome.org>, 2011, 2012.
-#
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-25 13:53+0100\n"
-"PO-Revision-Date: 2012-02-25 13:53+0100\n"
-"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
+"POT-Creation-Date: 2012-08-17 00:17+0200\n"
+"PO-Revision-Date: 2012-08-16 20:55+0200\n"
+"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
+"Language-Team: Galego <proxecto@trasno.net>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.0\n"
 
 #. ID: install.tooltip
 #. This is a format message used to format tooltips on install: links. These
@@ -37,9 +38,9 @@ msgstr ""
 #. tooltip may also be used as the link text, if there's no link text in the
 #. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#. 
+#.
 #. <string/> - The package to install
-#. 
+#.
 #: yelp.xml.in:29(msg/msgstr)
 msgid "Install <string/>"
 msgstr "Instalar <string/>"
@@ -153,7 +154,7 @@ msgstr "Ver"
 
 #: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
-msgstr "Unha instancia de YelpView que controla esta xanela"
+msgstr "Unha instancia de YelpView para controlar"
 
 #: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
@@ -186,7 +187,7 @@ msgstr "Marcar esta páxina"
 
 #: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
-msgstr "Quitar marcador"
+msgstr "Retirar o marcador"
 
 #: ../libyelp/yelp-location-entry.c:1154
 #, c-format
@@ -202,43 +203,43 @@ msgstr "Cargando"
 msgid "The directory ‘%s’ does not exist."
 msgstr "O cartafol «%s» non existe."
 
-#: ../libyelp/yelp-settings.c:154
+#: ../libyelp/yelp-settings.c:156
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:155
+#: ../libyelp/yelp-settings.c:157
 msgid "A GtkSettings object to get settings from"
 msgstr "Un obxecto GtkSettings desde onde obter as configuracións"
 
-#: ../libyelp/yelp-settings.c:163
+#: ../libyelp/yelp-settings.c:165
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:164
+#: ../libyelp/yelp-settings.c:166
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Un obxecto GtkIconTheme desde onde obter iconas"
 
-#: ../libyelp/yelp-settings.c:172
+#: ../libyelp/yelp-settings.c:174
 msgid "Font Adjustment"
 msgstr "Axuste do tipo de letra"
 
-#: ../libyelp/yelp-settings.c:173
+#: ../libyelp/yelp-settings.c:175
 msgid "A size adjustment to add to font sizes"
 msgstr "Unha opción de tamaño onde engadir tamaños de tipo de letra"
 
-#: ../libyelp/yelp-settings.c:181
+#: ../libyelp/yelp-settings.c:183
 msgid "Show Text Cursor"
 msgstr "Mostrar o cursor de texto"
 
-#: ../libyelp/yelp-settings.c:182
+#: ../libyelp/yelp-settings.c:184
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Mostrar o cursor de texto ou o cursor para unha navegación accesíbel"
 
-#: ../libyelp/yelp-settings.c:190
+#: ../libyelp/yelp-settings.c:192
 msgid "Editor Mode"
 msgstr "Modo editor"
 
-#: ../libyelp/yelp-settings.c:191
+#: ../libyelp/yelp-settings.c:193
 msgid "Enable features useful to editors"
 msgstr "Activar as características útiles para editores"
 
@@ -410,52 +411,52 @@ msgstr "C_opiar o bloque de código"
 msgid "Save Code _Block As..."
 msgstr "Gardar o bloque de _código como…"
 
-#: ../libyelp/yelp-view.c:1497
+#: ../libyelp/yelp-view.c:1505
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "Buscar todos os resultados para «%s»"
 
-#: ../libyelp/yelp-view.c:1618
+#: ../libyelp/yelp-view.c:1626
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Non foi posíbel cargar un documento para «%s»"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1632
 #, c-format
 msgid "Could not load a document"
 msgstr "Non foi posíbel cargar un documento"
 
-#: ../libyelp/yelp-view.c:1698
+#: ../libyelp/yelp-view.c:1706
 msgid "Document Not Found"
 msgstr "Documento non atopado"
 
-#: ../libyelp/yelp-view.c:1700
+#: ../libyelp/yelp-view.c:1708
 msgid "Page Not Found"
 msgstr "Páxina non atopada"
 
-#: ../libyelp/yelp-view.c:1703
+#: ../libyelp/yelp-view.c:1711
 msgid "Cannot Read"
 msgstr "Non é posíbel ler"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1717
 msgid "Unknown Error"
 msgstr "Erro descoñecido"
 
-#: ../libyelp/yelp-view.c:1729
+#: ../libyelp/yelp-view.c:1737
 msgid "Search for packages containing this document."
 msgstr "Buscar os paquetes que conteñen este documento."
 
-#: ../libyelp/yelp-view.c:1882
+#: ../libyelp/yelp-view.c:1890
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "O URI «%s» non apunta a unha páxina válida."
 
-#: ../libyelp/yelp-view.c:1888
+#: ../libyelp/yelp-view.c:1896
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "O URI non apunta a unha páxina válida."
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1902
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Non foi posíbel analizar o URI «%s»."
@@ -523,7 +524,7 @@ msgstr "_Engadir marcador"
 
 #: ../src/yelp-window.c:261
 msgid "_Remove Bookmark"
-msgstr "_Eliminar marcador"
+msgstr "_Retirar marcador"
 
 #: ../src/yelp-window.c:265
 msgid "Find in Page..."
