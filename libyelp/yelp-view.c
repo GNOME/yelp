@@ -920,6 +920,7 @@ popup_open_link (GtkMenuItem *item,
         uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
 
     yelp_view_load_uri (view, uri);
+    g_object_unref (uri);
 
     g_free (priv->popup_link_uri);
     priv->popup_link_uri = NULL;
@@ -1444,6 +1445,7 @@ view_navigation_requested (WebKitWebView             *view,
     webkit_web_policy_decision_ignore (decision);
 
     yelp_view_load_uri ((YelpView *) view, uri);
+    g_object_unref (uri);
 
     return TRUE;
 }
