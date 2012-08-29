@@ -325,7 +325,6 @@ mallard_think (YelpMallardDocument *mallard)
 {
     YelpMallardDocumentPrivate *priv = GET_PRIV (mallard);
     GError *error = NULL;
-    YelpDocument *document;
     gboolean editor_mode;
 
     gchar **path;
@@ -345,7 +344,7 @@ mallard_think (YelpMallardDocument *mallard)
         error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
                              _("The directory ‘%s’ does not exist."),
                              path[0]);
-	yelp_document_error_pending ((YelpDocument *) document, error);
+	yelp_document_error_pending ((YelpDocument *) mallard, error);
         g_error_free (error);
 	goto done;
     }
