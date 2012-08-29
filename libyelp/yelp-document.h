@@ -59,110 +59,111 @@ struct _YelpDocumentClass {
     GObjectClass      parent_class;
 
     /* Virtual Functions */
-    gboolean      (*request_page)              (YelpDocument         *document,
-                                                const gchar          *page_id,
-                                                GCancellable         *cancellable,
-                                                YelpDocumentCallback  callback,
-                                                gpointer              user_data);
-    const gchar * (*read_contents)             (YelpDocument         *document,
-                                                const gchar          *page_id);
-    void          (*finish_read)               (YelpDocument         *document,
-                                                const gchar          *contents);
-    gchar *       (*get_mime_type)             (YelpDocument         *document,
-                                                const gchar          *page_id);
-    void          (*index)                     (YelpDocument         *document);
+    gboolean      (*request_page)                   (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     GCancellable         *cancellable,
+                                                     YelpDocumentCallback  callback,
+                                                     gpointer              user_data);
+    const gchar * (*read_contents)                  (YelpDocument         *document,
+                                                     const gchar          *page_id);
+    void          (*finish_read)                    (YelpDocument         *document,
+                                                     const gchar          *contents);
+    gchar *       (*get_mime_type)                  (YelpDocument         *document,
+                                                     const gchar          *page_id);
+    void          (*index)                          (YelpDocument         *document);
 
 };
 
-GType             yelp_document_get_type       (void);
+GType             yelp_document_get_type            (void);
 
-YelpDocument *    yelp_document_get_for_uri    (YelpUri              *uri);
+YelpDocument *    yelp_document_get_for_uri         (YelpUri              *uri);
+YelpDocument *    yelp_document_lookup_document_uri (const gchar          *docuri);
 
-YelpUri *         yelp_document_get_uri        (YelpDocument         *document);
+YelpUri *         yelp_document_get_uri             (YelpDocument         *document);
 
-gboolean          yelp_document_request_page   (YelpDocument         *document,
-                                                const gchar          *page_id,
-                                                GCancellable         *cancellable,
-                                                YelpDocumentCallback  callback,
-                                                gpointer              user_data);
-void              yelp_document_clear_contents (YelpDocument         *document);
-gchar **          yelp_document_get_requests   (YelpDocument         *document);
+gboolean          yelp_document_request_page        (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     GCancellable         *cancellable,
+                                                     YelpDocumentCallback  callback,
+                                                     gpointer              user_data);
+void              yelp_document_clear_contents      (YelpDocument         *document);
+gchar **          yelp_document_get_requests        (YelpDocument         *document);
 
-void              yelp_document_give_contents  (YelpDocument         *document,
-                                                const gchar          *page_id,
-                                                gchar                *contents,
-                                                const gchar          *mime);
-gchar *           yelp_document_get_mime_type  (YelpDocument         *document,
-                                                const gchar          *page_id);
-const gchar *     yelp_document_read_contents  (YelpDocument         *document,
-                                                const gchar          *page_id);
-void              yelp_document_finish_read    (YelpDocument         *document,
-                                                const gchar          *contents);
+void              yelp_document_give_contents       (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     gchar                *contents,
+                                                     const gchar          *mime);
+gchar *           yelp_document_get_mime_type       (YelpDocument         *document,
+                                                     const gchar          *page_id);
+const gchar *     yelp_document_read_contents       (YelpDocument         *document,
+                                                     const gchar          *page_id);
+void              yelp_document_finish_read         (YelpDocument         *document,
+                                                     const gchar          *contents);
 
-void              yelp_document_index          (YelpDocument         *document);
+void              yelp_document_index               (YelpDocument         *document);
 
-gchar **          yelp_document_list_page_ids  (YelpDocument         *document);
+gchar **          yelp_document_list_page_ids       (YelpDocument         *document);
 
-gchar *           yelp_document_get_page_id    (YelpDocument         *document,
-                                                const gchar          *id);
-void              yelp_document_set_page_id    (YelpDocument         *document,
-                                                const gchar          *id,
-                                                const gchar          *page_id);
+gchar *           yelp_document_get_page_id         (YelpDocument         *document,
+                                                     const gchar          *id);
+void              yelp_document_set_page_id         (YelpDocument         *document,
+                                                     const gchar          *id,
+                                                     const gchar          *page_id);
 
-gchar *           yelp_document_get_root_id    (YelpDocument         *document,
-                                                const gchar          *page_id);
-void              yelp_document_set_root_id    (YelpDocument         *document,
-                                                const gchar          *page_id,
-                                                const gchar          *root_id);
+gchar *           yelp_document_get_root_id         (YelpDocument         *document,
+                                                     const gchar          *page_id);
+void              yelp_document_set_root_id         (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     const gchar          *root_id);
 
-gchar *           yelp_document_get_prev_id    (YelpDocument         *document,
-                                                const gchar          *page_id);
-void              yelp_document_set_prev_id    (YelpDocument         *document,
-                                                const gchar          *page_id,
-                                                const gchar          *prev_id);
+gchar *           yelp_document_get_prev_id         (YelpDocument         *document,
+                                                     const gchar          *page_id);
+void              yelp_document_set_prev_id         (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     const gchar          *prev_id);
 
-char *            yelp_document_get_next_id    (YelpDocument         *document,
-                                                const gchar          *page_id);
-void              yelp_document_set_next_id    (YelpDocument         *document,
-                                                const gchar          *page_id,
-                                                const gchar          *next_id);
+char *            yelp_document_get_next_id         (YelpDocument         *document,
+                                                     const gchar          *page_id);
+void              yelp_document_set_next_id         (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     const gchar          *next_id);
 
-gchar *           yelp_document_get_up_id      (YelpDocument         *document,
-                                                const gchar          *page_id);
-void              yelp_document_set_up_id      (YelpDocument         *document,
-                                                const gchar          *page_id,
-                                                const gchar          *up_id);
+gchar *           yelp_document_get_up_id           (YelpDocument         *document,
+                                                     const gchar          *page_id);
+void              yelp_document_set_up_id           (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     const gchar          *up_id);
 
-gchar *           yelp_document_get_root_title (YelpDocument         *document,
-                                                const gchar          *page_id);
+gchar *           yelp_document_get_root_title      (YelpDocument         *document,
+                                                     const gchar          *page_id);
 
-gchar *           yelp_document_get_page_title (YelpDocument         *document,
-                                                const gchar          *page_id);
-void              yelp_document_set_page_title (YelpDocument         *document,
-                                                const gchar          *page_id,
-                                                const gchar          *title);
+gchar *           yelp_document_get_page_title      (YelpDocument         *document,
+                                                     const gchar          *page_id);
+void              yelp_document_set_page_title      (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     const gchar          *title);
 
-gchar *           yelp_document_get_page_desc  (YelpDocument         *document,
-                                                const gchar          *page_id);
-void              yelp_document_set_page_desc  (YelpDocument         *document,
-                                                const gchar          *page_id,
-                                                const gchar          *desc);
+gchar *           yelp_document_get_page_desc       (YelpDocument         *document,
+                                                     const gchar          *page_id);
+void              yelp_document_set_page_desc       (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     const gchar          *desc);
 
-gchar *           yelp_document_get_page_icon  (YelpDocument         *document,
-                                                const gchar          *page_id);
-void              yelp_document_set_page_icon  (YelpDocument         *document,
-                                                const gchar          *page_id,
-                                                const gchar          *icon);
+gchar *           yelp_document_get_page_icon       (YelpDocument         *document,
+                                                     const gchar          *page_id);
+void              yelp_document_set_page_icon       (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     const gchar          *icon);
 
-gboolean          yelp_document_has_page       (YelpDocument         *document,
-                                                const gchar          *page_id);
+gboolean          yelp_document_has_page            (YelpDocument         *document,
+                                                     const gchar          *page_id);
 
-void              yelp_document_signal         (YelpDocument         *document,
-                                                const gchar          *page_id,
-                                                YelpDocumentSignal    signal,
-                                                const GError         *error);
-void              yelp_document_error_pending  (YelpDocument         *document,
-                                                const GError         *error);
+void              yelp_document_signal              (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     YelpDocumentSignal    signal,
+                                                     const GError         *error);
+void              yelp_document_error_pending       (YelpDocument         *document,
+                                                     const GError         *error);
 
 G_END_DECLS
 
