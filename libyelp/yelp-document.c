@@ -1032,7 +1032,6 @@ document_read_contents (YelpDocument *document,
             g_free (index_title);
         g_free (txt);
         g_string_append (ret, "</div></body></html>");
-        g_mutex_unlock (document->priv->mutex);
 
         hash_replace (document->priv->contents, page_id, g_string_free (ret, FALSE));
         str = hash_lookup (document->priv->contents, page_id);
