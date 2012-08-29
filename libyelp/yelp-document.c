@@ -948,7 +948,7 @@ document_read_contents (YelpDocument *document,
         GVariantIter *iter;
         gchar *url, *title, *desc, *icon; /* do not free */
         gchar *index_title;
-        GString *ret = g_string_new ("<html><head><style type='text/css'>");
+        GString *ret = g_string_new ("<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><style type='text/css'>");
 
         colors = yelp_settings_get_colors (yelp_settings_get_default ());
         g_string_append_printf (ret,
@@ -1135,6 +1135,9 @@ document_get_mime_type (YelpDocument *document,
 			const gchar  *page_id)
 {
     gchar *real, *ret = NULL;
+
+    if (page_id != NULL && g_str_has_prefix (page_id, "search="))
+      return g_strdup ("application/xhtml+xml");
 
     g_mutex_lock (&document->priv->mutex);
     real = hash_lookup (document->priv->page_ids, page_id);
