@@ -73,7 +73,8 @@ struct _YelpDocumentPriv {
     GSList *reqs_search;      /* Pending search requests, not in reqs_all */
     gboolean indexed;
 
-    gchar  *doc_uri;
+    YelpUri *uri;
+    gchar   *doc_uri;
 
     /* Real page IDs map to themselves, so this list doubles
      * as a list of all valid page IDs.
@@ -273,10 +274,10 @@ yelp_document_class_init (YelpDocumentClass *klass)
 
     g_object_class_install_property (object_class,
                                      PROP_URI,
-                                     g_param_spec_string ("document-uri",
+                                     g_param_spec_object ("document-uri",
                                                           N_("Document URI"),
                                                           N_("The URI which identifies the document"),
-                                                          NULL,
+                                                          YELP_TYPE_URI,
                                                           G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE |
                                                           G_PARAM_STATIC_STRINGS));
 
@@ -340,6 +341,9 @@ yelp_document_finalize (GObject *object)
 {
     YelpDocument *document = YELP_DOCUMENT (object);
 
+    g_clear_object (&document->priv->uri);
+    g_free (document->priv->doc_uri);
+
     g_slist_free (document->priv->reqs_pending);
     hash_free (document->priv->reqs_by_page_id);
 
@@ -376,7 +380,7 @@ document_get_property (GObject      *object,
         g_value_set_boolean (value, document->priv->indexed);
         break;
     case PROP_URI:
-        g_value_set_string (value, document->priv->doc_uri);
+        g_value_set_object (value, document->priv->uri);
         break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -399,9 +403,9 @@ document_set_property (GObject      *object,
             g_idle_add ((GSourceFunc) document_indexed, document);
         break;
     case PROP_URI:
-        if (document->priv->doc_uri != NULL)
-            g_free (document->priv->doc_uri);
-        document->priv->doc_uri = g_value_dup_string (value);
+        document->priv->uri = g_value_dup_object (value);
+        if (document->priv->uri)
+            document->priv->doc_uri = yelp_uri_get_document_uri (document->priv->uri);
         break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -410,6 +414,14 @@ document_set_property (GObject      *object,
 }
 
 /******************************************************************************/
+
+YelpUri *
+yelp_document_get_uri (YelpDocument *document)
+{
+    g_assert (document != NULL && YELP_IS_DOCUMENT (document));
+
+    return document->priv->uri;
+}
 
 gchar **
 yelp_document_list_page_ids (YelpDocument *document)

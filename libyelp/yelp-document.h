@@ -78,6 +78,8 @@ GType             yelp_document_get_type       (void);
 
 YelpDocument *    yelp_document_get_for_uri    (YelpUri              *uri);
 
+YelpUri *         yelp_document_get_uri        (YelpDocument         *document);
+
 gboolean          yelp_document_request_page   (YelpDocument         *document,
                                                 const gchar          *page_id,
                                                 GCancellable         *cancellable,

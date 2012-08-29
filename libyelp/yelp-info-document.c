@@ -46,7 +46,6 @@ typedef enum {
 
 typedef struct _YelpInfoDocumentPrivate  YelpInfoDocumentPrivate;
 struct _YelpInfoDocumentPrivate {
-    YelpUri       *uri;
     InfoState    state;
 
     GMutex      mutex;
@@ -129,11 +128,6 @@ yelp_info_document_dispose (GObject *object)
 {
     YelpInfoDocumentPrivate *priv = GET_PRIV (object);
 
-    if (priv->uri) {
-        g_object_unref (priv->uri);
-        priv->uri = NULL;
-    }
-
     if (priv->sections) {
         g_object_unref (priv->sections);
         priv->sections = NULL;
@@ -168,22 +162,11 @@ yelp_info_document_finalize (GObject *object)
 YelpDocument *
 yelp_info_document_new (YelpUri *uri)
 {
-    YelpInfoDocument *info;
-    YelpInfoDocumentPrivate *priv;
-    gchar *doc_uri;
-
     g_return_val_if_fail (uri != NULL, NULL);
 
-    doc_uri = yelp_uri_get_document_uri (uri);
-    info = (YelpInfoDocument *) g_object_new (YELP_TYPE_INFO_DOCUMENT,
-                                              "document-uri", doc_uri,
-                                              NULL);
-    g_free (doc_uri);
-    priv = GET_PRIV (info);
-
-    priv->uri = g_object_ref (uri);
-
-    return (YelpDocument *) info;
+    return (YelpDocument *) g_object_new (YELP_TYPE_INFO_DOCUMENT,
+                                          "document-uri", uri,
+                                          NULL);
 }
 
 
@@ -230,7 +213,7 @@ info_request_page (YelpDocument         *document,
 	break;
     case INFO_STATE_PARSED:
     case INFO_STATE_STOP:
-        docuri = yelp_uri_get_document_uri (priv->uri);
+        docuri = yelp_uri_get_document_uri (yelp_document_get_uri (document));
         error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
                              _("The page ‘%s’ was not found in the document ‘%s’."),
                              page_id, docuri);
@@ -310,7 +293,7 @@ transform_finished (YelpTransform    *transform,
                        (GWeakNotify) transform_finalized,
                        info);
 
-    docuri = yelp_uri_get_document_uri (priv->uri);
+    docuri = yelp_uri_get_document_uri (yelp_document_get_uri ((YelpDocument *) info));
     error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
                          _("The requested page was not found in the document ‘%s’."),
                          docuri);
@@ -366,7 +349,7 @@ info_document_process (YelpInfoDocument *info)
     gint  params_i = 0;
     gchar **params = NULL;
 
-    file = yelp_uri_get_file (priv->uri);
+    file = yelp_uri_get_file (yelp_document_get_uri ((YelpDocument *) info));
     if (file == NULL) {
         error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
                              _("The file does not exist."));

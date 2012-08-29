@@ -117,7 +117,6 @@ G_DEFINE_TYPE (YelpMallardDocument, yelp_mallard_document, YELP_TYPE_DOCUMENT)
 
 typedef struct _YelpMallardDocumentPrivate  YelpMallardDocumentPrivate;
 struct _YelpMallardDocumentPrivate {
-    YelpUri       *uri;
     MallardState   state;
 
     GMutex         mutex;
@@ -198,7 +197,6 @@ yelp_mallard_document_finalize (GObject *object)
 {
     YelpMallardDocumentPrivate *priv = GET_PRIV (object);
 
-    g_object_unref (priv->uri);
     g_mutex_clear (&priv->mutex);
     g_hash_table_destroy (priv->pages_hash);
 
@@ -216,19 +214,15 @@ yelp_mallard_document_new (YelpUri *uri)
 {
     YelpMallardDocument *mallard;
     YelpMallardDocumentPrivate *priv;
-    gchar *doc_uri;
     gchar **path;
     gint path_i;
 
     g_return_val_if_fail (uri != NULL, NULL);
 
-    doc_uri = yelp_uri_get_document_uri (uri);
     mallard = (YelpMallardDocument *) g_object_new (YELP_TYPE_MALLARD_DOCUMENT,
-                                                    "document-uri", doc_uri,
+                                                    "document-uri", uri,
                                                     NULL);
-    g_free (doc_uri);
     priv = GET_PRIV (mallard);
-    priv->uri = g_object_ref (uri);
 
     yelp_document_set_page_id ((YelpDocument *) mallard, NULL, "index");
     yelp_document_set_page_id ((YelpDocument *) mallard, "index", "index");
@@ -299,7 +293,7 @@ mallard_request_page (YelpDocument         *document,
         break;
     case MALLARD_STATE_BLANK:
     case MALLARD_STATE_STOP:
-        docuri = yelp_uri_get_document_uri (priv->uri);
+        docuri = yelp_uri_get_document_uri (yelp_document_get_uri (document));
         error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
                              _("The page ‘%s’ was not found in the document ‘%s’."),
                              page_id, docuri);
@@ -336,7 +330,7 @@ mallard_think (YelpMallardDocument *mallard)
 
     editor_mode = yelp_settings_get_editor_mode (yelp_settings_get_default ());
 
-    path = yelp_uri_get_search_path (priv->uri);
+    path = yelp_uri_get_search_path (yelp_document_get_uri ((YelpDocument *) mallard));
     if (!path || path[0] == NULL ||
         !g_file_test (path[0], G_FILE_TEST_IS_DIR)) {
         /* This basically only happens when someone passes an actual directory
@@ -453,7 +447,7 @@ mallard_try_run (YelpMallardDocument *mallard,
     }
 
     if (page_data == NULL) {
-        gchar *docuri = yelp_uri_get_document_uri (priv->uri);
+        gchar *docuri = yelp_uri_get_document_uri (yelp_document_get_uri ((YelpDocument *) mallard));
         error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
                              _("The page ‘%s’ was not found in the document ‘%s’."),
                              page_id, docuri);
@@ -883,7 +877,7 @@ xml_node_is_ns_name (xmlNodePtr      node,
     if (node->ns == NULL)
         return (ns == NULL);
     else if (ns != NULL && node->ns->href != NULL)
-        return (xmlStrEqual (ns, node->ns->href) && xmlStrEqual (name, node->name)); 
+        return (xmlStrEqual (ns, node->ns->href) && xmlStrEqual (name, node->name));
     return FALSE;
 }
 
@@ -959,11 +953,13 @@ mallard_index_threaded (YelpMallardDocument *mallard)
     gint path_i;
     GHashTable *ids;
     gchar *doc_uri;
+    YelpUri *document_uri;
     YelpMallardDocumentPrivate *priv = GET_PRIV (mallard);
 
-    doc_uri = yelp_uri_get_document_uri (priv->uri);
+    document_uri = yelp_document_get_uri (YELP_DOCUMENT (mallard));
+    doc_uri = yelp_uri_get_document_uri (document_uri);
     ids = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
-    path = yelp_uri_get_search_path (priv->uri);
+    path = yelp_uri_get_search_path (document_uri);
     for (path_i = 0; path[path_i] != NULL; path_i++) {
         GFile *gfile;
         GFileEnumerator *children;
@@ -1039,7 +1035,7 @@ mallard_index_threaded (YelpMallardDocument *mallard)
             mallard_index_node (index);
 
             tmp = g_strconcat ("xref:", id, NULL);
-            uri = yelp_uri_new_relative (priv->uri, tmp);
+            uri = yelp_uri_new_relative (document_uri, tmp);
             yelp_uri_resolve_sync (uri);
             full_uri = yelp_uri_get_canonical_uri (uri);
             g_free (tmp);
