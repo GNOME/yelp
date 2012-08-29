@@ -152,13 +152,22 @@ static void           str_unref                 (const gchar          *str);
 
 static GMutex str_mutex;
 static GHashTable  *str_refs  = NULL;
+static GHashTable *documents = NULL;
 
 /******************************************************************************/
 
 YelpDocument *
+yelp_document_lookup_document_uri (const gchar *docuri)
+{
+    if (!documents)
+        return NULL;
+
+    return g_hash_table_lookup (documents, docuri);
+}
+
+YelpDocument *
 yelp_document_get_for_uri (YelpUri *uri)
 {
-    static GHashTable *documents = NULL;
     YelpUriDocumentType doctype;
     gchar *docuri = NULL;
     gchar *page_id, *tmp;
