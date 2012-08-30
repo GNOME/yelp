@@ -1192,7 +1192,10 @@ resolve_xref_uri (YelpUri *uri)
     }
     if (priv->page_id && priv->page_id[0] == '\0') {
         g_free (priv->page_id);
-        priv->page_id = NULL;
+        if (g_str_has_prefix (priv->docuri, "help:"))
+            priv->page_id = g_strdup ("index");
+        else
+            priv->page_id = NULL;
     }
 
     if (priv->page_id &&
