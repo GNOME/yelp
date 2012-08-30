@@ -1039,12 +1039,19 @@ document_read_contents (YelpDocument *document,
         }
         else {
             while (g_variant_iter_loop (iter, "(&s&s&s&s)", &url, &title, &desc, &icon)) {
+                gchar *xref_uri = NULL;
+
+                if (g_str_has_prefix (url, document->priv->doc_uri))
+                    xref_uri = g_strdup_printf ("xref:%s", url + strlen (document->priv->doc_uri) + 1);
+
                 tmp = g_markup_printf_escaped ("<div><a class='linkdiv' href='%s'><div class='linkdiv'>"
                                                "<div class='title'>%s</div>"
                                                "<div class='desc'>%s</div>"
                                                "</div></a></div>",
-                                               url, title, desc);
+                                               xref_uri && xref_uri[0] != '\0' ? xref_uri : url,
+                                               title, desc);
                 g_string_append (ret, tmp);
+                g_free (xref_uri);
                 g_free (tmp);
             }
         }
