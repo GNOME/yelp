@@ -1634,6 +1634,7 @@ view_load_page (YelpView *view)
                                  _("Could not load a document"));
         }
         view_show_error_page (view, error);
+        g_error_free (error);
         return;
     }
 
@@ -1798,7 +1799,6 @@ view_show_error_page (YelpView *view,
                                  "UTF-8",
                                  "file:///error/");
     g_signal_handler_unblock (view, priv->navigation_requested);
-    g_error_free (error);
     g_free (title_m);
     g_free (content_beg);
     if (content_end != NULL)
@@ -2029,8 +2029,10 @@ uri_resolved (YelpUri  *uri,
 
     if (error == NULL)
         view_load_page (view);
-    else
+    else {
         view_show_error_page (view, error);
+        g_error_free (error);
+    }
 }
 
 static void

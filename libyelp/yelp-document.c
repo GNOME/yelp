@@ -1437,7 +1437,6 @@ request_idle_error (Request *request)
 	callback = request->callback;
 	user_data = request->user_data;
 	error = request->error;
-	request->error = NULL;
 	priv->reqs_pending = g_slist_remove (priv->reqs_pending, request);
     }
 
@@ -1450,6 +1449,7 @@ request_idle_error (Request *request)
 		  user_data,
 		  error);
 
+    g_clear_error (&request->error);
     g_object_unref (document);
     return FALSE;
 }
