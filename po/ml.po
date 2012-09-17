@@ -2,23 +2,24 @@
 # translation of yelp.HEAD.ml.po to
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+#
 # FSF-India <locale@gnu.org.in>, 2003.
 # Suresh VP <mvpsuresh@yahoo.com>, 2003.
-# Ani Peter <apeter@redhat.com>, 2006, 2009.
+# Ani Peter <apeter@redhat.com>, 2006, 2009, 2012.
 # Aslam Muhammad <aslamckra@gmail.com>, 2012.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master.ml\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-03-24 08:13+0000\n"
-"PO-Revision-Date: 2012-03-25 00:44+0530\n"
-"Last-Translator: Praveen Arimbrathodiyil <pravi.a@gmail.com>\n"
-"Language-Team:  <discuss@lists.smc.org.in>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-05-14 18:17+0000\n"
+"PO-Revision-Date: 2012-09-17 19:52+0000\n"
+"Last-Translator: Ani Peter <apeter@redhat.com>\n"
+"Language-Team: Malayalam <discuss@lists.smc.org.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. ID: install.tooltip
@@ -27,9 +28,9 @@ msgstr ""
 #. tooltip may also be used as the link text, if there's no link text in the
 #. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#. 
+#.
 #. <string/> - The package to install
-#. 
+#.
 #: yelp.xml.in:29(msg/msgstr)
 msgid "Install <string/>"
 msgstr "ഇന്‍സ്റ്റോള്‍ <string/>"
@@ -44,24 +45,20 @@ msgstr "അസാധുവായ കംപ്രസ്സ്ഡ് ഡാറ്�
 msgid "Not enough memory"
 msgstr "വേണ്ടത്ര മെമ്മറി ലഭ്യമല്ല"
 
-#: ../libyelp/yelp-docbook-document.c:282
-#: ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
 #: ../libyelp/yelp-mallard-document.c:306
-#: ../libyelp/yelp-mallard-document.c:458
-#: ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "'%s' എന്ന താള്‍ '%s' രേഖയില്‍ ലഭ്യമല്ല."
 
-#: ../libyelp/yelp-docbook-document.c:317
-#: ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
 #: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "ഫയല്‍ നിലവിലില്ല."
 
-#: ../libyelp/yelp-docbook-document.c:327
-#: ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
 #: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
@@ -69,20 +66,25 @@ msgstr "ഫയല്‍ ‘%s’ നിലവിലില്ല."
 
 #: ../libyelp/yelp-docbook-document.c:342
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
 msgstr "ശരിയായ XML വിവരണക്കുറിപ്പല്ലാത്തതിനാല്‍, ‘%s’ ഫയല്‍ പാഴ്സ് ചെയ്യുവാന്‍ സാധ്യമായില്ല."
 
 #: ../libyelp/yelp-docbook-document.c:355
 #, c-format
-msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
-msgstr "ചില ഫയലുകള്‍ ശരിയായ XML വിവരണക്കുറിപ്പല്ലാത്തതിനാല്‍, ഫയല്‍ ‘%s’  പാഴ്സ് ചെയ്യുവാന്‍ സാധ്യമായില്ല."
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+"ചില ഫയലുകള്‍ ശരിയായ XML വിവരണക്കുറിപ്പല്ലാത്തതിനാല്‍, ഫയല്‍ ‘%s’  പാഴ്സ് ചെയ്യുവാന്‍ "
+"സാധ്യമായില്ല."
 
 #: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "അപരിചിതം"
 
-#: ../libyelp/yelp-docbook-document.c:826
-#: ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
 #: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
@@ -123,33 +125,32 @@ msgstr "സാമ്യമുള്ള സഹായ താളുകള്‍ ക
 msgid "An unknown error occurred."
 msgstr "ഒരു അപരിചിത പിശക് സംഭവിച്ചിരിക്കുന്നു."
 
-#: ../libyelp/yelp-help-list.c:478
-#: ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
 msgid "All Help Documents"
 msgstr "എല്ലാ സഹായ രേഖകളും"
 
 #: ../libyelp/yelp-info-document.c:397
 #, c-format
 msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "വിവരങ്ങള്‍ ശരിയായ രീതിയില്‍ ലഭ്യമാക്കുന്ന താളല്ലാത്തതിനാല്‍ ഫയല്‍ ‘%s’ പാഴ്സ് ചെയ്യുവാന്‍ സാധ്യമായില്ല. "
+msgstr ""
+"വിവരങ്ങള്‍ ശരിയായ രീതിയില്‍ ലഭ്യമാക്കുന്ന താളല്ലാത്തതിനാല്‍ ഫയല്‍ ‘%s’ പാഴ്സ് ചെയ്യുവാന്‍ "
+"സാധ്യമായില്ല. "
 
 #: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "കാഴ്ച"
 
 #: ../libyelp/yelp-location-entry.c:337
-#, fuzzy
 msgid "A YelpView instance to control"
-msgstr "ശബ്ദ ക്രമീകരണി ആരംഭിക്കുന്നതില്‍ പരാജയം: %s"
+msgstr "നിയന്ത്രിയ്ക്കുന്നതിനുള്ള YelpView ഇന്‍സ്റ്റന്‍സ്"
 
 #: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "അടയാളക്കുറിപ്പുകള്‍"
 
 #: ../libyelp/yelp-location-entry.c:353
-#, fuzzy
 msgid "A YelpBookmarks implementation instance"
-msgstr "സ്വകാര്യ ഇന്‍സ്റ്റന്‍സ് തുടങ്ങുക"
+msgstr "ഒരു YelpBookmarks ഇന്‍സ്റ്റന്‍സ്"
 
 #: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
@@ -157,10 +158,9 @@ msgstr "തിരച്ചില്‍ പ്രവര്‍ത്തനസജ�
 
 #: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
-msgstr ""
+msgstr "ഒരു തെരച്ചില്‍ ഫീള്‍ഡായി സ്ഥലത്തിനുള്ള എന്‍ട്രി നല്‍കുവാന്‍ സാധ്യമോ എന്നു്"
 
-#: ../libyelp/yelp-location-entry.c:440
-#: ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "തിരയുക..."
 
@@ -168,13 +168,11 @@ msgstr "തിരയുക..."
 msgid "Clear the search text"
 msgstr "തിരച്ചില്‍ പദാവലി ശൂന്യമാക്കുക"
 
-#: ../libyelp/yelp-location-entry.c:831
-#: ../libyelp/yelp-location-entry.c:1593
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "ഈ താളിന് അടയാളക്കുറിപ്പു് വയ്കുക"
 
-#: ../libyelp/yelp-location-entry.c:839
-#: ../libyelp/yelp-location-entry.c:1601
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "അടയാളക്കുറിപ്പ് നീക്കം ചെയ്യുക"
 
@@ -184,7 +182,6 @@ msgid "Search for “%s”"
 msgstr "\"%s\" -നായി തിരയുക"
 
 #: ../libyelp/yelp-location-entry.c:1458
-#| msgid "Loading..."
 msgid "Loading"
 msgstr "എടുക്കുന്നു"
 
@@ -198,27 +195,24 @@ msgid "GtkSettings"
 msgstr "GtkSettings"
 
 #: ../libyelp/yelp-settings.c:155
-#, fuzzy
 msgid "A GtkSettings object to get settings from"
-msgstr "എടുത്തുകാണിക്കേണ്ട ശൈലികള്‍ ലഭ്യമാക്കേണ്ട ലാങ്വേജ് ഒബ്ജക്ട്"
+msgstr "സജ്ജീകരണങ്ങള്‍ ലഭ്യമാക്കുന്നൊരു GtkSettings വസ്തു"
 
 #: ../libyelp/yelp-settings.c:163
 msgid "GtkIconTheme"
-msgstr ""
+msgstr "GtkIconTheme"
 
 #: ../libyelp/yelp-settings.c:164
-#, fuzzy
 msgid "A GtkIconTheme object to get icons from"
-msgstr "എടുത്തുകാണിക്കേണ്ട ശൈലികള്‍ ലഭ്യമാക്കേണ്ട ലാങ്വേജ് ഒബ്ജക്ട്"
+msgstr "പ്രതിരൂപങ്ങള്‍ ലഭ്യമാക്കുന്നൊരു GtkIconTheme വസ്തു"
 
 #: ../libyelp/yelp-settings.c:172
-#, fuzzy
 msgid "Font Adjustment"
-msgstr "ഇടത്ത് നിന്നും വലത്തേക്കുളള ക്രമീകരണം"
+msgstr "അക്ഷരസഞ്ചയ ക്രമീകരണം"
 
 #: ../libyelp/yelp-settings.c:173
 msgid "A size adjustment to add to font sizes"
-msgstr ""
+msgstr "അക്ഷരസഞ്ചയ വ്യാപ്തികളിലേക്കു് ചേര്‍ക്കുന്നതിനുള്ള ക്രമീകരണം"
 
 #: ../libyelp/yelp-settings.c:181
 msgid "Show Text Cursor"
@@ -226,7 +220,7 @@ msgstr "പദാവലി സൂചിക കാണിക്കുക"
 
 #: ../libyelp/yelp-settings.c:182
 msgid "Show the text cursor or caret for accessible navigation"
-msgstr ""
+msgstr "ലഭ്യമായ നാവിഗേഷനുള്ള കാരറ്റ് അല്ലെങ്കില്‍ ടെക്സ്റ്റ് കല്‍സര്‍ കാണിയ്ക്കുക"
 
 #: ../libyelp/yelp-settings.c:190
 msgid "Editor Mode"
@@ -245,18 +239,15 @@ msgid "The filename of the sqlite database"
 msgstr "sqlite ഡാറ്റ്ബേസിന്റെ ഫയല്‍നാമം"
 
 #: ../libyelp/yelp-transform.c:171
-#| msgid "Invalid Stylesheet"
 msgid "XSLT Stylesheet"
 msgstr "എക്സ്എസ്എല്‍ടി സ്റ്റൈല്‍ഷീറ്റ്"
 
 #: ../libyelp/yelp-transform.c:172
-#, fuzzy
 msgid "The location of the XSLT stylesheet"
-msgstr "സ്വന്തം _സ്റ്റൈല്‍ഷീറ്റുപയോഗിയ്ക്കുക"
+msgstr "XSLT സ്റ്റൈല്‍ഷീറ്റിനുള്ള സ്ഥാനം"
 
-#: ../libyelp/yelp-transform.c:379
-#: ../libyelp/yelp-transform.c:394
-#, fuzzy, c-format
+#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
+#, c-format
 #| msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "XSLT സ്റ്റൈല്‍ഷീറ്റ് ‘%s’ ലഭ്യമല്ല, അല്ലെങ്കില്‍ തെറ്റാണു്."
@@ -294,20 +285,17 @@ msgid "Yelp URI"
 msgstr "Yelp URI"
 
 #: ../libyelp/yelp-view.c:424
-#, fuzzy
 msgid "A YelpUri with the current location"
-msgstr "നിലവിലുളള സ്ഥാനം ലഭ്യമാക്കുന്നതു്  നിര്‍‌ത്തുക"
+msgstr "നിലവിലുളള സ്ഥാനം ലഭ്യമാക്കുന്ന YelpUri"
 
 #: ../libyelp/yelp-view.c:432
-#, fuzzy
 #| msgid "Loading..."
 msgid "Loading State"
-msgstr "തെരഞ്ഞെടുത്തു (അവസ്ഥ)"
+msgstr "ലഭ്യമാക്കുന്ന  (അവസ്ഥ"
 
 #: ../libyelp/yelp-view.c:433
-#, fuzzy
 msgid "The loading state of the view"
-msgstr "നാമാവലിയായ് കാണിക്കുക"
+msgstr "കാഴ്ചയുടെ ലഭ്യമാക്കുന്ന അവസ്ഥ"
 
 #: ../libyelp/yelp-view.c:442
 msgid "Page ID"
@@ -315,7 +303,7 @@ msgstr "താള്‍ ഐ.ഡി."
 
 #: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
-msgstr ""
+msgstr "കാണുന്ന താളിന്റെ ആസ്ഥന താളിനുള്ള ഐഡി"
 
 #: ../libyelp/yelp-view.c:451
 msgid "Root Title"
@@ -323,7 +311,7 @@ msgstr "റൂട്ട് തലക്കെട്ട്"
 
 #: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
-msgstr ""
+msgstr "കാണുന്ന താളിന്റെ ആസ്ഥാന താളിനുള്ള തലക്കെട്ട്"
 
 #: ../libyelp/yelp-view.c:460
 msgid "Page Title"
@@ -352,6 +340,8 @@ msgstr "കണ്ട്കൊണ്ടിരിക്കുന്ന താള�
 #: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
+"നിങ്ങള്‍ക്കു് PackageKit ലഭ്യമല്ല. പാക്കേജ് ഇന്‍സ്റ്റോള്‍ ചെയ്യുന്ന കണ്ണിയ്ക്കു PackageKit "
+"ആവശ്യമുണ്ടു്."
 
 #: ../libyelp/yelp-view.c:1013
 msgid "Save Image"
@@ -456,10 +446,10 @@ msgid "The URI does not point to a valid page."
 msgstr "URI സാധുവായ ഒരു താളിനെ സൂചിപ്പിക്കുന്നില്ല."
 
 #: ../libyelp/yelp-view.c:1902
-#, fuzzy, c-format
+#, c-format
 #| msgid "The file ‘%s’ does not exist."
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "പ്ലേലിസ്റ്റ് '%s' തുറക്കാന്‍ കഴിഞ്ഞില്ല, ഇതിനു കേടു വന്നിരിക്കാം"
+msgstr "യുആര്‍ഐ ‘%s’ പാഴ്സ് ചെയ്യുവാന്‍ സാധ്യമല്ല."
 
 #: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
@@ -481,8 +471,7 @@ msgstr "_ചെറിയ പദാവലി"
 msgid "Decrease the size of the text"
 msgstr "പദാവലിയുടെ വലിപ്പം ചുരുക്കുക"
 
-#: ../src/yelp-application.c:253
-#: ../src/yelp-window.c:1360
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
 #: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "സഹായം"
@@ -541,7 +530,7 @@ msgstr "പ്രയോഗം"
 
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
-msgstr ""
+msgstr "ജാലകം നിയന്ത്രിയ്ക്കുന്നൊരു YelpApplication ഇന്‍സ്റ്റന്‍സ്"
 
 #: ../src/yelp-window.c:429
 msgid "Read Link _Later"
