@@ -1,8 +1,8 @@
 # Thai translation for yelp.
-# Copyright (C) 2003-2008 Free Software Foundation, Inc.
+# Copyright (C) 2003-2012 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 # Paisa Seeluangsawat <paisa@users.sf.net>, 2003, 2004.
-# Theppitak Karoonboonyanan <Thep@linux.thai.net>, 2005-2008.
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2008, 2012.
 # aka.ape <aka.ape@gmail.com>, 2007.
 # Sira Nokyoongtong <gumaraa@gmail.com>, 2010.
 #
@@ -10,864 +10,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&component=general\n"
-"POT-Creation-Date: 2010-06-16 22:04+0000\n"
-"PO-Revision-Date: 2010-06-20 11:34+0700\n"
-"Last-Translator: Sira Nokyoongtong <gumaraa@gmail.com>\n"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-05-14 18:17+0000\n"
+"PO-Revision-Date: 2012-09-21 12:39+0700\n"
+"Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-# Info as in "Emacs info page"
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "GNU Info Pages"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "คู่มือประกอบคำสั่งในบรรทัดคำสั่งตามปกติ (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "โปรแกรมใช้งาน"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "ฟังก์ชัน BLT"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "แฟ้มค่าตั้ง"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "ฟังก์ชัน Curses"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "เขียนโปรแกรม"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "ฟังก์ชันฟอร์แทรน"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "เกม"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "อุปกรณ์ฮาร์ดแวร์"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "รูทีนเคอร์เนล"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "Manual Pages"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "ฟังก์ชันเกี่ยวกับระบบเสียงผ่านเครือข่าย"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "โปรแกรม OpenSSL"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "การตั้งค่า OpenSSL"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "ฟังก์ชัน OpenSSL"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "ภาพรวม OpenSSL"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "ภาพรวม"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "ฟังก์ชัน POSIX"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "แฟ้มส่วนหัว POSIX"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "ฟังก์ชัน Perl"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "ฟังก์ชัน Qt"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "ฟังก์ชัน Readline"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "หมวด 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "หมวด 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "หมวด 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "หมวด 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "หมวด 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "หมวด 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "หมวด 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "หมวด 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "หมวด 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "หมวด 3qt"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "หมวด 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "หมวด 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "หมวด 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "หมวด 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "หมวด 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "หมวด 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "หมวด 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "หมวด 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "หมวด 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "หมวด 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "หมวด 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "หมวด 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "หมวด 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "หมวด 1, 1p, 1g และ 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "หมวด 3, 3o และ 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "หมวด 3form และ 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "หมวด 3ncurses และ 3curses"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "หมวด 3pm และ 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "หมวด 3x และ 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "หมวด 7 และ 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "หมวด 8 และ 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "การดูแลระบบ"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "ฟังก์ชันเรียกระบบ"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "ฟังก์ชันฟอร์ม/เมนูของซิสเท็มไฟว์"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "ฟังก์ชัน TIFF"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "โปรแกรม Termcap"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "คู่มือประกอบคำสั่งในบรรทัดคำสั่งตามปกติ (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "โปรแกรมใน X11"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "การตั้งค่า X11"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "อุปกรณ์ X11"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "ฟังก์ชัน X11"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "เกม X11"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "ภาพรวม X11"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "กราฟิก 2 มิติ"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "กราฟิก 3 มิติ"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "สิ่งอำนวยความสะดวก"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "เกมแอ็คชั่น"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "เกมผจญภัย"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "ขบขัน"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "โปรแกรมสำหรับแสดงและจัดการภาพกราฟิกส์"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "โปรแกรมเกี่ยวกับเสียงและวีดิทัศน์"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "โปรแกรมเพื่อการเรียนรู้"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "เกมโต้ตอบ"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "เครื่องมือจัดเก็บข้อมูล"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "ศิลปะ"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "ปัญญาประดิษฐ์"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "ดาราศาสตร์"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "ชีววิทยา"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "เกมบล็อค"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "เกมหมากกระดาน"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "การประกอบสร้าง"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "เครื่องคิดเลข"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "ปฏิทิน"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "เกมไพ่"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "เครื่องมือทำแผนภูมิ"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "สนทนา"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "เคมี"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "นาฬิกา"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "เครื่องมือบีบอัดข้อมูล"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "วิทยาการคอมพิวเตอร์"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "การก่อสร้าง"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "การจัดการที่อยู่ติดต่อ"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "การสร้างภาพนามธรรมของข้อมูล"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "ฐานข้อมูล"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "เครื่องมือดีบั๊ก"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "พื้นโต๊ะ"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "ค่าตั้งพื้นโต๊ะ"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "หมุนโทรออก"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "พจนานุกรม"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "การเขียนแผ่น"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "เศรษฐศาสตร์"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "การศึกษา"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "ไฟฟ้า"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "อิเล็กทรอนิกส์"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "เครื่องมือรับส่งอีเมล"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "โปรแกรมเลียนแบบ"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "วิศวกรรม"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "โปรแกรมจัดการแฟ้ม"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "เครื่องมือประมวลผลแฟ้ม"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "เครื่องมือถ่ายโอนแฟ้ม"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "ระบบแฟ้ม"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "เครื่องมือทางการเงิน"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "เครื่องมือจัดการผังงาน"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "โปรแกรม GNOME"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "เครื่องมือออกแบบ GUI"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "โปรแกรมทั่วไปสำหรับเดสก์ท็อป GNOME"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "โปรแกรมทั่วไปสำหรับเดสก์ท็อป KDE"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "ภูมิศาสตร์"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "ธรณีวิทยา"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "โลกศาสตร์"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "กราฟิก"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "คำแนะนำและคู่มือสำหรับโปรแกรมที่เชื่อมต่อไปยังโลกภายนอก"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "คำแนะนำสำหรับการพัฒนาโปรแกรม"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "วิทยุสมัครเล่น"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "การตั้งค่าฮาร์ดแวร์"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "มาสนุกกัน"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "ประวัติศาสตร์"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "IDE"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "โปรแกรมลูกข่าย IRC"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "การประมวลผลภาพ"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "ข้อความทันใจ"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "อินเทอร์เน็ต"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "จาวา"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "โปรแกรม KDE"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "เกมสำหรับเด็ก"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr "ศึกษาวิธีทำให้ระบบของคุณสามารถอำนวยความสะดวกผู้พิการประเภทต่างๆ ได้"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "สัญญาอนุญาต"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "วรรณคดี"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "เกมตรรกะ"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "คณิตศาสตร์"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "โปรแกรมทางการแพทย์"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "Midi"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "เอกสารจิปาถะ"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "เครื่องมือปรับผสมเสียง"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "โปรแกรมติดตามระบบ"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "Motif"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "ดนตรี"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "ข่าว"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "การวิเคราะห์เชิงตัวเลข"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "OCR"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "โปรแกรมสำนักงาน"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "โปรแกรมสำนักงาน"
-
-# There should be a better translation.
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "เอกสารอื่นๆ"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "P2P"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "การติดต่อสื่อสารกับ PDA"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "เครื่องมือจัดการแพกเกจ"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "การคำนวณแบบขนาน"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "การถ่ายภาพ"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "ฟิสิกส์"
-
-#
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "โปรแกรมเล่น"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "เครื่องมือนำเสนอ"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "การพิมพ์"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "เครื่องมือวัดประสิทธิภาพ"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "เครื่องมือบริหารโครงการ"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "การจัดพิมพ์"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "กราฟิกแบบบิตแมป"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "เครื่องอัด"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "การเข้าถึงเครื่องในเครือข่าย"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "การติดตามประวัติการแก้ไข"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "วิทยาการหุ่นยนต์"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "เกมเล่นบทบาท"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "การสแกน"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "วิทยาศาสตร์"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "ระบบความปลอดภัย"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "เครื่องมือจัดลำดับเสียง"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "การตั้งค่า"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "การตั้งค่าต่างๆ ที่ผู้ใช้สามารถทำได้ เพื่อให้สภาพแวดล้อมเหมาะกับการใช้งาน"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "เกมจำลองสถานการณ์"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "เสียง"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "เสียงและวีดิทัศน์"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "การแก้ไขเสียงและวีดิทัศน์"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "กีฬา"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "เกมกีฬา"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "เครื่องมือตารางคำนวณ"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "เกมวางแผน"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "ระบบ"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "ทีวี"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "โทรศัพท์"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "เครื่องมือจัดการการโทรศัพท์"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "โปรแกรมจำลองเทอร์มินัล"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "เครื่องมือแก้ไขข้อความ"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "เครื่องมือประมวลผลข้อความ"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "เครื่องมือสำหรับช่วยจัดการคอมพิวเตอร์ของคุณ"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "เครื่องมือแปลข้อความ"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "เครื่องจูน"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "อรรถประโยชน์"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "เครื่องมือสำหรับช่วยทำงานต่างๆ"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "กราฟิกแบบเวกเตอร์"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "วีดิทัศน์"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "การประชุมทางวีดิทัฒน์"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "โปรแกรมแสดง"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "เว็บเบราว์เซอร์"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "การสร้างเว็บ"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "ยินดีต้อนรับสู่โปรแกรมอ่านวิธีใช้ของ GNOME"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "โปรแกรมประมวลคำ"
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <string/> - The package to install
+#.
+#: yelp.xml.in:29(msg/msgstr)
+msgid "Install <string/>"
+msgstr "ติดตั้ง <string/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -879,142 +43,195 @@ msgstr "ข้อมูลบีบอัดไม่ถูกต้อง"
 msgid "Not enough memory"
 msgstr "หน่วยความจำไม่พอ"
 
-#: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:233
-#: ../libyelp/yelp-mallard-document.c:254
-#: ../libyelp/yelp-mallard-document.c:397 ../libyelp/yelp-man-document.c:269
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "ไม่พบหน้า ‘%s’ ในเอกสาร ‘%s’"
 
-#: ../libyelp/yelp-docbook-document.c:298 ../libyelp/yelp-info-document.c:366
-#: ../libyelp/yelp-man-document.c:403
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "แฟ้มนี้ไม่มีอยู่"
 
-#: ../libyelp/yelp-docbook-document.c:308 ../libyelp/yelp-info-document.c:376
-#: ../libyelp/yelp-man-document.c:413
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "แฟ้ม '%s' ไม่มีอยู่"
 
-#: ../libyelp/yelp-docbook-document.c:323
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "ไม่สามารถแจงแฟ้ม ‘%s’ ได้ เนื่องจากแฟ้มดังกล่าวไม่ได้เป็น XML ที่ถูกรูปแบบ"
 
-#: ../libyelp/yelp-docbook-document.c:336
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr "ไม่สามารถแจงแฟ้ม ‘%s’ ได้ เพราะมีแฟ้มที่รวมอยู่ด้วยบางแฟ้มไม่ได้เป็น XML ที่ถูกรูปแบบ"
 
-#: ../libyelp/yelp-docbook-document.c:740
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "หัวข้อไม่รู้จัก"
 
-#: ../libyelp/yelp-docbook-document.c:801 ../libyelp/yelp-info-document.c:309
-#: ../libyelp/yelp-man-document.c:345
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "ไม่พบหน้าที่เรียกในเอกสาร ‘%s’"
 
-#: ../libyelp/yelp-error.c:33
+#: ../libyelp/yelp-document.c:268
+msgid "Indexed"
+msgstr "ทำดัชนีแล้ว"
+
+#: ../libyelp/yelp-document.c:269
+msgid "Whether the document content has been indexed"
+msgstr "กำหนดว่าเนื้อหาเอกสารได้ทำดัชนีแล้วหรือยัง"
+
+#: ../libyelp/yelp-document.c:277
+msgid "Document URI"
+msgstr "URI ของเอกสาร"
+
+#: ../libyelp/yelp-document.c:278
+msgid "The URI which identifies the document"
+msgstr "URI ซึ่งบ่งชี้เอกสาร"
+
+#: ../libyelp/yelp-document.c:994
+#, c-format
+msgid "Search results for “%s”"
+msgstr "ผลการค้นหาสำหรับ “%s”"
+
+#: ../libyelp/yelp-document.c:1006
+#, c-format
+msgid "No matching help pages found in “%s”."
+msgstr "ไม่พบหน้าคู่มือวิธีใช้ที่ตรงใน “%s”"
+
+#: ../libyelp/yelp-document.c:1012
+msgid "No matching help pages found."
+msgstr "ไม่พบหน้าคู่มือวิธีใช้ที่ตรง"
+
+#: ../libyelp/yelp-error.c:37
 #, c-format
 msgid "An unknown error occurred."
 msgstr "เกิดข้อผิดพลาดไม่ทราบสาเหตุ"
 
-#: ../libyelp/yelp-info-document.c:391
+#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+msgid "All Help Documents"
+msgstr "เอกสารวิธีใช้ทั้งหมด"
+
+#: ../libyelp/yelp-info-document.c:397
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "ไม่สามารถแจงแฟ้ม ‘%s’ ได้ เนื่องจากแฟ้มดังกล่าวไม่ได้เป็น info page ที่ถูกรูปแบบ"
 
-#: ../libyelp/yelp-location-entry.c:279
-msgid "Description Column"
-msgstr ""
+#: ../libyelp/yelp-location-entry.c:336
+msgid "View"
+msgstr "มุมมอง"
 
-#: ../libyelp/yelp-location-entry.c:280
-msgid "A column in the model to get descriptions from"
-msgstr ""
+#: ../libyelp/yelp-location-entry.c:337
+msgid "A YelpView instance to control"
+msgstr "อินสแตนซ์ของ YelpView ที่จะควบคุม"
 
-#: ../libyelp/yelp-location-entry.c:295
-msgid "Icon Column"
-msgstr ""
+#: ../libyelp/yelp-location-entry.c:352
+msgid "Bookmarks"
+msgstr "ที่คั่นหน้า"
 
-#: ../libyelp/yelp-location-entry.c:296
-msgid "A column in the model to get icon names from"
-msgstr ""
+#: ../libyelp/yelp-location-entry.c:353
+msgid "A YelpBookmarks implementation instance"
+msgstr "อินสแตนซ์อิมพลีเมนต์ของ YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:311
-msgid "Flags Column"
-msgstr ""
-
-#: ../libyelp/yelp-location-entry.c:312
-msgid "A column in the model with YelpLocationEntryFlags flags"
-msgstr ""
-
-#: ../libyelp/yelp-location-entry.c:328
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "เปิดใช้การค้นหา"
 
-#: ../libyelp/yelp-location-entry.c:329
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
-msgstr ""
+msgstr "กำหนดว่าช่องป้อนตำแหน่งนี้สามารถใช้เป็นช่องค้นหาได้หรือไม่"
 
-#: ../libyelp/yelp-mallard-document.c:296
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
+msgid "Search..."
+msgstr "ค้นหา..."
+
+#: ../libyelp/yelp-location-entry.c:783
+msgid "Clear the search text"
+msgstr "ล้างข้อความค้นหา"
+
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
+msgid "Bookmark this page"
+msgstr "คั่นหน้าหน้านี้"
+
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
+msgid "Remove bookmark"
+msgstr "ลบที่คั่นหน้า"
+
+#: ../libyelp/yelp-location-entry.c:1154
+#, c-format
+msgid "Search for “%s”"
+msgstr "ค้นหา “%s”"
+
+#: ../libyelp/yelp-location-entry.c:1458
+msgid "Loading"
+msgstr "กำลังโหลด"
+
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "ไดเรกทอรี ‘%s’ ไม่มีอยู่"
 
-#: ../libyelp/yelp-man-document.c:444
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
-msgstr "ไม่สามารถแจงแฟ้ม ‘%s’ ได้ เนื่องจากแฟ้มดังกล่าวไม่ได้เป็น man page ที่ถูกรูปแบบ"
-
-#: ../libyelp/yelp-settings.c:146
+#: ../libyelp/yelp-settings.c:154
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:147
-msgid "A GtkSettings object to get settings from"
-msgstr ""
-
 #: ../libyelp/yelp-settings.c:155
+msgid "A GtkSettings object to get settings from"
+msgstr "อ็อบเจกต์ GtkSettings ที่จะใช้อ่านค่าตั้ง"
+
+#: ../libyelp/yelp-settings.c:163
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:156
-msgid "A GtkIconTheme object to get icons from"
-msgstr ""
-
 #: ../libyelp/yelp-settings.c:164
-msgid "Font Adjustment"
-msgstr ""
+msgid "A GtkIconTheme object to get icons from"
+msgstr "อ็อบเจกต์ GtkIconTheme ที่จะใช้อ่านไอคอน"
 
-#: ../libyelp/yelp-settings.c:165
-msgid "A size adjustment to add to font sizes"
-msgstr ""
+#: ../libyelp/yelp-settings.c:172
+msgid "Font Adjustment"
+msgstr "การปรับแบบอักษร"
 
 #: ../libyelp/yelp-settings.c:173
+msgid "A size adjustment to add to font sizes"
+msgstr "การปรับขนาดที่จะเพิ่มเข้าในขนาดแบบอักษร"
+
+#: ../libyelp/yelp-settings.c:181
 msgid "Show Text Cursor"
 msgstr "แสดงเคอร์เซอร์ข้อความ"
 
-#: ../libyelp/yelp-settings.c:174
-msgid "Show the text cursor or caret for accessibile navigation"
-msgstr ""
-
 #: ../libyelp/yelp-settings.c:182
+msgid "Show the text cursor or caret for accessible navigation"
+msgstr "แสดงเคอร์เซอร์ข้อความเพื่อให้เลื่อนไปยังตำแหน่งต่างๆ ได้"
+
+#: ../libyelp/yelp-settings.c:190
 msgid "Editor Mode"
 msgstr "โหมดสำหรับแก้ไข"
 
-#: ../libyelp/yelp-settings.c:183
+#: ../libyelp/yelp-settings.c:191
 msgid "Enable features useful to editors"
 msgstr "เปิดใช้ความสามารถที่เป็นประโยชน์สำหรับเครื่องมือแก้ไข"
+
+#: ../libyelp/yelp-sqlite-storage.c:150
+msgid "Database filename"
+msgstr "ชื่อแฟ้มฐานข้อมูล"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "ชื่อแฟ้มของฐานข้อมูล sqlite"
 
 #: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
@@ -1037,300 +254,806 @@ msgstr "ไม่มีแอตทริบิวต์ href ใน yelp:docume
 msgid "Out of memory"
 msgstr "หน่วยความจำหมด"
 
-#: ../libyelp/yelp-view.c:118
+#: ../libyelp/yelp-view.c:131
 msgid "_Print..."
 msgstr "_พิมพ์..."
 
-#: ../libyelp/yelp-view.c:123
+#: ../libyelp/yelp-view.c:136
 msgid "_Back"
 msgstr "ถ_อยกลับ"
 
-#: ../libyelp/yelp-view.c:128
+#: ../libyelp/yelp-view.c:141
 msgid "_Forward"
 msgstr "เดินห_น้า"
 
-#: ../libyelp/yelp-view.c:133
+#: ../libyelp/yelp-view.c:146
 msgid "_Previous Page"
 msgstr "หน้า_ก่อน"
 
-#: ../libyelp/yelp-view.c:138
+#: ../libyelp/yelp-view.c:151
 msgid "_Next Page"
 msgstr "หน้าถั_ดไป"
 
-#: ../libyelp/yelp-view.c:387
+#: ../libyelp/yelp-view.c:423
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:388
+#: ../libyelp/yelp-view.c:424
 msgid "A YelpUri with the current location"
 msgstr "YelpUri พร้อมด้วยตำแหน่งปัจจุบัน"
 
-#: ../libyelp/yelp-view.c:396
+#: ../libyelp/yelp-view.c:432
 msgid "Loading State"
 msgstr "สถานะการโหลด"
 
-#: ../libyelp/yelp-view.c:397
+#: ../libyelp/yelp-view.c:433
 msgid "The loading state of the view"
 msgstr "สถานะการโหลดของมุมมอง"
 
-#: ../libyelp/yelp-view.c:406
+#: ../libyelp/yelp-view.c:442
 msgid "Page ID"
-msgstr ""
+msgstr "ID ของหน้า"
 
-#: ../libyelp/yelp-view.c:407
+#: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
-msgstr ""
+msgstr "ID ของหน้าแรกของเอกสารที่กำลังดู"
 
-#: ../libyelp/yelp-view.c:415
+#: ../libyelp/yelp-view.c:451
 msgid "Root Title"
-msgstr ""
+msgstr "หัวเรื่องของหน้าแรก"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
-msgstr ""
+msgstr "หัวเรื่องของหน้าแรกของเอกสารที่กำลังดู"
 
-#: ../libyelp/yelp-view.c:424
+#: ../libyelp/yelp-view.c:460
 msgid "Page Title"
 msgstr "หัวเรื่องของหน้า"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:461
 msgid "The title of the page being viewed"
-msgstr "หัวเรื่องของหน้ากำลังแสดง"
+msgstr "หัวเรื่องของหน้ากำลังดู"
 
-#: ../libyelp/yelp-view.c:433
+#: ../libyelp/yelp-view.c:469
 msgid "Page Description"
 msgstr "คำบรรยายของหน้า"
 
-#: ../libyelp/yelp-view.c:434
+#: ../libyelp/yelp-view.c:470
 msgid "The description of the page being viewed"
-msgstr "คำบรรยายของหน้าที่กำลังแสดง"
+msgstr "คำบรรยายของหน้าที่กำลังดู"
 
-#: ../libyelp/yelp-view.c:442
+#: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
 msgstr "ไอคอนของหน้า"
 
-#: ../libyelp/yelp-view.c:443
+#: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
-msgstr "ไอคอนของหน้าที่กำลังแสดง"
+msgstr "ไอคอนของหน้าที่กำลังดู"
 
-#: ../libyelp/yelp-view.c:791
+#: ../libyelp/yelp-view.c:720
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr "คุณไม่มี PackageKit ลิงก์สำหรับติดตั้งแพกเกจจำเป็นต้องใช้ PackageKit"
+
+#: ../libyelp/yelp-view.c:1013
 msgid "Save Image"
 msgstr "บันทึกภาพ"
 
-#: ../libyelp/yelp-view.c:873
+#: ../libyelp/yelp-view.c:1108
 msgid "Save Code"
 msgstr "บันทึกโค้ด"
 
-#. Not using a mnemonic because underscores are common in email
-#. * addresses, and we'd have to escape them. There doesn't seem
-#. * to be a quick GTK+ function for this. In practice, there will
-#. * probably only be one menu item for mailto link popups anyway,
-#. * so the mnemonic's not that big of a deal.
-#.
-#: ../libyelp/yelp-view.c:1034
+#: ../libyelp/yelp-view.c:1271
 #, c-format
 msgid "Send email to %s"
 msgstr "ส่งอีเมลถึง %s"
 
-#: ../libyelp/yelp-view.c:1044
+#: ../libyelp/yelp-view.c:1286
+msgid "_Install Packages"
+msgstr "_ติดตั้งแพกเกจ"
+
+#: ../libyelp/yelp-view.c:1294
 msgid "_Open Link"
 msgstr "_เปิดลิงก์"
 
-#: ../libyelp/yelp-view.c:1049
+#: ../libyelp/yelp-view.c:1301
+msgid "_Copy Link Location"
+msgstr "_คัดลอกที่อยู่ลิงก์"
+
+#: ../libyelp/yelp-view.c:1307
 msgid "Open Link in New _Window"
 msgstr "เปิดลิงก์ในหน้าต่างใ_หม่"
 
-#: ../libyelp/yelp-view.c:1091
+#: ../libyelp/yelp-view.c:1359
 msgid "_Save Image As..."
 msgstr "_บันทึกภาพเป็น..."
 
-#: ../libyelp/yelp-view.c:1093
+#: ../libyelp/yelp-view.c:1361
 msgid "_Save Video As..."
 msgstr "_บันทึกวีดิทัศน์เป็น..."
 
-#: ../libyelp/yelp-view.c:1100
+#: ../libyelp/yelp-view.c:1368
 msgid "S_end Image To..."
 msgstr "_ส่งภาพไปยัง..."
 
-#: ../libyelp/yelp-view.c:1102
+#: ../libyelp/yelp-view.c:1370
 msgid "S_end Video To..."
 msgstr "_ส่งวีดิทัศน์ไปยัง..."
 
-#: ../libyelp/yelp-view.c:1113
+#: ../libyelp/yelp-view.c:1381
 msgid "_Copy Text"
 msgstr "_คัดลอกข้อความ"
 
-#: ../libyelp/yelp-view.c:1126
+#: ../libyelp/yelp-view.c:1394
 msgid "C_opy Code Block"
-msgstr ""
+msgstr "คัด_ลอกบล็อคของโค้ด"
 
-#: ../libyelp/yelp-view.c:1131
+#: ../libyelp/yelp-view.c:1399
 msgid "Save Code _Block As..."
-msgstr ""
+msgstr "บั_นทึกบล็อคของโค้ดเป็น..."
 
-#: ../libyelp/yelp-view.c:1302
+#: ../libyelp/yelp-view.c:1505
+#, c-format
+msgid "See all search results for “%s”"
+msgstr "ดูผลการค้นหาทั้งหมดสำหรับ “%s”"
+
+#: ../libyelp/yelp-view.c:1626
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "ไม่สามารถโหลดเอกสารสำหรับ ‘%s’"
 
-#: ../libyelp/yelp-view.c:1308
+#: ../libyelp/yelp-view.c:1632
 #, c-format
 msgid "Could not load a document"
 msgstr "ไม่สามารถโหลดเอกสาร"
 
-#: ../libyelp/yelp-view.c:1375
-msgid "Not Found"
-msgstr "ไม่พบ"
+# There should be a better translation.
+#: ../libyelp/yelp-view.c:1706
+msgid "Document Not Found"
+msgstr "ไม่พบเอกสาร"
 
-#: ../libyelp/yelp-view.c:1378
+#: ../libyelp/yelp-view.c:1708
+msgid "Page Not Found"
+msgstr "ไม่พบหน้าที่ค้นหา"
+
+#: ../libyelp/yelp-view.c:1711
 msgid "Cannot Read"
 msgstr "อ่านไม่ได้"
 
-#: ../libyelp/yelp-view.c:1384
+#: ../libyelp/yelp-view.c:1717
 msgid "Unknown Error"
 msgstr "ข้อผิดพลาดไม่ทราบสาเหตุ"
 
-#: ../libyelp/yelp-view.c:1476
+# There should be a better translation.
+#: ../libyelp/yelp-view.c:1737
+msgid "Search for packages containing this document."
+msgstr "ค้นหาแพกเกจที่บรรจุเอกสารนี้"
+
+#: ../libyelp/yelp-view.c:1890
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI ‘%s’ ไม่ได้ชี้ไปยังหน้าที่ถูกต้อง"
 
-#: ../libyelp/yelp-view.c:1482
+#: ../libyelp/yelp-view.c:1896
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI ไม่ได้ชี้ไปยังหน้าที่ถูกต้อง"
 
-#: ../libyelp/yelp-view.c:1490
+#: ../libyelp/yelp-view.c:1902
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI '%s' ไม่สามารถแจงได้"
 
-#: ../src/yelp-application.c:56
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "เปิดโหมดสำหรับแก้ไข"
 
-#: ../src/yelp-application.c:132
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
-msgstr ""
+msgstr "ข้อความขนาด_ใหญ่ขึ้น"
 
-#: ../src/yelp-application.c:134
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
-msgstr ""
+msgstr "เพิ่มขนาดของตัวอักษร"
 
-#: ../src/yelp-application.c:137
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
-msgstr ""
+msgstr "ข้อความขนาดเ_ล็กลง"
 
-#: ../src/yelp-application.c:139
-msgid "Descrease the size of the text"
-msgstr ""
+#: ../src/yelp-application.c:135
+msgid "Decrease the size of the text"
+msgstr "ลดขนาดของตัวอักษร"
 
-#: ../src/yelp-application.c:255
-msgid "Show Text _Cursor"
-msgstr "แสดงเ_คอร์เซอร์ข้อความ"
-
-#: ../src/yelp-application.c:331 ../src/yelp-window.c:1871
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "วิธีใช้"
 
-#: ../src/yelp-application.c:754
-msgid ""
-"You do not have PackageKit installed.  Package installation links require "
-"PackageKit."
-msgstr ""
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "แสดงเ_คอร์เซอร์ข้อความ"
 
-#: ../src/yelp-window.c:303
+#: ../src/yelp-window.c:236
 msgid "_Page"
 msgstr "_หน้า"
 
-#: ../src/yelp-window.c:304
+#: ../src/yelp-window.c:237
 msgid "_View"
 msgstr "มุม_มอง"
 
-#: ../src/yelp-window.c:305
+#: ../src/yelp-window.c:238
 msgid "_Go"
 msgstr "ไ_ป"
 
-#: ../src/yelp-window.c:306
+#: ../src/yelp-window.c:239
 msgid "_Bookmarks"
 msgstr "_ที่คั่นหน้า"
 
-#: ../src/yelp-window.c:309
+#: ../src/yelp-window.c:242
 msgid "_New Window"
 msgstr "หน้าต่างใ_หม่"
 
-#: ../src/yelp-window.c:314
+#: ../src/yelp-window.c:247
 msgid "_Close"
 msgstr "ปิ_ด"
 
-#: ../src/yelp-window.c:319
+#: ../src/yelp-window.c:252
+msgid "_All Documents"
+msgstr "ทุ_กเอกสาร"
+
+#: ../src/yelp-window.c:256
 msgid "_Add Bookmark"
 msgstr "เ_พิ่มที่คั่นหน้า"
 
-#: ../src/yelp-window.c:324
-msgid "_Edit Bookmarks"
-msgstr "แ_ก้ไขที่คั่นหน้า"
+#: ../src/yelp-window.c:261
+msgid "_Remove Bookmark"
+msgstr "_ลบที่คั่นหน้า"
 
-#: ../src/yelp-window.c:329
+#: ../src/yelp-window.c:265
 msgid "Find in Page..."
 msgstr "ค้นหาในหน้า..."
 
-#: ../src/yelp-window.c:334 ../src/yelp-window.c:575
-msgid "Search..."
-msgstr "ค้นหา..."
-
-#: ../src/yelp-window.c:339
+#: ../src/yelp-window.c:275
 msgid "Open Location"
 msgstr "เปิดตำแหน่ง"
 
-#: ../src/yelp-window.c:369
+#: ../src/yelp-window.c:301
 msgid "Application"
 msgstr "โปรแกรม"
 
-#: ../src/yelp-window.c:370
+#: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
-msgstr ""
+msgstr "อินสแตนซ์ YelpApplication ที่ควบคุมหน้าต่างนี้"
 
-#: ../src/yelp-window.c:647
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "อ่านลิงก์ภายห_ลัง"
+
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "หา:"
+
+#: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "อ่านภายหลัง"
 
-#. %s will be replaced with the name of a document
-#: ../src/yelp-window.c:859
-#, c-format
-msgid "Bookmarks for %s"
-msgstr "ที่คั่นหน้าสำหรับ %s"
-
-#: ../src/yelp-window.c:1487
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "ตรงกัน %i แห่ง"
 
-#: ../src/yelp-window.c:1512
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "ไม่มีรายการที่ตรงกัน"
 
-#: ../src/yelp-window.c:1831
-msgid "Loading"
-msgstr "กำลังโหลด"
-
-#: ../src/yelp-window.c:2064
-msgid "_Open Bookmark"
-msgstr "_เปิดที่คั่นหน้า"
-
-#: ../src/yelp-window.c:2070
-msgid "Open Bookmark in New _Window"
-msgstr "เปิดที่คั่นหน้าใน_หน้าต่างใหม่"
-
-#: ../src/yelp-window.c:2079
-msgid "_Remove Bookmark"
-msgstr "_ลบที่คั่นหน้า"
-
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "วิธีการใช้ GNOME"
+
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "คู่มือประกอบคำสั่งในบรรทัดคำสั่งตามปกติ (info)"
+
+#~ msgid "Applications"
+#~ msgstr "โปรแกรมใช้งาน"
+
+#~ msgid "Configuration Files"
+#~ msgstr "แฟ้มค่าตั้ง"
+
+#~ msgid "Development"
+#~ msgstr "เขียนโปรแกรม"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "ฟังก์ชันฟอร์แทรน"
+
+#~ msgid "Games"
+#~ msgstr "เกม"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "อุปกรณ์ฮาร์ดแวร์"
+
+#~ msgid "Kernel Routines"
+#~ msgstr "รูทีนเคอร์เนล"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "ฟังก์ชันเกี่ยวกับระบบเสียงผ่านเครือข่าย"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "โปรแกรม OpenSSL"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "การตั้งค่า OpenSSL"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "ภาพรวม OpenSSL"
+
+#~ msgid "Overviews"
+#~ msgstr "ภาพรวม"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "แฟ้มส่วนหัว POSIX"
+
+#~ msgid "Section 0p"
+#~ msgstr "หมวด 0p"
+
+#~ msgid "System Administration"
+#~ msgstr "การดูแลระบบ"
+
+#~ msgid "System Calls"
+#~ msgstr "ฟังก์ชันเรียกระบบ"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "ฟังก์ชันฟอร์ม/เมนูของซิสเท็มไฟว์"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "โปรแกรม Termcap"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "คู่มือประกอบคำสั่งในบรรทัดคำสั่งตามปกติ (man)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "โปรแกรมใน X11"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "การตั้งค่า X11"
+
+#~ msgid "X11 Devices"
+#~ msgstr "อุปกรณ์ X11"
+
+#~ msgid "X11 Games"
+#~ msgstr "เกม X11"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "ภาพรวม X11"
+
+#~ msgid "2D Graphics"
+#~ msgstr "กราฟิก 2 มิติ"
+
+#~ msgid "3D Graphics"
+#~ msgstr "กราฟิก 3 มิติ"
+
+#~ msgid "Accessibility"
+#~ msgstr "สิ่งอำนวยความสะดวก"
+
+#~ msgid "Action Games"
+#~ msgstr "เกมแอ็คชั่น"
+
+#~ msgid "Adventure Games"
+#~ msgstr "เกมผจญภัย"
+
+#~ msgid "Amusement"
+#~ msgstr "ขบขัน"
+
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "โปรแกรมสำหรับแสดงและจัดการภาพกราฟิกส์"
+
+#~ msgid "Applications related to audio and video"
+#~ msgstr "โปรแกรมเกี่ยวกับเสียงและวีดิทัศน์"
+
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "โปรแกรมเพื่อการเรียนรู้"
+
+#~ msgid "Arcade Games"
+#~ msgstr "เกมโต้ตอบ"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "เครื่องมือจัดเก็บข้อมูล"
+
+#~ msgid "Art"
+#~ msgstr "ศิลปะ"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "ปัญญาประดิษฐ์"
+
+#~ msgid "Astronomy"
+#~ msgstr "ดาราศาสตร์"
+
+#~ msgid "Biology"
+#~ msgstr "ชีววิทยา"
+
+#~ msgid "Blocks Games"
+#~ msgstr "เกมบล็อค"
+
+#~ msgid "Board Games"
+#~ msgstr "เกมหมากกระดาน"
+
+#~ msgid "Building"
+#~ msgstr "การประกอบสร้าง"
+
+#~ msgid "Calculator"
+#~ msgstr "เครื่องคิดเลข"
+
+#~ msgid "Calendar"
+#~ msgstr "ปฏิทิน"
+
+#~ msgid "Card Games"
+#~ msgstr "เกมไพ่"
+
+#~ msgid "Charting Tools"
+#~ msgstr "เครื่องมือทำแผนภูมิ"
+
+#~ msgid "Chat"
+#~ msgstr "สนทนา"
+
+#~ msgid "Chemistry"
+#~ msgstr "เคมี"
+
+#~ msgid "Clocks"
+#~ msgstr "นาฬิกา"
+
+#~ msgid "Compression Tools"
+#~ msgstr "เครื่องมือบีบอัดข้อมูล"
+
+#~ msgid "Computer Science"
+#~ msgstr "วิทยาการคอมพิวเตอร์"
+
+#~ msgid "Construction"
+#~ msgstr "การก่อสร้าง"
+
+#~ msgid "Contact Management"
+#~ msgstr "การจัดการที่อยู่ติดต่อ"
+
+#~ msgid "Data Visualization"
+#~ msgstr "การสร้างภาพนามธรรมของข้อมูล"
+
+#~ msgid "Debuggers"
+#~ msgstr "เครื่องมือดีบั๊ก"
+
+#~ msgid "Desktop"
+#~ msgstr "พื้นโต๊ะ"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "ค่าตั้งพื้นโต๊ะ"
+
+#~ msgid "Dialup"
+#~ msgstr "หมุนโทรออก"
+
+#~ msgid "Dictionaries"
+#~ msgstr "พจนานุกรม"
+
+#~ msgid "Disc Burning"
+#~ msgstr "การเขียนแผ่น"
+
+#~ msgid "Economy"
+#~ msgstr "เศรษฐศาสตร์"
+
+#~ msgid "Education"
+#~ msgstr "การศึกษา"
+
+#~ msgid "Electricity"
+#~ msgstr "ไฟฟ้า"
+
+#~ msgid "Electronics"
+#~ msgstr "อิเล็กทรอนิกส์"
+
+#~ msgid "Email Tools"
+#~ msgstr "เครื่องมือรับส่งอีเมล"
+
+#~ msgid "Emulator"
+#~ msgstr "โปรแกรมเลียนแบบ"
+
+#~ msgid "Engineering"
+#~ msgstr "วิศวกรรม"
+
+#~ msgid "File Manager"
+#~ msgstr "โปรแกรมจัดการแฟ้ม"
+
+#~ msgid "File Tools"
+#~ msgstr "เครื่องมือประมวลผลแฟ้ม"
+
+#~ msgid "File Transfer"
+#~ msgstr "เครื่องมือถ่ายโอนแฟ้ม"
+
+#~ msgid "Filesystem"
+#~ msgstr "ระบบแฟ้ม"
+
+#~ msgid "Financial Tools"
+#~ msgstr "เครื่องมือทางการเงิน"
+
+#~ msgid "Flow Charting Tools"
+#~ msgstr "เครื่องมือจัดการผังงาน"
+
+#~ msgid "GNOME Applications"
+#~ msgstr "โปรแกรม GNOME"
+
+#~ msgid "GUI Designers"
+#~ msgstr "เครื่องมือออกแบบ GUI"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "โปรแกรมทั่วไปสำหรับเดสก์ท็อป GNOME"
+
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "โปรแกรมทั่วไปสำหรับเดสก์ท็อป KDE"
+
+#~ msgid "Geography"
+#~ msgstr "ภูมิศาสตร์"
+
+#~ msgid "Geology"
+#~ msgstr "ธรณีวิทยา"
+
+#~ msgid "Geoscience"
+#~ msgstr "โลกศาสตร์"
+
+#~ msgid "Graphics"
+#~ msgstr "กราฟิก"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr "คำแนะนำและคู่มือสำหรับโปรแกรมที่เชื่อมต่อไปยังโลกภายนอก"
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "คำแนะนำสำหรับการพัฒนาโปรแกรม"
+
+#~ msgid "Ham Radio"
+#~ msgstr "วิทยุสมัครเล่น"
+
+#~ msgid "Hardware Settings"
+#~ msgstr "การตั้งค่าฮาร์ดแวร์"
+
+#~ msgid "Have some fun"
+#~ msgstr "มาสนุกกัน"
+
+#~ msgid "History"
+#~ msgstr "ประวัติศาสตร์"
+
+#~ msgid "IRC Clients"
+#~ msgstr "โปรแกรมลูกข่าย IRC"
+
+#~ msgid "Image Processing"
+#~ msgstr "การประมวลผลภาพ"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "ข้อความทันใจ"
+
+#~ msgid "Internet"
+#~ msgstr "อินเทอร์เน็ต"
+
+#~ msgid "Java"
+#~ msgstr "จาวา"
+
+#~ msgid "KDE Applications"
+#~ msgstr "โปรแกรม KDE"
+
+#~ msgid "Kids Games"
+#~ msgstr "เกมสำหรับเด็ก"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr "ศึกษาวิธีทำให้ระบบของคุณสามารถอำนวยความสะดวกผู้พิการประเภทต่างๆ ได้"
+
+#~ msgid "Licenses"
+#~ msgstr "สัญญาอนุญาต"
+
+#~ msgid "Literature"
+#~ msgstr "วรรณคดี"
+
+#~ msgid "Logic Games"
+#~ msgstr "เกมตรรกะ"
+
+#~ msgid "Math"
+#~ msgstr "คณิตศาสตร์"
+
+#~ msgid "Medical Software"
+#~ msgstr "โปรแกรมทางการแพทย์"
+
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "เอกสารจิปาถะ"
+
+#~ msgid "Mixers"
+#~ msgstr "เครื่องมือปรับผสมเสียง"
+
+#~ msgid "Monitor"
+#~ msgstr "โปรแกรมติดตามระบบ"
+
+#~ msgid "Music"
+#~ msgstr "ดนตรี"
+
+#~ msgid "News"
+#~ msgstr "ข่าว"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "การวิเคราะห์เชิงตัวเลข"
+
+#~ msgid "Office Applications"
+#~ msgstr "โปรแกรมสำนักงาน"
+
+#~ msgid "Office applications"
+#~ msgstr "โปรแกรมสำนักงาน"
+
+# There should be a better translation.
+#~ msgid "Other Documentation"
+#~ msgstr "เอกสารอื่นๆ"
+
+#~ msgid "PDA Communication"
+#~ msgstr "การติดต่อสื่อสารกับ PDA"
+
+#~ msgid "Package Manager"
+#~ msgstr "เครื่องมือจัดการแพกเกจ"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "การคำนวณแบบขนาน"
+
+#~ msgid "Photography"
+#~ msgstr "การถ่ายภาพ"
+
+#~ msgid "Physics"
+#~ msgstr "ฟิสิกส์"
+
+#~ msgid "Players"
+#~ msgstr "โปรแกรมเล่น"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "เครื่องมือนำเสนอ"
+
+#~ msgid "Printing"
+#~ msgstr "การพิมพ์"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "เครื่องมือวัดประสิทธิภาพ"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "เครื่องมือบริหารโครงการ"
+
+#~ msgid "Publishing"
+#~ msgstr "การจัดพิมพ์"
+
+#~ msgid "Raster Graphics"
+#~ msgstr "กราฟิกแบบบิตแมป"
+
+#~ msgid "Recorders"
+#~ msgstr "เครื่องอัด"
+
+#~ msgid "Remote Access"
+#~ msgstr "การเข้าถึงเครื่องในเครือข่าย"
+
+#~ msgid "Revision Control"
+#~ msgstr "การติดตามประวัติการแก้ไข"
+
+#~ msgid "Robotics"
+#~ msgstr "วิทยาการหุ่นยนต์"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "เกมเล่นบทบาท"
+
+#~ msgid "Scanning"
+#~ msgstr "การสแกน"
+
+#~ msgid "Science"
+#~ msgstr "วิทยาศาสตร์"
+
+#~ msgid "Security"
+#~ msgstr "ระบบความปลอดภัย"
+
+#~ msgid "Sequencers"
+#~ msgstr "เครื่องมือจัดลำดับเสียง"
+
+#~ msgid "Settings"
+#~ msgstr "การตั้งค่า"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr "การตั้งค่าต่างๆ ที่ผู้ใช้สามารถทำได้ เพื่อให้สภาพแวดล้อมเหมาะกับการใช้งาน"
+
+#~ msgid "Simulation Games"
+#~ msgstr "เกมจำลองสถานการณ์"
+
+#~ msgid "Sound"
+#~ msgstr "เสียง"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "เสียงและวีดิทัศน์"
+
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "การแก้ไขเสียงและวีดิทัศน์"
+
+#~ msgid "Sports"
+#~ msgstr "กีฬา"
+
+#~ msgid "Sports Games"
+#~ msgstr "เกมกีฬา"
+
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "เครื่องมือตารางคำนวณ"
+
+#~ msgid "Strategy Games"
+#~ msgstr "เกมวางแผน"
+
+#~ msgid "System"
+#~ msgstr "ระบบ"
+
+#~ msgid "TV"
+#~ msgstr "ทีวี"
+
+#~ msgid "Telephony"
+#~ msgstr "โทรศัพท์"
+
+#~ msgid "Telephony Tools"
+#~ msgstr "เครื่องมือจัดการการโทรศัพท์"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "โปรแกรมจำลองเทอร์มินัล"
+
+#~ msgid "Text Editors"
+#~ msgstr "เครื่องมือแก้ไขข้อความ"
+
+#~ msgid "Text Tools"
+#~ msgstr "เครื่องมือประมวลผลข้อความ"
+
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "เครื่องมือสำหรับช่วยจัดการคอมพิวเตอร์ของคุณ"
+
+#~ msgid "Translation Tools"
+#~ msgstr "เครื่องมือแปลข้อความ"
+
+#~ msgid "Tuners"
+#~ msgstr "เครื่องจูน"
+
+#~ msgid "Utilities"
+#~ msgstr "อรรถประโยชน์"
+
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "เครื่องมือสำหรับช่วยทำงานต่างๆ"
+
+#~ msgid "Vector Graphics"
+#~ msgstr "กราฟิกแบบเวกเตอร์"
+
+#~ msgid "Video"
+#~ msgstr "วีดิทัศน์"
+
+#~ msgid "Video Conference"
+#~ msgstr "การประชุมทางวีดิทัฒน์"
+
+#~ msgid "Viewer"
+#~ msgstr "โปรแกรมแสดง"
+
+#~ msgid "Web Browser"
+#~ msgstr "เว็บเบราว์เซอร์"
+
+#~ msgid "Web Development"
+#~ msgstr "การสร้างเว็บ"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "ยินดีต้อนรับสู่โปรแกรมอ่านวิธีใช้ของ GNOME"
+
+#~ msgid "Word Processors"
+#~ msgstr "โปรแกรมประมวลคำ"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
+#~ "page."
+#~ msgstr "ไม่สามารถแจงแฟ้ม ‘%s’ ได้ เนื่องจากแฟ้มดังกล่าวไม่ได้เป็น man page ที่ถูกรูปแบบ"
+
+#~ msgid "_Edit Bookmarks"
+#~ msgstr "แ_ก้ไขที่คั่นหน้า"
+
+#~ msgid "Bookmarks for %s"
+#~ msgstr "ที่คั่นหน้าสำหรับ %s"
+
+#~ msgid "_Open Bookmark"
+#~ msgstr "_เปิดที่คั่นหน้า"
+
+#~ msgid "Open Bookmark in New _Window"
+#~ msgstr "เปิดที่คั่นหน้าใน_หน้าต่างใหม่"
 
 #~ msgid "<b>Accessibility</b>"
 #~ msgstr "<b>สิ่งอำนวยความสะดวก</b>"
@@ -1416,10 +1139,6 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgid "Help Topics"
 #~ msgstr "หมวดหมู่วิธีใช้"
 
-# There should be a better translation.
-#~ msgid "Document Sections"
-#~ msgstr "หัวข้อเอกสาร"
-
 #~ msgid "File not found"
 #~ msgstr "หาแฟ้มไม่พบ"
 
@@ -1475,12 +1194,6 @@ msgstr "วิธีการใช้ GNOME"
 #~ "Try using different words to describe the problem you're having or the "
 #~ "topic you want help with."
 #~ msgstr "กรุณาลองใช้คำอื่นเพื่อบรรยายปัญหาที่คุณกำลังพบ หรือหัวข้อที่คุณต้องการค้นหาวิธีใช้"
-
-#~ msgid "Search results for \"%s\""
-#~ msgstr "ผลการค้นหาสำหรับ \"%s\""
-
-#~ msgid "Repeat the search online at %s"
-#~ msgstr "ค้นหาแบบออนไลน์ที่ %s ซ้ำอีกครั้ง"
 
 #~ msgid ""
 #~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
@@ -1626,10 +1339,6 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgid "Error executing \"gnome-open\""
 #~ msgstr "เกิดข้อผิดพลาดขณะเรียกใช้ \"gnome-open\""
 
-# There should be a better translation.
-#~ msgid "Search for other documentation"
-#~ msgstr "ค้นหาเอกสารอื่นๆ"
-
 #~ msgid "Cannot create search component"
 #~ msgstr "ไม่สามารถสร้างองค์ประกอบการค้นหาได้"
 
@@ -1649,15 +1358,6 @@ msgstr "วิธีการใช้ GNOME"
 #~ "The file ‘%s’ could not be read.  This file might be missing, or you "
 #~ "might not have permissions to read it."
 #~ msgstr "ไม่สามารถอ่านแฟ้ม ‘%s’ ได้ แฟ้มนี้อาจจะหายไป หรือคุณอาจไม่มีสิทธิ์อ่าน"
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "ไพศาข์ สีเหลืองสวัสดิ์\n"
-#~ "เทพพิทักษ์ การุญบุญญานันท์\n"
-#~ "aka.ape\n"
-#~ "\n"
-#~ "ถ้ามีเวลาโปรดมาช่วยกันแปล ;-)\n"
-#~ "http://gnome-th.sf.net"
 
 #~ msgid "A documentation browser and viewer for the Gnome Desktop."
 #~ msgstr "โปรแกรมเรียกดูและอ่านเอกสารสำหรับเดสก์ท็อป GNOME"
@@ -1682,9 +1382,6 @@ msgstr "วิธีการใช้ GNOME"
 
 #~ msgid "Applications that support assistive technologies"
 #~ msgstr "โปรแกรมที่สนับสนุนเทคโนโลยีสิ่งอำนวยความสะดวก"
-
-#~ msgid "KDE"
-#~ msgstr "KDE"
 
 #~ msgid "Learning applications"
 #~ msgstr "โปรแกรมสำหรับการศึกษา"
@@ -1738,9 +1435,6 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgid "Help Contents"
 #~ msgstr "สารบัญวิธีใช้"
 
-#~ msgid "Could not load the OMF file '%s'."
-#~ msgstr "ไม่สามารถโหลดแฟ้ม OMF: '%s'"
-
 #~ msgid "YelpTocPager: Pause count is negative."
 #~ msgstr "YelpTocPager: จำนวนหน้าเป็นลบ"
 
@@ -1749,12 +1443,6 @@ msgstr "วิธีการใช้ GNOME"
 #~ "missing or is not a valid XSLT stylesheet."
 #~ msgstr ""
 #~ "ไม่สามารถประมวลผลสารบัญได้ แฟ้ม ‘%s’ อาจหายไป หรือไม่ใช่ XSLT stylesheet ที่ถูกต้อง"
-
-#~ msgid "Read man page for %s"
-#~ msgstr "อ่าน man page สำหรับ %s"
-
-#~ msgid "Read info page for %s"
-#~ msgstr "อ่าน info page สำหรับ %s"
 
 #~ msgid ""
 #~ "The table of contents could not be loaded. The file ‘%s’ is either "
@@ -1789,34 +1477,9 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgstr "<b>กำลังพิมพ์</b>"
 
 #~ msgid ""
-#~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
-#~ msgstr ""
-#~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
-
-#~ msgid "yelp-watermark-blockquote-201C"
-#~ msgstr "yelp-watermark-blockquote-201C"
-
-#~ msgid "The Uniform Resource Identifier for the file is invalid."
-#~ msgstr "URI สำหรับแฟ้มนี้ใช้ไม่ได้"
-
-#~ msgid ""
 #~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
 #~ "actual file."
 #~ msgstr "URI ‘%s’ ใช้ไม่ได้ หรือไม่ได้ชี้ไปยังแฟ้มจริง"
-
-#~ msgid "Man pages are not supported in this version."
-#~ msgstr "ไม่สนับสนุน man page ในรุ่นนี้"
-
-#~ msgid "GNU info pages are not supported in this version"
-#~ msgstr "ไม่สนับสนุน GNU info page ในรุ่นนี้"
-
-#~ msgid "Search is not supported in this version."
-#~ msgstr "ไม่สนับสนุนการค้นหาในรุ่นนี้"
-
-#~ msgid ""
-#~ "SGML documents are no longer supported. Please ask the author of the "
-#~ "document to convert to XML."
-#~ msgstr "ไม่สนับสนุนเอกสาร SGML อีกต่อไป กรุณาขอให้ผู้เขียนเอกสารเปลี่ยนมาใช้ XML"
 
 #~ msgid ""
 #~ "A transformation context could not be created for the file ‘%s’. The "
@@ -1849,13 +1512,6 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgid "_To:"
 #~ msgstr "_ถึง:"
 
-#~ msgid ""
-#~ "Could not display help for Yelp.\n"
-#~ "%s"
-#~ msgstr ""
-#~ "แสดงวิธีใช้ของ Yelp ไม่สำเร็จ\n"
-#~ "%s"
-
 #~ msgid "Library Functions"
 #~ msgstr "ฟังก์ชันในไลบรารี"
 
@@ -1885,14 +1541,6 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgid "<b>_Title:</b>"
 #~ msgstr "<b>_ชื่อ:</b>"
 
-#~ msgid "Find:"
-#~ msgstr "หา:"
-
-# This is not help's home, not user's home (~)
-#, fuzzy
-#~ msgid "_Home"
-#~ msgstr "หน้าเริ่มต้น"
-
 #~ msgid "Go to home view"
 #~ msgstr "ไปที่หน้าเริ่มต้น"
 
@@ -1911,17 +1559,11 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgid "Office and Productivity Applications"
 #~ msgstr "โปรแกรมสำนักงาน"
 
-#~ msgid "*"
-#~ msgstr "*"
-
 # Note from Paisa:
 # This lists author, publisher, legal notice, revision history.
 # It's not หน้าปก, ปกใน, หัวเรื่อง.  So I just make it up.
 #~ msgid "Titlepage"
 #~ msgstr "เกี่ยวกับเอกสารนี้"
-
-#~ msgid "The selected document could not be opened"
-#~ msgstr "เปิดเอกสารที่เลือกไม่สำเร็จ"
 
 #~ msgid "The table of contents could not be read."
 #~ msgstr "อ่านสารบัญไม่สำเร็จ"
@@ -1932,41 +1574,8 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgid "The selected file could not be read."
 #~ msgstr "เปิดเอกสารที่เลือกไม่สำเร็จ"
 
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
 #~ msgid "Categories"
 #~ msgstr "ประเภท"
-
-#~ msgid "Documents"
-#~ msgstr "เอกสาร"
-
-#~ msgid "&#8216;"
-#~ msgstr "&#8216;"
-
-#~ msgid "&#8217;"
-#~ msgstr "&#8217;"
-
-#~ msgid "&#8220;"
-#~ msgstr "&#8220;"
-
-#~ msgid "&#8221;"
-#~ msgstr "&#8221;"
 
 #~ msgid "About This Article"
 #~ msgstr "เกี่ยวกับเอกสารนี้"
@@ -2023,9 +1632,6 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgid "Copyright"
 #~ msgstr "ลิขสิทธิ์"
 
-#~ msgid "Copyrights"
-#~ msgstr "ลิขสิทธิ์"
-
 #~ msgid "Example"
 #~ msgstr "ตัวอย่าง"
 
@@ -2037,9 +1643,6 @@ msgstr "วิธีการใช้ GNOME"
 
 #~ msgid "Important"
 #~ msgstr "สำคัญ"
-
-#~ msgid "Index"
-#~ msgstr "ดัชนี"
 
 #~ msgid "Legal Notice"
 #~ msgstr "ประกาศด้านกฏหมาย"
@@ -2059,12 +1662,6 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgid "Origin"
 #~ msgstr "ที่มา"
 
-#~ msgid "Other Contributor"
-#~ msgstr "ผู้ให้ความช่วยเหลือ"
-
-#~ msgid "Other Contributors"
-#~ msgstr "ผู้ให้ความช่วยเหลือ"
-
 #~ msgid "Part"
 #~ msgstr "ส่วน"
 
@@ -2080,10 +1677,6 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgid "Reference Section"
 #~ msgstr "ส่วนอ้างอิง"
 
-# There should be a better translation.
-#~ msgid "Release Information"
-#~ msgstr "ประกาศวันเผยแพร่"
-
 #~ msgid "Set Index"
 #~ msgstr "ดัชนีของชุด"
 
@@ -2093,69 +1686,17 @@ msgstr "วิธีการใช้ GNOME"
 #~ msgid "Table of Contents"
 #~ msgstr "สารบัญ"
 
-# Is this too long?
 #~ msgid "Tip"
 #~ msgstr "คำแนะนำ"
 
-#~ msgid "Document URI"
-#~ msgstr "URI ของเอกสาร"
-
 #~ msgid "The URI of the document to be processed"
 #~ msgstr "URI ของเอกสารที่จะอ่าน"
-
-#~ msgid "/Edit/Find Ne_xt"
-#~ msgstr "/แก้ไข/หา_อีก"
-
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/แก้ไข/หาอัน_ก่อน"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/ไป/ถ_อย"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/ไป/เดินห_น้า"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/ไป/_บ้าน"
-
-#~ msgid "/Go/"
-#~ msgstr "/ไ_ป/"
-
-#~ msgid "/Go/_Contents"
-#~ msgstr "/ไป/_สารบัญ"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "ตัวแสดงวิธีใช้ของ GNOME"
 
 #~ msgid "<b>Find text in the document:</b>"
 #~ msgstr "<b>หาข้อความในเอกสาร:</b>"
 
 #~ msgid "Automatically _wrap around"
 #~ msgstr "เริ่มต้นใหม่เมื่อสุดเอกสาร (_W)"
-
-#~ msgid "Match _entire word"
-#~ msgstr "ตรงกับทั้งคำ (_E)"
-
-#~ msgid "_Match upper/lower case"
-#~ msgstr "ตรงอักษรตัวใหญ่เล็ก (_M)"
-
-#~ msgid "GNOME - Desktop"
-#~ msgstr "GNOME - Desktop"
-
-#~ msgid "GNOME is"
-#~ msgstr "GNOME คือ"
-
-#~ msgid "(C)"
-#~ msgstr "(C)"
-
-#~ msgid "Loading&nbsp;&nbsp;&nbsp;"
-#~ msgstr "กำลังอ่าน&nbsp;&nbsp;&nbsp;"
-
-#~ msgid "Loading.&nbsp;&nbsp;"
-#~ msgstr "กำลังอ่าน.&nbsp;&nbsp;"
-
-#~ msgid "Loading..&nbsp;"
-#~ msgstr "กำลังอ่าน..&nbsp;"
 
 #~ msgid "Search in the index"
 #~ msgstr "หาในดัชนี"
