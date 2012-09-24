@@ -1,19 +1,21 @@
 # Translation of yelp to Kyrgyz
 # Copyright (C) 2005 Free Software Foundation, Inc.
-# Timur Jamakeev <ztimur@gmail.com>, 2005.
 #
+# Timur Jamakeev <ztimur@gmail.com>, 2005, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.12.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-10-26 15:19+0500\n"
-"PO-Revision-Date: 2005-10-26 17:00+0600\n"
-"Last-Translator: \n"
-"Language-Team:  <ru@li.org>\n"
+"PO-Revision-Date: 2012-09-24 16:13+0600\n"
+"Last-Translator: Timur Zhamakeev <ztimur@gmail.com>\n"
+"Language-Team: Kirghiz <gnome-i18n@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.9.1\n"
+"X-Generator: Lokalize 1.4\n"
+"Language: ky\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../data/man.xml.in.h:1 ../data/toc.xml.in.h:4
 msgid "Applications"
@@ -25,7 +27,7 @@ msgstr "Конфигурациялык файлдар"
 
 #: ../data/man.xml.in.h:3
 msgid "Development"
-msgstr "Иштеп чыгуу"
+msgstr "Программалоо"
 
 #: ../data/man.xml.in.h:4
 msgid "FORTRAN Functions"
@@ -37,7 +39,7 @@ msgstr "Оюндар"
 
 #: ../data/man.xml.in.h:6
 msgid "Hardware Devices"
-msgstr "Техникалык түзүлүштөр"
+msgstr "Техникалык жабдуулар"
 
 #: ../data/man.xml.in.h:7
 msgid "Kernel Routines"
@@ -77,7 +79,7 @@ msgstr "Qt функциялары"
 
 #: ../data/man.xml.in.h:16
 msgid "System Administration"
-msgstr "Системаны администрлөө"
+msgstr "Системаны башкаруу"
 
 #: ../data/man.xml.in.h:17
 msgid "System Calls"
@@ -89,7 +91,7 @@ msgstr "Termcap иштемелери"
 
 #: ../data/man.xml.in.h:19
 msgid "X11 Applications"
-msgstr "X11 иштемелери"
+msgstr "X11 тиркемелери"
 
 #: ../data/man.xml.in.h:20
 msgid "X11 Configuration"
@@ -97,7 +99,7 @@ msgstr "X11 конфигурациясы"
 
 #: ../data/man.xml.in.h:21
 msgid "X11 Devices"
-msgstr "X11 түзүлүштөрү"
+msgstr "X11 жабдуулары"
 
 #: ../data/man.xml.in.h:22
 msgid "X11 Functions"
@@ -125,11 +127,11 @@ msgstr "Башкаруу"
 
 #: ../data/toc.xml.in.h:5
 msgid "Desktop"
-msgstr "Иш үстөлү"
+msgstr "Иш тактасы"
 
 #: ../data/toc.xml.in.h:6
 msgid "Education Applications"
-msgstr "Билим берүү иштемелери"
+msgstr "Билим берүү тиркемелери"
 
 #: ../data/toc.xml.in.h:8
 msgid "Graphics"
@@ -169,7 +171,7 @@ msgstr "Панель апплеттери"
 
 #: ../data/toc.xml.in.h:17 ../data/ui/yelp.glade.h:10
 msgid "Preferences"
-msgstr "Ырастоолор"
+msgstr "Параметрлер"
 
 #: ../data/toc.xml.in.h:18
 msgid "Programming"
@@ -177,7 +179,7 @@ msgstr "Программалоо"
 
 #: ../data/toc.xml.in.h:19
 msgid "Scientific"
-msgstr "Илимий иштемелер"
+msgstr "Илим тиркемелери"
 
 #: ../data/toc.xml.in.h:20
 msgid "System Tools"
@@ -185,7 +187,7 @@ msgstr "Системалык аспаптар"
 
 #: ../data/toc.xml.in.h:21
 msgid "X Applications"
-msgstr "X иштемелери"
+msgstr "X тиркемелери"
 
 #: ../data/ui/yelp.glade.h:1
 msgid "<b>Accessibility</b>"
@@ -301,7 +303,7 @@ msgstr "Yelp"
 
 #: ../src/GNOME_Yelp.server.in.h:2
 msgid "Yelp Factory"
-msgstr "Yelp-жардам иштемесинин фабрикасы"
+msgstr "Yelp-жардам тиркемесинин фабрикасы"
 
 #: ../src/yelp-bookmarks.c:155
 msgid "Open Bookmark in New Window"
@@ -595,9 +597,8 @@ msgid "_About"
 msgstr "_Программа жөнүндө"
 
 #: ../src/yelp-window.c:420
-#, fuzzy
 msgid "Copy _Email Address"
-msgstr "Шилтеме _дарегин көчүрүү"
+msgstr "Почто _дарегин көчүрүү"
 
 #: ../src/yelp-window.c:469
 msgid "Help Browser"
@@ -707,3 +708,4 @@ msgstr ""
 #: ../yelp.desktop.in.in.h:1
 msgid "Get help with GNOME"
 msgstr "GNOME чөйрөсүнүн жардамын алуу"
+
