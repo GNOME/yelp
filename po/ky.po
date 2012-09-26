@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: yelp 2.12.1\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-10-26 10:13+0000\n"
-"PO-Revision-Date: 2012-09-24 17:17+0600\n"
+"POT-Creation-Date: 2012-09-24 11:23+0000\n"
+"PO-Revision-Date: 2012-09-26 23:13+0600\n"
 "Last-Translator: Timur Zhamakeev <ztimur@gmail.com>\n"
 "Language-Team: Kirghiz <gnome-i18n@gnome.org>\n"
 "Language: ky\n"
@@ -38,7 +38,6 @@ msgstr "Туура эмес кысылган маалымат"
 
 #: ../libyelp/yelp-bz2-decompressor.c:152
 #: ../libyelp/yelp-lzma-decompressor.c:161
-#| msgid "Out of memory"
 msgid "Not enough memory"
 msgstr "Эс жетишсиз"
 
@@ -63,9 +62,6 @@ msgstr "‘%s’ файлы табылган жок."
 
 #: ../libyelp/yelp-docbook-document.c:342
 #, c-format
-#| msgid ""
-#| "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#| "is not well-formed XML."
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
@@ -74,9 +70,6 @@ msgstr ""
 
 #: ../libyelp/yelp-docbook-document.c:355
 #, c-format
-#| msgid ""
-#| "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#| "is not well-formed XML."
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
@@ -85,7 +78,6 @@ msgstr ""
 "туура эмес XML файл."
 
 #: ../libyelp/yelp-docbook-document.c:765
-#| msgid "Unknown Section"
 msgid "Unknown"
 msgstr "Белгисиз"
 
@@ -104,7 +96,6 @@ msgid "Whether the document content has been indexed"
 msgstr "Документтин маалыматы индекстелгенби"
 
 #: ../libyelp/yelp-document.c:277
-#| msgid "Document Information"
 msgid "Document URI"
 msgstr "Документтин URI си"
 
@@ -128,20 +119,15 @@ msgstr "Туура келген барактар табылган жок."
 
 #: ../libyelp/yelp-error.c:37
 #, c-format
-#| msgid "An unknown error occured"
 msgid "An unknown error occurred."
 msgstr "Белгисиз ката пайда болду."
 
 #: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
-#| msgid "Help Contents"
 msgid "All Help Documents"
 msgstr "Бардык жардам документтери"
 
 #: ../libyelp/yelp-info-document.c:397
 #, c-format
-#| msgid ""
-#| "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#| "is not well-formed XML."
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "‘%s’ файлын ажыратып окууга болбоду, себеби ал, туура эмес XML файл."
@@ -160,7 +146,7 @@ msgstr "Эсбелгилер"
 
 #: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
-msgstr ""
+msgstr "YelpBookmarks имплементация экземпляры"
 
 #: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
@@ -168,7 +154,7 @@ msgstr "Издөөнү ишке киргизүү"
 
 #: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
-msgstr ""
+msgstr "Жайгашкан жери, издөө талаасы катар колдонулсунбу"
 
 #: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
@@ -179,12 +165,10 @@ msgid "Clear the search text"
 msgstr "Издөө текстин тазалоо"
 
 #: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
-#| msgid "Bookmarks"
 msgid "Bookmark this page"
 msgstr "Бул баракты эсбелги катары сактоо"
 
 #: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
-#| msgid "Remove Bookmark"
 msgid "Remove bookmark"
 msgstr "Эсбелгин жоготуу"
 
@@ -194,7 +178,6 @@ msgid "Search for “%s”"
 msgstr "“%s” текстин издөө"
 
 #: ../libyelp/yelp-location-entry.c:1458
-#| msgid "Loading..."
 msgid "Loading"
 msgstr "Жүктөө"
 
@@ -209,7 +192,7 @@ msgstr "GtkSettings"
 
 #: ../libyelp/yelp-settings.c:157
 msgid "A GtkSettings object to get settings from"
-msgstr ""
+msgstr "Параметрлерди алуу үчүн GtkSettings объекти"
 
 #: ../libyelp/yelp-settings.c:165
 msgid "GtkIconTheme"
@@ -217,7 +200,7 @@ msgstr "GtkIconTheme"
 
 #: ../libyelp/yelp-settings.c:166
 msgid "A GtkIconTheme object to get icons from"
-msgstr ""
+msgstr "Сүрөтбелгилерди алуу үчүн GtkIconTheme объекти"
 
 #: ../libyelp/yelp-settings.c:174
 msgid "Font Adjustment"
@@ -225,7 +208,7 @@ msgstr "Ариптерди тууралоо"
 
 #: ../libyelp/yelp-settings.c:175
 msgid "A size adjustment to add to font sizes"
-msgstr ""
+msgstr "Алиптердин өлчөмүнө тууралоо үчүн кошулуучу  өлчөм"
 
 #: ../libyelp/yelp-settings.c:183
 msgid "Show Text Cursor"
@@ -233,7 +216,7 @@ msgstr "Тексттик курсорду көрсөтүү"
 
 #: ../libyelp/yelp-settings.c:184
 msgid "Show the text cursor or caret for accessible navigation"
-msgstr ""
+msgstr "Навигация үчүн документте курсорду же каретканы көрсөтүү"
 
 #: ../libyelp/yelp-settings.c:192
 msgid "Editor Mode"
@@ -241,11 +224,11 @@ msgstr "Оңдоо режими"
 
 #: ../libyelp/yelp-settings.c:193
 msgid "Enable features useful to editors"
-msgstr ""
+msgstr "Терүүчүлөр үчүн пайдалуу мүмкунчүлүктөрдү иштетүү"
 
 #: ../libyelp/yelp-sqlite-storage.c:150
 msgid "Database filename"
-msgstr ""
+msgstr "Маалымат базасынын файл аты"
 
 #: ../libyelp/yelp-sqlite-storage.c:151
 msgid "The filename of the sqlite database"
@@ -260,17 +243,14 @@ msgid "The location of the XSLT stylesheet"
 msgstr "XSLT стилдик таблицасынын жайгашкан жери"
 
 #: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
-#, fuzzy, c-format
+#, c-format
 #| msgid ""
 #| "The table of contents could not be loaded. The file ‘%s’ is either "
 #| "missing or is not well-formed XML."
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr ""
-"Мазмунун жүктөөгө болбоду. ‘%s’ файлы жок же туура эмес форматталган XML "
-"файл."
+msgstr "‘%s’ XSLT стиль файлы жок же туура эмес."
 
 #: ../libyelp/yelp-transform.c:528
-#| msgid "No href attribute found on yelp:document"
 msgid "No href attribute found on yelp:document\n"
 msgstr "yelp:document ичинен href атрибуту табылбады\n"
 
@@ -291,32 +271,28 @@ msgid "_Forward"
 msgstr "А_лга"
 
 #: ../libyelp/yelp-view.c:146
-#| msgid "_Previous"
 msgid "_Previous Page"
 msgstr "_Мурунку барак"
 
 #: ../libyelp/yelp-view.c:151
-#| msgid "_Next"
 msgid "_Next Page"
 msgstr "_Кийинки барак"
 
 #: ../libyelp/yelp-view.c:423
-#| msgid "Yelp"
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
 #: ../libyelp/yelp-view.c:424
 msgid "A YelpUri with the current location"
-msgstr ""
+msgstr "YelpUri учурдагы жайгашкан жер менен"
 
 #: ../libyelp/yelp-view.c:432
-#| msgid "Loading..."
 msgid "Loading State"
 msgstr "Жүктөө абалы"
 
 #: ../libyelp/yelp-view.c:433
 msgid "The loading state of the view"
-msgstr ""
+msgstr "Көрүнүшүнүн абалын жүктөө"
 
 #: ../libyelp/yelp-view.c:442
 msgid "Page ID"
@@ -376,7 +352,6 @@ msgid "Send email to %s"
 msgstr "%s ке кат жөнөтүү"
 
 #: ../libyelp/yelp-view.c:1286
-#| msgid "Manual Pages"
 msgid "_Install Packages"
 msgstr "Пакеттерди _орнотуу"
 
@@ -385,12 +360,10 @@ msgid "_Open Link"
 msgstr "_Шилтеме ачуу"
 
 #: ../libyelp/yelp-view.c:1301
-#| msgid "Open Location"
 msgid "_Copy Link Location"
 msgstr "Даректи _көчүрүү "
 
 #: ../libyelp/yelp-view.c:1307
-#| msgid "Open Link in _New Window"
 msgid "Open Link in New _Window"
 msgstr "Шилтемени _жаңы терезеде ачуу"
 
@@ -411,7 +384,6 @@ msgid "S_end Video To..."
 msgstr ""
 
 #: ../libyelp/yelp-view.c:1381
-#| msgid "_Copy"
 msgid "_Copy Text"
 msgstr "Тексти _көчүрүү"
 
@@ -430,18 +402,15 @@ msgstr "“%s” үчүн бардык издөө жыйынтыктарын к�
 
 #: ../libyelp/yelp-view.c:1626
 #, c-format
-#| msgid "Could not load document"
 msgid "Could not load a document for ‘%s’"
 msgstr "‘%s’ үчүн документ жүктөөгө болбоду"
 
 #: ../libyelp/yelp-view.c:1632
 #, c-format
-#| msgid "Could not load document"
 msgid "Could not load a document"
 msgstr "Документти жүктөөгө болбоду"
 
 #: ../libyelp/yelp-view.c:1706
-#| msgid "Document Sections"
 msgid "Document Not Found"
 msgstr "Документ табылган жок"
 
@@ -454,7 +423,6 @@ msgid "Cannot Read"
 msgstr "Окууга болбоду"
 
 #: ../libyelp/yelp-view.c:1717
-#| msgid "Unknown Section"
 msgid "Unknown Error"
 msgstr "Белгисиз ката"
 
@@ -464,9 +432,6 @@ msgstr "Бул документти камтыган пакеттерди изд
 
 #: ../libyelp/yelp-view.c:1890
 #, c-format
-#| msgid ""
-#| "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-#| "actual file."
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "‘%s’ URI си туура баракты көрсөткөн жок."
 
@@ -530,12 +495,10 @@ msgid "_New Window"
 msgstr "_Жаңы терезе"
 
 #: ../src/yelp-window.c:247
-#| msgid "_Close Window"
 msgid "_Close"
 msgstr "_Жабуу"
 
 #: ../src/yelp-window.c:252
-#| msgid "About This Document"
 msgid "_All Documents"
 msgstr "_Бардык документтер"
 
@@ -544,12 +507,10 @@ msgid "_Add Bookmark"
 msgstr "Эсбелги _кошуу"
 
 #: ../src/yelp-window.c:261
-#| msgid "Remove Bookmark"
 msgid "_Remove Bookmark"
 msgstr "Эсбелгини _жоготуу"
 
 #: ../src/yelp-window.c:265
-#| msgid "_Find..."
 msgid "Find in Page..."
 msgstr "Барак _ичинен издөө..."
 
@@ -558,7 +519,6 @@ msgid "Open Location"
 msgstr "Дарек боюнча ачуу"
 
 #: ../src/yelp-window.c:301
-#| msgid "Applications"
 msgid "Application"
 msgstr "Тиркемелер"
 
