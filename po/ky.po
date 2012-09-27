@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2012-09-24 11:23+0000\n"
-"PO-Revision-Date: 2012-09-26 23:13+0600\n"
+"PO-Revision-Date: 2012-09-27 10:35+0600\n"
 "Last-Translator: Timur Zhamakeev <ztimur@gmail.com>\n"
 "Language-Team: Kirghiz <gnome-i18n@gnome.org>\n"
 "Language: ky\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.4\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. ID: install.tooltip
 #. This is a format message used to format tooltips on install: links. These
@@ -300,23 +300,23 @@ msgstr "Барактын ИДси"
 
 #: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
-msgstr ""
+msgstr "Каралып жаткан барактын негизги барагынын идентификатору"
 
 #: ../libyelp/yelp-view.c:451
 msgid "Root Title"
-msgstr ""
+msgstr "Негизги титул"
 
 #: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
-msgstr ""
+msgstr "Каралып жаткан барактын негизги барагынын титулу"
 
 #: ../libyelp/yelp-view.c:460
 msgid "Page Title"
-msgstr ""
+msgstr "Барактын титулу"
 
 #: ../libyelp/yelp-view.c:461
 msgid "The title of the page being viewed"
-msgstr ""
+msgstr "Каралып жаткан барактын титулу"
 
 #: ../libyelp/yelp-view.c:469
 msgid "Page Description"
@@ -324,19 +324,20 @@ msgstr "Барак жөнүндө маалымат"
 
 #: ../libyelp/yelp-view.c:470
 msgid "The description of the page being viewed"
-msgstr ""
+msgstr "Каралып жаткан барактын аныктамасы"
 
 #: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
-msgstr ""
+msgstr "Барактын сүрөтбелгиси"
 
 #: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
-msgstr ""
+msgstr "Каралып жаткан барактын сүрөтбелгиси"
 
 #: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
+"PackageKit орнотулган эмес. Пакетти орнотуу шилтемеси PackageKit ти керектейт."
 
 #: ../libyelp/yelp-view.c:1013
 msgid "Save Image"
@@ -377,11 +378,11 @@ msgstr "_Видеону жаңыча сактоо..."
 
 #: ../libyelp/yelp-view.c:1368
 msgid "S_end Image To..."
-msgstr ""
+msgstr "_Сүрөт жөнөтүү..."
 
 #: ../libyelp/yelp-view.c:1370
 msgid "S_end Video To..."
-msgstr ""
+msgstr "_Видео жөнөтүү..."
 
 #: ../libyelp/yelp-view.c:1381
 msgid "_Copy Text"
@@ -438,24 +439,24 @@ msgstr "‘%s’ URI си туура баракты көрсөткөн жок."
 #: ../libyelp/yelp-view.c:1896
 #, c-format
 msgid "The URI does not point to a valid page."
-msgstr ""
+msgstr "URI туура эмес баракка көрсөтүүдө."
 
 #: ../libyelp/yelp-view.c:1902
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr ""
+msgstr "URI ‘%s’ ажыратылып окулган жок."
 
 #: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
-msgstr ""
+msgstr "Оңдоо режимине өтүү"
 
 #: ../src/yelp-application.c:128
 msgid "_Larger Text"
-msgstr ""
+msgstr "Тексти _чоңойтуу"
 
 #: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
-msgstr "Тексттин өлчөмүн чоңойтуу"
+msgstr "Тексттин өлчөмүн көбөйтүү"
 
 #: ../src/yelp-application.c:133
 msgid "_Smaller Text"
@@ -472,7 +473,7 @@ msgstr "Жардам"
 
 #: ../src/yelp-application.c:288
 msgid "Show Text _Cursor"
-msgstr ""
+msgstr "_Курсорду көрсөтүү"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
@@ -524,11 +525,11 @@ msgstr "Тиркемелер"
 
 #: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
-msgstr ""
+msgstr "Бул терезени башкарган YelpApplication иштемеси"
 
 #: ../src/yelp-window.c:429
 msgid "Read Link _Later"
-msgstr ""
+msgstr "Шилтемени _кечирээк окуу"
 
 #: ../src/yelp-window.c:526
 msgid "Find:"
@@ -536,18 +537,17 @@ msgstr "Табуу:"
 
 #: ../src/yelp-window.c:548
 msgid "Read Later"
-msgstr ""
+msgstr "Кечирээк окуу"
 
 #: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i дал келүү"
 
 #: ../src/yelp-window.c:1189
 msgid "No matches"
-msgstr ""
+msgstr "Дал келгени жок"
 
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
