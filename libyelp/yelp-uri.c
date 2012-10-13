@@ -562,7 +562,7 @@ resolve_file_path (YelpUri *uri)
     YelpUriPrivate *base_priv = NULL;
     YelpUriPrivate *priv = GET_PRIV (uri);
     gchar *path;
-    const gchar *hash = strchr (priv->res_arg, '#');
+    const gchar *hash;
 
     /* Treat xref: URIs like relative file paths */
     if (g_str_has_prefix (priv->res_arg, "xref:")) {
@@ -574,6 +574,7 @@ resolve_file_path (YelpUri *uri)
     if (priv->res_base)
         base_priv = GET_PRIV (priv->res_base);
 
+    hash = strchr (priv->res_arg, '#');
     if (hash) {
         path = g_strndup (priv->res_arg, hash - priv->res_arg);
         hash++;
