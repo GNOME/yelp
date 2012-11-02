@@ -13,6 +13,8 @@
 
   <itst:preserveSpaceRule selector="/msg:l10n/msg:msg/its:locNote" preserveSpace="yes"/>
   <its:locNoteRule selector="/msg:l10n/msg:msg/msg:msgstr" locNotePointer="../its:locNote"/>
+
+  <itst:dropRule selector="//its:*" drop="yes"/>
 </its:rules>
 
 <msg id="install.tooltip">

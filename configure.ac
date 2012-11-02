@@ -78,6 +78,10 @@ AC_CHECK_PROG([ITSTOOL], [itstool], [itstool])
 if test x"$ITSTOOL" = x; then
   AC_MSG_ERROR([itstool is required to build the translation XML files])
 fi
+ITSTOOL_VERSION=`itstool --version | cut -d' ' -f2 | awk -F. '{print $ 1 * 10000 + $ 2 * 100 + $ 3; }'`
+if test "$ITSTOOL_VERSION" -lt 10200; then
+  AC_MSG_ERROR([itstool >= 1.1.2 is required to build the translation XML files])
+fi
 
 LIBLZMA_REQUIRED=4.9
 AC_ARG_ENABLE(lzma,
