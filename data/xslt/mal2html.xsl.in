@@ -14,9 +14,6 @@
 
 <xsl:param name="mal2html.editor_mode" select="$yelp.editor_mode"/>
 
-<xsl:param name="mal.if.supports.custom"
-           select="'action:install'"/>
-
 <xsl:param name="mal.cache" select="yelp:input()"/>
 
 <xsl:param name="mal.link.prefix" select="'xref:'"/>

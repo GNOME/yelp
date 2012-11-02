@@ -297,6 +297,8 @@ yelp_settings_constructed (GObject *object)
         yelp_settings_set_if_token (settings, "platform:unity");
     else if (env_panel)
         yelp_settings_set_if_token (settings, "platform:gnome-panel");
+
+    yelp_settings_set_if_token (settings, "action:install");
 }
 
 static void
