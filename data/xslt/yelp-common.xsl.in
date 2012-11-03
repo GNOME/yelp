@@ -110,29 +110,4 @@ a.trail:hover { text-decoration: none; color:  </xsl:text>
 
 <xsl:template name="yelp.css.custom"/>
 
-<!-- == html.js.custom == -->
-<xsl:template name="html.js.custom">
-<script type="text/javascript" language="javascript" src="@DATADIR@/js/jquery-ui-1.8.custom.min.js"/>
-</xsl:template>
-
-<!-- == html.js.content.custom == -->
-<xsl:template name="html.js.content.custom">
-<xsl:text>
-$(document).ready (function () {
-  if (location.hash != '') {
-    var sect = $('#' + location.hash);
-    var hgrp = sect.find('div.hgroup:first')
-    sect.css('background-color',  '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>');
-    hgrp.css('background-color',  '</xsl:text><xsl:value-of select="$color.yellow_background"/><xsl:text>')
-    window.setTimeout(function () {
-      sect.css('-webkit-transition', 'background-color 2s linear')
-      .css('background-color',  '</xsl:text><xsl:value-of select="$color.background"/><xsl:text>');
-      hgrp.css('-webkit-transition', 'background-color 2s linear')
-      .css('background-color',  '</xsl:text><xsl:value-of select="$color.gray_background"/><xsl:text>');
-    }, 200);
-  }
-});
-</xsl:text>
-</xsl:template>
-
 </xsl:stylesheet>
