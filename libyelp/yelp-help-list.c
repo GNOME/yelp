@@ -252,8 +252,10 @@ help_list_think (YelpHelpList *list)
             gchar *docid;
             HelpListEntry *entry = NULL;
 
-            if (g_file_info_get_file_type (child) != G_FILE_TYPE_DIRECTORY)
+            if (g_file_info_get_file_type (child) != G_FILE_TYPE_DIRECTORY) {
+                g_object_unref (child);
                 continue;
+            }
 
             docid = g_strconcat ("ghelp:", g_file_info_get_name (child), NULL);
             if (g_hash_table_lookup (priv->entries, docid)) {
@@ -307,6 +309,75 @@ help_list_think (YelpHelpList *list)
         g_object_unref (children);
         g_object_unref (helpdir);
         g_free (helpdirname);
+    }
+    for (datadir_i = 0; datadirs[datadir_i]; datadir_i++) {
+        for (lang_i = 0; langs[lang_i]; lang_i++) {
+            gchar *langdirname = g_build_filename (datadirs[datadir_i], "help", langs[lang_i], NULL);
+            GFile *langdir = g_file_new_for_path (langdirname);
+            GFileEnumerator *children = g_file_enumerate_children (langdir,
+                                                                   G_FILE_ATTRIBUTE_STANDARD_TYPE","
+                                                                   G_FILE_ATTRIBUTE_STANDARD_NAME,
+                                                                   G_FILE_QUERY_INFO_NONE,
+                                                                   NULL, NULL);
+            GFileInfo *child;
+            if (children == NULL) {
+                g_object_unref (langdir);
+                g_free (langdirname);
+                continue;
+            }
+            while (child = g_file_enumerator_next_file (children, NULL, NULL)) {
+                gchar *docid, *filename;
+                HelpListEntry *entry = NULL;
+                if (g_file_info_get_file_type (child) != G_FILE_TYPE_DIRECTORY) {
+                    g_object_unref (child);
+                    continue;
+                }
+
+                docid = g_strconcat ("help:", g_file_info_get_name (child), NULL);
+                if (g_hash_table_lookup (priv->entries, docid) != NULL) {
+                    g_free (docid);
+                    continue;
+                }
+
+                filename = g_build_filename (langdirname,
+                                            g_file_info_get_name (child),
+                                            "index.page",
+                                             NULL);
+                if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
+                    entry = g_new0 (HelpListEntry, 1);
+                    entry->id = docid;
+                    entry->filename = filename;
+                    entry->type = YELP_URI_DOCUMENT_TYPE_MALLARD;
+                    g_object_unref (child);
+                    goto found;
+                }
+                g_free (filename);
+
+                filename = g_build_filename (langdirname,
+                                            g_file_info_get_name (child),
+                                            "index.docbook",
+                                             NULL);
+                if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
+                    entry = g_new0 (HelpListEntry, 1);
+                    entry->id = docid;
+                    entry->filename = filename;
+                    entry->type = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
+                    g_object_unref (child);
+                    goto found;
+                }
+                g_free (filename);
+
+                g_free (docid);
+            found:
+                g_object_unref (child);
+                if (entry != NULL) {
+                    g_hash_table_insert (priv->entries, docid, entry);
+                    priv->all_entries = g_list_prepend (priv->all_entries, entry);
+                }
+            }
+
+            g_object_unref (children);
+        }
     }
     g_free (datadirs);
 
