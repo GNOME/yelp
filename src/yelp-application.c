@@ -244,6 +244,27 @@ yelp_application_cmdline (GApplication     *app,
 }
 
 static void
+new_activated (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+  YelpApplication *app = user_data;
+
+  yelp_application_new_window (app, NULL);
+}
+
+static void
+quit_activated (GSimpleAction *action, GVariant *parameter, gpointer user_data)
+{
+  YelpApplication *app = user_data;
+
+  g_application_quit (G_APPLICATION (app));
+}
+
+static GActionEntry app_entries[] = {
+  { "new", new_activated, NULL, NULL, NULL },
+  { "quit", quit_activated, NULL, NULL, NULL },
+};
+
+static void
 yelp_application_startup (GApplication *application)
 {
     YelpApplication *app = YELP_APPLICATION (application);
@@ -251,12 +272,35 @@ yelp_application_startup (GApplication *application)
     gchar *keyfile;
     YelpSettings *settings;
     GtkAction *action;
+    GtkBuilder *builder;
 
     g_set_application_name (N_("Help"));
 
     /* chain up */
     G_APPLICATION_CLASS (yelp_application_parent_class)
       ->startup (application);
+
+    g_action_map_add_action_entries (G_ACTION_MAP (application), app_entries, G_N_ELEMENTS (app_entries), application);
+    builder = gtk_builder_new ();
+    gtk_builder_add_from_string (builder,
+        "<interface>"
+        "  <menu id='app-menu'>"
+        "   <section>"
+        "    <item>"
+        "      <attribute name='label' translatable='yes'>_New Window</attribute>"
+        "      <attribute name='action'>app.new</attribute>"
+        "      <attribute name='accel'>&lt;Primary&gt;n</attribute>"
+        "    </item>"
+        "    <item>"
+        "      <attribute name='label' translatable='yes'>_Quit</attribute>"
+        "      <attribute name='action'>app.quit</attribute>"
+        "      <attribute name='accel'>&lt;Primary&gt;q</attribute>"
+        "    </item>"
+        "   </section>"
+        "  </menu>"
+        "</interface>", -1, NULL);
+    gtk_application_set_app_menu (GTK_APPLICATION (application), G_MENU_MODEL (gtk_builder_get_object (builder, "app-menu")));
+    g_object_unref (builder);
 
     settings = yelp_settings_get_default ();
     if (editor_mode)
