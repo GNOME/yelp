@@ -2,8 +2,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:yelp="http://www.gnome.org/yelp/ns"
                 xmlns:set="http://exslt.org/sets"
+                xmlns:mml="http://www.w3.org/1998/Math/MathML"
                 xmlns="http://www.w3.org/1999/xhtml"
-                exclude-result-prefixes="set"
+                exclude-result-prefixes="yelp set mml"
                 extension-element-prefixes="yelp"
                 version="1.0">
 
@@ -13,6 +14,17 @@
 
 <xsl:param name="html.syntax.highlight" select="true()"/>
 <xsl:param name="html.js.root" select="'file://@XSL_JSDIR@/'"/>
+
+<xsl:template name="html.js.mathjax">
+  <xsl:param name="node" select="."/>
+  <xsl:if test="$node//mml:*[1]">
+    <script type="text/javascript">
+      <xsl:attribute name="src">
+        <xsl:text>file://@DATADIR@/mathjax/MathJax.js?config=yelp</xsl:text>
+      </xsl:attribute>
+    </script>
+  </xsl:if>
+</xsl:template>
 
 <!-- == html.output == -->
 <xsl:template name="html.output">

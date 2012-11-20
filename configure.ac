@@ -35,7 +35,7 @@ PKG_CHECK_MODULES(YELP,
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
 	sqlite3
-	webkitgtk-3.0 >= 1.3.2
+	webkitgtk-3.0 >= 1.3.10
 	yelp-xsl >= 3.1.2
 ])
 AC_SUBST([YELP_CFLAGS])
@@ -220,6 +220,48 @@ data/icons/hicolor/16x16/status/Makefile
 data/icons/hicolor/scalable/Makefile
 data/icons/hicolor/scalable/actions/Makefile
 data/icons/hicolor/scalable/status/Makefile
+data/mathjax/Makefile
+data/mathjax/config/Makefile
+data/mathjax/extensions/HTML-CSS/Makefile
+data/mathjax/extensions/Makefile
+data/mathjax/fonts/HTML-CSS/TeX/woff/Makefile
+data/mathjax/jax/Makefile
+data/mathjax/jax/element/Makefile
+data/mathjax/jax/element/mml/Makefile
+data/mathjax/jax/element/mml/optable/Makefile
+data/mathjax/jax/input/Makefile
+data/mathjax/jax/input/MathML/Makefile
+data/mathjax/jax/input/MathML/entities/Makefile
+data/mathjax/jax/output/HTML-CSS/Makefile
+data/mathjax/jax/output/HTML-CSS/autoload/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Bold/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Regular/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Bold/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/BoldItalic/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Italic/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Regular/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Math/BoldItalic/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Math/Italic/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Script/Regular/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Size1/Regular/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Size2/Regular/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Size3/Regular/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Size4/Regular/Makefile
+data/mathjax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/Makefile
+data/mathjax/jax/output/Makefile
+data/mathjax/jax/output/NativeMML/Makefile
+data/mathjax/unpacked/Makefile
 data/xslt/Makefile
 data/xslt/db2html.xsl
 data/xslt/info2html.xsl
