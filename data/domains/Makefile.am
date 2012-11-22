@@ -3,8 +3,6 @@ ALL_LINGUAS = @ALL_LINGUAS@
 yelp.pot: yelp.xml.in
 	itstool -o "$@" "$^"
 
-all: yelp.xml yelp.pot
-
 yelp.xml: yelp.xml.in
 	$(AM_V_GEN) ( \
 	for lang in $(ALL_LINGUAS); do \
