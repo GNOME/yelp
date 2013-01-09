@@ -2,1086 +2,69 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Shankar Prasad <svenkate@redhat.com>, 2008, 2009.
+# Shankar Prasad <svenkate@redhat.com>, 2008, 2009, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master.kn\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&component=general\n"
-"POT-Creation-Date: 2010-03-30 16:12+0000\n"
-"PO-Revision-Date: 2009-09-16 23:28+0530\n"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2012-11-03 14:59+0000\n"
+"PO-Revision-Date: 2013-01-09 18:03+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <en@li.org>\n"
+"Language: kn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.5\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "GNU ಮಾಹಿತಿ ಪುಟಗಳು"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "ಸಾಂಪ್ರದಾಯಿಕ ಆಜ್ಞಾ ಸಾಲಿನ ನೆರವು (ಮಾಹಿತಿ)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "ಅನ್ವಯಗಳು"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "BLT ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "ಕಡತಗಳನ್ನು ಸಂರಚಿಸು"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "ಕರ್ಸಸ್ ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "ಅಭಿವೃದ್ಧಿ"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "FORTRAN ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "ಆಟಗಳು"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "ಯಂತ್ರಾಂಶ ಸಾಧನಗಳು"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "ಕರ್ನಲ್ ದಿನಚರಿಗಳು"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "ಕೈಪಿಡಿ ಪುಟಗಳು"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "ಜಾಲಬಂಧ ಆಡಿಯೋ ಧ್ವನಿ ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "OpenSSL ಅನ್ವಯಗಳು"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "OpenSSL ಸಂರಚನೆ"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "OpenSSL ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "OpenSSL ಅವಲೋಕನಗಳು"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "ಅವಲೋಕನಗಳು"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "POSIX ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "POSIX ಹೆಡರುಗಳು"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "ಪರ್ಲ್ ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Qt ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "ರೀಡ್‌ಲೈನ್ ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "0p ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "1m ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "1ssl ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "1x ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "2 ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "3blt ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "3f ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "3nas ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "3p ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "3qt ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "3readline ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "3ssl ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "3tiff ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "4 ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "4x ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "5 ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "5ssl ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "5x ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "6 ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "6x ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "7ssl ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "7x ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "9 ವಿಭಾಗ"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "1, 1p, 1g ಹಾಗು 1t ವಿಭಾಗಗಳು"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "3, 3o, ಹಾಗು 3t ವಿಭಾಗಗಳು"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "3form ಹಾಗು 3menu ವಿಭಾಗಗಳು"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "3ncurses ಹಾಗು 3curses ವಿಭಾಗಗಳು"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "3pm ಹಾಗು 3perl ವಿಭಾಗಗಳು"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "3x ಹಾಗು 3X11 ವಿಭಾಗಗಳು"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "7 ಹಾಗು 7gcc ವಿಭಾಗಗಳು"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "8 ಹಾಗು 8l ವಿಭಾಗಗಳು"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "ಗಣಕ ವ್ಯವಸ್ಥಾಪನೆ"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "ಗಣಕದ ಕರೆಗಳು"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "ವ್ಯವಸ್ಥೆಯ V ನಮೂನೆ/ಮೆನು ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "TIFF ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Termcap ಅನ್ವಯಗಳು"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "ಸಾಂಪ್ರದಾಯಿಕ ಆಜ್ಞಾ ಸಾಲಿನ ನೆರವು (ಮ್ಯಾನ್)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "X11 ಅನ್ವಯಗಳು"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "X11 ಸಂರಚನೆ"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "X11 ಸಾಧನಗಳು"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "X11 ಕ್ರಿಯೆಗಳು"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "X11 ಆಟಗಳು"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "X11 ಅವಲೋಕನಗಳು"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "2D ಗ್ರಾಫಿಕ್ಸುಗಳು"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "3D ಗ್ರಾಫಿಕ್ಸುಗಳು"
-
-#: ../data/toc.xml.in.h:3 ../data/ui/yelp-preferences.ui.h:1
-msgid "Accessibility"
-msgstr "ನಿಲುಕಣೆ"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "ಯುದ್ಧದ ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "ಸಾಹಸದ ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "ವಿನೋದ"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "ಗ್ರಾಫಿಕ್ಸುಗಳನ್ನು ನೋಡಲು ಹಾಗು ಅಗತ್ಯಕ್ಕೆ ತಕ್ಕಂತೆ ಬದಲಾಯಿಸುವ ಅನ್ವಯ"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "ಆಡಿಯೋ ಹಾಗು ವೀಡಿಯೋ ಸಂಬಂಧಿತ ಅನ್ವಯಗಳು"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "ಕಲಿಕೆಯನ್ನು ತಿಳಿಸುವ ಅಥವ ನೆರವಾಗುವ ಅನ್ವಯಗಳು"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "ಆರ್ಕೇಡ್ ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "ಆರ್ಕೈವ್ ಮಾಡುವ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "ಕಲೆ"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆ"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "ಖಗೋಳಶಾಸ್ತ್ರ"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "ಜೀವಶಾಸ್ತ್ರ"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "ಇಟ್ಟಗೆಗಳ ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "ಇಟ್ಟಗೆಗಳ ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "ನಿರ್ಮಾಣ"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "ಕ್ಯಾಲ್ಕುಲೇಟರ್"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "ದಿನಸೂಚಿ"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "ಎಲೆಯ ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "ಚಾರ್ಟ್ ಮಾಡುವ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "ಹರಟೆ"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "ರಸಾಯನ ಶಾಸ್ತ್ರ"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "ಗಡಿಯಾರಗಳು"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "ಸಂಕುಚನಾ ಉಪಕರಣ"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "ಗಣಕ ವಿಜ್ಞಾನ"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "ನಿರ್ಮಾಣ"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "ಸಂಪರ್ಕ ವ್ಯವಸ್ಥಾಪನೆ"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "ದತ್ತಾಶದ ಚಿತ್ರಣ(ವೀಶುವಲೈಸೇಶನ್)"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "ದತ್ತಸಂಚಯಗಳು"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "ತೊಂದರೆ ನಿವಾರಣೆಗಾರರು"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "ಗಣಕತೆರೆ"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "ಗಣಕತೆರೆ ಸಿದ್ಧತೆಗಳು"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "ಡಯಲ್‌ಅಪ್"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "ಶಬ್ಧಕೋಶಗಳು"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "ಡಿಸ್ಕ್‍ ಬರೆಯುವಿಕೆ"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "ಅರ್ಥಶಾಸ್ತ್ರ"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "ಶಿಕ್ಷಣ"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "ವಿದ್ಯುತ್"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "ಎಲೆಕ್ಟ್ರಾನಿಕ್ಸ್‍"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "ಇಮೈಲ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "ಎಮ್ಯುಲೇಟರ್"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "ಇಂಜಿನೀಯರಿಂಗ್"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "ಕಡತ ವ್ಯವಸ್ಥಾಪಕ"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "ಕಡತ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "ಕಡತ ವರ್ಗಾವಣೆ"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "ಕಡತವ್ಯವಸ್ಥೆ"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "ಅರ್ಥಶಾಸ್ತ್ರ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "ಫ್ಲೋ ಚಾರ್ಟ್ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "GNOME ಅನ್ವಯಗಳು"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "GUI ವಿಕಸನಗಾರರು"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "GNOME ಪರಿಸರಗಳಿಗಾಗಿನ ಸಾಮಾನ್ಯ ಅನ್ವಯಗಳು"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "KDE ಪರಿಸರಗಳಿಗಾಗಿನ ಸಾಮಾನ್ಯ ಅನ್ವಯಗಳು"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "ಭೂಗೋಳಶಾಸ್ತ್ರ"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "ಭೂಗರ್ಭಶಾಸ್ತ್ರ"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "ಭೂವಿಜ್ಞಾನ"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "ಗ್ರಾಫಿಕ್ಸ್‍"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr ""
-"ಬಾಹ್ಯ ಜಗತ್ತಿನೊಂದಿಗೆ ಸಂಪರ್ಕಹೊಂದಲು ಬಳಸಲಾಗುವ ಅನ್ವಯಗಳ ಮಾರ್ಗದರ್ಶಿಗಳು ಹಾಗು ಕೈಪಿಡಿಗಳು"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "ವಿಕಸನೆಯಲ್ಲಿ ಸೇರ್ಪಡಗೊಳ್ಳಲು ಸೂಚನೆಗಳು"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "ಹ್ಯಾಮ್ ರೇಡಿಯೋ"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "ಯಂತ್ರಾಂಶ ಸಿದ್ಧತೆಗಳು"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "ಒಂದಿಷ್ಟು ಮಜಾ ಮಾಡಿ"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "ಚರಿತ್ರೆ"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "IDE ಗಳು"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "IRC ಕ್ಲೈಂಟುಗಳು"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "ಚಿತ್ರ ಸಂಸ್ಕರಣೆ"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "ಇನ್‌ಸ್ಟಂಟ್ ಮೆಸೇಜಿಂಗ್"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "ಅಂತರ್ಜಾಲ"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "ಜಾವಾ"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "KDE ಅನ್ವಯಗಳು"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "ಮಕ್ಕಳ ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr "ಕೆಲವು ಅಶಕ್ತತೆಗಳಿಗಾಗಿ ನಿಮ್ಮ ಗಣಕವನ್ನು ಹೆಚ್ಚು ನಿಲುಕವಂತೆ ಮಾಡಲು ಇನ್ನಷ್ಟು ಅರಿಯಿರಿ"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "ಲೈಸನ್ಸುಗಳು"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "ಸಾಹಿತ್ಯ"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "ತಾರ್ಕಿಕ ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "ಗಣಿತ"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "ವೈದ್ಯಕೀಯ ಯಂತ್ರಾಂಶ"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "ಮಿಡಿ"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "ಇನ್ನಿತರೆ ದಸ್ತಾವೇಜುಗಳು"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "ಮಿಶ್ರಕಗಳು"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "ಮೇಲ್ವಿಚಾರಕ"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "ಮುಖ್ಯ ಉದ್ಧೇಶ"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "ಸಂಗೀತ"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "ಸುದ್ದಿ"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "ಸಾಂಖ್ಯಿಕ ವಿಶ್ಲೇಷಣೆ"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "OCR"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "ಕಛೇರಿ ಅನ್ವಯಗಳು"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "ಕಛೇರಿ ಅನ್ವಯಗಳು"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "ಇನ್ನಿತರೆ ದಸ್ತಾವೇಜುಗಳು"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "P2P"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "PDA ಸಂಪರ್ಕ"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "ಪ್ಯಾಕೇಜ್ ವ್ಯವಸ್ಥಾಪಕ"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "ಪ್ಯಾರಲಲ್ ಕಂಪ್ಯೂಟಿಂಗ್"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "ಫೋಟೋಗ್ರಾಫ್"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "ಭೌತಶಾಸ್ತ್ರ"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "ಚಾಲಕಗಳು"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "ಪ್ರಸ್ತುತಪಡಿಕೆಯ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:104 ../src/yelp-print.c:339 ../src/yelp-print.c:366
-msgid "Printing"
-msgstr "ಮುದ್ರಣ"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "ಪ್ರೊಫೈಲ್ ಮಾಡುವ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "ಯೋಜನೆ ನಿರ್ವಹಣಾ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "ಪ್ರಕಾಶನ"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "ರಾಸ್ಟರ್ ಗ್ರಾಫಿಕ್ಸ್‌"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "ರೆಕಾರ್ಡು ಮಾಡುವವು"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "ದೂರಸ್ಥ ನಿಲುಕಣೆ"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "ಮರುಪರಿಶೀಲನಾ ನಿಯಂತ್ರಣ"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "ರೋಬೋಟಿಕ್ಸ್‍"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "ಪಾತ್ರ ವಹಿಸುವ ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "ಸ್ಕಾನಿಂಗ್"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "ವಿಜ್ಞಾನ"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "ಸುರಕ್ಷತೆ"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "ಸೀಕ್ವೆನ್ಸರ್"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "ಸಿದ್ಧತೆಗಳು"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr ""
-"ಬಳಕೆದಾರರು ತಮ್ಮ ಗಣಕ ಪರಿಸರವನ್ನು ಇನ್ನಷ್ಟು ಹಿತಕರವಾಗಿರುವಂತೆ ಬದಲಾಯಿಸಿಕೊಳ್ಳಲು ಸಿದ್ಧತೆಗಳು"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "ಸಿಮುಲೇಶನ್ ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "ಧ್ವನಿ"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "ಧ್ವನಿ &amp; ವೀಡಿಯೋ"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "ಧ್ವನಿ &amp; ವೀಡಿಯೋ ಸಂಪಾದನೆ"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "ಕ್ರೀಡೆಗಳು"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "ಕ್ರೀಡೆಗಳು ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "ಸ್ಪ್ರೆಡ್‌ಶೀಟ್ ಉಪಕರಗಳು"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "ಕೌಶಲ್ಯದ ಆಟಗಳು"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "ಗಣಕ"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "TV"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "ದೂರವಾಣಿ"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "ದೂರವಾಣಿ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "ಟರ್ಮಿನಲ್ ಎಮ್ಯುಲೇಟರ್"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "ಪಠ್ಯ ಸಂಪಾದಕಗಳು"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "ಪಠ್ಯ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "ನಿಮ್ಮ ಗಣಕವನ್ನು ನಿರ್ವಹಿಸಲು ನೆರವಾಗುವ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "ಅನುವಾದ ಉಪಕರಣಗಳು"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "ಟ್ಯೂನರುಗಳು"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "ಸವಲತ್ತುಗಳು"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "ನಿಮ್ಮ ಕೆಲಸಗಳನ್ನು ಮಾಡಲು ನೆರವಾಗುವ ಸವಲತ್ತುಗಳು"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "ವೆಕ್ಟರ್ ಗ್ರಾಫಿಕ್ಸ್‍"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "ವೀಡಿಯೋ"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "ವೀಡಿಯೋ ಕಾನ್ಫರೆನ್ಸ್‍"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "ವೀಕ್ಷಿಸುವವರು"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "ಜಾಲ ವೀಕ್ಷಕ"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "ಜಾಲ ವಿಕಸನ"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "GNOME ನೆರವು ವೀಕ್ಷಕಕ್ಕೆ ಸ್ವಾಗತ"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "ಶಬ್ಧ ಸಂಸ್ಕಾರಕಗಳು(ವರ್ಡ್ ಪ್ರೊಸೆಸರ್ಸ್)"
-
-#: ../data/ui/yelp-bookmarks.ui.h:1
-msgid "Bookmarks"
-msgstr "ಬುಕ್‌ಮಾರ್ಕುಗಳು"
-
-#: ../data/ui/yelp-bookmarks.ui.h:2
-msgid "Re_name"
-msgstr "ಹೆಸರನ್ನು ಬದಲಾಯಿಸು(_n)"
-
-#: ../data/ui/yelp-bookmarks.ui.h:3
-msgid "_Bookmarks:"
-msgstr "ಬುಕ್‌ಮಾರ್ಕುಗಳು(_B):"
-
-#: ../data/ui/yelp-bookmarks-add.ui.h:1
-msgid "Add Bookmark"
-msgstr "ಬುಕ್‌ಮಾರ್ಕುಗಳನ್ನು ಸೇರಿಸು"
-
-#: ../data/ui/yelp-bookmarks-add.ui.h:2
-msgid "_Title:"
-msgstr "ಶೀರ್ಷಿಕೆ(_T):"
-
-#: ../data/ui/yelp-open-location.ui.h:1
-msgid "Open Location"
-msgstr "ಸ್ಥಳವನ್ನು ತೆಗೆ"
-
-#: ../data/ui/yelp-open-location.ui.h:2
-msgid "_Location:"
-msgstr "ಸ್ಥಳ(_L):"
-
-#: ../data/ui/yelp-preferences.ui.h:2
-msgid "Fonts"
-msgstr "ಅಕ್ಷರಶೈಲಿಗಳು"
-
-#: ../data/ui/yelp-preferences.ui.h:3
-msgid "Preferences"
-msgstr "ಆದ್ಯತೆಗಳು"
-
-#: ../data/ui/yelp-preferences.ui.h:4
-msgid "_Browse with caret"
-msgstr "ಕ್ಯಾರಟ್‌ನೊಂದಿಗೆ(caret) ವೀಕ್ಷಿಸು(_B)"
-
-#: ../data/ui/yelp-preferences.ui.h:5
-msgid "_Fixed width:"
-msgstr "ನಿಗದಿತ ಅಗಲ(_F):"
-
-#: ../data/ui/yelp-preferences.ui.h:6
-msgid "_Use system fonts"
-msgstr "ಗಣಕದ ಅಕ್ಷರಶೈಲಿಗಳನ್ನು ಬಳಸು(_U)"
-
-#: ../data/ui/yelp-preferences.ui.h:7
-msgid "_Variable width:"
-msgstr "ಬದಲಾಗುವ ಅಗಲ(_V):"
-
-#: ../data/yelp.schemas.in.h:1
-msgid "Font for fixed text"
-msgstr "ನಿಗದಿತ ಪಠ್ಯಕ್ಕಾಗಿನ ಅಕ್ಷರಶೈಲಿ"
-
-#: ../data/yelp.schemas.in.h:2
-msgid "Font for text"
-msgstr "ಪಠ್ಯಕ್ಕಾಗಿನ ಅಕ್ಷರಶೈಲಿ"
-
-#: ../data/yelp.schemas.in.h:3
-msgid "Font for text with fixed width."
-msgstr "ಪಠ್ಯಕ್ಕಾಗಿನ ನಿಗದಿತ ಅಗಲದೊಂದಿಗಿನ ಅಕ್ಷರಶೈಲಿ."
-
-#: ../data/yelp.schemas.in.h:4
-msgid "Font for text with variable width."
-msgstr "ಪಠ್ಯಕ್ಕಾಗಿನ ಬದಲಾಯಿಸಬಹುದಾದ ಅಗಲದೊಂದಿಗಿನ ಅಕ್ಷರಶೈಲಿ."
-
-#: ../data/yelp.schemas.in.h:5
-msgid "Use a keyboard-controllable caret when viewing pages."
-msgstr "ಪುಟಗಳನ್ನು ನೋಡುವಾಗ ಕೀಲಿಮಣೆಯಿಂದ ನಿಯಂತ್ರಿಸಬಹುದಾದ ಕ್ಯಾರಟ್(caret) ಅನ್ನು ಬಳಸಿ."
-
-#: ../data/yelp.schemas.in.h:6
-msgid "Use caret"
-msgstr "ಕ್ಯಾರೆಟ್(caret) ಅನ್ನು ಬಳಸು"
-
-#: ../data/yelp.schemas.in.h:7
-msgid "Use system fonts"
-msgstr "ಗಣಕದ ಅಕ್ಷರಶೈಲಿಯನ್ನು ಬಳಸು"
-
-#: ../data/yelp.schemas.in.h:8
-msgid "Use the default fonts set for the system."
-msgstr "ಗಣಕಕ್ಕೆ ಹೊಂದಿಸಲಾದ ಪೂರ್ವನಿಯೋಜಿತಅಕ್ಷರಶೈಲಿಯನ್ನು ಬಳಸು."
-
-#: ../src/eggdesktopfile.c:165
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <string/> - The package to install
+#.
+#: yelp.xml.in:29(msg/msgstr)
+msgid "Install <string/>"
+msgstr "<string/> ಅನ್ನು ಅನುಸ್ಥಾಪಿಸು"
+
+#: ../libyelp/yelp-bz2-decompressor.c:146
+#: ../libyelp/yelp-lzma-decompressor.c:155
+msgid "Invalid compressed data"
+msgstr "ಅಮಾನ್ಯವಾದ ಸಂಕುಚನ ದತ್ತಾಂಶ"
+
+#: ../libyelp/yelp-bz2-decompressor.c:152
+#: ../libyelp/yelp-lzma-decompressor.c:161
+#| msgid "Out of memory"
+msgid "Not enough memory"
+msgstr "ಸಾಕಷ್ಟು ಮೆಮೊರಿ ಲಭ್ಯವಿಲ್ಲ"
+
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-mallard-document.c:306
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
 #, c-format
-msgid "File is not a valid .desktop file"
-msgstr "ಕಡತವು ಒಂದು ಮಾನ್ಯವಾದಂತಹ .desktop ಕಡತವಾಗಿಲ್ಲ"
+#| msgid "The page %s was not found in the document %s."
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr "‘%s’ ಪುಟವು ‘%s’ ದಸ್ತಾವೇಜಿನಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ."
 
-#: ../src/eggdesktopfile.c:188
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
 #, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "ಗುರುತಿಸಲಾಗದ ಗಣಕತೆರೆ ಕಡತದ ಆವೃತ್ತಿ '%s'"
+#| msgid "The file ‘%s’ does not exist."
+msgid "The file does not exist."
+msgstr "ಕಡತವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ."
 
-#: ../src/eggdesktopfile.c:957
-#, c-format
-msgid "Starting %s"
-msgstr "%s ಅನ್ನು ಆರಂಭಿಸಲಾಗುತ್ತಿದೆ"
-
-#: ../src/eggdesktopfile.c:1098
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "ಅನ್ವಯವು ಆಜ್ಞಾ ಸಾಲಿನಲ್ಲಿ ದಸ್ತಾವೇಜುಗಳನ್ನು ಅಂಗೀಕರಿಸುವುದಿಲ್ಲ"
-
-#: ../src/eggdesktopfile.c:1166
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "ಗುರುತಿಸಲಾಗದ ಆರಂಭದ ಆಯ್ಕೆ: %d"
-
-#: ../src/eggdesktopfile.c:1365
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-"ದಸ್ತಾವೇಜಿನ URI ಗಳನ್ನು ಒಂದು 'Type=Link' ಗಣಕತೆರೆ ನಮೂದಿಗೆ ರವಾನಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
-
-#: ../src/eggdesktopfile.c:1384
-#, c-format
-msgid "Not a launchable item"
-msgstr "ಆರಂಭಿಸಬಹುದಾದ ಅಂಶವಾಗಿಲ್ಲ"
-
-#: ../src/eggsmclient.c:225
-msgid "Disable connection to session manager"
-msgstr "ಅಧಿವೇಶನದ ವ್ಯವಸ್ಥಾಪಕನೊಂದಿಗಿನ ಸಂಪರ್ಕವನ್ನು ಅಶಕ್ತಗೊಳಿಸು"
-
-#: ../src/eggsmclient.c:228
-msgid "Specify file containing saved configuration"
-msgstr "ಉಳಿಸಲಾದ ಸಂರಚನೆಯನ್ನು ಹೊಂದಿರುವ ಕಡತವನ್ನು ಸೂಚಿಸಿ"
-
-#: ../src/eggsmclient.c:228
-msgid "FILE"
-msgstr "FILE"
-
-#: ../src/eggsmclient.c:231
-msgid "Specify session management ID"
-msgstr "ಅಧೀವೇಶನ ವ್ಯವಸ್ಥಾಪನಾ ID ಯನ್ನು ಸೂಚಿಸಿ"
-
-#: ../src/eggsmclient.c:231
-msgid "ID"
-msgstr "ID"
-
-#: ../src/eggsmclient.c:252
-msgid "Session management options:"
-msgstr "ಅಧಿವೇಶನ ನಿರ್ವಹಣಾ ಆಯ್ಕೆಗಳು:"
-
-#: ../src/eggsmclient.c:253
-msgid "Show session management options"
-msgstr "ಅಧಿವೇಶನ ವ್ಯವಸ್ಥಾಪನಾ ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸು"
-
-#: ../src/yelp-bookmarks.c:148
-msgid "Open Bookmark in New Window"
-msgstr "ಬುಕ್‌ಮಾರ್ಕನ್ನು ಹೊಸ ವಿಂಡೋದಲ್ಲಿ ತೆರೆ"
-
-#: ../src/yelp-bookmarks.c:152
-msgid "Rename Bookmark"
-msgstr "ಬುಕ್‌ಮಾರ್ಕಿನ ಹೆಸರನ್ನು ಬದಲಾಯಿಸು"
-
-#: ../src/yelp-bookmarks.c:156
-msgid "Remove Bookmark"
-msgstr "ಬುಕ್‌ಮಾರ್ಕನ್ನು ತೆಗೆದುಹಾಕು"
-
-#: ../src/yelp-bookmarks.c:314
-#, c-format
-msgid "A bookmark titled %s already exists for this page."
-msgstr "ಈ ಪುಟಕ್ಕಾಗಿನ %s ಎಂಬ ಶೀರ್ಷಿಕೆಯ ಒಂದು ಬುಕ್‌ಮಾರ್ಕು ಈಗಾಗೆಲೆ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ."
-
-#: ../src/yelp-bookmarks.c:390
-#, c-format
-msgid "A bookmark titled <b>%s</b> already exists for this page."
-msgstr "ಈ ಪುಟಕ್ಕಾಗಿನ <b>%s</b> ಎಂಬ ಶೀರ್ಷಿಕೆಯ ಒಂದು ಬುಕ್‌ಮಾರ್ಕು ಈಗಾಗೆಲೆ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ."
-
-#: ../src/yelp-bookmarks.c:403
-msgid "Help Topics"
-msgstr "ನೆರವಿನ ವಿಷಯಗಳು"
-
-#: ../src/yelp-bookmarks.c:418
-msgid "Document Sections"
-msgstr "ದಸ್ತಾವೇಜು ವಿಭಾಗಗಳು"
-
-#: ../src/yelp-db-print.c:258 ../src/yelp-db-print.c:350
-#: ../src/yelp-docbook.c:275 ../src/yelp-docbook.c:367 ../src/yelp-info.c:243
-#: ../src/yelp-info.c:338 ../src/yelp-mallard.c:284 ../src/yelp-mallard.c:384
-#: ../src/yelp-man.c:292 ../src/yelp-man.c:385 ../src/yelp-toc.c:266
-#: ../src/yelp-toc.c:365
-msgid "Page not found"
-msgstr "ಪುಟವು ಕಂಡುಬಂದಿಲ್ಲ"
-
-#: ../src/yelp-db-print.c:259 ../src/yelp-docbook.c:276 ../src/yelp-info.c:244
-#: ../src/yelp-mallard.c:285 ../src/yelp-mallard.c:385 ../src/yelp-man.c:293
-#, c-format
-msgid "The page %s was not found in the document %s."
-msgstr "%s ಪುಟವು %s ದಸ್ತಾವೇಜಿನಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ."
-
-#: ../src/yelp-db-print.c:351 ../src/yelp-docbook.c:368 ../src/yelp-info.c:339
-#: ../src/yelp-man.c:386
-#, c-format
-msgid "The requested page was not found in the document %s."
-msgstr "ಮನವಿ ಸಲ್ಲಿಸಲಾದ ಪುಟವು %s ದಸ್ತಾವೇಜಿನಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ."
-
-#: ../src/yelp-db-print.c:392 ../src/yelp-docbook.c:410 ../src/yelp-info.c:380
-#: ../src/yelp-man.c:429
-msgid "File not found"
-msgstr "ಕಡತ ಕಂಡು ಬಂದಿಲ್ಲ"
-
-#: ../src/yelp-db-print.c:393 ../src/yelp-docbook.c:411 ../src/yelp-info.c:381
-#: ../src/yelp-man.c:430
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "ಕಡತ ‘%s’ ವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ."
 
-#: ../src/yelp-db-print.c:406 ../src/yelp-db-print.c:418
-#: ../src/yelp-docbook.c:424 ../src/yelp-docbook.c:436 ../src/yelp-info.c:395
-#: ../src/yelp-man.c:458 ../src/yelp-toc.c:437
-msgid "Could not parse file"
-msgstr "ಕಡತವನ್ನು ಪಾರ್ಸ್ ಮಾಡಲು ಆಗಲಿಲ್ಲ"
-
-#: ../src/yelp-db-print.c:407 ../src/yelp-docbook.c:425
+#: ../libyelp/yelp-docbook-document.c:342
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -1090,476 +73,1495 @@ msgstr ""
 "ಕಡತ ‘%s’ ಅನ್ನು ಪಾರ್ಸ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಸೂಕ್ತವಾಗಿ ರಚಿಸಲಾದ ಒಂದು XML "
 "ಪುಟವಾಗಿಲ್ಲ."
 
-#: ../src/yelp-db-print.c:419 ../src/yelp-docbook.c:437
+#: ../libyelp/yelp-docbook-document.c:355
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"ಕಡತ ‘%s’ ಅನ್ನು ಪಾರ್ಸ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಒಳಗೊಂಡಿರುವ ಒಂದು ಅಥವ ಹೆಚ್ಚಿನ "
+"ಕಡತ ‘%s’ ಅನ್ನು ಪಾರ್ಸ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಒಳಗೊಂಡಿರುವ ಒಂದು ಅಥವ "
+"ಹೆಚ್ಚಿನ "
 "ಕಡತಗಳು ಸೂಕ್ತವಾಗಿ ರಚಿಸಲಾದ ಒಂದು XML ಪುಟವಾಗಿಲ್ಲ."
 
-#: ../src/yelp-db-print.c:766 ../src/yelp-docbook.c:787
+#: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "ಗೊತ್ತಿಲ್ಲದ"
 
-#: ../src/yelp-error.c:132 ../src/yelp-error.c:139
-msgid "Unknown Error"
-msgstr "ಗೊತ್ತಿರದ ದೋಷ"
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
+#, c-format
+#| msgid "The requested page was not found in the document %s."
+msgid "The requested page was not found in the document ‘%s’."
+msgstr "ಮನವಿ ಮಾಡಲಾದ ಪುಟವು ‘%s’ ದಸ್ತಾವೇಜಿನಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ."
 
-#: ../src/yelp-error.c:136 ../src/yelp-window.c:1716
-msgid "Could Not Read File"
-msgstr "ಕಡತವನ್ನು ಓದಲು ಆಗಲಿಲ್ಲ"
+#: ../libyelp/yelp-document.c:268
+msgid "Indexed"
+msgstr "ಅನುಸೂಚಿತ"
 
-#: ../src/yelp-error.c:146
-msgid "No information is available about this error."
-msgstr "ಈ ದೋಷದ ಬಗ್ಗೆ ಯಾವುದೆ ಮಾಹಿತಿಯು ಲಭ್ಯವಿಲ್ಲ."
+#: ../libyelp/yelp-document.c:269
+msgid "Whether the document content has been indexed"
+msgstr "ದಸ್ತಾವೇಜಿನಲ್ಲಿನ ವಿಷಯವನ್ನು ಅನುಸೂಚಿಗೊಳಿಸಲಾಗಿದೆಯೆ"
 
-#: ../src/yelp-info.c:396
+#: ../libyelp/yelp-document.c:277
+#| msgid "Document Sections"
+msgid "Document URI"
+msgstr "ದಸ್ತಾವೇಜು URI"
+
+#: ../libyelp/yelp-document.c:278
+msgid "The URI which identifies the document"
+msgstr "ದಸ್ತಾವೇಜನ್ನು ಗುರುತಿಸುವ URI"
+
+#: ../libyelp/yelp-document.c:994
+#, c-format
+#| msgid "Search results for \"%s\""
+msgid "Search results for “%s”"
+msgstr "\"%s\" ಗಾಗಿನ ಹುಡುಕು ಫಲಿತಾಂಶಗಳು"
+
+#: ../libyelp/yelp-document.c:1006
+#, c-format
+msgid "No matching help pages found in “%s”."
+msgstr "“%s” ನಲ್ಲಿ ಯಾವುದೆ ಹೊಂದಿಕೆಯಾಗುವ ನೆರವಿನ ಪುಟಗಳು ಕಾಣಿಸುತ್ತಿಲ್ಲ."
+
+#: ../libyelp/yelp-document.c:1012
+msgid "No matching help pages found."
+msgstr "ಯಾವುದೆ ಹೊಂದಿಕೆಯಾಗುವ ನೆರವಿನ ಪುಟಗಳು ಕಾಣಿಸುತ್ತಿಲ್ಲ."
+
+#: ../libyelp/yelp-error.c:37
+#, c-format
+msgid "An unknown error occurred."
+msgstr "ಒಂದು ಗೊತ್ತಿಲ್ಲದ ದೋಷವು ಎದುರಾಗಿದೆ."
+
+#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+msgid "All Help Documents"
+msgstr "ಎಲ್ಲಾ ನೆರವಿನ ದಸ್ತಾವೇಜುಗಳು"
+
+#: ../libyelp/yelp-info-document.c:397
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"ಕಡತ ‘%s’ ಅನ್ನು ಪಾರ್ಸ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಸೂಕ್ತವಾಗಿ ರಚಿಸಲಾದ ಒಂದು ಮಾಹಿತಿ "
+"ಕಡತ ‘%s’ ಅನ್ನು ಪಾರ್ಸ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಸೂಕ್ತವಾಗಿ ರಚಿಸಲಾದ ಒಂದು "
+"ಮಾಹಿತಿ "
 "(info) ಪುಟವಾಗಿಲ್ಲ."
 
-#: ../src/yelp-io-channel.c:132
+#: ../libyelp/yelp-location-entry.c:336
+#| msgid "Viewer"
+msgid "View"
+msgstr "ನೋಟ"
+
+#: ../libyelp/yelp-location-entry.c:337
+msgid "A YelpView instance to control"
+msgstr "ನಿಯಂತ್ರಿಸಲು YelpView ಸನ್ನಿವೇಶ"
+
+#: ../libyelp/yelp-location-entry.c:352
+msgid "Bookmarks"
+msgstr "ಪುಟಗುರುತುಗಳು"
+
+#: ../libyelp/yelp-location-entry.c:353
+msgid "A YelpBookmarks implementation instance"
+msgstr "YelpBookmarks ಅಳವಡಿಕೆ ಸನ್ನಿವೇಶ"
+
+#: ../libyelp/yelp-location-entry.c:369
+msgid "Enable Search"
+msgstr "ಹುಡುಕಾಟವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸು"
+
+#: ../libyelp/yelp-location-entry.c:370
+msgid "Whether the location entry can be used as a search field"
+msgstr "ಸ್ಥಳದ ನಮೂದನ್ನು ಒಂದು ಹುಡುಕು ಕ್ಷೇತ್ರವಾಗಿ ಬಳಸಬಹುದೆ"
+
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
+#| msgid "_Search:"
+msgid "Search..."
+msgstr "ಹುಡುಕು..."
+
+#: ../libyelp/yelp-location-entry.c:783
+#| msgid "Repeat the search online at %s"
+msgid "Clear the search text"
+msgstr "ಹುಡುಕಾಟವನ್ನು ತೆರವುಗೊಳಿಸು"
+
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
+#| msgid "Bookmarks"
+msgid "Bookmark this page"
+msgstr "ಈ ಪುಟವನ್ನು ಪುಟಗುರುತು ಮಾಡು"
+
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
+#| msgid "Remove Bookmark"
+msgid "Remove bookmark"
+msgstr "ಪುಟಗುರುತನ್ನು ತೆಗೆದುಹಾಕು"
+
+#: ../libyelp/yelp-location-entry.c:1154
 #, c-format
-msgid ""
-"The file ‘%s’ could not be read and decoded. The file may be compressed in "
-"an unsupported format."
-msgstr ""
-"ಕಡತ ‘%s’ ಅನ್ನು ಓದಿ ಡೀಕೋಡ್ ಮಾಡಲಾಗಿಲ್ಲ. ಕಡತವನ್ನು ಬೆಂಬಲವಿಲ್ಲದ ಒಂದು ಬಗೆಯಲ್ಲಿ "
-"ಸಂಕುಚನಗೊಳಿಸಿರಬಹುದು."
+#| msgid "Search results for \"%s\""
+msgid "Search for “%s”"
+msgstr "“%s” ಗಾಗಿನ ಹುಡುಕಾಟ"
 
-#: ../src/yelp-main.c:88
-msgid "Use a private session"
-msgstr "ಖಾಸಗಿ ಅಧಿವೇಶನವನ್ನು ಬಳಸು"
+#: ../libyelp/yelp-location-entry.c:1458
+#| msgid "Loading..."
+msgid "Loading"
+msgstr "ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ"
 
-#: ../src/yelp-main.c:97
-msgid "Define which cache directory to use"
-msgstr "ಯಾವ ಕ್ಯಾಶೆ ಕೋಶವನ್ನು ಬಳಸಬೇಕು ಎಂದು ಸೂಚಿಸಿ"
-
-#. Commandline parsing is done here
-#: ../src/yelp-main.c:355
-msgid " GNOME Help Browser"
-msgstr " GNOME ಸಹಾಯ ವೀಕ್ಷಕ"
-
-#: ../src/yelp-main.c:384 ../yelp.desktop.in.in.h:2
-msgid "Help"
-msgstr "ಸಹಾಯ"
-
-#: ../src/yelp-mallard.c:315
-msgid "Directory not found"
-msgstr "ಕೋಶವು ಕಂಡುಬಂದಿಲ್ಲ"
-
-#: ../src/yelp-mallard.c:316
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "ಕೋಶ ‘%s’ ಅಸ್ತಿತ್ವದಲ್ಲಿ ಇಲ್ಲ."
 
-#: ../src/yelp-man.c:459
+#: ../libyelp/yelp-settings.c:156
+#| msgid "Settings"
+msgid "GtkSettings"
+msgstr "GtkSettings"
+
+#: ../libyelp/yelp-settings.c:157
+msgid "A GtkSettings object to get settings from"
+msgstr "ಸಿದ್ಧತೆಗಳನ್ನು ಪಡೆದುಕೊಳ್ಳಬೇಕಿರುವ GtkSettings ವಸ್ತು"
+
+#: ../libyelp/yelp-settings.c:165
+msgid "GtkIconTheme"
+msgstr "GtkIconTheme"
+
+#: ../libyelp/yelp-settings.c:166
+msgid "A GtkIconTheme object to get icons from"
+msgstr "ಚಿಹ್ನೆಗಳನ್ನು ಪಡೆದುಕೊಳ್ಳಬೇಕಿರುವ ಒಂದು GtkIconTheme"
+
+#: ../libyelp/yelp-settings.c:174
+msgid "Font Adjustment"
+msgstr "ಅಕ್ಷರಶೈಲಿ ಹೊಂದಾಣಿಕೆ"
+
+#: ../libyelp/yelp-settings.c:175
+msgid "A size adjustment to add to font sizes"
+msgstr "ಅಕ್ಷರಶೈಲಿ ಗಾತ್ರಗಳಿಗೆ ಹೊಂದಿಕೆಯಾಗುವ ಒಂದು ಗಾತ್ರ ಸರಿಹೊಂದಿಕೆ"
+
+#: ../libyelp/yelp-settings.c:183
+msgid "Show Text Cursor"
+msgstr "ಪಠ್ಯ ತೆರೆಸೂಚಕವನ್ನು ತೋರಿಸು"
+
+#: ../libyelp/yelp-settings.c:184
+msgid "Show the text cursor or caret for accessible navigation"
+msgstr "ನಿಲುಕಣಾ ನ್ಯಾವಿಗೇಶನ್‌ಗಾಗಿ ಪಠ್ಯ ತೆರೆಸೂಚಕ ಅಥವ ಕ್ಯಾರೆಟ್ ಅನ್ನು ತೋರಿಸು"
+
+#: ../libyelp/yelp-settings.c:192
+msgid "Editor Mode"
+msgstr "ಸಂಪಾದಕ ಸ್ಥಿತಿ"
+
+#: ../libyelp/yelp-settings.c:193
+msgid "Enable features useful to editors"
+msgstr "ಸಂಪಾದಕಗಳಿಗೆ ಸಹಾಯಕವಾಗುವ ಸೌಲಭ್ಯಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸು"
+
+#: ../libyelp/yelp-sqlite-storage.c:150
+#| msgid "Databases"
+msgid "Database filename"
+msgstr "ದತ್ತಸಂಚಯ ಕಡತದ ಹೆಸರು"
+
+#: ../libyelp/yelp-sqlite-storage.c:151
+msgid "The filename of the sqlite database"
+msgstr "sqlite ದತ್ತಸಂಚಯದ ಕಡತಹೆಸರು"
+
+#: ../libyelp/yelp-transform.c:171
+#| msgid "Invalid Stylesheet"
+msgid "XSLT Stylesheet"
+msgstr "XSLT ಶೈಲಿಹಾಳೆ"
+
+#: ../libyelp/yelp-transform.c:172
+msgid "The location of the XSLT stylesheet"
+msgstr "XSLT ಶೈಲಿಹಾಳೆ ಇರುವ ಸ್ಥಳ"
+
+#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed man page."
+#| msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr ""
-"ಕಡತ ‘%s’ ಅನ್ನು ಪಾರ್ಸ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಸೂಕ್ತವಾಗಿ ರಚಿಸಲಾದ ಒಂದು ಮ್ಯಾನ್ "
-"(man) ಪುಟವಾಗಿಲ್ಲ."
+"XSLT ಶೈಲಿಹಾಳೆ (ಸ್ಟೈಲ್‌ಶೀಟ್) ‘%s’ ಯು ಒಂದೊ ಕಾಣುತ್ತಿಲ್ಲ, ಅಥವ ಅಮಾನ್ಯವಾದುದಾಗಿದೆ."
 
-#: ../src/yelp-print.c:99
-msgid "Print"
-msgstr "ಮುದ್ರಿಸು"
-
-#: ../src/yelp-print.c:169
-msgid "Preparing to print"
-msgstr "ಮುದ್ರಣಕ್ಕೆ ಅಣಿಗೊಳ್ಳುತ್ತಿದೆ"
-
-#: ../src/yelp-print.c:263
-msgid "Printing is not supported on this printer"
-msgstr "ಈ ಮುದ್ರಕದಲ್ಲಿ ಮುದ್ರಣಕ್ಕೆ ಬೆಂಬಲವಿಲ್ಲ"
-
-#: ../src/yelp-print.c:266
-#, c-format
-msgid "Printer %s does not support postscript printing."
-msgstr "ಮುದ್ರಕ %s ವು ಪೋಸ್ಟ್‌ಸ್ಕ್ರಿಪ್ಟ್‍ ಮುದ್ರಣವನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ."
-
-#: ../src/yelp-print.c:368
-msgid "Waiting to print"
-msgstr "ಮುದ್ರಿಸಲು ಕಾಯಲಾಗುತ್ತಿದೆ"
-
-#: ../src/yelp-print.c:580
-msgid "An error occurred while printing"
-msgstr "ಮುದ್ರಿಸುವಾಗ ಒಂದು ದೋಷ ಕಂಡು ಬಂದಿದೆ"
-
-#: ../src/yelp-print.c:584
-#, c-format
-msgid "It was not possible to print your document: %s"
-msgstr "ನಿಮ್ಮ ದಸ್ತಾವೇಜನ್ನು ಮುದ್ರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: %s"
-
-#: ../src/yelp-search-parser.c:67
-msgid "the GNOME Support Forums"
-msgstr "GNOME ಬೆಂಬಲ ವೇದಿಕೆಗಳು"
-
-#: ../src/yelp-search-parser.c:285
-#, c-format
-msgid "No results for \"%s\""
-msgstr "\"%s\" ಗಾಗಿ ಯಾವುದೆ ಫಲಿತಾಂಶಗಳಿಲ್ಲ"
-
-#: ../src/yelp-search-parser.c:286
-msgid ""
-"Try using different words to describe the problem you're having or the topic "
-"you want help with."
-msgstr ""
-"ನೀವು ಎದುರಿಸುತ್ತಿರುವ ತೊಂದರೆಯನ್ನು ಅಥವ ನಿಮಗೆ ನೆರವು ಬೇಕಿರುವ ವಿಷಯವನ್ನು ವಿವರಿಸಲು ಬೇರೆ "
-"ಪದಗಳನ್ನು ಬಳಸಿ."
-
-#: ../src/yelp-search-parser.c:289
-#, c-format
-msgid "Search results for \"%s\""
-msgstr "\"%s\" ಗಾಗಿನ ಹುಡುಕು ಫಲಿತಾಂಶಗಳು"
-
-#. TRANSLATORS: Please don't do anything funny with the
-#. * format arguement.  It isn't really going through a printf
-#. * The %s is used to indicate where the name of the site (linked)
-#. * should be.  This is done in the XSLT
-#.
-#: ../src/yelp-search-parser.c:303
-#, c-format
-msgid "Repeat the search online at %s"
-msgstr "ಆನ್‌ಲೈನಿನಲ್ಲಿ %s ನ ಹುಡುಕಾಟವನ್ನು ಇನ್ನೊಮ್ಮೆ ಮಾಡು"
-
-#. Translators: Do not translate this list exactly.  These are
-#. * colon-separated words that aren't useful for choosing search
-#. * results; they will be different for each language. Include
-#. * pronouns, articles, very common verbs and prepositions,
-#. * words from question structures like "tell me about" and
-#. * "how do I", and words for functional states like "not",
-#. * "work", and "broken".
-#.
-#: ../src/yelp-search-parser.c:874
-msgid ""
-"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
-"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
-"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
-"where:who:will:with:won't:wont:why:work:working:works"
-msgstr ""
-"a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:"
-"doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:"
-"help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:"
-"where:who:will:with:won't:wont:why:work:working:works"
-
-#. Translators: This is a list of common prefixes for words.
-#. * Do not translate this directly.  Instead, use a colon
-#. * seperated list of word-starts.  In English, an example
-#. * is re-.  If there is none, please use the term NULL
-#. * If there is only one, please put a colon after.
-#. * E.g. if the common prefix is re then the string would be
-#. * "re:"
-#.
-#: ../src/yelp-search-parser.c:890
-msgid "re"
-msgstr "NULL"
-
-#. Translators: This is a list of (guess what?) common suffixes
-#. * to words.  Things that may be put at ends of words to slightly
-#. * alter their meaning (like -ing and -s in English).  This is a
-#. * colon seperated list (I like colons).  If there are none,
-#. * please use the string NULL.  If there is only 1, please
-#. * add a colon at the end of the list
-#.
-#: ../src/yelp-search-parser.c:899
-msgid "ers:er:ing:es:s:'s"
-msgstr "NULL"
-
-#: ../src/yelp-search-parser.c:1095
-msgid "No Comment"
-msgstr "ಯಾವುದೆ ಟಿಪ್ಪಣಿ ಇಲ್ಲ"
-
-#. Much bigger problems
-#: ../src/yelp-search.c:238
-msgid "Search could not be processed"
-msgstr "ಹುಡಕನ್ನು ಸಂಸ್ಕರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
-
-#: ../src/yelp-search.c:239
-msgid "The requested search could not be processed."
-msgstr "ಮನವಿ ಸಲ್ಲಿಸಲಾದ ಹುಡುಕನ್ನು ಸಂಸ್ಕರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ."
-
-#: ../src/yelp-search.c:366
-msgid "Cannot process the search"
-msgstr "ಹುಡುಕನ್ನು ಸಂಸ್ಕರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
-
-#: ../src/yelp-search.c:367
-msgid "The search processor returned invalid results"
-msgstr "ಹುಡುಕು ಸಂಸ್ಕಾರವು ಅಮಾನ್ಯವಾದ ಫಲಿತಾಂಶಗಳನ್ನು ಮರಳಿಸಿದೆ"
-
-#: ../src/yelp-toc.c:267
-#, c-format
-msgid "The page %s was not found in the TOC."
-msgstr "%s ಪುಟವು TOC ಯಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ."
-
-#: ../src/yelp-toc.c:366
-msgid "The requested page was not found in the TOC."
-msgstr "ಮನವಿ ಸಲ್ಲಿಸಲಾದ ಪುಟವು TOC ಯಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ."
-
-#: ../src/yelp-toc.c:438
-msgid ""
-"The TOC file could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"TOC ಕಡತವನ್ನು ಪಾರ್ಸ್ ಮಾಡಲಾಗಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಒಂದು ಸೂಕ್ತವಾಗಿ ರಚಿತವಾಗಿರದ XML "
-"ದಸ್ತಾವೇಜಾಗಿದೆ."
-
-#: ../src/yelp-transform.c:86
-msgid "Invalid Stylesheet"
-msgstr "ಅಮಾನ್ಯವಾದ ಶೈಲಿಹಾಳೆ"
-
-#: ../src/yelp-transform.c:87
-#, c-format
-msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-msgstr "XSLT ಶೈಲಿಹಾಳೆ(ಸ್ಟೈಲ್‌ಶೀಟ್) ‘%s’ ಯು ಒಂದೊ ಕಾಣುತ್ತಿಲ್ಲ, ಅಥವ ಅಮಾನ್ಯವಾದುದಾಗಿದೆ."
-
-#: ../src/yelp-transform.c:122
-msgid "Broken Transformation"
-msgstr "ಭಿನ್ನಗೊಂಡ ಪರಿವರ್ತನೆ"
-
-#: ../src/yelp-transform.c:123
-msgid "An unknown error occurred while attempting to transform the document."
-msgstr "ದಸ್ತಾವೇಜನ್ನು ಪರಿವರ್ತಿಸಲು ಪ್ರಯತ್ನಿಸಿದಾಗ ಒಂದು ಅಜ್ಞಾತ ದೋಷವು ಕಂಡುಬಂದಿದೆ."
-
-#: ../src/yelp-transform.c:389
+#: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
 msgstr "yelp:ದಸ್ತಾವೇಜಿನಲ್ಲಿ ಯಾವುದೆ href ವೈಶಿಷ್ಟ್ಯವು ಕಂಡುಬಂದಿಲ್ಲ\n"
 
-#: ../src/yelp-transform.c:404
+#: ../libyelp/yelp-transform.c:543
 msgid "Out of memory"
 msgstr "ಮೆಮೊರಿ ಇಲ್ಲ"
 
-#: ../src/yelp-window.c:304
-msgid "_File"
-msgstr "ಕಡತ(_F)"
+#: ../libyelp/yelp-view.c:131
+#| msgid "Print"
+msgid "_Print..."
+msgstr "ಮುದ್ರಿಸು (_P)..."
 
-#: ../src/yelp-window.c:305
-msgid "_Edit"
-msgstr "ಸಂಪಾದನೆ(_E)"
+#: ../libyelp/yelp-view.c:136
+msgid "_Back"
+msgstr "ಹಿಂದಕ್ಕೆ (_B)"
 
-#: ../src/yelp-window.c:306
+#: ../libyelp/yelp-view.c:141
+msgid "_Forward"
+msgstr "ಮುಂದಕ್ಕೆ (_F)"
+
+#: ../libyelp/yelp-view.c:146
+#| msgid "_Previous Section"
+msgid "_Previous Page"
+msgstr "ಹಿಂದಿನ ಪುಟ (_P)"
+
+#: ../libyelp/yelp-view.c:151
+#| msgid "_Next Section"
+msgid "_Next Page"
+msgstr "ಮುಂದಿನ ಪುಟ (_N)"
+
+#: ../libyelp/yelp-view.c:423
+#| msgid "Yelp"
+msgid "Yelp URI"
+msgstr "Yelp URI"
+
+#: ../libyelp/yelp-view.c:424
+msgid "A YelpUri with the current location"
+msgstr "ಪ್ರಸಕ್ತ ತಾಣದೊಂದಿಗಿನ YelpUri"
+
+#: ../libyelp/yelp-view.c:432
+#| msgid "Loading..."
+msgid "Loading State"
+msgstr "ಲೋಡ್ ಮಾಡುವ ಸ್ಥಿತಿ"
+
+#: ../libyelp/yelp-view.c:433
+msgid "The loading state of the view"
+msgstr "ನೋಟದ ಲೋಡ್ ಆಗುವ ಸ್ಥಿತಿ"
+
+#: ../libyelp/yelp-view.c:442
+msgid "Page ID"
+msgstr "ಪುಟದ ID"
+
+#: ../libyelp/yelp-view.c:443
+msgid "The ID of the root page of the page being viewed"
+msgstr "ನೋಡಲಾಗುತ್ತಿರುವ ಪುಟದ ಮೂಲದ ಪುಟದ ID"
+
+#: ../libyelp/yelp-view.c:451
+msgid "Root Title"
+msgstr "ಮೂಲ ಶೀರ್ಷಿಕೆ"
+
+#: ../libyelp/yelp-view.c:452
+msgid "The title of the root page of the page being viewed"
+msgstr "ನೋಡಲಾಗುತ್ತಿರುವ ಪುಟದ ಮೂಲದ ಪುಟದ ಶೀರ್ಷಿಕೆ"
+
+#: ../libyelp/yelp-view.c:460
+msgid "Page Title"
+msgstr "ಪುಟ ಶೀರ್ಷಿಕೆ"
+
+#: ../libyelp/yelp-view.c:461
+msgid "The title of the page being viewed"
+msgstr "ನೋಡಲಾಗುತ್ತಿರುವ ಪುಟದ ಶೀರ್ಷಿಕೆ"
+
+#: ../libyelp/yelp-view.c:469
+msgid "Page Description"
+msgstr "ಪುಟದ ವಿವರಣೆ"
+
+#: ../libyelp/yelp-view.c:470
+msgid "The description of the page being viewed"
+msgstr "ನೋಡಲಾಗುತ್ತಿರುವ ಪುಟದ ವಿವರಣೆ"
+
+#: ../libyelp/yelp-view.c:478
+#| msgid "Page not found"
+msgid "Page Icon"
+msgstr "ಪುಟದ ಚಿಹ್ನೆ"
+
+#: ../libyelp/yelp-view.c:479
+msgid "The icon of the page being viewed"
+msgstr "ನೋಡಲಾಗುತ್ತಿರುವ ಪುಟದ ಚಿಹ್ನೆ"
+
+#: ../libyelp/yelp-view.c:720
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr ""
+"ನೀವು PackageKit ಅನ್ನು ಹೊಂದಿಲ್ಲ. ಪ್ಯಾಕೇಜು ಅನುಸ್ಥಾಪನೆ ಕೊಂಡಿಗಳಿಗೆ PackageKit ನ "
+"ಅಗತ್ಯವಿರುತ್ತದೆ."
+
+#: ../libyelp/yelp-view.c:1013
+msgid "Save Image"
+msgstr "ಚಿತ್ರವನ್ನು ಉಳಿಸು"
+
+#: ../libyelp/yelp-view.c:1108
+msgid "Save Code"
+msgstr "ಸಂಕೇತಗಳನ್ನು ಉಳಿಸು"
+
+#: ../libyelp/yelp-view.c:1271
+#, c-format
+msgid "Send email to %s"
+msgstr "%s ಗೆ ವಿಅಂಚೆಯನ್ನು ಕಳುಹಿಸು"
+
+#: ../libyelp/yelp-view.c:1286
+#| msgid "Manual Pages"
+msgid "_Install Packages"
+msgstr "ಪ್ಯಾಕೇಜುಗಳನ್ನು ಅನುಸ್ಥಾಪಿಸು (_I)"
+
+#: ../libyelp/yelp-view.c:1294
+msgid "_Open Link"
+msgstr "ಕೊಂಡಿಯನ್ನು ತೆರೆ (_O)"
+
+#: ../libyelp/yelp-view.c:1301
+#| msgid "Open Location"
+msgid "_Copy Link Location"
+msgstr "ಕೊಂಡಿಯ ತಾಣವನ್ನು ಪ್ರತಿ ಮಾಡು (_C)"
+
+#: ../libyelp/yelp-view.c:1307
+#| msgid "Open Link in _New Window"
+msgid "Open Link in New _Window"
+msgstr "ಕೊಂಡಿಯನ್ನು ಹೊಸ ಕಿಟಕಿಯಲ್ಲಿ ತೆರೆ (_W)"
+
+#: ../libyelp/yelp-view.c:1359
+msgid "_Save Image As..."
+msgstr "ಚಿತ್ರವನ್ನು ಹೀಗೆ ಉಳಿಸು (_S)"
+
+#: ../libyelp/yelp-view.c:1361
+msgid "_Save Video As..."
+msgstr "ವೀಡಿಯೊವನ್ನು ಹೀಗೆ ಉಳಿಸು (_S)..."
+
+#: ../libyelp/yelp-view.c:1368
+msgid "S_end Image To..."
+msgstr "ಚಿತ್ರವನ್ನು ಇಲ್ಲಿಗೆ ಕಳುಹಿಸು (_e)..."
+
+#: ../libyelp/yelp-view.c:1370
+msgid "S_end Video To..."
+msgstr "ವೀಡಿಯೊವನ್ನು ಇಲ್ಲಿಗೆ ಕಳುಹಿಸು (_e)..."
+
+#: ../libyelp/yelp-view.c:1381
+#| msgid "_Copy"
+msgid "_Copy Text"
+msgstr "ಪಠ್ಯವನ್ನು ಪ್ರತಿ ಮಾಡು (_C)"
+
+#: ../libyelp/yelp-view.c:1394
+msgid "C_opy Code Block"
+msgstr "ಸಂಕೇತದ ಬ್ಲಾಕ್ ಅನ್ನು ಪ್ರತಿ ಮಾಡು (_o)"
+
+#: ../libyelp/yelp-view.c:1399
+msgid "Save Code _Block As..."
+msgstr "ಸಂಕೇತ ಬ್ಲಾಕ್ ಅನ್ನು ಹೀಗೆ ಉಳಿಸು (_B).."
+
+#: ../libyelp/yelp-view.c:1505
+#, c-format
+#| msgid "Search results for \"%s\""
+msgid "See all search results for “%s”"
+msgstr "\"%s\" ಗಾಗಿನ ಎಲ್ಲಾ ಹುಡುಕು ಫಲಿತಾಂಶಗಳನ್ನು ನೋಡು"
+
+#: ../libyelp/yelp-view.c:1626
+#, c-format
+msgid "Could not load a document for ‘%s’"
+msgstr "‘%s’ ಗಾಗಿ ದಸ್ತಾವೇಜನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+
+#: ../libyelp/yelp-view.c:1632
+#, c-format
+msgid "Could not load a document"
+msgstr "ದಸ್ತಾವೇಜನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+
+#: ../libyelp/yelp-view.c:1706
+#| msgid "Document Sections"
+msgid "Document Not Found"
+msgstr "ದಸ್ತಾವೇಜು ಕಂಡುಬಂದಿಲ್ಲ"
+
+#: ../libyelp/yelp-view.c:1708
+#| msgid "Page not found"
+msgid "Page Not Found"
+msgstr "ಪುಟವು ಕಂಡುಬಂದಿಲ್ಲ"
+
+#: ../libyelp/yelp-view.c:1711
+#| msgid "Cannot create window"
+msgid "Cannot Read"
+msgstr "ಓದಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+
+#: ../libyelp/yelp-view.c:1717
+msgid "Unknown Error"
+msgstr "ಗೊತ್ತಿರದ ದೋಷ"
+
+#: ../libyelp/yelp-view.c:1737
+#| msgid "Search for other documentation"
+msgid "Search for packages containing this document."
+msgstr "ಈ ದಸ್ತಾವೇಜನ್ನು ಹೊಂದಿರುವ ಪ್ಯಾಕೇಜುಗಳಿಗಾಗಿ ಹುಡುಕು."
+
+#: ../libyelp/yelp-view.c:1890
+#, c-format
+#| msgid "The file ‘%s’ does not exist."
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "URI ‘%s’ ಒಂದು ಮಾನ್ಯವಾದ ಪುಟವನ್ನು ಸೂಚಿಸುವುದಿಲ್ಲ."
+
+#: ../libyelp/yelp-view.c:1896
+#, c-format
+msgid "The URI does not point to a valid page."
+msgstr "URI ಒಂದು ಮಾನ್ಯವಾದ ಪುಟವನ್ನು ಸೂಚಿಸುವುದಿಲ್ಲ."
+
+#: ../libyelp/yelp-view.c:1902
+#, c-format
+#| msgid "The file ‘%s’ does not exist."
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "‘%s’ URI ಅನ್ನು ಪಾರ್ಸ್ ಮಾಡಲಾಗಿಲ್ಲ."
+
+#: ../src/yelp-application.c:65
+msgid "Turn on editor mode"
+msgstr "ಸಂಪಾದಕ ಸ್ಥಿತಿಯನ್ನು ಚಾಲನೆಗೊಳಿಸು"
+
+#: ../src/yelp-application.c:128
+msgid "_Larger Text"
+msgstr "ದೊಡ್ಡಗಾತ್ರದ ಪಠ್ಯ (_L)"
+
+#: ../src/yelp-application.c:130
+msgid "Increase the size of the text"
+msgstr "ಪಠ್ಯದ ಗಾತ್ರವನ್ನು ಹೆಚ್ಚಿಸು"
+
+#: ../src/yelp-application.c:133
+msgid "_Smaller Text"
+msgstr "ಸಣ್ಣಗಾತ್ರದ ಪಠ್ಯ (_S)"
+
+#: ../src/yelp-application.c:135
+msgid "Decrease the size of the text"
+msgstr "ಪಠ್ಯದ ಗಾತ್ರವನ್ನು ಕಡಿಮೆ ಮಾಡು"
+
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../yelp.desktop.in.in.h:1
+msgid "Help"
+msgstr "ಸಹಾಯ"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "ಪಠ್ಯದ ತೆರೆಸೂಚಕವನ್ನು ತೋರಿಸು (_C)"
+
+#: ../src/yelp-window.c:236
+msgid "_Page"
+msgstr "ಪುಟ (_P)"
+
+#: ../src/yelp-window.c:237
+#| msgid "Viewer"
+msgid "_View"
+msgstr "ನೋಟ (_V)"
+
+#: ../src/yelp-window.c:238
 msgid "_Go"
 msgstr "ತೆರಳು(_G)"
 
-#: ../src/yelp-window.c:307
+#: ../src/yelp-window.c:239
 msgid "_Bookmarks"
-msgstr "ಬುಕ್‌ಮಾರ್ಕುಗಳು(_B)"
+msgstr "ಪುಟಗುರುತುಗಳು (_B)"
 
-#: ../src/yelp-window.c:308
-msgid "_Help"
-msgstr "ನೆರವು(_H)"
-
-#: ../src/yelp-window.c:311
+#: ../src/yelp-window.c:242
 msgid "_New Window"
-msgstr "ಹೊಸ ವಿಂಡೋ(_N)"
+msgstr "ಹೊಸ ಕಿಟಕಿ (_N)"
 
-#: ../src/yelp-window.c:316
-msgid "Print This Document ..."
-msgstr "ಈ ದಸ್ತಾವೇಜನ್ನು ಮುದ್ರಿಸು..."
+#: ../src/yelp-window.c:247
+#| msgid "_Close Window"
+msgid "_Close"
+msgstr "ಮುಚ್ಚು (_C)"
 
-#: ../src/yelp-window.c:321
-msgid "Print This Page ..."
-msgstr "ಈ ಪುಟವನ್ನು ಮುದ್ರಿಸು..."
+#: ../src/yelp-window.c:252
+#| msgid "About This Document"
+msgid "_All Documents"
+msgstr "ಎಲ್ಲಾ ದಸ್ತಾವೇಜುಗಳು (_A)"
 
-#: ../src/yelp-window.c:326
-msgid "About This Document"
-msgstr "ಈ ದಸ್ತಾವೇಜಿನ ಬಗ್ಗೆ"
-
-#: ../src/yelp-window.c:331
-msgid "Open _Location"
-msgstr "ಸ್ಥಳವನ್ನು ತೆರೆ(_L)"
-
-#: ../src/yelp-window.c:336
-msgid "_Close Window"
-msgstr "ವಿಂಡೋವನ್ನು ಮುಚ್ಚು(_C)"
-
-#: ../src/yelp-window.c:342
-msgid "_Copy"
-msgstr "ಕಾಪಿ ಮಾಡು(_C)"
-
-#: ../src/yelp-window.c:348
-msgid "_Select All"
-msgstr "ಎಲ್ಲವನ್ನೂ ಆರಿಸು(_S)"
-
-#: ../src/yelp-window.c:353
-msgid "_Find..."
-msgstr "ಹುಡುಕು(_F)..."
-
-#: ../src/yelp-window.c:358
-msgid "Find Pre_vious"
-msgstr "ಹಿಂದಿನದನ್ನು ಹುಡುಕು(_v)"
-
-#: ../src/yelp-window.c:360
-msgid "Find previous occurrence of the word or phrase"
-msgstr "ಪದ ಅಥವ ವಾಕ್ಯದ ಹಿಂದಿನ ಇರುವಿಕೆಯನ್ನು ಪತ್ತೆ ಮಾಡಿ"
-
-#: ../src/yelp-window.c:363
-msgid "Find Ne_xt"
-msgstr "ಮುಂದಕ್ಕೆ ಹುಡುಕು(_x)"
-
-#: ../src/yelp-window.c:365
-msgid "Find next occurrence of the word or phrase"
-msgstr "ಪದ ಅಥವ ವಾಕ್ಯದ ಮುಂದಿನ ಇರುವಿಕೆಯನ್ನು ಪತ್ತೆ ಮಾಡಿ"
-
-#: ../src/yelp-window.c:368
-msgid "_Preferences"
-msgstr "ಆದ್ಯತೆಗಳು(_P)"
-
-#: ../src/yelp-window.c:373
-msgid "_Reload"
-msgstr "ಮತ್ತೊಮ್ಮೆ ಲೋಡ್ ಮಾಡು(_R)"
-
-#: ../src/yelp-window.c:385
-msgid "_Back"
-msgstr "ಹಿಂದಕ್ಕೆ(_B)"
-
-#: ../src/yelp-window.c:387
-msgid "Show previous page in history"
-msgstr "ಇತಿಹಾಸದಲ್ಲಿನ ಹಿಂದಿನ ಪಟ್ಟಿಯನ್ನು ತೋರಿಸು"
-
-#: ../src/yelp-window.c:390
-msgid "_Forward"
-msgstr "ಮುಂದಕ್ಕೆ(_F)"
-
-#: ../src/yelp-window.c:392
-msgid "Show next page in history"
-msgstr "ಇತಿಹಾಸದಲ್ಲಿನ ಮುಂದಿನ ಪಟ್ಟಿಯನ್ನು ತೋರಿಸು"
-
-#: ../src/yelp-window.c:395
-msgid "_Help Topics"
-msgstr "ನೆರವಿನ ವಿಷಯಗಳು(_H)"
-
-#: ../src/yelp-window.c:397
-msgid "Go to the listing of help topics"
-msgstr "ನೆರವಿನ ವಿಷಯಗಳ ಪಟ್ಟಿಗೆ ಹೋಗು"
-
-#: ../src/yelp-window.c:400
-msgid "_Previous Section"
-msgstr "ಹಿಂದಿನ ವಿಭಾಗ(_P)"
-
-#: ../src/yelp-window.c:405
-msgid "_Next Section"
-msgstr "ಮುಂದಿನ ವಿಭಾಗ(_N)"
-
-#: ../src/yelp-window.c:410 ../src/yelp-window.c:442
-msgid "_Contents"
-msgstr "ಒಳವಿಷಯಗಳು(_C)"
-
-#: ../src/yelp-window.c:416
+#: ../src/yelp-window.c:256
 msgid "_Add Bookmark"
-msgstr "ಬುಕ್‌ಮಾರ್ಕನ್ನು ಸೇರಿಸು(_A)"
+msgstr "ಪುಟಗುರುತನ್ನು ಸೇರಿಸು (_A)"
 
-#: ../src/yelp-window.c:421
-msgid "_Edit Bookmarks..."
-msgstr "ಬುಕ್‌ಮಾರ್ಕುಗಳನ್ನು ಸಂಪಾದಿಸು (_E)..."
+#: ../src/yelp-window.c:261
+#| msgid "Remove Bookmark"
+msgid "_Remove Bookmark"
+msgstr "ಪುಟಗುರುತನ್ನು ತೆಗೆದುಹಾಕು (_R)"
 
-#: ../src/yelp-window.c:427
-msgid "_Open Link"
-msgstr "ಕೊಂಡಿಯನ್ನು ತೆರೆ(_O)"
+#: ../src/yelp-window.c:265
+#| msgid "Print This Page ..."
+msgid "Find in Page..."
+msgstr "ಪುಟದಲ್ಲಿ ಹುಡುಕು..."
 
-#: ../src/yelp-window.c:432
-msgid "Open Link in _New Window"
-msgstr "ಕೊಂಡಿಯನ್ನು ಹೊಸ ವಿಂಡೋದಲ್ಲಿ ತೆರೆ(_N)"
+#: ../src/yelp-window.c:275
+msgid "Open Location"
+msgstr "ಸ್ಥಳವನ್ನು ತೆಗೆ"
 
-#: ../src/yelp-window.c:437
-msgid "_Copy Link Address"
-msgstr "ಕೊಂಡಿವಿಳಾಸವನ್ನು ಕಾಪಿ ಮಾಡು(_C)"
+#: ../src/yelp-window.c:301
+#| msgid "Applications"
+msgid "Application"
+msgstr "ಅನ್ವಯ"
 
-#: ../src/yelp-window.c:444
-msgid "Help On this application"
-msgstr "ಈ ಅನ್ವಯದ ಬಗೆಗಿನ ನೆರವು"
+#: ../src/yelp-window.c:302
+msgid "A YelpApplication instance that controls this window"
+msgstr "ಈ ಕಿಟಕಿಯನ್ನು ನಿಯಂತ್ರಿಸುವ YelpApplication ಸನ್ನಿವೇಶ"
 
-#: ../src/yelp-window.c:447
-msgid "_About"
-msgstr "ತಂತ್ರಾಂಶದ ಬಗ್ಗೆ(_A)"
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "ಕೊಂಡಿಯನ್ನು ನಂತರ ಓದು (_L)"
 
-#: ../src/yelp-window.c:452
-msgid "Copy _Email Address"
-msgstr "ಇಮೈಲ್ ವಿಳಾಸವನ್ನು ಕಾಪಿ ಮಾಡು(_E)"
+#: ../src/yelp-window.c:526
+#| msgid "_Find..."
+msgid "Find:"
+msgstr "ಹುಡುಕು:"
 
-#: ../src/yelp-window.c:524
-msgid "Help Browser"
-msgstr "ಸಹಾಯ ವೀಕ್ಷಕ"
+#: ../src/yelp-window.c:548
+msgid "Read Later"
+msgstr "ನಂತರ ಓದು"
 
-#: ../src/yelp-window.c:619 ../src/yelp-window.c:671 ../src/yelp-window.c:1779
-msgid "Loading..."
-msgstr "ಓದುತ್ತಿದೆ..."
-
-#: ../src/yelp-window.c:620 ../src/yelp-window.c:672
-msgid "Unknown Page"
-msgstr "ಅಜ್ಞಾತ ಪುಟ"
-
-#: ../src/yelp-window.c:1043 ../src/yelp-window.c:1105
-#: ../src/yelp-window.c:1114
+#: ../src/yelp-window.c:1180
 #, c-format
-msgid "The requested URI \"%s\" is invalid"
-msgstr "ಮನವಿ ಸಲ್ಲಿಸಲಾದ URI \"%s\" ಅಮಾನ್ಯವಾಗಿದೆ"
+msgid "%i match"
+msgid_plural "%i matches"
+msgstr[0] "%i ಹೊಂದಿಕೆ"
+msgstr[1] "%i ಹೊಂದಿಕೆಗಳು"
 
-#: ../src/yelp-window.c:1044 ../src/yelp-window.c:1107
-#: ../src/yelp-window.c:1115
-msgid "Unable to load page"
-msgstr "ಪುಟವನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+#: ../src/yelp-window.c:1189
+msgid "No matches"
+msgstr "ಯಾವುವೂ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ"
 
-#: ../src/yelp-window.c:1336
-msgid "_Search:"
-msgstr "ಹುಡುಕು(_S):"
-
-#: ../src/yelp-window.c:1337
-msgid "Search for other documentation"
-msgstr "ಇತರೆ ದಸ್ತಾವೇಜುಗಳನ್ನು ಹುಡುಕು"
-
-#: ../src/yelp-window.c:1357
-msgid "Cannot create window"
-msgstr "ಹೊಸ ವಿಂಡೋವನ್ನು ನಿರ್ಮಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
-
-#: ../src/yelp-window.c:1363
-msgid "Cannot create search component"
-msgstr "ಹುಡುಕು ಅಂಗವನ್ನು ನಿರ್ಮಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
-
-#: ../src/yelp-window.c:1535
-msgid "Fin_d:"
-msgstr "ಹುಡುಕು(_d):"
-
-#: ../src/yelp-window.c:1557
-msgid "Find _Previous"
-msgstr "ಹಿಂದಿನದನ್ನು ಹುಡುಕು(_P)"
-
-#: ../src/yelp-window.c:1569
-msgid "Find _Next"
-msgstr "ಮುಂದಿನದನ್ನು ಹುಡುಕು(_N)"
-
-#: ../src/yelp-window.c:1582
-msgid "Phrase not found"
-msgstr "ಪದವು ಕಂಡುಬಂದಿಲ್ಲ"
-
-#: ../src/yelp-window.c:1713
-#, c-format
-msgid ""
-"The file ‘%s’ could not be read.  This file might be missing, or you might "
-"not have permissions to read it."
-msgstr ""
-"ಕಡತ ‘%s’ ಅನ್ನು ಓದಲಾಗಿಲ್ಲ.  ಈ ಕಡತವು ಕಾಣೆಯಾಗಿರಬಹುದು, ಅಥವ ಅದನ್ನು ಓದಲು ನಿಮಗೆ ಅನುಮತಿ "
-"ಇಲ್ಲದಿರಬಹುದು."
-
-#. Note to translators: put here your name (and address) so it
-#. * will show up in the "about" box
-#: ../src/yelp-window.c:2604
-msgid "translator-credits"
-msgstr "ಪ್ರಮೋದ್.ಆರ್, ಶಂಕರ್ ಪ್ರಸಾದ್ <svenkate@redhat.com>"
-
-#: ../src/yelp-window.c:2607
-msgid "Yelp"
-msgstr "ಯೆಲ್ಪ್"
-
-#: ../src/yelp-window.c:2609
-msgid "A documentation browser and viewer for the Gnome Desktop."
-msgstr "Gnome Desktop ಗಾಗಿನ ಒಂದು ದಸ್ತಾವೇಜು ವೀಕ್ಷಕ ಹಾಗು ನೋಡುಗ."
-
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "GNOME ಬಗ್ಗೆ ನೆರವನ್ನು ಪಡೆದುಕೊಳ್ಳಿ"
+
+#~ msgid "GNU Info Pages"
+#~ msgstr "GNU ಮಾಹಿತಿ ಪುಟಗಳು"
+
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "ಸಾಂಪ್ರದಾಯಿಕ ಆಜ್ಞಾ ಸಾಲಿನ ನೆರವು (ಮಾಹಿತಿ)"
+
+#~ msgid "BLT Functions"
+#~ msgstr "BLT ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "Configuration Files"
+#~ msgstr "ಕಡತಗಳನ್ನು ಸಂರಚಿಸು"
+
+#~ msgid "Curses Functions"
+#~ msgstr "ಕರ್ಸಸ್ ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "Development"
+#~ msgstr "ಅಭಿವೃದ್ಧಿ"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "FORTRAN ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "Games"
+#~ msgstr "ಆಟಗಳು"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "ಯಂತ್ರಾಂಶ ಸಾಧನಗಳು"
+
+#~ msgid "Kernel Routines"
+#~ msgstr "ಕರ್ನಲ್ ದಿನಚರಿಗಳು"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "ಜಾಲಬಂಧ ಆಡಿಯೋ ಧ್ವನಿ ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "OpenSSL ಅನ್ವಯಗಳು"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "OpenSSL ಸಂರಚನೆ"
+
+#~ msgid "OpenSSL Functions"
+#~ msgstr "OpenSSL ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "OpenSSL ಅವಲೋಕನಗಳು"
+
+#~ msgid "Overviews"
+#~ msgstr "ಅವಲೋಕನಗಳು"
+
+#~ msgid "POSIX Functions"
+#~ msgstr "POSIX ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "POSIX ಹೆಡರುಗಳು"
+
+#~ msgid "Perl Functions"
+#~ msgstr "ಪರ್ಲ್ ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "Qt Functions"
+#~ msgstr "Qt ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "Readline Functions"
+#~ msgstr "ರೀಡ್‌ಲೈನ್ ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "Section 0p"
+#~ msgstr "0p ವಿಭಾಗ"
+
+#~ msgid "Section 1m"
+#~ msgstr "1m ವಿಭಾಗ"
+
+#~ msgid "Section 1ssl"
+#~ msgstr "1ssl ವಿಭಾಗ"
+
+#~ msgid "Section 1x"
+#~ msgstr "1x ವಿಭಾಗ"
+
+#~ msgid "Section 2"
+#~ msgstr "2 ವಿಭಾಗ"
+
+#~ msgid "Section 3blt"
+#~ msgstr "3blt ವಿಭಾಗ"
+
+#~ msgid "Section 3f"
+#~ msgstr "3f ವಿಭಾಗ"
+
+#~ msgid "Section 3nas"
+#~ msgstr "3nas ವಿಭಾಗ"
+
+#~ msgid "Section 3p"
+#~ msgstr "3p ವಿಭಾಗ"
+
+#~ msgid "Section 3qt"
+#~ msgstr "3qt ವಿಭಾಗ"
+
+#~ msgid "Section 3readline"
+#~ msgstr "3readline ವಿಭಾಗ"
+
+#~ msgid "Section 3ssl"
+#~ msgstr "3ssl ವಿಭಾಗ"
+
+#~ msgid "Section 3tiff"
+#~ msgstr "3tiff ವಿಭಾಗ"
+
+#~ msgid "Section 4"
+#~ msgstr "4 ವಿಭಾಗ"
+
+#~ msgid "Section 4x"
+#~ msgstr "4x ವಿಭಾಗ"
+
+#~ msgid "Section 5"
+#~ msgstr "5 ವಿಭಾಗ"
+
+#~ msgid "Section 5ssl"
+#~ msgstr "5ssl ವಿಭಾಗ"
+
+#~ msgid "Section 5x"
+#~ msgstr "5x ವಿಭಾಗ"
+
+#~ msgid "Section 6"
+#~ msgstr "6 ವಿಭಾಗ"
+
+#~ msgid "Section 6x"
+#~ msgstr "6x ವಿಭಾಗ"
+
+#~ msgid "Section 7ssl"
+#~ msgstr "7ssl ವಿಭಾಗ"
+
+#~ msgid "Section 7x"
+#~ msgstr "7x ವಿಭಾಗ"
+
+#~ msgid "Section 9"
+#~ msgstr "9 ವಿಭಾಗ"
+
+#~ msgid "Sections 1, 1p, 1g and 1t"
+#~ msgstr "1, 1p, 1g ಹಾಗು 1t ವಿಭಾಗಗಳು"
+
+#~ msgid "Sections 3, 3o, and 3t"
+#~ msgstr "3, 3o, ಹಾಗು 3t ವಿಭಾಗಗಳು"
+
+#~ msgid "Sections 3form and 3menu"
+#~ msgstr "3form ಹಾಗು 3menu ವಿಭಾಗಗಳು"
+
+#~ msgid "Sections 3ncurses and 3curses"
+#~ msgstr "3ncurses ಹಾಗು 3curses ವಿಭಾಗಗಳು"
+
+#~ msgid "Sections 3pm and 3perl"
+#~ msgstr "3pm ಹಾಗು 3perl ವಿಭಾಗಗಳು"
+
+#~ msgid "Sections 3x and 3X11"
+#~ msgstr "3x ಹಾಗು 3X11 ವಿಭಾಗಗಳು"
+
+#~ msgid "Sections 7 and 7gcc"
+#~ msgstr "7 ಹಾಗು 7gcc ವಿಭಾಗಗಳು"
+
+#~ msgid "Sections 8 and 8l"
+#~ msgstr "8 ಹಾಗು 8l ವಿಭಾಗಗಳು"
+
+#~ msgid "System Administration"
+#~ msgstr "ಗಣಕ ವ್ಯವಸ್ಥಾಪನೆ"
+
+#~ msgid "System Calls"
+#~ msgstr "ಗಣಕದ ಕರೆಗಳು"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "ವ್ಯವಸ್ಥೆಯ V ನಮೂನೆ/ಮೆನು ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "TIFF Functions"
+#~ msgstr "TIFF ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "Termcap ಅನ್ವಯಗಳು"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "ಸಾಂಪ್ರದಾಯಿಕ ಆಜ್ಞಾ ಸಾಲಿನ ನೆರವು (ಮ್ಯಾನ್)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "X11 ಅನ್ವಯಗಳು"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "X11 ಸಂರಚನೆ"
+
+#~ msgid "X11 Devices"
+#~ msgstr "X11 ಸಾಧನಗಳು"
+
+#~ msgid "X11 Functions"
+#~ msgstr "X11 ಕ್ರಿಯೆಗಳು"
+
+#~ msgid "X11 Games"
+#~ msgstr "X11 ಆಟಗಳು"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "X11 ಅವಲೋಕನಗಳು"
+
+#~ msgid "2D Graphics"
+#~ msgstr "2D ಗ್ರಾಫಿಕ್ಸುಗಳು"
+
+#~ msgid "3D Graphics"
+#~ msgstr "3D ಗ್ರಾಫಿಕ್ಸುಗಳು"
+
+#~ msgid "Accessibility"
+#~ msgstr "ನಿಲುಕಣೆ"
+
+#~ msgid "Action Games"
+#~ msgstr "ಯುದ್ಧದ ಆಟಗಳು"
+
+#~ msgid "Adventure Games"
+#~ msgstr "ಸಾಹಸದ ಆಟಗಳು"
+
+#~ msgid "Amusement"
+#~ msgstr "ವಿನೋದ"
+
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "ಗ್ರಾಫಿಕ್ಸುಗಳನ್ನು ನೋಡಲು ಹಾಗು ಅಗತ್ಯಕ್ಕೆ ತಕ್ಕಂತೆ ಬದಲಾಯಿಸುವ ಅನ್ವಯ"
+
+#~ msgid "Applications related to audio and video"
+#~ msgstr "ಆಡಿಯೋ ಹಾಗು ವೀಡಿಯೋ ಸಂಬಂಧಿತ ಅನ್ವಯಗಳು"
+
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "ಕಲಿಕೆಯನ್ನು ತಿಳಿಸುವ ಅಥವ ನೆರವಾಗುವ ಅನ್ವಯಗಳು"
+
+#~ msgid "Arcade Games"
+#~ msgstr "ಆರ್ಕೇಡ್ ಆಟಗಳು"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "ಆರ್ಕೈವ್ ಮಾಡುವ ಉಪಕರಣಗಳು"
+
+#~ msgid "Art"
+#~ msgstr "ಕಲೆ"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆ"
+
+#~ msgid "Astronomy"
+#~ msgstr "ಖಗೋಳಶಾಸ್ತ್ರ"
+
+#~ msgid "Biology"
+#~ msgstr "ಜೀವಶಾಸ್ತ್ರ"
+
+#~ msgid "Blocks Games"
+#~ msgstr "ಇಟ್ಟಗೆಗಳ ಆಟಗಳು"
+
+#~ msgid "Board Games"
+#~ msgstr "ಇಟ್ಟಗೆಗಳ ಆಟಗಳು"
+
+#~ msgid "Building"
+#~ msgstr "ನಿರ್ಮಾಣ"
+
+#~ msgid "Calculator"
+#~ msgstr "ಕ್ಯಾಲ್ಕುಲೇಟರ್"
+
+#~ msgid "Calendar"
+#~ msgstr "ದಿನಸೂಚಿ"
+
+#~ msgid "Card Games"
+#~ msgstr "ಎಲೆಯ ಆಟಗಳು"
+
+#~ msgid "Charting Tools"
+#~ msgstr "ಚಾರ್ಟ್ ಮಾಡುವ ಉಪಕರಣಗಳು"
+
+#~ msgid "Chat"
+#~ msgstr "ಹರಟೆ"
+
+#~ msgid "Chemistry"
+#~ msgstr "ರಸಾಯನ ಶಾಸ್ತ್ರ"
+
+#~ msgid "Clocks"
+#~ msgstr "ಗಡಿಯಾರಗಳು"
+
+#~ msgid "Compression Tools"
+#~ msgstr "ಸಂಕುಚನಾ ಉಪಕರಣ"
+
+#~ msgid "Computer Science"
+#~ msgstr "ಗಣಕ ವಿಜ್ಞಾನ"
+
+#~ msgid "Construction"
+#~ msgstr "ನಿರ್ಮಾಣ"
+
+#~ msgid "Contact Management"
+#~ msgstr "ಸಂಪರ್ಕ ವ್ಯವಸ್ಥಾಪನೆ"
+
+#~ msgid "Data Visualization"
+#~ msgstr "ದತ್ತಾಶದ ಚಿತ್ರಣ(ವೀಶುವಲೈಸೇಶನ್)"
+
+#~ msgid "Debuggers"
+#~ msgstr "ತೊಂದರೆ ನಿವಾರಣೆಗಾರರು"
+
+#~ msgid "Desktop"
+#~ msgstr "ಗಣಕತೆರೆ"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "ಗಣಕತೆರೆ ಸಿದ್ಧತೆಗಳು"
+
+#~ msgid "Dialup"
+#~ msgstr "ಡಯಲ್‌ಅಪ್"
+
+#~ msgid "Dictionaries"
+#~ msgstr "ಶಬ್ಧಕೋಶಗಳು"
+
+#~ msgid "Disc Burning"
+#~ msgstr "ಡಿಸ್ಕ್‍ ಬರೆಯುವಿಕೆ"
+
+#~ msgid "Economy"
+#~ msgstr "ಅರ್ಥಶಾಸ್ತ್ರ"
+
+#~ msgid "Education"
+#~ msgstr "ಶಿಕ್ಷಣ"
+
+#~ msgid "Electricity"
+#~ msgstr "ವಿದ್ಯುತ್"
+
+#~ msgid "Electronics"
+#~ msgstr "ಎಲೆಕ್ಟ್ರಾನಿಕ್ಸ್‍"
+
+#~ msgid "Email Tools"
+#~ msgstr "ಇಮೈಲ ಉಪಕರಣಗಳು"
+
+#~ msgid "Emulator"
+#~ msgstr "ಎಮ್ಯುಲೇಟರ್"
+
+#~ msgid "Engineering"
+#~ msgstr "ಇಂಜಿನೀಯರಿಂಗ್"
+
+#~ msgid "File Manager"
+#~ msgstr "ಕಡತ ವ್ಯವಸ್ಥಾಪಕ"
+
+#~ msgid "File Tools"
+#~ msgstr "ಕಡತ ಉಪಕರಣಗಳು"
+
+#~ msgid "File Transfer"
+#~ msgstr "ಕಡತ ವರ್ಗಾವಣೆ"
+
+#~ msgid "Filesystem"
+#~ msgstr "ಕಡತವ್ಯವಸ್ಥೆ"
+
+#~ msgid "Financial Tools"
+#~ msgstr "ಅರ್ಥಶಾಸ್ತ್ರ ಉಪಕರಣಗಳು"
+
+#~ msgid "Flow Charting Tools"
+#~ msgstr "ಫ್ಲೋ ಚಾರ್ಟ್ ಉಪಕರಣಗಳು"
+
+#~ msgid "GNOME Applications"
+#~ msgstr "GNOME ಅನ್ವಯಗಳು"
+
+#~ msgid "GTK"
+#~ msgstr "GTK"
+
+#~ msgid "GUI Designers"
+#~ msgstr "GUI ವಿಕಸನಗಾರರು"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "GNOME ಪರಿಸರಗಳಿಗಾಗಿನ ಸಾಮಾನ್ಯ ಅನ್ವಯಗಳು"
+
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "KDE ಪರಿಸರಗಳಿಗಾಗಿನ ಸಾಮಾನ್ಯ ಅನ್ವಯಗಳು"
+
+#~ msgid "Geography"
+#~ msgstr "ಭೂಗೋಳಶಾಸ್ತ್ರ"
+
+#~ msgid "Geology"
+#~ msgstr "ಭೂಗರ್ಭಶಾಸ್ತ್ರ"
+
+#~ msgid "Geoscience"
+#~ msgstr "ಭೂವಿಜ್ಞಾನ"
+
+#~ msgid "Graphics"
+#~ msgstr "ಗ್ರಾಫಿಕ್ಸ್‍"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr ""
+#~ "ಬಾಹ್ಯ ಜಗತ್ತಿನೊಂದಿಗೆ ಸಂಪರ್ಕಹೊಂದಲು ಬಳಸಲಾಗುವ ಅನ್ವಯಗಳ ಮಾರ್ಗದರ್ಶಿಗಳು ಹಾಗು ಕೈಪಿಡಿಗಳು"
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "ವಿಕಸನೆಯಲ್ಲಿ ಸೇರ್ಪಡಗೊಳ್ಳಲು ಸೂಚನೆಗಳು"
+
+#~ msgid "Ham Radio"
+#~ msgstr "ಹ್ಯಾಮ್ ರೇಡಿಯೋ"
+
+#~ msgid "Hardware Settings"
+#~ msgstr "ಯಂತ್ರಾಂಶ ಸಿದ್ಧತೆಗಳು"
+
+#~ msgid "Have some fun"
+#~ msgstr "ಒಂದಿಷ್ಟು ಮಜಾ ಮಾಡಿ"
+
+#~ msgid "History"
+#~ msgstr "ಚರಿತ್ರೆ"
+
+#~ msgid "IDEs"
+#~ msgstr "IDE ಗಳು"
+
+#~ msgid "IRC Clients"
+#~ msgstr "IRC ಕ್ಲೈಂಟುಗಳು"
+
+#~ msgid "Image Processing"
+#~ msgstr "ಚಿತ್ರ ಸಂಸ್ಕರಣೆ"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "ಇನ್‌ಸ್ಟಂಟ್ ಮೆಸೇಜಿಂಗ್"
+
+#~ msgid "Internet"
+#~ msgstr "ಅಂತರ್ಜಾಲ"
+
+#~ msgid "Java"
+#~ msgstr "ಜಾವಾ"
+
+#~ msgid "KDE Applications"
+#~ msgstr "KDE ಅನ್ವಯಗಳು"
+
+#~ msgid "Kids Games"
+#~ msgstr "ಮಕ್ಕಳ ಆಟಗಳು"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr ""
+#~ "ಕೆಲವು ಅಶಕ್ತತೆಗಳಿಗಾಗಿ ನಿಮ್ಮ ಗಣಕವನ್ನು ಹೆಚ್ಚು ನಿಲುಕವಂತೆ ಮಾಡಲು ಇನ್ನಷ್ಟು ಅರಿಯಿರಿ"
+
+#~ msgid "Licenses"
+#~ msgstr "ಲೈಸನ್ಸುಗಳು"
+
+#~ msgid "Literature"
+#~ msgstr "ಸಾಹಿತ್ಯ"
+
+#~ msgid "Logic Games"
+#~ msgstr "ತಾರ್ಕಿಕ ಆಟಗಳು"
+
+#~ msgid "Math"
+#~ msgstr "ಗಣಿತ"
+
+#~ msgid "Medical Software"
+#~ msgstr "ವೈದ್ಯಕೀಯ ಯಂತ್ರಾಂಶ"
+
+#~ msgid "Midi"
+#~ msgstr "ಮಿಡಿ"
+
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "ಇನ್ನಿತರೆ ದಸ್ತಾವೇಜುಗಳು"
+
+#~ msgid "Mixers"
+#~ msgstr "ಮಿಶ್ರಕಗಳು"
+
+#~ msgid "Monitor"
+#~ msgstr "ಮೇಲ್ವಿಚಾರಕ"
+
+#~ msgid "Motif"
+#~ msgstr "ಮುಖ್ಯ ಉದ್ಧೇಶ"
+
+#~ msgid "Music"
+#~ msgstr "ಸಂಗೀತ"
+
+#~ msgid "News"
+#~ msgstr "ಸುದ್ದಿ"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "ಸಾಂಖ್ಯಿಕ ವಿಶ್ಲೇಷಣೆ"
+
+#~ msgid "OCR"
+#~ msgstr "OCR"
+
+#~ msgid "Office Applications"
+#~ msgstr "ಕಛೇರಿ ಅನ್ವಯಗಳು"
+
+#~ msgid "Office applications"
+#~ msgstr "ಕಛೇರಿ ಅನ್ವಯಗಳು"
+
+#~ msgid "Other Documentation"
+#~ msgstr "ಇನ್ನಿತರೆ ದಸ್ತಾವೇಜುಗಳು"
+
+#~ msgid "P2P"
+#~ msgstr "P2P"
+
+#~ msgid "PDA Communication"
+#~ msgstr "PDA ಸಂಪರ್ಕ"
+
+#~ msgid "Package Manager"
+#~ msgstr "ಪ್ಯಾಕೇಜ್ ವ್ಯವಸ್ಥಾಪಕ"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "ಪ್ಯಾರಲಲ್ ಕಂಪ್ಯೂಟಿಂಗ್"
+
+#~ msgid "Photography"
+#~ msgstr "ಫೋಟೋಗ್ರಾಫ್"
+
+#~ msgid "Physics"
+#~ msgstr "ಭೌತಶಾಸ್ತ್ರ"
+
+#~ msgid "Players"
+#~ msgstr "ಚಾಲಕಗಳು"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "ಪ್ರಸ್ತುತಪಡಿಕೆಯ ಉಪಕರಣಗಳು"
+
+#~ msgid "Printing"
+#~ msgstr "ಮುದ್ರಣ"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "ಪ್ರೊಫೈಲ್ ಮಾಡುವ ಉಪಕರಣಗಳು"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "ಯೋಜನೆ ನಿರ್ವಹಣಾ ಉಪಕರಣಗಳು"
+
+#~ msgid "Publishing"
+#~ msgstr "ಪ್ರಕಾಶನ"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~ msgid "Raster Graphics"
+#~ msgstr "ರಾಸ್ಟರ್ ಗ್ರಾಫಿಕ್ಸ್‌"
+
+#~ msgid "Recorders"
+#~ msgstr "ರೆಕಾರ್ಡು ಮಾಡುವವು"
+
+#~ msgid "Remote Access"
+#~ msgstr "ದೂರಸ್ಥ ನಿಲುಕಣೆ"
+
+#~ msgid "Revision Control"
+#~ msgstr "ಮರುಪರಿಶೀಲನಾ ನಿಯಂತ್ರಣ"
+
+#~ msgid "Robotics"
+#~ msgstr "ರೋಬೋಟಿಕ್ಸ್‍"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "ಪಾತ್ರ ವಹಿಸುವ ಆಟಗಳು"
+
+#~ msgid "Scanning"
+#~ msgstr "ಸ್ಕಾನಿಂಗ್"
+
+#~ msgid "Science"
+#~ msgstr "ವಿಜ್ಞಾನ"
+
+#~ msgid "Security"
+#~ msgstr "ಸುರಕ್ಷತೆ"
+
+#~ msgid "Sequencers"
+#~ msgstr "ಸೀಕ್ವೆನ್ಸರ್"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr ""
+#~ "ಬಳಕೆದಾರರು ತಮ್ಮ ಗಣಕ ಪರಿಸರವನ್ನು ಇನ್ನಷ್ಟು ಹಿತಕರವಾಗಿರುವಂತೆ ಬದಲಾಯಿಸಿಕೊಳ್ಳಲು "
+#~ "ಸಿದ್ಧತೆಗಳು"
+
+#~ msgid "Simulation Games"
+#~ msgstr "ಸಿಮುಲೇಶನ್ ಆಟಗಳು"
+
+#~ msgid "Sound"
+#~ msgstr "ಧ್ವನಿ"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "ಧ್ವನಿ &amp; ವೀಡಿಯೋ"
+
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "ಧ್ವನಿ &amp; ವೀಡಿಯೋ ಸಂಪಾದನೆ"
+
+#~ msgid "Sports"
+#~ msgstr "ಕ್ರೀಡೆಗಳು"
+
+#~ msgid "Sports Games"
+#~ msgstr "ಕ್ರೀಡೆಗಳು ಆಟಗಳು"
+
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "ಸ್ಪ್ರೆಡ್‌ಶೀಟ್ ಉಪಕರಗಳು"
+
+#~ msgid "Strategy Games"
+#~ msgstr "ಕೌಶಲ್ಯದ ಆಟಗಳು"
+
+#~ msgid "System"
+#~ msgstr "ಗಣಕ"
+
+#~ msgid "TV"
+#~ msgstr "TV"
+
+#~ msgid "Telephony"
+#~ msgstr "ದೂರವಾಣಿ"
+
+#~ msgid "Telephony Tools"
+#~ msgstr "ದೂರವಾಣಿ ಉಪಕರಣಗಳು"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "ಟರ್ಮಿನಲ್ ಎಮ್ಯುಲೇಟರ್"
+
+#~ msgid "Text Editors"
+#~ msgstr "ಪಠ್ಯ ಸಂಪಾದಕಗಳು"
+
+#~ msgid "Text Tools"
+#~ msgstr "ಪಠ್ಯ ಉಪಕರಣಗಳು"
+
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "ನಿಮ್ಮ ಗಣಕವನ್ನು ನಿರ್ವಹಿಸಲು ನೆರವಾಗುವ ಉಪಕರಣಗಳು"
+
+#~ msgid "Translation Tools"
+#~ msgstr "ಅನುವಾದ ಉಪಕರಣಗಳು"
+
+#~ msgid "Tuners"
+#~ msgstr "ಟ್ಯೂನರುಗಳು"
+
+#~ msgid "Utilities"
+#~ msgstr "ಸವಲತ್ತುಗಳು"
+
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "ನಿಮ್ಮ ಕೆಲಸಗಳನ್ನು ಮಾಡಲು ನೆರವಾಗುವ ಸವಲತ್ತುಗಳು"
+
+#~ msgid "Vector Graphics"
+#~ msgstr "ವೆಕ್ಟರ್ ಗ್ರಾಫಿಕ್ಸ್‍"
+
+#~ msgid "Video"
+#~ msgstr "ವೀಡಿಯೋ"
+
+#~ msgid "Video Conference"
+#~ msgstr "ವೀಡಿಯೋ ಕಾನ್ಫರೆನ್ಸ್‍"
+
+#~ msgid "Web Browser"
+#~ msgstr "ಜಾಲ ವೀಕ್ಷಕ"
+
+#~ msgid "Web Development"
+#~ msgstr "ಜಾಲ ವಿಕಸನ"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "GNOME ನೆರವು ವೀಕ್ಷಕಕ್ಕೆ ಸ್ವಾಗತ"
+
+#~ msgid "Word Processors"
+#~ msgstr "ಶಬ್ಧ ಸಂಸ್ಕಾರಕಗಳು(ವರ್ಡ್ ಪ್ರೊಸೆಸರ್ಸ್)"
+
+#~ msgid "Re_name"
+#~ msgstr "ಹೆಸರನ್ನು ಬದಲಾಯಿಸು(_n)"
+
+#~ msgid "_Bookmarks:"
+#~ msgstr "ಬುಕ್‌ಮಾರ್ಕುಗಳು(_B):"
+
+#~ msgid "Add Bookmark"
+#~ msgstr "ಬುಕ್‌ಮಾರ್ಕುಗಳನ್ನು ಸೇರಿಸು"
+
+#~ msgid "_Title:"
+#~ msgstr "ಶೀರ್ಷಿಕೆ(_T):"
+
+#~ msgid "_Location:"
+#~ msgstr "ಸ್ಥಳ(_L):"
+
+#~ msgid "Fonts"
+#~ msgstr "ಅಕ್ಷರಶೈಲಿಗಳು"
+
+#~ msgid "Preferences"
+#~ msgstr "ಆದ್ಯತೆಗಳು"
+
+#~ msgid "_Browse with caret"
+#~ msgstr "ಕ್ಯಾರಟ್‌ನೊಂದಿಗೆ(caret) ವೀಕ್ಷಿಸು(_B)"
+
+#~ msgid "_Fixed width:"
+#~ msgstr "ನಿಗದಿತ ಅಗಲ(_F):"
+
+#~ msgid "_Use system fonts"
+#~ msgstr "ಗಣಕದ ಅಕ್ಷರಶೈಲಿಗಳನ್ನು ಬಳಸು(_U)"
+
+#~ msgid "_Variable width:"
+#~ msgstr "ಬದಲಾಗುವ ಅಗಲ(_V):"
+
+#~ msgid "Font for fixed text"
+#~ msgstr "ನಿಗದಿತ ಪಠ್ಯಕ್ಕಾಗಿನ ಅಕ್ಷರಶೈಲಿ"
+
+#~ msgid "Font for text"
+#~ msgstr "ಪಠ್ಯಕ್ಕಾಗಿನ ಅಕ್ಷರಶೈಲಿ"
+
+#~ msgid "Font for text with fixed width."
+#~ msgstr "ಪಠ್ಯಕ್ಕಾಗಿನ ನಿಗದಿತ ಅಗಲದೊಂದಿಗಿನ ಅಕ್ಷರಶೈಲಿ."
+
+#~ msgid "Font for text with variable width."
+#~ msgstr "ಪಠ್ಯಕ್ಕಾಗಿನ ಬದಲಾಯಿಸಬಹುದಾದ ಅಗಲದೊಂದಿಗಿನ ಅಕ್ಷರಶೈಲಿ."
+
+#~ msgid "Use a keyboard-controllable caret when viewing pages."
+#~ msgstr "ಪುಟಗಳನ್ನು ನೋಡುವಾಗ ಕೀಲಿಮಣೆಯಿಂದ ನಿಯಂತ್ರಿಸಬಹುದಾದ ಕ್ಯಾರಟ್(caret) ಅನ್ನು ಬಳಸಿ."
+
+#~ msgid "Use caret"
+#~ msgstr "ಕ್ಯಾರೆಟ್(caret) ಅನ್ನು ಬಳಸು"
+
+#~ msgid "Use system fonts"
+#~ msgstr "ಗಣಕದ ಅಕ್ಷರಶೈಲಿಯನ್ನು ಬಳಸು"
+
+#~ msgid "Use the default fonts set for the system."
+#~ msgstr "ಗಣಕಕ್ಕೆ ಹೊಂದಿಸಲಾದ ಪೂರ್ವನಿಯೋಜಿತಅಕ್ಷರಶೈಲಿಯನ್ನು ಬಳಸು."
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "ಕಡತವು ಒಂದು ಮಾನ್ಯವಾದಂತಹ .desktop ಕಡತವಾಗಿಲ್ಲ"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "ಗುರುತಿಸಲಾಗದ ಗಣಕತೆರೆ ಕಡತದ ಆವೃತ್ತಿ '%s'"
+
+#~ msgid "Starting %s"
+#~ msgstr "%s ಅನ್ನು ಆರಂಭಿಸಲಾಗುತ್ತಿದೆ"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "ಅನ್ವಯವು ಆಜ್ಞಾ ಸಾಲಿನಲ್ಲಿ ದಸ್ತಾವೇಜುಗಳನ್ನು ಅಂಗೀಕರಿಸುವುದಿಲ್ಲ"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "ಗುರುತಿಸಲಾಗದ ಆರಂಭದ ಆಯ್ಕೆ: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "ದಸ್ತಾವೇಜಿನ URI ಗಳನ್ನು ಒಂದು 'Type=Link' ಗಣಕತೆರೆ ನಮೂದಿಗೆ ರವಾನಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "ಆರಂಭಿಸಬಹುದಾದ ಅಂಶವಾಗಿಲ್ಲ"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "ಅಧಿವೇಶನದ ವ್ಯವಸ್ಥಾಪಕನೊಂದಿಗಿನ ಸಂಪರ್ಕವನ್ನು ಅಶಕ್ತಗೊಳಿಸು"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "ಉಳಿಸಲಾದ ಸಂರಚನೆಯನ್ನು ಹೊಂದಿರುವ ಕಡತವನ್ನು ಸೂಚಿಸಿ"
+
+#~ msgid "FILE"
+#~ msgstr "FILE"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "ಅಧೀವೇಶನ ವ್ಯವಸ್ಥಾಪನಾ ID ಯನ್ನು ಸೂಚಿಸಿ"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "ಅಧಿವೇಶನ ನಿರ್ವಹಣಾ ಆಯ್ಕೆಗಳು:"
+
+#~ msgid "Show session management options"
+#~ msgstr "ಅಧಿವೇಶನ ವ್ಯವಸ್ಥಾಪನಾ ಆಯ್ಕೆಗಳನ್ನು ತೋರಿಸು"
+
+#~ msgid "Open Bookmark in New Window"
+#~ msgstr "ಬುಕ್‌ಮಾರ್ಕನ್ನು ಹೊಸ ವಿಂಡೋದಲ್ಲಿ ತೆರೆ"
+
+#~ msgid "Rename Bookmark"
+#~ msgstr "ಬುಕ್‌ಮಾರ್ಕಿನ ಹೆಸರನ್ನು ಬದಲಾಯಿಸು"
+
+#~ msgid "A bookmark titled %s already exists for this page."
+#~ msgstr "ಈ ಪುಟಕ್ಕಾಗಿನ %s ಎಂಬ ಶೀರ್ಷಿಕೆಯ ಒಂದು ಬುಕ್‌ಮಾರ್ಕು ಈಗಾಗೆಲೆ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ."
+
+#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
+#~ msgstr ""
+#~ "ಈ ಪುಟಕ್ಕಾಗಿನ <b>%s</b> ಎಂಬ ಶೀರ್ಷಿಕೆಯ ಒಂದು ಬುಕ್‌ಮಾರ್ಕು ಈಗಾಗೆಲೆ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ."
+
+#~ msgid "Help Topics"
+#~ msgstr "ನೆರವಿನ ವಿಷಯಗಳು"
+
+#~ msgid "File not found"
+#~ msgstr "ಕಡತ ಕಂಡು ಬಂದಿಲ್ಲ"
+
+#~ msgid "Could not parse file"
+#~ msgstr "ಕಡತವನ್ನು ಪಾರ್ಸ್ ಮಾಡಲು ಆಗಲಿಲ್ಲ"
+
+#~ msgid "Could Not Read File"
+#~ msgstr "ಕಡತವನ್ನು ಓದಲು ಆಗಲಿಲ್ಲ"
+
+#~ msgid "No information is available about this error."
+#~ msgstr "ಈ ದೋಷದ ಬಗ್ಗೆ ಯಾವುದೆ ಮಾಹಿತಿಯು ಲಭ್ಯವಿಲ್ಲ."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
+#~ "in an unsupported format."
+#~ msgstr ""
+#~ "ಕಡತ ‘%s’ ಅನ್ನು ಓದಿ ಡೀಕೋಡ್ ಮಾಡಲಾಗಿಲ್ಲ. ಕಡತವನ್ನು ಬೆಂಬಲವಿಲ್ಲದ ಒಂದು ಬಗೆಯಲ್ಲಿ "
+#~ "ಸಂಕುಚನಗೊಳಿಸಿರಬಹುದು."
+
+#~ msgid "Use a private session"
+#~ msgstr "ಖಾಸಗಿ ಅಧಿವೇಶನವನ್ನು ಬಳಸು"
+
+#~ msgid "Define which cache directory to use"
+#~ msgstr "ಯಾವ ಕ್ಯಾಶೆ ಕೋಶವನ್ನು ಬಳಸಬೇಕು ಎಂದು ಸೂಚಿಸಿ"
+
+#~ msgid " GNOME Help Browser"
+#~ msgstr " GNOME ಸಹಾಯ ವೀಕ್ಷಕ"
+
+#~ msgid "Directory not found"
+#~ msgstr "ಕೋಶವು ಕಂಡುಬಂದಿಲ್ಲ"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
+#~ "page."
+#~ msgstr ""
+#~ "ಕಡತ ‘%s’ ಅನ್ನು ಪಾರ್ಸ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಸೂಕ್ತವಾಗಿ ರಚಿಸಲಾದ ಒಂದು ಮ್ಯಾನ್ "
+#~ "(man) ಪುಟವಾಗಿಲ್ಲ."
+
+#~ msgid "Preparing to print"
+#~ msgstr "ಮುದ್ರಣಕ್ಕೆ ಅಣಿಗೊಳ್ಳುತ್ತಿದೆ"
+
+#~ msgid "Printing is not supported on this printer"
+#~ msgstr "ಈ ಮುದ್ರಕದಲ್ಲಿ ಮುದ್ರಣಕ್ಕೆ ಬೆಂಬಲವಿಲ್ಲ"
+
+#~ msgid "Printer %s does not support postscript printing."
+#~ msgstr "ಮುದ್ರಕ %s ವು ಪೋಸ್ಟ್‌ಸ್ಕ್ರಿಪ್ಟ್‍ ಮುದ್ರಣವನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ."
+
+#~ msgid "Waiting to print"
+#~ msgstr "ಮುದ್ರಿಸಲು ಕಾಯಲಾಗುತ್ತಿದೆ"
+
+#~ msgid "An error occurred while printing"
+#~ msgstr "ಮುದ್ರಿಸುವಾಗ ಒಂದು ದೋಷ ಕಂಡು ಬಂದಿದೆ"
+
+#~ msgid "It was not possible to print your document: %s"
+#~ msgstr "ನಿಮ್ಮ ದಸ್ತಾವೇಜನ್ನು ಮುದ್ರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: %s"
+
+#~ msgid "the GNOME Support Forums"
+#~ msgstr "GNOME ಬೆಂಬಲ ವೇದಿಕೆಗಳು"
+
+#~ msgid "No results for \"%s\""
+#~ msgstr "\"%s\" ಗಾಗಿ ಯಾವುದೆ ಫಲಿತಾಂಶಗಳಿಲ್ಲ"
+
+#~ msgid ""
+#~ "Try using different words to describe the problem you're having or the "
+#~ "topic you want help with."
+#~ msgstr ""
+#~ "ನೀವು ಎದುರಿಸುತ್ತಿರುವ ತೊಂದರೆಯನ್ನು ಅಥವ ನಿಮಗೆ ನೆರವು ಬೇಕಿರುವ ವಿಷಯವನ್ನು ವಿವರಿಸಲು "
+#~ "ಬೇರೆ ಪದಗಳನ್ನು ಬಳಸಿ."
+
+#~ msgid ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ msgstr ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+
+#~ msgid "re"
+#~ msgstr "NULL"
+
+#~ msgid "ers:er:ing:es:s:'s"
+#~ msgstr "NULL"
+
+#~ msgid "No Comment"
+#~ msgstr "ಯಾವುದೆ ಟಿಪ್ಪಣಿ ಇಲ್ಲ"
+
+#~ msgid "Search could not be processed"
+#~ msgstr "ಹುಡಕನ್ನು ಸಂಸ್ಕರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+
+#~ msgid "The requested search could not be processed."
+#~ msgstr "ಮನವಿ ಸಲ್ಲಿಸಲಾದ ಹುಡುಕನ್ನು ಸಂಸ್ಕರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ."
+
+#~ msgid "Cannot process the search"
+#~ msgstr "ಹುಡುಕನ್ನು ಸಂಸ್ಕರಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+
+#~ msgid "The search processor returned invalid results"
+#~ msgstr "ಹುಡುಕು ಸಂಸ್ಕಾರವು ಅಮಾನ್ಯವಾದ ಫಲಿತಾಂಶಗಳನ್ನು ಮರಳಿಸಿದೆ"
+
+#~ msgid "The page %s was not found in the TOC."
+#~ msgstr "%s ಪುಟವು TOC ಯಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ."
+
+#~ msgid "The requested page was not found in the TOC."
+#~ msgstr "ಮನವಿ ಸಲ್ಲಿಸಲಾದ ಪುಟವು TOC ಯಲ್ಲಿ ಕಂಡುಬಂದಿಲ್ಲ."
+
+#~ msgid ""
+#~ "The TOC file could not be parsed because it is not a well-formed XML "
+#~ "document."
+#~ msgstr ""
+#~ "TOC ಕಡತವನ್ನು ಪಾರ್ಸ್ ಮಾಡಲಾಗಿಲ್ಲ ಏಕೆಂದರೆ ಅದು ಒಂದು ಸೂಕ್ತವಾಗಿ ರಚಿತವಾಗಿರದ XML "
+#~ "ದಸ್ತಾವೇಜಾಗಿದೆ."
+
+#~ msgid "Broken Transformation"
+#~ msgstr "ಭಿನ್ನಗೊಂಡ ಪರಿವರ್ತನೆ"
+
+#~ msgid ""
+#~ "An unknown error occurred while attempting to transform the document."
+#~ msgstr "ದಸ್ತಾವೇಜನ್ನು ಪರಿವರ್ತಿಸಲು ಪ್ರಯತ್ನಿಸಿದಾಗ ಒಂದು ಅಜ್ಞಾತ ದೋಷವು ಕಂಡುಬಂದಿದೆ."
+
+#~ msgid "_File"
+#~ msgstr "ಕಡತ(_F)"
+
+#~ msgid "_Edit"
+#~ msgstr "ಸಂಪಾದನೆ(_E)"
+
+#~ msgid "_Help"
+#~ msgstr "ನೆರವು(_H)"
+
+#~ msgid "Print This Document ..."
+#~ msgstr "ಈ ದಸ್ತಾವೇಜನ್ನು ಮುದ್ರಿಸು..."
+
+#~ msgid "Open _Location"
+#~ msgstr "ಸ್ಥಳವನ್ನು ತೆರೆ(_L)"
+
+#~ msgid "_Select All"
+#~ msgstr "ಎಲ್ಲವನ್ನೂ ಆರಿಸು(_S)"
+
+#~ msgid "Find Pre_vious"
+#~ msgstr "ಹಿಂದಿನದನ್ನು ಹುಡುಕು(_v)"
+
+#~ msgid "Find previous occurrence of the word or phrase"
+#~ msgstr "ಪದ ಅಥವ ವಾಕ್ಯದ ಹಿಂದಿನ ಇರುವಿಕೆಯನ್ನು ಪತ್ತೆ ಮಾಡಿ"
+
+#~ msgid "Find Ne_xt"
+#~ msgstr "ಮುಂದಕ್ಕೆ ಹುಡುಕು(_x)"
+
+#~ msgid "Find next occurrence of the word or phrase"
+#~ msgstr "ಪದ ಅಥವ ವಾಕ್ಯದ ಮುಂದಿನ ಇರುವಿಕೆಯನ್ನು ಪತ್ತೆ ಮಾಡಿ"
+
+#~ msgid "_Preferences"
+#~ msgstr "ಆದ್ಯತೆಗಳು(_P)"
+
+#~ msgid "_Reload"
+#~ msgstr "ಮತ್ತೊಮ್ಮೆ ಲೋಡ್ ಮಾಡು(_R)"
+
+#~ msgid "Show previous page in history"
+#~ msgstr "ಇತಿಹಾಸದಲ್ಲಿನ ಹಿಂದಿನ ಪಟ್ಟಿಯನ್ನು ತೋರಿಸು"
+
+#~ msgid "Show next page in history"
+#~ msgstr "ಇತಿಹಾಸದಲ್ಲಿನ ಮುಂದಿನ ಪಟ್ಟಿಯನ್ನು ತೋರಿಸು"
+
+#~ msgid "_Help Topics"
+#~ msgstr "ನೆರವಿನ ವಿಷಯಗಳು(_H)"
+
+#~ msgid "Go to the listing of help topics"
+#~ msgstr "ನೆರವಿನ ವಿಷಯಗಳ ಪಟ್ಟಿಗೆ ಹೋಗು"
+
+#~ msgid "_Contents"
+#~ msgstr "ಒಳವಿಷಯಗಳು(_C)"
+
+#~ msgid "_Edit Bookmarks..."
+#~ msgstr "ಬುಕ್‌ಮಾರ್ಕುಗಳನ್ನು ಸಂಪಾದಿಸು (_E)..."
+
+#~ msgid "_Copy Link Address"
+#~ msgstr "ಕೊಂಡಿವಿಳಾಸವನ್ನು ಕಾಪಿ ಮಾಡು(_C)"
+
+#~ msgid "Help On this application"
+#~ msgstr "ಈ ಅನ್ವಯದ ಬಗೆಗಿನ ನೆರವು"
+
+#~ msgid "_About"
+#~ msgstr "ತಂತ್ರಾಂಶದ ಬಗ್ಗೆ(_A)"
+
+#~ msgid "Copy _Email Address"
+#~ msgstr "ಇಮೈಲ್ ವಿಳಾಸವನ್ನು ಕಾಪಿ ಮಾಡು(_E)"
+
+#~ msgid "Help Browser"
+#~ msgstr "ಸಹಾಯ ವೀಕ್ಷಕ"
+
+#~ msgid "Unknown Page"
+#~ msgstr "ಅಜ್ಞಾತ ಪುಟ"
+
+#~ msgid "The requested URI \"%s\" is invalid"
+#~ msgstr "ಮನವಿ ಸಲ್ಲಿಸಲಾದ URI \"%s\" ಅಮಾನ್ಯವಾಗಿದೆ"
+
+#~ msgid "Unable to load page"
+#~ msgstr "ಪುಟವನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+
+#~ msgid "Cannot create search component"
+#~ msgstr "ಹುಡುಕು ಅಂಗವನ್ನು ನಿರ್ಮಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ"
+
+#~ msgid "Fin_d:"
+#~ msgstr "ಹುಡುಕು(_d):"
+
+#~ msgid "Find _Previous"
+#~ msgstr "ಹಿಂದಿನದನ್ನು ಹುಡುಕು(_P)"
+
+#~ msgid "Find _Next"
+#~ msgstr "ಮುಂದಿನದನ್ನು ಹುಡುಕು(_N)"
+
+#~ msgid "Phrase not found"
+#~ msgstr "ಪದವು ಕಂಡುಬಂದಿಲ್ಲ"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
+#~ "might not have permissions to read it."
+#~ msgstr ""
+#~ "ಕಡತ ‘%s’ ಅನ್ನು ಓದಲಾಗಿಲ್ಲ.  ಈ ಕಡತವು ಕಾಣೆಯಾಗಿರಬಹುದು, ಅಥವ ಅದನ್ನು ಓದಲು ನಿಮಗೆ "
+#~ "ಅನುಮತಿ ಇಲ್ಲದಿರಬಹುದು."
+
+#~ msgid "translator-credits"
+#~ msgstr "ಪ್ರಮೋದ್.ಆರ್, ಶಂಕರ್ ಪ್ರಸಾದ್ <svenkate@redhat.com>"
+
+#~ msgid "A documentation browser and viewer for the Gnome Desktop."
+#~ msgstr "Gnome Desktop ಗಾಗಿನ ಒಂದು ದಸ್ತಾವೇಜು ವೀಕ್ಷಕ ಹಾಗು ನೋಡುಗ."
