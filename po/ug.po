@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-05-14 18:17+0000\n"
-"PO-Revision-Date: 2013-01-27 13:20+0900\n"
+"POT-Creation-Date: 2013-01-27 04:25+0000\n"
+"PO-Revision-Date: 2013-01-27 13:34+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: GNOME Uighur Translation Project <gnome-uighur@yahoogroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,6 +20,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2010-08-10 20:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
+#. (itstool) path: msg/msgstr
 #. ID: install.tooltip
 #. This is a format message used to format tooltips on install: links. These
 #. links allow users to install packages by clicking a link in the help. The
@@ -28,7 +30,7 @@ msgstr ""
 #.
 #. <string/> - The package to install
 #.
-#: yelp.xml.in:29(msg/msgstr)
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "ئورنىتىش <string/>"
 
@@ -44,7 +46,7 @@ msgstr "يېتەرلىك  ئەسلەك يوق"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
 #: ../libyelp/yelp-mallard-document.c:306
-#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:457 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "%2$s پۈتۈكتىكى %1$s بەتنى تاپالمىدى."
@@ -120,7 +122,7 @@ msgstr "ماس كەلگەن ياردەم بېتى تېپىلمىدى."
 msgid "An unknown error occurred."
 msgstr "نامەلۇم خاتالىق كۆرۈلدى."
 
-#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:549 ../libyelp/yelp-help-list.c:558
 msgid "All Help Documents"
 msgstr "بارلىق ياردەم پۈتۈكلىرى"
 
@@ -179,48 +181,48 @@ msgstr "«%s» نى ئىزدە"
 msgid "Loading"
 msgstr "يۈكلەۋاتىدۇ"
 
-#: ../libyelp/yelp-mallard-document.c:346
+#: ../libyelp/yelp-mallard-document.c:345
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "‘%s’  مۇندەرىجە مەۋجۇت ئەمەس."
 
-#: ../libyelp/yelp-settings.c:154
+#: ../libyelp/yelp-settings.c:156
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:155
+#: ../libyelp/yelp-settings.c:157
 msgid "A GtkSettings object to get settings from"
 msgstr "تەڭشەككە ئېرىشىدىغان GtkSettings نەڭى"
 
-#: ../libyelp/yelp-settings.c:163
+#: ../libyelp/yelp-settings.c:165
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:164
+#: ../libyelp/yelp-settings.c:166
 msgid "A GtkIconTheme object to get icons from"
 msgstr "تەڭشەككە ئېرىشىدىغان GtkIconTheme جىسىم"
 
-#: ../libyelp/yelp-settings.c:172
+#: ../libyelp/yelp-settings.c:174
 msgid "Font Adjustment"
 msgstr "خەت نۇسخا تەڭشەش"
 
-#: ../libyelp/yelp-settings.c:173
+#: ../libyelp/yelp-settings.c:175
 msgid "A size adjustment to add to font sizes"
 msgstr "خەت چوڭلۇق تەڭشىكىدىن بىرى خەت چوڭلۇقىغا قوشۇلدى"
 
-#: ../libyelp/yelp-settings.c:181
+#: ../libyelp/yelp-settings.c:183
 msgid "Show Text Cursor"
 msgstr "تېكىست نۇر بەلگىنى كۆرسەت"
 
-#: ../libyelp/yelp-settings.c:182
+#: ../libyelp/yelp-settings.c:184
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "تېكىست نۇر بەلگە قىستۇرۇش بەلگىسى ياكى زىيارەتچان يول باشچىنى كۆرسەت"
 
-#: ../libyelp/yelp-settings.c:190
+#: ../libyelp/yelp-settings.c:192
 msgid "Editor Mode"
 msgstr "تەھرىرلىگۈچ ھالىتى"
 
-#: ../libyelp/yelp-settings.c:191
+#: ../libyelp/yelp-settings.c:193
 msgid "Enable features useful to editors"
 msgstr "تەھرىرلىگۈچكە كېرەكلىك ئىقتىدارىنى قوزغات"
 
@@ -333,109 +335,109 @@ msgstr "كۆرۈۋاتقان بەتنىڭ سىنبەلگىسى"
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "PackageKit يوق ئىكەن. بوغچا ئورنىتىش ئۇلانمىسىغا PackageKit زۆرۈر."
 
-#: ../libyelp/yelp-view.c:1013
+#: ../libyelp/yelp-view.c:1014
 msgid "Save Image"
 msgstr "سۈرەت ساقلا"
 
-#: ../libyelp/yelp-view.c:1108
+#: ../libyelp/yelp-view.c:1109
 msgid "Save Code"
 msgstr "كود ساقلا"
 
-#: ../libyelp/yelp-view.c:1271
+#: ../libyelp/yelp-view.c:1272
 #, c-format
 msgid "Send email to %s"
 msgstr "%s غا ئېلخەت يوللا"
 
-#: ../libyelp/yelp-view.c:1286
+#: ../libyelp/yelp-view.c:1287
 msgid "_Install Packages"
 msgstr "بوغچىلارنى ئورنات(_I)"
 
-#: ../libyelp/yelp-view.c:1294
+#: ../libyelp/yelp-view.c:1295
 msgid "_Open Link"
 msgstr "ئۇلانما ئاچ(_O)"
 
-#: ../libyelp/yelp-view.c:1301
+#: ../libyelp/yelp-view.c:1302
 msgid "_Copy Link Location"
 msgstr "ئۇلانما ئورنىنى كۆچۈر(_C)"
 
-#: ../libyelp/yelp-view.c:1307
+#: ../libyelp/yelp-view.c:1308
 msgid "Open Link in New _Window"
 msgstr "ئۇلانمىنى يېڭى كۆزنەكتە ئاچ(_W)"
 
-#: ../libyelp/yelp-view.c:1359
+#: ../libyelp/yelp-view.c:1360
 msgid "_Save Image As..."
 msgstr "سۈرەتنى باشقا ئاتتا ساقلا(_S)…"
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1362
 msgid "_Save Video As..."
 msgstr "سىننى باشقا ئاتتا ساقلا(_S)…"
 
-#: ../libyelp/yelp-view.c:1368
+#: ../libyelp/yelp-view.c:1369
 msgid "S_end Image To..."
 msgstr "سۈرەت يوللاش ئورنى(_E)…"
 
-#: ../libyelp/yelp-view.c:1370
+#: ../libyelp/yelp-view.c:1371
 msgid "S_end Video To..."
 msgstr "سىن يوللاش ئورنى(_E)…"
 
-#: ../libyelp/yelp-view.c:1381
+#: ../libyelp/yelp-view.c:1382
 msgid "_Copy Text"
 msgstr "تېكىست كۆچۈر(_C)"
 
-#: ../libyelp/yelp-view.c:1394
+#: ../libyelp/yelp-view.c:1395
 msgid "C_opy Code Block"
 msgstr "كود بۆلىكىنى كۆچۈر(_O)"
 
-#: ../libyelp/yelp-view.c:1399
+#: ../libyelp/yelp-view.c:1400
 msgid "Save Code _Block As..."
 msgstr "كود بۆلىكىنى باشقا ئاتتا ساقلا(_B)…"
 
-#: ../libyelp/yelp-view.c:1505
+#: ../libyelp/yelp-view.c:1507
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "«%s» نىڭ بارلىق ئىزدەش نەتىجىسى"
 
-#: ../libyelp/yelp-view.c:1626
+#: ../libyelp/yelp-view.c:1628
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "‹%s› نىڭ پۈتۈكىنى يۈكلىيەلمىدى"
 
-#: ../libyelp/yelp-view.c:1632
+#: ../libyelp/yelp-view.c:1634
 #, c-format
 msgid "Could not load a document"
 msgstr "پۈتۈكنى يۈكلىيەلمىدى"
 
-#: ../libyelp/yelp-view.c:1706
+#: ../libyelp/yelp-view.c:1709
 msgid "Document Not Found"
 msgstr "پۈتۈك تېپىلمىدى"
 
-#: ../libyelp/yelp-view.c:1708
+#: ../libyelp/yelp-view.c:1711
 msgid "Page Not Found"
 msgstr "بەت تېپىلمىدى"
 
-#: ../libyelp/yelp-view.c:1711
+#: ../libyelp/yelp-view.c:1714
 msgid "Cannot Read"
 msgstr "ئوقۇيالمىدى"
 
-#: ../libyelp/yelp-view.c:1717
+#: ../libyelp/yelp-view.c:1720
 msgid "Unknown Error"
 msgstr "نامەلۇم خاتالىق"
 
-#: ../libyelp/yelp-view.c:1737
+#: ../libyelp/yelp-view.c:1740
 msgid "Search for packages containing this document."
 msgstr "بۇ پۈتۈكنى ئۆز ئىچىگە ئالغان بوغچىنى ئىزدەيدۇ."
 
-#: ../libyelp/yelp-view.c:1890
+#: ../libyelp/yelp-view.c:1892
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI ‘%s’ ئىناۋەتلىك بەتنى كۆرسەتمىگەن."
 
-#: ../libyelp/yelp-view.c:1896
+#: ../libyelp/yelp-view.c:1898
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI ئىناۋەتلىك بەتنى كۆرسەتمىگەن."
 
-#: ../libyelp/yelp-view.c:1902
+#: ../libyelp/yelp-view.c:1904
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "«%s»  دېگەن URI نى يېشەلمىدى."
@@ -546,6 +548,10 @@ msgstr "ماس كەلگىنى يوق"
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "گىنوم ياردىمىگە ئېرىش"
+
+#: ../yelp.desktop.in.in.h:3
+msgid "documentation;information;manual;"
+msgstr "documentation؛information؛manual؛قوللانما؛ئۇچۇر؛پۈتۈك؛"
 
 #~ msgid "GNU Info Pages"
 #~ msgstr "GNU ئۇچۇر بەتلىرى"
