@@ -160,36 +160,6 @@ AC_SUBST(YELP_ICON_PATH)
 GLIB_GENMARSHAL="`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`"
 AC_SUBST(GLIB_GENMARSHAL)
 
-#
-# If Pango included the shared library dependencies from X11 in
-# the pkg-config output, then we use that (to avoid duplicates).
-# but if they were omitted to avoid binary compatibility problems
-# then we need to repeat the checks.
-#
-if $PKG_CONFIG --exists pangoxft ; then
-  PANGO_PACKAGES="pangox pangoxft"
-else
-  PANGO_PACKAGES="pangox"
-fi
-
-x_libs="`$PKG_CONFIG --libs $PANGO_PACKAGES`"
-case x_libs in
-  *-lX11*) pango_omitted_x_deps=no ;;
-  *)       pango_omitted_x_deps=yes ;;
-esac
-
-if test $pango_omitted_x_deps = yes ; then
-  AC_PATH_XTRA
-
-  if test x$no_x = xyes ; then
-    AC_MSG_ERROR([X development libraries not found])
-  else
-    X_LIBS="$X_PRE_LIBS $X_LIBS -lX11 $X_EXTRA_LIBS"
-  fi
-fi
-
-AC_SUBST(X_LIBS)
-
 
 # Set flags
 AM_CPPFLAGS="$AM_CPPFLAGS $DEPRECATION_FLAGS"
