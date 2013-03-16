@@ -1,15 +1,15 @@
 # yelp's Portuguese Translation
-# Copyright © 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2011, 2012 yelp
+# Copyright © 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2011, 2012, 2013 yelp
 # Distributed under the same licence as yelp package
-# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2011, 2012.
+# Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2011, 2012, 2013.
 # Pedro Barreira <almufadado@gmail.com>, 2011.
-#
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: 3.4\n"
+"Project-Id-Version: 3.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-14 00:45+0000\n"
-"PO-Revision-Date: 2011-03-14 00:50+0000\n"
+"POT-Creation-Date: 2013-03-16 02:05+0000\n"
+"PO-Revision-Date: 2013-03-16 02:10+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "Language: pt\n"
@@ -18,16 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. (itstool) path: msg/msgstr
 #. ID: install.tooltip
 #. This is a format message used to format tooltips on install: links. These
 #. links allow users to install packages by clicking a link in the help. The
 #. tooltip may also be used as the link text, if there's no link text in the
 #. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#. 
+#.
 #. <string/> - The package to install
-#. 
-#: yelp.xml.in:29(msg/msgstr)
+#.
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Instalar <string/>"
 
@@ -43,7 +44,7 @@ msgstr "Memória disponível insuficiente"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
 #: ../libyelp/yelp-mallard-document.c:306
-#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:457 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "A página ‘%s’ não foi encontrada no documento ‘%s’."
@@ -67,7 +68,7 @@ msgid ""
 "document."
 msgstr ""
 "Incapaz de processar o ficheiro ‘%s’ porque não é um documento XML "
-"correctamente formado."
+"corretamente formado."
 
 #: ../libyelp/yelp-docbook-document.c:355
 #, c-format
@@ -76,7 +77,7 @@ msgid ""
 "is not a well-formed XML document."
 msgstr ""
 "Incapaz de processar o ficheiro ‘%s’ porque um ou mais dos seus ficheiros "
-"incluídos não é um documento XML correctamente formado."
+"incluídos não é um documento XML corretamente formado."
 
 #: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
@@ -123,7 +124,7 @@ msgstr "Não foram encontradas páginas de ajuda equivalentes."
 msgid "An unknown error occurred."
 msgstr "Ocorreu um erro desconhecido."
 
-#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:549 ../libyelp/yelp-help-list.c:558
 msgid "All Help Documents"
 msgstr "Todos os Documentos de Ajuda"
 
@@ -133,7 +134,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
 "Incapaz de processar o ficheiro ‘%s’ porque não é uma página de info "
-"correctamente formada."
+"corretamente formada."
 
 #: ../libyelp/yelp-location-entry.c:336
 msgid "View"
@@ -153,7 +154,7 @@ msgstr "Uma instância de implementação do YelpBookmarks"
 
 #: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
-msgstr "Activar a Pesquisa"
+msgstr "Ativar a Pesquisa"
 
 #: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
@@ -185,50 +186,50 @@ msgstr "Procurar por “%s”"
 msgid "Loading"
 msgstr "A Ler"
 
-#: ../libyelp/yelp-mallard-document.c:346
+#: ../libyelp/yelp-mallard-document.c:345
 #, c-format
 msgid "The directory ‘%s’ does not exist."
-msgstr "O directório ‘%s’ não existe."
+msgstr "O diretório ‘%s’ não existe."
 
-#: ../libyelp/yelp-settings.c:154
+#: ../libyelp/yelp-settings.c:156
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:155
+#: ../libyelp/yelp-settings.c:157
 msgid "A GtkSettings object to get settings from"
-msgstr "Um objecto GtkSettings de onde obter as definições"
+msgstr "Um objeto GtkSettings de onde obter as definições"
 
-#: ../libyelp/yelp-settings.c:163
+#: ../libyelp/yelp-settings.c:165
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:164
+#: ../libyelp/yelp-settings.c:166
 msgid "A GtkIconTheme object to get icons from"
-msgstr "Um objecto GtkIconTheme de onde obter os ícones"
+msgstr "Um objeto GtkIconTheme de onde obter os ícones"
 
-#: ../libyelp/yelp-settings.c:172
+#: ../libyelp/yelp-settings.c:174
 msgid "Font Adjustment"
 msgstr "Ajustamento de Fonte"
 
-#: ../libyelp/yelp-settings.c:173
+#: ../libyelp/yelp-settings.c:175
 msgid "A size adjustment to add to font sizes"
 msgstr "Um ajustamento de tamanho para adicionar ao tamanho das fontes"
 
-#: ../libyelp/yelp-settings.c:181
+#: ../libyelp/yelp-settings.c:183
 msgid "Show Text Cursor"
 msgstr "Apresentar o Cursor de Texto"
 
-#: ../libyelp/yelp-settings.c:182
+#: ../libyelp/yelp-settings.c:184
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Apresentar o cursor de texto para navegação acessível"
 
-#: ../libyelp/yelp-settings.c:190
+#: ../libyelp/yelp-settings.c:192
 msgid "Editor Mode"
 msgstr "Modo de Editor"
 
-#: ../libyelp/yelp-settings.c:191
+#: ../libyelp/yelp-settings.c:193
 msgid "Enable features useful to editors"
-msgstr "Activar funcionalidades úteis para editores"
+msgstr "Ativar funcionalidades úteis para editores"
 
 #: ../libyelp/yelp-sqlite-storage.c:150
 msgid "Database filename"
@@ -285,7 +286,7 @@ msgstr "URI do Yelp"
 
 #: ../libyelp/yelp-view.c:424
 msgid "A YelpUri with the current location"
-msgstr "Um YelpUri com a localização actual"
+msgstr "Um YelpUri com a localização atual"
 
 #: ../libyelp/yelp-view.c:432
 msgid "Loading State"
@@ -301,7 +302,7 @@ msgstr "ID de Página"
 
 #: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
-msgstr "O ID da página raiz da página actualmente visualizada"
+msgstr "O ID da página raiz da página atualmente visualizada"
 
 #: ../libyelp/yelp-view.c:451
 msgid "Root Title"
@@ -309,7 +310,7 @@ msgstr "Título da Raiz"
 
 #: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
-msgstr "O título da página raiz da página actualmente visualizada"
+msgstr "O título da página raiz da página atualmente visualizada"
 
 #: ../libyelp/yelp-view.c:460
 msgid "Page Title"
@@ -317,7 +318,7 @@ msgstr "Título da Página"
 
 #: ../libyelp/yelp-view.c:461
 msgid "The title of the page being viewed"
-msgstr "O título da página actualmente visualizada"
+msgstr "O título da página atualmente visualizada"
 
 #: ../libyelp/yelp-view.c:469
 msgid "Page Description"
@@ -325,7 +326,7 @@ msgstr "Descrição da Página"
 
 #: ../libyelp/yelp-view.c:470
 msgid "The description of the page being viewed"
-msgstr "A descrição da página actualmente visualizada"
+msgstr "A descrição da página atualmente visualizada"
 
 #: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
@@ -333,7 +334,7 @@ msgstr "Ícone da Página"
 
 #: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
-msgstr "O ícone da página actualmente visualizada"
+msgstr "O ícone da página atualmente visualizada"
 
 #: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
@@ -341,116 +342,116 @@ msgstr ""
 "Não tem o PackageKit instalado. Os links de instalação de pacotes requerem o "
 "PackageKit."
 
-#: ../libyelp/yelp-view.c:1013
+#: ../libyelp/yelp-view.c:1014
 msgid "Save Image"
 msgstr "Gravar a Imagem"
 
-#: ../libyelp/yelp-view.c:1108
+#: ../libyelp/yelp-view.c:1109
 msgid "Save Code"
 msgstr "Gravar o Código"
 
-#: ../libyelp/yelp-view.c:1271
+#: ../libyelp/yelp-view.c:1272
 #, c-format
 msgid "Send email to %s"
 msgstr "Enviar email para %s"
 
-#: ../libyelp/yelp-view.c:1286
+#: ../libyelp/yelp-view.c:1287
 msgid "_Install Packages"
 msgstr "_Instalar Pacotes"
 
-#: ../libyelp/yelp-view.c:1294
+#: ../libyelp/yelp-view.c:1295
 msgid "_Open Link"
 msgstr "_Abrir Link"
 
-#: ../libyelp/yelp-view.c:1301
+#: ../libyelp/yelp-view.c:1302
 msgid "_Copy Link Location"
 msgstr "_Copiar a Localização do Link"
 
-#: ../libyelp/yelp-view.c:1307
+#: ../libyelp/yelp-view.c:1308
 msgid "Open Link in New _Window"
 msgstr "Abrir Link numa Nova _Janela"
 
-#: ../libyelp/yelp-view.c:1359
+#: ../libyelp/yelp-view.c:1360
 msgid "_Save Image As..."
 msgstr "_Gravar Imagem Como..."
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1362
 msgid "_Save Video As..."
 msgstr "_Gravar Vídeo Como..."
 
-#: ../libyelp/yelp-view.c:1368
+#: ../libyelp/yelp-view.c:1369
 msgid "S_end Image To..."
 msgstr "_Enviar Imagem Como..."
 
-#: ../libyelp/yelp-view.c:1370
+#: ../libyelp/yelp-view.c:1371
 msgid "S_end Video To..."
 msgstr "_Enviar Vídeo Como..."
 
-#: ../libyelp/yelp-view.c:1381
+#: ../libyelp/yelp-view.c:1382
 msgid "_Copy Text"
 msgstr "_Copiar Texto"
 
-#: ../libyelp/yelp-view.c:1394
+#: ../libyelp/yelp-view.c:1395
 msgid "C_opy Code Block"
 msgstr "C_opiar Bloco de Código"
 
-#: ../libyelp/yelp-view.c:1399
+#: ../libyelp/yelp-view.c:1400
 msgid "Save Code _Block As..."
 msgstr "Gravar _Bloco de Código Como..."
 
-#: ../libyelp/yelp-view.c:1505
+#: ../libyelp/yelp-view.c:1507
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "Visualizar todos os resultados da procura por “%s”"
 
-#: ../libyelp/yelp-view.c:1626
+#: ../libyelp/yelp-view.c:1628
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Incapaz de ler um documento para ‘%s’"
 
-#: ../libyelp/yelp-view.c:1632
+#: ../libyelp/yelp-view.c:1634
 #, c-format
 msgid "Could not load a document"
 msgstr "Incapaz de ler um documento"
 
-#: ../libyelp/yelp-view.c:1706
+#: ../libyelp/yelp-view.c:1709
 msgid "Document Not Found"
 msgstr "Documento Não Foi Encontrado"
 
-#: ../libyelp/yelp-view.c:1708
+#: ../libyelp/yelp-view.c:1711
 msgid "Page Not Found"
 msgstr "Página Não Foi Encontrada"
 
-#: ../libyelp/yelp-view.c:1711
+#: ../libyelp/yelp-view.c:1714
 msgid "Cannot Read"
 msgstr "Incapaz de Ler"
 
-#: ../libyelp/yelp-view.c:1717
+#: ../libyelp/yelp-view.c:1720
 msgid "Unknown Error"
 msgstr "Erro Desconhecido"
 
-#: ../libyelp/yelp-view.c:1737
+#: ../libyelp/yelp-view.c:1740
 msgid "Search for packages containing this document."
 msgstr "Procurar pacotes que contenham este documento."
 
-#: ../libyelp/yelp-view.c:1890
+#: ../libyelp/yelp-view.c:1892
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "O URI ‘%s’ não aponta para uma página válida."
 
-#: ../libyelp/yelp-view.c:1896
+#: ../libyelp/yelp-view.c:1898
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "O URI não aponta para uma página válida."
 
-#: ../libyelp/yelp-view.c:1902
+#: ../libyelp/yelp-view.c:1904
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Não foi possível processar o URI ‘%s’."
 
 #: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
-msgstr "Activar o modo editor"
+msgstr "Ativar o modo editor"
 
 #: ../src/yelp-application.c:128
 msgid "_Larger Text"
@@ -555,6 +556,10 @@ msgstr "Nenhuma equivalência"
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Obtenha ajuda com o GNOME"
+
+#: ../yelp.desktop.in.in.h:3
+msgid "documentation;information;manual;"
+msgstr "documentação;informação;manual;"
 
 #~ msgid "GNU Info Pages"
 #~ msgstr "Páginas de Informação GNU"
@@ -761,7 +766,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgstr "Acessibilidade"
 
 #~ msgid "Action Games"
-#~ msgstr "Jogos de Acção"
+#~ msgstr "Jogos de Ação"
 
 #~ msgid "Adventure Games"
 #~ msgstr "Jogos de Aventura"
@@ -869,10 +874,10 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgstr "Educação"
 
 #~ msgid "Electricity"
-#~ msgstr "Electricidade"
+#~ msgstr "Eletricidade"
 
 #~ msgid "Electronics"
-#~ msgstr "Electrónica"
+#~ msgstr "Eletrónica"
 
 #~ msgid "Email Tools"
 #~ msgstr "Ferramentas de Email"
@@ -1057,10 +1062,10 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgstr "A Imprimir"
 
 #~ msgid "Profiling Tools"
-#~ msgstr "Ferramentas de Optimização"
+#~ msgstr "Ferramentas de Otimização"
 
 #~ msgid "Project Management Tools"
-#~ msgstr "Ferramentas de Gestão de Projectos"
+#~ msgstr "Ferramentas de Gestão de Projetos"
 
 #~ msgid "Publishing"
 #~ msgstr "Edição"
@@ -1167,8 +1172,8 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgid "Utilities to help you get work done"
 #~ msgstr "Utilitários para o ajudar nas suas tarefas"
 
-#~ msgid "Vector Graphics"
-#~ msgstr "Gráficos de Vectores"
+#~ msgid "Vetor Graphics"
+#~ msgstr "Gráficos de Vetores"
 
 #~ msgid "Video"
 #~ msgstr "Vídeo"
@@ -1273,7 +1278,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgstr "Não é um item iniciável"
 
 #~ msgid "Disable connection to session manager"
-#~ msgstr "Desactivar a ligação ao gestor de sessão"
+#~ msgstr "Desativar a ligação ao gestor de sessão"
 
 #~ msgid "Specify file containing saved configuration"
 #~ msgstr "Especifique o ficheiro que contém a configuração gravada"
@@ -1331,20 +1336,20 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgstr "Utilizar uma sessão privada"
 
 #~ msgid "Define which cache directory to use"
-#~ msgstr "Defina que directório de cache utilizar"
+#~ msgstr "Defina que diretório de cache utilizar"
 
 #~ msgid " GNOME Help Browser"
 #~ msgstr " Navegador de Ajuda do GNOME"
 
 #~ msgid "Directory not found"
-#~ msgstr "Directório não foi encontrado"
+#~ msgstr "Diretório não foi encontrado"
 
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
 #~ "page."
 #~ msgstr ""
 #~ "Incapaz de processar o ficheiro ‘%s’ porque não é uma página man "
-#~ "correctamente formada."
+#~ "corretamente formada."
 
 #~ msgid "Preparing to print"
 #~ msgstr "A preparar a impressão"
@@ -1418,7 +1423,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ "document."
 #~ msgstr ""
 #~ "Incapaz de processar o ficheiro de índice porque não é um documento XML "
-#~ "correctamente formado."
+#~ "corretamente formado."
 
 #~ msgid "Broken Transformation"
 #~ msgstr "Transformação Falhada"
@@ -1446,7 +1451,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgstr "Abrir a _Localização"
 
 #~ msgid "_Select All"
-#~ msgstr "_Seleccionar Tudo"
+#~ msgstr "_Selecionar Tudo"
 
 #~ msgid "_Find..."
 #~ msgstr "_Procurar..."
@@ -1629,7 +1634,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ "is formatted incorrectly."
 #~ msgstr ""
 #~ "Incapaz de processar o ficheiro ‘%s’.  Ou o ficheiro não existe ou está "
-#~ "formatado incorrectamente."
+#~ "formatado incorretamente."
 
 #~ msgid "The YelpDocInfo struct of the document"
 #~ msgstr "A estrutura YelpDocInfo do documento"
@@ -1650,8 +1655,8 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgid "Could not load the OMF file '%s'."
 #~ msgstr "Incapaz de ler o ficheiro OMF: '%s'."
 
-#~ msgid "yelp-watermark-blockquote-201C"
-#~ msgstr "yelp-watermark-blockquote-201C"
+#~ msgid "yelp-watermark-blockquote201C"
+#~ msgstr "yelp-watermark-blockquote201C"
 
 #~ msgid "YelpTocPager: Pause count is negative."
 #~ msgstr "YelpTocPager: Contagem de pausa é negativa."
@@ -1674,7 +1679,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ "missing or is not well-formed XML."
 #~ msgstr ""
 #~ "Incapaz de ler a tabela de conteúdos. Ou o ficheiro ‘%s’ não existe ou é "
-#~ "XML incorrectamente formado."
+#~ "XML incorretamente formado."
 
 #~ msgid "Command Line Help"
 #~ msgstr "Ajuda de Linha de Comando"
@@ -1685,7 +1690,7 @@ msgstr "Obtenha ajuda com o GNOME"
 
 #~ msgid ""
 #~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-#~ "actual file."
+#~ "atual file."
 #~ msgstr ""
 #~ "O Identificador Uniforme de Recurso (URI) ‘%s’ é inválido ou não aponta "
 #~ "para um ficheiro existente."
@@ -1718,7 +1723,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ "this section from a Help button in an application, please report this to "
 #~ "the maintainers of that application."
 #~ msgstr ""
-#~ "A secção ‘%s’ não existe neste documento. Se tiver sido redireccionado "
+#~ "A secção ‘%s’ não existe neste documento. Se tiver sido redirecionado "
 #~ "para esta secção a partir de um botão de ajuda de uma aplicação, relate "
 #~ "esta ocorrência à equia que mantém a aplicação."
 
@@ -1727,7 +1732,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ "is improperly formatted."
 #~ msgstr ""
 #~ "Incapaz de processar o ficheiro ‘%s’. Ou o ficheiro não existe ou está "
-#~ "incorrectamente formatado."
+#~ "incorretamente formatado."
 
 #~ msgid "Library Functions"
 #~ msgstr "Bibliotecas de Funções"
@@ -1748,7 +1753,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgstr "Fábrica Yelp"
 
 #~ msgid "Could not activate Yelp: '%s'"
-#~ msgstr "Incapaz de activar o Yelp: '%s'"
+#~ msgstr "Incapaz de ativar o Yelp: '%s'"
 
 #~ msgid "Generating PDF is not currently supported"
 #~ msgstr "A geração de PDF não é suportada nesta versão"
@@ -1806,7 +1811,7 @@ msgstr "Obtenha ajuda com o GNOME"
 #~ msgstr "Documentos DocBook SGML já não são suportados."
 
 #~ msgid "The selected file could not be read."
-#~ msgstr "Incapaz de ler o ficheiro seleccionado."
+#~ msgstr "Incapaz de ler o ficheiro selecionado."
 
 #~ msgid "X11"
 #~ msgstr "X11"
