@@ -5,34 +5,34 @@
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2002-2008.
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2009-2010.
-# Jiro Matsuzawa <jmatsuzawa@src.gnome.org>, 2011, 2012.
+# Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2011-2013.
 # Hideki Yamane <henrich@debian.org>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-04-16 18:37+0000\n"
-"PO-Revision-Date: 2012-04-21 19:02+0900\n"
-"Last-Translator: Mitsuya Shibata <mty.shibata@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-15 17:25+0900\n"
+"PO-Revision-Date: 2013-03-15 21:35+0900\n"
+"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. (itstool) path: msg/msgstr
 #. ID: install.tooltip
 #. This is a format message used to format tooltips on install: links. These
 #. links allow users to install packages by clicking a link in the help. The
 #. tooltip may also be used as the link text, if there's no link text in the
 #. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#. 
+#.
 #. <string/> - The package to install
-#. 
-#: yelp.xml.in:29(msg/msgstr)
+#.
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "<string/> をインストールします"
 
@@ -48,7 +48,7 @@ msgstr "メモリが足りません"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
 #: ../libyelp/yelp-mallard-document.c:306
-#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:457 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "ページ '%s' がドキュメント '%s' の中に見つかりません。"
@@ -67,19 +67,13 @@ msgstr "ファイル '%s' はありません。"
 
 #: ../libyelp/yelp-docbook-document.c:342
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed XML "
-"document."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
 msgstr "ファイル '%s' が整形式の XML 文書ではないため解析できません。"
 
 #: ../libyelp/yelp-docbook-document.c:355
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files "
-"is not a well-formed XML document."
-msgstr ""
-"ファイル '%s' を解析できません。このファイルがインクルードする1つ以上のファイ"
-"ルが整形式の XML 文書ではありません。"
+msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
+msgstr "ファイル '%s' を解析できません。このファイルがインクルードする1つ以上のファイルが整形式の XML 文書ではありません。"
 
 #: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
@@ -126,14 +120,13 @@ msgstr "一致するヘルプページが見つかりません。"
 msgid "An unknown error occurred."
 msgstr "原因不明のエラーが発生しました。"
 
-#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:549 ../libyelp/yelp-help-list.c:558
 msgid "All Help Documents"
 msgstr "すべてのヘルプドキュメント"
 
 #: ../libyelp/yelp-info-document.c:397
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "ファイル '%s' が整形式の info ページではないため解析できません。"
 
 #: ../libyelp/yelp-location-entry.c:336
@@ -185,48 +178,48 @@ msgstr "“%s” を検索します"
 msgid "Loading"
 msgstr "読み込み中"
 
-#: ../libyelp/yelp-mallard-document.c:346
+#: ../libyelp/yelp-mallard-document.c:345
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "ディレクトリ '%s' がありません。"
 
-#: ../libyelp/yelp-settings.c:154
+#: ../libyelp/yelp-settings.c:156
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:155
+#: ../libyelp/yelp-settings.c:157
 msgid "A GtkSettings object to get settings from"
 msgstr "設定を取得するための GtkSettings オブジェクト"
 
-#: ../libyelp/yelp-settings.c:163
+#: ../libyelp/yelp-settings.c:165
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:164
+#: ../libyelp/yelp-settings.c:166
 msgid "A GtkIconTheme object to get icons from"
 msgstr "アイコンを取得するための GtkIconTheme オブジェクト"
 
-#: ../libyelp/yelp-settings.c:172
+#: ../libyelp/yelp-settings.c:174
 msgid "Font Adjustment"
 msgstr "フォント調節"
 
-#: ../libyelp/yelp-settings.c:173
+#: ../libyelp/yelp-settings.c:175
 msgid "A size adjustment to add to font sizes"
 msgstr "フォントサイズを大きくする調節機能"
 
-#: ../libyelp/yelp-settings.c:181
+#: ../libyelp/yelp-settings.c:183
 msgid "Show Text Cursor"
 msgstr "カーソル表示"
 
-#: ../libyelp/yelp-settings.c:182
+#: ../libyelp/yelp-settings.c:184
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "ページ内を移動しやすいようにカーソル (キャレット) を表示する"
 
-#: ../libyelp/yelp-settings.c:190
+#: ../libyelp/yelp-settings.c:192
 msgid "Editor Mode"
 msgstr "エディターモード"
 
-#: ../libyelp/yelp-settings.c:191
+#: ../libyelp/yelp-settings.c:193
 msgid "Enable features useful to editors"
 msgstr "エディターにとって便利な機能を有効にする"
 
@@ -249,8 +242,7 @@ msgstr "XSLT スタイルシートの場所"
 #: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr ""
-"XSLT スタイルシート '%s' が存在しないか、または妥当な文書ではありません。"
+msgstr "XSLT スタイルシート '%s' が存在しないか、または妥当な文書ではありません。"
 
 #: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
@@ -338,112 +330,111 @@ msgstr "表示されているページのアイコン"
 
 #: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr ""
-"PackageKit がありません。パッケージのインストールには PackageKit が必要です。"
+msgstr "PackageKit がありません。パッケージのインストールには PackageKit が必要です。"
 
-#: ../libyelp/yelp-view.c:1013
+#: ../libyelp/yelp-view.c:1014
 msgid "Save Image"
 msgstr "画像を保存"
 
-#: ../libyelp/yelp-view.c:1108
+#: ../libyelp/yelp-view.c:1109
 msgid "Save Code"
 msgstr "コードを保存"
 
-#: ../libyelp/yelp-view.c:1271
+#: ../libyelp/yelp-view.c:1272
 #, c-format
 msgid "Send email to %s"
 msgstr "%s へ電子メールを送信"
 
-#: ../libyelp/yelp-view.c:1286
+#: ../libyelp/yelp-view.c:1287
 msgid "_Install Packages"
 msgstr "パッケージをインストールする(_I)"
 
-#: ../libyelp/yelp-view.c:1294
+#: ../libyelp/yelp-view.c:1295
 msgid "_Open Link"
 msgstr "リンク先を開く(_O)"
 
-#: ../libyelp/yelp-view.c:1301
+#: ../libyelp/yelp-view.c:1302
 msgid "_Copy Link Location"
 msgstr "リンクの場所をコピーする(_C)"
 
-#: ../libyelp/yelp-view.c:1307
+#: ../libyelp/yelp-view.c:1308
 msgid "Open Link in New _Window"
 msgstr "新しいウィンドウでリンク先を開く(_W)"
 
-#: ../libyelp/yelp-view.c:1359
+#: ../libyelp/yelp-view.c:1360
 msgid "_Save Image As..."
 msgstr "名前を付けて画像を保存(_S)..."
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1362
 msgid "_Save Video As..."
 msgstr "名前を付けてビデオを保存(_S)..."
 
-#: ../libyelp/yelp-view.c:1368
+#: ../libyelp/yelp-view.c:1369
 msgid "S_end Image To..."
 msgstr "画像を送信(_E)..."
 
-#: ../libyelp/yelp-view.c:1370
+#: ../libyelp/yelp-view.c:1371
 msgid "S_end Video To..."
 msgstr "ビデオを送信(_E)..."
 
-#: ../libyelp/yelp-view.c:1381
+#: ../libyelp/yelp-view.c:1382
 msgid "_Copy Text"
 msgstr "テキストをコピー(_C)"
 
-#: ../libyelp/yelp-view.c:1394
+#: ../libyelp/yelp-view.c:1395
 msgid "C_opy Code Block"
 msgstr "コードブロックをコピー(_O)"
 
-#: ../libyelp/yelp-view.c:1399
+#: ../libyelp/yelp-view.c:1400
 msgid "Save Code _Block As..."
 msgstr "名前を付けてコードブロックを保存(_B)..."
 
-#: ../libyelp/yelp-view.c:1505
+#: ../libyelp/yelp-view.c:1507
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "“%s” のすべての検索結果を参照する"
 
-#: ../libyelp/yelp-view.c:1626
+#: ../libyelp/yelp-view.c:1628
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "‘%s’ のドキュメントを読み込めません"
 
-#: ../libyelp/yelp-view.c:1632
+#: ../libyelp/yelp-view.c:1634
 #, c-format
 msgid "Could not load a document"
 msgstr "ドキュメントを読み込めません"
 
-#: ../libyelp/yelp-view.c:1706
+#: ../libyelp/yelp-view.c:1709
 msgid "Document Not Found"
 msgstr "ドキュメントが見つかりません"
 
-#: ../libyelp/yelp-view.c:1708
+#: ../libyelp/yelp-view.c:1711
 msgid "Page Not Found"
 msgstr "ページが見つかりません"
 
-#: ../libyelp/yelp-view.c:1711
+#: ../libyelp/yelp-view.c:1714
 msgid "Cannot Read"
 msgstr "読み取れません"
 
-#: ../libyelp/yelp-view.c:1717
+#: ../libyelp/yelp-view.c:1720
 msgid "Unknown Error"
 msgstr "原因不明のエラー"
 
-#: ../libyelp/yelp-view.c:1737
+#: ../libyelp/yelp-view.c:1740
 msgid "Search for packages containing this document."
 msgstr "このドキュメントを含むパッケージを検索します。"
 
-#: ../libyelp/yelp-view.c:1890
+#: ../libyelp/yelp-view.c:1892
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI '%s' は有効なページを示していません。"
 
-#: ../libyelp/yelp-view.c:1896
+#: ../libyelp/yelp-view.c:1898
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI は 有効なページを示していません。"
 
-#: ../libyelp/yelp-view.c:1902
+#: ../libyelp/yelp-view.c:1904
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI '%s' を解析できません。"
@@ -553,7 +544,11 @@ msgstr "一致無し"
 
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
-msgstr "GNOME のヘルプを入手します"
+msgstr "GNOME のヘルプを表示します"
+
+#: ../yelp.desktop.in.in.h:3
+msgid "documentation;information;manual;"
+msgstr "documentation;information;manual;ドキュメンテーション;ドキュメント;情報;マニュアル;help;ヘルプ;"
 
 #~ msgid "_Share..."
 #~ msgstr "共有(_S)..."
