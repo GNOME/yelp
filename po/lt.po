@@ -4,32 +4,36 @@
 # Tomas Kuliavas <tokul@users.sourceforge.net>, 2003-2004.
 # Žygimantas Beručka  <zygis@gnome.org>, 2004-2006, 2010.
 # Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007, 2008.
-# Aurimas Černius <aurisc4@gmail.com>, 2010.
+# Aurimas Černius <aurisc4@gmail.com>, 2010, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-02-23 18:38+0000\n"
-"PO-Revision-Date: 2012-03-28 00:15+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2013-03-31 11:26+0000\n"
+"PO-Revision-Date: 2013-04-01 19:34+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
-"Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
+"Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: lt\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Virtaal 0.6.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
+#. (itstool) path: msg/msgstr
 #. ID: install.tooltip
 #. This is a format message used to format tooltips on install: links. These
 #. links allow users to install packages by clicking a link in the help. The
 #. tooltip may also be used as the link text, if there's no link text in the
 #. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#. 
+#.
 #. <string/> - The package to install
-#. 
-#: yelp.xml.in:29(msg/msgstr)
+#.
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Įdiegti <string/>"
 
@@ -43,24 +47,20 @@ msgstr "Neteisingi suglaudinti duomenys"
 msgid "Not enough memory"
 msgstr "Nepakanka atminties"
 
-#: ../libyelp/yelp-docbook-document.c:282
-#: ../libyelp/yelp-info-document.c:238
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
 #: ../libyelp/yelp-mallard-document.c:306
-#: ../libyelp/yelp-mallard-document.c:458
-#: ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:457 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Puslapis „%s“ dokumente „%s“ nerastas."
 
-#: ../libyelp/yelp-docbook-document.c:317
-#: ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
 #: ../libyelp/yelp-man-document.c:417
 #, c-format
 msgid "The file does not exist."
 msgstr "Failas neegzistuoja."
 
-#: ../libyelp/yelp-docbook-document.c:327
-#: ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
 #: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
@@ -68,20 +68,26 @@ msgstr "Failas „%s“ neegzistuoja."
 
 #: ../libyelp/yelp-docbook-document.c:342
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
-msgstr "Nepavyko apdoroti failo „%s“, nes tai nėra tinkamai suformuotas XML failas."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Nepavyko apdoroti failo „%s“, nes tai nėra tinkamai suformuotas XML failas."
 
 #: ../libyelp/yelp-docbook-document.c:355
 #, c-format
-msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
-msgstr "Nepavyko apdoroti failo „%s“, nes bent vienas iš jo įtraukiamų failų nėra tinkamai suformuotas XML failas."
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+"Nepavyko apdoroti failo „%s“, nes bent vienas iš jo įtraukiamų failų nėra "
+"tinkamai suformuotas XML failas."
 
 #: ../libyelp/yelp-docbook-document.c:765
 msgid "Unknown"
 msgstr "Nežinoma"
 
-#: ../libyelp/yelp-docbook-document.c:826
-#: ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
 #: ../libyelp/yelp-man-document.c:359
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
@@ -122,15 +128,17 @@ msgstr "Nerasta atitinkamų pagalbos puslapių."
 msgid "An unknown error occurred."
 msgstr "Įvyko nežinoma klaida."
 
-#: ../libyelp/yelp-help-list.c:478
-#: ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:549 ../libyelp/yelp-help-list.c:558
 msgid "All Help Documents"
 msgstr "Visi pagalbos dokumentai"
 
 #: ../libyelp/yelp-info-document.c:397
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "Nepavyko apdoroti failo „%s“, nes tai nėra tinkamai suformuotas „info“ puslapis."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"Nepavyko apdoroti failo „%s“, nes tai nėra tinkamai suformuotas „info“ "
+"puslapis."
 
 #: ../libyelp/yelp-location-entry.c:336
 msgid "View"
@@ -156,8 +164,7 @@ msgstr "Įjungti paiešką"
 msgid "Whether the location entry can be used as a search field"
 msgstr "Ar vietos įrašas gali būti naudojamas kaip paieškos laukas"
 
-#: ../libyelp/yelp-location-entry.c:440
-#: ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Ieškoti..."
 
@@ -165,19 +172,16 @@ msgstr "Ieškoti..."
 msgid "Clear the search text"
 msgstr "Išvalyti paieškos tekstą"
 
-#: ../libyelp/yelp-location-entry.c:831
-#: ../libyelp/yelp-location-entry.c:1593
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "Pažymėti šį puslapį"
 
-#: ../libyelp/yelp-location-entry.c:839
-#: ../libyelp/yelp-location-entry.c:1601
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "Pašalinti žymelę"
 
 #: ../libyelp/yelp-location-entry.c:1154
 #, c-format
-#| msgid "Search results for “%s”"
 msgid "Search for “%s”"
 msgstr "Ieškoti „%s“"
 
@@ -185,48 +189,48 @@ msgstr "Ieškoti „%s“"
 msgid "Loading"
 msgstr "Įkeliama"
 
-#: ../libyelp/yelp-mallard-document.c:346
+#: ../libyelp/yelp-mallard-document.c:345
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Katalogas „%s“ neegzistuoja."
 
-#: ../libyelp/yelp-settings.c:154
+#: ../libyelp/yelp-settings.c:156
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:155
+#: ../libyelp/yelp-settings.c:157
 msgid "A GtkSettings object to get settings from"
 msgstr "GtkSettings objektas, iš kurio gauti nustatymus"
 
-#: ../libyelp/yelp-settings.c:163
+#: ../libyelp/yelp-settings.c:165
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:164
+#: ../libyelp/yelp-settings.c:166
 msgid "A GtkIconTheme object to get icons from"
 msgstr "GtkIconTheme objektas, iš kurio gauti piktogramas"
 
-#: ../libyelp/yelp-settings.c:172
+#: ../libyelp/yelp-settings.c:174
 msgid "Font Adjustment"
 msgstr "Šrifto koregavimas"
 
-#: ../libyelp/yelp-settings.c:173
+#: ../libyelp/yelp-settings.c:175
 msgid "A size adjustment to add to font sizes"
 msgstr "Dydžio korekcija, pridedama prie šriftų dydžių"
 
-#: ../libyelp/yelp-settings.c:181
+#: ../libyelp/yelp-settings.c:183
 msgid "Show Text Cursor"
 msgstr "Rodyti teksto žymiklį"
 
-#: ../libyelp/yelp-settings.c:182
+#: ../libyelp/yelp-settings.c:184
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Rodyti teksto žymeklį naršymo pritaikymui neįgaliems"
 
-#: ../libyelp/yelp-settings.c:190
+#: ../libyelp/yelp-settings.c:192
 msgid "Editor Mode"
 msgstr "Redaktoriaus veiksena"
 
-#: ../libyelp/yelp-settings.c:191
+#: ../libyelp/yelp-settings.c:193
 msgid "Enable features useful to editors"
 msgstr "Įjungti redaktoriams naudingas funkcijas"
 
@@ -246,8 +250,7 @@ msgstr "XSLT stiliaus aprašas"
 msgid "The location of the XSLT stylesheet"
 msgstr "XSLT stiliaus aprašo vieta"
 
-#: ../libyelp/yelp-transform.c:379
-#: ../libyelp/yelp-transform.c:394
+#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "XSLT stiliaus aprašas „%s“ neegzistuoja arba yra netinkamas."
@@ -338,114 +341,112 @@ msgstr "Rodomo puslapio piktograma"
 
 #: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr "Jūs nesate įdiegę PackageKit. Paketų diegimo nuorodos reikalauja PackageKit."
+msgstr ""
+"Jūs nesate įdiegę PackageKit. Paketų diegimo nuorodos reikalauja PackageKit."
 
-#: ../libyelp/yelp-view.c:1013
+#: ../libyelp/yelp-view.c:1014
 msgid "Save Image"
 msgstr "Įrašyti paveikslėlį"
 
-#: ../libyelp/yelp-view.c:1108
+#: ../libyelp/yelp-view.c:1109
 msgid "Save Code"
 msgstr "Įrašyti kodą"
 
-#: ../libyelp/yelp-view.c:1271
+#: ../libyelp/yelp-view.c:1272
 #, c-format
 msgid "Send email to %s"
 msgstr "Siųsti el. laišką adresu %s"
 
-#: ../libyelp/yelp-view.c:1286
-#| msgid "Manual Pages"
+#: ../libyelp/yelp-view.c:1287
 msgid "_Install Packages"
 msgstr "Įd_iegti paketus"
 
-#: ../libyelp/yelp-view.c:1294
+#: ../libyelp/yelp-view.c:1295
 msgid "_Open Link"
 msgstr "_Atverti nuorodą"
 
-#: ../libyelp/yelp-view.c:1301
-#| msgid "Open Location"
+#: ../libyelp/yelp-view.c:1302
 msgid "_Copy Link Location"
 msgstr "_Kopijuoti saito vietą"
 
-#: ../libyelp/yelp-view.c:1307
+#: ../libyelp/yelp-view.c:1308
 msgid "Open Link in New _Window"
 msgstr "Atverti nuorodą _naujame lange"
 
-#: ../libyelp/yelp-view.c:1359
+#: ../libyelp/yelp-view.c:1360
 msgid "_Save Image As..."
 msgstr "Į_rašyti paveikslėlį kaip..."
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1362
 msgid "_Save Video As..."
 msgstr "Į_rašyti vaizdo įrašą kaip..."
 
-#: ../libyelp/yelp-view.c:1368
+#: ../libyelp/yelp-view.c:1369
 msgid "S_end Image To..."
 msgstr "S_iųsti paveikslėlį..."
 
-#: ../libyelp/yelp-view.c:1370
+#: ../libyelp/yelp-view.c:1371
 msgid "S_end Video To..."
 msgstr "S_iųsti vaizdo įrašą..."
 
-#: ../libyelp/yelp-view.c:1381
+#: ../libyelp/yelp-view.c:1382
 msgid "_Copy Text"
 msgstr "_Kopijuoti tekstą"
 
-#: ../libyelp/yelp-view.c:1394
+#: ../libyelp/yelp-view.c:1395
 msgid "C_opy Code Block"
 msgstr "K_opijuoti kodo bloką"
 
-#: ../libyelp/yelp-view.c:1399
+#: ../libyelp/yelp-view.c:1400
 msgid "Save Code _Block As..."
 msgstr "Įrašyti kodo _bloką kaip..."
 
-#: ../libyelp/yelp-view.c:1497
+#: ../libyelp/yelp-view.c:1507
 #, c-format
-#| msgid "Search results for “%s”"
 msgid "See all search results for “%s”"
 msgstr "Rodyti visus „%s“ paieškos rezultatus"
 
-#: ../libyelp/yelp-view.c:1618
+#: ../libyelp/yelp-view.c:1628
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Nepavyko įkelti dokumento „%s“"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1634
 #, c-format
 msgid "Could not load a document"
 msgstr "Nepavyko įkelti dokumento"
 
-#: ../libyelp/yelp-view.c:1698
+#: ../libyelp/yelp-view.c:1709
 msgid "Document Not Found"
 msgstr "Dokumentas nerastas"
 
-#: ../libyelp/yelp-view.c:1700
+#: ../libyelp/yelp-view.c:1711
 msgid "Page Not Found"
 msgstr "Puslapis nerastas"
 
-#: ../libyelp/yelp-view.c:1703
+#: ../libyelp/yelp-view.c:1714
 msgid "Cannot Read"
 msgstr "Nepavyko perskaityti"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1720
 msgid "Unknown Error"
 msgstr "Nežinoma klaida"
 
-#: ../libyelp/yelp-view.c:1729
+#: ../libyelp/yelp-view.c:1740
 msgid "Search for packages containing this document."
 msgstr "Ieškoti paketų, turinčių šį dokumentaciją."
 
-#: ../libyelp/yelp-view.c:1882
+#: ../libyelp/yelp-view.c:1892
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI „%s“ nenukreipia į tinkamą puslapį."
 
-#: ../libyelp/yelp-view.c:1888
+#: ../libyelp/yelp-view.c:1898
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI nenukreipia į tinkamą puslapį."
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1904
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI „%s“ neperskaitomas."
@@ -470,8 +471,7 @@ msgstr "_Mažesnis tekstas"
 msgid "Decrease the size of the text"
 msgstr "Sumažinti teksto dydį"
 
-#: ../src/yelp-application.c:253
-#: ../src/yelp-window.c:1360
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
 #: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Žinynas"
@@ -533,7 +533,6 @@ msgid "A YelpApplication instance that controls this window"
 msgstr "YelpApplication programa, valdanti šį langą"
 
 #: ../src/yelp-window.c:429
-#| msgid "Read Later"
 msgid "Read Link _Later"
 msgstr "Skaityti saitą _vėliau"
 
@@ -561,977 +560,7 @@ msgstr "Nėra atitikmenų"
 msgid "Get help with GNOME"
 msgstr "Gauti pagalbą dirbant su GNOME"
 
-#~ msgid "GNU Info Pages"
-#~ msgstr "GNU Info puslapiai"
+#: ../yelp.desktop.in.in.h:3
+msgid "documentation;information;manual;"
+msgstr "dokumentacija;informacija;vadovas;žinynas;"
 
-#~ msgid "Traditional command line help (info)"
-#~ msgstr "Tradicinė komandinės eilutės instrukcija"
-
-#~ msgid "Applications"
-#~ msgstr "Programos"
-
-#~ msgid "BLT Functions"
-#~ msgstr "BLT funkcijos"
-
-#~ msgid "Configuration Files"
-#~ msgstr "Nustatymų failai"
-
-#~ msgid "Curses Functions"
-#~ msgstr "Curses funkcijos"
-
-#~ msgid "Development"
-#~ msgstr "Programavimas"
-
-#~ msgid "FORTRAN Functions"
-#~ msgstr "FORTRAN funkcijos"
-
-#~ msgid "Games"
-#~ msgstr "Žaidimai"
-
-#~ msgid "Hardware Devices"
-#~ msgstr "Įrenginiai"
-
-#~ msgid "Kernel Routines"
-#~ msgstr "Branduolio funkcijos"
-
-#~ msgid "Network Audio Sound Functions"
-#~ msgstr "Tinklo garso (NAS) funkcijos"
-
-#~ msgid "OpenSSL Applications"
-#~ msgstr "OpenSSL programos"
-
-#~ msgid "OpenSSL Configuration"
-#~ msgstr "OpenSSL konfigūracija"
-
-#~ msgid "OpenSSL Functions"
-#~ msgstr "OpenSSL funkcijos"
-
-#~ msgid "OpenSSL Overviews"
-#~ msgstr "OpenSSL apžvalgos"
-
-#~ msgid "Overviews"
-#~ msgstr "Apžvalgos"
-
-#~ msgid "POSIX Functions"
-#~ msgstr "POSIX funkcijos"
-
-#~ msgid "POSIX Headers"
-#~ msgstr "POSIX antraštės"
-
-#~ msgid "Perl Functions"
-#~ msgstr "Perl funkcijos"
-
-#~ msgid "Qt Functions"
-#~ msgstr "Qt funkcijos"
-
-#~ msgid "Readline Functions"
-#~ msgstr "Readline funkcijos"
-
-#~ msgid "Section 0p"
-#~ msgstr "Sekcija 0p"
-
-#~ msgid "Section 1m"
-#~ msgstr "Sekcija 1m"
-
-#~ msgid "Section 1ssl"
-#~ msgstr "Sekcija 1ssl"
-
-#~ msgid "Section 1x"
-#~ msgstr "Sekcija 1x"
-
-#~ msgid "Section 2"
-#~ msgstr "Sekcija 2"
-
-#~ msgid "Section 3blt"
-#~ msgstr "Sekcija 3blt"
-
-#~ msgid "Section 3f"
-#~ msgstr "Sekcija 3f"
-
-#~ msgid "Section 3nas"
-#~ msgstr "Sekcija 3nas"
-
-#~ msgid "Section 3p"
-#~ msgstr "Sekcija 3p"
-
-#~ msgid "Section 3qt"
-#~ msgstr "Sekcija 3qt"
-
-#~ msgid "Section 3readline"
-#~ msgstr "Sekcija 3readline"
-
-#~ msgid "Section 3ssl"
-#~ msgstr "Sekcija 3ssl"
-
-#~ msgid "Section 3tiff"
-#~ msgstr "Sekcija 3tiff"
-
-#~ msgid "Section 4"
-#~ msgstr "Sekcija 4"
-
-#~ msgid "Section 4x"
-#~ msgstr "Sekcija 4x"
-
-#~ msgid "Section 5"
-#~ msgstr "Sekcija 5"
-
-#~ msgid "Section 5ssl"
-#~ msgstr "Sekcija 5ssl"
-
-#~ msgid "Section 5x"
-#~ msgstr "Sekcija 5x"
-
-#~ msgid "Section 6"
-#~ msgstr "Sekcija 6"
-
-#~ msgid "Section 6x"
-#~ msgstr "Sekcija 6x"
-
-#~ msgid "Section 7ssl"
-#~ msgstr "Sekcija 7ssl"
-
-#~ msgid "Section 7x"
-#~ msgstr "Sekcija 7x"
-
-#~ msgid "Section 9"
-#~ msgstr "Sekcija 9"
-
-#~ msgid "Sections 1, 1p, 1g and 1t"
-#~ msgstr "Sekcijos 1, 1p, 1g ir 1t"
-
-#~ msgid "Sections 3, 3o, and 3t"
-#~ msgstr "Sekcijos 3, 3o, ir 3t"
-
-#~ msgid "Sections 3form and 3menu"
-#~ msgstr "Sekcijos 3form ir 3menu"
-
-#~ msgid "Sections 3ncurses and 3curses"
-#~ msgstr "Sekcijos 3ncurses ir 3curses"
-
-#~ msgid "Sections 3pm and 3perl"
-#~ msgstr "Sekcijos 3pm ir 3perl"
-
-#~ msgid "Sections 3x and 3X11"
-#~ msgstr "Sekcijos 3x ir 3X11"
-
-#~ msgid "Sections 7 and 7gcc"
-#~ msgstr "Sekcijos 7 ir 7gcc"
-
-#~ msgid "Sections 8 and 8l"
-#~ msgstr "Sekcijos 8 ir 8l"
-
-#~ msgid "System Administration"
-#~ msgstr "Sistemos administravimas"
-
-#~ msgid "System Calls"
-#~ msgstr "Sisteminiai šaukiniai"
-
-#~ msgid "System V Form/Menu Functions"
-#~ msgstr "System V formų/meniu funkcijos"
-
-#~ msgid "TIFF Functions"
-#~ msgstr "TIFF funkcijos"
-
-#~ msgid "Termcap Applications"
-#~ msgstr "Termcap programos"
-
-#~ msgid "Traditional command line help (man)"
-#~ msgstr "Tradicinis komandų eilutės žinynas (man)"
-
-#~ msgid "X11 Applications"
-#~ msgstr "X11 programos"
-
-#~ msgid "X11 Configuration"
-#~ msgstr "X11 konfigūracija"
-
-#~ msgid "X11 Devices"
-#~ msgstr "X11 įrenginiai"
-
-#~ msgid "X11 Functions"
-#~ msgstr "X11 funkcijos"
-
-#~ msgid "X11 Games"
-#~ msgstr "X11 žaidimai"
-
-#~ msgid "X11 Overviews"
-#~ msgstr "X11 apžvalgos"
-
-#~ msgid "2D Graphics"
-#~ msgstr "2D grafika"
-
-#~ msgid "3D Graphics"
-#~ msgstr "3D grafika"
-
-#~ msgid "Accessibility"
-#~ msgstr "Prieinamumas"
-
-#~ msgid "Action Games"
-#~ msgstr "Veiksmo žaidimai"
-
-#~ msgid "Adventure Games"
-#~ msgstr "Nuotykių žaidimai"
-
-#~ msgid "Amusement"
-#~ msgstr "Pramoga"
-
-#~ msgid "Applications for viewing and manipulating graphics"
-#~ msgstr "Programos paveikslėliams rodyti ir redaguoti"
-
-#~ msgid "Applications related to audio and video"
-#~ msgstr "Programos, susijusios su audio ir video"
-
-#~ msgid "Applications that teach or aid in learning"
-#~ msgstr "Programos, susijusios su mokymu"
-
-#~ msgid "Arcade Games"
-#~ msgstr "Arkados žaidimai"
-
-#~ msgid "Archiving Tools"
-#~ msgstr "Archyvavimo įrankiai"
-
-#~ msgid "Art"
-#~ msgstr "Menas"
-
-#~ msgid "Artificial Intelligence"
-#~ msgstr "Dirbtinis intelektas"
-
-#~ msgid "Astronomy"
-#~ msgstr "Astronomija"
-
-#~ msgid "Biology"
-#~ msgstr "Biologija"
-
-#~ msgid "Blocks Games"
-#~ msgstr "Blokų žaidimai"
-
-#~ msgid "Board Games"
-#~ msgstr "Lentos žaidimai"
-
-#~ msgid "Building"
-#~ msgstr "Statymas"
-
-#~ msgid "Calculator"
-#~ msgstr "Kalkuliatorius"
-
-#~ msgid "Calendar"
-#~ msgstr "Kalendorius"
-
-#~ msgid "Card Games"
-#~ msgstr "Kortų žaidimai"
-
-#~ msgid "Charting Tools"
-#~ msgstr "Grafikų įrankiai"
-
-#~ msgid "Chat"
-#~ msgstr "Pokalbiai"
-
-#~ msgid "Chemistry"
-#~ msgstr "Chemija"
-
-#~ msgid "Clocks"
-#~ msgstr "Laikrodžiai"
-
-#~ msgid "Compression Tools"
-#~ msgstr "Suspaudimo įrankiai"
-
-#~ msgid "Computer Science"
-#~ msgstr "Kompiuterių mokslas"
-
-#~ msgid "Construction"
-#~ msgstr "Konstravimas"
-
-#~ msgid "Contact Management"
-#~ msgstr "Kontaktų valdymas"
-
-#~ msgid "Data Visualization"
-#~ msgstr "Duomenų vizualizacija"
-
-#~ msgid "Debuggers"
-#~ msgstr "Debugeriai"
-
-#~ msgid "Desktop"
-#~ msgstr "Darbo aplinka"
-
-#~ msgid "Desktop Settings"
-#~ msgstr "Darbastalio nustatymai"
-
-#~ msgid "Dialup"
-#~ msgstr "Skambinimas"
-
-#~ msgid "Dictionaries"
-#~ msgstr "Žodynai"
-
-#~ msgid "Disc Burning"
-#~ msgstr "Diskų rašymas"
-
-#~ msgid "Economy"
-#~ msgstr "Ekonomika"
-
-#~ msgid "Education"
-#~ msgstr "Švietimas"
-
-#~ msgid "Electricity"
-#~ msgstr "Elektra"
-
-#~ msgid "Electronics"
-#~ msgstr "Elektronika"
-
-#~ msgid "Email Tools"
-#~ msgstr "El. pašto įrankiai"
-
-#~ msgid "Emulator"
-#~ msgstr "Emuliatorius"
-
-#~ msgid "Engineering"
-#~ msgstr "Inžinerija"
-
-#~ msgid "File Manager"
-#~ msgstr "Failų valdyklė"
-
-#~ msgid "File Tools"
-#~ msgstr "Failų įrankiai"
-
-#~ msgid "File Transfer"
-#~ msgstr "Failų perkėlimas"
-
-#~ msgid "Filesystem"
-#~ msgstr "Failų sistema"
-
-#~ msgid "Financial Tools"
-#~ msgstr "Finansiniai įrankiai"
-
-#~ msgid "Flow Charting Tools"
-#~ msgstr "Diagramų įrankiai"
-
-#~ msgid "GNOME Applications"
-#~ msgstr "GNOME programos"
-
-#~ msgid "GTK"
-#~ msgstr "GTK"
-
-#~ msgid "GUI Designers"
-#~ msgstr "GUI kūrimo programos"
-
-#~ msgid "Generic applications for the GNOME environment"
-#~ msgstr "Bendros GNOME aplinkos programos"
-
-#~ msgid "Generic applications for the KDE environment"
-#~ msgstr "Bendros KDE aplinkos programos"
-
-#~ msgid "Geography"
-#~ msgstr "Geografija"
-
-#~ msgid "Geology"
-#~ msgstr "Geologija"
-
-#~ msgid "Geoscience"
-#~ msgstr "Geomokslas"
-
-#~ msgid "Graphics"
-#~ msgstr "Grafika"
-
-#~ msgid ""
-#~ "Guides and manuals for applications that connect to the outside world"
-#~ msgstr ""
-#~ "Gidai ir aprašymai programoms, kurios jungiasi prie išorinio pasaulio"
-
-#~ msgid "Guides for getting involved in development"
-#~ msgstr "Gidai norintiems padėti kurti programas"
-
-#~ msgid "Ham Radio"
-#~ msgstr "Mėgėjiškas radijas"
-
-#~ msgid "Hardware Settings"
-#~ msgstr "Techninės įrangos nustatymai"
-
-#~ msgid "Have some fun"
-#~ msgstr "Pasilinksminkite"
-
-#~ msgid "History"
-#~ msgstr "Istorija"
-
-#~ msgid "IDEs"
-#~ msgstr "Integruotos programavimo aplinkos"
-
-#~ msgid "IRC Clients"
-#~ msgstr "IRC programos"
-
-#~ msgid "Image Processing"
-#~ msgstr "Paveikslėlių apdorojimas"
-
-#~ msgid "Instant Messaging"
-#~ msgstr "Greitos žinutės"
-
-#~ msgid "Internet"
-#~ msgstr "Internetas"
-
-#~ msgid "Java"
-#~ msgstr "Java"
-
-#~ msgid "KDE Applications"
-#~ msgstr "KDE programos"
-
-#~ msgid "Kids Games"
-#~ msgstr "Žaidimai mažiesiems"
-
-#~ msgid ""
-#~ "Learn more about making your system more accessible for a range of "
-#~ "disabilities"
-#~ msgstr ""
-#~ "Išmokite padaryti sistemą labiau prieinamą žmonėms su įvairiomis "
-#~ "negaliomis"
-
-#~ msgid "Licenses"
-#~ msgstr "Licencijos"
-
-#~ msgid "Literature"
-#~ msgstr "Literatūra"
-
-#~ msgid "Logic Games"
-#~ msgstr "Loginiai žaidimai"
-
-#~ msgid "Math"
-#~ msgstr "Matematika"
-
-#~ msgid "Medical Software"
-#~ msgstr "Medicininės programos"
-
-#~ msgid "Midi"
-#~ msgstr "Midi"
-
-#~ msgid "Miscellaneous Documentation"
-#~ msgstr "Įvairi dokumentacija"
-
-#~ msgid "Mixers"
-#~ msgstr "Mikseriai"
-
-#~ msgid "Monitor"
-#~ msgstr "Monitorius"
-
-#~ msgid "Motif"
-#~ msgstr "Motif"
-
-#~ msgid "Music"
-#~ msgstr "Muzika"
-
-#~ msgid "News"
-#~ msgstr "Naujienos"
-
-#~ msgid "Numerical Analysis"
-#~ msgstr "Skaitinė analizė"
-
-#~ msgid "OCR"
-#~ msgstr "OCR"
-
-#~ msgid "Office Applications"
-#~ msgstr "Kontoros programos"
-
-#~ msgid "Office applications"
-#~ msgstr "Kontoros programos"
-
-#~ msgid "Other Documentation"
-#~ msgstr "Kita dokumentacija"
-
-#~ msgid "P2P"
-#~ msgstr "P2P"
-
-#~ msgid "PDA Communication"
-#~ msgstr "PDA komunikacija"
-
-#~ msgid "Package Manager"
-#~ msgstr "Paketų valdyklė"
-
-#~ msgid "Parallel Computing"
-#~ msgstr "Lygiagretūs skaičiavimai"
-
-#~ msgid "Photography"
-#~ msgstr "Fotografija"
-
-#~ msgid "Physics"
-#~ msgstr "Fizika"
-
-#~ msgid "Players"
-#~ msgstr "Grotuvai"
-
-#~ msgid "Presentation Tools"
-#~ msgstr "Pristatymų įrankiai"
-
-#~ msgid "Printing"
-#~ msgstr "Spausdinima"
-
-#~ msgid "Profiling Tools"
-#~ msgstr "Profiliavimo įrankiai"
-
-#~ msgid "Project Management Tools"
-#~ msgstr "Projektų valdymo įrankiai"
-
-#~ msgid "Publishing"
-#~ msgstr "Leidyba"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "Raster Graphics"
-#~ msgstr "Rastrinė grafika"
-
-#~ msgid "Recorders"
-#~ msgstr "Įrašymo programos"
-
-#~ msgid "Remote Access"
-#~ msgstr "Nutolęs priėjimas"
-
-#~ msgid "Revision Control"
-#~ msgstr "Revizijų kontrolė"
-
-#~ msgid "Robotics"
-#~ msgstr "Robotika"
-
-#~ msgid "Role Playing Games"
-#~ msgstr "Žaidimai rolėmis"
-
-#~ msgid "Scanning"
-#~ msgstr "Skenavimas"
-
-#~ msgid "Science"
-#~ msgstr "Mokslas"
-
-#~ msgid "Security"
-#~ msgstr "Saugumas"
-
-#~ msgid "Sequencers"
-#~ msgstr "Sekvenceriai"
-
-#~ msgid "Settings"
-#~ msgstr "Nustatymai"
-
-#~ msgid ""
-#~ "Settings users can manipulate to make their environment more pleasant"
-#~ msgstr "Nustatymai, leidžiantys pritaikyti aplinką prie naudotojo skonio"
-
-#~ msgid "Simulation Games"
-#~ msgstr "Simuliacijos žaidimai"
-
-#~ msgid "Sound"
-#~ msgstr "Garsas"
-
-#~ msgid "Sound &amp; Video"
-#~ msgstr "Garsas ir vaizdas"
-
-#~ msgid "Sound &amp; Video Editing"
-#~ msgstr "Garso ir vaizdo montavimas"
-
-#~ msgid "Sports"
-#~ msgstr "Sportas"
-
-#~ msgid "Sports Games"
-#~ msgstr "Sporto žaidimai"
-
-#~ msgid "Spreadsheet Tools"
-#~ msgstr "Skaičialentės"
-
-#~ msgid "Strategy Games"
-#~ msgstr "Strateginiai žaidimai"
-
-#~ msgid "System"
-#~ msgstr "Sistema"
-
-#~ msgid "TV"
-#~ msgstr "TV"
-
-#~ msgid "Telephony"
-#~ msgstr "Telefonija"
-
-#~ msgid "Telephony Tools"
-#~ msgstr "Telefonijos įrankiai"
-
-#~ msgid "Terminal Emulator"
-#~ msgstr "Terminalo emuliatorius"
-
-#~ msgid "Text Editors"
-#~ msgstr "Teksto redaktoriai"
-
-#~ msgid "Text Tools"
-#~ msgstr "Teksto įrankiai"
-
-#~ msgid "Tools to help you manage your computer"
-#~ msgstr "Programos kompiuteriui prižiūrėti"
-
-#~ msgid "Translation Tools"
-#~ msgstr "Vertimo įrankiai"
-
-#~ msgid "Tuners"
-#~ msgstr "Tiuneriai"
-
-#~ msgid "Utilities"
-#~ msgstr "Pagalbinės programos"
-
-#~ msgid "Utilities to help you get work done"
-#~ msgstr "Programos, padedančios nudirbti darbus"
-
-#~ msgid "Vector Graphics"
-#~ msgstr "Vektorinė grafika"
-
-#~ msgid "Video"
-#~ msgstr "Video"
-
-#~ msgid "Video Conference"
-#~ msgstr "Videokonferencijos"
-
-#~ msgid "Viewer"
-#~ msgstr "Rodymo programa"
-
-#~ msgid "Web Browser"
-#~ msgstr "Žiniatinklio naršyklė"
-
-#~ msgid "Web Development"
-#~ msgstr "Interneto programų kūrimas"
-
-#~ msgid "Welcome to the GNOME Help Browser"
-#~ msgstr "GNOME žinynų naršyklė"
-
-#~ msgid "Word Processors"
-#~ msgstr "Teksto doroklės"
-
-#~ msgid "Description Column"
-#~ msgstr "Aprašymo stulpelis"
-
-#~ msgid "A column in the model to get descriptions from"
-#~ msgstr "Modelio stulpelis, iš kurio gauti aprašymus"
-
-#~ msgid "Icon Column"
-#~ msgstr "Piktogramos stulpelis"
-
-#~ msgid "A column in the model to get icon names from"
-#~ msgstr "Modelio stulpelis, iš kurio gauti piktogramų pavadinimus"
-
-#~ msgid "Flags Column"
-#~ msgstr "Požymių stulpelis"
-
-#~ msgid "A column in the model with YelpLocationEntryFlags flags"
-#~ msgstr "Modelio stulpelis su YelpLocationEntryFlags požymiais"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
-#~ "page."
-#~ msgstr ""
-#~ "Nepavyko apdoroti failo „%s“, nes tai nėra tinkamai suformuotas „man“ "
-#~ "puslapis."
-
-#~ msgid "_Edit Bookmarks"
-#~ msgstr "_Keisti žymeles"
-
-#~ msgid "Bookmarks for %s"
-#~ msgstr "Žymelė dokumentui %s"
-
-#~ msgid "_Open Bookmark"
-#~ msgstr "_Atverti žymelę"
-
-#~ msgid "Open Bookmark in New _Window"
-#~ msgstr "Atverti žymelę naujame _lange"
-
-#~ msgid "<b>Accessibility</b>"
-#~ msgstr "<b>Pagalba neįgaliesiems</b>"
-
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Šriftai</b>"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Pridėti žymelę"
-
-#~ msgid "C_ase sensitive"
-#~ msgstr "Skirti r_aidžių dydį"
-
-#~ msgid "Find"
-#~ msgstr "Ieškoti"
-
-#~ msgid "Preferences"
-#~ msgstr "Nustatymai"
-
-#~ msgid "Re_name"
-#~ msgstr "Per_vadinti"
-
-#~ msgid "_Bookmarks:"
-#~ msgstr "Ž_ymelės:"
-
-#~ msgid "_Browse with caret"
-#~ msgstr "_Naršyti su žymekliu"
-
-#~ msgid "_Fixed width:"
-#~ msgstr "_Fiksuotas plotis:"
-
-#~ msgid "_Location:"
-#~ msgstr "_Vieta:"
-
-#~ msgid "_Title:"
-#~ msgstr "_Pavadinimas:"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Naudoti sistemos šriftus"
-
-#~ msgid "_Variable width:"
-#~ msgstr "_Kintantis plotis:"
-
-#~ msgid "_Wrap around"
-#~ msgstr "_Priėjus pabaigą, ieškoti nuo pradžios"
-
-#~ msgid "Font for fixed text"
-#~ msgstr "Fiksuoto pločio teksto šriftas"
-
-#~ msgid "Font for text"
-#~ msgstr "Teksto šriftas"
-
-#~ msgid "Font for text with fixed width."
-#~ msgstr "Fiksuoto pločio teksto šriftas."
-
-#~ msgid "Font for text with variable width."
-#~ msgstr "Kintančio pločio teksto šriftas."
-
-#~ msgid "Use a keyboard-controllable caret when viewing pages."
-#~ msgstr "Puslapių peržiūrai naudoti klaviatūra kontroliuojama žymeklį."
-
-#~ msgid "Use caret"
-#~ msgstr "Naudoti žymeklį"
-
-#~ msgid "Use system fonts"
-#~ msgstr "Naudoti sistemos šriftus"
-
-#~ msgid "Use the default fonts set for the system."
-#~ msgstr "Naudoti įprastus sistemoje nustatytus šriftus."
-
-#~ msgid "A bookmark titled %s already exists for this page."
-#~ msgstr "Žymelė pavadinimu %s šiam puslapiui jau egzistuoja."
-
-#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
-#~ msgstr "Žymelė pavadinimu <b>%s</b> šiam puslapiui jau egzistuoja."
-
-#~ msgid "Help Topics"
-#~ msgstr "Žinyno temos"
-
-#~ msgid "File not found"
-#~ msgstr "Failas nerastas"
-
-#~ msgid "Could not parse file"
-#~ msgstr "Nepavyko apdoroti failo"
-
-#~ msgid "Could Not Read File"
-#~ msgstr "Nepavyko perskaityti failo"
-
-#~ msgid "No information is available about this error."
-#~ msgstr "Nėra prieinamos informacijos apie šią klaidą."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
-#~ "in an unsupported format."
-#~ msgstr ""
-#~ "Nepavyko perskaityti ir dekoduoti failo „%s“. Ji gali būti suarchyvuota "
-#~ "nepalaikomo formato archyve."
-
-#~ msgid "Use a private session"
-#~ msgstr "Naudoti privačią sesiją"
-
-#~ msgid "Define which cache directory to use"
-#~ msgstr "Nurodyti naudojamą atsargos atmintinės aplanką"
-
-#~ msgid " GNOME Help Browser"
-#~ msgstr " GNOME žinynų naršyklė"
-
-#~ msgid "Preparing to print"
-#~ msgstr "Ruošiamasi spausdinti"
-
-#~ msgid "Printing is not supported on this printer"
-#~ msgstr "Spausdinimas šiuo spausdintuvu nepalaikomas"
-
-#~ msgid "Printer %s does not support postscript printing."
-#~ msgstr "Spausdintuvas %s nepalaiko PostScript spausdinimo."
-
-#~ msgid "Waiting to print"
-#~ msgstr "Laukiama spausdinimo"
-
-#~ msgid "An error occurred while printing"
-#~ msgstr "Spausdinant įvyko klaida"
-
-#~ msgid "It was not possible to print your document: %s"
-#~ msgstr "Nepavyko atspausdinti dokumentą: %s"
-
-#~ msgid "the GNOME Support Forums"
-#~ msgstr "GNOME palaikymo forumai"
-
-#~ msgid "No results for \"%s\""
-#~ msgstr "\"%s\" nerasta"
-
-#~ msgid ""
-#~ "Try using different words to describe the problem you're having or the "
-#~ "topic you want help with."
-#~ msgstr ""
-#~ "Pabandykite aprašyti problemą ar temą, kurios ieškote, kitais žodžiais."
-
-#~ msgid ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-#~ msgstr "yra:buvo:aš:mano:iš:tai:veikia:neveikia:kaip:apie:ir:arba:turi:kas"
-
-#~ msgid "re"
-#~ msgstr "iš:at:ati:nu:pa:pri:už:su"
-
-#~ msgid "ers:er:ing:es:s:'s"
-#~ msgstr "NULL"
-
-#~ msgid "No Comment"
-#~ msgstr "Be komentarų"
-
-#~ msgid "Search could not be processed"
-#~ msgstr "Nepavyko apdoroti paieškos"
-
-#~ msgid "The requested search could not be processed."
-#~ msgstr "Nepavyko apdoroti nurodytos paieškos."
-
-#~ msgid "Cannot process the search"
-#~ msgstr "Nepavyko apdoroti paieškos"
-
-#~ msgid "The search processor returned invalid results"
-#~ msgstr "Paieškos doroklė gražino nekorektiškus rezultatus"
-
-#~ msgid "The page %s was not found in the TOC."
-#~ msgstr "Puslapis %s nerastas turinyje."
-
-#~ msgid "The requested page was not found in the TOC."
-#~ msgstr "Nurodytas puslapis nerastas turinyje."
-
-#~ msgid ""
-#~ "The TOC file could not be parsed because it is not a well-formed XML "
-#~ "document."
-#~ msgstr ""
-#~ "Nepavyko apdoroti turinio failo, nes tai nėra tinkamai suformuotas XML "
-#~ "failas."
-
-#~ msgid "Broken Transformation"
-#~ msgstr "Netaisyklinga transformacija"
-
-#~ msgid ""
-#~ "An unknown error occurred while attempting to transform the document."
-#~ msgstr "Transformuojant dokumentą įvyko nežinoma klaida."
-
-#~ msgid "_File"
-#~ msgstr "_Failas"
-
-#~ msgid "_Edit"
-#~ msgstr "_Keisti"
-
-#~ msgid "_Help"
-#~ msgstr "_Žinynas"
-
-#~ msgid "Print This Document ..."
-#~ msgstr "Spausdinti šį dokumentą..."
-
-#~ msgid "Open _Location"
-#~ msgstr "Atverti _vietą"
-
-#~ msgid "_Close Window"
-#~ msgstr "_Užverti langą"
-
-#~ msgid "_Select All"
-#~ msgstr "_Pažymėti viską"
-
-#~ msgid "_Find..."
-#~ msgstr "_Rasti..."
-
-#~ msgid "Find Pre_vious"
-#~ msgstr "Rasti _ankstesnį"
-
-#~ msgid "Find previous occurrence of the word or phrase"
-#~ msgstr "Rasti ankstesnį žodžio ar frazės pasikartojimą"
-
-#~ msgid "Find Ne_xt"
-#~ msgstr "Rasti _sekantį"
-
-#~ msgid "Find next occurrence of the word or phrase"
-#~ msgstr "Rasti sekantį žodžio ar frazės pasikartojimą"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Nustatymai"
-
-#~ msgid "_Reload"
-#~ msgstr "_Perkrauti"
-
-#~ msgid "Show previous page in history"
-#~ msgstr "Rodyti anksčiau rodytą puslapį"
-
-#~ msgid "Show next page in history"
-#~ msgstr "Rodyti kitą puslapį esantį atmintyje"
-
-#~ msgid "_Help Topics"
-#~ msgstr "_Žinyno temos"
-
-#~ msgid "Go to the listing of help topics"
-#~ msgstr "Eiti į žinyno temų sąrašą"
-
-#~ msgid "_Previous Section"
-#~ msgstr "_Ankstesnis skyrius"
-
-#~ msgid "_Next Section"
-#~ msgstr "_Sekantis skyrius"
-
-#~ msgid "_Contents"
-#~ msgstr "_Turinys"
-
-#~ msgid "_Copy Link Address"
-#~ msgstr "_Kopijuoti nuorodos adresą"
-
-#~ msgid "Help On this application"
-#~ msgstr "Šios programos žinynas"
-
-#~ msgid "_About"
-#~ msgstr "_Apie"
-
-#~ msgid "Copy _Email Address"
-#~ msgstr "Kopijuoti _el.pašto adresą"
-
-#~ msgid "Help Browser"
-#~ msgstr "Žinyno naršyklė"
-
-#~ msgid "Unknown Page"
-#~ msgstr "Nežinomas puslapis"
-
-#~ msgid "The requested URI \"%s\" is invalid"
-#~ msgstr "Nurodytas URI „%s“ nekorektiškas"
-
-#~ msgid "Unable to load page"
-#~ msgstr "Nepavyko įkrauti puslapio"
-
-#~ msgid "Error executing \"gnome-open\""
-#~ msgstr "Klaida vykdant „gnome-open“"
-
-#~ msgid "Cannot create search component"
-#~ msgstr "Nepavyko sukurti paieškos komponento"
-
-#~ msgid "Fin_d:"
-#~ msgstr "Ra_sti:"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Rasti _ankstesnį"
-
-#~ msgid "Find _Next"
-#~ msgstr "Rasti _sekantį"
-
-#~ msgid "Phrase not found"
-#~ msgstr "Frazė nerasta"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
-#~ "might not have permissions to read it."
-#~ msgstr ""
-#~ "Nepavyko perskaityti failo „%s“. Arba tokio failo nėra, arba neturite "
-#~ "reikiamų teisių jam perskaityti."
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "Paskutinysis vertėjas:\n"
-#~ "Žygimantas Beručka <zygis@gnome.org>\n"
-#~ "\n"
-#~ "Ankstesnysis vertėjas:\n"
-#~ "Tomas Kuliavas <tokul@users.sourceforge.net>"
-
-#~ msgid "A documentation browser and viewer for the Gnome Desktop."
-#~ msgstr "Dokumentacijos naršymo ir peržiūros programa GNOME aplinkai."
