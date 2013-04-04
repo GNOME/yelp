@@ -1,35 +1,35 @@
 # Italian translation of Yelp.
-# Copyright (C) 2002, 2003, 2004, 2005, 2005, 2007, 2008, 2009, 2011, 2012 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2003, 2004, 2005, 2005, 2007, 2008, 2009, 2011, 2012, 2013 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 # Psyk[o] <shaihulud@supereva.it>, 2002.
-# Milo Casagrande <milo@ubuntu.com>, 2007-2008, 2009, 2011.
 # Luca Ferretti <lferrett@gnome.org>, 2005-2006, 2011.
-# Milo Casagrande <milo@ubuntu.com>, 2012.
+# Milo Casagrande <milo@ubuntu.com>, 2007-2008, 2009, 2011, 2012, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-03-02 12:06+0000\n"
-"PO-Revision-Date: 2012-03-02 17:29+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-04 22:17+0200\n"
+"PO-Revision-Date: 2013-04-04 22:18+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
+#. (itstool) path: msg/msgstr
 #. ID: install.tooltip
 #. This is a format message used to format tooltips on install: links. These
 #. links allow users to install packages by clicking a link in the help. The
 #. tooltip may also be used as the link text, if there's no link text in the
 #. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#. 
+#.
 #. <string/> - The package to install
-#. 
-#: yelp.xml.in:29(msg/msgstr)
+#.
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Installa <string/>"
 
@@ -45,7 +45,7 @@ msgstr "Memoria insufficiente"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
 #: ../libyelp/yelp-mallard-document.c:306
-#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-mallard-document.c:457 ../libyelp/yelp-man-document.c:282
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "La pagina «%s» non è stata trovata nel documento «%s»."
@@ -124,7 +124,7 @@ msgstr "Non è stata trovata alcuna pagina di aiuto corrispondente."
 msgid "An unknown error occurred."
 msgstr "Si è verificato un errore sconosciuto."
 
-#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:549 ../libyelp/yelp-help-list.c:558
 msgid "All Help Documents"
 msgstr "Tutti i documenti di aiuto"
 
@@ -132,7 +132,8 @@ msgstr "Tutti i documenti di aiuto"
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "Impossibile analizzare il file «%s», non è una pagina info ben formata."
+msgstr ""
+"Impossibile analizzare il file «%s», non è una pagina info ben formata."
 
 #: ../libyelp/yelp-location-entry.c:336
 msgid "View"
@@ -186,48 +187,48 @@ msgstr "Cerca «%s»"
 msgid "Loading"
 msgstr "Caricamento in corso"
 
-#: ../libyelp/yelp-mallard-document.c:346
+#: ../libyelp/yelp-mallard-document.c:345
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "La directory «%s» non esiste."
 
-#: ../libyelp/yelp-settings.c:154
+#: ../libyelp/yelp-settings.c:156
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:155
+#: ../libyelp/yelp-settings.c:157
 msgid "A GtkSettings object to get settings from"
 msgstr "Un oggetto GtkSettings da cui recuperare le impostazioni"
 
-#: ../libyelp/yelp-settings.c:163
+#: ../libyelp/yelp-settings.c:165
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:164
+#: ../libyelp/yelp-settings.c:166
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Un oggetto GtkIconThem da cui recuperare le icone"
 
-#: ../libyelp/yelp-settings.c:172
+#: ../libyelp/yelp-settings.c:174
 msgid "Font Adjustment"
 msgstr "Regolazione carattere"
 
-#: ../libyelp/yelp-settings.c:173
+#: ../libyelp/yelp-settings.c:175
 msgid "A size adjustment to add to font sizes"
 msgstr "Una regolazione da aggiungere alla dimensione del carattere"
 
-#: ../libyelp/yelp-settings.c:181
+#: ../libyelp/yelp-settings.c:183
 msgid "Show Text Cursor"
 msgstr "Mostra il cursore"
 
-#: ../libyelp/yelp-settings.c:182
+#: ../libyelp/yelp-settings.c:184
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Mostra il cursore di testo per un'esplorazione accessibile"
 
-#: ../libyelp/yelp-settings.c:190
+#: ../libyelp/yelp-settings.c:192
 msgid "Editor Mode"
 msgstr "Modalità editore"
 
-#: ../libyelp/yelp-settings.c:191
+#: ../libyelp/yelp-settings.c:193
 msgid "Enable features useful to editors"
 msgstr "Abilita funzionalità utili agli editori"
 
@@ -343,109 +344,109 @@ msgstr ""
 "PackageKit non è disponibile. I collegamenti per installare pacchetti "
 "richiedono PackageKit."
 
-#: ../libyelp/yelp-view.c:1013
+#: ../libyelp/yelp-view.c:1014
 msgid "Save Image"
 msgstr "Salva immagine"
 
-#: ../libyelp/yelp-view.c:1108
+#: ../libyelp/yelp-view.c:1109
 msgid "Save Code"
 msgstr "Salva codice"
 
-#: ../libyelp/yelp-view.c:1271
+#: ../libyelp/yelp-view.c:1272
 #, c-format
 msgid "Send email to %s"
 msgstr "Invia email a %s"
 
-#: ../libyelp/yelp-view.c:1286
+#: ../libyelp/yelp-view.c:1287
 msgid "_Install Packages"
 msgstr "Installa _pacchetti"
 
-#: ../libyelp/yelp-view.c:1294
+#: ../libyelp/yelp-view.c:1295
 msgid "_Open Link"
 msgstr "_Apri collegamento"
 
-#: ../libyelp/yelp-view.c:1301
+#: ../libyelp/yelp-view.c:1302
 msgid "_Copy Link Location"
 msgstr "_Copia collegamento"
 
-#: ../libyelp/yelp-view.c:1307
+#: ../libyelp/yelp-view.c:1308
 msgid "Open Link in New _Window"
 msgstr "Apri collegamento in _nuova finestra"
 
-#: ../libyelp/yelp-view.c:1359
+#: ../libyelp/yelp-view.c:1360
 msgid "_Save Image As..."
 msgstr "Salva _immagine come..."
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1362
 msgid "_Save Video As..."
 msgstr "Salva _video come..."
 
-#: ../libyelp/yelp-view.c:1368
+#: ../libyelp/yelp-view.c:1369
 msgid "S_end Image To..."
 msgstr "Invia i_mmagine a..."
 
-#: ../libyelp/yelp-view.c:1370
+#: ../libyelp/yelp-view.c:1371
 msgid "S_end Video To..."
 msgstr "Invia _video a..."
 
-#: ../libyelp/yelp-view.c:1381
+#: ../libyelp/yelp-view.c:1382
 msgid "_Copy Text"
 msgstr "_Copia testo"
 
-#: ../libyelp/yelp-view.c:1394
+#: ../libyelp/yelp-view.c:1395
 msgid "C_opy Code Block"
 msgstr "Copia _blocco di codice"
 
-#: ../libyelp/yelp-view.c:1399
+#: ../libyelp/yelp-view.c:1400
 msgid "Save Code _Block As..."
 msgstr "Salva blocco di co_dice come..."
 
-#: ../libyelp/yelp-view.c:1505
+#: ../libyelp/yelp-view.c:1507
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "Visualizza tutti i risultati della ricerca per «%s»"
 
-#: ../libyelp/yelp-view.c:1626
+#: ../libyelp/yelp-view.c:1628
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Impossibile caricare un documento per «%s»"
 
-#: ../libyelp/yelp-view.c:1632
+#: ../libyelp/yelp-view.c:1634
 #, c-format
 msgid "Could not load a document"
 msgstr "Impossibile caricare un documento"
 
-#: ../libyelp/yelp-view.c:1706
+#: ../libyelp/yelp-view.c:1709
 msgid "Document Not Found"
 msgstr "Documento non trovato"
 
-#: ../libyelp/yelp-view.c:1708
+#: ../libyelp/yelp-view.c:1711
 msgid "Page Not Found"
 msgstr "Pagina non trovata"
 
-#: ../libyelp/yelp-view.c:1711
+#: ../libyelp/yelp-view.c:1714
 msgid "Cannot Read"
 msgstr "Impossibile leggere"
 
-#: ../libyelp/yelp-view.c:1717
+#: ../libyelp/yelp-view.c:1720
 msgid "Unknown Error"
 msgstr "Errore sconosciuto"
 
-#: ../libyelp/yelp-view.c:1737
+#: ../libyelp/yelp-view.c:1740
 msgid "Search for packages containing this document."
 msgstr "Cerca pacchetti che contengono questo documento."
 
-#: ../libyelp/yelp-view.c:1890
+#: ../libyelp/yelp-view.c:1892
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "L'URI «%s» non punta a una pagina valida."
 
-#: ../libyelp/yelp-view.c:1896
+#: ../libyelp/yelp-view.c:1898
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "L'URI non punta a una pagina valida."
 
-#: ../libyelp/yelp-view.c:1902
+#: ../libyelp/yelp-view.c:1904
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "L'URI «%s» non può essere analizzato."
@@ -559,646 +560,6 @@ msgstr "Nessuna corrispondenza"
 msgid "Get help with GNOME"
 msgstr "Consulta l'aiuto di GNOME"
 
-#~ msgid "GNU Info Pages"
-#~ msgstr "Pagine GNU Info"
-
-# e traditional? a chi lo mettiamo??
-#~ msgid "Traditional command line help (info)"
-#~ msgstr "Aiuto tradizionale per riga di comando (info)"
-
-#~ msgid "Applications"
-#~ msgstr "Applicazioni"
-
-#~ msgid "BLT Functions"
-#~ msgstr "Funzioni BLT"
-
-#~ msgid "Configuration Files"
-#~ msgstr "File di configurazione"
-
-#~ msgid "Curses Functions"
-#~ msgstr "Funzioni Curses"
-
-#~ msgid "Development"
-#~ msgstr "Sviluppo"
-
-#~ msgid "FORTRAN Functions"
-#~ msgstr "Funzioni FORTRAN"
-
-#~ msgid "Games"
-#~ msgstr "Giochi"
-
-#~ msgid "Hardware Devices"
-#~ msgstr "Periferiche"
-
-#~ msgid "Kernel Routines"
-#~ msgstr "Routine del kernel"
-
-#~ msgid "Network Audio Sound Functions"
-#~ msgstr "Funzioni Network Audio Sound"
-
-#~ msgid "OpenSSL Applications"
-#~ msgstr "Applicazioni OpenSSL"
-
-#~ msgid "OpenSSL Configuration"
-#~ msgstr "Configurazione OpenSSL"
-
-#~ msgid "OpenSSL Functions"
-#~ msgstr "Funzioni OpenSSL"
-
-#~ msgid "OpenSSL Overviews"
-#~ msgstr "Panoramica OpenSSL"
-
-#~ msgid "Overviews"
-#~ msgstr "Panoramiche"
-
-#~ msgid "POSIX Functions"
-#~ msgstr "Funzioni POSIX"
-
-#~ msgid "POSIX Headers"
-#~ msgstr "Header POSIX"
-
-#~ msgid "Perl Functions"
-#~ msgstr "Funzioni Perl"
-
-#~ msgid "Qt Functions"
-#~ msgstr "Funzioni Qt"
-
-#~ msgid "Readline Functions"
-#~ msgstr "Funzioni Readline"
-
-#~ msgid "Section 0p"
-#~ msgstr "Sezione 0p"
-
-#~ msgid "Section 1m"
-#~ msgstr "Sezione 1m"
-
-#~ msgid "Section 1ssl"
-#~ msgstr "Sezione 1ss1"
-
-#~ msgid "Section 1x"
-#~ msgstr "Sezione 1x"
-
-#~ msgid "Section 2"
-#~ msgstr "Sezione 2"
-
-#~ msgid "Section 3blt"
-#~ msgstr "Sezione 3blt"
-
-#~ msgid "Section 3f"
-#~ msgstr "Sezione 3f"
-
-#~ msgid "Section 3nas"
-#~ msgstr "Sezione 3nas"
-
-#~ msgid "Section 3p"
-#~ msgstr "Sezione 3p"
-
-#~ msgid "Section 3qt"
-#~ msgstr "Sezione 3qt"
-
-#~ msgid "Section 3readline"
-#~ msgstr "Sezione 3readline"
-
-#~ msgid "Section 3ssl"
-#~ msgstr "Sezione 3ssl"
-
-#~ msgid "Section 3tiff"
-#~ msgstr "Sezione 3tiff"
-
-#~ msgid "Section 4"
-#~ msgstr "Sezione 4"
-
-#~ msgid "Section 4x"
-#~ msgstr "Sezione 4x"
-
-#~ msgid "Section 5"
-#~ msgstr "Sezione 5"
-
-#~ msgid "Section 5ssl"
-#~ msgstr "Sezione 5ssl"
-
-#~ msgid "Section 5x"
-#~ msgstr "Sezione 5x"
-
-#~ msgid "Section 6"
-#~ msgstr "Sezione 6"
-
-#~ msgid "Section 6x"
-#~ msgstr "Sezione 6x"
-
-#~ msgid "Section 7ssl"
-#~ msgstr "Sezione 7ssl"
-
-#~ msgid "Section 7x"
-#~ msgstr "Sezione 7x"
-
-# Usato per gli elementi <sect*>
-#~ msgid "Section 9"
-#~ msgstr "Sezione9"
-
-#~ msgid "Sections 1, 1p, 1g and 1t"
-#~ msgstr "Sezioni 1, 1p, 1g e 1t"
-
-#~ msgid "Sections 3, 3o, and 3t"
-#~ msgstr "Sezioni 3, 3o e 3t"
-
-#~ msgid "Sections 3form and 3menu"
-#~ msgstr "Sezioni 3form e 3curses"
-
-#~ msgid "Sections 3ncurses and 3curses"
-#~ msgstr "Sezioni 3ncurses e 3curses"
-
-#~ msgid "Sections 3pm and 3perl"
-#~ msgstr "Sezioni 3pm e 3perl"
-
-#~ msgid "Sections 3x and 3X11"
-#~ msgstr "Sezioni 3x e 3X11"
-
-#~ msgid "Sections 7 and 7gcc"
-#~ msgstr "Sezioni 7 e 7gcc"
-
-#~ msgid "Sections 8 and 8l"
-#~ msgstr "Sezioni 8 e 8l"
-
-#~ msgid "System Administration"
-#~ msgstr "Amministrazione del sistema"
-
-#~ msgid "System Calls"
-#~ msgstr "Chiamate di sistema"
-
-#~ msgid "System V Form/Menu Functions"
-#~ msgstr "Funzioni Form/Menu System V"
-
-#~ msgid "TIFF Functions"
-#~ msgstr "Funzioni TIFF"
-
-#~ msgid "Termcap Applications"
-#~ msgstr "Applicazioni Termcap"
-
-#~ msgid "Traditional command line help (man)"
-#~ msgstr "Aiuto tradizionale per riga di comando (man)"
-
-#~ msgid "X11 Applications"
-#~ msgstr "Applicazioni X11"
-
-#~ msgid "X11 Configuration"
-#~ msgstr "Configurazione X11"
-
-#~ msgid "X11 Devices"
-#~ msgstr "Dispositivi X11"
-
-#~ msgid "X11 Functions"
-#~ msgstr "Funzioni X11"
-
-#~ msgid "X11 Games"
-#~ msgstr "Giochi X11"
-
-#~ msgid "X11 Overviews"
-#~ msgstr "Panoramiche X11"
-
-#~ msgid "2D Graphics"
-#~ msgstr "Grafica 2D"
-
-#~ msgid "3D Graphics"
-#~ msgstr "Grafica 3D"
-
-#~ msgid "Accessibility"
-#~ msgstr "Accessibilità"
-
-#~ msgid "Action Games"
-#~ msgstr "Giochi d'azione"
-
-#~ msgid "Adventure Games"
-#~ msgstr "Giochi di avventura"
-
-#~ msgid "Amusement"
-#~ msgstr "Divertimento"
-
-#~ msgid "Applications for viewing and manipulating graphics"
-#~ msgstr "Applicazioni per manipolazione o visualizzazione di grafica"
-
-#~ msgid "Applications related to audio and video"
-#~ msgstr "Applicazioni relative all'audio e al video"
-
-#~ msgid "Applications that teach or aid in learning"
-#~ msgstr "Applicazioni di insegnamento o di aiuto all'apprendimento"
-
-#~ msgid "Arcade Games"
-#~ msgstr "Giochi arcade"
-
-#~ msgid "Archiving Tools"
-#~ msgstr "Strumenti di archiviazione"
-
-#~ msgid "Art"
-#~ msgstr "Arte"
-
-#~ msgid "Artificial Intelligence"
-#~ msgstr "Intelligenza artificiale"
-
-#~ msgid "Astronomy"
-#~ msgstr "Astronomia"
-
-#~ msgid "Biology"
-#~ msgstr "Biologia"
-
-# (ndt) in teoria sono i giochietti con i blocchi da spostare...
-# ma non so bene come si chiamino
-#~ msgid "Blocks Games"
-#~ msgstr "Giochi a blocchi"
-
-# (ndt) ?
-#~ msgid "Board Games"
-#~ msgstr "Giochi da tavola"
-
-#~ msgid "Building"
-#~ msgstr "Costruzione"
-
-#~ msgid "Calculator"
-#~ msgstr "Calcolatrice"
-
-#~ msgid "Calendar"
-#~ msgstr "Calendario"
-
-#~ msgid "Card Games"
-#~ msgstr "Giochi di carte"
-
-#~ msgid "Charting Tools"
-#~ msgstr "Strumenti per diagrammi"
-
-#~ msgid "Chat"
-#~ msgstr "Chat"
-
-#~ msgid "Chemistry"
-#~ msgstr "Chimica"
-
-#~ msgid "Clocks"
-#~ msgstr "Orologi"
-
-#~ msgid "Compression Tools"
-#~ msgstr "Strumenti di compressione"
-
-#~ msgid "Computer Science"
-#~ msgstr "Informatica"
-
-#~ msgid "Construction"
-#~ msgstr "Costruzione"
-
-#~ msgid "Contact Management"
-#~ msgstr "Gestione contatti"
-
-#~ msgid "Data Visualization"
-#~ msgstr "Visualizzazione dati"
-
-#~ msgid "Databases"
-#~ msgstr "Basi di dati"
-
-#~ msgid "Debuggers"
-#~ msgstr "Debugger"
-
-#~ msgid "Desktop"
-#~ msgstr "Ambiente grafico"
-
-#~ msgid "Desktop Settings"
-#~ msgstr "Impostazioni ambiente grafico"
-
-#~ msgid "Dialup"
-#~ msgstr "Dialup"
-
-#~ msgid "Dictionaries"
-#~ msgstr "Dizionari"
-
-#~ msgid "Disc Burning"
-#~ msgstr "Masterizzazione"
-
-#~ msgid "Economy"
-#~ msgstr "Economia"
-
-#~ msgid "Education"
-#~ msgstr "Educazione"
-
-#~ msgid "Electricity"
-#~ msgstr "Elettricità"
-
-#~ msgid "Electronics"
-#~ msgstr "Elettronica"
-
-#~ msgid "Email Tools"
-#~ msgstr "Email"
-
-#~ msgid "Emulator"
-#~ msgstr "Emulatore"
-
-#~ msgid "Engineering"
-#~ msgstr "Ingegneria"
-
-#~ msgid "File Manager"
-#~ msgstr "Gestore file"
-
-#~ msgid "File Tools"
-#~ msgstr "Strumenti per file"
-
-#~ msgid "File Transfer"
-#~ msgstr "Trasferimento file"
-
-#~ msgid "Filesystem"
-#~ msgstr "File system"
-
-#~ msgid "Financial Tools"
-#~ msgstr "Strumenti finanziari"
-
-#~ msgid "Flow Charting Tools"
-#~ msgstr "Strumenti per diagrammi di flusso"
-
-#~ msgid "GNOME Applications"
-#~ msgstr "Applicazioni GNOME"
-
-#~ msgid "GTK"
-#~ msgstr "GTK"
-
-#~ msgid "GUI Designers"
-#~ msgstr "Costruttori di interfacce"
-
-#~ msgid "Generic applications for the GNOME environment"
-#~ msgstr "Applicazioni generiche per l'ambiente GNOME"
-
-#~ msgid "Generic applications for the KDE environment"
-#~ msgstr "Applicazioni generiche per l'ambiente KDE"
-
-#~ msgid "Geography"
-#~ msgstr "Geografia"
-
-#~ msgid "Geology"
-#~ msgstr "Geologia"
-
-# (ndt) boh...
-#~ msgid "Geoscience"
-#~ msgstr "Geoscienza"
-
-#~ msgid "Graphics"
-#~ msgstr "Grafica"
-
-#~ msgid ""
-#~ "Guides and manuals for applications that connect to the outside world"
-#~ msgstr "Guide e manuali per applicazioni che si collegano al mondo esterno"
-
-#~ msgid "Guides for getting involved in development"
-#~ msgstr "Guide per partecipare allo sviluppo"
-
-# (ndt) divrebbe essere proprio così
-#~ msgid "Ham Radio"
-#~ msgstr "Ham Radio"
-
-#~ msgid "Hardware Settings"
-#~ msgstr "Impostazioni hardware"
-
-#~ msgid "Have some fun"
-#~ msgstr "Per divertirsi"
-
-#~ msgid "History"
-#~ msgstr "Storia"
-
-#~ msgid "IDEs"
-#~ msgstr "IDE"
-
-#~ msgid "IRC Clients"
-#~ msgstr "Client IRC"
-
-#~ msgid "Image Processing"
-#~ msgstr "Elaborazione immagini"
-
-#~ msgid "Instant Messaging"
-#~ msgstr "Messaggistica istantanea"
-
-#~ msgid "Internet"
-#~ msgstr "Internet"
-
-#~ msgid "Java"
-#~ msgstr "Java"
-
-#~ msgid "KDE Applications"
-#~ msgstr "Applicazioni KDE"
-
-#~ msgid "Kids Games"
-#~ msgstr "Giochi per bambini"
-
-#~ msgid ""
-#~ "Learn more about making your system more accessible for a range of "
-#~ "disabilities"
-#~ msgstr ""
-#~ "Imparare come rendere il sistema più accessibile per una serie di "
-#~ "disabilità"
-
-#~ msgid "Licenses"
-#~ msgstr "Licenze"
-
-#~ msgid "Literature"
-#~ msgstr "Letteratura"
-
-#~ msgid "Logic Games"
-#~ msgstr "Giochi di logica"
-
-#~ msgid "Math"
-#~ msgstr "Matematica"
-
-#~ msgid "Medical Software"
-#~ msgstr "Software medico"
-
-#~ msgid "Midi"
-#~ msgstr "Midi"
-
-#~ msgid "Miscellaneous Documentation"
-#~ msgstr "Documenti vari"
-
-#~ msgid "Mixers"
-#~ msgstr "Mixer"
-
-#~ msgid "Monitor"
-#~ msgstr "Monitor"
-
-#~ msgid "Motif"
-#~ msgstr "Motif"
-
-#~ msgid "Music"
-#~ msgstr "Musica"
-
-#~ msgid "News"
-#~ msgstr "Notizie"
-
-#~ msgid "Numerical Analysis"
-#~ msgstr "Analisi numerica"
-
-#~ msgid "OCR"
-#~ msgstr "OCR"
-
-#~ msgid "Office Applications"
-#~ msgstr "Applicazioni da ufficio"
-
-#~ msgid "Office applications"
-#~ msgstr "Applicazioni da ufficio"
-
-#~ msgid "Other Documentation"
-#~ msgstr "Altra documentazione"
-
-#~ msgid "P2P"
-#~ msgstr "P2P"
-
-#~ msgid "PDA Communication"
-#~ msgstr "Comunicazione PDA"
-
-#~ msgid "Package Manager"
-#~ msgstr "Gestore pacchetto"
-
-#~ msgid "Parallel Computing"
-#~ msgstr "Calcolo parallelo"
-
-#~ msgid "Photography"
-#~ msgstr "Fotografia"
-
-#~ msgid "Physics"
-#~ msgstr "Fisica"
-
-#~ msgid "Players"
-#~ msgstr "Riproduttori"
-
-#~ msgid "Presentation Tools"
-#~ msgstr "Strumenti di presentazione"
-
-#~ msgid "Printing"
-#~ msgstr "Stampa"
-
-#~ msgid "Profiling Tools"
-#~ msgstr "Strumenti per il profiling"
-
-#~ msgid "Project Management Tools"
-#~ msgstr "Strumenti di gestione dei progetti"
-
-#~ msgid "Publishing"
-#~ msgstr "Pubblicazione"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "Raster Graphics"
-#~ msgstr "Grafica raster"
-
-#~ msgid "Recorders"
-#~ msgstr "Registratori"
-
-#~ msgid "Remote Access"
-#~ msgstr "Accesso remoto"
-
-#~ msgid "Revision Control"
-#~ msgstr "Controllo revisione"
-
-#~ msgid "Robotics"
-#~ msgstr "Robotica"
-
-#~ msgid "Role Playing Games"
-#~ msgstr "Giochi di ruolo"
-
-#~ msgid "Scanning"
-#~ msgstr "Scansione"
-
-#~ msgid "Science"
-#~ msgstr "Scienza"
-
-#~ msgid "Security"
-#~ msgstr "Sicurezza"
-
-#~ msgid "Sequencers"
-#~ msgstr "Sequenziatori"
-
-#~ msgid "Settings"
-#~ msgstr "Impostazioni"
-
-#~ msgid ""
-#~ "Settings users can manipulate to make their environment more pleasant"
-#~ msgstr ""
-#~ "Impostazioni che gli utenti possono modificare per rendere l'ambiente più "
-#~ "gradevole"
-
-#~ msgid "Simulation Games"
-#~ msgstr "Simulatori"
-
-#~ msgid "Sound"
-#~ msgstr "Suono"
-
-#~ msgid "Sound &amp; Video"
-#~ msgstr "Audio e video"
-
-#~ msgid "Sound &amp; Video Editing"
-#~ msgstr "Montaggio audio e video"
-
-#~ msgid "Sports"
-#~ msgstr "Sport"
-
-#~ msgid "Sports Games"
-#~ msgstr "Giochi sportivi"
-
-#~ msgid "Spreadsheet Tools"
-#~ msgstr "Fogli di calcolo"
-
-#~ msgid "Strategy Games"
-#~ msgstr "Giochi di strategia"
-
-#~ msgid "System"
-#~ msgstr "Sistema"
-
-#~ msgid "TV"
-#~ msgstr "TV"
-
-#~ msgid "Telephony"
-#~ msgstr "Telefonia"
-
-#~ msgid "Telephony Tools"
-#~ msgstr "Strumenti di telefonia"
-
-#~ msgid "Terminal Emulator"
-#~ msgstr "Emulatore di terminale"
-
-#~ msgid "Text Editors"
-#~ msgstr "Editor di testo"
-
-#~ msgid "Text Tools"
-#~ msgstr "Strumenti per il testo"
-
-#~ msgid "Tools to help you manage your computer"
-#~ msgstr "Strumenti per la gestione del computer"
-
-#~ msgid "Translation Tools"
-#~ msgstr "Strumenti di traduzione"
-
-# (ndt) boh...
-#~ msgid "Tuners"
-#~ msgstr "Sintonizzatori"
-
-#~ msgid "Utilities"
-#~ msgstr "Programmi di utilità"
-
-#~ msgid "Utilities to help you get work done"
-#~ msgstr "Utilità per il completamento del lavoro"
-
-#~ msgid "Vector Graphics"
-#~ msgstr "Grafica vettoriale"
-
-#~ msgid "Video"
-#~ msgstr "Video"
-
-#~ msgid "Video Conference"
-#~ msgstr "Video conferenza"
-
-#~ msgid "Viewer"
-#~ msgstr "Visualizzatore"
-
-# Questo browser mi lascia molto molto molto perplesso
-#~ msgid "Web Browser"
-#~ msgstr "Browser web"
-
-#~ msgid "Web Development"
-#~ msgstr "Sviluppo web"
-
-#~ msgid "Welcome to the GNOME Help Browser"
-#~ msgstr "Benvenuti nel visualizzatore di documentazione per GNOME"
-
-#~ msgid "Word Processors"
-#~ msgstr "Elaboratori di testo"
+#: ../yelp.desktop.in.in.h:3
+msgid "documentation;information;manual;"
+msgstr "documentazione;informazioni;manuali;aiuto;"
