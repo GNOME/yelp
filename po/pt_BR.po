@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2013-03-31 19:33+0000\n"
-"PO-Revision-Date: 2013-03-31 21:40-0300\n"
+"POT-Creation-Date: 2013-04-05 19:35+0000\n"
+"PO-Revision-Date: 2013-04-05 16:43-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -169,7 +169,7 @@ msgstr "Habilitar pesquisa"
 msgid "Whether the location entry can be used as a search field"
 msgstr "Se o campo de localização pode ser usado como um campo de pesquisa"
 
-#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:288
 msgid "Search..."
 msgstr "Pesquisar..."
 
@@ -457,107 +457,111 @@ msgstr "A URI não aponta para uma página válida."
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "A URI \"%s\" não pôde ser analisada."
 
-#: ../src/yelp-application.c:65
+#: ../src/yelp-application.c:66
 msgid "Turn on editor mode"
 msgstr "Ligar o modo editor"
 
-#: ../src/yelp-application.c:128
+#: ../src/yelp-application.c:67
+msgid "Don't steal focus"
+msgstr "Não roubar o foco"
+
+#: ../src/yelp-application.c:130
 msgid "_Larger Text"
 msgstr "Texto gra_nde"
 
-#: ../src/yelp-application.c:130
+#: ../src/yelp-application.c:132
 msgid "Increase the size of the text"
 msgstr "Aumenta o tamanho do texto"
 
-#: ../src/yelp-application.c:133
+#: ../src/yelp-application.c:135
 msgid "_Smaller Text"
 msgstr "Texto peq_ueno"
 
-#: ../src/yelp-application.c:135
+#: ../src/yelp-application.c:137
 msgid "Decrease the size of the text"
 msgstr "Diminui o tamanho do texto"
 
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../src/yelp-application.c:277 ../src/yelp-window.c:1421
 #: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Ajuda"
 
-#: ../src/yelp-application.c:288
+#: ../src/yelp-application.c:334
 msgid "Show Text _Cursor"
 msgstr "Mostrar o _cursor de texto"
 
-#: ../src/yelp-window.c:236
+#: ../src/yelp-window.c:254
 msgid "_Page"
 msgstr "_Página"
 
-#: ../src/yelp-window.c:237
+#: ../src/yelp-window.c:255
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/yelp-window.c:238
+#: ../src/yelp-window.c:256
 msgid "_Go"
 msgstr "_Ir"
 
-#: ../src/yelp-window.c:239
+#: ../src/yelp-window.c:257
 msgid "_Bookmarks"
 msgstr "_Marcadores"
 
-#: ../src/yelp-window.c:242
+#: ../src/yelp-window.c:260
 msgid "_New Window"
 msgstr "_Nova janela"
 
-#: ../src/yelp-window.c:247
+#: ../src/yelp-window.c:265
 msgid "_Close"
 msgstr "_Fechar"
 
-#: ../src/yelp-window.c:252
+#: ../src/yelp-window.c:270
 msgid "_All Documents"
 msgstr "_Todos os documentos"
 
-#: ../src/yelp-window.c:256
+#: ../src/yelp-window.c:274
 msgid "_Add Bookmark"
 msgstr "_Adicionar marcador"
 
-#: ../src/yelp-window.c:261
+#: ../src/yelp-window.c:279
 msgid "_Remove Bookmark"
 msgstr "_Remover marcador"
 
-#: ../src/yelp-window.c:265
+#: ../src/yelp-window.c:283
 msgid "Find in Page..."
 msgstr "Procurar na página..."
 
-#: ../src/yelp-window.c:275
+#: ../src/yelp-window.c:293
 msgid "Open Location"
 msgstr "Abrir localização"
 
-#: ../src/yelp-window.c:301
+#: ../src/yelp-window.c:319
 msgid "Application"
 msgstr "Aplicativo"
 
-#: ../src/yelp-window.c:302
+#: ../src/yelp-window.c:320
 msgid "A YelpApplication instance that controls this window"
 msgstr "Uma instância YelpApplication que controla esta janela"
 
-#: ../src/yelp-window.c:429
+#: ../src/yelp-window.c:451
 msgid "Read Link _Later"
 msgstr "Ler link _depois"
 
-#: ../src/yelp-window.c:526
+#: ../src/yelp-window.c:587
 msgid "Find:"
 msgstr "Localizar:"
 
-#: ../src/yelp-window.c:548
+#: ../src/yelp-window.c:609
 msgid "Read Later"
 msgstr "Ler depois"
 
-#: ../src/yelp-window.c:1180
+#: ../src/yelp-window.c:1241
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
 msgstr[0] "%i correspondência"
 msgstr[1] "%i correspondências"
 
-#: ../src/yelp-window.c:1189
+#: ../src/yelp-window.c:1250
 msgid "No matches"
 msgstr "Nenhuma correspondência"
 
