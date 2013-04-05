@@ -43,7 +43,6 @@
 #define DEFAULT_URI "help:gnome-help"
 
 static gboolean editor_mode = FALSE;
-static gboolean dont_steal_focus = FALSE;
 
 enum {
     READ_LATER_CHANGED,
@@ -64,7 +63,6 @@ option_version_cb (const gchar *option_name,
 
 static const GOptionEntry entries[] = {
     {"editor-mode", 0, 0, G_OPTION_ARG_NONE, &editor_mode, N_("Turn on editor mode"), NULL},
-    {"dont-steal-focus", 0, 0, G_OPTION_ARG_NONE, &dont_steal_focus, N_("Don't steal focus"), NULL},
     { "version", 0, G_OPTION_FLAG_NO_ARG | G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_CALLBACK, option_version_cb, NULL, NULL },
     { NULL }
 };
@@ -474,17 +472,15 @@ application_uri_resolved (YelpUri             *uri,
     if (gdk_window)
         gdk_x11_window_move_to_current_desktop (gdk_window);
 
-    if (!dont_steal_focus) {
-        /* Ensure we actually present the window when invoked from the command
-         * line. This is somewhat evil, but the minor evil of Yelp stealing
-         * focus (after you requested it) is outweighed for me by the major
-         * evil of no help window appearing when you click Help.
-         */
-        if (data->timestamp == 0)
-            data->timestamp = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
+    /* Ensure we actually present the window when invoked from the command
+     * line. This is somewhat evil, but the minor evil of Yelp stealing
+     * focus (after you requested it) is outweighed for me by the major
+     * evil of no help window appearing when you click Help.
+     */
+    if (data->timestamp == 0)
+        data->timestamp = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
 
-        gtk_window_present_with_time (GTK_WINDOW (window), data->timestamp);
-    }
+    gtk_window_present_with_time (GTK_WINDOW (window), data->timestamp);
 
     g_object_unref (uri);
     g_free (data);
