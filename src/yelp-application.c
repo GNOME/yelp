@@ -444,7 +444,6 @@ application_uri_resolved (YelpUri             *uri,
 
         g_settings_get (settings, "geometry", "(ii)", &width, &height);
         window = yelp_window_new (data->app);
-        gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
         gtk_window_set_default_size (GTK_WINDOW (window), width, height);
         g_signal_connect (window, "resized", G_CALLBACK (window_resized), data->app);
         priv->windows = g_slist_prepend (priv->windows, window);
