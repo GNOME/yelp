@@ -149,7 +149,7 @@ enum {
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (YelpWindow, yelp_window, GTK_TYPE_APPLICATION_WINDOW);
+G_DEFINE_TYPE (YelpWindow, yelp_window, GTK_TYPE_WINDOW);
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_WINDOW, YelpWindowPrivate))
 
 static const gchar *YELP_UI =
@@ -185,24 +185,6 @@ static const gchar *YELP_UI =
     "<placeholder name='Bookmarks'/>"
     "</menu>"
     "</menubar>"
-    "<popup name='GearsMenu'>"
-    "<menuitem action='Find'/>"
-    "<separator/>"
-    "<menuitem action='YelpViewPrint'/>"
-    "<separator/>"
-    "<menuitem action='LargerText'/>"
-    "<menuitem action='SmallerText'/>"
-    "<separator/>"
-    "<menuitem action='ShowTextCursor'/>"
-    "<separator/>"
-    "<menuitem action='YelpViewGoBack'/>"
-    "<menuitem action='YelpViewGoForward'/>"
-    "<separator/>"
-    "<menuitem action='AddBookmark'/>"
-    "<menuitem action='RemoveBookmark'/>"
-    "<separator/>"
-    "<menuitem action='CloseWindow'/>"
-    "</popup>"
     "<accelerator action='Find'/>"
     "<accelerator action='Search'/>"
     "<accelerator action='OpenLocation'/>"
@@ -439,11 +421,7 @@ window_construct (YelpWindow *window)
     GtkWidget *vbox, *button, *label;
     gchar *color, *text;
     YelpWindowPrivate *priv = GET_PRIV (window);
-    GtkToolbar *toolbar;
-    GtkWidget *toolitem;
-    GtkWidget *image;
 
-    gtk_window_set_hide_titlebar_when_maximized (GTK_WINDOW (window), TRUE);
     gtk_window_set_icon_name (GTK_WINDOW (window), "help-browser");
 
     priv->view = (YelpView *) yelp_view_new ();
@@ -483,81 +461,42 @@ window_construct (YelpWindow *window)
     gtk_window_add_accel_group (GTK_WINDOW (window),
                                 gtk_ui_manager_get_accel_group (priv->ui_manager));
     gtk_ui_manager_add_ui_from_string (priv->ui_manager, YELP_UI, -1, NULL);
-#if 0
     gtk_box_pack_start (GTK_BOX (priv->vbox_view),
                         gtk_ui_manager_get_widget (priv->ui_manager, "/ui/menubar"),
                         FALSE, FALSE, 0);
 
     priv->bookmarks_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
-#endif
     priv->bookmarks_changed =
         g_signal_connect (priv->application, "bookmarks-changed",
                           G_CALLBACK (app_bookmarks_changed), window);
 
-    priv->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-    toolbar = gtk_toolbar_new ();
-    gtk_style_context_add_class (gtk_widget_get_style_context (toolbar),
-                                 GTK_STYLE_CLASS_MENUBAR);
-
-    toolitem = gtk_tool_item_new ();
-    gtk_container_add (GTK_CONTAINER (toolitem), priv->hbox);
-    gtk_container_add (GTK_CONTAINER (toolbar), toolitem);
-    gtk_box_pack_start (GTK_BOX (priv->vbox_view), toolbar, FALSE, FALSE, 0);
+    priv->hbox = gtk_hbox_new (FALSE, 0);
+    g_object_set (priv->hbox, "border-width", 2, NULL);
+    gtk_box_pack_start (GTK_BOX (priv->vbox_view), priv->hbox, FALSE, FALSE, 0);
 
     action = gtk_action_group_get_action (view_actions, "YelpViewGoBack");
-    button = gtk_button_new ();
-    gtk_button_set_image (GTK_BUTTON (button), gtk_image_new ());
-    gtk_activatable_set_related_action (GTK_ACTIVATABLE (button), action);
-    gtk_button_set_label (GTK_BUTTON (button), NULL);
+    button = gtk_action_create_tool_item (action);
     gtk_box_pack_start (GTK_BOX (priv->hbox),
                         button,
                         FALSE, FALSE, 0);
     action = gtk_action_group_get_action (view_actions, "YelpViewGoForward");
-    button = gtk_button_new ();
-    gtk_button_set_image (GTK_BUTTON (button), gtk_image_new ());
-    gtk_activatable_set_related_action (GTK_ACTIVATABLE (button), action);
-    gtk_button_set_label (GTK_BUTTON (button), NULL);
+    button = gtk_action_create_tool_item (action);
     gtk_box_pack_start (GTK_BOX (priv->hbox),
                         button,
                         FALSE, FALSE, 0);
-    gtk_style_context_add_class (gtk_widget_get_style_context (priv->hbox),
-                                 "raised");
-    gtk_style_context_add_class (gtk_widget_get_style_context (priv->hbox),
-                                 "linked");
-
-    toolitem = gtk_tool_item_new ();
-    gtk_widget_set_margin_left (toolitem, 12);
-    gtk_widget_set_margin_right (toolitem, 12);
 
     priv->entry = (YelpLocationEntry *) yelp_location_entry_new (priv->view,
                                                                  YELP_BOOKMARKS (priv->application));
-    gtk_widget_set_hexpand (priv->entry, TRUE);
     g_signal_connect (gtk_bin_get_child (GTK_BIN (priv->entry)), "focus-in-event",
                       G_CALLBACK (entry_focus_in), window);
     g_signal_connect (priv->entry, "focus-out-event",
                       G_CALLBACK (entry_focus_out), window);
 
     priv->align_location = g_object_ref_sink (gtk_alignment_new (0.0, 0.5, 1.0, 0.0));
-    gtk_container_add (GTK_CONTAINER (toolitem), GTK_WIDGET (priv->align_location));
-    gtk_container_add (GTK_CONTAINER (toolbar), toolitem);
-    gtk_container_child_set (GTK_CONTAINER (toolbar),
-                             GTK_WIDGET (toolitem),
-                            "expand", TRUE,
-                            NULL);
-
+    gtk_box_pack_start (GTK_BOX (priv->hbox),
+                        GTK_WIDGET (priv->align_location),
+                        TRUE, TRUE, 0);
     gtk_container_add (GTK_CONTAINER (priv->align_location), GTK_WIDGET (priv->entry));
-
-    toolitem = gtk_tool_item_new ();
-    button = gtk_menu_button_new ();
-    image = gtk_image_new_from_icon_name ("emblem-system-symbolic", GTK_ICON_SIZE_MENU);
-    gtk_container_add (button, image);
-    gtk_menu_button_set_popup (GTK_MENU_BUTTON (button), gtk_ui_manager_get_widget (priv->ui_manager, "/ui/GearsMenu"));
-    gtk_container_add (GTK_CONTAINER (toolitem), GTK_WIDGET (button));
-    gtk_container_add (GTK_CONTAINER (toolbar), toolitem);
-    gtk_style_context_add_class (gtk_widget_get_style_context (priv->hbox),
-                                 "raised");
-    gtk_style_context_add_class (gtk_widget_get_style_context (priv->hbox),
-                                 "linked");
 
     priv->hidden_entry = gtk_entry_new ();
     priv->align_hidden = g_object_ref_sink (gtk_alignment_new (0.0, 0.5, 1.0, 0.0));
