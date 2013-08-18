@@ -60,7 +60,7 @@ typedef struct _YelpSqliteStoragePrivate YelpSqliteStoragePrivate;
 struct _YelpSqliteStoragePrivate {
     gchar   *filename;
     sqlite3 *db;
-    GMutex *mutex;
+    GMutex mutex;
 };
 
 enum {  
@@ -84,8 +84,7 @@ yelp_sqlite_storage_finalize (GObject *object)
     if (priv->db)
         sqlite3_close (priv->db);
 
-    if (priv->mutex)
-        g_mutex_free (priv->mutex);
+    g_mutex_clear (&priv->mutex);
 
     G_OBJECT_CLASS (yelp_sqlite_storage_parent_class)->finalize (object);
 }
@@ -94,7 +93,7 @@ static void
 yelp_sqlite_storage_init (YelpSqliteStorage *storage)
 {
     YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
-    priv->mutex = g_mutex_new ();
+    g_mutex_init (&priv->mutex);
 }
 
 static void
@@ -225,7 +224,7 @@ yelp_sqlite_storage_update (YelpStorage   *storage,
     sqlite3_stmt *stmt = NULL;
     YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
 
     sqlite3_prepare_v2 (priv->db,
                         "delete from pages where doc_uri = ? and lang = ? and full_uri = ?;",
@@ -250,7 +249,7 @@ yelp_sqlite_storage_update (YelpStorage   *storage,
     sqlite3_step (stmt);
     sqlite3_finalize (stmt);
 
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 }
 
 static GVariant *
@@ -263,7 +262,7 @@ yelp_sqlite_storage_search (YelpStorage   *storage,
     GVariant *ret;
     YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
 
     sqlite3_prepare_v2 (priv->db,
                         "select full_uri, title, desc, icon from pages where"
@@ -284,7 +283,7 @@ yelp_sqlite_storage_search (YelpStorage   *storage,
     sqlite3_finalize (stmt);
     ret = g_variant_new ("a(ssss)", &builder);
 
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
     return ret;
 }
@@ -297,7 +296,7 @@ yelp_sqlite_storage_get_root_title (YelpStorage *storage,
     sqlite3_stmt *stmt = NULL;
     YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
 
     sqlite3_prepare_v2 (priv->db,
                         "select title from titles where doc_uri = ? and lang = ?;",
@@ -308,7 +307,7 @@ yelp_sqlite_storage_get_root_title (YelpStorage *storage,
         ret = g_strdup (sqlite3_column_text (stmt, 0));
     sqlite3_finalize (stmt);
 
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
     return ret;
 }
 
@@ -320,7 +319,7 @@ yelp_sqlite_storage_set_root_title (YelpStorage *storage,
     sqlite3_stmt *stmt = NULL;
     YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
 
     sqlite3_prepare_v2 (priv->db,
                         "delete from titles where doc_uri = ? and lang = ?;",
@@ -340,5 +339,5 @@ yelp_sqlite_storage_set_root_title (YelpStorage *storage,
     sqlite3_step (stmt);
     sqlite3_finalize (stmt);
 
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 }

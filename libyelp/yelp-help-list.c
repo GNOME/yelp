@@ -92,7 +92,7 @@ G_DEFINE_TYPE (YelpHelpList, yelp_help_list, YELP_TYPE_DOCUMENT);
 
 typedef struct _YelpHelpListPrivate  YelpHelpListPrivate;
 struct _YelpHelpListPrivate {
-    GMutex        *mutex;
+    GMutex         mutex;
     GThread       *thread;
 
     gboolean process_running;
@@ -126,7 +126,7 @@ yelp_help_list_init (YelpHelpList *list)
 {
     YelpHelpListPrivate *priv = GET_PRIV (list);
 
-    priv->mutex = g_mutex_new ();
+    g_mutex_init (&priv->mutex);
     priv->entries = g_hash_table_new_full (g_str_hash, g_str_equal,
                                            g_free,
                                            (GDestroyNotify) help_list_entry_free);
@@ -157,7 +157,7 @@ yelp_help_list_finalize (GObject *object)
     YelpHelpListPrivate *priv = GET_PRIV (object);
 
     g_hash_table_destroy (priv->entries);
-    g_mutex_free (priv->mutex);
+    g_mutex_clear (&priv->mutex);
 
     if (priv->get_docbook_title)
         xmlXPathFreeCompExpr (priv->get_docbook_title);
@@ -200,7 +200,7 @@ help_list_request_page (YelpDocument          *document,
         return TRUE;
     }
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
     if (priv->process_ran) {
         help_list_handle_page ((YelpHelpList *) document, page_id);
         return TRUE;
@@ -209,11 +209,12 @@ help_list_request_page (YelpDocument          *document,
     if (!priv->process_running) {
         priv->process_running = TRUE;
         g_object_ref (document);
-        priv->thread = g_thread_create ((GThreadFunc) help_list_think,
-                                        document, FALSE, NULL);
+        priv->thread = g_thread_new ("helplist-page",
+                                     (GThreadFunc) help_list_think,
+                                     document);
     }
     priv->pending = g_slist_prepend (priv->pending, g_strdup (page_id));
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
     return TRUE;
 }
 
@@ -425,7 +426,7 @@ help_list_think (YelpHelpList *list)
         }
     }
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
     priv->process_running = FALSE;
     priv->process_ran = TRUE;
     while (priv->pending) {
@@ -434,7 +435,7 @@ help_list_think (YelpHelpList *list)
         g_free (page_id);
         priv->pending = g_slist_delete_link (priv->pending, priv->pending);
     }
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
     g_object_unref (list);
 }

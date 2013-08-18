@@ -42,11 +42,11 @@ yelp_storage_set_default (YelpStorage *storage)
 YelpStorage *
 yelp_storage_get_default (void)
 {
-    static GStaticMutex mutex = G_STATIC_MUTEX_INIT;
-    g_static_mutex_lock (&mutex);
+    static GMutex mutex;
+    g_mutex_lock (&mutex);
     if (default_storage == NULL)
         default_storage = yelp_sqlite_storage_new (":memory:");
-    g_static_mutex_unlock (&mutex);
+    g_mutex_unlock (&mutex);
     return default_storage;
 }
 

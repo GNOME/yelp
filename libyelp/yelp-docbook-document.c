@@ -103,7 +103,7 @@ struct _YelpDocbookDocumentPrivate {
 
     DocbookState   state;
 
-    GMutex        *mutex;
+    GMutex         mutex;
     GThread       *thread;
 
     GThread       *index;
@@ -169,7 +169,7 @@ yelp_docbook_document_init (YelpDocbookDocument *docbook)
 
     priv->state = DOCBOOK_STATE_BLANK;
 
-    priv->mutex = g_mutex_new ();
+    g_mutex_init (&priv->mutex);
 }
 
 static void
@@ -202,7 +202,7 @@ yelp_docbook_document_finalize (GObject *object)
     g_free (priv->cur_prev_id);
     g_free (priv->root_id);
 
-    g_mutex_free (priv->mutex);
+    g_mutex_clear (&priv->mutex);
 
     G_OBJECT_CLASS (yelp_docbook_document_parent_class)->finalize (object);
 }
@@ -263,15 +263,16 @@ docbook_request_page (YelpDocument         *document,
         return handled;
     }
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
 
     switch (priv->state) {
     case DOCBOOK_STATE_BLANK:
         priv->state = DOCBOOK_STATE_PARSING;
         priv->process_running = TRUE;
         g_object_ref (document);
-        priv->thread = g_thread_create ((GThreadFunc) docbook_process,
-                                        document, FALSE, NULL);
+        priv->thread = g_thread_new ("docbook-page",
+                                     (GThreadFunc) docbook_process,
+                                     document);
         break;
     case DOCBOOK_STATE_PARSING:
         break;
@@ -289,7 +290,7 @@ docbook_request_page (YelpDocument         *document,
         break;
     }
 
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
     return FALSE;
 }
 
@@ -361,7 +362,7 @@ docbook_process (YelpDocbookDocument *docbook)
         goto done;
     }
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
     if (!xmlStrcmp (xmlDocGetRootElement (xmldoc)->name, BAD_CAST "book"))
         priv->max_depth = 2;
     else
@@ -392,20 +393,20 @@ docbook_process (YelpDocbookDocument *docbook)
             xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST "//index");
     }
     yelp_document_set_root_id (document, priv->root_id, priv->root_id);
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
     if (priv->state == DOCBOOK_STATE_STOP) {
-        g_mutex_unlock (priv->mutex);
+        g_mutex_unlock (&priv->mutex);
         goto done;
     }
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
     docbook_walk (docbook);
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
     if (priv->state == DOCBOOK_STATE_STOP) {
-        g_mutex_unlock (priv->mutex);
+        g_mutex_unlock (&priv->mutex);
         goto done;
     }
 
@@ -436,7 +437,7 @@ docbook_process (YelpDocbookDocument *docbook)
                           NULL,
 			  (const gchar * const *) params);
     g_strfreev (params);
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
  done:
     g_free (filepath);
@@ -1048,7 +1049,8 @@ docbook_index (YelpDocument *document)
 
     priv = GET_PRIV (document);
     g_object_ref (document);
-    priv->index = g_thread_create ((GThreadFunc) docbook_index_threaded,
-                                   document, FALSE, NULL);
+    priv->index = g_thread_new ("docbook-index",
+                                (GThreadFunc) docbook_index_threaded,
+                                document);
     priv->index_running = TRUE;
 }

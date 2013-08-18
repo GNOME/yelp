@@ -50,7 +50,7 @@ struct _YelpManDocumentPrivate {
     ManState    state;
     gchar      *page_id;
 
-    GMutex     *mutex;
+    GMutex      mutex;
     GThread    *thread;
 
     xmlDocPtr   xmldoc;
@@ -172,7 +172,7 @@ yelp_man_document_init (YelpManDocument *man)
     YelpManDocumentPrivate *priv = GET_PRIV (man);
 
     priv->state = MAN_STATE_BLANK;
-    priv->mutex = g_mutex_new ();
+    g_mutex_init (&priv->mutex);
 }
 
 static void
@@ -196,7 +196,7 @@ yelp_man_document_finalize (GObject *object)
     if (priv->xmldoc)
 	xmlFreeDoc (priv->xmldoc);
 
-    g_mutex_free (priv->mutex);
+    g_mutex_clear (&priv->mutex);
     g_free (priv->page_id);
 
     G_OBJECT_CLASS (yelp_man_document_parent_class)->finalize (object);
@@ -258,7 +258,7 @@ man_request_page (YelpDocument         *document,
         return handled;
     }
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
 
     switch (priv->state) {
     case MAN_STATE_BLANK:
@@ -270,8 +270,9 @@ man_request_page (YelpDocument         *document,
         yelp_document_set_page_id (document, "//index", priv->page_id);
         yelp_document_set_page_id (document, priv->page_id, priv->page_id);
         yelp_document_set_root_id (document, priv->page_id, priv->page_id);
-	priv->thread = g_thread_create ((GThreadFunc) man_document_process,
-                                        document, FALSE, NULL);
+	priv->thread = g_thread_new ("man-page",
+                                     (GThreadFunc) man_document_process,
+                                     document);
 	break;
     case MAN_STATE_PARSING:
 	break;
@@ -289,7 +290,7 @@ man_request_page (YelpDocument         *document,
         break;
     }
 
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
     return FALSE;
 }
 
@@ -457,9 +458,9 @@ man_document_process (YelpManDocument *man)
 	yelp_document_error_pending ((YelpDocument *) man, error);
     }
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
     if (priv->state == MAN_STATE_STOP) {
-	g_mutex_unlock (priv->mutex);
+	g_mutex_unlock (&priv->mutex);
 	goto done;
     }
 
@@ -485,7 +486,7 @@ man_document_process (YelpManDocument *man)
                           NULL,
 			  (const gchar * const *) params);
     g_strfreev (params);
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
  done:
     g_free (filepath);

@@ -51,7 +51,7 @@ struct _YelpInfoDocumentPrivate {
     YelpUri       *uri;
     InfoState    state;
 
-    GMutex     *mutex;
+    GMutex      mutex;
     GThread    *thread;
 
     xmlDocPtr   xmldoc;
@@ -125,7 +125,7 @@ yelp_info_document_init (YelpInfoDocument *info)
 
     priv->state = INFO_STATE_BLANK;
     priv->xmldoc = NULL;
-    priv->mutex = g_mutex_new ();
+    g_mutex_init (&priv->mutex);
 }
 
 static void
@@ -162,7 +162,7 @@ yelp_info_document_finalize (GObject *object)
     g_free (priv->root_id);
     g_free (priv->visit_prev_id);
 
-    g_mutex_free (priv->mutex);
+    g_mutex_clear (&priv->mutex);
 
     G_OBJECT_CLASS (yelp_info_document_parent_class)->finalize (object);
 }
@@ -219,15 +219,16 @@ info_request_page (YelpDocument         *document,
         return TRUE;
     }
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
 
     switch (priv->state) {
     case INFO_STATE_BLANK:
 	priv->state = INFO_STATE_PARSING;
 	priv->process_running = TRUE;
         g_object_ref (document);
-	priv->thread = g_thread_create ((GThreadFunc) info_document_process,
-                                        document, FALSE, NULL);
+	priv->thread = g_thread_new ("info-page",
+                                     (GThreadFunc) info_document_process,
+                                     document);
 	break;
     case INFO_STATE_PARSING:
 	break;
@@ -245,7 +246,7 @@ info_request_page (YelpDocument         *document,
         break;
     }
 
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
     return TRUE;
 }
 
@@ -401,9 +402,9 @@ info_document_process (YelpInfoDocument *info)
         goto done;
     }
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
     if (priv->state == INFO_STATE_STOP) {
-	g_mutex_unlock (priv->mutex);
+	g_mutex_unlock (&priv->mutex);
 	goto done;
     }
 
@@ -429,7 +430,7 @@ info_document_process (YelpInfoDocument *info)
                           NULL,
 			  (const gchar * const *) params);
     g_strfreev (params);
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
  done:
     g_free (filepath);

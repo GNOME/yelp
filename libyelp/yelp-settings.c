@@ -32,7 +32,7 @@
 #include "yelp-settings.h"
 
 struct _YelpSettingsPriv {
-    GMutex       *mutex;
+    GMutex        mutex;
 
     gchar         colors[YELP_SETTINGS_NUM_COLORS][8];
     gchar        *setfonts[YELP_SETTINGS_NUM_FONTS];
@@ -228,7 +228,7 @@ yelp_settings_init (YelpSettings *settings)
     gint i;
 
     settings->priv = GET_PRIV (settings);
-    settings->priv->mutex = g_mutex_new ();
+    g_mutex_init (&settings->priv->mutex);
     settings->priv->icon_size = 24;
 
     for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++)
@@ -345,7 +345,7 @@ yelp_settings_finalize (GObject *object)
 {
     YelpSettings *settings = YELP_SETTINGS (object);
 
-    g_mutex_free (settings->priv->mutex);
+    g_mutex_clear (&settings->priv->mutex);
 
     g_hash_table_destroy (settings->priv->tokens);
 
@@ -484,15 +484,15 @@ yelp_settings_set_property (GObject      *object,
 YelpSettings *
 yelp_settings_get_default (void)
 {
-    static GStaticMutex mutex = G_STATIC_MUTEX_INIT;
+    static GMutex mutex;
     static YelpSettings *settings = NULL;
-    g_static_mutex_lock (&mutex);
+    g_mutex_lock (&mutex);
     if (settings == NULL)
 	settings = g_object_new (YELP_TYPE_SETTINGS,
 				 "gtk-settings", gtk_settings_get_default (),
 				 "gtk-icon-theme", gtk_icon_theme_get_default (),
 				 NULL);
-    g_static_mutex_unlock (&mutex);
+    g_mutex_unlock (&mutex);
     return settings;
 }
 
@@ -505,9 +505,9 @@ yelp_settings_get_color (YelpSettings       *settings,
     gchar *colorstr;
     g_return_val_if_fail (color < YELP_SETTINGS_NUM_COLORS, NULL);
 
-    g_mutex_lock (settings->priv->mutex);
+    g_mutex_lock (&settings->priv->mutex);
     colorstr = g_strdup (settings->priv->colors[color]);
-    g_mutex_unlock (settings->priv->mutex);
+    g_mutex_unlock (&settings->priv->mutex);
 
     return colorstr;
 }
@@ -530,7 +530,7 @@ yelp_settings_set_colors (YelpSettings      *settings,
     YelpSettingsColor color;
     va_list args;
 
-    g_mutex_lock (settings->priv->mutex);
+    g_mutex_lock (&settings->priv->mutex);
     va_start (args, first_color);
 
     color = first_color;
@@ -547,7 +547,7 @@ yelp_settings_set_colors (YelpSettings      *settings,
     }
 
     va_end (args);
-    g_mutex_unlock (settings->priv->mutex);
+    g_mutex_unlock (&settings->priv->mutex);
 
     g_signal_emit (settings, settings_signals[COLORS_CHANGED], 0);
 }
@@ -584,12 +584,12 @@ yelp_settings_get_font (YelpSettings     *settings,
     gchar *ret;
     g_return_val_if_fail (font < YELP_SETTINGS_NUM_FONTS, NULL);
 
-    g_mutex_lock (settings->priv->mutex);
+    g_mutex_lock (&settings->priv->mutex);
     if (settings->priv->setfonts[font])
 	ret = g_strdup (settings->priv->setfonts[font]);
     else
 	ret = g_strdup (settings->priv->fonts[font]);
-    g_mutex_unlock (settings->priv->mutex);
+    g_mutex_unlock (&settings->priv->mutex);
 
     return ret;
 }
@@ -602,7 +602,7 @@ yelp_settings_get_font_family (YelpSettings     *settings,
     gchar *desc, *ret, *c; /* do not free */
     g_return_val_if_fail (font < YELP_SETTINGS_NUM_FONTS, NULL);
 
-    g_mutex_lock (settings->priv->mutex);
+    g_mutex_lock (&settings->priv->mutex);
 
     if (settings->priv->setfonts[font])
 	desc = g_strdup (settings->priv->setfonts[font]);
@@ -624,7 +624,7 @@ yelp_settings_get_font_family (YelpSettings     *settings,
     ret = g_strndup (desc, c - desc);
 
  done:
-    g_mutex_unlock (settings->priv->mutex);
+    g_mutex_unlock (&settings->priv->mutex);
     return ret;
 }
 
@@ -636,7 +636,7 @@ yelp_settings_get_font_size (YelpSettings     *settings,
     gint ret;
     g_return_val_if_fail (font < YELP_SETTINGS_NUM_FONTS, 0);
 
-    g_mutex_lock (settings->priv->mutex);
+    g_mutex_lock (&settings->priv->mutex);
 
     if (settings->priv->setfonts[font])
 	desc = g_strdup (settings->priv->setfonts[font]);
@@ -658,7 +658,7 @@ yelp_settings_get_font_size (YelpSettings     *settings,
     ret = g_ascii_strtod (c, NULL);
 
  done:
-    g_mutex_unlock (settings->priv->mutex);
+    g_mutex_unlock (&settings->priv->mutex);
     ret += settings->priv->font_adjustment;
     ret = (ret < 5) ? 5 : ret;
     return ret;
@@ -672,7 +672,7 @@ yelp_settings_set_fonts (YelpSettings     *settings,
     YelpSettingsFont font;
     va_list args;
 
-    g_mutex_lock (settings->priv->mutex);
+    g_mutex_lock (&settings->priv->mutex);
     va_start (args, first_font);
 
     font = first_font;
@@ -685,7 +685,7 @@ yelp_settings_set_fonts (YelpSettings     *settings,
     }
 
     va_end (args);
-    g_mutex_unlock (settings->priv->mutex);
+    g_mutex_unlock (&settings->priv->mutex);
 
     g_signal_emit (settings, settings_signals[FONTS_CHANGED], 0);
 }
@@ -727,9 +727,9 @@ yelp_settings_get_icon (YelpSettings     *settings,
     gchar *ret;
     g_return_val_if_fail (icon < YELP_SETTINGS_NUM_ICONS, NULL);
 
-    g_mutex_lock (settings->priv->mutex);
+    g_mutex_lock (&settings->priv->mutex);
     ret = g_strdup (settings->priv->icons[icon]);
-    g_mutex_unlock (settings->priv->mutex);
+    g_mutex_unlock (&settings->priv->mutex);
 
     return ret;
 }
@@ -742,7 +742,7 @@ yelp_settings_set_icons (YelpSettings     *settings,
     YelpSettingsIcon icon;
     va_list args;
 
-    g_mutex_lock (settings->priv->mutex);
+    g_mutex_lock (&settings->priv->mutex);
     va_start (args, first_icon);
 
     icon = first_icon;
@@ -755,7 +755,7 @@ yelp_settings_set_icons (YelpSettings     *settings,
     }
 
     va_end (args);
-    g_mutex_unlock (settings->priv->mutex);
+    g_mutex_unlock (&settings->priv->mutex);
 
     g_signal_emit (settings, settings_signals[ICONS_CHANGED], 0);
 }
@@ -895,7 +895,7 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
     gdouble    text_h, text_s, text_v;
     gint i;
 
-    g_mutex_lock (settings->priv->mutex);
+    g_mutex_lock (&settings->priv->mutex);
 
     style = gtk_rc_get_style_by_paths (gtk_settings,
                                        "GtkTextView", "GtkTextView",
@@ -1009,7 +1009,7 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
 
     g_object_unref (G_OBJECT (style));
 
-    g_mutex_unlock (settings->priv->mutex);
+    g_mutex_unlock (&settings->priv->mutex);
 
     g_signal_emit (settings, settings_signals[COLORS_CHANGED], 0);
 }
@@ -1051,7 +1051,7 @@ icon_theme_changed (GtkIconTheme *theme,
     GtkIconInfo *info;
     gint i;
 
-    g_mutex_lock (settings->priv->mutex);
+    g_mutex_lock (&settings->priv->mutex);
 
     for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++) {
 	if (settings->priv->icons[i] != NULL)
@@ -1070,7 +1070,7 @@ icon_theme_changed (GtkIconTheme *theme,
 	}
     }
 
-    g_mutex_unlock (settings->priv->mutex);
+    g_mutex_unlock (&settings->priv->mutex);
 
     g_signal_emit (settings, settings_signals[ICONS_CHANGED], 0);
 }

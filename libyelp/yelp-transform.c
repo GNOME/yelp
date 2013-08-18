@@ -109,7 +109,7 @@ struct _YelpTransformPrivate {
     gchar                 **params;
 
     GThread                *thread;
-    GMutex                 *mutex;
+    GMutex                  mutex;
     GAsyncQueue            *queue;
     GHashTable             *chunks;
 
@@ -239,7 +239,7 @@ yelp_transform_finalize (GObject *object)
     g_hash_table_destroy (priv->chunks);
 
     g_strfreev (priv->params);
-    g_mutex_free (priv->mutex);
+    g_mutex_clear (&priv->mutex);
 
     G_OBJECT_CLASS (yelp_transform_parent_class)->finalize (object);
 }
@@ -304,13 +304,14 @@ yelp_transform_start (YelpTransform       *transform,
     priv->aux = auxiliary;
     priv->params = g_strdupv ((gchar **) params);
 
-    priv->mutex = g_mutex_new ();
-    g_mutex_lock (priv->mutex);
+    g_mutex_init (&priv->mutex);
+    g_mutex_lock (&priv->mutex);
     priv->running = TRUE;
     g_object_ref (transform);
-    priv->thread = g_thread_create ((GThreadFunc) transform_run,
-                                    transform, FALSE, NULL);
-    g_mutex_unlock (priv->mutex);
+    priv->thread = g_thread_new ("transform-run",
+                                 (GThreadFunc) transform_run,
+                                 transform);
+    g_mutex_unlock (&priv->mutex);
 
     return TRUE;
 }
@@ -322,13 +323,13 @@ yelp_transform_take_chunk (YelpTransform *transform,
     YelpTransformPrivate *priv = GET_PRIV (transform);
     gchar *buf;
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
 
     buf = g_hash_table_lookup (priv->chunks, chunk_id);
     if (buf)
         g_hash_table_remove (priv->chunks, chunk_id);
 
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
     /* The caller assumes ownership of this memory. */
     return buf;
@@ -338,13 +339,13 @@ void
 yelp_transform_cancel (YelpTransform *transform)
 {
     YelpTransformPrivate *priv = GET_PRIV (transform);
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
     if (priv->running) {
         priv->cancelled = TRUE;
         if (priv->context)
             priv->context->state = XSLT_STATE_STOPPED;
     }
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 }
 
 GError *
@@ -353,10 +354,10 @@ yelp_transform_get_error (YelpTransform *transform)
     YelpTransformPrivate *priv = GET_PRIV (transform);
     GError *ret = NULL;
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
     if (priv->error)
         ret = g_error_copy (priv->error);
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
     return ret;
 }
@@ -372,7 +373,7 @@ transform_run (YelpTransform *transform)
 
     priv->stylesheet = xsltParseStylesheetFile (BAD_CAST (priv->stylesheet_file));
     if (priv->stylesheet == NULL) {
-        g_mutex_lock (priv->mutex);
+        g_mutex_lock (&priv->mutex);
         if (priv->error)
             g_error_free (priv->error);
         priv->error = g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,
@@ -380,14 +381,14 @@ transform_run (YelpTransform *transform)
                                    priv->stylesheet_file);
         g_object_ref (transform);
         g_idle_add ((GSourceFunc) transform_error, transform);
-        g_mutex_unlock (priv->mutex);
+        g_mutex_unlock (&priv->mutex);
         return;
     }
 
     priv->context = xsltNewTransformContext (priv->stylesheet,
                                              priv->input);
     if (priv->context == NULL) {
-        g_mutex_lock (priv->mutex);
+        g_mutex_lock (&priv->mutex);
         if (priv->error)
             g_error_free (priv->error);
         priv->error = g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,
@@ -395,7 +396,7 @@ transform_run (YelpTransform *transform)
                                    priv->stylesheet_file);
         g_object_ref (transform);
         g_idle_add ((GSourceFunc) transform_error, transform);
-        g_mutex_unlock (priv->mutex);
+        g_mutex_unlock (&priv->mutex);
         return;
     }
 
@@ -418,14 +419,14 @@ transform_run (YelpTransform *transform)
                                             (const char **) priv->params,
                                             NULL, NULL,
                                             priv->context);
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
     priv->running = FALSE;
     if (!priv->cancelled) {
         g_idle_add ((GSourceFunc) transform_final, transform);
-        g_mutex_unlock (priv->mutex);
+        g_mutex_unlock (&priv->mutex);
     }
     else {
-        g_mutex_unlock (priv->mutex);
+        g_mutex_unlock (&priv->mutex);
         g_object_unref (transform);
     }
 }
@@ -561,7 +562,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     ctxt->output     = old_doc;
     ctxt->insert     = old_insert;
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
 
     temp = g_strdup ((gchar *) page_id);
     xmlFree (page_id);
@@ -572,7 +573,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
     g_object_ref (transform);
     g_idle_add ((GSourceFunc) transform_chunk, transform);
 
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
  done:
     if (new_doc)

@@ -301,8 +301,9 @@ resolve_start (YelpUri *uri)
 
     if (priv->resolver == NULL) {
         g_object_ref (uri);
-        priv->resolver = g_thread_create ((GThreadFunc) resolve_async,
-                                          uri, FALSE, NULL);
+        priv->resolver = g_thread_new ("uri-resolve",
+                                       (GThreadFunc) resolve_async,
+                                       uri);
     }
 }
 

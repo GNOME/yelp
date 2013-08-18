@@ -123,7 +123,7 @@ struct _YelpMallardDocumentPrivate {
     YelpUri       *uri;
     MallardState   state;
 
-    GMutex        *mutex;
+    GMutex         mutex;
     GThread       *thread;
     gboolean       thread_running;
     GThread       *index;
@@ -162,7 +162,7 @@ yelp_mallard_document_init (YelpMallardDocument *mallard)
     YelpMallardDocumentPrivate *priv = GET_PRIV (mallard);
     xmlNodePtr cur;
 
-    priv->mutex = g_mutex_new ();
+    g_mutex_init (&priv->mutex);
 
     priv->thread_running = FALSE;
     priv->index_running = FALSE;
@@ -202,7 +202,7 @@ yelp_mallard_document_finalize (GObject *object)
     YelpMallardDocumentPrivate *priv = GET_PRIV (object);
 
     g_object_unref (priv->uri);
-    g_mutex_free (priv->mutex);
+    g_mutex_clear (&priv->mutex);
     g_hash_table_destroy (priv->pages_hash);
 
     xmlFreeDoc (priv->cache);
@@ -282,14 +282,15 @@ mallard_request_page (YelpDocument         *document,
         return TRUE;
     }
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
 
     if (priv->state == MALLARD_STATE_BLANK) {
         priv->state = MALLARD_STATE_THINKING;
         priv->thread_running = TRUE;
         g_object_ref (document);
-        priv->thread = g_thread_create ((GThreadFunc) mallard_think,
-                                        document, FALSE, NULL);
+        priv->thread = g_thread_new ("mallard-page",
+                                     (GThreadFunc) mallard_think,
+                                     document);
     }
 
     switch (priv->state) {
@@ -313,7 +314,7 @@ mallard_request_page (YelpDocument         *document,
 	break;
     }
 
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
     return FALSE;
 }
@@ -379,7 +380,7 @@ mallard_think (YelpMallardDocument *mallard)
                 mallard_page_data_free (page_data);
             }
             else {
-                g_mutex_lock (priv->mutex);
+                g_mutex_lock (&priv->mutex);
                 yelp_document_set_root_id ((YelpDocument *) mallard,
                                            page_data->page_id, "index");
                 yelp_document_set_page_id ((YelpDocument *) mallard,
@@ -403,7 +404,7 @@ mallard_think (YelpMallardDocument *mallard)
                                       page_data->page_id,
                                       YELP_DOCUMENT_SIGNAL_INFO,
                                       NULL);
-                g_mutex_unlock (priv->mutex);
+                g_mutex_unlock (&priv->mutex);
             }
             g_object_unref (pagefile);
             g_free (filename);
@@ -412,7 +413,7 @@ mallard_think (YelpMallardDocument *mallard)
     }
     g_strfreev (path);
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
     priv->state = MALLARD_STATE_IDLE;
     while (priv->pending) {
         gchar *page_id = (gchar *) priv->pending->data;
@@ -420,7 +421,7 @@ mallard_think (YelpMallardDocument *mallard)
         g_free (page_id);
         priv->pending = g_slist_delete_link (priv->pending, priv->pending);
     }
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 
  done:
     g_object_unref (children);
@@ -1098,8 +1099,9 @@ mallard_index (YelpDocument *document)
 
     priv = GET_PRIV (document);
     g_object_ref (document);
-    priv->index = g_thread_create ((GThreadFunc) mallard_index_threaded,
-                                   document, FALSE, NULL);
+    priv->index = g_thread_new ("mallard-index",
+                                (GThreadFunc) mallard_index_threaded,
+                                document);
     priv->index_running = TRUE;
 }
 
@@ -1121,7 +1123,7 @@ mallard_monitor_changed (GFileMonitor         *monitor,
     if (priv->thread_running)
         return;
 
-    g_mutex_lock (priv->mutex);
+    g_mutex_lock (&priv->mutex);
 
     g_hash_table_remove_all (priv->pages_hash);
     g_object_set (mallard, "indexed", FALSE, NULL);
@@ -1145,8 +1147,9 @@ mallard_monitor_changed (GFileMonitor         *monitor,
     priv->state = MALLARD_STATE_THINKING;
     priv->thread_running = TRUE;
     g_object_ref (mallard);
-    priv->thread = g_thread_create ((GThreadFunc) mallard_think,
-                                    mallard, FALSE, NULL);
+    priv->thread = g_thread_new ("mallard-reload",
+                                 (GThreadFunc) mallard_think,
+                                 mallard);
 
-    g_mutex_unlock (priv->mutex);
+    g_mutex_unlock (&priv->mutex);
 }
