@@ -89,11 +89,6 @@ static void           transform_error           (YelpTransform        *transform
 static void           transform_finalized       (YelpDocbookDocument  *docbook,
                                                  gpointer              transform);
 
-/* FIXME */
-#if 0
-/* static gpointer       docbook_get_sections    (YelpDocument        *document); */
-#endif
-
 G_DEFINE_TYPE (YelpDocbookDocument, yelp_docbook_document, YELP_TYPE_DOCUMENT);
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_DOCBOOK_DOCUMENT, YelpDocbookDocumentPrivate))
 
@@ -116,10 +111,6 @@ struct _YelpDocbookDocumentPrivate {
     guint          chunk_ready;
     guint          finished;
     guint          error;
-
-    /* FIXME: all */
-    GtkTreeModel  *sections;
-    GtkTreeIter   *sections_iter; /* On the stack, do not free */
 
     xmlDocPtr     xmldoc;
     xmlNodePtr    xmlcur;
@@ -165,8 +156,6 @@ yelp_docbook_document_init (YelpDocbookDocument *docbook)
 {
     YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
 
-    priv->sections = NULL;
-
     priv->state = DOCBOOK_STATE_BLANK;
 
     g_mutex_init (&priv->mutex);
@@ -180,11 +169,6 @@ yelp_docbook_document_dispose (GObject *object)
     if (priv->uri) {
         g_object_unref (priv->uri);
         priv->uri = NULL;
-    }
-
-    if (priv->sections) {
-        g_object_unref (priv->sections);
-        priv->sections = NULL;
     }
 
     G_OBJECT_CLASS (yelp_docbook_document_parent_class)->dispose (object);
@@ -226,9 +210,6 @@ yelp_docbook_document_new (YelpUri *uri)
     priv = GET_PRIV (docbook);
 
     priv->uri = g_object_ref (uri);
-
-    priv->sections =
-        GTK_TREE_MODEL (gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_STRING));
 
     return (YelpDocument *) docbook;
 }
@@ -483,8 +464,6 @@ docbook_walk (YelpDocbookDocument *docbook)
     xmlChar     *title = NULL;
     gchar       *old_page_id = NULL;
     xmlNodePtr   cur, old_cur;
-    GtkTreeIter  iter;
-    GtkTreeIter *old_iter = NULL;
     gboolean chunkQ;
     YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
     YelpDocument *document = YELP_DOCUMENT (docbook);
@@ -531,17 +510,6 @@ docbook_walk (YelpDocbookDocument *docbook)
 
         yelp_document_set_page_title (document, (gchar *) id, (gchar *) title);
 
-        gdk_threads_enter ();
-        gtk_tree_store_append (GTK_TREE_STORE (priv->sections),
-                               &iter,
-                               priv->sections_iter);
-        gtk_tree_store_set (GTK_TREE_STORE (priv->sections),
-                            &iter,
-                            DOCBOOK_COLUMN_ID, id,
-                            DOCBOOK_COLUMN_TITLE, title,
-                            -1);
-        gdk_threads_leave ();
-
         if (priv->cur_prev_id) {
             yelp_document_set_prev_id (document, (gchar *) id, priv->cur_prev_id);
             yelp_document_set_next_id (document, priv->cur_prev_id, (gchar *) id);
@@ -553,10 +521,6 @@ docbook_walk (YelpDocbookDocument *docbook)
             yelp_document_set_up_id (document, (gchar *) id, priv->cur_page_id);
         old_page_id = priv->cur_page_id;
         priv->cur_page_id = g_strdup ((gchar *) id);
-
-        old_iter = priv->sections_iter;
-        if (priv->xmlcur->parent->type != XML_DOCUMENT_NODE)
-            priv->sections_iter = &iter;
     }
 
     old_cur = priv->xmlcur;
@@ -581,12 +545,6 @@ docbook_walk (YelpDocbookDocument *docbook)
     }
     priv->cur_depth--;
     priv->xmlcur = old_cur;
-
-    if (chunkQ) {
-        priv->sections_iter = old_iter;
-        g_free (priv->cur_page_id);
-        priv->cur_page_id = old_page_id;
-    }
 
     if (priv->cur_depth == 0) {
         g_free (priv->cur_prev_id);
