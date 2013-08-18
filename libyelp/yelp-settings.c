@@ -823,11 +823,11 @@ yelp_settings_get_all_params (YelpSettings *settings,
 {
     gchar **params;
     gint i, ix;
-    GString *envstr;
+    GString *malstr, *dbstr;
     GList *envs, *envi;
 
     params = g_new0 (gchar *,
-                     (2*YELP_SETTINGS_NUM_COLORS) + (2*YELP_SETTINGS_NUM_ICONS) + extra + 7);
+                     (2*YELP_SETTINGS_NUM_COLORS) + (2*YELP_SETTINGS_NUM_ICONS) + extra + 9);
 
     for (i = 0; i < YELP_SETTINGS_NUM_COLORS; i++) {
         gchar *val;
@@ -854,16 +854,24 @@ yelp_settings_get_all_params (YelpSettings *settings,
     else
         params[ix++] = g_strdup ("false()");
 
-    envstr = g_string_new ("'");
+    malstr = g_string_new ("'");
+    dbstr = g_string_new ("'");
     envs = g_hash_table_get_keys (settings->priv->tokens);
     for (envi = envs; envi != NULL; envi = envi->next) {
-        g_string_append_c (envstr, ' ');
-        g_string_append (envstr, (gchar *) envi->data);
+        g_string_append_c (malstr, ' ');
+        g_string_append (malstr, (gchar *) envi->data);
+        if (g_str_has_prefix ((gchar *) envi->data, "platform:")) {
+            g_string_append_c (dbstr, ';');
+            g_string_append (dbstr, (gchar *) (envi->data + 9));
+        }
     }
-    g_string_append_c (envstr, '\'');
+    g_string_append_c (malstr, '\'');
+    g_string_append_c (dbstr, '\'');
     g_list_free (envs);
     params[ix++] = g_strdup ("mal.if.custom");
-    params[ix++] = g_string_free (envstr, FALSE);
+    params[ix++] = g_string_free (malstr, FALSE);
+    params[ix++] = g_strdup ("db.profile.os");
+    params[ix++] = g_string_free (dbstr, FALSE);
 
     params[ix] = NULL;
 
