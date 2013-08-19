@@ -435,10 +435,10 @@ window_construct (YelpWindow *window)
         g_signal_connect (priv->application, "read-later-changed",
                           G_CALLBACK (app_read_later_changed), window);
 
-    priv->vbox_full = gtk_vbox_new (FALSE, 3);
+    priv->vbox_full = gtk_box_new (GTK_ORIENTATION_VERTICAL, 3);
     gtk_container_add (GTK_CONTAINER (window), priv->vbox_full);
 
-    priv->vbox_view = gtk_vbox_new (FALSE, 0);
+    priv->vbox_view = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start (GTK_BOX (priv->vbox_full), priv->vbox_view, TRUE, TRUE, 0);
 
     priv->action_group = gtk_action_group_new ("YelpWindowActions");
@@ -470,7 +470,7 @@ window_construct (YelpWindow *window)
         g_signal_connect (priv->application, "bookmarks-changed",
                           G_CALLBACK (app_bookmarks_changed), window);
 
-    priv->hbox = gtk_hbox_new (FALSE, 0);
+    priv->hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     g_object_set (priv->hbox, "border-width", 2, NULL);
     gtk_box_pack_start (GTK_BOX (priv->vbox_view), priv->hbox, FALSE, FALSE, 0);
 
@@ -517,7 +517,7 @@ window_construct (YelpWindow *window)
                                          GTK_SHADOW_IN);
     gtk_box_pack_start (GTK_BOX (priv->vbox_view), scroll, TRUE, TRUE, 0);
 
-    priv->find_bar = g_object_ref_sink (gtk_hbox_new (FALSE, 6));
+    priv->find_bar = g_object_ref_sink (gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6));
     g_object_set (priv->find_bar,
                   "border-width", 2,
                   "margin-right", 16,
@@ -541,7 +541,7 @@ window_construct (YelpWindow *window)
     gtk_box_pack_start (GTK_BOX (priv->find_bar), priv->find_label, FALSE, FALSE, 0);
 
     priv->read_later = g_object_ref_sink (gtk_info_bar_new ());
-    vbox = gtk_vbox_new (FALSE, 0);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     color = yelp_settings_get_color (yelp_settings_get_default (),
                                      YELP_SETTINGS_COLOR_TEXT_LIGHT);
     text = g_markup_printf_escaped ("<span weight='bold' color='%s'>%s</span>",
@@ -554,7 +554,7 @@ window_construct (YelpWindow *window)
     gtk_box_pack_start (GTK_BOX (gtk_info_bar_get_content_area (GTK_INFO_BAR (priv->read_later))),
                         vbox,
                         FALSE, FALSE, 0);
-    priv->read_later_vbox = gtk_vbox_new (FALSE, 0);
+    priv->read_later_vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start (GTK_BOX (vbox), priv->read_later_vbox, FALSE, FALSE, 0);
 
     g_signal_connect (priv->view, "new-view-requested", G_CALLBACK (view_new_window), window);
