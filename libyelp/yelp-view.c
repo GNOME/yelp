@@ -1056,7 +1056,7 @@ popup_send_image (GtkMenuItem *item,
     YelpViewPrivate *priv = GET_PRIV (view);
 
     command = g_strdup_printf ("%s %s", nautilus_sendto, priv->popup_image_uri);
-    context = (GAppLaunchContext *) gdk_app_launch_context_new ();
+    context = (GAppLaunchContext *) gdk_display_get_app_launch_context (gtk_widget_get_display (GTK_WIDGET (item)));
 
     app = g_app_info_create_from_commandline (command, NULL, 0, &error);
     if (app) {
