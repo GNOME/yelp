@@ -1,5 +1,5 @@
 # Irish translations for yelp package.
-# Copyright (C) 2003-2009 Free Software Foundation, Inc.
+# Copyright (C) 2003-2013 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 # Paul Duffy <dubhthach@frink.nuigalway.ie>, 2003.
 # Alastair McKinstry <mckinstry@computer.org>, 2004.
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-28 16:25-0600\n"
-"PO-Revision-Date: 2013-08-28 16:35-0600\n"
+"POT-Creation-Date: 2013-08-30 14:43-0600\n"
+"PO-Revision-Date: 2013-08-30 14:52-0600\n"
 "Last-Translator: Seán de Búrca <leftmostcat@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga\n"
@@ -41,7 +41,6 @@ msgstr ""
 
 #: ../libyelp/yelp-bz2-decompressor.c:152
 #: ../libyelp/yelp-lzma-decompressor.c:161
-#, fuzzy
 msgid "Not enough memory"
 msgstr "Cuimhne ídithe"
 
@@ -54,15 +53,15 @@ msgstr ""
 
 #: ../libyelp/yelp-docbook-document.c:299 ../libyelp/yelp-info-document.c:373
 #: ../libyelp/yelp-man-document.c:418
-#, fuzzy, c-format
+#, c-format
 msgid "The file does not exist."
-msgstr "Níl an chomhadlann '%s' ann."
+msgstr "Níl an comhad ann."
 
 #: ../libyelp/yelp-docbook-document.c:309 ../libyelp/yelp-info-document.c:383
 #: ../libyelp/yelp-man-document.c:428
 #, c-format
 msgid "The file ‘%s’ does not exist."
-msgstr ""
+msgstr "Níl an comhad ‘%s’ ann."
 
 #: ../libyelp/yelp-docbook-document.c:324
 #, c-format
@@ -90,16 +89,15 @@ msgstr ""
 
 #: ../libyelp/yelp-document.c:268
 msgid "Indexed"
-msgstr ""
+msgstr "Innéacsaithe"
 
 #: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr ""
 
 #: ../libyelp/yelp-document.c:277
-#, fuzzy
 msgid "Document URI"
-msgstr "Rannáin Cáipéise"
+msgstr "URI Cáipéise"
 
 #: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
@@ -108,21 +106,21 @@ msgstr ""
 #: ../libyelp/yelp-document.c:994
 #, c-format
 msgid "Search results for “%s”"
-msgstr ""
+msgstr "Torthaí cuardaigh le haghaidh “%s”"
 
 #: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
-msgstr ""
+msgstr "Níor aimsíodh aon leathanach cabhrach i “%s”."
 
 #: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
-msgstr ""
+msgstr "Níor aimsíodh aon leathanach cabhrach."
 
 #: ../libyelp/yelp-error.c:37
 #, c-format
 msgid "An unknown error occurred."
-msgstr ""
+msgstr "Tharla earráid anaithnid."
 
 #: ../libyelp/yelp-help-list.c:550 ../libyelp/yelp-help-list.c:559
 msgid "All Help Documents"
@@ -135,9 +133,8 @@ msgid ""
 msgstr ""
 
 #: ../libyelp/yelp-location-entry.c:336
-#, fuzzy
 msgid "View"
-msgstr "Amharcán"
+msgstr "Amharc"
 
 #: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
@@ -153,40 +150,36 @@ msgstr ""
 
 #: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
-msgstr ""
+msgstr "Cumasaigh Cuardach"
 
 #: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
 msgstr ""
 
 #: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
-#, fuzzy
 msgid "Search..."
-msgstr "Cuar_daigh:"
+msgstr "Cuardaigh..."
 
 #: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr ""
 
 #: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
-#, fuzzy
 msgid "Bookmark this page"
-msgstr "Leabharmharcanna"
+msgstr "Cruthaigh leabharmharc don leathanach seo"
 
 #: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
-#, fuzzy
 msgid "Remove bookmark"
-msgstr "Bain Leabharmharc"
+msgstr "Bain leabharmharc"
 
 #: ../libyelp/yelp-location-entry.c:1154
 #, c-format
 msgid "Search for “%s”"
-msgstr ""
+msgstr "Déan cuardach ar “%s”"
 
 #: ../libyelp/yelp-location-entry.c:1458
-#, fuzzy
 msgid "Loading"
-msgstr "Á Luchtú..."
+msgstr "Á luchtú"
 
 #: ../libyelp/yelp-mallard-document.c:346
 #, c-format
@@ -203,7 +196,7 @@ msgstr ""
 
 #: ../libyelp/yelp-settings.c:165
 msgid "GtkIconTheme"
-msgstr ""
+msgstr "GtkIconTheme"
 
 #: ../libyelp/yelp-settings.c:166
 msgid "A GtkIconTheme object to get icons from"
@@ -243,9 +236,8 @@ msgid "The filename of the sqlite database"
 msgstr ""
 
 #: ../libyelp/yelp-transform.c:171
-#, fuzzy
 msgid "XSLT Stylesheet"
-msgstr "Stílbhileog Neamhbhailí"
+msgstr "Stílbhileog XSLT"
 
 #: ../libyelp/yelp-transform.c:172
 msgid "The location of the XSLT stylesheet"
@@ -357,21 +349,19 @@ msgstr ""
 #: ../libyelp/yelp-view.c:1272
 #, c-format
 msgid "Send email to %s"
-msgstr ""
+msgstr "Seol ríomhphost chuig %s"
 
 #: ../libyelp/yelp-view.c:1287
-#, fuzzy
 msgid "_Install Packages"
-msgstr "Leathanaigh Lámhleabhair"
+msgstr "_Suiteáil Pacáistí"
 
 #: ../libyelp/yelp-view.c:1295
 msgid "_Open Link"
 msgstr "_Oscail Nasc"
 
 #: ../libyelp/yelp-view.c:1302
-#, fuzzy
 msgid "_Copy Link Location"
-msgstr "Oscail Suíomh"
+msgstr "_Cóipeáil Suíomh an Naisc"
 
 #: ../libyelp/yelp-view.c:1308
 msgid "Open Link in New _Window"
@@ -379,24 +369,23 @@ msgstr "Oscail Nasc i bh_Fuinneog Nua"
 
 #: ../libyelp/yelp-view.c:1360
 msgid "_Save Image As..."
-msgstr ""
+msgstr "_Sábháil Íomhá Mar..."
 
 #: ../libyelp/yelp-view.c:1362
 msgid "_Save Video As..."
-msgstr ""
+msgstr "_Sábháil Físeán Mar..."
 
 #: ../libyelp/yelp-view.c:1369
 msgid "S_end Image To..."
-msgstr ""
+msgstr "S_eol Íomhá Chuig..."
 
 #: ../libyelp/yelp-view.c:1371
 msgid "S_end Video To..."
-msgstr ""
+msgstr "S_eol Físeán Chuig..."
 
 #: ../libyelp/yelp-view.c:1382
-#, fuzzy
 msgid "_Copy Text"
-msgstr "_Cóipeáil"
+msgstr "_Cóipeáil Téacs"
 
 #: ../libyelp/yelp-view.c:1395
 msgid "C_opy Code Block"
@@ -430,9 +419,8 @@ msgid "Page Not Found"
 msgstr "Leathanach gan Aimsiú"
 
 #: ../libyelp/yelp-view.c:1714
-#, fuzzy
 msgid "Cannot Read"
-msgstr "Ní féidir fuinneog a chruthú"
+msgstr "Ní Féidir Léamh"
 
 #: ../libyelp/yelp-view.c:1720
 msgid "Unknown Error"
@@ -501,7 +489,7 @@ msgstr "_Téigh"
 
 #: ../src/yelp-window.c:239
 msgid "_Bookmarks"
-msgstr "_Leabharmharcanna"
+msgstr "Lea_bharmharcanna"
 
 #: ../src/yelp-window.c:242
 msgid "_New Window"
@@ -541,7 +529,7 @@ msgstr ""
 
 #: ../src/yelp-window.c:429
 msgid "Read Link _Later"
-msgstr ""
+msgstr "Léigh Nasc ar _Ball"
 
 #: ../src/yelp-window.c:526
 msgid "Find:"
@@ -549,7 +537,7 @@ msgstr "Aimsigh:"
 
 #: ../src/yelp-window.c:548
 msgid "Read Later"
-msgstr ""
+msgstr "Léigh ar Ball"
 
 #: ../src/yelp-window.c:1180
 #, c-format
