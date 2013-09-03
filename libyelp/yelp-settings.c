@@ -320,12 +320,16 @@ yelp_settings_constructed (GObject *object)
     if (env_classic)
         yelp_settings_set_if_token (settings, "platform:gnome-classic");
 
-    if (env_shell)
+    /* order is important:
+       gnome-shell also provides org.gnome.Panel
+       unity also provides org.gnome.Shell
+     */
+    if (env_unity)
+        yelp_settings_set_if_token (settings, "platform:unity");
+    else if (env_shell)
         yelp_settings_set_if_token (settings, "platform:gnome-shell");
     else if (env_xfce)
         yelp_settings_set_if_token (settings, "platform:xfce");
-    else if (env_unity)
-        yelp_settings_set_if_token (settings, "platform:unity");
     else if (env_panel)
         yelp_settings_set_if_token (settings, "platform:gnome-panel");
 
