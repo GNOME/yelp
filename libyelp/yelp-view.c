@@ -26,7 +26,9 @@
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
+#endif
 #include <webkit/webkit.h>
 
 #include "yelp-debug.h"
@@ -785,8 +787,10 @@ view_install_uri (YelpView    *view,
     gtkwin = gtk_widget_get_toplevel (GTK_WIDGET (view));
     if (gtkwin != NULL && gtk_widget_is_toplevel (gtkwin)) {
         gdkwin = gtk_widget_get_window (gtkwin);
-        if (gdkwin != NULL)
+#ifdef GDK_WINDOWING_X11
+        if (gdkwin != NULL && GDK_IS_X11_WINDOW (gdkwin))
             xid = gdk_x11_window_get_xid (gdkwin);
+#endif
     }
 
     if (priv->state == YELP_VIEW_STATE_ERROR)
