@@ -5,14 +5,15 @@
 # Daniel Șerbănescu <cyber19rider@gmail.com>, 2010.
 # Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2010, 2011.
 # Alexandru Florescu <show_some_originality@yahoo.com>, 2011.
+# Răpițeanu Viorel-Cătălin <rapiteanu.catalin@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ro\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&k"
-"eywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-11 12:04+0000\n"
-"PO-Revision-Date: 2011-03-16 23:37+0200\n"
-"Last-Translator: Lucian Adrian Grijincu <lucian.grijincu@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2013-09-23 18:19+0000\n"
+"PO-Revision-Date: 2013-09-25 00:19+0300\n"
+"Last-Translator: Răpițeanu Viorel-Cătălin <rapiteanu.catalin@gmail.com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -20,856 +21,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Virtaal 0.6.1\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Launchpad-Export-Date: 2008-09-16 21:12+0000\n"
-
-#: ../data/info.xml.in.h:1
-msgid "GNU Info Pages"
-msgstr "Pagini GNU Info"
-
-#: ../data/info.xml.in.h:2
-msgid "Traditional command line help (info)"
-msgstr "Ajutor tradițional pentru linia de comandă (info)"
-
-#: ../data/man.xml.in.h:1
-msgid "Applications"
-msgstr "Aplicații"
-
-#: ../data/man.xml.in.h:2
-msgid "BLT Functions"
-msgstr "Funcții BLT"
-
-#: ../data/man.xml.in.h:3
-msgid "Configuration Files"
-msgstr "Fișiere de configurare"
-
-#: ../data/man.xml.in.h:4
-msgid "Curses Functions"
-msgstr "Funcții curses"
-
-#: ../data/man.xml.in.h:5 ../data/toc.xml.in.h:35
-msgid "Development"
-msgstr "Dezvoltare"
-
-#: ../data/man.xml.in.h:6
-msgid "FORTRAN Functions"
-msgstr "Funcții FORTRAN"
-
-#: ../data/man.xml.in.h:7 ../data/toc.xml.in.h:56
-msgid "Games"
-msgstr "Jocuri"
-
-#: ../data/man.xml.in.h:8
-msgid "Hardware Devices"
-msgstr "Dispozitive hardware"
-
-#: ../data/man.xml.in.h:9
-msgid "Kernel Routines"
-msgstr "Rutine kernel"
-
-#: ../data/man.xml.in.h:10
-msgid "Manual Pages"
-msgstr "Pagini de manual"
-
-#: ../data/man.xml.in.h:11
-msgid "Network Audio Sound Functions"
-msgstr "Funcții sunet de rețea"
-
-#: ../data/man.xml.in.h:12
-msgid "OpenSSL Applications"
-msgstr "Aplicații OpenSSL"
-
-#: ../data/man.xml.in.h:13
-msgid "OpenSSL Configuration"
-msgstr "Configurare OpenSSL"
-
-#: ../data/man.xml.in.h:14
-msgid "OpenSSL Functions"
-msgstr "Funcții OpenSSL"
-
-#: ../data/man.xml.in.h:15
-msgid "OpenSSL Overviews"
-msgstr "Prezentare OpenSSL"
-
-#: ../data/man.xml.in.h:16
-msgid "Overviews"
-msgstr "Prezentări"
-
-#: ../data/man.xml.in.h:17
-msgid "POSIX Functions"
-msgstr "Funcții POSIX"
-
-#: ../data/man.xml.in.h:18
-msgid "POSIX Headers"
-msgstr "Fișiere antet POSIX"
-
-#: ../data/man.xml.in.h:19
-msgid "Perl Functions"
-msgstr "Funcții Perl"
-
-#: ../data/man.xml.in.h:20
-msgid "Qt Functions"
-msgstr "Funcții Qt"
-
-#: ../data/man.xml.in.h:21
-msgid "Readline Functions"
-msgstr "Funcții Readline"
-
-#: ../data/man.xml.in.h:22
-msgid "Section 0p"
-msgstr "Secțiunea 0p"
-
-#: ../data/man.xml.in.h:23
-msgid "Section 1m"
-msgstr "Secțiunea 1m"
-
-#: ../data/man.xml.in.h:24
-msgid "Section 1ssl"
-msgstr "Secțiunea 1ssl"
-
-#: ../data/man.xml.in.h:25
-msgid "Section 1x"
-msgstr "Secțiunea 1x"
-
-#: ../data/man.xml.in.h:26
-msgid "Section 2"
-msgstr "Secțiunea 2"
-
-#: ../data/man.xml.in.h:27
-msgid "Section 3blt"
-msgstr "Secțiunea 3blt"
-
-#: ../data/man.xml.in.h:28
-msgid "Section 3f"
-msgstr "Secțiunea 3f"
-
-#: ../data/man.xml.in.h:29
-msgid "Section 3nas"
-msgstr "Secțiunea 3nas"
-
-#: ../data/man.xml.in.h:30
-msgid "Section 3p"
-msgstr "Secțiunea 3p"
-
-#: ../data/man.xml.in.h:31
-msgid "Section 3qt"
-msgstr "Secțiunea 3tq"
-
-#: ../data/man.xml.in.h:32
-msgid "Section 3readline"
-msgstr "Secțiunea 3readline"
-
-#: ../data/man.xml.in.h:33
-msgid "Section 3ssl"
-msgstr "Secțiunea 3ssl"
-
-#: ../data/man.xml.in.h:34
-msgid "Section 3tiff"
-msgstr "Secțiunea 3tiff"
-
-#: ../data/man.xml.in.h:35
-msgid "Section 4"
-msgstr "Secțiunea 4"
-
-#: ../data/man.xml.in.h:36
-msgid "Section 4x"
-msgstr "Secțiunea 4x"
-
-#: ../data/man.xml.in.h:37
-msgid "Section 5"
-msgstr "Secțiunea 5"
-
-#: ../data/man.xml.in.h:38
-msgid "Section 5ssl"
-msgstr "Secțiunea 5ssl"
-
-#: ../data/man.xml.in.h:39
-msgid "Section 5x"
-msgstr "Secțiunea 5x"
-
-#: ../data/man.xml.in.h:40
-msgid "Section 6"
-msgstr "Secțiunea 6"
-
-#: ../data/man.xml.in.h:41
-msgid "Section 6x"
-msgstr "Secțiunea 6x"
-
-#: ../data/man.xml.in.h:42
-msgid "Section 7ssl"
-msgstr "Secțiunea 7ssl"
-
-#: ../data/man.xml.in.h:43
-msgid "Section 7x"
-msgstr "Secțiunea 7x"
-
-#: ../data/man.xml.in.h:44
-msgid "Section 9"
-msgstr "Secțiunea 9"
-
-#: ../data/man.xml.in.h:45
-msgid "Sections 1, 1p, 1g and 1t"
-msgstr "Secțiunile 1, 1p, 1g și 1t"
-
-#: ../data/man.xml.in.h:46
-msgid "Sections 3, 3o, and 3t"
-msgstr "Secțiunile 3, 3o și 3t"
-
-#: ../data/man.xml.in.h:47
-msgid "Sections 3form and 3menu"
-msgstr "Secțiunile 3form și 3menu"
-
-#: ../data/man.xml.in.h:48
-msgid "Sections 3ncurses and 3curses"
-msgstr "Secțiunile 3ncurses și 3curses"
-
-#: ../data/man.xml.in.h:49
-msgid "Sections 3pm and 3perl"
-msgstr "Secțiunile 3pm și 3perl"
-
-#: ../data/man.xml.in.h:50
-msgid "Sections 3x and 3X11"
-msgstr "Secțiunile 3x și 3X11"
-
-#: ../data/man.xml.in.h:51
-msgid "Sections 7 and 7gcc"
-msgstr "Secțiunile 7 și 7gcc"
-
-#: ../data/man.xml.in.h:52
-msgid "Sections 8 and 8l"
-msgstr "Secțiunile 8 și 8l"
-
-#: ../data/man.xml.in.h:53
-msgid "System Administration"
-msgstr "Administrare sistem"
-
-#: ../data/man.xml.in.h:54
-msgid "System Calls"
-msgstr "Apeluri de sistem"
-
-#: ../data/man.xml.in.h:55
-msgid "System V Form/Menu Functions"
-msgstr "Funcțiile System V Form/Menu"
-
-#: ../data/man.xml.in.h:56
-msgid "TIFF Functions"
-msgstr "Funcții TIFF"
-
-#: ../data/man.xml.in.h:57
-msgid "Termcap Applications"
-msgstr "Aplicații Termcap"
-
-#: ../data/man.xml.in.h:58
-msgid "Traditional command line help (man)"
-msgstr "Ajutor clasic pentru linia de comandă (man)"
-
-#: ../data/man.xml.in.h:59
-msgid "X11 Applications"
-msgstr "Aplicații X11"
-
-#: ../data/man.xml.in.h:60
-msgid "X11 Configuration"
-msgstr "Configurare X11"
-
-#: ../data/man.xml.in.h:61
-msgid "X11 Devices"
-msgstr "Dispozitive X11"
-
-#: ../data/man.xml.in.h:62
-msgid "X11 Functions"
-msgstr "Funcții X11"
-
-#: ../data/man.xml.in.h:63
-msgid "X11 Games"
-msgstr "Jocuri X11"
-
-#: ../data/man.xml.in.h:64
-msgid "X11 Overviews"
-msgstr "Prezentare X11"
-
-#: ../data/toc.xml.in.h:1
-msgid "2D Graphics"
-msgstr "Grafică 2D"
-
-#: ../data/toc.xml.in.h:2
-msgid "3D Graphics"
-msgstr "Grafică 3D"
-
-#: ../data/toc.xml.in.h:3
-msgid "Accessibility"
-msgstr "Accesibilitate"
-
-#: ../data/toc.xml.in.h:4
-msgid "Action Games"
-msgstr "Jocuri de acțiune"
-
-#: ../data/toc.xml.in.h:5
-msgid "Adventure Games"
-msgstr "Jocuri de aventură"
-
-#: ../data/toc.xml.in.h:6
-msgid "Amusement"
-msgstr "Divertisment"
-
-#: ../data/toc.xml.in.h:7
-msgid "Applications for viewing and manipulating graphics"
-msgstr "Aplicații de grafică"
-
-#: ../data/toc.xml.in.h:8
-msgid "Applications related to audio and video"
-msgstr "Aplicații audio și video"
-
-#: ../data/toc.xml.in.h:9
-msgid "Applications that teach or aid in learning"
-msgstr "Aplicații educative"
-
-#: ../data/toc.xml.in.h:10
-msgid "Arcade Games"
-msgstr "Jocuri tip „arcade”"
-
-#: ../data/toc.xml.in.h:11
-msgid "Archiving Tools"
-msgstr "Utilitare de arhivare"
-
-#: ../data/toc.xml.in.h:12
-msgid "Art"
-msgstr "Artă"
-
-#: ../data/toc.xml.in.h:13
-msgid "Artificial Intelligence"
-msgstr "Inteligență artificială"
-
-#: ../data/toc.xml.in.h:14
-msgid "Astronomy"
-msgstr "Astronomie"
-
-#: ../data/toc.xml.in.h:15
-msgid "Biology"
-msgstr "Biologie"
-
-#: ../data/toc.xml.in.h:16
-msgid "Blocks Games"
-msgstr "Jocuri cu blocuri"
-
-#: ../data/toc.xml.in.h:17
-msgid "Board Games"
-msgstr "Jocuri de table"
-
-#: ../data/toc.xml.in.h:18
-msgid "Building"
-msgstr "Construire"
-
-#: ../data/toc.xml.in.h:19
-msgid "Calculator"
-msgstr "Calculator"
-
-#: ../data/toc.xml.in.h:20
-msgid "Calendar"
-msgstr "Calendar"
-
-#: ../data/toc.xml.in.h:21
-msgid "Card Games"
-msgstr "Jocuri de cărți"
-
-#: ../data/toc.xml.in.h:22
-msgid "Charting Tools"
-msgstr "Unelte pentru diagrame"
-
-#: ../data/toc.xml.in.h:23
-msgid "Chat"
-msgstr "Discuții"
-
-#: ../data/toc.xml.in.h:24
-msgid "Chemistry"
-msgstr "Chimie"
-
-#: ../data/toc.xml.in.h:25
-msgid "Clocks"
-msgstr "Ceasuri"
-
-#: ../data/toc.xml.in.h:26
-msgid "Compression Tools"
-msgstr "Unelte de arhivare"
-
-#: ../data/toc.xml.in.h:27
-msgid "Computer Science"
-msgstr "Informatică"
-
-#: ../data/toc.xml.in.h:28
-msgid "Construction"
-msgstr "Construcții"
-
-#: ../data/toc.xml.in.h:29
-msgid "Contact Management"
-msgstr "Management contacte"
-
-#: ../data/toc.xml.in.h:30
-msgid "Data Visualization"
-msgstr "Vizualizare date"
-
-#: ../data/toc.xml.in.h:31
-msgid "Databases"
-msgstr "Baze de date"
-
-#: ../data/toc.xml.in.h:32
-msgid "Debuggers"
-msgstr "Depanatoare"
-
-#: ../data/toc.xml.in.h:33
-msgid "Desktop"
-msgstr "Desktop"
-
-#: ../data/toc.xml.in.h:34
-msgid "Desktop Settings"
-msgstr "Opțiuni desktop"
-
-#: ../data/toc.xml.in.h:36
-msgid "Dialup"
-msgstr "Dialup"
-
-#: ../data/toc.xml.in.h:37
-msgid "Dictionaries"
-msgstr "Dicționare"
-
-#. Translators: this is a menu title for burning audio and video to dics
-#: ../data/toc.xml.in.h:39
-msgid "Disc Burning"
-msgstr "Inscripționare discuri"
-
-#: ../data/toc.xml.in.h:40
-msgid "Economy"
-msgstr "Economie"
-
-#: ../data/toc.xml.in.h:41
-msgid "Education"
-msgstr "Educație"
-
-#: ../data/toc.xml.in.h:42
-msgid "Electricity"
-msgstr "Electricitate"
-
-#: ../data/toc.xml.in.h:43
-msgid "Electronics"
-msgstr "Electronică"
-
-#: ../data/toc.xml.in.h:44
-msgid "Email Tools"
-msgstr "Clienți de mail"
-
-#: ../data/toc.xml.in.h:45
-msgid "Emulator"
-msgstr "Emulator"
-
-#: ../data/toc.xml.in.h:46
-msgid "Engineering"
-msgstr "Inginerie"
-
-#: ../data/toc.xml.in.h:47
-msgid "File Manager"
-msgstr "Administrator de fișiere"
-
-#: ../data/toc.xml.in.h:48
-msgid "File Tools"
-msgstr "Utilitare pentru fișiere"
-
-#: ../data/toc.xml.in.h:49
-msgid "File Transfer"
-msgstr "Transfer de fișiere"
-
-#: ../data/toc.xml.in.h:50
-msgid "Filesystem"
-msgstr "Sistem de fișiere"
-
-#: ../data/toc.xml.in.h:51
-msgid "Financial Tools"
-msgstr "Utilitare financiare"
-
-#: ../data/toc.xml.in.h:52
-msgid "Flow Charting Tools"
-msgstr "Unelte pentru scheme logice"
-
-#: ../data/toc.xml.in.h:53
-msgid "GNOME Applications"
-msgstr "Aplicații GNOME"
-
-#: ../data/toc.xml.in.h:54
-msgid "GTK"
-msgstr "GTK"
-
-#: ../data/toc.xml.in.h:55
-msgid "GUI Designers"
-msgstr "Aplicații pentru proiectarea interfețelor grafice"
-
-#: ../data/toc.xml.in.h:57
-msgid "Generic applications for the GNOME environment"
-msgstr "Aplicații generice pentru mediul GNOME"
-
-#: ../data/toc.xml.in.h:58
-msgid "Generic applications for the KDE environment"
-msgstr "Aplicații generice pentru mediul KDE"
-
-#: ../data/toc.xml.in.h:59
-msgid "Geography"
-msgstr "Geografie"
-
-#: ../data/toc.xml.in.h:60
-msgid "Geology"
-msgstr "Geologie"
-
-#: ../data/toc.xml.in.h:61
-msgid "Geoscience"
-msgstr "Geoștiințe"
-
-#: ../data/toc.xml.in.h:62
-msgid "Graphics"
-msgstr "Grafică"
-
-#: ../data/toc.xml.in.h:63
-msgid "Guides and manuals for applications that connect to the outside world"
-msgstr "Ghiduri și manuale pentru aplicații de comunicare"
-
-#: ../data/toc.xml.in.h:64
-msgid "Guides for getting involved in development"
-msgstr "Ghiduri pentru programatori"
-
-#: ../data/toc.xml.in.h:65
-msgid "Ham Radio"
-msgstr "Radio-amatori"
-
-#: ../data/toc.xml.in.h:66
-msgid "Hardware Settings"
-msgstr "Configurări hardware"
-
-#: ../data/toc.xml.in.h:67
-msgid "Have some fun"
-msgstr "Divertisment"
-
-#: ../data/toc.xml.in.h:68
-msgid "History"
-msgstr "Istorie"
-
-#: ../data/toc.xml.in.h:69
-msgid "IDEs"
-msgstr "IDE-uri"
-
-#: ../data/toc.xml.in.h:70
-msgid "IRC Clients"
-msgstr "Clienți IRC"
-
-#: ../data/toc.xml.in.h:71
-msgid "Image Processing"
-msgstr "Procesare de imagini"
-
-#: ../data/toc.xml.in.h:72
-msgid "Instant Messaging"
-msgstr "Mesagerie instant"
-
-#: ../data/toc.xml.in.h:73
-msgid "Internet"
-msgstr "Internet"
-
-#: ../data/toc.xml.in.h:74
-msgid "Java"
-msgstr "Java"
-
-#: ../data/toc.xml.in.h:75
-msgid "KDE Applications"
-msgstr "Aplicații KDE"
-
-#: ../data/toc.xml.in.h:76
-msgid "Kids Games"
-msgstr "Jocuri pentru copii"
-
-#: ../data/toc.xml.in.h:77
-msgid ""
-"Learn more about making your system more accessible for a range of "
-"disabilities"
-msgstr ""
-"Informații despre tehnologiile de asistență pentru persoanele cu anumite "
-"dizabilități"
-
-#: ../data/toc.xml.in.h:78
-msgid "Licenses"
-msgstr "Licențe"
-
-#: ../data/toc.xml.in.h:79
-msgid "Literature"
-msgstr "Literatură"
-
-#: ../data/toc.xml.in.h:80
-msgid "Logic Games"
-msgstr "Jocuri de logică"
-
-#: ../data/toc.xml.in.h:81
-msgid "Math"
-msgstr "Matematică"
-
-#: ../data/toc.xml.in.h:82
-msgid "Medical Software"
-msgstr "Aplicații medicale"
-
-#: ../data/toc.xml.in.h:83
-msgid "Midi"
-msgstr "Midi"
-
-#: ../data/toc.xml.in.h:84
-msgid "Miscellaneous Documentation"
-msgstr "Documentații diverse"
-
-#: ../data/toc.xml.in.h:85
-msgid "Mixers"
-msgstr "Mixere"
-
-#: ../data/toc.xml.in.h:86
-msgid "Monitor"
-msgstr "Monitor"
-
-#: ../data/toc.xml.in.h:87
-msgid "Motif"
-msgstr "Motif"
-
-#: ../data/toc.xml.in.h:88
-msgid "Music"
-msgstr "Muzică"
-
-#: ../data/toc.xml.in.h:89
-msgid "News"
-msgstr "Noutăți"
-
-#: ../data/toc.xml.in.h:90
-msgid "Numerical Analysis"
-msgstr "Analiză numerică"
-
-#: ../data/toc.xml.in.h:91
-msgid "OCR"
-msgstr "OCR"
-
-#: ../data/toc.xml.in.h:92
-msgid "Office Applications"
-msgstr "Aplicații de birou"
-
-#: ../data/toc.xml.in.h:93
-msgid "Office applications"
-msgstr "Aplicații de birou"
-
-#: ../data/toc.xml.in.h:94
-msgid "Other Documentation"
-msgstr "Alte documentații"
-
-#: ../data/toc.xml.in.h:95
-msgid "P2P"
-msgstr "P2P"
-
-#: ../data/toc.xml.in.h:96
-msgid "PDA Communication"
-msgstr "Comunicare PDA"
-
-#: ../data/toc.xml.in.h:97
-msgid "Package Manager"
-msgstr "Administrator de pachete"
-
-#: ../data/toc.xml.in.h:98
-msgid "Parallel Computing"
-msgstr "Calcul paralel"
-
-#: ../data/toc.xml.in.h:99
-msgid "Photography"
-msgstr "Fotografie"
-
-#: ../data/toc.xml.in.h:100
-msgid "Physics"
-msgstr "Fizică"
-
-#. Translators: this is a menu title for audio and video players
-#: ../data/toc.xml.in.h:102
-msgid "Players"
-msgstr "Redare multimedia"
-
-#: ../data/toc.xml.in.h:103
-msgid "Presentation Tools"
-msgstr "Aplicații de prezentare"
-
-#: ../data/toc.xml.in.h:104
-msgid "Printing"
-msgstr "Tipărire"
-
-#: ../data/toc.xml.in.h:105
-msgid "Profiling Tools"
-msgstr "Utilitare pentru analizarea performanțelor"
-
-#: ../data/toc.xml.in.h:106
-msgid "Project Management Tools"
-msgstr "Unelte pentru managementul proiectelor"
-
-#: ../data/toc.xml.in.h:107
-msgid "Publishing"
-msgstr "Editare publicații"
-
-#: ../data/toc.xml.in.h:108
-msgid "Qt"
-msgstr "Qt"
-
-#: ../data/toc.xml.in.h:109
-msgid "Raster Graphics"
-msgstr "Grafică rasterizată"
-
-#. Translators: this is a menu title for audio and video recorders
-#: ../data/toc.xml.in.h:111
-msgid "Recorders"
-msgstr "Înregistrare multimedia"
-
-#: ../data/toc.xml.in.h:112
-msgid "Remote Access"
-msgstr "Acces de la distanță"
-
-#: ../data/toc.xml.in.h:113
-msgid "Revision Control"
-msgstr "Control versiuni"
-
-#: ../data/toc.xml.in.h:114
-msgid "Robotics"
-msgstr "Robotică"
-
-#: ../data/toc.xml.in.h:115
-msgid "Role Playing Games"
-msgstr "Jocuri de tip RPG"
-
-#: ../data/toc.xml.in.h:116
-msgid "Scanning"
-msgstr "Scanare"
-
-#: ../data/toc.xml.in.h:117
-msgid "Science"
-msgstr "Știință"
-
-#: ../data/toc.xml.in.h:118
-msgid "Security"
-msgstr "Securitate"
-
-#: ../data/toc.xml.in.h:119
-msgid "Sequencers"
-msgstr "Sintetizatoare"
-
-#: ../data/toc.xml.in.h:120
-msgid "Settings"
-msgstr "Opțiuni"
-
-#: ../data/toc.xml.in.h:121
-msgid "Settings users can manipulate to make their environment more pleasant"
-msgstr "Opțiuni pe care utilizatorii le pot modifica după bunul plac"
-
-#: ../data/toc.xml.in.h:122
-msgid "Simulation Games"
-msgstr "Jocuri de simulare"
-
-#: ../data/toc.xml.in.h:123
-msgid "Sound"
-msgstr "Sunet"
-
-#: ../data/toc.xml.in.h:124
-msgid "Sound &amp; Video"
-msgstr "Multimedia"
-
-#: ../data/toc.xml.in.h:125
-msgid "Sound &amp; Video Editing"
-msgstr "Editare audio și video"
-
-#: ../data/toc.xml.in.h:126
-msgid "Sports"
-msgstr "Sport"
-
-#: ../data/toc.xml.in.h:127
-msgid "Sports Games"
-msgstr "Jocuri sportive"
-
-#: ../data/toc.xml.in.h:128
-msgid "Spreadsheet Tools"
-msgstr "Utilitare pentru calcul tabelar"
-
-#: ../data/toc.xml.in.h:129
-msgid "Strategy Games"
-msgstr "Jocuri de strategie"
-
-#: ../data/toc.xml.in.h:130
-msgid "System"
-msgstr "Sistem"
-
-#: ../data/toc.xml.in.h:131
-msgid "TV"
-msgstr "TV"
-
-#: ../data/toc.xml.in.h:132
-msgid "Telephony"
-msgstr "Telefonie"
-
-#: ../data/toc.xml.in.h:133
-msgid "Telephony Tools"
-msgstr "Aplicații de telefonie"
-
-#: ../data/toc.xml.in.h:134
-msgid "Terminal Emulator"
-msgstr "Emulator terminal"
-
-#: ../data/toc.xml.in.h:135
-msgid "Text Editors"
-msgstr "Editoare text"
-
-#: ../data/toc.xml.in.h:136
-msgid "Text Tools"
-msgstr "Unelte text"
-
-#: ../data/toc.xml.in.h:137
-msgid "Tools to help you manage your computer"
-msgstr "Utilitare pentru administrarea calculatorului"
-
-#: ../data/toc.xml.in.h:138
-msgid "Translation Tools"
-msgstr "Utilitare pentru traduceri"
-
-#: ../data/toc.xml.in.h:139
-msgid "Tuners"
-msgstr "Tunere"
-
-#: ../data/toc.xml.in.h:140
-msgid "Utilities"
-msgstr "Utilitare"
-
-#: ../data/toc.xml.in.h:141
-msgid "Utilities to help you get work done"
-msgstr "Utilitare care vă ajută să vă faceți treaba"
-
-#: ../data/toc.xml.in.h:142
-msgid "Vector Graphics"
-msgstr "Grafică vectorială"
-
-#: ../data/toc.xml.in.h:143
-msgid "Video"
-msgstr "Video"
-
-#: ../data/toc.xml.in.h:144
-msgid "Video Conference"
-msgstr "Conferință video"
-
-#. Translators: This is a menu title for graphics viewing applications
-#: ../data/toc.xml.in.h:146
-msgid "Viewer"
-msgstr "Aplicații de vizualizare"
-
-#: ../data/toc.xml.in.h:147
-msgid "Web Browser"
-msgstr "Navigator web"
-
-#: ../data/toc.xml.in.h:148
-msgid "Web Development"
-msgstr "Dezvoltare web"
-
-#: ../data/toc.xml.in.h:149
-msgid "Welcome to the GNOME Help Browser"
-msgstr "Bun venit în navigatorul manualelor GNOME"
-
-#: ../data/toc.xml.in.h:150
-msgid "Word Processors"
-msgstr "Procesoare text"
+"X-Project-Style: gnome\n"
+
+#. (itstool) path: msg/msgstr
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <string/> - The package to install
+#.
+#: yelp.xml.in:36
+msgid "Install <string/>"
+msgstr "Instalează <string/>"
 
 #: ../libyelp/yelp-bz2-decompressor.c:146
 #: ../libyelp/yelp-lzma-decompressor.c:155
@@ -881,26 +49,26 @@ msgstr "Date comprimate nevalide"
 msgid "Not enough memory"
 msgstr "Memorie insuficientă"
 
-#: ../libyelp/yelp-docbook-document.c:281 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:270
-#: ../libyelp/yelp-mallard-document.c:422 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:239
+#: ../libyelp/yelp-mallard-document.c:307
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:283
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Nu s-a găsit pagina „%s” în documentul „%s”."
 
-#: ../libyelp/yelp-docbook-document.c:316 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:417
+#: ../libyelp/yelp-docbook-document.c:299 ../libyelp/yelp-info-document.c:373
+#: ../libyelp/yelp-man-document.c:418
 #, c-format
 msgid "The file does not exist."
 msgstr "Fișierul nu există."
 
-#: ../libyelp/yelp-docbook-document.c:326 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:427
+#: ../libyelp/yelp-docbook-document.c:309 ../libyelp/yelp-info-document.c:383
+#: ../libyelp/yelp-man-document.c:428
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Fișierul „%s” nu există."
 
-#: ../libyelp/yelp-docbook-document.c:341
+#: ../libyelp/yelp-docbook-document.c:324
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -909,7 +77,7 @@ msgstr ""
 "Fișierul „%s” nu a putut fi analizat deoarece nu este un document XML bine "
 "formatat."
 
-#: ../libyelp/yelp-docbook-document.c:354
+#: ../libyelp/yelp-docbook-document.c:337
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -918,52 +86,56 @@ msgstr ""
 "Fișierul „%s” nu a putut fi analizat deoarece unul sau mai multe dintre "
 "fișierele pe care le include nu sunt documente XML bine formatate."
 
-#: ../libyelp/yelp-docbook-document.c:763
+#: ../libyelp/yelp-docbook-document.c:724
 msgid "Unknown"
 msgstr "Necunoscută"
 
-#: ../libyelp/yelp-docbook-document.c:824 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:359
+#: ../libyelp/yelp-docbook-document.c:785 ../libyelp/yelp-info-document.c:316
+#: ../libyelp/yelp-man-document.c:360
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Pagina cerută nu a fost găsită în documentul „%s”."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
 msgstr "Indexat"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
 msgstr "Dacă conținutul documentului a fost indexat"
 
-#: ../libyelp/yelp-document.c:275
-#| msgid "_All Documents"
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "URI document"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "URI-ul care identifică documentul"
 
-#: ../libyelp/yelp-document.c:966
+#: ../libyelp/yelp-document.c:994
+#, c-format
+msgid "Search results for “%s”"
+msgstr "Rezultatele căutării pentru „%s”"
+
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Nu s-a găsit nicio pagină de ajutor potrivită în „%s”."
 
-#: ../libyelp/yelp-document.c:972
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "Nu s-a găsit nicio pagină de ajutor potrivită."
 
-#: ../libyelp/yelp-error.c:33
+#: ../libyelp/yelp-error.c:37
 #, c-format
 msgid "An unknown error occurred."
 msgstr "A apărut o eroare necunoscută."
 
-#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:550 ../libyelp/yelp-help-list.c:559
 msgid "All Help Documents"
 msgstr "Toate documentele de ajutor"
 
-#: ../libyelp/yelp-info-document.c:397
+#: ../libyelp/yelp-info-document.c:398
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -971,101 +143,105 @@ msgstr ""
 "Nu s-a putut analiza fișierul „%s” deoarece nu este un document „info” bine "
 "formatat."
 
-#: ../libyelp/yelp-location-entry.c:326
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "Vizualizare"
 
-#: ../libyelp/yelp-location-entry.c:327
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
 msgstr "Un exemplu de control YelpView"
 
-#: ../libyelp/yelp-location-entry.c:342
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "Semne de carte"
 
-#: ../libyelp/yelp-location-entry.c:343
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr "Un exemplu de implementare YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:359
+#: ../libyelp/yelp-location-entry.c:369
 msgid "Enable Search"
 msgstr "Activează căutarea"
 
-#: ../libyelp/yelp-location-entry.c:360
+#: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
 msgstr "Dacă intrarea „locație” poate fi folosită ca un câmp de căutare"
 
-#: ../libyelp/yelp-location-entry.c:432 ../src/yelp-window.c:270
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
 msgstr "Caută..."
 
-#: ../libyelp/yelp-location-entry.c:785
+#: ../libyelp/yelp-location-entry.c:783
 msgid "Clear the search text"
 msgstr "Curăță textul de căutare"
 
-#: ../libyelp/yelp-location-entry.c:835 ../libyelp/yelp-location-entry.c:1556
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
 msgstr "Pune un semn de carte acestei pagini"
 
-#: ../libyelp/yelp-location-entry.c:846 ../libyelp/yelp-location-entry.c:1567
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
 msgstr "Elimină semnul de carte"
 
-#: ../libyelp/yelp-location-entry.c:1412
+#: ../libyelp/yelp-location-entry.c:1154
+#, c-format
+msgid "Search for “%s”"
+msgstr "Caută după „%s”"
+
+#: ../libyelp/yelp-location-entry.c:1458
 msgid "Loading"
 msgstr "Se încarcă"
 
-#: ../libyelp/yelp-mallard-document.c:310
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Dosarul „%s” nu există."
 
-#: ../libyelp/yelp-settings.c:150
+#: ../libyelp/yelp-settings.c:156
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:151
+#: ../libyelp/yelp-settings.c:157
 msgid "A GtkSettings object to get settings from"
 msgstr "Un obiect GtkSettings de la care să se obțină configurările"
 
-#: ../libyelp/yelp-settings.c:159
+#: ../libyelp/yelp-settings.c:165
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:160
+#: ../libyelp/yelp-settings.c:166
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Un obiect GtkIconTheme de la care să se obțină iconițele"
 
-#: ../libyelp/yelp-settings.c:168
+#: ../libyelp/yelp-settings.c:174
 msgid "Font Adjustment"
 msgstr "Ajustare font"
 
-#: ../libyelp/yelp-settings.c:169
+#: ../libyelp/yelp-settings.c:175
 msgid "A size adjustment to add to font sizes"
 msgstr "O ajustare de dimensiune de adăugat la dimensiunile fonturilor"
 
-#: ../libyelp/yelp-settings.c:177
+#: ../libyelp/yelp-settings.c:183
 msgid "Show Text Cursor"
 msgstr "Afișează un cursor în text"
 
-#: ../libyelp/yelp-settings.c:178
+#: ../libyelp/yelp-settings.c:184
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Afișează un cursor în text pentru navigare accesibilă"
 
-#: ../libyelp/yelp-settings.c:186
+#: ../libyelp/yelp-settings.c:192
 msgid "Editor Mode"
 msgstr "Mod editor"
 
-#: ../libyelp/yelp-settings.c:187
+#: ../libyelp/yelp-settings.c:193
 msgid "Enable features useful to editors"
 msgstr "Activează funcționalități utile pentru editori"
 
-#: ../libyelp/yelp-sqlite-storage.c:150
-#| msgid "Databases"
+#: ../libyelp/yelp-sqlite-storage.c:149
 msgid "Database filename"
 msgstr "Numele fișierului bază de date"
 
-#: ../libyelp/yelp-sqlite-storage.c:151
+#: ../libyelp/yelp-sqlite-storage.c:150
 msgid "The filename of the sqlite database"
 msgstr "Numele fișierului bazei de date SQLite"
 
@@ -1077,228 +253,235 @@ msgstr "Foaie de stiluri XSLT"
 msgid "The location of the XSLT stylesheet"
 msgstr "Locația foii de stiluri XSLT"
 
-#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
+#: ../libyelp/yelp-transform.c:380 ../libyelp/yelp-transform.c:395
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Foaia de stiluri XSLT „%s” lipsește sau nu este validă."
 
-#: ../libyelp/yelp-transform.c:528
+#: ../libyelp/yelp-transform.c:529
 msgid "No href attribute found on yelp:document\n"
 msgstr "Nici un atribut „href” nu a fost găsit în yelp:document\n"
 
-#: ../libyelp/yelp-transform.c:543
+#: ../libyelp/yelp-transform.c:544
 msgid "Out of memory"
 msgstr "Memorie insuficientă"
 
-#: ../libyelp/yelp-view.c:126
+#: ../libyelp/yelp-view.c:131
 msgid "_Print..."
 msgstr "_Tipărește..."
 
-#: ../libyelp/yelp-view.c:131
+#: ../libyelp/yelp-view.c:136
 msgid "_Back"
 msgstr "Îna_poi"
 
-#: ../libyelp/yelp-view.c:136
+#: ../libyelp/yelp-view.c:141
 msgid "_Forward"
 msgstr "Îna_inte"
 
-#: ../libyelp/yelp-view.c:141
+#: ../libyelp/yelp-view.c:146
 msgid "_Previous Page"
 msgstr "_Pagina precedentă"
 
-#: ../libyelp/yelp-view.c:146
+#: ../libyelp/yelp-view.c:151
 msgid "_Next Page"
 msgstr "Pagi_na următoare"
 
-#: ../libyelp/yelp-view.c:416
+#: ../libyelp/yelp-view.c:423
 msgid "Yelp URI"
 msgstr "URI Yelp"
 
-#: ../libyelp/yelp-view.c:417
+#: ../libyelp/yelp-view.c:424
 msgid "A YelpUri with the current location"
 msgstr "Un YelpUri cu locația curentă"
 
-#: ../libyelp/yelp-view.c:425
+#: ../libyelp/yelp-view.c:432
 msgid "Loading State"
 msgstr "Stare de încărcare"
 
-#: ../libyelp/yelp-view.c:426
+#: ../libyelp/yelp-view.c:433
 msgid "The loading state of the view"
 msgstr "Starea de încărcare a vizualizării"
 
-#: ../libyelp/yelp-view.c:435
+#: ../libyelp/yelp-view.c:442
 msgid "Page ID"
 msgstr "ID Pagină"
 
-#: ../libyelp/yelp-view.c:436
+#: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
 msgstr "ID-ul paginii rădăcină a paginii care este vizualizată"
 
-#: ../libyelp/yelp-view.c:444
+#: ../libyelp/yelp-view.c:451
 msgid "Root Title"
 msgstr "Titlu rădăcină"
 
-#: ../libyelp/yelp-view.c:445
+#: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
 msgstr "Titlul paginii rădăcină a paginii care este vizualizată"
 
-#: ../libyelp/yelp-view.c:453
+#: ../libyelp/yelp-view.c:460
 msgid "Page Title"
 msgstr "Titlul paginii"
 
-#: ../libyelp/yelp-view.c:454
+#: ../libyelp/yelp-view.c:461
 msgid "The title of the page being viewed"
 msgstr "Titlul paginii care este vizualizată"
 
-#: ../libyelp/yelp-view.c:462
+#: ../libyelp/yelp-view.c:469
 msgid "Page Description"
 msgstr "Descrierea paginii"
 
-#: ../libyelp/yelp-view.c:463
+#: ../libyelp/yelp-view.c:470
 msgid "The description of the page being viewed"
 msgstr "Descrierea paginii care este vizualizată"
 
-#: ../libyelp/yelp-view.c:471
+#: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
 msgstr "Iconița paginii"
 
-#: ../libyelp/yelp-view.c:472
+#: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
 msgstr "Iconița paginii care este vizualizată"
 
-#: ../libyelp/yelp-view.c:713
+#: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "PackageKit nu este instalat. Instalarea pachetelor necesită PackageKit."
 
-#: ../libyelp/yelp-view.c:991
+#: ../libyelp/yelp-view.c:1014
 msgid "Save Image"
 msgstr "Salvează imaginea"
 
-#: ../libyelp/yelp-view.c:1086
+#: ../libyelp/yelp-view.c:1109
 msgid "Save Code"
 msgstr "Salvează codul"
 
-#. Not using a mnemonic because underscores are common in email
-#. * addresses, and we'd have to escape them. There doesn't seem
-#. * to be a quick GTK+ function for this. In practice, there will
-#. * probably only be one menu item for mailto link popups anyway,
-#. * so the mnemonic's not that big of a deal.
-#.
-#: ../libyelp/yelp-view.c:1255
+#: ../libyelp/yelp-view.c:1272
 #, c-format
 msgid "Send email to %s"
 msgstr "Trimite email la %s"
 
-#: ../libyelp/yelp-view.c:1265
+#: ../libyelp/yelp-view.c:1287
+msgid "_Install Packages"
+msgstr "_Instalează pachete"
+
+#: ../libyelp/yelp-view.c:1295
 msgid "_Open Link"
 msgstr "_Deschide legătura"
 
-#: ../libyelp/yelp-view.c:1270
+#: ../libyelp/yelp-view.c:1302
+msgid "_Copy Link Location"
+msgstr "_Copiază locația legăturii"
+
+#: ../libyelp/yelp-view.c:1308
 msgid "Open Link in New _Window"
 msgstr "Deschide legătura într-o nouă _fereastră"
 
-#: ../libyelp/yelp-view.c:1321
+#: ../libyelp/yelp-view.c:1360
 msgid "_Save Image As..."
 msgstr "_Salvează imaginea ca..."
 
-#: ../libyelp/yelp-view.c:1323
+#: ../libyelp/yelp-view.c:1362
 msgid "_Save Video As..."
 msgstr "_Salvează videoul ca..."
 
-#: ../libyelp/yelp-view.c:1330
+#: ../libyelp/yelp-view.c:1369
 msgid "S_end Image To..."
 msgstr "Trimit_e imaginea la..."
 
-#: ../libyelp/yelp-view.c:1332
+#: ../libyelp/yelp-view.c:1371
 msgid "S_end Video To..."
 msgstr "Trimit_e videoul la..."
 
-#: ../libyelp/yelp-view.c:1343
+#: ../libyelp/yelp-view.c:1382
 msgid "_Copy Text"
 msgstr "_Copiază textul"
 
-#: ../libyelp/yelp-view.c:1356
+#: ../libyelp/yelp-view.c:1395
 msgid "C_opy Code Block"
 msgstr "C_opiază blocul de cod"
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1400
 msgid "Save Code _Block As..."
 msgstr "Salvează _blocul de cod ca..."
 
-#: ../libyelp/yelp-view.c:1543
+#: ../libyelp/yelp-view.c:1507
+#, c-format
+msgid "See all search results for “%s”"
+msgstr "Arată toate rezultatele căutării pentru „%s”"
+
+#: ../libyelp/yelp-view.c:1628
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Nu s-a putut încărca documentul pentru „%s”"
 
-#: ../libyelp/yelp-view.c:1549
+#: ../libyelp/yelp-view.c:1634
 #, c-format
 msgid "Could not load a document"
 msgstr "Nu s-a putut încărca documentul"
 
-#: ../libyelp/yelp-view.c:1623
+#: ../libyelp/yelp-view.c:1709
 msgid "Document Not Found"
 msgstr "Documentul nu a fost găsit"
 
-#: ../libyelp/yelp-view.c:1625
+#: ../libyelp/yelp-view.c:1711
 msgid "Page Not Found"
 msgstr "Pagina nu a fost găsită"
 
-#: ../libyelp/yelp-view.c:1628
+#: ../libyelp/yelp-view.c:1714
 msgid "Cannot Read"
 msgstr "Nu se poate citi"
 
-#: ../libyelp/yelp-view.c:1634
+#: ../libyelp/yelp-view.c:1720
 msgid "Unknown Error"
 msgstr "Eroare necunoscută"
 
-#: ../libyelp/yelp-view.c:1654
+#: ../libyelp/yelp-view.c:1740
 msgid "Search for packages containing this document."
 msgstr "Caută pachete care conțin acest document."
 
-#: ../libyelp/yelp-view.c:1807
+#: ../libyelp/yelp-view.c:1892
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI-ul „%s” nu indică spre o pagină validă."
 
-#: ../libyelp/yelp-view.c:1813
+#: ../libyelp/yelp-view.c:1898
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI-ul nu indică spre o pagină validă."
 
-#: ../libyelp/yelp-view.c:1819
+#: ../libyelp/yelp-view.c:1904
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI-ul „%s” nu a putut fi analizat."
 
-#: ../src/yelp-application.c:53
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "Activează modul editor"
 
-#: ../src/yelp-application.c:138
+#: ../src/yelp-application.c:128
 msgid "_Larger Text"
 msgstr "Text mai _mare"
 
-#: ../src/yelp-application.c:140
+#: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
 msgstr "Mărește dimensiunea textului"
 
-#: ../src/yelp-application.c:143
+#: ../src/yelp-application.c:133
 msgid "_Smaller Text"
 msgstr "Text mai mi_c"
 
-#: ../src/yelp-application.c:145
+#: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
 msgstr "Micșorează dimensiunea textului"
 
-#: ../src/yelp-application.c:257
-msgid "Show Text _Cursor"
-msgstr "Afișează un _cursor în text"
-
-#: ../src/yelp-application.c:333 ../src/yelp-window.c:1359
-#: ../yelp.desktop.in.in.h:2
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Ajutor"
+
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "Afișează un _cursor în text"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
@@ -1352,11 +535,19 @@ msgstr "Aplicație"
 msgid "A YelpApplication instance that controls this window"
 msgstr "Un exemplu YelpApplication care controlează această fereastră"
 
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Citiți _legătura mai târziu"
+
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "Caută:"
+
 #: ../src/yelp-window.c:548
 msgid "Read Later"
 msgstr "Citiți mai târziu"
 
-#: ../src/yelp-window.c:1179
+#: ../src/yelp-window.c:1180
 #, c-format
 msgid "%i match"
 msgid_plural "%i matches"
@@ -1364,13 +555,650 @@ msgstr[0] "o potrivire"
 msgstr[1] "%i potriviri"
 msgstr[2] "%i de potriviri"
 
-#: ../src/yelp-window.c:1188
+#: ../src/yelp-window.c:1189
 msgid "No matches"
 msgstr "Nicio potrivire"
 
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Ajutor pentru GNOME"
+
+#: ../yelp.desktop.in.in.h:3
+msgid "documentation;information;manual;"
+msgstr "documentation;intormation;manual;documentație;informație;"
+
+#~ msgid "GNU Info Pages"
+#~ msgstr "Pagini GNU Info"
+
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "Ajutor tradițional pentru linia de comandă (info)"
+
+#~ msgid "Applications"
+#~ msgstr "Aplicații"
+
+#~ msgid "BLT Functions"
+#~ msgstr "Funcții BLT"
+
+#~ msgid "Configuration Files"
+#~ msgstr "Fișiere de configurare"
+
+#~ msgid "Curses Functions"
+#~ msgstr "Funcții curses"
+
+#~ msgid "Development"
+#~ msgstr "Dezvoltare"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "Funcții FORTRAN"
+
+#~ msgid "Games"
+#~ msgstr "Jocuri"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "Dispozitive hardware"
+
+#~ msgid "Kernel Routines"
+#~ msgstr "Rutine kernel"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "Funcții sunet de rețea"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "Aplicații OpenSSL"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "Configurare OpenSSL"
+
+#~ msgid "OpenSSL Functions"
+#~ msgstr "Funcții OpenSSL"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "Prezentare OpenSSL"
+
+#~ msgid "Overviews"
+#~ msgstr "Prezentări"
+
+#~ msgid "POSIX Functions"
+#~ msgstr "Funcții POSIX"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "Fișiere antet POSIX"
+
+#~ msgid "Perl Functions"
+#~ msgstr "Funcții Perl"
+
+#~ msgid "Qt Functions"
+#~ msgstr "Funcții Qt"
+
+#~ msgid "Readline Functions"
+#~ msgstr "Funcții Readline"
+
+#~ msgid "Section 0p"
+#~ msgstr "Secțiunea 0p"
+
+#~ msgid "Section 1m"
+#~ msgstr "Secțiunea 1m"
+
+#~ msgid "Section 1ssl"
+#~ msgstr "Secțiunea 1ssl"
+
+#~ msgid "Section 1x"
+#~ msgstr "Secțiunea 1x"
+
+#~ msgid "Section 2"
+#~ msgstr "Secțiunea 2"
+
+#~ msgid "Section 3blt"
+#~ msgstr "Secțiunea 3blt"
+
+#~ msgid "Section 3f"
+#~ msgstr "Secțiunea 3f"
+
+#~ msgid "Section 3nas"
+#~ msgstr "Secțiunea 3nas"
+
+#~ msgid "Section 3p"
+#~ msgstr "Secțiunea 3p"
+
+#~ msgid "Section 3qt"
+#~ msgstr "Secțiunea 3tq"
+
+#~ msgid "Section 3readline"
+#~ msgstr "Secțiunea 3readline"
+
+#~ msgid "Section 3ssl"
+#~ msgstr "Secțiunea 3ssl"
+
+#~ msgid "Section 3tiff"
+#~ msgstr "Secțiunea 3tiff"
+
+#~ msgid "Section 4"
+#~ msgstr "Secțiunea 4"
+
+#~ msgid "Section 4x"
+#~ msgstr "Secțiunea 4x"
+
+#~ msgid "Section 5"
+#~ msgstr "Secțiunea 5"
+
+#~ msgid "Section 5ssl"
+#~ msgstr "Secțiunea 5ssl"
+
+#~ msgid "Section 5x"
+#~ msgstr "Secțiunea 5x"
+
+#~ msgid "Section 6"
+#~ msgstr "Secțiunea 6"
+
+#~ msgid "Section 6x"
+#~ msgstr "Secțiunea 6x"
+
+#~ msgid "Section 7ssl"
+#~ msgstr "Secțiunea 7ssl"
+
+#~ msgid "Section 7x"
+#~ msgstr "Secțiunea 7x"
+
+#~ msgid "Section 9"
+#~ msgstr "Secțiunea 9"
+
+#~ msgid "Sections 1, 1p, 1g and 1t"
+#~ msgstr "Secțiunile 1, 1p, 1g și 1t"
+
+#~ msgid "Sections 3, 3o, and 3t"
+#~ msgstr "Secțiunile 3, 3o și 3t"
+
+#~ msgid "Sections 3form and 3menu"
+#~ msgstr "Secțiunile 3form și 3menu"
+
+#~ msgid "Sections 3ncurses and 3curses"
+#~ msgstr "Secțiunile 3ncurses și 3curses"
+
+#~ msgid "Sections 3pm and 3perl"
+#~ msgstr "Secțiunile 3pm și 3perl"
+
+#~ msgid "Sections 3x and 3X11"
+#~ msgstr "Secțiunile 3x și 3X11"
+
+#~ msgid "Sections 7 and 7gcc"
+#~ msgstr "Secțiunile 7 și 7gcc"
+
+#~ msgid "Sections 8 and 8l"
+#~ msgstr "Secțiunile 8 și 8l"
+
+#~ msgid "System Administration"
+#~ msgstr "Administrare sistem"
+
+#~ msgid "System Calls"
+#~ msgstr "Apeluri de sistem"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "Funcțiile System V Form/Menu"
+
+#~ msgid "TIFF Functions"
+#~ msgstr "Funcții TIFF"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "Aplicații Termcap"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "Ajutor clasic pentru linia de comandă (man)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "Aplicații X11"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "Configurare X11"
+
+#~ msgid "X11 Devices"
+#~ msgstr "Dispozitive X11"
+
+#~ msgid "X11 Functions"
+#~ msgstr "Funcții X11"
+
+#~ msgid "X11 Games"
+#~ msgstr "Jocuri X11"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "Prezentare X11"
+
+#~ msgid "2D Graphics"
+#~ msgstr "Grafică 2D"
+
+#~ msgid "3D Graphics"
+#~ msgstr "Grafică 3D"
+
+#~ msgid "Accessibility"
+#~ msgstr "Accesibilitate"
+
+#~ msgid "Action Games"
+#~ msgstr "Jocuri de acțiune"
+
+#~ msgid "Adventure Games"
+#~ msgstr "Jocuri de aventură"
+
+#~ msgid "Amusement"
+#~ msgstr "Divertisment"
+
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "Aplicații de grafică"
+
+#~ msgid "Applications related to audio and video"
+#~ msgstr "Aplicații audio și video"
+
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "Aplicații educative"
+
+#~ msgid "Arcade Games"
+#~ msgstr "Jocuri tip „arcade”"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "Utilitare de arhivare"
+
+#~ msgid "Art"
+#~ msgstr "Artă"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "Inteligență artificială"
+
+#~ msgid "Astronomy"
+#~ msgstr "Astronomie"
+
+#~ msgid "Biology"
+#~ msgstr "Biologie"
+
+#~ msgid "Blocks Games"
+#~ msgstr "Jocuri cu blocuri"
+
+#~ msgid "Board Games"
+#~ msgstr "Jocuri de table"
+
+#~ msgid "Building"
+#~ msgstr "Construire"
+
+#~ msgid "Calculator"
+#~ msgstr "Calculator"
+
+#~ msgid "Calendar"
+#~ msgstr "Calendar"
+
+#~ msgid "Card Games"
+#~ msgstr "Jocuri de cărți"
+
+#~ msgid "Charting Tools"
+#~ msgstr "Unelte pentru diagrame"
+
+#~ msgid "Chat"
+#~ msgstr "Discuții"
+
+#~ msgid "Chemistry"
+#~ msgstr "Chimie"
+
+#~ msgid "Clocks"
+#~ msgstr "Ceasuri"
+
+#~ msgid "Compression Tools"
+#~ msgstr "Unelte de arhivare"
+
+#~ msgid "Computer Science"
+#~ msgstr "Informatică"
+
+#~ msgid "Construction"
+#~ msgstr "Construcții"
+
+#~ msgid "Contact Management"
+#~ msgstr "Management contacte"
+
+#~ msgid "Data Visualization"
+#~ msgstr "Vizualizare date"
+
+#~ msgid "Databases"
+#~ msgstr "Baze de date"
+
+#~ msgid "Debuggers"
+#~ msgstr "Depanatoare"
+
+#~ msgid "Desktop"
+#~ msgstr "Desktop"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "Opțiuni desktop"
+
+#~ msgid "Dialup"
+#~ msgstr "Dialup"
+
+#~ msgid "Dictionaries"
+#~ msgstr "Dicționare"
+
+#~ msgid "Disc Burning"
+#~ msgstr "Inscripționare discuri"
+
+#~ msgid "Economy"
+#~ msgstr "Economie"
+
+#~ msgid "Education"
+#~ msgstr "Educație"
+
+#~ msgid "Electricity"
+#~ msgstr "Electricitate"
+
+#~ msgid "Electronics"
+#~ msgstr "Electronică"
+
+#~ msgid "Email Tools"
+#~ msgstr "Clienți de mail"
+
+#~ msgid "Emulator"
+#~ msgstr "Emulator"
+
+#~ msgid "Engineering"
+#~ msgstr "Inginerie"
+
+#~ msgid "File Manager"
+#~ msgstr "Administrator de fișiere"
+
+#~ msgid "File Tools"
+#~ msgstr "Utilitare pentru fișiere"
+
+#~ msgid "File Transfer"
+#~ msgstr "Transfer de fișiere"
+
+#~ msgid "Filesystem"
+#~ msgstr "Sistem de fișiere"
+
+#~ msgid "Financial Tools"
+#~ msgstr "Utilitare financiare"
+
+#~ msgid "Flow Charting Tools"
+#~ msgstr "Unelte pentru scheme logice"
+
+#~ msgid "GNOME Applications"
+#~ msgstr "Aplicații GNOME"
+
+#~ msgid "GTK"
+#~ msgstr "GTK"
+
+#~ msgid "GUI Designers"
+#~ msgstr "Aplicații pentru proiectarea interfețelor grafice"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "Aplicații generice pentru mediul GNOME"
+
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "Aplicații generice pentru mediul KDE"
+
+#~ msgid "Geography"
+#~ msgstr "Geografie"
+
+#~ msgid "Geology"
+#~ msgstr "Geologie"
+
+#~ msgid "Geoscience"
+#~ msgstr "Geoștiințe"
+
+#~ msgid "Graphics"
+#~ msgstr "Grafică"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr "Ghiduri și manuale pentru aplicații de comunicare"
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "Ghiduri pentru programatori"
+
+#~ msgid "Ham Radio"
+#~ msgstr "Radio-amatori"
+
+#~ msgid "Hardware Settings"
+#~ msgstr "Configurări hardware"
+
+#~ msgid "Have some fun"
+#~ msgstr "Divertisment"
+
+#~ msgid "History"
+#~ msgstr "Istorie"
+
+#~ msgid "IDEs"
+#~ msgstr "IDE-uri"
+
+#~ msgid "IRC Clients"
+#~ msgstr "Clienți IRC"
+
+#~ msgid "Image Processing"
+#~ msgstr "Procesare de imagini"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "Mesagerie instant"
+
+#~ msgid "Internet"
+#~ msgstr "Internet"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~ msgid "KDE Applications"
+#~ msgstr "Aplicații KDE"
+
+#~ msgid "Kids Games"
+#~ msgstr "Jocuri pentru copii"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr ""
+#~ "Informații despre tehnologiile de asistență pentru persoanele cu anumite "
+#~ "dizabilități"
+
+#~ msgid "Licenses"
+#~ msgstr "Licențe"
+
+#~ msgid "Literature"
+#~ msgstr "Literatură"
+
+#~ msgid "Logic Games"
+#~ msgstr "Jocuri de logică"
+
+#~ msgid "Math"
+#~ msgstr "Matematică"
+
+#~ msgid "Medical Software"
+#~ msgstr "Aplicații medicale"
+
+#~ msgid "Midi"
+#~ msgstr "Midi"
+
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "Documentații diverse"
+
+#~ msgid "Mixers"
+#~ msgstr "Mixere"
+
+#~ msgid "Monitor"
+#~ msgstr "Monitor"
+
+#~ msgid "Motif"
+#~ msgstr "Motif"
+
+#~ msgid "Music"
+#~ msgstr "Muzică"
+
+#~ msgid "News"
+#~ msgstr "Noutăți"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "Analiză numerică"
+
+#~ msgid "OCR"
+#~ msgstr "OCR"
+
+#~ msgid "Office Applications"
+#~ msgstr "Aplicații de birou"
+
+#~ msgid "Office applications"
+#~ msgstr "Aplicații de birou"
+
+#~ msgid "Other Documentation"
+#~ msgstr "Alte documentații"
+
+#~ msgid "P2P"
+#~ msgstr "P2P"
+
+#~ msgid "PDA Communication"
+#~ msgstr "Comunicare PDA"
+
+#~ msgid "Package Manager"
+#~ msgstr "Administrator de pachete"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "Calcul paralel"
+
+#~ msgid "Photography"
+#~ msgstr "Fotografie"
+
+#~ msgid "Physics"
+#~ msgstr "Fizică"
+
+#~ msgid "Players"
+#~ msgstr "Redare multimedia"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "Aplicații de prezentare"
+
+#~ msgid "Printing"
+#~ msgstr "Tipărire"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "Utilitare pentru analizarea performanțelor"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "Unelte pentru managementul proiectelor"
+
+#~ msgid "Publishing"
+#~ msgstr "Editare publicații"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~ msgid "Raster Graphics"
+#~ msgstr "Grafică rasterizată"
+
+#~ msgid "Recorders"
+#~ msgstr "Înregistrare multimedia"
+
+#~ msgid "Remote Access"
+#~ msgstr "Acces de la distanță"
+
+#~ msgid "Revision Control"
+#~ msgstr "Control versiuni"
+
+#~ msgid "Robotics"
+#~ msgstr "Robotică"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "Jocuri de tip RPG"
+
+#~ msgid "Scanning"
+#~ msgstr "Scanare"
+
+#~ msgid "Science"
+#~ msgstr "Știință"
+
+#~ msgid "Security"
+#~ msgstr "Securitate"
+
+#~ msgid "Sequencers"
+#~ msgstr "Sintetizatoare"
+
+#~ msgid "Settings"
+#~ msgstr "Opțiuni"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr "Opțiuni pe care utilizatorii le pot modifica după bunul plac"
+
+#~ msgid "Simulation Games"
+#~ msgstr "Jocuri de simulare"
+
+#~ msgid "Sound"
+#~ msgstr "Sunet"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Multimedia"
+
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "Editare audio și video"
+
+#~ msgid "Sports"
+#~ msgstr "Sport"
+
+#~ msgid "Sports Games"
+#~ msgstr "Jocuri sportive"
+
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "Utilitare pentru calcul tabelar"
+
+#~ msgid "Strategy Games"
+#~ msgstr "Jocuri de strategie"
+
+#~ msgid "System"
+#~ msgstr "Sistem"
+
+#~ msgid "TV"
+#~ msgstr "TV"
+
+#~ msgid "Telephony"
+#~ msgstr "Telefonie"
+
+#~ msgid "Telephony Tools"
+#~ msgstr "Aplicații de telefonie"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "Emulator terminal"
+
+#~ msgid "Text Editors"
+#~ msgstr "Editoare text"
+
+#~ msgid "Text Tools"
+#~ msgstr "Unelte text"
+
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "Utilitare pentru administrarea calculatorului"
+
+#~ msgid "Translation Tools"
+#~ msgstr "Utilitare pentru traduceri"
+
+#~ msgid "Tuners"
+#~ msgstr "Tunere"
+
+#~ msgid "Utilities"
+#~ msgstr "Utilitare"
+
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "Utilitare care vă ajută să vă faceți treaba"
+
+#~ msgid "Vector Graphics"
+#~ msgstr "Grafică vectorială"
+
+#~ msgid "Video"
+#~ msgstr "Video"
+
+#~ msgid "Video Conference"
+#~ msgstr "Conferință video"
+
+#~ msgid "Viewer"
+#~ msgstr "Aplicații de vizualizare"
+
+#~ msgid "Web Browser"
+#~ msgstr "Navigator web"
+
+#~ msgid "Web Development"
+#~ msgstr "Dezvoltare web"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "Bun venit în navigatorul manualelor GNOME"
+
+#~ msgid "Word Processors"
+#~ msgstr "Procesoare text"
 
 #~ msgid ""
 #~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
@@ -1378,7 +1206,6 @@ msgstr "Ajutor pentru GNOME"
 #~ msgstr ""
 #~ "Nu s-a putut analiza fișierul „%s” deoarece nu este un document „man” "
 #~ "bine formatat."
-
 
 #~ msgid "C_ase sensitive"
 #~ msgstr "Cu m_ajuscule semnificative"
@@ -1392,12 +1219,8 @@ msgstr "Ajutor pentru GNOME"
 #~ msgid "Re_name"
 #~ msgstr "Rede_numire"
 
-
 #~ msgid "_Browse with caret"
 #~ msgstr "_Navigare cu cursor"
-
-#~ msgid "_Find:"
-#~ msgstr "_Caută:"
 
 #~ msgid "_Fixed width:"
 #~ msgstr "Lățime _fixă:"
@@ -1446,7 +1269,8 @@ msgstr "Ajutor pentru GNOME"
 #~ msgstr "Pentru această pagină există deja un semn de carte cu titlul %s."
 
 #~ msgid "A bookmark titled <b>%s</b> already exists for this page."
-#~ msgstr "Pentru această pagină există deja un semn de carte cu titlul <b>%s</b>."
+#~ msgstr ""
+#~ "Pentru această pagină există deja un semn de carte cu titlul <b>%s</b>."
 
 #~ msgid "Help Topics"
 #~ msgstr "Sumar"
@@ -1509,9 +1333,6 @@ msgstr "Ajutor pentru GNOME"
 #~ msgstr ""
 #~ "Încercați folosirea altor cuvinte pentru a descrie problema sau subiectul "
 #~ "pentru care doriți ajutor."
-
-#~ msgid "Search results for \"%s\""
-#~ msgstr "Rezultatele căutării pentru „%s”"
 
 #~ msgid ""
 #~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
