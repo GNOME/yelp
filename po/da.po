@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-24 17:52+0200\n"
-"PO-Revision-Date: 2011-09-24 11:18-0200\n"
+"POT-Creation-Date: 2013-10-07 22:24+0200\n"
+"PO-Revision-Date: 2013-10-06 14:01+0200\n"
 "Last-Translator: Aputsiaq Niels Janussen <aj@isit.gl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -447,7 +447,7 @@ msgid "Decrease the size of the text"
 msgstr "Mindsk skriftstørrelsen"
 
 #: ../src/yelp-application.c:253 ../src/yelp-window.c:1359
-#: ../yelp.desktop.in.in.h:2
+#: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Hjælp"
 
@@ -507,6 +507,10 @@ msgstr "Program"
 msgid "A YelpApplication instance that controls this window"
 msgstr "En YelpApplication-instans, der styrer dette vindue"
 
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Læs link _senere"
+
 #: ../src/yelp-window.c:526
 msgid "Find:"
 msgstr "Find:"
@@ -526,7 +530,7 @@ msgstr[1] "%i fundet"
 msgid "No matches"
 msgstr "Ingen fundet"
 
-#: ../yelp.desktop.in.in.h:1
+#: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Få hjælp til GNOME"
 
