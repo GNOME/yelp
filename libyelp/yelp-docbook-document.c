@@ -68,6 +68,12 @@ static gboolean       docbook_request_page      (YelpDocument         *document,
 
 static void           docbook_process           (YelpDocbookDocument  *docbook);
 static void           docbook_disconnect        (YelpDocbookDocument  *docbook);
+static gboolean       docbook_reload            (YelpDocbookDocument  *docbook);
+static void           docbook_monitor_changed   (GFileMonitor         *monitor,
+                                                 GFile                *file,
+                                                 GFile                *other_file,
+                                                 GFileMonitorEvent     event_type,
+                                                 YelpDocbookDocument  *docbook);
 
 static void           docbook_walk              (YelpDocbookDocument  *docbook);
 static gboolean       docbook_walk_chunkQ       (YelpDocbookDocument  *docbook,
@@ -119,6 +125,9 @@ struct _YelpDocbookDocumentPrivate {
     gchar        *cur_page_id;
     gchar        *cur_prev_id;
     gchar        *root_id;
+
+    GFileMonitor **monitors;
+    gint64         reload_time;
 };
 
 /******************************************************************************/
@@ -164,11 +173,20 @@ yelp_docbook_document_init (YelpDocbookDocument *docbook)
 static void
 yelp_docbook_document_dispose (GObject *object)
 {
+    gint i;
     YelpDocbookDocumentPrivate *priv = GET_PRIV (object);
 
     if (priv->uri) {
         g_object_unref (priv->uri);
         priv->uri = NULL;
+    }
+
+    if (priv->monitors != NULL) {
+        for (i = 0; priv->monitors[i]; i++) {
+            g_object_unref (priv->monitors[i]);
+        }
+        g_free (priv->monitors);
+        priv->monitors = NULL;
     }
 
     G_OBJECT_CLASS (yelp_docbook_document_parent_class)->dispose (object);
@@ -199,6 +217,8 @@ yelp_docbook_document_new (YelpUri *uri)
     YelpDocbookDocument *docbook;
     YelpDocbookDocumentPrivate *priv;
     gchar *doc_uri;
+    gchar **path;
+    gint path_i;
 
     g_return_val_if_fail (uri != NULL, NULL);
 
@@ -210,6 +230,21 @@ yelp_docbook_document_new (YelpUri *uri)
     priv = GET_PRIV (docbook);
 
     priv->uri = g_object_ref (uri);
+
+    path = yelp_uri_get_search_path (uri);
+    priv->monitors = g_new0 (GFileMonitor*, g_strv_length (path) + 1);
+    for (path_i = 0; path[path_i]; path_i++) {
+        GFile *file;
+        file = g_file_new_for_path (path[path_i]);
+        priv->monitors[path_i] = g_file_monitor (file,
+                                                 G_FILE_MONITOR_SEND_MOVED,
+                                                 NULL, NULL);
+        g_signal_connect (priv->monitors[path_i], "changed",
+                          G_CALLBACK (docbook_monitor_changed),
+                          docbook);
+        g_object_unref (file);
+    }
+    g_strfreev (path);
 
     return (YelpDocument *) docbook;
 }
@@ -451,6 +486,52 @@ docbook_disconnect (YelpDocbookDocument *docbook)
     g_object_unref (priv->transform);
     priv->transform = NULL;
     priv->transform_running = FALSE;
+}
+
+static gboolean
+docbook_reload (YelpDocbookDocument *docbook)
+{
+    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+
+    if (priv->index_running || priv->process_running || priv->transform_running)
+        return TRUE;
+
+    g_mutex_lock (&priv->mutex);
+
+    priv->reload_time = g_get_monotonic_time();
+
+    yelp_document_clear_contents (YELP_DOCUMENT (docbook));
+
+    priv->state = DOCBOOK_STATE_PARSING;
+    priv->process_running = TRUE;
+    g_object_ref (docbook);
+    priv->thread = g_thread_new ("docbook-reload",
+                                 (GThreadFunc) docbook_process,
+                                 docbook);
+
+    g_mutex_unlock (&priv->mutex);
+
+    return FALSE;
+}
+
+static void
+docbook_monitor_changed   (GFileMonitor         *monitor,
+                           GFile                *file,
+                           GFile                *other_file,
+                           GFileMonitorEvent     event_type,
+                           YelpDocbookDocument  *docbook)
+{
+    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+
+    if (g_get_monotonic_time() - priv->reload_time < 1000)
+        return;
+
+    if (priv->index_running || priv->process_running || priv->transform_running) {
+        g_timeout_add_seconds (1, (GSourceFunc) docbook_reload, docbook);
+        return;
+    }
+
+    docbook_reload (docbook);
 }
 
 /******************************************************************************/
