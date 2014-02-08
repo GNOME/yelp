@@ -1065,7 +1065,7 @@ icon_theme_changed (GtkIconTheme *theme,
 	if (info != NULL) {
 	    settings->priv->icons[i] = g_filename_to_uri (gtk_icon_info_get_filename (info),
                                                           NULL, NULL);
-	    gtk_icon_info_free (info);
+	    g_object_unref (info);
 	}
 	else {
 	    settings->priv->icons[i] = NULL;

@@ -417,7 +417,7 @@ help_list_think (YelpHelpList *list)
                     const gchar *iconfile = gtk_icon_info_get_filename (info);
                     if (iconfile)
                         entry->icon = g_filename_to_uri (iconfile, NULL, NULL);
-                    gtk_icon_info_free (info);
+                    g_object_unref (info);
                 }
             }
             g_object_unref (app);

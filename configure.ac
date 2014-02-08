@@ -30,7 +30,7 @@ PKG_CHECK_MODULES(YELP,
 	gio-2.0 >= 2.25.11
 	gio-unix-2.0
 	gtk+-unix-print-3.0
-	gtk+-3.0 >= 2.91.8
+	gtk+-3.0 >= 3.8.0
 	libxml-2.0 >= 2.6.5
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
