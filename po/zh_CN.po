@@ -16,25 +16,27 @@ msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-02-23 18:38+0000\n"
-"PO-Revision-Date: 2012-03-20 23:03+0800\n"
-"Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
+"POT-Creation-Date: 2014-02-19 23:55+0000\n"
+"PO-Revision-Date: 2014-02-20 11:39+0800\n"
+"Last-Translator: Wylmer Wang <wantinghard@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bits\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. (itstool) path: msg/msgstr
 #. ID: install.tooltip
 #. This is a format message used to format tooltips on install: links. These
 #. links allow users to install packages by clicking a link in the help. The
 #. tooltip may also be used as the link text, if there's no link text in the
 #. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#. 
+#.
 #. <string/> - The package to install
-#. 
-#: yelp.xml.in:29(msg/msgstr)
+#.
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "安装 <string/>"
 
@@ -48,45 +50,45 @@ msgstr "无效的压缩数据"
 msgid "Not enough memory"
 msgstr "内存不足"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:306
-#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:239
+#: ../libyelp/yelp-mallard-document.c:307
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:283
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "文档 %2$s 中没有找到页面 %1$s。"
 
-#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:417
+#: ../libyelp/yelp-docbook-document.c:299 ../libyelp/yelp-info-document.c:373
+#: ../libyelp/yelp-man-document.c:418
 #, c-format
 msgid "The file does not exist."
 msgstr "文件不存在。"
 
-#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:427
+#: ../libyelp/yelp-docbook-document.c:309 ../libyelp/yelp-info-document.c:383
+#: ../libyelp/yelp-man-document.c:428
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "文件“%s”不存在。"
 
-#: ../libyelp/yelp-docbook-document.c:342
+#: ../libyelp/yelp-docbook-document.c:324
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "无法解析文件“%s”，因为它不是有效的 XML 文档。"
 
-#: ../libyelp/yelp-docbook-document.c:355
+#: ../libyelp/yelp-docbook-document.c:337
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr "无法解析文件“%s”，因为它的一个或多个包含文件不是有效的 XML 文档。"
 
-#: ../libyelp/yelp-docbook-document.c:765
+#: ../libyelp/yelp-docbook-document.c:724
 msgid "Unknown"
 msgstr "未知"
 
-#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:359
+#: ../libyelp/yelp-docbook-document.c:785 ../libyelp/yelp-info-document.c:316
+#: ../libyelp/yelp-man-document.c:360
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "文档“%s”中没有找到请求的页面。"
@@ -126,11 +128,11 @@ msgstr "未找到帮助页面。"
 msgid "An unknown error occurred."
 msgstr "发生了未知错误。"
 
-#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:550 ../libyelp/yelp-help-list.c:559
 msgid "All Help Documents"
 msgstr "所有帮助文档"
 
-#: ../libyelp/yelp-info-document.c:397
+#: ../libyelp/yelp-info-document.c:398
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -178,7 +180,6 @@ msgstr "删除书签"
 
 #: ../libyelp/yelp-location-entry.c:1154
 #, c-format
-#| msgid "Search results for “%s”"
 msgid "Search for “%s”"
 msgstr "搜索“%s”"
 
@@ -191,51 +192,51 @@ msgstr "正在载入"
 msgid "The directory ‘%s’ does not exist."
 msgstr "目录“%s”不存在。"
 
-#: ../libyelp/yelp-settings.c:154
+#: ../libyelp/yelp-settings.c:156
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:155
+#: ../libyelp/yelp-settings.c:157
 msgid "A GtkSettings object to get settings from"
 msgstr "从以下位置获得设置的 GtkSettings 对象："
 
-#: ../libyelp/yelp-settings.c:163
+#: ../libyelp/yelp-settings.c:165
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:164
+#: ../libyelp/yelp-settings.c:166
 msgid "A GtkIconTheme object to get icons from"
 msgstr "从以下位置获得图标的 GtkIconTheme 对象："
 
-#: ../libyelp/yelp-settings.c:172
+#: ../libyelp/yelp-settings.c:174
 msgid "Font Adjustment"
 msgstr "字体调整"
 
-#: ../libyelp/yelp-settings.c:173
+#: ../libyelp/yelp-settings.c:175
 msgid "A size adjustment to add to font sizes"
 msgstr "附加于字号的字符尺寸调整属性"
 
-#: ../libyelp/yelp-settings.c:181
+#: ../libyelp/yelp-settings.c:183
 msgid "Show Text Cursor"
 msgstr "显示文本光标"
 
-#: ../libyelp/yelp-settings.c:182
+#: ../libyelp/yelp-settings.c:184
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "为辅助功能导航启用文本光标"
 
-#: ../libyelp/yelp-settings.c:190
+#: ../libyelp/yelp-settings.c:192
 msgid "Editor Mode"
 msgstr "编辑器模式"
 
-#: ../libyelp/yelp-settings.c:191
+#: ../libyelp/yelp-settings.c:193
 msgid "Enable features useful to editors"
 msgstr "启用对编辑器有用的特性"
 
-#: ../libyelp/yelp-sqlite-storage.c:150
+#: ../libyelp/yelp-sqlite-storage.c:149
 msgid "Database filename"
 msgstr "数据库文件名"
 
-#: ../libyelp/yelp-sqlite-storage.c:151
+#: ../libyelp/yelp-sqlite-storage.c:150
 msgid "The filename of the sqlite database"
 msgstr "Sqlite 数据库文件名"
 
@@ -247,16 +248,16 @@ msgstr "XSLT 样式表"
 msgid "The location of the XSLT stylesheet"
 msgstr "XSLT 样式表的位置"
 
-#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
+#: ../libyelp/yelp-transform.c:380 ../libyelp/yelp-transform.c:395
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "XSLT 样式表“%s”可能不存在，或无效。"
 
-#: ../libyelp/yelp-transform.c:528
+#: ../libyelp/yelp-transform.c:529
 msgid "No href attribute found on yelp:document\n"
 msgstr "在 yelp:document 中未发现 href 属性\n"
 
-#: ../libyelp/yelp-transform.c:543
+#: ../libyelp/yelp-transform.c:544
 msgid "Out of memory"
 msgstr "内存不足"
 
@@ -340,112 +341,109 @@ msgstr "正在被阅览的页面的图标"
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "您没有安装 PackageKit，使用包安装链接需要 PackageKit。"
 
-#: ../libyelp/yelp-view.c:1013
+#: ../libyelp/yelp-view.c:1014
 msgid "Save Image"
 msgstr "保存图像"
 
-#: ../libyelp/yelp-view.c:1108
+#: ../libyelp/yelp-view.c:1109
 msgid "Save Code"
 msgstr "保存代码"
 
-#: ../libyelp/yelp-view.c:1271
+#: ../libyelp/yelp-view.c:1272
 #, c-format
 msgid "Send email to %s"
 msgstr "给 %s 发送电子邮件"
 
-#: ../libyelp/yelp-view.c:1286
-#| msgid "Manual Pages"
+#: ../libyelp/yelp-view.c:1287
 msgid "_Install Packages"
 msgstr "安装软件包(_I)"
 
-#: ../libyelp/yelp-view.c:1294
+#: ../libyelp/yelp-view.c:1295
 msgid "_Open Link"
 msgstr "打开链接(_O)"
 
-#: ../libyelp/yelp-view.c:1301
-#| msgid "Open Location"
+#: ../libyelp/yelp-view.c:1302
 msgid "_Copy Link Location"
 msgstr "复制链接位置(_C)"
 
-#: ../libyelp/yelp-view.c:1307
+#: ../libyelp/yelp-view.c:1308
 msgid "Open Link in New _Window"
 msgstr "在新窗口打开链接(_W)"
 
-#: ../libyelp/yelp-view.c:1359
+#: ../libyelp/yelp-view.c:1360
 msgid "_Save Image As..."
 msgstr "图像另存为(_S)..."
 
-#: ../libyelp/yelp-view.c:1361
+#: ../libyelp/yelp-view.c:1362
 msgid "_Save Video As..."
 msgstr "视频另存为(_S)..."
 
-#: ../libyelp/yelp-view.c:1368
+#: ../libyelp/yelp-view.c:1369
 msgid "S_end Image To..."
 msgstr "图像发送到(_E)..."
 
-#: ../libyelp/yelp-view.c:1370
+#: ../libyelp/yelp-view.c:1371
 msgid "S_end Video To..."
 msgstr "视频发送到(_E)..."
 
-#: ../libyelp/yelp-view.c:1381
+#: ../libyelp/yelp-view.c:1382
 msgid "_Copy Text"
 msgstr "复制文本(_C)"
 
-#: ../libyelp/yelp-view.c:1394
+#: ../libyelp/yelp-view.c:1395
 msgid "C_opy Code Block"
 msgstr "复制代码块(_O)"
 
-#: ../libyelp/yelp-view.c:1399
+#: ../libyelp/yelp-view.c:1400
 msgid "Save Code _Block As..."
 msgstr "代码块另存为(_B)..."
 
-#: ../libyelp/yelp-view.c:1497
+#: ../libyelp/yelp-view.c:1507
 #, c-format
-#| msgid "Search results for “%s”"
 msgid "See all search results for “%s”"
 msgstr "查看“%s”的全部搜索结果"
 
-#: ../libyelp/yelp-view.c:1618
+#: ../libyelp/yelp-view.c:1628
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "无法加载“%s”的文档"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1634
 #, c-format
 msgid "Could not load a document"
 msgstr "无法加载文档"
 
-#: ../libyelp/yelp-view.c:1698
+#: ../libyelp/yelp-view.c:1709
 msgid "Document Not Found"
 msgstr "文档未找到"
 
-#: ../libyelp/yelp-view.c:1700
+#: ../libyelp/yelp-view.c:1711
 msgid "Page Not Found"
 msgstr "页面未找到"
 
-#: ../libyelp/yelp-view.c:1703
+#: ../libyelp/yelp-view.c:1714
 msgid "Cannot Read"
 msgstr "不可读"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1720
 msgid "Unknown Error"
 msgstr "未知错误"
 
-#: ../libyelp/yelp-view.c:1729
+#: ../libyelp/yelp-view.c:1740
 msgid "Search for packages containing this document."
 msgstr "搜索包含此文档的软件包。"
 
-#: ../libyelp/yelp-view.c:1882
+#: ../libyelp/yelp-view.c:1892
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI %s 未指向一个有效的页面。"
 
-#: ../libyelp/yelp-view.c:1888
+#: ../libyelp/yelp-view.c:1898
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI 未指向一个有效的页面。"
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1904
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI“%s”无法解析。"
@@ -532,7 +530,6 @@ msgid "A YelpApplication instance that controls this window"
 msgstr "一个控制此窗口的 YelpApplication 实例。"
 
 #: ../src/yelp-window.c:429
-#| msgid "Read Later"
 msgid "Read Link _Later"
 msgstr "稍后阅读链接(_L)"
 
@@ -557,6 +554,10 @@ msgstr "找不到匹配"
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "获得 GNOME 的帮助"
+
+#: ../yelp.desktop.in.in.h:3
+msgid "documentation;information;manual;"
+msgstr "documentation;information;manual;文档;信息;手册;帮助;指南;"
 
 #~ msgid "GNU Info Pages"
 #~ msgstr "GNU 信息页"
