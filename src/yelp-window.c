@@ -362,6 +362,7 @@ window_construct (YelpWindow *window)
     GtkWidget *box, *button, *sw;
     gchar *color, *text;
     YelpWindowPrivate *priv = GET_PRIV (window);
+    gboolean rtl;
 
     const GActionEntry entries[] = {
         { "new-window", action_new_window, NULL, NULL, NULL },
@@ -369,6 +370,8 @@ window_construct (YelpWindow *window)
         { "search",     action_search,     NULL, NULL, NULL },
         { "find",       action_find,       NULL, NULL, NULL },
     };
+
+    rtl = gtk_widget_get_direction (GTK_WIDGET (window)) == GTK_TEXT_DIR_RTL;
 
     gtk_window_set_icon_name (GTK_WINDOW (window), "help-browser");
     priv->view = (YelpView *) yelp_view_new ();
@@ -398,12 +401,12 @@ window_construct (YelpWindow *window)
     gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
     gtk_header_bar_pack_start (GTK_HEADER_BAR (priv->header), box);
 
-    button = gtk_button_new_from_icon_name ("go-previous-symbolic", GTK_ICON_SIZE_MENU);
+    button = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic", GTK_ICON_SIZE_MENU);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
     g_object_set (button, "action-name", "win.yelp-view-go-back", NULL);
 
-    button = gtk_button_new_from_icon_name ("go-next-symbolic", GTK_ICON_SIZE_MENU);
+    button = gtk_button_new_from_icon_name (rtl ? "go-next-rtl-symbolic" : "go-next-symbolic", GTK_ICON_SIZE_MENU);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
     g_object_set (button, "action-name", "win.yelp-view-go-forward", NULL);
