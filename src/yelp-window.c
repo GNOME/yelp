@@ -402,17 +402,20 @@ window_construct (YelpWindow *window)
     gtk_header_bar_pack_start (GTK_HEADER_BAR (priv->header), box);
 
     button = gtk_button_new_from_icon_name (rtl ? "go-previous-rtl-symbolic" : "go-previous-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
     g_object_set (button, "action-name", "win.yelp-view-go-back", NULL);
 
     button = gtk_button_new_from_icon_name (rtl ? "go-next-rtl-symbolic" : "go-next-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
     g_object_set (button, "action-name", "win.yelp-view-go-forward", NULL);
 
     /** Menu **/
     button = gtk_menu_button_new ();
+    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
     gtk_button_set_image (GTK_BUTTON (button),
                           gtk_image_new_from_icon_name ("emblem-system-symbolic",
@@ -430,6 +433,7 @@ window_construct (YelpWindow *window)
     g_object_set (priv->search_entry, "width-request", 400, NULL);
     gtk_container_add (GTK_CONTAINER (priv->search_bar), priv->search_entry);
     button = gtk_toggle_button_new ();
+    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
     gtk_button_set_image (GTK_BUTTON (button),
                           gtk_image_new_from_icon_name ("edit-find-symbolic",
@@ -441,6 +445,7 @@ window_construct (YelpWindow *window)
 
     /** Bookmarks **/
     button = gtk_menu_button_new ();
+    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
     gtk_button_set_image (GTK_BUTTON (button),
                           gtk_image_new_from_icon_name ("yelp-bookmark-remove-symbolic",
@@ -503,11 +508,13 @@ window_construct (YelpWindow *window)
                       G_CALLBACK (find_entry_key_press), window);
 
     button = gtk_button_new_from_icon_name ("go-up-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "raised");
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
     /* FIXME: signal_connect */
 
     button = gtk_button_new_from_icon_name ("go-down-symbolic", GTK_ICON_SIZE_MENU);
+    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "raised");
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
     /* FIXME: signal_connect */
