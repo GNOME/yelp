@@ -104,7 +104,8 @@ static void        view_document_loaded           (WebKitWebView             *vi
 
 static void        view_print                     (GtkAction          *action,
                                                    YelpView           *view);
-static void        view_history_action            (GtkAction          *action,
+static void        view_history_action            (GAction            *action,
+                                                   GVariant           *parameter,
                                                    YelpView           *view);
 static void        view_navigation_action         (GtkAction          *action,
                                                    YelpView           *view);
@@ -130,6 +131,7 @@ static const GtkActionEntry entries[] = {
      "<Control>P",
      NULL,
      G_CALLBACK (view_print) },
+#if 0
     {"YelpViewGoBack", GTK_STOCK_GO_BACK,
      N_("_Back"),
      "<Alt>Left",
@@ -140,6 +142,7 @@ static const GtkActionEntry entries[] = {
      "<Alt>Right",
      NULL,
      G_CALLBACK (view_history_action) },
+#endif
     {"YelpViewGoPrevious", NULL,
      N_("_Previous Page"),
      "<Control>Page_Up",
@@ -247,7 +250,12 @@ struct _YelpViewPrivate {
     GList          *back_cur;
     gboolean        back_load;
 
+    GSimpleAction  *back_action;
+    GSimpleAction  *forward_action;
+
+#if 0
     GtkActionGroup *action_group;
+#endif
 
     GSList         *link_actions;
 
@@ -287,6 +295,7 @@ yelp_view_init (YelpView *view)
     g_signal_connect (view, "script-alert",
                       G_CALLBACK (view_script_alert), NULL);
 
+#if 0
     priv->action_group = gtk_action_group_new ("YelpView");
     gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
     gtk_action_group_add_actions (priv->action_group,
@@ -296,6 +305,21 @@ yelp_view_init (YelpView *view)
     gtk_action_set_sensitive (action, FALSE);
     action = gtk_action_group_get_action (priv->action_group, "YelpViewGoForward");
     gtk_action_set_sensitive (action, FALSE);
+#endif
+
+    priv->back_action = g_simple_action_new ("yelp-view-go-back", NULL);
+    g_simple_action_set_enabled (priv->back_action, FALSE);
+    g_signal_connect (priv->back_action,
+                      "activate",
+                      G_CALLBACK (view_history_action),
+                      view);
+
+    priv->forward_action = g_simple_action_new ("yelp-view-go-forward", NULL);
+    g_simple_action_set_enabled (priv->forward_action, FALSE);
+    g_signal_connect (priv->forward_action,
+                      "activate",
+                      G_CALLBACK (view_history_action),
+                      view);
 }
 
 static void
@@ -315,9 +339,21 @@ yelp_view_dispose (GObject *object)
         priv->hadjuster = 0;
     }
 
+#if 0
     if (priv->action_group) {
         g_object_unref (priv->action_group);
         priv->action_group = NULL;
+    }
+#endif
+
+    if (priv->back_action) {
+        g_object_unref (priv->back_action);
+        priv->back_action = NULL;
+    }
+
+    if (priv->forward_action) {
+        g_object_unref (priv->forward_action);
+        priv->forward_action = NULL;
     }
 
     if (priv->document) {
@@ -571,12 +607,14 @@ yelp_view_load_uri (YelpView *view,
 
     g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
 
+#if 0
     gtk_action_set_sensitive (gtk_action_group_get_action (priv->action_group,
                                                            "YelpViewGoPrevious"),
                               FALSE);
     gtk_action_set_sensitive (gtk_action_group_get_action (priv->action_group,
                                                            "YelpViewGoNext"),
                               FALSE);
+#endif
 
     if (!yelp_uri_is_resolved (uri)) {
         if (priv->resolve_uri != NULL) {
@@ -630,12 +668,39 @@ yelp_view_get_document (YelpView *view)
     return priv->document;
 }
 
+void
+yelp_view_register_actions (YelpView   *view,
+                            GActionMap *map)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    g_action_map_add_action (map, priv->back_action);
+    g_action_map_add_action (map, priv->forward_action);
+}
+
+
+#if 0
 GtkActionGroup *
 yelp_view_get_action_group (YelpView *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
     return priv->action_group;
 }
+
+GAction *
+yelp_view_get_back_action (YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    return G_ACTION (priv->back_action);
+}
+
+GAction *
+yelp_view_get_forward_action (YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    return G_ACTION (priv->forward_action);
+}
+#endif
+
 
 /******************************************************************************/
 
@@ -1326,12 +1391,14 @@ view_populate_popup (YelpView *view,
         }
     }
     else {
+#if 0
         item = gtk_action_create_menu_item (gtk_action_group_get_action (priv->action_group,
                                                                          "YelpViewGoBack"));
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
         item = gtk_action_create_menu_item (gtk_action_group_get_action (priv->action_group,
                                                                          "YelpViewGoForward"));
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+#endif
     }
 
     if ((context & WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE) ||
@@ -1522,7 +1589,8 @@ view_print (GtkAction *action, YelpView  *view)
 }
 
 static void
-view_history_action (GtkAction *action,
+view_history_action (GAction   *action,
+                     GVariant  *parameter,
                      YelpView  *view)
 {
     GList *newcur;
@@ -1531,7 +1599,7 @@ view_history_action (GtkAction *action,
     if (priv->back_cur == NULL)
         return;
 
-    if (g_str_equal (gtk_action_get_name (action), "YelpViewGoBack"))
+    if (g_str_equal (g_action_get_name (action), "yelp-view-go-back"))
         newcur = priv->back_cur->next;
     else
         newcur = priv->back_cur->prev;
@@ -1932,6 +2000,7 @@ uri_resolved (YelpUri  *uri,
     }
     priv->back_load = FALSE;
 
+#if 0
     action = gtk_action_group_get_action (priv->action_group, "YelpViewGoBack");
     gtk_action_set_sensitive (action, FALSE);
     proxies = gtk_action_get_proxies (action);
@@ -1959,7 +2028,10 @@ uri_resolved (YelpUri  *uri,
         for (cur = proxies; cur != NULL; cur = cur->next)
             gtk_widget_set_tooltip_text (GTK_WIDGET (cur->data), "");
     }
+#endif
+    g_simple_action_set_enabled (priv->back_action, (priv->back_cur->next && priv->back_cur->next->data));
 
+#if 0
     action = gtk_action_group_get_action (priv->action_group, "YelpViewGoForward");
     gtk_action_set_sensitive (action, FALSE);
     proxies = gtk_action_get_proxies (action);
@@ -1987,6 +2059,8 @@ uri_resolved (YelpUri  *uri,
         for (cur = proxies; cur != NULL; cur = cur->next)
             gtk_widget_set_tooltip_text (GTK_WIDGET (cur->data), "");
     }
+#endif
+    g_simple_action_set_enabled (priv->forward_action, (priv->back_cur->prev && priv->back_cur->prev->data));
 
     spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
                                          "yelp-uri");
@@ -2081,6 +2155,7 @@ document_callback (YelpDocument       *document,
             back->desc = g_strdup (priv->page_desc);
         }
 
+#if 0
         prev_id = yelp_document_get_prev_id (document, priv->page_id);
         action = gtk_action_group_get_action (priv->action_group, "YelpViewGoPrevious");
         gtk_action_set_sensitive (action, prev_id != NULL);
@@ -2090,6 +2165,7 @@ document_callback (YelpDocument       *document,
         action = gtk_action_group_get_action (priv->action_group, "YelpViewGoNext");
         gtk_action_set_sensitive (action, next_id != NULL);
         g_free (next_id);
+#endif
 
         spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
                                              "root-title");

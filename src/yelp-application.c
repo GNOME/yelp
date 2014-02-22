@@ -141,6 +141,22 @@ yelp_application_init (YelpApplication *app)
     priv->docsettings = g_hash_table_new_full (g_str_hash, g_str_equal,
                                                (GDestroyNotify) g_free,
                                                (GDestroyNotify) g_object_unref);
+    gtk_application_add_accelerator (GTK_APPLICATION (app),
+                                     "<Control>f",
+                                     "win.find",
+                                     NULL);
+    gtk_application_add_accelerator (GTK_APPLICATION (app),
+                                     "<Control>s",
+                                     "win.search",
+                                     NULL);
+    gtk_application_add_accelerator (GTK_APPLICATION (app),
+                                     "<Alt>Left",
+                                     "win.yelp-view-go-back",
+                                     NULL);
+    gtk_application_add_accelerator (GTK_APPLICATION (app),
+                                     "<Alt>Right",
+                                     "win.yelp-view-go-forward",
+                                     NULL);
 }
 
 static void

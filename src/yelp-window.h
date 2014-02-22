@@ -36,12 +36,12 @@ typedef struct _YelpWindowClass  YelpWindowClass;
 
 struct _YelpWindow
 {
-    GtkWindow       parent;
+    GtkApplicationWindow       parent;
 };
 
 struct _YelpWindowClass
 {
-    GtkWindowClass  parent_class;
+    GtkApplicationWindowClass  parent_class;
 };
 
 GType             yelp_window_get_type     (void);

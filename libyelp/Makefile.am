@@ -9,12 +9,12 @@ libyelp_la_SOURCES =                \
 	yelp-help-list.c            \
 	yelp-info-document.c        \
 	yelp-info-parser.c          \
-	yelp-location-entry.c       \
 	yelp-magic-decompressor.c   \
 	yelp-mallard-document.c     \
 	yelp-man-document.c         \
 	yelp-man-parser.c           \
 	yelp-marshal.c              \
+	yelp-search-entry.c         \
 	yelp-settings.c             \
 	yelp-simple-document.c      \
 	yelp-sqlite-storage.c       \
@@ -48,6 +48,7 @@ endif
 
 libyelp_la_CFLAGS =                             \
 	$(YELP_CFLAGS)                          \
+	-Wno-deprecated-declarations		\
 	-DDATADIR=\""$(datadir)"\"              \
 	-DYELP_ICON_PATH=\"$(YELP_ICON_PATH)\"
 
