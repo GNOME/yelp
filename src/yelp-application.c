@@ -116,6 +116,8 @@ struct _YelpApplicationPrivate {
 
     GtkActionGroup *action_group;
 
+    GPropertyAction  *show_cursor_action;
+
     GSettingsBackend *backend;
     GSettings *gsettings;
     GHashTable *docsettings;
@@ -141,6 +143,8 @@ yelp_application_init (YelpApplication *app)
     priv->docsettings = g_hash_table_new_full (g_str_hash, g_str_equal,
                                                (GDestroyNotify) g_free,
                                                (GDestroyNotify) g_object_unref);
+
+    gtk_application_add_accelerator (GTK_APPLICATION (app), "F7", "app.yelp-application-show-cursor", NULL);
 
     gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>f", "win.yelp-window-find", NULL);
     gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>s", "win.yelp-window-search", NULL);
@@ -194,6 +198,11 @@ yelp_application_dispose (GObject *object)
     if (priv->action_group) {
         g_object_unref (priv->action_group);
         priv->action_group = NULL;
+    }
+
+    if (priv->show_cursor_action) {
+        g_object_unref (priv->show_cursor_action);
+        priv->show_cursor_action = NULL;
     }
 
     if (priv->gsettings) {
@@ -262,8 +271,7 @@ yelp_application_startup (GApplication *application)
     g_set_application_name (N_("Help"));
 
     /* chain up */
-    G_APPLICATION_CLASS (yelp_application_parent_class)
-      ->startup (application);
+    G_APPLICATION_CLASS (yelp_application_parent_class)->startup (application);
 
     settings = yelp_settings_get_default ();
     if (editor_mode)
@@ -274,19 +282,25 @@ yelp_application_startup (GApplication *application)
                                                        NULL);
     /* Use a config file for per-document settings, because
        Ryan asked me to. */
-    keyfile = g_build_filename (g_get_user_config_dir (),
-                                "yelp", "yelp.cfg", NULL);
+    keyfile = g_build_filename (g_get_user_config_dir (), "yelp", "yelp.cfg", NULL);
     priv->backend = g_keyfile_settings_backend_new (keyfile, "/org/gnome/yelp/", "yelp");
     g_free (keyfile);
+
     /* But the main settings are in dconf */
     priv->gsettings = g_settings_new ("org.gnome.yelp");
 
     g_settings_bind (priv->gsettings, "show-cursor",
                      settings, "show-text-cursor",
                      G_SETTINGS_BIND_DEFAULT);
+    priv->show_cursor_action = g_property_action_new ("yelp-application-show-cursor",
+                                                      settings, "show-text-cursor");
+    g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (priv->show_cursor_action));
+
+
     g_settings_bind (priv->gsettings, "font-adjustment",
                      settings, "font-adjustment",
                      G_SETTINGS_BIND_DEFAULT);
+
 
     priv->action_group = gtk_action_group_new ("ApplicationActions");
     gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
@@ -296,11 +310,11 @@ yelp_application_startup (GApplication *application)
     action = (GtkAction *) gtk_toggle_action_new ("ShowTextCursor",
                                                   _("Show Text _Cursor"),
                                                   NULL, NULL);
-    gtk_action_group_add_action_with_accel (priv->action_group,
-                                            action, "F7");
     g_settings_bind (priv->gsettings, "show-cursor",
                      action, "active",
                      G_SETTINGS_BIND_DEFAULT);
+    gtk_action_group_add_action_with_accel (priv->action_group,
+                                            action, "F7");
     g_object_unref (action);
     application_set_font_sensitivity (app);
 }
