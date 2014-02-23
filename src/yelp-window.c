@@ -412,18 +412,24 @@ window_construct (YelpWindow *window)
     section = g_menu_new ();
     g_menu_append (section, _("Find..."), "win.yelp-window-find");
     g_menu_append (section, _("Print..."), "win.yelp-view-print");
-    g_menu_append_section (menu, NULL, section);
+    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
     g_object_unref (section);
 
     section = g_menu_new ();
     g_menu_append (section, _("New Window"), "win.yelp-window-new");
-    g_menu_append_section (menu, NULL, section);
+    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
+    g_object_unref (section);
+
+    section = g_menu_new ();
+    g_menu_append (section, _("Larger Text"), "app.yelp-application-larger-text");
+    g_menu_append (section, _("Smaller Text"), "app.yelp-application-smaller-text");
+    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
     g_object_unref (section);
 
     section = g_menu_new ();
     g_menu_append (section, _("Previous Page"), "win.yelp-view-go-previous");
     g_menu_append (section, _("Next Page"), "win.yelp-view-go-next");
-    g_menu_append_section (menu, NULL, section);
+    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
     g_object_unref (section);
     /* all documents */
     /* larger/smaller text */

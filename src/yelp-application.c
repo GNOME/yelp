@@ -91,7 +91,8 @@ static gboolean      application_window_deleted        (YelpWindow            *w
                                                         YelpApplication       *app);
 GSettings *          application_get_doc_settings      (YelpApplication       *app,
                                                         const gchar           *doc_uri);
-static void          application_adjust_font           (GtkAction             *action,
+static void          application_adjust_font           (GAction               *action,
+                                                        GVariant              *parameter,
                                                         YelpApplication       *app);
 static void          application_set_font_sensitivity  (YelpApplication       *app);
 
@@ -114,26 +115,13 @@ struct _YelpApplicationPrivate {
     GSList *windows;
     GHashTable *windows_by_document;
 
-    GtkActionGroup *action_group;
-
     GPropertyAction  *show_cursor_action;
+    GSimpleAction    *larger_text_action;
+    GSimpleAction    *smaller_text_action;
 
     GSettingsBackend *backend;
     GSettings *gsettings;
     GHashTable *docsettings;
-};
-
-static const GtkActionEntry action_entries[] = {
-    { "LargerText", GTK_STOCK_ZOOM_IN,
-      N_("_Larger Text"),
-      "<Control>plus",
-      N_("Increase the size of the text"),
-      G_CALLBACK (application_adjust_font) },
-    { "SmallerText", GTK_STOCK_ZOOM_OUT,
-      N_("_Smaller Text"),
-      "<Control>minus",
-      N_("Decrease the size of the text"),
-      G_CALLBACK (application_adjust_font) }
 };
 
 static void
@@ -145,6 +133,8 @@ yelp_application_init (YelpApplication *app)
                                                (GDestroyNotify) g_object_unref);
 
     gtk_application_add_accelerator (GTK_APPLICATION (app), "F7", "app.yelp-application-show-cursor", NULL);
+    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>plus", "app.yelp-application-larger-text", NULL);
+    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>minus", "app.yelp-application-smaller-text", NULL);
 
     gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>f", "win.yelp-window-find", NULL);
     gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>s", "win.yelp-window-search", NULL);
@@ -195,14 +185,19 @@ yelp_application_dispose (GObject *object)
 {
     YelpApplicationPrivate *priv = GET_PRIV (object);
 
-    if (priv->action_group) {
-        g_object_unref (priv->action_group);
-        priv->action_group = NULL;
-    }
-
     if (priv->show_cursor_action) {
         g_object_unref (priv->show_cursor_action);
         priv->show_cursor_action = NULL;
+    }
+
+    if (priv->larger_text_action) {
+        g_object_unref (priv->larger_text_action);
+        priv->larger_text_action = NULL;
+    }
+
+    if (priv->smaller_text_action) {
+        g_object_unref (priv->smaller_text_action);
+        priv->smaller_text_action = NULL;
     }
 
     if (priv->gsettings) {
@@ -266,7 +261,6 @@ yelp_application_startup (GApplication *application)
     YelpApplicationPrivate *priv = GET_PRIV (app);
     gchar *keyfile;
     YelpSettings *settings;
-    GtkAction *action;
 
     g_set_application_name (N_("Help"));
 
@@ -296,45 +290,37 @@ yelp_application_startup (GApplication *application)
                                                       settings, "show-text-cursor");
     g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (priv->show_cursor_action));
 
-
     g_settings_bind (priv->gsettings, "font-adjustment",
                      settings, "font-adjustment",
                      G_SETTINGS_BIND_DEFAULT);
 
+    priv->larger_text_action = g_simple_action_new ("yelp-application-larger-text", NULL);
+    g_signal_connect (priv->larger_text_action,
+                      "activate",
+                      G_CALLBACK (application_adjust_font),
+                      app);
+    g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (priv->larger_text_action));
 
-    priv->action_group = gtk_action_group_new ("ApplicationActions");
-    gtk_action_group_set_translation_domain (priv->action_group, GETTEXT_PACKAGE);
-    gtk_action_group_add_actions (priv->action_group,
-				  action_entries, G_N_ELEMENTS (action_entries),
-				  app);
-    action = (GtkAction *) gtk_toggle_action_new ("ShowTextCursor",
-                                                  _("Show Text _Cursor"),
-                                                  NULL, NULL);
-    g_settings_bind (priv->gsettings, "show-cursor",
-                     action, "active",
-                     G_SETTINGS_BIND_DEFAULT);
-    gtk_action_group_add_action_with_accel (priv->action_group,
-                                            action, "F7");
-    g_object_unref (action);
+    priv->smaller_text_action = g_simple_action_new ("yelp-application-smaller-text", NULL);
+    g_signal_connect (priv->smaller_text_action,
+                      "activate",
+                      G_CALLBACK (application_adjust_font),
+                      app);
+    g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (priv->smaller_text_action));
+
     application_set_font_sensitivity (app);
 }
 
 /******************************************************************************/
 
-GtkActionGroup *
-yelp_application_get_action_group (YelpApplication  *app)
-{
-    YelpApplicationPrivate *priv = GET_PRIV (app);
-    return priv->action_group;
-}
-
 static void
-application_adjust_font (GtkAction       *action,
+application_adjust_font (GAction         *action,
+                         GVariant        *parameter,
                          YelpApplication *app)
 {
     YelpApplicationPrivate *priv = GET_PRIV (app);
     gint adjustment = g_settings_get_int (priv->gsettings, "font-adjustment");
-    gint adjust = g_str_equal (gtk_action_get_name (action), "LargerText") ? 1 : -1;
+    gint adjust = g_str_equal (g_action_get_name (action), "yelp-application-larger-text") ? 1 : -1;
 
     adjustment += adjust;
     g_settings_set_int (priv->gsettings, "font-adjustment", adjustment);
@@ -354,10 +340,10 @@ application_set_font_sensitivity (YelpApplication *app)
         g_warning ("Expcected integer param spec for font-adjustment");
         return;
     }
-    gtk_action_set_sensitive (gtk_action_group_get_action (priv->action_group, "LargerText"),
-                              adjustment < ((GParamSpecInt *) spec)->maximum);
-    gtk_action_set_sensitive (gtk_action_group_get_action (priv->action_group, "SmallerText"),
-                              adjustment > ((GParamSpecInt *) spec)->minimum);
+    g_simple_action_set_enabled (priv->larger_text_action, 
+                                 adjustment < ((GParamSpecInt *) spec)->maximum);
+    g_simple_action_set_enabled (priv->smaller_text_action, 
+                                 adjustment > ((GParamSpecInt *) spec)->minimum);
 }
 
 /******************************************************************************/

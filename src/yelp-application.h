@@ -51,7 +51,6 @@ void              yelp_application_new_window     (YelpApplication  *app,
                                                    const gchar      *uri);
 void              yelp_application_new_window_uri (YelpApplication  *app,
                                                    YelpUri          *uri);
-GtkActionGroup *  yelp_application_get_action_group     (YelpApplication   *app);
 void              yelp_application_add_bookmark         (YelpBookmarks     *bookmarks,
                                                          const gchar       *doc_uri,
                                                          const gchar       *page_id,
