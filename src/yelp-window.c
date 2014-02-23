@@ -159,8 +159,6 @@ static const gchar *YELP_UI =
     "<ui>"
     "<menubar>"
     "<menu action='PageMenu'>"
-    "<menuitem action='NewWindow'/>"
-    "<menuitem action='Find'/>"
     "<separator/>"
     "<menuitem action='YelpViewPrint'/>"
     "<separator/>"
@@ -172,24 +170,8 @@ static const gchar *YELP_UI =
     "<separator/>"
     "<menuitem action='ShowTextCursor'/>"
     "</menu>"
-    "<menu action='GoMenu'>"
-    "<menuitem action='YelpViewGoBack'/>"
-    "<menuitem action='YelpViewGoForward'/>"
-    "<separator/>"
-    "<menuitem action='YelpViewGoPrevious'/>"
-    "<menuitem action='YelpViewGoNext'/>"
-    "<separator/>"
     "<menuitem action='GoAll'/>"
     "</menu>"
-    "<menu action='BookmarksMenu'>"
-    "<menuitem action='AddBookmark'/>"
-    "<menuitem action='RemoveBookmark'/>"
-    "<separator/>"
-    "<placeholder name='Bookmarks'/>"
-    "</menu>"
-    "</menubar>"
-    "<accelerator action='Find'/>"
-    "<accelerator action='Search'/>"
     "<accelerator action='OpenLocation'/>"
     "</ui>";
 #endif
@@ -357,10 +339,10 @@ static void
 window_construct (YelpWindow *window)
 {
     GtkWidget *scroll;
-    GtkActionGroup *view_actions;
     GtkAction *action;
     GtkWidget *box, *button, *sw;
     gchar *color, *text;
+    GMenu *menu;
     YelpWindowPrivate *priv = GET_PRIV (window);
     gboolean rtl;
 
@@ -415,12 +397,25 @@ window_construct (YelpWindow *window)
 
     /** Menu **/
     button = gtk_menu_button_new ();
+    gtk_menu_button_set_use_popover (GTK_MENU_BUTTON (button), TRUE);
     gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
     gtk_button_set_image (GTK_BUTTON (button),
                           gtk_image_new_from_icon_name ("emblem-system-symbolic",
                                                         GTK_ICON_SIZE_MENU));
     gtk_header_bar_pack_end (GTK_HEADER_BAR (priv->header), button);
+
+    menu = g_menu_new ();
+    g_menu_append (menu, _("New Window"), "win.new-window");
+    g_menu_append (menu, _("Find..."), "win.find");
+    g_menu_append (menu, _("Print..."), "win.yelp-view-print");
+    g_menu_append (menu, _("Previous Page"), "win.yelp-view-go-previous");
+    g_menu_append (menu, _("Next Page"), "win.yelp-view-go-next");
+    /* all documents */
+    /* larger/smaller text */
+    /* show text cursor */
+    /* open location */
+    gtk_menu_button_set_menu_model (GTK_MENU_BUTTON (button), G_MENU_MODEL (menu));
 
     /** Search **/
     priv->vbox_view = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);

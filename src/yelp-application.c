@@ -150,12 +150,24 @@ yelp_application_init (YelpApplication *app)
                                      "win.search",
                                      NULL);
     gtk_application_add_accelerator (GTK_APPLICATION (app),
+                                     "<Control>p",
+                                     "win.yelp-view-print",
+                                     NULL);
+    gtk_application_add_accelerator (GTK_APPLICATION (app),
                                      "<Alt>Left",
                                      "win.yelp-view-go-back",
                                      NULL);
     gtk_application_add_accelerator (GTK_APPLICATION (app),
                                      "<Alt>Right",
                                      "win.yelp-view-go-forward",
+                                     NULL);
+    gtk_application_add_accelerator (GTK_APPLICATION (app),
+                                     "<Control>Page_Up",
+                                     "win.yelp-view-go-previous",
+                                     NULL);
+    gtk_application_add_accelerator (GTK_APPLICATION (app),
+                                     "<Control>Page_Down",
+                                     "win.yelp-view-go-next",
                                      NULL);
 }
 
