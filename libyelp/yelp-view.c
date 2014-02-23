@@ -102,7 +102,8 @@ static void        view_document_loaded           (WebKitWebView             *vi
                                                    WebKitWebFrame            *frame,
                                                    gpointer                   user_data);
 
-static void        view_print                     (GtkAction          *action,
+static void        view_print_action              (GAction            *action,
+                                                   GVariant           *parameter,
                                                    YelpView           *view);
 static void        view_history_action            (GAction            *action,
                                                    GVariant           *parameter,
@@ -125,14 +126,6 @@ static void        document_callback              (YelpDocument       *document,
                                                    YelpDocumentSignal  signal,
                                                    YelpView           *view,
                                                    GError             *error);
-
-static const GtkActionEntry entries[] = {
-    {"YelpViewPrint", GTK_STOCK_PRINT,
-     N_("_Print..."),
-     "<Control>P",
-     NULL,
-     G_CALLBACK (view_print) },
-};
 
 static gchar *nautilus_sendto = NULL;
 
@@ -229,6 +222,7 @@ struct _YelpViewPrivate {
     GList          *back_cur;
     gboolean        back_load;
 
+    GSimpleAction  *print_action;
     GSimpleAction  *back_action;
     GSimpleAction  *forward_action;
     GSimpleAction  *prev_action;
@@ -271,6 +265,12 @@ yelp_view_init (YelpView *view)
                       G_CALLBACK (view_populate_popup), NULL);
     g_signal_connect (view, "script-alert",
                       G_CALLBACK (view_script_alert), NULL);
+
+    priv->print_action = g_simple_action_new ("yelp-view-print", NULL);
+    g_signal_connect (priv->print_action,
+                      "activate",
+                      G_CALLBACK (view_print_action),
+                      view);
 
     priv->back_action = g_simple_action_new ("yelp-view-go-back", NULL);
     g_simple_action_set_enabled (priv->back_action, FALSE);
@@ -316,6 +316,11 @@ yelp_view_dispose (GObject *object)
     if (priv->hadjuster > 0) {
         g_source_remove (priv->hadjuster);
         priv->hadjuster = 0;
+    }
+
+    if (priv->print_action) {
+        g_object_unref (priv->print_action);
+        priv->print_action = NULL;
     }
 
     if (priv->back_action) {
@@ -649,6 +654,7 @@ yelp_view_register_actions (YelpView   *view,
                             GActionMap *map)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
+    g_action_map_add_action (map, G_ACTION (priv->print_action));
     g_action_map_add_action (map, G_ACTION (priv->back_action));
     g_action_map_add_action (map, G_ACTION (priv->forward_action));
     g_action_map_add_action (map, G_ACTION (priv->prev_action));
@@ -1536,7 +1542,7 @@ view_document_loaded (WebKitWebView   *view,
 }
 
 static void
-view_print (GtkAction *action, YelpView  *view)
+view_print_action (GAction *action, GVariant *parameter, YelpView *view)
 {
     webkit_web_frame_print (webkit_web_view_get_main_frame (WEBKIT_WEB_VIEW (view)));
 }
@@ -1632,8 +1638,6 @@ view_load_page (YelpView *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
     gchar *page_id;
-
-    debug_print (DB_FUNCTION, "entering\n");
 
     g_return_if_fail (priv->cancellable == NULL);
 
@@ -2008,8 +2012,6 @@ document_callback (YelpDocument       *document,
 {
     YelpViewPrivate *priv = GET_PRIV (view);
 
-    debug_print (DB_FUNCTION, "entering\n");
-
     if (signal == YELP_DOCUMENT_SIGNAL_INFO) {
         gchar *prev_id, *next_id, *real_id;
         YelpBackEntry *back = NULL;
@@ -2076,7 +2078,6 @@ document_callback (YelpDocument       *document,
 	const gchar *contents;
         gchar *mime_type, *page_id, *frag_id, *full_uri;
         page_id = yelp_uri_get_page_id (priv->uri);
-        debug_print (DB_ARG, "    document.uri.page_id=\"%s\"\n", page_id);
         mime_type = yelp_document_get_mime_type (document, page_id);
         contents = yelp_document_read_contents (document, page_id);
         frag_id = yelp_uri_get_frag_id (priv->uri);
