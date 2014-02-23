@@ -99,6 +99,9 @@ static void          window_set_bookmark_buttons  (YelpWindow         *window);
 static void          action_new_window            (GSimpleAction      *action,
                                                    GVariant           *parameter,
                                                    gpointer           userdata);
+static void          action_close_window          (GSimpleAction      *action,
+                                                   GVariant           *parameter,
+                                                   gpointer           userdata);
 static void          action_print                 (GSimpleAction      *action,
                                                    GVariant           *parameter,
                                                    gpointer            userdata);
@@ -342,15 +345,15 @@ window_construct (YelpWindow *window)
     GtkAction *action;
     GtkWidget *box, *button, *sw;
     gchar *color, *text;
-    GMenu *menu;
+    GMenu *menu, *section;
     YelpWindowPrivate *priv = GET_PRIV (window);
     gboolean rtl;
 
     const GActionEntry entries[] = {
-        { "new-window", action_new_window, NULL, NULL, NULL },
-        { "print",      action_print,      NULL, NULL, NULL },
-        { "search",     action_search,     NULL, NULL, NULL },
-        { "find",       action_find,       NULL, NULL, NULL },
+        { "yelp-window-new",    action_new_window,   NULL, NULL, NULL },
+        { "yelp-window-close",  action_close_window, NULL, NULL, NULL },
+        { "yelp-window-search", action_search,       NULL, NULL, NULL },
+        { "yelp-window-find",   action_find,         NULL, NULL, NULL },
     };
 
     rtl = gtk_widget_get_direction (GTK_WIDGET (window)) == GTK_TEXT_DIR_RTL;
@@ -395,7 +398,7 @@ window_construct (YelpWindow *window)
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
     g_object_set (button, "action-name", "win.yelp-view-go-forward", NULL);
 
-    /** Menu **/
+    /** Gear Menu **/
     button = gtk_menu_button_new ();
     gtk_menu_button_set_use_popover (GTK_MENU_BUTTON (button), TRUE);
     gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
@@ -406,11 +409,22 @@ window_construct (YelpWindow *window)
     gtk_header_bar_pack_end (GTK_HEADER_BAR (priv->header), button);
 
     menu = g_menu_new ();
-    g_menu_append (menu, _("New Window"), "win.new-window");
-    g_menu_append (menu, _("Find..."), "win.find");
-    g_menu_append (menu, _("Print..."), "win.yelp-view-print");
-    g_menu_append (menu, _("Previous Page"), "win.yelp-view-go-previous");
-    g_menu_append (menu, _("Next Page"), "win.yelp-view-go-next");
+    section = g_menu_new ();
+    g_menu_append (section, _("Find..."), "win.yelp-window-find");
+    g_menu_append (section, _("Print..."), "win.yelp-view-print");
+    g_menu_append_section (menu, NULL, section);
+    g_object_unref (section);
+
+    section = g_menu_new ();
+    g_menu_append (section, _("New Window"), "win.yelp-window-new");
+    g_menu_append_section (menu, NULL, section);
+    g_object_unref (section);
+
+    section = g_menu_new ();
+    g_menu_append (section, _("Previous Page"), "win.yelp-view-go-previous");
+    g_menu_append (section, _("Next Page"), "win.yelp-view-go-next");
+    g_menu_append_section (menu, NULL, section);
+    g_object_unref (section);
     /* all documents */
     /* larger/smaller text */
     /* show text cursor */
@@ -623,11 +637,12 @@ action_new_window (GSimpleAction *action,
 }
 
 static void
-action_print (GSimpleAction *action,
-              GVariant      *parameter,
-              gpointer       userdata)
+action_close_window (GSimpleAction *action,
+                     GVariant      *parameter,
+                     gpointer       userdata)
 {
-    /* FIXME */
+    g_signal_emit_by_name (userdata, "delete-event", NULL, NULL);
+    gtk_widget_destroy (GTK_WIDGET (userdata));
 }
 
 static void
