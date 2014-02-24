@@ -118,6 +118,10 @@ static gboolean      find_entry_key_press         (GtkEntry           *entry,
                                                    YelpWindow         *window);
 static void          find_entry_changed           (GtkEntry           *entry,
                                                    YelpWindow         *window);
+static void          find_prev_clicked            (GtkButton          *button,
+                                                   YelpWindow         *window);
+static void          find_next_clicked            (GtkButton          *button,
+                                                   YelpWindow         *window);
 
 static void          view_new_window              (YelpView           *view,
                                                    YelpUri            *uri,
@@ -526,13 +530,13 @@ window_construct (YelpWindow *window)
     gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "raised");
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
-    /* FIXME: signal_connect */
+    g_signal_connect (button, "clicked", G_CALLBACK (find_prev_clicked), window);
 
     button = gtk_button_new_from_icon_name ("go-down-symbolic", GTK_ICON_SIZE_MENU);
     gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "raised");
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
-    /* FIXME: signal_connect */
+    g_signal_connect (button, "clicked", G_CALLBACK (find_next_clicked), window);
 
     gtk_widget_show_all (priv->find_bar);
 
@@ -1179,6 +1183,28 @@ find_entry_changed (GtkEntry   *entry,
         webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), FALSE);
     }
 
+    g_free (text);
+}
+
+static void
+find_prev_clicked (GtkButton  *button,
+                   YelpWindow *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    gchar *text = gtk_editable_get_chars (GTK_EDITABLE (priv->find_entry), 0, -1);
+    webkit_web_view_search_text (WEBKIT_WEB_VIEW (priv->view),
+                                 text, FALSE, FALSE, TRUE);
+    g_free (text);
+}
+
+static void
+find_next_clicked (GtkButton  *button,
+                   YelpWindow *window)
+{
+    YelpWindowPrivate *priv = GET_PRIV (window);
+    gchar *text = gtk_editable_get_chars (GTK_EDITABLE (priv->find_entry), 0, -1);
+    webkit_web_view_search_text (WEBKIT_WEB_VIEW (priv->view),
+                                 text, FALSE, TRUE, TRUE);
     g_free (text);
 }
 
