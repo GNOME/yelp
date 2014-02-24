@@ -199,6 +199,7 @@ struct _YelpWindowPrivate {
     GtkWidget *find_bar;
     GtkWidget *find_entry;
     GtkWidget *bookmark_menu;
+    GtkWidget *bookmark_sw;
     GtkWidget *bookmark_list;
     GtkWidget *bookmark_add;
     GtkWidget *bookmark_remove;
@@ -347,7 +348,7 @@ window_construct (YelpWindow *window)
 {
     GtkWidget *scroll;
     GtkAction *action;
-    GtkWidget *box, *button, *sw;
+    GtkWidget *box, *button;
     gchar *color, *text;
     GMenu *menu, *section;
     YelpWindowPrivate *priv = GET_PRIV (window);
@@ -477,16 +478,18 @@ window_construct (YelpWindow *window)
 
     box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 12);
     gtk_container_add (GTK_CONTAINER (priv->bookmark_menu), box);
-    sw = gtk_scrolled_window_new (NULL, NULL);
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
-                                    GTK_POLICY_AUTOMATIC,
+    priv->bookmark_sw = gtk_scrolled_window_new (NULL, NULL);
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->bookmark_sw),
+                                    GTK_POLICY_NEVER,
                                     GTK_POLICY_AUTOMATIC);
-    gtk_box_pack_start (GTK_BOX (box), sw, TRUE, TRUE, 0);
+    g_object_set (priv->bookmark_sw, "height-request", 200, NULL);
+    gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (priv->bookmark_sw), GTK_SHADOW_IN);
+    gtk_box_pack_start (GTK_BOX (box), priv->bookmark_sw, TRUE, TRUE, 0);
     priv->bookmark_list = gtk_list_box_new ();
     g_object_set (priv->bookmark_list, "selection-mode", GTK_SELECTION_NONE, NULL);
     g_signal_connect (priv->bookmark_list, "row-activated",
                       G_CALLBACK (bookmark_activated), window);
-    gtk_container_add (GTK_CONTAINER (box), priv->bookmark_list);
+    gtk_container_add (GTK_CONTAINER (priv->bookmark_sw), priv->bookmark_list);
 
     priv->bookmark_add = gtk_button_new_with_label (_("Add Bookmark"));
     g_signal_connect (priv->bookmark_add, "clicked",
@@ -499,11 +502,6 @@ window_construct (YelpWindow *window)
                       G_CALLBACK (bookmark_removed), window);
     gtk_box_pack_end (GTK_BOX (box), priv->bookmark_remove, FALSE, FALSE, 0);
     gtk_widget_show_all (box);
-
-#if 0
-    priv->bookmark_actions = gtk_action_group_new ("BookmarkActions");
-    gtk_action_group_set_translate_func (priv->bookmark_actions, NULL, NULL, NULL);
-#endif
 
     priv->bookmarks_changed =
         g_signal_connect (priv->application, "bookmarks-changed",
@@ -890,6 +888,7 @@ window_set_bookmarks (YelpWindow  *window,
     GVariantIter *iter;
     gchar *page_id, *icon, *title;
     YelpWindowPrivate *priv = GET_PRIV (window);
+    gboolean has_bookmarks = FALSE;
     GList *children, *cur;
     GSList *entries = NULL;
 
@@ -906,6 +905,7 @@ window_set_bookmarks (YelpWindow  *window,
     g_variant_get (value, "a(sss)", &iter);
     while (g_variant_iter_loop (iter, "(&s&s&s)", &page_id, &icon, &title)) {
         YelpMenuEntry *entry = g_new0 (YelpMenuEntry, 1);
+        has_bookmarks = TRUE;
         entry->page_id = page_id;
         entry->icon = g_strdup (icon);
         entry->title = title;
@@ -938,6 +938,8 @@ window_set_bookmarks (YelpWindow  *window,
         g_free (entry->icon);
         g_free (entry);
     }
+
+    gtk_widget_set_visible (priv->bookmark_sw, has_bookmarks);
 
     g_variant_iter_free (iter);
     g_variant_unref (value);
