@@ -308,12 +308,12 @@ yelp_view_dispose (GObject *object)
     view_clear_load (YELP_VIEW (object));
 
     if (priv->vadjuster > 0) {
-        g_source_remove (priv->vadjuster);
+        g_signal_handler_disconnect (priv->vadjustment, priv->vadjuster);
         priv->vadjuster = 0;
     }
 
     if (priv->hadjuster > 0) {
-        g_source_remove (priv->hadjuster);
+        g_signal_handler_disconnect (priv->hadjustment, priv->hadjuster);
         priv->hadjuster = 0;
     }
 
@@ -885,7 +885,7 @@ view_set_hadjustment (YelpView      *view,
     YelpViewPrivate *priv = GET_PRIV (view);
     priv->hadjustment = gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (view));
     if (priv->hadjuster > 0)
-        g_source_remove (priv->hadjuster);
+        g_signal_handler_disconnect (priv->hadjustment, priv->hadjuster);
     priv->hadjuster = 0;
     if (priv->hadjustment)
         priv->hadjuster = g_signal_connect (priv->hadjustment, "value-changed",
@@ -900,7 +900,7 @@ view_set_vadjustment (YelpView      *view,
     YelpViewPrivate *priv = GET_PRIV (view);
     priv->vadjustment = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (view));
     if (priv->vadjuster > 0)
-        g_source_remove (priv->vadjuster);
+        g_signal_handler_disconnect (priv->vadjustment, priv->vadjuster);
     priv->vadjuster = 0;
     if (priv->vadjustment)
         priv->vadjuster = g_signal_connect (priv->vadjustment, "value-changed",
