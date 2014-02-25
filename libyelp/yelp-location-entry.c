@@ -520,14 +520,14 @@ location_entry_dispose (GObject *object)
         priv->view = NULL;
     }
 
+    if (priv->bookmarks_changed) {
+        g_signal_handler_disconnect (priv->bookmarks, priv->bookmarks_changed);
+        priv->bookmarks_changed = 0;
+    }
+
     if (priv->bookmarks) {
         g_object_unref (priv->bookmarks);
         priv->bookmarks = NULL;
-    }
-
-    if (priv->bookmarks_changed) {
-        g_source_remove (priv->bookmarks_changed);
-        priv->bookmarks_changed = 0;
     }
 
     if (priv->row) {

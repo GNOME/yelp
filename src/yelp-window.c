@@ -335,12 +335,12 @@ yelp_window_dispose (GObject *object)
     }
 
     if (priv->read_later_changed) {
-        g_source_remove (priv->read_later_changed);
+        g_signal_handler_disconnect (priv->application, priv->read_later_changed);
         priv->read_later_changed = 0;
     }
 
     if (priv->bookmarks_changed) {
-        g_source_remove (priv->bookmarks_changed);
+        g_signal_handler_disconnect (priv->application, priv->bookmarks_changed);
         priv->bookmarks_changed = 0;
     }
 
