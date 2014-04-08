@@ -11,8 +11,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2013-04-05 23:43+0000\n"
-"PO-Revision-Date: 2013-04-04 08:56+0600\n"
-"Last-Translator: Dmitriy S. Seregin <dseregin@59.ru>\n"
+"PO-Revision-Date: 2014-04-08 23:47+0400\n"
+"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -107,7 +107,7 @@ msgstr "URI документа"
 
 #: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
-msgstr "URI, определяющий документ"
+msgstr "URI, который идентифицирует документ"
 
 #: ../libyelp/yelp-document.c:994
 #, c-format
@@ -121,7 +121,7 @@ msgstr "В «%s» не найдено совпадающих справочны�
 
 #: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
-msgstr "Не найдно совпадений в справочных страницах."
+msgstr "Не найдено совпадений в справочных страницах."
 
 #: ../libyelp/yelp-error.c:37
 #, c-format
@@ -162,7 +162,7 @@ msgstr "Включить поиск"
 
 #: ../libyelp/yelp-location-entry.c:370
 msgid "Whether the location entry can be used as a search field"
-msgstr "Может ли поле местоположения использоваться для поиска"
+msgstr "Можно ли использовать поле адреса в качестве поля поиска"
 
 #: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
 msgid "Search..."
@@ -174,7 +174,7 @@ msgstr "Очистить текст для поиска"
 
 #: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
 msgid "Bookmark this page"
-msgstr "Добавить закладку для этой страницы"
+msgstr "Добавить закладку на эту страницу"
 
 #: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
 msgid "Remove bookmark"
@@ -257,7 +257,7 @@ msgstr "Таблица стилей XSLT «%s» отсутствует или я
 
 #: ../libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
-msgstr "Отсутстсвует атрибут ссылки в yelp:document\n"
+msgstr "Отсутствует атрибут ссылки в yelp:document\n"
 
 #: ../libyelp/yelp-transform.c:543
 msgid "Out of memory"
@@ -293,7 +293,7 @@ msgstr "YelpUri с текущим местоположением"
 
 #: ../libyelp/yelp-view.c:432
 msgid "Loading State"
-msgstr "Загрузка состояния…"
+msgstr "Загрузка состояния"
 
 #: ../libyelp/yelp-view.c:433
 msgid "The loading state of the view"
@@ -458,7 +458,7 @@ msgstr "Включить режим редактирования"
 
 #: ../src/yelp-application.c:128
 msgid "_Larger Text"
-msgstr "_Увеличить размер текста"
+msgstr "_Увеличить текст"
 
 #: ../src/yelp-application.c:130
 msgid "Increase the size of the text"
@@ -466,7 +466,7 @@ msgstr "Увеличить размер текста"
 
 #: ../src/yelp-application.c:133
 msgid "_Smaller Text"
-msgstr "_Уменьшить размер текста"
+msgstr "_Уменьшить текст"
 
 #: ../src/yelp-application.c:135
 msgid "Decrease the size of the text"
@@ -483,7 +483,7 @@ msgstr "Показывать _курсор"
 
 #: ../src/yelp-window.c:236
 msgid "_Page"
-msgstr "С_траница"
+msgstr "_Страница"
 
 #: ../src/yelp-window.c:237
 msgid "_View"
@@ -491,7 +491,7 @@ msgstr "_Вид"
 
 #: ../src/yelp-window.c:238
 msgid "_Go"
-msgstr "Пере_ход"
+msgstr "_Переход"
 
 #: ../src/yelp-window.c:239
 msgid "_Bookmarks"
@@ -499,7 +499,7 @@ msgstr "_Закладки"
 
 #: ../src/yelp-window.c:242
 msgid "_New Window"
-msgstr "_Создать окно"
+msgstr "_Открыть окно"
 
 #: ../src/yelp-window.c:247
 msgid "_Close"
