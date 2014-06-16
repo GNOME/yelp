@@ -443,6 +443,9 @@ window_construct (YelpWindow *window)
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (priv->bookmark_sw), GTK_SHADOW_IN);
     gtk_box_pack_start (GTK_BOX (box), priv->bookmark_sw, TRUE, TRUE, 0);
     priv->bookmark_list = gtk_list_box_new ();
+    button = gtk_label_new (_("No bookmarks"));
+    gtk_widget_show (button);
+    gtk_list_box_set_placeholder (GTK_LIST_BOX (priv->bookmark_list), button);
     g_object_set (priv->bookmark_list, "selection-mode", GTK_SELECTION_NONE, NULL);
     g_signal_connect (priv->bookmark_list, "row-activated",
                       G_CALLBACK (bookmark_activated), window);
@@ -829,7 +832,6 @@ window_set_bookmarks (YelpWindow  *window,
     GVariantIter *iter;
     gchar *page_id, *icon, *title;
     YelpWindowPrivate *priv = GET_PRIV (window);
-    gboolean has_bookmarks = FALSE;
     GList *children, *cur;
     GSList *entries = NULL;
 
@@ -846,7 +848,6 @@ window_set_bookmarks (YelpWindow  *window,
     g_variant_get (value, "a(sss)", &iter);
     while (g_variant_iter_loop (iter, "(&s&s&s)", &page_id, &icon, &title)) {
         YelpMenuEntry *entry = g_new0 (YelpMenuEntry, 1);
-        has_bookmarks = TRUE;
         entry->page_id = page_id;
         entry->icon = g_strdup (icon);
         entry->title = title;
@@ -879,8 +880,6 @@ window_set_bookmarks (YelpWindow  *window,
         g_free (entry->icon);
         g_free (entry);
     }
-
-    gtk_widget_set_visible (priv->bookmark_sw, has_bookmarks);
 
     g_variant_iter_free (iter);
     g_variant_unref (value);
