@@ -78,8 +78,6 @@ static void          bookmark_added               (GtkButton          *button,
 
 
 /* FIXME: all below */
-static void          window_go_all                (GtkAction          *action,
-                                                   YelpWindow         *window);
 static void          window_open_location         (GtkAction          *action,
                                                    YelpWindow         *window);
 
@@ -103,6 +101,9 @@ static void          action_search                (GSimpleAction      *action,
                                                    GVariant           *parameter,
                                                    gpointer            userdata);
 static void          action_find                  (GSimpleAction      *action,
+                                                   GVariant           *parameter,
+                                                   gpointer            userdata);
+static void          action_go_all                (GSimpleAction      *action,
                                                    GVariant           *parameter,
                                                    gpointer            userdata);
 
@@ -207,10 +208,6 @@ struct _YelpWindowPrivate {
 };
 
 static const GtkActionEntry gtkentries[] = {
-    { "GoAll", NULL,
-      N_("_All Documents"),
-      NULL, NULL,
-      G_CALLBACK (window_go_all) },
     { "OpenLocation", NULL,
       N_("Open Location"),
       "<Control>L",
@@ -326,6 +323,7 @@ window_construct (YelpWindow *window)
         { "yelp-window-close",  action_close_window, NULL, NULL, NULL },
         { "yelp-window-search", action_search,       NULL, NULL, NULL },
         { "yelp-window-find",   action_find,         NULL, NULL, NULL },
+        { "yelp-window-go-all", action_go_all,       NULL, NULL, NULL },
     };
 
     rtl = gtk_widget_get_direction (GTK_WIDGET (window)) == GTK_TEXT_DIR_RTL;
@@ -397,8 +395,13 @@ window_construct (YelpWindow *window)
     g_menu_append (section, _("Next Page"), "win.yelp-view-go-next");
     g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
     g_object_unref (section);
+
+    section = g_menu_new ();
+    g_menu_append (section, _("All Help"), "win.yelp-window-go-all");
+    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
+    g_object_unref (section);
+
     /* FIXME */
-    /* all documents */
     /* open location */
     gtk_menu_button_set_menu_model (GTK_MENU_BUTTON (button), G_MENU_MODEL (menu));
 
@@ -624,6 +627,16 @@ action_find (GSimpleAction *action,
     gtk_widget_grab_focus (priv->find_entry);
 }
 
+static void
+action_go_all (GSimpleAction *action,
+               GVariant      *parameter,
+               gpointer       userdata)
+{
+    YelpWindowPrivate *priv = GET_PRIV (userdata);
+    yelp_view_load (priv->view, "help-list:");
+}
+
+
 /******************************************************************************/
 
 static void
@@ -695,14 +708,6 @@ window_resize_signal (YelpWindow *window)
     g_signal_emit (window, signals[RESIZE_EVENT], 0);
     priv->resize_signal = 0;
     return FALSE;
-}
-
-static void
-window_go_all (GtkAction  *action,
-               YelpWindow *window)
-{
-    YelpWindowPrivate *priv = GET_PRIV (window);
-    yelp_view_load (priv->view, "help-list:");
 }
 
 static void
