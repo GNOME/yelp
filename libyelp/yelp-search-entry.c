@@ -93,7 +93,6 @@ struct _YelpSearchEntryPrivate
     gchar *completion_uri;
 
     /* do not free below */
-    GtkCellRenderer    *icon_cell;
     GtkEntryCompletion *completion;
 };
 
@@ -366,7 +365,7 @@ search_entry_set_completion (YelpSearchEntry *entry,
     g_list_free (cells);
 
     icon_cell = gtk_cell_renderer_pixbuf_new ();
-    g_object_set (priv->icon_cell, "yalign", 0.2, NULL);
+    g_object_set (icon_cell, "yalign", 0.2, NULL);
     gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->completion), icon_cell, FALSE);
     gtk_cell_layout_reorder (GTK_CELL_LAYOUT (priv->completion), icon_cell, 0);
     gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->completion),
