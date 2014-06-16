@@ -28,7 +28,9 @@
 #include <gio/gsettingsbackend.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
+#endif
 #include <stdlib.h>
 
 #include "yelp-bookmarks.h"
@@ -466,18 +468,25 @@ application_uri_resolved (YelpUri             *uri,
 
     /* Metacity no longer does anything useful with gtk_window_present */
     gdk_window = gtk_widget_get_window (GTK_WIDGET (window));
-    if (gdk_window)
-        gdk_x11_window_move_to_current_desktop (gdk_window);
 
-    /* Ensure we actually present the window when invoked from the command
-     * line. This is somewhat evil, but the minor evil of Yelp stealing
-     * focus (after you requested it) is outweighed for me by the major
-     * evil of no help window appearing when you click Help.
-     */
-    if (data->timestamp == 0)
-        data->timestamp = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
+#ifdef GDK_WINDOWING_X11
+    if (GDK_IS_X11_WINDOW (gdk_window)){
+        if (gdk_window)
+            gdk_x11_window_move_to_current_desktop (gdk_window);
 
-    gtk_window_present_with_time (GTK_WINDOW (window), data->timestamp);
+        /* Ensure we actually present the window when invoked from the command
+         * line. This is somewhat evil, but the minor evil of Yelp stealing
+         * focus (after you requested it) is outweighed for me by the major
+         * evil of no help window appearing when you click Help.
+         */
+        if (data->timestamp == 0)
+            data->timestamp = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
+
+        gtk_window_present_with_time (GTK_WINDOW (window), data->timestamp);
+    }
+    else
+#endif
+        gtk_window_present (GTK_WINDOW (window));
 
     g_object_unref (uri);
     g_free (data);

@@ -26,7 +26,9 @@
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
+#endif
 #include <webkit/webkit.h>
 
 #include "yelp-debug.h"
@@ -309,12 +311,12 @@ yelp_view_dispose (GObject *object)
     view_clear_load (YELP_VIEW (object));
 
     if (priv->vadjuster > 0) {
-        g_source_remove (priv->vadjuster);
+        g_signal_handler_disconnect (priv->vadjustment, priv->vadjuster);
         priv->vadjuster = 0;
     }
 
     if (priv->hadjuster > 0) {
-        g_source_remove (priv->hadjuster);
+        g_signal_handler_disconnect (priv->hadjustment, priv->hadjuster);
         priv->hadjuster = 0;
     }
 
@@ -809,8 +811,10 @@ view_install_uri (YelpView    *view,
     gtkwin = gtk_widget_get_toplevel (GTK_WIDGET (view));
     if (gtkwin != NULL && gtk_widget_is_toplevel (gtkwin)) {
         gdkwin = gtk_widget_get_window (gtkwin);
-        if (gdkwin != NULL)
+#ifdef GDK_WINDOWING_X11
+        if (gdkwin != NULL && GDK_IS_X11_WINDOW (gdkwin))
             xid = gdk_x11_window_get_xid (gdkwin);
+#endif
     }
 
     if (priv->state == YELP_VIEW_STATE_ERROR)
@@ -907,7 +911,7 @@ view_set_hadjustment (YelpView      *view,
     YelpViewPrivate *priv = GET_PRIV (view);
     priv->hadjustment = gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (view));
     if (priv->hadjuster > 0)
-        g_source_remove (priv->hadjuster);
+        g_signal_handler_disconnect (priv->hadjustment, priv->hadjuster);
     priv->hadjuster = 0;
     if (priv->hadjustment)
         priv->hadjuster = g_signal_connect (priv->hadjustment, "value-changed",
@@ -922,7 +926,7 @@ view_set_vadjustment (YelpView      *view,
     YelpViewPrivate *priv = GET_PRIV (view);
     priv->vadjustment = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (view));
     if (priv->vadjuster > 0)
-        g_source_remove (priv->vadjuster);
+        g_signal_handler_disconnect (priv->vadjustment, priv->vadjuster);
     priv->vadjuster = 0;
     if (priv->vadjustment)
         priv->vadjuster = g_signal_connect (priv->vadjustment, "value-changed",

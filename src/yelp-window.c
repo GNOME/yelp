@@ -259,7 +259,7 @@ yelp_window_dispose (GObject *object)
     YelpWindowPrivate *priv = GET_PRIV (object);
 
     if (priv->bookmarks_changed) {
-        g_source_remove (priv->bookmarks_changed);
+        g_signal_handler_disconnect (priv->application, priv->bookmarks_changed);
         priv->bookmarks_changed = 0;
     }
 
