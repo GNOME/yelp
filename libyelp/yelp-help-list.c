@@ -347,7 +347,6 @@ help_list_think (YelpHelpList *list)
                     entry->id = docid;
                     entry->filename = filename;
                     entry->type = YELP_URI_DOCUMENT_TYPE_MALLARD;
-                    g_object_unref (child);
                     goto found;
                 }
                 g_free (filename);
@@ -361,7 +360,6 @@ help_list_think (YelpHelpList *list)
                     entry->id = docid;
                     entry->filename = filename;
                     entry->type = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
-                    g_object_unref (child);
                     goto found;
                 }
                 g_free (filename);
