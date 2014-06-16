@@ -43,7 +43,6 @@
 static gboolean editor_mode = FALSE;
 
 enum {
-    READ_LATER_CHANGED,
     LAST_SIGNAL
 };
 static gint signals[LAST_SIGNAL] = { 0 };
@@ -97,9 +96,6 @@ static void          application_adjust_font           (GAction               *a
 static void          application_set_font_sensitivity  (YelpApplication       *app);
 
 static void          bookmarks_changed                 (GSettings             *settings,
-                                                        const gchar           *key,
-                                                        YelpApplication       *app);
-static void          readlater_changed                 (GSettings             *settings,
                                                         const gchar           *key,
                                                         YelpApplication       *app);
 static gboolean      window_resized                    (YelpWindow            *window,
@@ -160,14 +156,6 @@ yelp_application_class_init (YelpApplicationClass *klass)
 
     object_class->dispose = yelp_application_dispose;
     object_class->finalize = yelp_application_finalize;
-
-    signals[READ_LATER_CHANGED] =
-        g_signal_new ("read-later-changed",
-                      G_TYPE_FROM_CLASS (klass),
-                      G_SIGNAL_RUN_LAST,
-                      0, NULL, NULL,
-                      g_cclosure_marshal_VOID__STRING,
-                      G_TYPE_NONE, 1, G_TYPE_STRING);
 
     g_type_class_add_private (klass, sizeof (YelpApplicationPrivate));
 }
@@ -533,8 +521,6 @@ application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
         g_object_set_data ((GObject *) settings, "doc_uri", key);
         g_signal_connect (settings, "changed::bookmarks",
                           G_CALLBACK (bookmarks_changed), app);
-        g_signal_connect (settings, "changed::readlater",
-                          G_CALLBACK (readlater_changed), app);
         g_free (settings_path);
     }
     return settings;
@@ -700,76 +686,6 @@ yelp_application_get_bookmarks (YelpApplication *app,
     return g_settings_get_value (settings, "bookmarks");
 }
 
-void
-yelp_application_add_read_later (YelpApplication   *app,
-                                 const gchar       *doc_uri,
-                                 const gchar       *full_uri,
-                                 const gchar       *title)
-{
-    GSettings *settings;
-
-    settings = application_get_doc_settings (app, doc_uri);
-
-    if (settings) {
-        GVariantBuilder builder;
-        GVariantIter *iter;
-        gchar *this_uri, *this_title;
-        gboolean broken = FALSE;
-        g_settings_get (settings, "readlater", "a(ss)", &iter);
-        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(ss)"));
-        while (g_variant_iter_loop (iter, "(&s&s)", &this_uri, &this_title)) {
-            if (g_str_equal (full_uri, this_uri)) {
-                /* Already have this link */
-                broken = TRUE;
-                break;
-            }
-            g_variant_builder_add (&builder, "(ss)", this_uri, this_title);
-        }
-        g_variant_iter_free (iter);
-
-        if (!broken) {
-            GVariant *value;
-            g_variant_builder_add (&builder, "(ss)", full_uri, title);
-            value = g_variant_builder_end (&builder);
-            g_settings_set_value (settings, "readlater", value);
-        }
-    }
-}
-
-void
-yelp_application_remove_read_later (YelpApplication *app,
-                                    const gchar     *doc_uri,
-                                    const gchar     *full_uri)
-{
-    GSettings *settings;
-
-    settings = application_get_doc_settings (app, doc_uri);
-
-    if (settings) {
-        GVariantBuilder builder;
-        GVariantIter *iter;
-        gchar *this_uri, *this_title;
-        g_settings_get (settings, "readlater", "a(ss)", &iter);
-        g_variant_builder_init (&builder, G_VARIANT_TYPE ("a(ss)"));
-        while (g_variant_iter_loop (iter, "(&s&s)", &this_uri, &this_title)) {
-            if (!g_str_equal (this_uri, full_uri))
-                g_variant_builder_add (&builder, "(ss)", this_uri, this_title);
-        }
-        g_variant_iter_free (iter);
-
-        g_settings_set_value (settings, "readlater", g_variant_builder_end (&builder));
-    }
-}
-
-GVariant *
-yelp_application_get_read_later (YelpApplication *app,
-                                 const gchar     *doc_uri)
-{
-    GSettings *settings = application_get_doc_settings (app, doc_uri);
-
-    return g_settings_get_value (settings, "readlater");
-}
-
 static void
 bookmarks_changed (GSettings       *settings,
                    const gchar     *key,
@@ -778,16 +694,6 @@ bookmarks_changed (GSettings       *settings,
     const gchar *doc_uri = g_object_get_data ((GObject *) settings, "doc_uri");
     if (doc_uri)
         g_signal_emit_by_name (app, "bookmarks-changed", doc_uri);
-}
-
-static void
-readlater_changed (GSettings       *settings,
-                   const gchar     *key,
-                   YelpApplication *app)
-{
-    const gchar *doc_uri = g_object_get_data ((GObject *) settings, "doc_uri");
-    if (doc_uri)
-        g_signal_emit (app, signals[READ_LATER_CHANGED], 0, doc_uri);
 }
 
 static gboolean

@@ -82,13 +82,10 @@ static void          window_go_all                (GtkAction          *action,
                                                    YelpWindow         *window);
 static void          window_open_location         (GtkAction          *action,
                                                    YelpWindow         *window);
-static void          window_read_later            (GtkAction          *action,
-                                                   YelpWindow         *window);
-static gboolean      read_later_clicked           (GtkLinkButton      *button,
-                                                   YelpWindow         *window);
-static void          app_read_later_changed       (YelpApplication    *app,
-                                                   const gchar        *doc_uri,
-                                                   YelpWindow         *window);
+
+
+
+
 static void          app_bookmarks_changed        (YelpApplication    *app,
                                                    const gchar        *doc_uri,
                                                    YelpWindow         *window);
@@ -102,9 +99,6 @@ static void          action_new_window            (GSimpleAction      *action,
 static void          action_close_window          (GSimpleAction      *action,
                                                    GVariant           *parameter,
                                                    gpointer           userdata);
-static void          action_print                 (GSimpleAction      *action,
-                                                   GVariant           *parameter,
-                                                   gpointer            userdata);
 static void          action_search                (GSimpleAction      *action,
                                                    GVariant           *parameter,
                                                    gpointer            userdata);
@@ -134,17 +128,14 @@ static void          view_uri_selected            (YelpView           *view,
 static void          view_root_title              (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
-static gboolean      view_is_xref_uri             (YelpView           *view,
-                                                   GtkAction          *action,
-                                                   const gchar        *uri,
-                                                   YelpWindow         *window);
-
+#if 0
 static void          hidden_entry_activate        (GtkEntry           *entry,
                                                    YelpWindow         *window);
 static void          hidden_entry_hide            (YelpWindow         *window);
 static gboolean      hidden_key_press             (GtkWidget          *widget,
                                                    GdkEventKey        *event,
                                                    YelpWindow         *window);
+#endif
 
 enum {
     PROP_0,
@@ -188,7 +179,6 @@ struct _YelpWindowPrivate {
     YelpApplication *application;
 
     gulong        bookmarks_changed;
-    gulong        read_later_changed;
 
     /* no refs on these, owned by containers */
     GtkWidget *header;
@@ -206,12 +196,6 @@ struct _YelpWindowPrivate {
     YelpView *view;
 
     GtkWidget *hidden_entry;
-    GtkWidget *read_later_vbox;
-
-    /* refs because we dynamically add & remove */
-    GtkWidget *align_location;
-    GtkWidget *align_hidden;
-    GtkWidget *read_later;
 
     gchar *doc_uri;
 
@@ -277,24 +261,9 @@ yelp_window_dispose (GObject *object)
 {
     YelpWindowPrivate *priv = GET_PRIV (object);
 
-    if (priv->read_later_changed) {
-        g_source_remove (priv->read_later_changed);
-        priv->read_later_changed = 0;
-    }
-
     if (priv->bookmarks_changed) {
         g_source_remove (priv->bookmarks_changed);
         priv->bookmarks_changed = 0;
-    }
-
-    if (priv->align_location) {
-        g_object_unref (priv->align_location);
-        priv->align_location = NULL;
-    }
-
-    if (priv->align_hidden) {
-        g_object_unref (priv->align_hidden);
-        priv->align_hidden = NULL;
     }
 
     G_OBJECT_CLASS (yelp_window_parent_class)->dispose (object);
@@ -347,9 +316,7 @@ static void
 window_construct (YelpWindow *window)
 {
     GtkWidget *scroll;
-    GtkAction *action;
     GtkWidget *box, *button;
-    gchar *color, *text;
     GMenu *menu, *section;
     YelpWindowPrivate *priv = GET_PRIV (window);
     gboolean rtl;
@@ -369,15 +336,6 @@ window_construct (YelpWindow *window)
     g_action_map_add_action_entries (G_ACTION_MAP (window),
                                      entries, G_N_ELEMENTS (entries), window);
     yelp_view_register_actions (priv->view, G_ACTION_MAP (window));
-
-    action = gtk_action_new ("ReadLinkLater", _("Read Link _Later"), NULL, NULL);
-    g_signal_connect (action, "activate", G_CALLBACK (window_read_later), window);
-    yelp_view_add_link_action (priv->view, action,
-                               (YelpViewActionValidFunc) view_is_xref_uri,
-                               window);
-    priv->read_later_changed =
-        g_signal_connect (priv->application, "read-later-changed",
-                          G_CALLBACK (app_read_later_changed), window);
 
     priv->vbox_full = gtk_box_new (GTK_ORIENTATION_VERTICAL, 3);
     gtk_container_add (GTK_CONTAINER (window), priv->vbox_full);
@@ -439,9 +397,8 @@ window_construct (YelpWindow *window)
     g_menu_append (section, _("Next Page"), "win.yelp-view-go-next");
     g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
     g_object_unref (section);
+    /* FIXME */
     /* all documents */
-    /* larger/smaller text */
-    /* show text cursor */
     /* open location */
     gtk_menu_button_set_menu_model (GTK_MENU_BUTTON (button), G_MENU_MODEL (menu));
 
@@ -467,7 +424,8 @@ window_construct (YelpWindow *window)
                             G_BINDING_BIDIRECTIONAL);
     gtk_header_bar_pack_end (GTK_HEADER_BAR (priv->header), button);
 
-    g_signal_connect_swapped (window, "key-press-event", gtk_search_bar_handle_event, priv->search_bar);
+    g_signal_connect_swapped (window, "key-press-event",
+                              G_CALLBACK (gtk_search_bar_handle_event), priv->search_bar);
 
     /** Bookmarks **/
     button = gtk_menu_button_new ();
@@ -552,24 +510,6 @@ window_construct (YelpWindow *window)
                                     GTK_POLICY_AUTOMATIC,
                                     GTK_POLICY_AUTOMATIC);
     gtk_box_pack_start (GTK_BOX (priv->vbox_view), scroll, TRUE, TRUE, 0);
-
-    /** Read Later **/
-    priv->read_later = g_object_ref_sink (gtk_info_bar_new ());
-    box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    color = yelp_settings_get_color (yelp_settings_get_default (),
-                                     YELP_SETTINGS_COLOR_TEXT_LIGHT);
-    text = g_markup_printf_escaped ("<span weight='bold' color='%s'>%s</span>",
-                                    color, _("Read Later"));
-    button = gtk_label_new (text);
-    g_object_set (button, "use-markup", TRUE, "xalign", 0.0, NULL);
-    g_free (color);
-    g_free (text);
-    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
-    gtk_box_pack_start (GTK_BOX (gtk_info_bar_get_content_area (GTK_INFO_BAR (priv->read_later))),
-                        box,
-                        FALSE, FALSE, 0);
-    priv->read_later_vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_box_pack_start (GTK_BOX (box), priv->read_later_vbox, FALSE, FALSE, 0);
 
     g_signal_connect (priv->view, "new-view-requested", G_CALLBACK (view_new_window), window);
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
@@ -994,7 +934,6 @@ window_open_location (GtkAction *action, YelpWindow *window)
     gchar *color;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
-    gtk_widget_show_all (priv->align_hidden);
     gtk_entry_set_text (GTK_ENTRY (priv->hidden_entry), "");
     gtk_widget_grab_focus (priv->hidden_entry);
 
@@ -1023,127 +962,6 @@ window_open_location (GtkAction *action, YelpWindow *window)
         g_free (uri);
     }
 #endif
-}
-
-static void
-read_later_resolved (YelpUri    *uri,
-                     YelpWindow *window)
-{
-    gchar *fulluri;
-    const gchar *text = (const gchar *) g_object_get_data ((GObject *) uri, "link-text");
-    YelpWindowPrivate *priv = GET_PRIV (window);
-    YelpUri *base;
-    gchar *doc_uri;
-
-    g_object_get (priv->view, "yelp-uri", &base, NULL);
-    doc_uri = yelp_uri_get_document_uri (uri);
-    fulluri = yelp_uri_get_canonical_uri (uri);
-
-    yelp_application_add_read_later (priv->application, doc_uri, fulluri, text);
-
-    g_object_unref (base);
-    g_free (doc_uri);
-    g_free (fulluri);
-}
-
-static void
-window_read_later (GtkAction   *action,
-                   YelpWindow  *window)
-{
-    YelpWindowPrivate *priv = GET_PRIV (window);
-    YelpUri *uri;
-    gchar *text;
-
-    uri = yelp_view_get_active_link_uri (priv->view);
-    text = yelp_view_get_active_link_text (priv->view);
-
-    g_object_set_data_full ((GObject *) uri, "link-text", text, g_free);
-
-    if (!yelp_uri_is_resolved (uri)) {
-        g_signal_connect (uri, "resolved",
-                          G_CALLBACK (read_later_resolved),
-                          window);
-        yelp_uri_resolve (uri);
-    }
-    else {
-        read_later_resolved (uri, window);
-    }
-}
-
-static gboolean
-read_later_clicked (GtkLinkButton  *button,
-                    YelpWindow     *window)
-{
-    YelpWindowPrivate *priv = GET_PRIV (window);
-    YelpUri *base;
-    gchar *doc_uri;
-    gchar *fulluri;
-
-    fulluri = g_strdup (gtk_link_button_get_uri (button));
-
-    g_object_get (priv->view, "yelp-uri", &base, NULL);
-    doc_uri = yelp_uri_get_document_uri (base);
-
-    yelp_application_remove_read_later (priv->application, doc_uri, fulluri);
-
-    g_object_unref (base);
-    g_free (doc_uri);
-
-    yelp_view_load (priv->view, fulluri);
-
-    g_free (fulluri);
-    return TRUE;
-}
-
-static void
-app_read_later_changed (YelpApplication *app,
-                        const gchar     *doc_uri,
-                        YelpWindow      *window)
-{
-    GVariant *value;
-    GVariantIter *viter;
-    gchar *uri, *title; /* do not free */
-    GList *children;
-    gboolean has_children = FALSE;
-    YelpWindowPrivate *priv = GET_PRIV (window);
-
-    children = gtk_container_get_children (GTK_CONTAINER (priv->read_later_vbox));
-    while (children) {
-        gtk_container_remove (GTK_CONTAINER (priv->read_later_vbox),
-                              GTK_WIDGET (children->data));
-        children = g_list_delete_link (children, children);
-    }
-
-    value = yelp_application_get_read_later (priv->application, doc_uri);
-    g_variant_get (value, "a(ss)", &viter);
-    while (g_variant_iter_loop (viter, "(&s&s)", &uri, &title)) {
-        GtkWidget *align, *link;
-
-        align = gtk_alignment_new (0.0, 0.0, 0.0, 0.0);
-        g_object_set (align, "left-padding", 6, NULL);
-        gtk_box_pack_start (GTK_BOX (priv->read_later_vbox), align, FALSE, FALSE, 0);
-
-        link = gtk_link_button_new_with_label (uri, title);
-        g_object_set (link, "xalign", 0.0, NULL);
-        g_signal_connect (link, "activate-link", G_CALLBACK (read_later_clicked), window);
-        gtk_container_add (GTK_CONTAINER (align), link);
-
-        gtk_widget_show_all (align);
-        has_children = TRUE;
-    }
-    g_variant_iter_free (viter);
-    g_variant_unref (value);
-
-    if (has_children) {
-        if (gtk_widget_get_parent (priv->read_later) == NULL) {
-            gtk_box_pack_end (GTK_BOX (priv->vbox_full), priv->read_later, FALSE, FALSE, 0);
-            gtk_widget_show_all (priv->read_later);
-        }
-    }
-    else {
-        if (gtk_widget_get_parent (priv->read_later) != NULL)
-            gtk_container_remove (GTK_CONTAINER (priv->vbox_full), priv->read_later);
-    }
 }
 
 static gboolean
@@ -1262,7 +1080,6 @@ view_loaded (YelpView   *view,
                                            page_id,
                                            icon,
                                            title);
-        app_read_later_changed (priv->application, doc_uri, window);
         g_free (page_id);
         g_free (icon);
         g_free (title);
@@ -1305,15 +1122,6 @@ view_uri_selected (YelpView     *view,
     g_object_unref (uri);
 }
 
-static gboolean
-view_is_xref_uri (YelpView    *view,
-                  GtkAction   *action,
-                  const gchar *uri,
-                  YelpWindow  *window)
-{
-    return g_str_has_prefix (uri, "xref:");
-}
-
 static void
 view_root_title (YelpView    *view,
                  GParamSpec  *pspec,
@@ -1338,6 +1146,7 @@ view_root_title (YelpView    *view,
     }
 }
 
+#if 0
 static void
 hidden_entry_activate (GtkEntry    *entry,
                        YelpWindow  *window)
@@ -1356,15 +1165,6 @@ hidden_entry_hide (YelpWindow  *window)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
 
-    if (gtk_widget_get_parent (priv->align_hidden) != NULL) {
-#if 0
-        gtk_container_remove (GTK_CONTAINER (priv->hbox),
-                              priv->align_hidden);
-        gtk_box_pack_start (GTK_BOX (priv->hbox),
-                            priv->align_location,
-                            TRUE, TRUE, 0);
-#endif
-    }
 }
 
 static gboolean
@@ -1379,3 +1179,4 @@ hidden_key_press (GtkWidget    *widget,
     }
     return FALSE;
 }
+#endif
