@@ -435,7 +435,7 @@ location_entry_constructed (GObject *object)
         gtk_list_store_append (priv->history, &iter);
         gtk_list_store_set (priv->history, &iter,
                             HISTORY_COL_ICON, "edit-find-symbolic",
-                            HISTORY_COL_TITLE, _("Search..."),
+                            HISTORY_COL_TITLE, _("Search…"),
                             HISTORY_COL_FLAGS, LOCATION_ENTRY_IS_SEARCH,
                             -1);
     }

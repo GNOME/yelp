@@ -348,8 +348,8 @@ window_construct (YelpWindow *window)
 
     menu = g_menu_new ();
     section = g_menu_new ();
-    g_menu_append (section, _("Find..."), "win.yelp-window-find");
-    g_menu_append (section, _("Print..."), "win.yelp-view-print");
+    g_menu_append (section, _("Find…"), "win.yelp-window-find");
+    g_menu_append (section, _("Print…"), "win.yelp-view-print");
     g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
     g_object_unref (section);
 

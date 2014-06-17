@@ -1385,18 +1385,18 @@ view_populate_popup (YelpView *view,
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
         if (image)
-            item = gtk_menu_item_new_with_mnemonic (_("_Save Image As..."));
+            item = gtk_menu_item_new_with_mnemonic (_("_Save Image As…"));
         else
-            item = gtk_menu_item_new_with_mnemonic (_("_Save Video As..."));
+            item = gtk_menu_item_new_with_mnemonic (_("_Save Video As…"));
         g_signal_connect (item, "activate",
                           G_CALLBACK (popup_save_image), view);
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
         if (nautilus_sendto) {
             if (image)
-                item = gtk_menu_item_new_with_mnemonic (_("S_end Image To..."));
+                item = gtk_menu_item_new_with_mnemonic (_("S_end Image To…"));
             else
-                item = gtk_menu_item_new_with_mnemonic (_("S_end Video To..."));
+                item = gtk_menu_item_new_with_mnemonic (_("S_end Video To…"));
             g_signal_connect (item, "activate",
                               G_CALLBACK (popup_send_image), view);
             gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
@@ -1425,7 +1425,7 @@ view_populate_popup (YelpView *view,
                           G_CALLBACK (popup_copy_code), view);
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
-        item = gtk_menu_item_new_with_mnemonic (_("Save Code _Block As..."));
+        item = gtk_menu_item_new_with_mnemonic (_("Save Code _Block As…"));
         g_signal_connect (item, "activate",
                           G_CALLBACK (popup_save_code), view);
         gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
