@@ -83,6 +83,7 @@ static gboolean      yelp_application_cmdline          (GApplication          *a
                                                         gchar               ***arguments,
                                                         gint                  *exit_status);
 static void          yelp_application_startup          (GApplication          *app);
+static void          yelp_application_activate         (GApplication          *app);
 static int           yelp_application_command_line     (GApplication          *app,
                                                         GApplicationCommandLine *cmdline);
 static void          application_uri_resolved          (YelpUri               *uri,
@@ -154,6 +155,7 @@ yelp_application_class_init (YelpApplicationClass *klass)
 
     application_class->local_command_line = yelp_application_cmdline;
     application_class->startup = yelp_application_startup;
+    application_class->activate = yelp_application_activate;
     application_class->command_line = yelp_application_command_line;
 
     object_class->dispose = yelp_application_dispose;
@@ -314,6 +316,18 @@ yelp_application_startup (GApplication *application)
     gtk_application_set_app_menu (GTK_APPLICATION (application), G_MENU_MODEL (menu));
 }
 
+static void
+yelp_application_activate (GApplication *application)
+{
+    const gchar * const accels[] = {"<Control>L", NULL};
+
+    /* chain up */
+    G_APPLICATION_CLASS (yelp_application_parent_class)->activate (application);
+
+    gtk_application_set_accels_for_action (GTK_APPLICATION (application),
+                                           "win.yelp-window-ctrll", accels);
+}
+
 /******************************************************************************/
 
 static void
@@ -407,6 +421,8 @@ yelp_application_command_line (GApplication            *application,
         open_uri (app, yelp_uri_new (argv[i]), FALSE);
 
     g_strfreev (argv);
+
+    g_application_activate (application);
 
     return 0;
 }
