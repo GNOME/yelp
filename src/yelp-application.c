@@ -78,7 +78,6 @@ static gboolean      yelp_application_cmdline          (GApplication          *a
                                                         gchar               ***arguments,
                                                         gint                  *exit_status);
 static void          yelp_application_startup          (GApplication          *app);
-static void          yelp_application_activate         (GApplication          *app);
 static int           yelp_application_command_line     (GApplication          *app,
                                                         GApplicationCommandLine *cmdline);
 static void          application_uri_resolved          (YelpUri               *uri,
@@ -126,20 +125,41 @@ yelp_application_init (YelpApplication *app)
                                                (GDestroyNotify) g_free,
                                                (GDestroyNotify) g_object_unref);
 
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "F7", "app.yelp-application-show-cursor", NULL);
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>plus", "app.yelp-application-larger-text", NULL);
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>minus", "app.yelp-application-smaller-text", NULL);
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "app.yelp-application-show-cursor",
+                                           (const gchar*[]) {"F7", NULL});
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "app.yelp-application-larger-text",
+                                           (const gchar*[]) {"<Control>plus", NULL});
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "app.yelp-application-smaller-text",
+                                           (const gchar*[]) {"<Control>minus", NULL});
 
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>f", "win.yelp-window-find", NULL);
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>s", "win.yelp-window-search", NULL);
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>n", "win.yelp-window-new", NULL);
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>w", "win.yelp-window-close", NULL);
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "win.yelp-window-find", (const gchar*[]) {"<Control>F", NULL});
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "win.yelp-window-search", (const gchar*[]) {"<Control>S", NULL});
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "win.yelp-window-new", (const gchar*[]) {"<Control>N", NULL});
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "win.yelp-window-close", (const gchar*[]) {"<Control>W", NULL});
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "win.yelp-window-ctrll", (const gchar*[]) {"<Control>L", NULL});
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "win.yelp-view-print", (const gchar*[]) {"<Control>P", NULL});
 
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>p", "win.yelp-view-print", NULL);
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Alt>Left",  "win.yelp-view-go-back", NULL);
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Alt>Right", "win.yelp-view-go-forward", NULL);
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>Page_Up",   "win.yelp-view-go-previous", NULL);
-    gtk_application_add_accelerator (GTK_APPLICATION (app), "<Control>Page_Down", "win.yelp-view-go-next", NULL);
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "win.yelp-view-go-back",
+                                           (const gchar*[]) {"<Alt>Left", NULL});
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "win.yelp-view-go-forward",
+                                           (const gchar*[]) {"<Alt>Right", NULL});
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "win.yelp-view-go-previous",
+                                           (const gchar*[]) {"<Control>Page_Up", NULL});
+    gtk_application_set_accels_for_action (GTK_APPLICATION (app),
+                                           "win.yelp-view-go-next",
+                                           (const gchar*[]) {"<Control>Page_Down", NULL});
 }
 
 static void
@@ -150,7 +170,6 @@ yelp_application_class_init (YelpApplicationClass *klass)
 
     application_class->local_command_line = yelp_application_cmdline;
     application_class->startup = yelp_application_startup;
-    application_class->activate = yelp_application_activate;
     application_class->command_line = yelp_application_command_line;
 
     object_class->dispose = yelp_application_dispose;
@@ -311,18 +330,6 @@ yelp_application_startup (GApplication *application)
     gtk_application_set_app_menu (GTK_APPLICATION (application), G_MENU_MODEL (menu));
 }
 
-static void
-yelp_application_activate (GApplication *application)
-{
-    const gchar * const accels[] = {"<Control>L", NULL};
-
-    /* chain up */
-    G_APPLICATION_CLASS (yelp_application_parent_class)->activate (application);
-
-    gtk_application_set_accels_for_action (GTK_APPLICATION (application),
-                                           "win.yelp-window-ctrll", accels);
-}
-
 /******************************************************************************/
 
 static void
@@ -416,8 +423,6 @@ yelp_application_command_line (GApplication            *application,
         open_uri (app, yelp_uri_new (argv[i]), FALSE);
 
     g_strfreev (argv);
-
-    g_application_activate (application);
 
     return 0;
 }
