@@ -44,11 +44,6 @@
 
 static gboolean editor_mode = FALSE;
 
-enum {
-    LAST_SIGNAL
-};
-static gint signals[LAST_SIGNAL] = { 0 };
-
 G_GNUC_NORETURN static gboolean
 option_version_cb (const gchar *option_name,
 	           const gchar *value,

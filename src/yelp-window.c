@@ -610,7 +610,7 @@ action_ctrll (GSimpleAction *action,
 {
     YelpWindowPrivate *priv = GET_PRIV (userdata);
     YelpUri *yuri;
-    gchar *uri;
+    gchar *uri = NULL;
 
     if (priv->ctrll_entry == NULL) {
         priv->ctrll_entry = gtk_entry_new ();
