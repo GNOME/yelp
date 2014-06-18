@@ -566,8 +566,7 @@ action_close_window (GSimpleAction *action,
                      GVariant      *parameter,
                      gpointer       userdata)
 {
-    g_signal_emit_by_name (userdata, "delete-event", NULL, NULL);
-    gtk_widget_destroy (GTK_WIDGET (userdata));
+    gtk_window_close (GTK_WINDOW (userdata));
 }
 
 static void
