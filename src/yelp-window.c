@@ -287,6 +287,7 @@ window_construct (YelpWindow *window)
 {
     GtkWidget *scroll;
     GtkWidget *box, *button;
+    GtkSizeGroup *size_group;
     GMenu *menu, *section;
     YelpWindowPrivate *priv = GET_PRIV (window);
     gboolean rtl;
@@ -451,7 +452,10 @@ window_construct (YelpWindow *window)
     gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
     gtk_container_add (GTK_CONTAINER (priv->find_bar), box);
 
+    size_group = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
+
     priv->find_entry = gtk_search_entry_new ();
+    gtk_size_group_add_widget (size_group, priv->find_entry);
     gtk_box_pack_start (GTK_BOX (box), priv->find_entry, TRUE, TRUE, 0);
     gtk_search_bar_connect_entry (GTK_SEARCH_BAR (priv->find_bar), GTK_ENTRY (priv->find_entry));
     g_signal_connect (priv->find_entry, "changed",
@@ -462,14 +466,18 @@ window_construct (YelpWindow *window)
     button = gtk_button_new_from_icon_name ("go-up-symbolic", GTK_ICON_SIZE_MENU);
     gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "raised");
+    gtk_size_group_add_widget (size_group, button);
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
     g_signal_connect (button, "clicked", G_CALLBACK (find_prev_clicked), window);
 
     button = gtk_button_new_from_icon_name ("go-down-symbolic", GTK_ICON_SIZE_MENU);
     gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "raised");
+    gtk_size_group_add_widget (size_group, button);
     gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
     g_signal_connect (button, "clicked", G_CALLBACK (find_next_clicked), window);
+
+    g_object_unref (size_group);
 
     gtk_widget_show_all (priv->find_bar);
 
