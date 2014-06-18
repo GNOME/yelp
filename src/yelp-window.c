@@ -1164,11 +1164,6 @@ ctrll_entry_activate (GtkEntry    *entry,
     g_object_unref (uri);
 
     gtk_header_bar_set_custom_title (GTK_HEADER_BAR (priv->header), NULL);
-    /* GTK+ forgets to make the subtitle visible again:
-       https://bugzilla.gnome.org/show_bug.cgi?id=731790
-    */
-    gtk_header_bar_set_subtitle (GTK_HEADER_BAR (priv->header),
-                                 gtk_header_bar_get_subtitle (GTK_HEADER_BAR (priv->header)));
 }
 
 static gboolean
@@ -1180,11 +1175,6 @@ ctrll_entry_key_press (GtkWidget    *widget,
 
     if (event->keyval == GDK_KEY_Escape) {
         gtk_header_bar_set_custom_title (GTK_HEADER_BAR (priv->header), NULL);
-        /* GTK+ forgets to make the subtitle visible again:
-           https://bugzilla.gnome.org/show_bug.cgi?id=731790
-        */
-        gtk_header_bar_set_subtitle (GTK_HEADER_BAR (priv->header),
-                                     gtk_header_bar_get_subtitle (GTK_HEADER_BAR (priv->header)));
         return TRUE;
     }
     return FALSE;
