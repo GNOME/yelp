@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2014-02-02 00:45+0000\n"
-"PO-Revision-Date: 2014-02-02 13:45+0200\n"
+"POT-Creation-Date: 2014-06-22 10:49+0000\n"
+"PO-Revision-Date: 2014-06-22 15:50+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -36,28 +36,6 @@ msgstr ""
 #: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Įdiegti <string/>"
-
-#: ../data/yelp.appdata.xml.in.h:1
-msgid ""
-"Yelp is a viewer and framework for documentation on the Linux desktop. It is "
-"used heavily by the GNOME desktop environment, and its tools serve as the "
-"reference implementation for the Mallard help format. Yelp supports DocBook, "
-"Mallard, HTML, man, and info documents."
-msgstr ""
-"Yelp yra Linux darbastalio dokumentacijos rodymo karkasas. Jis plačiai "
-"naudojamas GNOME darbastalio aplinkoje, o jo įrankiai yra pavyzdinė Mallard "
-"žinyno formato realizacija. Yelp palaiko DocBook, Mallard, HTML, man ir info "
-"dokumentus."
-
-#: ../data/yelp.appdata.xml.in.h:2
-msgid ""
-"Yelp development has led to the development of various tools, and the "
-"Mallard and DocBook transformations live in standalone XSLT module. All of "
-"these are under the umbrella name Yelp."
-msgstr ""
-"Yelp kūrimas baigėsi įvairių įrankių sukūrimu bei Mallard ir DocBoox "
-"tiesioginėmis transformacijos pavieniame XSLT modulyje. Visa tai yra po "
-"vienu Yelp stogu."
 
 #: ../libyelp/yelp-bz2-decompressor.c:144
 #: ../libyelp/yelp-lzma-decompressor.c:153
@@ -150,7 +128,7 @@ msgstr "Nerasta atitinkamų pagalbos puslapių."
 msgid "An unknown error occurred."
 msgstr "Įvyko nežinoma klaida."
 
-#: ../libyelp/yelp-help-list.c:548 ../libyelp/yelp-help-list.c:557
+#: ../libyelp/yelp-help-list.c:546 ../libyelp/yelp-help-list.c:555
 msgid "All Help Documents"
 msgstr "Visi pagalbos dokumentai"
 
@@ -162,19 +140,20 @@ msgstr ""
 "Nepavyko apdoroti failo „%s“, nes tai nėra tinkamai suformuotas „info“ "
 "puslapis."
 
-#: ../libyelp/yelp-location-entry.c:334
+#: ../libyelp/yelp-location-entry.c:334 ../libyelp/yelp-search-entry.c:173
 msgid "View"
 msgstr "Rodymas"
 
-#: ../libyelp/yelp-location-entry.c:335
+#: ../libyelp/yelp-location-entry.c:335 ../libyelp/yelp-search-entry.c:174
 msgid "A YelpView instance to control"
 msgstr "Valdomas YelpView egzempliorius"
 
-#: ../libyelp/yelp-location-entry.c:350
+#: ../libyelp/yelp-location-entry.c:350 ../libyelp/yelp-search-entry.c:189
+#: ../src/yelp-window.c:405
 msgid "Bookmarks"
 msgstr "Žymelės"
 
-#: ../libyelp/yelp-location-entry.c:351
+#: ../libyelp/yelp-location-entry.c:351 ../libyelp/yelp-search-entry.c:190
 msgid "A YelpBookmarks implementation instance"
 msgstr "YelpBookmarks realizacijos egzempliorius"
 
@@ -186,9 +165,10 @@ msgstr "Įjungti paiešką"
 msgid "Whether the location entry can be used as a search field"
 msgstr "Ar vietos įrašas gali būti naudojamas kaip paieškos laukas"
 
-#: ../libyelp/yelp-location-entry.c:438 ../src/yelp-window.c:268
-msgid "Search..."
-msgstr "Ieškoti..."
+#: ../libyelp/yelp-location-entry.c:438
+#| msgid "Search..."
+msgid "Search…"
+msgstr "Ieškoti…"
 
 #: ../libyelp/yelp-location-entry.c:781
 msgid "Clear the search text"
@@ -202,7 +182,7 @@ msgstr "Pažymėti šį puslapį"
 msgid "Remove bookmark"
 msgstr "Pašalinti žymelę"
 
-#: ../libyelp/yelp-location-entry.c:1152
+#: ../libyelp/yelp-location-entry.c:1152 ../libyelp/yelp-search-entry.c:440
 #, c-format
 msgid "Search for “%s”"
 msgstr "Ieškoti „%s“"
@@ -216,43 +196,43 @@ msgstr "Įkeliama"
 msgid "The directory ‘%s’ does not exist."
 msgstr "Katalogas „%s“ neegzistuoja."
 
-#: ../libyelp/yelp-settings.c:154
+#: ../libyelp/yelp-settings.c:152
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:155
+#: ../libyelp/yelp-settings.c:153
 msgid "A GtkSettings object to get settings from"
 msgstr "GtkSettings objektas, iš kurio gauti nustatymus"
 
-#: ../libyelp/yelp-settings.c:163
+#: ../libyelp/yelp-settings.c:161
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:164
+#: ../libyelp/yelp-settings.c:162
 msgid "A GtkIconTheme object to get icons from"
 msgstr "GtkIconTheme objektas, iš kurio gauti piktogramas"
 
-#: ../libyelp/yelp-settings.c:172
+#: ../libyelp/yelp-settings.c:170
 msgid "Font Adjustment"
 msgstr "Šrifto koregavimas"
 
-#: ../libyelp/yelp-settings.c:173
+#: ../libyelp/yelp-settings.c:171
 msgid "A size adjustment to add to font sizes"
 msgstr "Dydžio korekcija, pridedama prie šriftų dydžių"
 
-#: ../libyelp/yelp-settings.c:181
+#: ../libyelp/yelp-settings.c:179
 msgid "Show Text Cursor"
 msgstr "Rodyti teksto žymiklį"
 
-#: ../libyelp/yelp-settings.c:182
+#: ../libyelp/yelp-settings.c:180
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Rodyti teksto žymeklį naršymo pritaikymui neįgaliems"
 
-#: ../libyelp/yelp-settings.c:190
+#: ../libyelp/yelp-settings.c:188
 msgid "Editor Mode"
 msgstr "Redaktoriaus veiksena"
 
-#: ../libyelp/yelp-settings.c:191
+#: ../libyelp/yelp-settings.c:189
 msgid "Enable features useful to editors"
 msgstr "Įjungti redaktoriams naudingas funkcijas"
 
@@ -285,298 +265,267 @@ msgstr "Nerasta yelp:document href atributo\n"
 msgid "Out of memory"
 msgstr "Nepakanka atminties"
 
-#: ../libyelp/yelp-view.c:129
-msgid "_Print..."
-msgstr "S_pausdinti..."
-
-#: ../libyelp/yelp-view.c:134
-msgid "_Back"
-msgstr "_Atgal"
-
-#: ../libyelp/yelp-view.c:139
-msgid "_Forward"
-msgstr "_Pirmyn"
-
-#: ../libyelp/yelp-view.c:144
-msgid "_Previous Page"
-msgstr "_Ankstesnis puslapis"
-
-#: ../libyelp/yelp-view.c:149
-msgid "_Next Page"
-msgstr "_Kitas puslapis"
-
-#: ../libyelp/yelp-view.c:421
+#: ../libyelp/yelp-view.c:446
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:422
+#: ../libyelp/yelp-view.c:447
 msgid "A YelpUri with the current location"
 msgstr "YelpUri su dabartine vieta"
 
-#: ../libyelp/yelp-view.c:430
+#: ../libyelp/yelp-view.c:455
 msgid "Loading State"
 msgstr "Įkėlimo būsena"
 
-#: ../libyelp/yelp-view.c:431
+#: ../libyelp/yelp-view.c:456
 msgid "The loading state of the view"
 msgstr "Rodinio įkėlimo būsena"
 
-#: ../libyelp/yelp-view.c:440
+#: ../libyelp/yelp-view.c:465
 msgid "Page ID"
 msgstr "Puslapio ID"
 
-#: ../libyelp/yelp-view.c:441
+#: ../libyelp/yelp-view.c:466
 msgid "The ID of the root page of the page being viewed"
 msgstr "Peržiūrimo puslapio pagrindinio puslapio ID"
 
-#: ../libyelp/yelp-view.c:449
+#: ../libyelp/yelp-view.c:474
 msgid "Root Title"
 msgstr "Pagrindinis pavadinimas"
 
-#: ../libyelp/yelp-view.c:450
+#: ../libyelp/yelp-view.c:475
 msgid "The title of the root page of the page being viewed"
 msgstr "Peržiūrimo puslapio pagrindinio puslapio pavadinimas"
 
-#: ../libyelp/yelp-view.c:458
+#: ../libyelp/yelp-view.c:483
 msgid "Page Title"
 msgstr "Puslapio pavadinimas"
 
-#: ../libyelp/yelp-view.c:459
+#: ../libyelp/yelp-view.c:484
 msgid "The title of the page being viewed"
 msgstr "Rodomo puslapio pavadinimas"
 
-#: ../libyelp/yelp-view.c:467
+#: ../libyelp/yelp-view.c:492
 msgid "Page Description"
 msgstr "Puslapio aprašymas"
 
-#: ../libyelp/yelp-view.c:468
+#: ../libyelp/yelp-view.c:493
 msgid "The description of the page being viewed"
 msgstr "Rodomo puslapio parašymas"
 
-#: ../libyelp/yelp-view.c:476
+#: ../libyelp/yelp-view.c:501
 msgid "Page Icon"
 msgstr "Puslapio piktograma"
 
-#: ../libyelp/yelp-view.c:477
+#: ../libyelp/yelp-view.c:502
 msgid "The icon of the page being viewed"
 msgstr "Rodomo puslapio piktograma"
 
-#: ../libyelp/yelp-view.c:718
+#: ../libyelp/yelp-view.c:744
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "Jūs nesate įdiegę PackageKit. Paketų diegimo nuorodos reikalauja PackageKit."
 
-#: ../libyelp/yelp-view.c:1012
+#: ../libyelp/yelp-view.c:1040
 msgid "Save Image"
 msgstr "Įrašyti paveikslėlį"
 
-#: ../libyelp/yelp-view.c:1107
+#: ../libyelp/yelp-view.c:1135
 msgid "Save Code"
 msgstr "Įrašyti kodą"
 
-#: ../libyelp/yelp-view.c:1270
+#: ../libyelp/yelp-view.c:1298
 #, c-format
 msgid "Send email to %s"
 msgstr "Siųsti el. laišką adresu %s"
 
-#: ../libyelp/yelp-view.c:1285
+#: ../libyelp/yelp-view.c:1313
 msgid "_Install Packages"
 msgstr "Įd_iegti paketus"
 
-#: ../libyelp/yelp-view.c:1293
+#: ../libyelp/yelp-view.c:1321
 msgid "_Open Link"
 msgstr "_Atverti nuorodą"
 
-#: ../libyelp/yelp-view.c:1300
+#: ../libyelp/yelp-view.c:1328
 msgid "_Copy Link Location"
 msgstr "_Kopijuoti saito vietą"
 
-#: ../libyelp/yelp-view.c:1306
+#: ../libyelp/yelp-view.c:1334
 msgid "Open Link in New _Window"
 msgstr "Atverti nuorodą _naujame lange"
 
-#: ../libyelp/yelp-view.c:1358
-msgid "_Save Image As..."
-msgstr "Į_rašyti paveikslėlį kaip..."
+#: ../libyelp/yelp-view.c:1388
+#| msgid "_Save Image As..."
+msgid "_Save Image As…"
+msgstr "Į_rašyti paveikslėlį kaip…"
 
-#: ../libyelp/yelp-view.c:1360
-msgid "_Save Video As..."
-msgstr "Į_rašyti vaizdo įrašą kaip..."
+#: ../libyelp/yelp-view.c:1390
+#| msgid "_Save Video As..."
+msgid "_Save Video As…"
+msgstr "Į_rašyti vaizdo įrašą kaip…"
 
-#: ../libyelp/yelp-view.c:1367
-msgid "S_end Image To..."
-msgstr "S_iųsti paveikslėlį..."
+#: ../libyelp/yelp-view.c:1397
+#| msgid "S_end Image To..."
+msgid "S_end Image To…"
+msgstr "S_iųsti paveikslėlį…"
 
-#: ../libyelp/yelp-view.c:1369
-msgid "S_end Video To..."
-msgstr "S_iųsti vaizdo įrašą..."
+#: ../libyelp/yelp-view.c:1399
+#| msgid "S_end Video To..."
+msgid "S_end Video To…"
+msgstr "S_iųsti vaizdo įrašą…"
 
-#: ../libyelp/yelp-view.c:1380
+#: ../libyelp/yelp-view.c:1410
 msgid "_Copy Text"
 msgstr "_Kopijuoti tekstą"
 
-#: ../libyelp/yelp-view.c:1393
+#: ../libyelp/yelp-view.c:1423
 msgid "C_opy Code Block"
 msgstr "K_opijuoti kodo bloką"
 
-#: ../libyelp/yelp-view.c:1398
-msgid "Save Code _Block As..."
-msgstr "Įrašyti kodo _bloką kaip..."
+#: ../libyelp/yelp-view.c:1428
+#| msgid "Save Code _Block As..."
+msgid "Save Code _Block As…"
+msgstr "Įrašyti kodo _bloką kaip…"
 
-#: ../libyelp/yelp-view.c:1505
+#: ../libyelp/yelp-view.c:1535
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "Rodyti visus „%s“ paieškos rezultatus"
 
-#: ../libyelp/yelp-view.c:1626
+#: ../libyelp/yelp-view.c:1656
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Nepavyko įkelti dokumento „%s“"
 
-#: ../libyelp/yelp-view.c:1632
+#: ../libyelp/yelp-view.c:1662
 #, c-format
 msgid "Could not load a document"
 msgstr "Nepavyko įkelti dokumento"
 
-#: ../libyelp/yelp-view.c:1707
+#: ../libyelp/yelp-view.c:1737
 msgid "Document Not Found"
 msgstr "Dokumentas nerastas"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1739
 msgid "Page Not Found"
 msgstr "Puslapis nerastas"
 
-#: ../libyelp/yelp-view.c:1712
+#: ../libyelp/yelp-view.c:1742
 msgid "Cannot Read"
 msgstr "Nepavyko perskaityti"
 
-#: ../libyelp/yelp-view.c:1718
+#: ../libyelp/yelp-view.c:1748
 msgid "Unknown Error"
 msgstr "Nežinoma klaida"
 
-#: ../libyelp/yelp-view.c:1738
+#: ../libyelp/yelp-view.c:1768
 msgid "Search for packages containing this document."
 msgstr "Ieškoti paketų, turinčių šį dokumentaciją."
 
-#: ../libyelp/yelp-view.c:1890
+#: ../libyelp/yelp-view.c:1918
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI „%s“ nenukreipia į tinkamą puslapį."
 
-#: ../libyelp/yelp-view.c:1896
+#: ../libyelp/yelp-view.c:1924
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI nenukreipia į tinkamą puslapį."
 
-#: ../libyelp/yelp-view.c:1902
+#: ../libyelp/yelp-view.c:1930
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI „%s“ neperskaitomas."
 
-#: ../src/yelp-application.c:63
+#: ../src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "Įjungti redaktoriaus veikseną"
 
-#: ../src/yelp-application.c:126
-msgid "_Larger Text"
-msgstr "_Didesnis tekstas"
-
-#: ../src/yelp-application.c:128
-msgid "Increase the size of the text"
-msgstr "Padidinti teksto dydį"
-
-#: ../src/yelp-application.c:131
-msgid "_Smaller Text"
-msgstr "_Mažesnis tekstas"
-
-#: ../src/yelp-application.c:133
-msgid "Decrease the size of the text"
-msgstr "Sumažinti teksto dydį"
-
-#: ../src/yelp-application.c:251 ../src/yelp-window.c:1358
+#: ../src/yelp-application.c:272 ../src/yelp-window.c:1145
 #: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Žinynas"
 
-#: ../src/yelp-application.c:286
-msgid "Show Text _Cursor"
-msgstr "Rodyti teksto _žymiklį"
+#: ../src/yelp-application.c:322
+#| msgid "_New Window"
+msgid "New Window"
+msgstr "Naujas langas"
 
-#: ../src/yelp-window.c:234
-msgid "_Page"
-msgstr "_Puslapis"
+#: ../src/yelp-application.c:326
+#| msgid "_Larger Text"
+msgid "Larger Text"
+msgstr "Didesnis tekstas"
 
-#: ../src/yelp-window.c:235
-msgid "_View"
-msgstr "_Rodymas"
+#: ../src/yelp-application.c:327
+#| msgid "_Smaller Text"
+msgid "Smaller Text"
+msgstr "Mažesnis tekstas"
 
-#: ../src/yelp-window.c:236
-msgid "_Go"
-msgstr "_Eiti"
-
-#: ../src/yelp-window.c:237
-msgid "_Bookmarks"
-msgstr "Ž_ymelės"
-
-#: ../src/yelp-window.c:240
-msgid "_New Window"
-msgstr "_Naujas langas"
-
-#: ../src/yelp-window.c:245
-msgid "_Close"
-msgstr "_Užverti"
-
-#: ../src/yelp-window.c:250
-msgid "_All Documents"
-msgstr "_Visi dokumentai"
-
-#: ../src/yelp-window.c:254
-msgid "_Add Bookmark"
-msgstr "_Pridėti žymelę"
-
-#: ../src/yelp-window.c:259
-msgid "_Remove Bookmark"
-msgstr "_Pašalinti žymelę"
-
-#: ../src/yelp-window.c:263
-msgid "Find in Page..."
-msgstr "Ieškoti puslapyje..."
-
-#: ../src/yelp-window.c:273
-msgid "Open Location"
-msgstr "Atverti vietą"
-
-#: ../src/yelp-window.c:299
+#: ../src/yelp-window.c:206
 msgid "Application"
 msgstr "Programa"
 
-#: ../src/yelp-window.c:300
+#: ../src/yelp-window.c:207
 msgid "A YelpApplication instance that controls this window"
 msgstr "YelpApplication programa, valdanti šį langą"
 
-#: ../src/yelp-window.c:427
-msgid "Read Link _Later"
-msgstr "Skaityti saitą _vėliau"
+#: ../src/yelp-window.c:326
+#| msgid "_Back"
+msgid "Back"
+msgstr "Atgal"
 
-#: ../src/yelp-window.c:524
-msgid "Find:"
-msgstr "Rasti:"
+#: ../src/yelp-window.c:333
+#| msgid "_Forward"
+msgid "Forward"
+msgstr "Pirmyn"
 
-#: ../src/yelp-window.c:546
-msgid "Read Later"
-msgstr "Skaityti vėliau"
+#: ../src/yelp-window.c:347
+msgid "Menu"
+msgstr "Meniu"
 
-#: ../src/yelp-window.c:1178
-#, c-format
-msgid "%i match"
-msgid_plural "%i matches"
-msgstr[0] "%i atitikmuo"
-msgstr[1] "%i atitikmenys"
-msgstr[2] "%i atitikmenų"
+#: ../src/yelp-window.c:352
+#| msgid "Find:"
+msgid "Find…"
+msgstr "Rasti…"
 
-#: ../src/yelp-window.c:1187
-msgid "No matches"
-msgstr "Nėra atitikmenų"
+#: ../src/yelp-window.c:353
+msgid "Print…"
+msgstr "Spausdinti…"
+
+#: ../src/yelp-window.c:358
+#| msgid "_Previous Page"
+msgid "Previous Page"
+msgstr "Ankstesnis puslapis"
+
+#: ../src/yelp-window.c:359
+#| msgid "_Next Page"
+msgid "Next Page"
+msgstr "Kitas puslapis"
+
+#: ../src/yelp-window.c:364
+#| msgid "Help"
+msgid "All Help"
+msgstr "Visas žinynas"
+
+#: ../src/yelp-window.c:388
+msgid "Search (Ctrl+S)"
+msgstr "Ieškoti (Vald+S)"
+
+#: ../src/yelp-window.c:422
+#| msgid "Bookmarks"
+msgid "No bookmarks"
+msgstr "Nėra žymelių"
+
+#: ../src/yelp-window.c:430
+#| msgid "_Add Bookmark"
+msgid "Add Bookmark"
+msgstr "Pridėti žymelę"
+
+#: ../src/yelp-window.c:436
+#| msgid "_Remove Bookmark"
+msgid "Remove Bookmark"
+msgstr "Pašalinti žymelę"
 
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
@@ -585,3 +534,4 @@ msgstr "Gauti pagalbą dirbant su GNOME"
 #: ../yelp.desktop.in.in.h:3
 msgid "documentation;information;manual;"
 msgstr "dokumentacija;informacija;vadovas;žinynas;"
+
