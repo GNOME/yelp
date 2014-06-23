@@ -365,8 +365,6 @@ window_construct (YelpWindow *window)
     g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
     g_object_unref (section);
 
-    /* FIXME */
-    /* open location */
     gtk_menu_button_set_menu_model (GTK_MENU_BUTTON (button), G_MENU_MODEL (menu));
 
     /** Search **/
@@ -377,7 +375,7 @@ window_construct (YelpWindow *window)
     gtk_box_pack_start (GTK_BOX (priv->vbox_view), priv->search_bar, FALSE, FALSE, 0);
     priv->search_entry = yelp_search_entry_new (priv->view,
                                                 YELP_BOOKMARKS (priv->application));
-    g_object_set (priv->search_entry, "width-request", 400, NULL);
+    gtk_entry_set_width_chars (GTK_ENTRY (priv->search_entry), 50);
     gtk_container_add (GTK_CONTAINER (priv->search_bar), priv->search_entry);
     button = gtk_toggle_button_new ();
     gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
@@ -444,20 +442,24 @@ window_construct (YelpWindow *window)
                           G_CALLBACK (app_bookmarks_changed), window);
 
     /** Find **/
-    priv->find_bar = gtk_search_bar_new ();
-    gtk_search_bar_set_show_close_button (GTK_SEARCH_BAR (priv->find_bar), TRUE);
-    gtk_box_pack_start (GTK_BOX (priv->vbox_view), priv->find_bar, FALSE, FALSE, 0);
+    priv->find_bar = gtk_revealer_new ();
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-    g_object_set (box, "width-request", 300, NULL);
+    g_object_set (priv->find_bar,
+                  "halign", GTK_ALIGN_END,
+                  "valign", GTK_ALIGN_START,
+                  NULL);
+    g_object_set (box,
+                  "border-width", 6,
+                  NULL);
     gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
     gtk_container_add (GTK_CONTAINER (priv->find_bar), box);
 
     size_group = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
 
     priv->find_entry = gtk_search_entry_new ();
+    gtk_entry_set_width_chars (GTK_ENTRY (priv->find_entry), 30);
     gtk_size_group_add_widget (size_group, priv->find_entry);
     gtk_box_pack_start (GTK_BOX (box), priv->find_entry, TRUE, TRUE, 0);
-    gtk_search_bar_connect_entry (GTK_SEARCH_BAR (priv->find_bar), GTK_ENTRY (priv->find_entry));
     g_signal_connect (priv->find_entry, "changed",
                       G_CALLBACK (find_entry_changed), window);
     g_signal_connect (priv->find_entry, "key-press-event",
@@ -479,15 +481,17 @@ window_construct (YelpWindow *window)
 
     g_object_unref (size_group);
 
-    gtk_widget_show_all (priv->find_bar);
-
     /** View **/
+    box = gtk_overlay_new ();
+    gtk_overlay_add_overlay (GTK_OVERLAY (box), GTK_WIDGET (priv->find_bar));
+
     scroll = gtk_scrolled_window_new (NULL, NULL);
     g_object_set (scroll, "width-request", 420, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
                                     GTK_POLICY_AUTOMATIC,
                                     GTK_POLICY_AUTOMATIC);
-    gtk_box_pack_start (GTK_BOX (priv->vbox_view), scroll, TRUE, TRUE, 0);
+    gtk_container_add (GTK_CONTAINER (box), scroll);
+    gtk_box_pack_start (GTK_BOX (priv->vbox_view), box, TRUE, TRUE, 0);
 
     g_signal_connect (priv->view, "new-view-requested", G_CALLBACK (view_new_window), window);
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
@@ -584,7 +588,7 @@ action_search (GSimpleAction *action,
 {
     YelpWindowPrivate *priv = GET_PRIV (userdata);
 
-    gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->find_bar), FALSE);
+    gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
     gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), TRUE);
     gtk_widget_grab_focus (priv->search_entry);
 }
@@ -597,7 +601,7 @@ action_find (GSimpleAction *action,
     YelpWindowPrivate *priv = GET_PRIV (userdata);
 
     gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), FALSE);
-    gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->find_bar), TRUE);
+    gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), TRUE);
     gtk_widget_grab_focus (priv->find_entry);
 }
 
@@ -735,7 +739,7 @@ window_key_press (YelpWindow  *window,
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
 
-    if (gtk_search_bar_get_search_mode (GTK_SEARCH_BAR (priv->find_bar)))
+    if (gtk_revealer_get_reveal_child (GTK_REVEALER (priv->find_bar)))
         return FALSE;
 
     if (gtk_header_bar_get_custom_title (GTK_HEADER_BAR (priv->header)))
@@ -968,7 +972,7 @@ window_search_mode (GtkSearchBar  *search_bar,
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     if (gtk_search_bar_get_search_mode (GTK_SEARCH_BAR (search_bar)))
-        gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->find_bar), FALSE);
+        gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
 }
 
 static gboolean
@@ -979,6 +983,7 @@ find_entry_key_press (GtkEntry    *entry,
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     if (event->keyval == GDK_KEY_Escape) {
+        gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
         gtk_widget_grab_focus (GTK_WIDGET (priv->view));
         return TRUE;
     }
