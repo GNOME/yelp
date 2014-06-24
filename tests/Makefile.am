@@ -14,7 +14,6 @@ check_PROGRAMS =				\
 	test-transform				\
 	test-uri				\
 	test-view
-#	test-location-entry
 
 if ENABLE_LZMA
 check_PROGRAMS += test-lzma
@@ -27,9 +26,6 @@ check_PROGRAMS += test-bz2
 test_bz2_CFLAGS = $(YELP_COMMON_CFLAGS)
 test_bz2_LDADD = $(YELP_COMMON_LDADD)
 endif
-
-test_location_entry_CFLAGS = $(YELP_COMMON_CFLAGS)
-test_location_entry_LDADD = $(YELP_COMMON_LDADD)
 
 test_magic_CFLAGS = $(YELP_COMMON_CFLAGS)
 test_magic_LDADD = $(YELP_COMMON_LDADD)

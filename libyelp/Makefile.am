@@ -60,9 +60,9 @@ libyelp_headers =                   \
 	yelp-document.h             \
 	yelp-help-list.h            \
 	yelp-info-document.h        \
-	yelp-location-entry.h       \
 	yelp-mallard-document.h     \
 	yelp-man-document.h         \
+	yelp-search-entry.h         \
 	yelp-settings.h             \
 	yelp-simple-document.h      \
 	yelp-sqlite-storage.h       \

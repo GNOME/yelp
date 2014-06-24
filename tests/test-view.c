@@ -21,7 +21,6 @@
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
 
-#include "yelp-location-entry.h"
 #include "yelp-view.h"
 #include "yelp-uri.h"
 #include "yelp-simple-document.h"
