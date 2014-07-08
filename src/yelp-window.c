@@ -335,12 +335,9 @@ window_construct (YelpWindow *window)
 
     /** Gear Menu **/
     button = gtk_menu_button_new ();
-    gtk_menu_button_set_use_popover (GTK_MENU_BUTTON (button), TRUE);
+    gtk_menu_button_set_direction (GTK_MENU_BUTTON (button), GTK_ARROW_NONE);
     gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
-    gtk_button_set_image (GTK_BUTTON (button),
-                          gtk_image_new_from_icon_name ("view-list-symbolic",
-                                                        GTK_ICON_SIZE_MENU));
     gtk_widget_set_tooltip_text (button, _("Menu"));
     gtk_header_bar_pack_end (GTK_HEADER_BAR (priv->header), button);
 
