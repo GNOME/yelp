@@ -213,11 +213,11 @@ main (int argc, char **argv)
     gtk_window_set_default_size (GTK_WINDOW (window), 1024, 600);
     g_signal_connect (window, "destroy", G_CALLBACK (gtk_main_quit), NULL);
 
-    hbox = gtk_hbox_new (FALSE, 12);
+    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
     g_object_set (hbox, "border-width", 6, NULL);
     gtk_container_add (GTK_CONTAINER (window), hbox);
 
-    vbox = gtk_vbox_new (FALSE, 6);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
     gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
 
     widget = gtk_check_button_new_with_label ("Use GtkSettings");
@@ -257,7 +257,7 @@ main (int argc, char **argv)
     websettings = webkit_web_view_get_settings (WEBKIT_WEB_VIEW (webview));
     gtk_container_add (GTK_CONTAINER (scroll), webview);
 
-    vbox = gtk_vbox_new (FALSE, 6);
+    vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
     gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
 
     table = gtk_table_new (2, 2, FALSE);
@@ -311,7 +311,8 @@ main (int argc, char **argv)
 	g_signal_connect (icon_choosers[i], "file-set", G_CALLBACK (icon_file_set), NULL);
     }
 
-    hbox = gtk_hbox_new (TRUE, 6);
+    hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 6);
+    gtk_box_set_homogeneous (GTK_BOX (hbox), TRUE);
     gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
     for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++) {
 	icon_images[i] = gtk_image_new ();
