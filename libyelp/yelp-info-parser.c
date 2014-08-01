@@ -31,25 +31,25 @@
 #include "yelp-debug.h"
 
 
-GtkTreeIter *         find_real_top                      (GtkTreeModel *model, 
+static GtkTreeIter *  find_real_top                      (GtkTreeModel *model, 
 							  GtkTreeIter *it);
-GtkTreeIter *         find_real_sibling                  (GtkTreeModel *model,
+static GtkTreeIter *  find_real_sibling                  (GtkTreeModel *model,
 							  GtkTreeIter *it, 
 							  GtkTreeIter *comp);
 xmlNodePtr            yelp_info_parse_menu               (GtkTreeStore *tree,
 							  xmlNodePtr *node,
 							  gchar *page_content,
 							  gboolean notes);
-gboolean              get_menuoptions                    (gchar *line, 
+static gboolean       get_menuoptions                    (gchar *line, 
 							  gchar **title, 
 							  gchar **ref, 
 							  gchar **desc, 
 							  gchar **xref);
-gboolean              resolve_frag_id                    (GtkTreeModel *model, 
+static gboolean       resolve_frag_id                    (GtkTreeModel *model, 
 							  GtkTreePath *path, 
 							  GtkTreeIter *iter,
 							  gpointer data);
-void   		      info_process_text_notes            (xmlNodePtr *node, 
+static void	      info_process_text_notes            (xmlNodePtr *node, 
 							  gchar *content,
 							  GtkTreeStore
 							  *tree);

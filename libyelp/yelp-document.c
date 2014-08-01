@@ -152,7 +152,7 @@ static const gchar *  str_ref                   (const gchar          *str);
 static void           str_unref                 (const gchar          *str);
 
 static GMutex str_mutex;
-GHashTable  *str_refs  = NULL;
+static GHashTable  *str_refs  = NULL;
 
 /******************************************************************************/
 
