@@ -416,7 +416,7 @@ cell_set_completion_bookmark_icon (GtkCellLayout     *layout,
 
         if (page_id && yelp_bookmarks_is_bookmarked (priv->bookmarks,
                                                      priv->completion_uri, page_id))
-            g_object_set (cell, "icon-name", "yelp-bookmark-remove-symbolic", NULL);
+            g_object_set (cell, "icon-name", "user-bookmarks-symbolic", NULL);
         else
             g_object_set (cell, "icon-name", NULL, NULL);
 
