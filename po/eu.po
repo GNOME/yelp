@@ -1,25 +1,25 @@
-# translation of eu_to_be_translate.po to Basque
+# Basque translation of Yelp.
+#
 #
 # Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>, 2005.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2006, 2007, 2008, 2009, 2011.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013, 2014.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: eu_to_be_translate\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-02 22:21+0200\n"
-"PO-Revision-Date: 2013-04-02 22:22+0200\n"
+"Project-Id-Version: yelp master\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2014-08-07 15:57+0200\n"
+"PO-Revision-Date: 2014-08-05 19:23+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
-"Language-Team: Basque <itzulpena@euskalgnu.org>\n"
+"Language-Team: Basque <librezale@librezale.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 1.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"\n"
-"\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -35,36 +35,36 @@ msgstr ""
 msgid "Install <string/>"
 msgstr "Instalatu <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:146
-#: ../libyelp/yelp-lzma-decompressor.c:155
+#: ../libyelp/yelp-bz2-decompressor.c:144
+#: ../libyelp/yelp-lzma-decompressor.c:153
 msgid "Invalid compressed data"
 msgstr "Komprimatutako datu baliogabeak"
 
-#: ../libyelp/yelp-bz2-decompressor.c:152
-#: ../libyelp/yelp-lzma-decompressor.c:161
+#: ../libyelp/yelp-bz2-decompressor.c:150
+#: ../libyelp/yelp-lzma-decompressor.c:159
 msgid "Not enough memory"
 msgstr "Memoriarik ez"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:306
-#: ../libyelp/yelp-mallard-document.c:457 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:297 ../libyelp/yelp-info-document.c:237
+#: ../libyelp/yelp-mallard-document.c:305
+#: ../libyelp/yelp-mallard-document.c:456 ../libyelp/yelp-man-document.c:281
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "'%s' orrialdea ez da aurkitu '%s' dokumentuan."
 
-#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:417
+#: ../libyelp/yelp-docbook-document.c:332 ../libyelp/yelp-info-document.c:371
+#: ../libyelp/yelp-man-document.c:416
 #, c-format
 msgid "The file does not exist."
 msgstr "Fitxategia ez da existitzen."
 
-#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:427
+#: ../libyelp/yelp-docbook-document.c:342 ../libyelp/yelp-info-document.c:381
+#: ../libyelp/yelp-man-document.c:426
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "'%s' fitxategia ez da existitzen."
 
-#: ../libyelp/yelp-docbook-document.c:342
+#: ../libyelp/yelp-docbook-document.c:357
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -72,7 +72,7 @@ msgid ""
 msgstr ""
 "'%s' fitxategia ezin da analizatu, ez daukalako behar bezalako XML formatua."
 
-#: ../libyelp/yelp-docbook-document.c:355
+#: ../libyelp/yelp-docbook-document.c:370
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -81,476 +81,401 @@ msgstr ""
 "'%s' fitxategia ezin da analizatu, ez duelako txertatutako fitxategi bat edo "
 "gehiago behar bezalako XML formatuan."
 
-#: ../libyelp/yelp-docbook-document.c:765
+#: ../libyelp/yelp-docbook-document.c:803
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:359
+#: ../libyelp/yelp-docbook-document.c:864 ../libyelp/yelp-info-document.c:314
+#: ../libyelp/yelp-man-document.c:358
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Eskatutako orrialdea ez da aurkitu '%s' dokumentuan."
 
-#: ../libyelp/yelp-document.c:268
+#: ../libyelp/yelp-document.c:266
 msgid "Indexed"
 msgstr "Indexatuta"
 
-#: ../libyelp/yelp-document.c:269
+#: ../libyelp/yelp-document.c:267
 msgid "Whether the document content has been indexed"
 msgstr "Dokumentuaren edukia indexatu egin den edo ez"
 
-#: ../libyelp/yelp-document.c:277
+#: ../libyelp/yelp-document.c:275
 msgid "Document URI"
 msgstr "Dokumentuaren URIa"
 
-#: ../libyelp/yelp-document.c:278
+#: ../libyelp/yelp-document.c:276
 msgid "The URI which identifies the document"
 msgstr "Dokumentua identifikatzen duen URIa."
 
-#: ../libyelp/yelp-document.c:994
+#: ../libyelp/yelp-document.c:992
 #, c-format
 msgid "Search results for “%s”"
 msgstr "'%s' bilaketaren emaitzak"
 
-#: ../libyelp/yelp-document.c:1006
+#: ../libyelp/yelp-document.c:1004
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Ez da bat datorren laguntzako orrialderik aurkitu \"%s\"(e)n."
 
-#: ../libyelp/yelp-document.c:1012
+#: ../libyelp/yelp-document.c:1010
 msgid "No matching help pages found."
 msgstr "Ez da bat datorren laguntzako orrialderik aurkitu."
 
-#: ../libyelp/yelp-error.c:37
+#: ../libyelp/yelp-error.c:35
 #, c-format
 msgid "An unknown error occurred."
 msgstr "Errore ezezagun bat gertatu da."
 
-#: ../libyelp/yelp-help-list.c:549 ../libyelp/yelp-help-list.c:558
+#: ../libyelp/yelp-help-list.c:546 ../libyelp/yelp-help-list.c:555
 msgid "All Help Documents"
 msgstr "Laguntzako dokumentu guztiak"
 
-#: ../libyelp/yelp-info-document.c:397
+#: ../libyelp/yelp-info-document.c:396
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
 "'%s' fitxategia ezin da analizatu, ez daukalako behar bezalako info formatua."
 
-#: ../libyelp/yelp-location-entry.c:336
-msgid "View"
-msgstr "Ikusi"
-
-#: ../libyelp/yelp-location-entry.c:337
-msgid "A YelpView instance to control"
-msgstr "YelpView instantzia kontrolatzeko"
-
-#: ../libyelp/yelp-location-entry.c:352
-msgid "Bookmarks"
-msgstr "Laster-markak"
-
-#: ../libyelp/yelp-location-entry.c:353
-msgid "A YelpBookmarks implementation instance"
-msgstr "YelpBookmarks inplementazioaren instantzia"
-
-#: ../libyelp/yelp-location-entry.c:369
-msgid "Enable Search"
-msgstr "Gaitu bilaketa"
-
-#: ../libyelp/yelp-location-entry.c:370
-msgid "Whether the location entry can be used as a search field"
-msgstr "Kokalekuaren sarrera erabil daitekeen bilaketako eremu gisa edo ez"
-
-#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
-msgid "Search..."
-msgstr "Bilatu..."
-
-#: ../libyelp/yelp-location-entry.c:783
-msgid "Clear the search text"
-msgstr "Garbitu bilaketako testua"
-
-#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
-msgid "Bookmark this page"
-msgstr "Sortu orrialde honen laster-marka"
-
-#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
-msgid "Remove bookmark"
-msgstr "Kendu laster-marka"
-
-#: ../libyelp/yelp-location-entry.c:1154
-#, c-format
-msgid "Search for “%s”"
-msgstr "Bilatu '%s'"
-
-#: ../libyelp/yelp-location-entry.c:1458
-msgid "Loading"
-msgstr "Kargatzen"
-
-#: ../libyelp/yelp-mallard-document.c:345
+#: ../libyelp/yelp-mallard-document.c:344
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "'%s' direktorioa ez da existitzen."
 
-#: ../libyelp/yelp-settings.c:156
+#: ../libyelp/yelp-search-entry.c:173
+msgid "View"
+msgstr "Ikusi"
+
+#: ../libyelp/yelp-search-entry.c:174
+msgid "A YelpView instance to control"
+msgstr "YelpView instantzia kontrolatzeko"
+
+#: ../libyelp/yelp-search-entry.c:189 ../src/yelp-window.c:400
+msgid "Bookmarks"
+msgstr "Laster-markak"
+
+#: ../libyelp/yelp-search-entry.c:190
+msgid "A YelpBookmarks implementation instance"
+msgstr "YelpBookmarks inplementazioaren instantzia"
+
+#: ../libyelp/yelp-search-entry.c:440
+#, c-format
+msgid "Search for “%s”"
+msgstr "Bilatu '%s'"
+
+#: ../libyelp/yelp-settings.c:152
 msgid "GtkSettings"
 msgstr "GtkSettings"
 
-#: ../libyelp/yelp-settings.c:157
+#: ../libyelp/yelp-settings.c:153
 msgid "A GtkSettings object to get settings from"
 msgstr "GtkSettings objektua hortik ezarpenak lortzeko"
 
-#: ../libyelp/yelp-settings.c:165
+#: ../libyelp/yelp-settings.c:161
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:166
+#: ../libyelp/yelp-settings.c:162
 msgid "A GtkIconTheme object to get icons from"
 msgstr "GtkIconTheme objektua hortik ikonoak eskuratzeko"
 
-#: ../libyelp/yelp-settings.c:174
+#: ../libyelp/yelp-settings.c:170
 msgid "Font Adjustment"
 msgstr "Letra-tipoaren doiketa"
 
-#: ../libyelp/yelp-settings.c:175
+#: ../libyelp/yelp-settings.c:171
 msgid "A size adjustment to add to font sizes"
 msgstr "Tamaina doitzea letra-tamainei gehitzeko"
 
-#: ../libyelp/yelp-settings.c:183
+#: ../libyelp/yelp-settings.c:179
 msgid "Show Text Cursor"
 msgstr "Erakutsi testuaren kurtsorea"
 
-#: ../libyelp/yelp-settings.c:184
+#: ../libyelp/yelp-settings.c:180
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Erakutsi testuaren kurtsorea erabilerraztasuneki nabigatzeko"
 
-#: ../libyelp/yelp-settings.c:192
+#: ../libyelp/yelp-settings.c:188
 msgid "Editor Mode"
 msgstr "Editore modua"
 
-#: ../libyelp/yelp-settings.c:193
+#: ../libyelp/yelp-settings.c:189
 msgid "Enable features useful to editors"
 msgstr "Gaitu editoreentzako eginbide erabilgarriak"
 
-#: ../libyelp/yelp-sqlite-storage.c:150
+#: ../libyelp/yelp-sqlite-storage.c:147
 msgid "Database filename"
 msgstr "Datu-basearen fitxategi-izena"
 
-#: ../libyelp/yelp-sqlite-storage.c:151
+#: ../libyelp/yelp-sqlite-storage.c:148
 msgid "The filename of the sqlite database"
 msgstr "SQLite datu-basearen fitxategi-izena"
 
-#: ../libyelp/yelp-transform.c:171
+#: ../libyelp/yelp-transform.c:169
 msgid "XSLT Stylesheet"
 msgstr "XSLT estilo-orria"
 
-#: ../libyelp/yelp-transform.c:172
+#: ../libyelp/yelp-transform.c:170
 msgid "The location of the XSLT stylesheet"
 msgstr "XSLT estilo-orriaren kokalekua"
 
-#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
+#: ../libyelp/yelp-transform.c:378 ../libyelp/yelp-transform.c:393
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "XSLT '%s' estilo-orria falta da edo ez da baliozkoa."
 
-#: ../libyelp/yelp-transform.c:528
+#: ../libyelp/yelp-transform.c:527
 msgid "No href attribute found on yelp:document\n"
 msgstr "Ez da href atributurik aurkitu yelp:document-en\n"
 
-#: ../libyelp/yelp-transform.c:543
+#: ../libyelp/yelp-transform.c:542
 msgid "Out of memory"
 msgstr "Memoriarik ez"
 
-#: ../libyelp/yelp-view.c:131
-msgid "_Print..."
-msgstr "_Inprimatu..."
-
-#: ../libyelp/yelp-view.c:136
-msgid "_Back"
-msgstr "_Atzera"
-
-#: ../libyelp/yelp-view.c:141
-msgid "_Forward"
-msgstr "A_urrera"
-
-#: ../libyelp/yelp-view.c:146
-msgid "_Previous Page"
-msgstr "_Aurreko orrialdea"
-
-#: ../libyelp/yelp-view.c:151
-msgid "_Next Page"
-msgstr "_Hurrengo orrialdea"
-
-#: ../libyelp/yelp-view.c:423
+#: ../libyelp/yelp-view.c:446
 msgid "Yelp URI"
 msgstr "Yelp-en URIa"
 
-#: ../libyelp/yelp-view.c:424
+#: ../libyelp/yelp-view.c:447
 msgid "A YelpUri with the current location"
 msgstr "YelpUri uneko kokalekuarekin"
 
-#: ../libyelp/yelp-view.c:432
+#: ../libyelp/yelp-view.c:455
 msgid "Loading State"
 msgstr "Egoera kargatzen"
 
-#: ../libyelp/yelp-view.c:433
+#: ../libyelp/yelp-view.c:456
 msgid "The loading state of the view"
 msgstr "Ikuspegiaren egoera kargatzen"
 
-#: ../libyelp/yelp-view.c:442
+#: ../libyelp/yelp-view.c:465
 msgid "Page ID"
 msgstr "Orrialdearen IDa"
 
-#: ../libyelp/yelp-view.c:443
+#: ../libyelp/yelp-view.c:466
 msgid "The ID of the root page of the page being viewed"
 msgstr "Ikusten ari den erroko orrialdearen IDa"
 
-#: ../libyelp/yelp-view.c:451
+#: ../libyelp/yelp-view.c:474
 msgid "Root Title"
 msgstr "Erroko titulua"
 
-#: ../libyelp/yelp-view.c:452
+#: ../libyelp/yelp-view.c:475
 msgid "The title of the root page of the page being viewed"
 msgstr "Ikusten ari den erroko orrialdearen titulua"
 
-#: ../libyelp/yelp-view.c:460
+#: ../libyelp/yelp-view.c:483
 msgid "Page Title"
 msgstr "Orrialdearen titulua"
 
-#: ../libyelp/yelp-view.c:461
+#: ../libyelp/yelp-view.c:484
 msgid "The title of the page being viewed"
 msgstr "Ikusten ari den orrialdearen titulua"
 
-#: ../libyelp/yelp-view.c:469
+#: ../libyelp/yelp-view.c:492
 msgid "Page Description"
 msgstr "Orrialdearen azalpena"
 
-#: ../libyelp/yelp-view.c:470
+#: ../libyelp/yelp-view.c:493
 msgid "The description of the page being viewed"
 msgstr "Ikusten ari den orrialdearen titulua"
 
-#: ../libyelp/yelp-view.c:478
+#: ../libyelp/yelp-view.c:501
 msgid "Page Icon"
 msgstr "Orrialdearen ikonoa"
 
-#: ../libyelp/yelp-view.c:479
+#: ../libyelp/yelp-view.c:502
 msgid "The icon of the page being viewed"
 msgstr "Ikusten ari den orrialdearen ikonoa"
 
-#: ../libyelp/yelp-view.c:720
+#: ../libyelp/yelp-view.c:744
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "PackageKit ez dago instalatuta. Estekak instalatzeko PackageKit behar da."
 
-#: ../libyelp/yelp-view.c:1014
+#: ../libyelp/yelp-view.c:1040
 msgid "Save Image"
 msgstr "Gorde irudia"
 
-#: ../libyelp/yelp-view.c:1109
+#: ../libyelp/yelp-view.c:1135
 msgid "Save Code"
 msgstr "Gorde kodea"
 
-#: ../libyelp/yelp-view.c:1272
+#: ../libyelp/yelp-view.c:1298
 #, c-format
 msgid "Send email to %s"
 msgstr "Bidali mezua %s(r)i"
 
-#: ../libyelp/yelp-view.c:1287
+#: ../libyelp/yelp-view.c:1313
 msgid "_Install Packages"
 msgstr "_Instalatu paketeak"
 
-#: ../libyelp/yelp-view.c:1295
+#: ../libyelp/yelp-view.c:1321
 msgid "_Open Link"
 msgstr "_Ireki esteka"
 
-#: ../libyelp/yelp-view.c:1302
+#: ../libyelp/yelp-view.c:1328
 msgid "_Copy Link Location"
 msgstr "_Kopiatu estekaren helbidea"
 
-#: ../libyelp/yelp-view.c:1308
+#: ../libyelp/yelp-view.c:1334
 msgid "Open Link in New _Window"
 msgstr "Ireki esteka leiho _berrian"
 
-#: ../libyelp/yelp-view.c:1360
-msgid "_Save Image As..."
+#: ../libyelp/yelp-view.c:1388
+msgid "_Save Image As…"
 msgstr "Gorde irudia _honela..."
 
-#: ../libyelp/yelp-view.c:1362
-msgid "_Save Video As..."
+#: ../libyelp/yelp-view.c:1390
+msgid "_Save Video As…"
 msgstr "Gorde bideoa _honela..."
 
-#: ../libyelp/yelp-view.c:1369
-msgid "S_end Image To..."
+#: ../libyelp/yelp-view.c:1397
+msgid "S_end Image To…"
 msgstr "_Bidali irudia hona..."
 
-#: ../libyelp/yelp-view.c:1371
-msgid "S_end Video To..."
+#: ../libyelp/yelp-view.c:1399
+msgid "S_end Video To…"
 msgstr "_Bidali bideoa hona..."
 
-#: ../libyelp/yelp-view.c:1382
+#: ../libyelp/yelp-view.c:1410
 msgid "_Copy Text"
 msgstr "_Kopiatu testua"
 
-#: ../libyelp/yelp-view.c:1395
+#: ../libyelp/yelp-view.c:1423
 msgid "C_opy Code Block"
 msgstr "_Kopiatu kodearen blokea"
 
-#: ../libyelp/yelp-view.c:1400
-msgid "Save Code _Block As..."
+#: ../libyelp/yelp-view.c:1428
+msgid "Save Code _Block As…"
 msgstr "Gorde kodearen b_lokea honela..."
 
-#: ../libyelp/yelp-view.c:1507
+#: ../libyelp/yelp-view.c:1535
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "Ikusi '%s' bilaketaren emaitza guztiak"
 
-#: ../libyelp/yelp-view.c:1628
+#: ../libyelp/yelp-view.c:1656
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Ezin izan da %s(r)en dokumentua kargatu"
 
-#: ../libyelp/yelp-view.c:1634
+#: ../libyelp/yelp-view.c:1662
 #, c-format
 msgid "Could not load a document"
 msgstr "Ezin izan da dokumentua kargatu"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1737
 msgid "Document Not Found"
 msgstr "Ez da dokumentua aurkitu"
 
-#: ../libyelp/yelp-view.c:1711
+#: ../libyelp/yelp-view.c:1739
 msgid "Page Not Found"
 msgstr "Ez da orrialdea aurkitu"
 
-#: ../libyelp/yelp-view.c:1714
+#: ../libyelp/yelp-view.c:1742
 msgid "Cannot Read"
 msgstr "Ezin da irakurri"
 
-#: ../libyelp/yelp-view.c:1720
+#: ../libyelp/yelp-view.c:1748
 msgid "Unknown Error"
 msgstr "Errore ezezaguna"
 
-#: ../libyelp/yelp-view.c:1740
+#: ../libyelp/yelp-view.c:1768
 msgid "Search for packages containing this document."
 msgstr "Bilatu dokumentu hau daukaten paketeak."
 
-#: ../libyelp/yelp-view.c:1892
+#: ../libyelp/yelp-view.c:1918
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "'%s' URIak ez du baliozko orrialde batera zuzentzen."
 
-#: ../libyelp/yelp-view.c:1898
+#: ../libyelp/yelp-view.c:1924
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URIak ez du baliozko orrialde batera zuzentzen."
 
-#: ../libyelp/yelp-view.c:1904
+#: ../libyelp/yelp-view.c:1930
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Ezin izan da '%s' URIa analizatu."
 
-#: ../src/yelp-application.c:65
+#: ../src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "Aktibatu editorearen modua"
 
-#: ../src/yelp-application.c:128
-msgid "_Larger Text"
-msgstr "_Handitu testua"
-
-#: ../src/yelp-application.c:130
-msgid "Increase the size of the text"
-msgstr "Handitu testuaren tamaina"
-
-#: ../src/yelp-application.c:133
-msgid "_Smaller Text"
-msgstr "_Txikiagotu testua"
-
-#: ../src/yelp-application.c:135
-msgid "Decrease the size of the text"
-msgstr "Txikiagotu testuaren tamaina"
-
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../src/yelp-application.c:272 ../src/yelp-window.c:1147
 #: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Laguntza"
 
-#: ../src/yelp-application.c:288
-msgid "Show Text _Cursor"
-msgstr "Erakutsi testuaren _kurtsorea"
+#: ../src/yelp-application.c:322
+msgid "New Window"
+msgstr "Leiho berria"
 
-#: ../src/yelp-window.c:236
-msgid "_Page"
-msgstr "_Orrialdea"
+#: ../src/yelp-application.c:326
+msgid "Larger Text"
+msgstr "Handitu testua"
 
-#: ../src/yelp-window.c:237
-msgid "_View"
-msgstr "_Ikusi"
+#: ../src/yelp-application.c:327
+msgid "Smaller Text"
+msgstr "Txikiagotu testua"
 
-#: ../src/yelp-window.c:238
-msgid "_Go"
-msgstr "_Joan"
-
-#: ../src/yelp-window.c:239
-msgid "_Bookmarks"
-msgstr "Laster-_markak"
-
-#: ../src/yelp-window.c:242
-msgid "_New Window"
-msgstr "_Leiho berria"
-
-#: ../src/yelp-window.c:247
-msgid "_Close"
-msgstr "It_xi"
-
-#: ../src/yelp-window.c:252
-msgid "_All Documents"
-msgstr "Dokumentu _guztiak"
-
-#: ../src/yelp-window.c:256
-msgid "_Add Bookmark"
-msgstr "_Gehitu laster-marka"
-
-#: ../src/yelp-window.c:261
-msgid "_Remove Bookmark"
-msgstr "_Kendu laster-marka"
-
-#: ../src/yelp-window.c:265
-msgid "Find in Page..."
-msgstr "Bilatu orrialdean..."
-
-#: ../src/yelp-window.c:275
-msgid "Open Location"
-msgstr "Ireki helbidea"
-
-#: ../src/yelp-window.c:301
+#: ../src/yelp-window.c:206
 msgid "Application"
 msgstr "Aplikazioa"
 
-#: ../src/yelp-window.c:302
+#: ../src/yelp-window.c:207
 msgid "A YelpApplication instance that controls this window"
 msgstr "Leiho hau kontrolatzen duen YelpApplication instantzia"
 
-#: ../src/yelp-window.c:429
-msgid "Read Link _Later"
-msgstr "Irakurri esteka _beranduago"
+#: ../src/yelp-window.c:323
+msgid "Back"
+msgstr "Atzera"
 
-#: ../src/yelp-window.c:526
-msgid "Find:"
-msgstr "Bilatu:"
+#: ../src/yelp-window.c:330
+msgid "Forward"
+msgstr "Aurrera"
 
-#: ../src/yelp-window.c:548
-msgid "Read Later"
-msgstr "Irakurri beranduago"
+#: ../src/yelp-window.c:344
+msgid "Menu"
+msgstr "Menua"
 
-#: ../src/yelp-window.c:1180
-#, c-format
-msgid "%i match"
-msgid_plural "%i matches"
-msgstr[0] "%d bat dator"
-msgstr[1] "%d bat datozte"
+#: ../src/yelp-window.c:349
+msgid "Find…"
+msgstr "Bilatu…"
 
-#: ../src/yelp-window.c:1189
-msgid "No matches"
-msgstr "Ez dago bat datorrenik"
+#: ../src/yelp-window.c:350
+msgid "Print…"
+msgstr "Inprimatu…"
+
+#: ../src/yelp-window.c:355
+msgid "Previous Page"
+msgstr "Aurreko orria"
+
+#: ../src/yelp-window.c:356
+msgid "Next Page"
+msgstr "Hurrengo orria"
+
+#: ../src/yelp-window.c:361
+msgid "All Help"
+msgstr "Laguntza guztia"
+
+#: ../src/yelp-window.c:383
+msgid "Search (Ctrl+S)"
+msgstr "Bilatu (Ktrl+S) "
+
+#: ../src/yelp-window.c:417
+msgid "No bookmarks"
+msgstr "Laster-markarik ez"
+
+#: ../src/yelp-window.c:425
+msgid "Add Bookmark"
+msgstr "Gehitu laster-marka"
+
+#: ../src/yelp-window.c:431
+msgid "Remove Bookmark"
+msgstr "Kendu laster-marka"
 
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
@@ -559,6 +484,80 @@ msgstr "Eskuratu GNOMEri buruzko laguntza"
 #: ../yelp.desktop.in.in.h:3
 msgid "documentation;information;manual;"
 msgstr "dokumentazioa;informazioa;eskuliburua;"
+
+#~ msgid "Enable Search"
+#~ msgstr "Gaitu bilaketa"
+
+#~ msgid "Whether the location entry can be used as a search field"
+#~ msgstr "Kokalekuaren sarrera erabil daitekeen bilaketako eremu gisa edo ez"
+
+#~ msgid "Search..."
+#~ msgstr "Bilatu..."
+
+#~ msgid "Clear the search text"
+#~ msgstr "Garbitu bilaketako testua"
+
+#~ msgid "Bookmark this page"
+#~ msgstr "Sortu orrialde honen laster-marka"
+
+#~ msgid "Remove bookmark"
+#~ msgstr "Kendu laster-marka"
+
+#~ msgid "Loading"
+#~ msgstr "Kargatzen"
+
+#~ msgid "_Print..."
+#~ msgstr "_Inprimatu..."
+
+#~ msgid "Increase the size of the text"
+#~ msgstr "Handitu testuaren tamaina"
+
+#~ msgid "Decrease the size of the text"
+#~ msgstr "Txikiagotu testuaren tamaina"
+
+#~ msgid "Show Text _Cursor"
+#~ msgstr "Erakutsi testuaren _kurtsorea"
+
+#~ msgid "_Page"
+#~ msgstr "_Orrialdea"
+
+#~ msgid "_View"
+#~ msgstr "_Ikusi"
+
+#~ msgid "_Go"
+#~ msgstr "_Joan"
+
+#~ msgid "_Bookmarks"
+#~ msgstr "Laster-_markak"
+
+#~ msgid "_Close"
+#~ msgstr "It_xi"
+
+#~ msgid "_All Documents"
+#~ msgstr "Dokumentu _guztiak"
+
+#~ msgid "_Add Bookmark"
+#~ msgstr "_Gehitu laster-marka"
+
+#~ msgid "Find in Page..."
+#~ msgstr "Bilatu orrialdean..."
+
+#~ msgid "Open Location"
+#~ msgstr "Ireki helbidea"
+
+#~ msgid "Read Link _Later"
+#~ msgstr "Irakurri esteka _beranduago"
+
+#~ msgid "Read Later"
+#~ msgstr "Irakurri beranduago"
+
+#~ msgid "%i match"
+#~ msgid_plural "%i matches"
+#~ msgstr[0] "%d bat dator"
+#~ msgstr[1] "%d bat datozte"
+
+#~ msgid "No matches"
+#~ msgstr "Ez dago bat datorrenik"
 
 #~ msgid "GNU Info Pages"
 #~ msgstr "GNU Info orriak"
@@ -1058,9 +1057,6 @@ msgstr "dokumentazioa;informazioa;eskuliburua;"
 #~ msgid "Presentation Tools"
 #~ msgstr "Aurkezpen-tresnak"
 
-#~ msgid "Printing"
-#~ msgstr "Inprimatzea"
-
 #~ msgid "Profiling Tools"
 #~ msgstr "Profil-tresnak"
 
@@ -1201,9 +1197,6 @@ msgstr "dokumentazioa;informazioa;eskuliburua;"
 
 #~ msgid "_Bookmarks:"
 #~ msgstr "_Laster-markak:"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Gehitu laster-marka"
 
 #~ msgid "_Title:"
 #~ msgstr "_Titulua:"
