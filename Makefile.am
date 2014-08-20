@@ -23,4 +23,7 @@ DISTCLEANFILES = 					\
 
 CLEANFILES = $(desktop_DATA)
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
+DISTCHECK_CONFIGURE_FLAGS = \
+	--enable-bz2 \
+	--enable-gtk-doc \
+	--enable-lzma
