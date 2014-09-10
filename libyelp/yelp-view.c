@@ -86,12 +86,10 @@ static void        view_script_alert              (YelpView           *view,
                                                    WebKitWebFrame     *frame,
                                                    gchar              *message,
                                                    gpointer            data);
-static gboolean    view_navigation_requested      (WebKitWebView             *view,
-                                                   WebKitWebFrame            *frame,
-                                                   WebKitNetworkRequest      *request,
-                                                   WebKitWebNavigationAction *action,
-                                                   WebKitWebPolicyDecision   *decision,
-                                                   gpointer                   user_data);
+static gboolean    view_policy_decision_requested (YelpView                *view,
+                                                   WebKitPolicyDecision    *decision,
+                                                   WebKitPolicyDecisionType type,
+                                                   gpointer                 user_data);
 static void        view_resource_request          (WebKitWebView             *view,
                                                    WebKitWebFrame            *frame,
                                                    WebKitWebResource         *resource,
@@ -250,8 +248,8 @@ yelp_view_init (YelpView *view)
     priv->prevstate = priv->state = YELP_VIEW_STATE_BLANK;
 
     priv->navigation_requested =
-        g_signal_connect (view, "navigation-policy-decision-requested",
-                          G_CALLBACK (view_navigation_requested), NULL);
+        g_signal_connect (view, "decide-policy",
+                          G_CALLBACK (view_policy_decision_requested), NULL);
     g_signal_connect (view, "resource-request-starting",
                       G_CALLBACK (view_resource_request), NULL);
     g_signal_connect (view, "document-load-finished",
@@ -1443,15 +1441,18 @@ view_script_alert (YelpView        *view,
 }
 
 static gboolean
-view_navigation_requested (WebKitWebView             *view,
-                           WebKitWebFrame            *frame,
-                           WebKitNetworkRequest      *request,
-                           WebKitWebNavigationAction *action,
-                           WebKitWebPolicyDecision   *decision,
-                           gpointer                   user_data)
+view_policy_decision_requested (YelpView                *view,
+                                WebKitPolicyDecision    *decision,
+                                WebKitPolicyDecisionType type,
+                                gpointer                 user_data)
 {
-    const gchar *requri = webkit_network_request_get_uri (request);
+    if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
+        return FALSE;
+
     YelpViewPrivate *priv = GET_PRIV (view);
+    WebKitNavigationPolicyDecision *navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (decision);
+    WebKitURIRequest *request = webkit_navigation_policy_decision_get_request (navigation_decision);
+    const gchar *requri = webkit_uri_request_get_uri (request);
     YelpUri *uri;
 
     if (priv->bogus_uri &&
@@ -1467,7 +1468,7 @@ view_navigation_requested (WebKitWebView             *view,
     else
         uri = yelp_uri_new_relative (priv->uri, requri);
 
-    webkit_web_policy_decision_ignore (decision);
+    webkit_policy_decision_ignore (decision);
 
     yelp_view_load_uri ((YelpView *) view, uri);
     g_object_unref (uri);
