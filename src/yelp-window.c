@@ -287,6 +287,8 @@ window_construct (YelpWindow *window)
 {
     GtkWidget *scroll;
     GtkWidget *box, *button;
+    GtkWidget *frame;
+    GtkCssProvider *css;
     GtkSizeGroup *size_group;
     GMenu *menu, *section;
     YelpWindowPrivate *priv = GET_PRIV (window);
@@ -436,17 +438,36 @@ window_construct (YelpWindow *window)
                           G_CALLBACK (app_bookmarks_changed), window);
 
     /** Find **/
+    css = gtk_css_provider_new ();
+    /* FIXME: Connect to parsing-error signal. */
+    gtk_css_provider_load_from_data (css,
+                                     ".yelp-find-frame {"
+                                     "    background-color: @theme_base_color;"
+                                     "    padding: 6px;"
+                                     "    border-color: shade (@notebook_tab_gradient_b, 0.80);"
+                                     "    border-radius: 0 0 3px 3px;"
+                                     "    border-width: 0 1px 1px 1px;"
+                                     "    border-style: solid;"
+                                     "}",
+                                     -1, NULL);
     priv->find_bar = gtk_revealer_new ();
+    frame = gtk_frame_new (NULL);
+    gtk_style_context_add_class (gtk_widget_get_style_context (frame),
+                                 "yelp-find-frame");
+    gtk_style_context_add_provider (gtk_widget_get_style_context (frame),
+                                    GTK_STYLE_PROVIDER (css),
+                                    GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     g_object_set (priv->find_bar,
                   "halign", GTK_ALIGN_END,
+                  "margin-end", 6,
                   "valign", GTK_ALIGN_START,
                   NULL);
-    g_object_set (box,
-                  "border-width", 6,
-                  NULL);
     gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
-    gtk_container_add (GTK_CONTAINER (priv->find_bar), box);
+    gtk_container_add (GTK_CONTAINER (frame), box);
+    gtk_container_add (GTK_CONTAINER (priv->find_bar), frame);
+
+    g_object_unref (css);
 
     size_group = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
 
