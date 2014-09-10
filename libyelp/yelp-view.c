@@ -29,7 +29,7 @@
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
 #endif
-#include <webkit/webkit.h>
+#include <webkit2/webkit2.h>
 
 #include "yelp-debug.h"
 #include "yelp-docbook-document.h"
