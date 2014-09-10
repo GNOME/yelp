@@ -22,7 +22,7 @@
 #define __YELP_VIEW_H__
 
 #include <gtk/gtk.h>
-#include <webkit/webkit.h>
+#include <webkit2/webkit2.h>
 
 #include "yelp-document.h"
 #include "yelp-uri.h"

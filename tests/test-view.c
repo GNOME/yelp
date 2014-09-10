@@ -19,7 +19,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <webkit/webkit.h>
+#include <webkit2/webkit2.h>
 
 #include "yelp-view.h"
 #include "yelp-uri.h"
@@ -88,7 +88,7 @@ main (int argc, char **argv)
     g_signal_connect (view, "notify::title",
 		      G_CALLBACK (title_cb), window);
     gtk_container_add (GTK_CONTAINER (scroll), view);
-			   
+
 
     g_signal_connect (entry, "activate", G_CALLBACK (activate_cb), view);
 
