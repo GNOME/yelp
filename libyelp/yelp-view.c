@@ -1592,31 +1592,24 @@ view_document_loaded (WebKitWebView   *view,
 static void
 view_print_action (GAction *action, GVariant *parameter, YelpView *view)
 {
-    WebKitWebFrame *main_frame;
-    GtkPrintOperation *operation;
+    GtkWidget *window;
+    WebKitPrintOperation *print_operation;
     GtkPrintSettings *settings;
-    GError *error = NULL;
     YelpViewPrivate *priv = GET_PRIV (view);
 
-    main_frame = webkit_web_view_get_main_frame (WEBKIT_WEB_VIEW (view));
+    window = gtk_widget_get_toplevel (GTK_WIDGET (view));
 
-    operation = gtk_print_operation_new ();
+    print_operation = webkit_print_operation_new (WEBKIT_WEB_VIEW (view));
+
     settings = gtk_print_settings_new ();
     gtk_print_settings_set (settings,
                             GTK_PRINT_SETTINGS_OUTPUT_BASENAME,
                             priv->page_title);
-    gtk_print_operation_set_print_settings (operation, settings);
+    gtk_print_operation_set_print_settings (GTK_PRINT_OPERATION (print_operation),
+                                            settings);
 
-    webkit_web_frame_print_full (main_frame, operation,
-                                 GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
-                                 &error);
-
-    if (error) {
-        g_warning ("Error showing print dialog: %s", error->message);
-        g_error_free (error);
-    }
-
-    g_object_unref (operation);
+    webkit_print_operation_run_dialog (print_operation, GTK_WINDOW (window));
+    g_object_unref (print_operation);
     g_object_unref (settings);
 }
 
