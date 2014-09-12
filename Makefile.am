@@ -284,6 +284,12 @@ desktopdir = $(datadir)/applications
 desktop_in_files=yelp.desktop.in.in
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
+@INTLTOOL_XML_RULE@
+
+appstream_in_files = data/yelp.appdata.xml.in
+appstream_XML = $(appstream_in_files:.appdata.xml.in=.appdata.xml)
+@APPSTREAM_XML_RULES@
+
 @INTLTOOL_SCHEMAS_RULE@
 
 gsettings_SCHEMAS = data/org.gnome.yelp.gschema.xml
@@ -683,6 +689,7 @@ xsl_DATA = \
 	data/xslt/yelp-common.xsl
 
 dist_noinst_DATA = \
+	$(appstream_in_files) \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \
 	$(libyelp_libyelp_la_headers) \
@@ -859,6 +866,7 @@ dist_noinst_SCRIPTS = \
 	autogen.sh
 
 CLEANFILES = \
+	$(appstream_XML) \
 	$(desktop_DATA) \
 	$(enum_data) \
 	$(marshal_data)
