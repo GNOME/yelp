@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2009 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2014 Igalia S.L.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -36,8 +37,8 @@ G_BEGIN_DECLS
 #define YELP_IS_VIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), YELP_TYPE_VIEW))
 #define YELP_VIEW_GET_CLASS(o)    (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_VIEW, YelpViewClass))
 
-typedef struct _YelpView       YelpView;
-typedef struct _YelpViewClass  YelpViewClass;
+typedef struct _YelpView         YelpView;
+typedef struct _YelpViewClass    YelpViewClass;
 typedef gboolean (* YelpViewActionValidFunc) (YelpView *view, GtkAction *action, gchar *uri, gpointer data);
 
 struct _YelpView

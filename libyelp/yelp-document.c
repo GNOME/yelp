@@ -842,9 +842,14 @@ document_request_page (YelpDocument         *document,
     else
 	request->page_id = g_strdup (page_id);
 
-    request->cancellable = g_object_ref (cancellable);
-    g_signal_connect (cancellable, "cancelled",
-		      G_CALLBACK (request_cancel), request);
+    if (cancellable) {
+      request->cancellable = g_object_ref (cancellable);
+      g_signal_connect (cancellable, "cancelled",
+              G_CALLBACK (request_cancel), request);
+    }
+    else {
+      request->cancellable = NULL;
+    }
 
     request->callback = callback;
     request->user_data = user_data;
