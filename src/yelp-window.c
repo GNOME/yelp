@@ -144,6 +144,8 @@ enum {
     LAST_SIGNAL
 };
 
+#define MAX_FIND_MATCHES 1000
+
 static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE (YelpWindow, yelp_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -994,18 +996,19 @@ find_entry_key_press (GtkEntry    *entry,
                       YelpWindow  *window)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
+    WebKitFindController *find_controller;
+
+    find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (priv->view));
 
     if (event->keyval == GDK_KEY_Escape) {
         gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
         gtk_widget_grab_focus (GTK_WIDGET (priv->view));
+        webkit_find_controller_search_finish (find_controller);
         return TRUE;
     }
 
     if (event->keyval == GDK_KEY_Return || event->keyval == GDK_KEY_KP_Enter) {
-        gchar *text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
-        webkit_web_view_search_text (WEBKIT_WEB_VIEW (priv->view),
-                                     text, FALSE, TRUE, TRUE);
-        g_free (text);
+        webkit_find_controller_search_next (find_controller);
         return TRUE;
     }
 
@@ -1017,23 +1020,16 @@ find_entry_changed (GtkEntry   *entry,
                     YelpWindow *window)
 {
     gchar *text;
-    gint count;
     YelpWindowPrivate *priv = GET_PRIV (window);
+    WebKitFindController *find_controller;
 
-    webkit_web_view_unmark_text_matches (WEBKIT_WEB_VIEW (priv->view));
+    find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (priv->view));
 
     text = gtk_editable_get_chars (GTK_EDITABLE (entry), 0, -1);
 
-    count = webkit_web_view_mark_text_matches (WEBKIT_WEB_VIEW (priv->view),
-                                               text, FALSE, 0);
-    if (count > 0) {
-        webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), TRUE);
-        webkit_web_view_search_text (WEBKIT_WEB_VIEW (priv->view),
-                                     text, FALSE, TRUE, TRUE);
-    }
-    else {
-        webkit_web_view_set_highlight_text_matches (WEBKIT_WEB_VIEW (priv->view), FALSE);
-    }
+    webkit_find_controller_search (find_controller, text,
+      WEBKIT_FIND_OPTIONS_WRAP_AROUND | WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE,
+      MAX_FIND_MATCHES);
 
     g_free (text);
 }
@@ -1043,10 +1039,10 @@ find_prev_clicked (GtkButton  *button,
                    YelpWindow *window)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
-    gchar *text = gtk_editable_get_chars (GTK_EDITABLE (priv->find_entry), 0, -1);
-    webkit_web_view_search_text (WEBKIT_WEB_VIEW (priv->view),
-                                 text, FALSE, FALSE, TRUE);
-    g_free (text);
+    WebKitFindController *find_controller;
+
+    find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (priv->view));
+    webkit_find_controller_search_previous (find_controller);
 }
 
 static void
@@ -1054,10 +1050,10 @@ find_next_clicked (GtkButton  *button,
                    YelpWindow *window)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
-    gchar *text = gtk_editable_get_chars (GTK_EDITABLE (priv->find_entry), 0, -1);
-    webkit_web_view_search_text (WEBKIT_WEB_VIEW (priv->view),
-                                 text, FALSE, TRUE, TRUE);
-    g_free (text);
+    WebKitFindController *find_controller;
+
+    find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (priv->view));
+    webkit_find_controller_search_next (find_controller);
 }
 
 static void
