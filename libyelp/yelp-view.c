@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2009 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2014 Igalia S.L.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -38,96 +39,89 @@
 #include "yelp-settings.h"
 #include "yelp-types.h"
 #include "yelp-view.h"
+#include "yelp-uri-builder.h"
 
-#define BOGUS_URI "file:///bogus/"
-#define BOGUS_URI_LEN 14
+static void        yelp_view_dispose                 (GObject            *object);
+static void        yelp_view_finalize                (GObject            *object);
+static void        yelp_view_get_property            (GObject            *object,
+                                                      guint               prop_id,
+                                                      GValue             *value,
+                                                      GParamSpec         *pspec);
+static void        yelp_view_set_property            (GObject            *object,
+                                                      guint               prop_id,
+                                                      const GValue       *value,
+                                                      GParamSpec         *pspec);
 
-static void        yelp_view_dispose              (GObject            *object);
-static void        yelp_view_finalize             (GObject            *object);
-static void        yelp_view_get_property         (GObject            *object,
-                                                   guint               prop_id,
-                                                   GValue             *value,
-                                                   GParamSpec         *pspec);
-static void        yelp_view_set_property         (GObject            *object,
-                                                   guint               prop_id,
-                                                   const GValue       *value,
-                                                   GParamSpec         *pspec);
+static gboolean    view_external_uri                 (YelpView           *view,
+                                                      YelpUri            *uri);
+static void        view_install_uri                  (YelpView           *view,
+                                                      const gchar        *uri);
+static void        view_scrolled                     (GtkAdjustment      *adjustment,
+                                                      YelpView           *view);
+static void        view_set_hadjustment              (YelpView           *view,
+                                                      GParamSpec         *pspec,
+                                                      gpointer            data);
+static void        view_set_vadjustment              (YelpView           *view,
+                                                      GParamSpec         *pspec,
+                                                      gpointer            data);
+static void        popup_open_link                   (GtkAction          *action,
+                                                      YelpView           *view);
+static void        popup_open_link_new               (GtkAction          *action,
+                                                      YelpView           *view);
+static void        popup_copy_link                   (GtkAction          *action,
+                                                      YelpView           *view);
+static void        popup_save_image                  (GtkAction          *action,
+                                                      YelpView           *view);
+static void        popup_send_image                  (GtkAction          *action,
+                                                      YelpView           *view);
+static void        popup_copy_code                   (GtkAction          *action,
+                                                      YelpView           *view);
+static void        popup_save_code                   (GtkAction          *action,
+                                                      YelpView           *view);
+static void        popup_copy_clipboard              (GtkAction          *action,
+                                                      YelpView           *view);
+static gboolean    view_populate_context_menu        (YelpView            *view,
+                                                      WebKitContextMenu   *context_menu,
+                                                      GdkEvent            *event,
+                                                      WebKitHitTestResult *hit_test_result,
+                                                      gpointer             user_data);
+static gboolean    view_script_dialog                (YelpView           *view,
+                                                      WebKitScriptDialog *dialog,
+                                                      gpointer            data);
+static gboolean    view_policy_decision_requested    (YelpView                *view,
+                                                      WebKitPolicyDecision    *decision,
+                                                      WebKitPolicyDecisionType type,
+                                                      gpointer                 user_data);
+static void        view_print_action                 (GAction            *action,
+                                                      GVariant           *parameter,
+                                                      YelpView           *view);
+static void        view_history_action               (GAction            *action,
+                                                      GVariant           *parameter,
+                                                      YelpView           *view);
+static void        view_navigation_action            (GAction            *action,
+                                                      GVariant           *parameter,
+                                                      YelpView           *view);
 
-static gboolean    view_external_uri              (YelpView           *view,
-                                                   YelpUri            *uri);
-static void        view_install_uri               (YelpView           *view,
-                                                   const gchar        *uri);
-static void        view_scrolled                  (GtkAdjustment      *adjustment,
-                                                   YelpView           *view);
-static void        view_set_hadjustment           (YelpView           *view,
-                                                   GParamSpec         *pspec,
-                                                   gpointer            data);
-static void        view_set_vadjustment           (YelpView           *view,
-                                                   GParamSpec         *pspec,
-                                                   gpointer            data);
-static void        popup_open_link                (GtkAction          *action,
-                                                   YelpView           *view);
-static void        popup_open_link_new            (GtkAction          *action,
-                                                   YelpView           *view);
-static void        popup_copy_link                (GtkAction          *action,
-                                                   YelpView           *view);
-static void        popup_save_image               (GtkAction          *action,
-                                                   YelpView           *view);
-static void        popup_send_image               (GtkAction          *action,
-                                                   YelpView           *view);
-static void        popup_copy_code                (GtkAction          *action,
-                                                   YelpView           *view);
-static void        popup_save_code                (GtkAction          *action,
-                                                   YelpView           *view);
-static void        popup_copy_clipboard           (GtkAction          *action,
-                                                   YelpView           *view);
-static gboolean    view_populate_context_menu     (YelpView            *view,
-                                                   WebKitContextMenu   *context_menu,
-                                                   GdkEvent            *event,
-                                                   WebKitHitTestResult *hit_test_result,
-                                                   gpointer             user_data);
-static gboolean    view_script_dialog             (YelpView           *view,
-                                                   WebKitScriptDialog *dialog,
-                                                   gpointer            data);
-static gboolean    view_policy_decision_requested (YelpView                *view,
-                                                   WebKitPolicyDecision    *decision,
-                                                   WebKitPolicyDecisionType type,
-                                                   gpointer                 user_data);
-static void        view_resource_request          (WebKitWebView             *view,
-                                                   WebKitWebFrame            *frame,
-                                                   WebKitWebResource         *resource,
-                                                   WebKitNetworkRequest      *request,
-                                                   WebKitNetworkResponse     *response,
-                                                   gpointer                   user_data);
-static void        view_document_loaded           (WebKitWebView             *view,
-                                                   WebKitWebFrame            *frame,
-                                                   gpointer                   user_data);
+static void        view_clear_load                   (YelpView           *view);
+static void        view_load_page                    (YelpView           *view);
+static void        view_show_error_page              (YelpView           *view,
+                                                      GError             *error);
 
-static void        view_print_action              (GAction            *action,
-                                                   GVariant           *parameter,
-                                                   YelpView           *view);
-static void        view_history_action            (GAction            *action,
-                                                   GVariant           *parameter,
-                                                   YelpView           *view);
-static void        view_navigation_action         (GAction            *action,
-                                                   GVariant           *parameter,
-                                                   YelpView           *view);
+static void        settings_set_fonts                (YelpSettings       *settings);
+static void        settings_show_text_cursor         (YelpSettings       *settings);
 
-static void        view_clear_load                (YelpView           *view);
-static void        view_load_page                 (YelpView           *view);
-static void        view_show_error_page           (YelpView           *view,
-                                                   GError             *error);
-
-static void        settings_set_fonts             (YelpSettings       *settings);
-static void        settings_show_text_cursor      (YelpSettings       *settings);
-
-static void        uri_resolved                   (YelpUri            *uri,
-                                                   YelpView           *view);
-static void        document_callback              (YelpDocument       *document,
-                                                   YelpDocumentSignal  signal,
-                                                   YelpView           *view,
-                                                   GError             *error);
-static void        yelp_view_register_extensions  (void);
+static void        uri_resolved                      (YelpUri            *uri,
+                                                      YelpView           *view);
+static void        yelp_view_register_custom_schemes (void);
+static void        view_load_failed                  (WebKitWebView            *web_view,
+                                                      WebKitLoadEvent           load_event,
+                                                      gchar                    *failing_uri,
+                                                      GError                   *error,
+                                                      gpointer                  user_data);
+static void        view_load_status_changed          (WebKitWebView            *view,
+                                                      WebKitLoadEvent           load_event,
+                                                      gpointer                  user_data);
+static void        yelp_view_register_extensions     (void);
 
 static gchar *nautilus_sendto = NULL;
 
@@ -189,12 +183,37 @@ back_entry_free (YelpBackEntry *back)
     g_free (back);
 }
 
+typedef struct _RequestAsyncData RequestAsyncData;
+struct _RequestAsyncData {
+    WebKitURISchemeRequest *request;
+    GFile *resource_file;
+    gchar *page_id;
+};
+
+static RequestAsyncData *
+request_async_data_new (WebKitURISchemeRequest *request, gchar *page_id)
+{
+    RequestAsyncData *data;
+
+    data = g_slice_new (RequestAsyncData);
+    data->request = g_object_ref (request);
+    data->page_id = g_strdup (page_id);
+    return data;
+}
+
+static void
+request_async_data_free (RequestAsyncData *data)
+{
+    g_object_unref (data->request);
+    g_clear_pointer (&data->page_id, g_free);
+    g_slice_free (RequestAsyncData, data);
+}
+
 typedef struct _YelpViewPrivate YelpViewPrivate;
 struct _YelpViewPrivate {
     YelpUri       *uri;
     YelpUri       *resolve_uri;
     gulong         uri_resolved;
-    gchar         *bogus_uri;
     YelpDocument  *document;
     GCancellable  *cancellable;
     GtkAdjustment *vadjustment;
@@ -306,10 +325,10 @@ yelp_view_init (YelpView *view)
     priv->navigation_requested =
         g_signal_connect (view, "decide-policy",
                           G_CALLBACK (view_policy_decision_requested), NULL);
-    g_signal_connect (view, "resource-request-starting",
-                      G_CALLBACK (view_resource_request), NULL);
-    g_signal_connect (view, "document-load-finished",
-                      G_CALLBACK (view_document_loaded), NULL);
+    g_signal_connect (view, "load-changed",
+                      G_CALLBACK (view_load_status_changed), NULL);
+    g_signal_connect (view, "load-failed",
+                      G_CALLBACK (view_load_failed), NULL);
     g_signal_connect (view, "notify::hadjustment",
                       G_CALLBACK (view_set_hadjustment), NULL);
     g_signal_connect (view, "notify::vadjustment",
@@ -436,7 +455,6 @@ yelp_view_finalize (GObject *object)
     g_free (priv->page_desc);
     g_free (priv->page_icon);
 
-    g_free (priv->bogus_uri);
     g_object_unref (priv->popup_actions);
 
     G_OBJECT_CLASS (yelp_view_parent_class)->finalize (object);
@@ -452,7 +470,6 @@ yelp_view_class_init (YelpViewClass *klass)
 
     websettings = webkit_settings_new_with_settings (
                     "default-charset", "utf-8",
-                    "enable-private-browsing", TRUE,
                     NULL);
 
     g_signal_connect (settings,
@@ -467,6 +484,7 @@ yelp_view_class_init (YelpViewClass *klass)
     settings_show_text_cursor (settings);
 
     yelp_view_register_extensions ();
+    yelp_view_register_custom_schemes ();
 
     klass->external_uri = view_external_uri;
 
@@ -728,6 +746,141 @@ yelp_view_register_actions (YelpView   *view,
 
 /******************************************************************************/
 
+static void
+document_callback (YelpDocument       *document,
+                   YelpDocumentSignal  signal,
+                   RequestAsyncData   *data,
+                   GError             *error)
+{
+    const gchar *contents;
+    gchar *mime_type;
+    GInputStream *stream;
+    int content_length;
+
+    if (signal == YELP_DOCUMENT_SIGNAL_INFO)
+        return;
+
+    if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {
+        webkit_uri_scheme_request_finish_error (data->request, error);
+        return;
+    }
+
+    mime_type = yelp_document_get_mime_type (document, data->page_id);
+
+    contents = yelp_document_read_contents (document, data->page_id);
+
+    content_length = strlen (contents);
+
+    stream = g_memory_input_stream_new_from_data (g_strdup (contents), content_length, g_free);
+    yelp_document_finish_read (document, contents);
+
+    webkit_uri_scheme_request_finish (data->request,
+                                      stream,
+                                      content_length,
+                                      mime_type);
+    request_async_data_free (data);
+    g_free (mime_type);
+    g_object_unref (stream);
+}
+
+static void
+help_cb_uri_resolved (YelpUri                *uri,
+                      WebKitURISchemeRequest *request)
+{
+    YelpDocument *document;
+
+    if ((document = yelp_document_get_for_uri (uri))) {
+        RequestAsyncData *data;
+        gchar * page_id;
+
+        page_id = yelp_uri_get_page_id (uri);
+        data = request_async_data_new (request, page_id);
+        g_free (page_id);
+
+        yelp_document_request_page (document,
+                                    data->page_id,
+                                    NULL,
+                                    (YelpDocumentCallback) document_callback,
+                                    data);
+        g_object_unref (document);
+
+    } else {
+        YelpUriDocumentType doctype;
+        GError *error;
+        gchar *struri;
+
+        doctype = yelp_uri_get_document_type (uri);
+        if (doctype == YELP_URI_DOCUMENT_TYPE_NOT_FOUND) {
+            struri = yelp_uri_get_canonical_uri (uri);
+            if (struri) {
+                error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
+                                     _("The URI ‘%s’ does not point to a valid page."),
+                                     struri);
+                g_free (struri);
+            }
+            else {
+                error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
+                                     _("The URI does not point to a valid page."));
+            }
+        } else if (doctype == YELP_URI_DOCUMENT_TYPE_ERROR) {
+            struri = yelp_uri_get_canonical_uri (uri);
+            error = g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,
+                                 _("The URI ‘%s’ could not be parsed."),
+                                 struri);
+            g_free (struri);
+        } else {
+            error = g_error_new (YELP_ERROR, YELP_ERROR_UNKNOWN,
+                                     _("Unknown Error."));
+        }
+
+        webkit_uri_scheme_request_finish_error (request, error);
+        g_object_unref (error);
+    }
+}
+
+static void
+help_uri_scheme_request_cb  (WebKitURISchemeRequest *request,
+                             gpointer                user_data)
+{
+    YelpUri *uri;
+    gchar *uri_str;
+
+    uri_str = build_yelp_uri (webkit_uri_scheme_request_get_uri (request));
+
+    uri = yelp_uri_new (uri_str);
+    g_free (uri_str);
+
+    g_signal_connect (uri, "resolved", G_CALLBACK (help_cb_uri_resolved), request);
+    yelp_uri_resolve (uri);
+
+    g_object_unref (uri);
+}
+
+static const gchar *help_schemes[] = { "help", "ghelp", "gnome-help", "help-list", "info", "man", NULL };
+
+static void
+yelp_view_register_custom_schemes (void)
+{
+    WebKitWebContext *context = webkit_web_context_get_default ();
+    WebKitSecurityManager *sec_manager = webkit_web_context_get_security_manager (context);
+    gint i;
+    gchar *network_scheme;
+
+    for (i = 0; help_schemes[i] != NULL; i++) {
+        network_scheme = build_network_scheme (help_schemes[i]);
+
+        webkit_web_context_register_uri_scheme (context, network_scheme,
+            (WebKitURISchemeRequestCallback) help_uri_scheme_request_cb,
+            NULL, NULL);
+
+        webkit_security_manager_register_uri_scheme_as_local (sec_manager, network_scheme);
+
+        g_free (network_scheme);
+    }
+}
+
+/******************************************************************************/
+
 void
 yelp_view_add_link_action (YelpView                *view,
                            GtkAction               *action,
@@ -751,10 +904,7 @@ yelp_view_get_active_link_uri (YelpView *view)
     YelpViewPrivate *priv = GET_PRIV (view);
     YelpUri *uri;
 
-    if (g_str_has_prefix (priv->popup_link_uri, BOGUS_URI))
-        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri + BOGUS_URI_LEN);
-    else
-        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
+    uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
 
     return uri;
 }
@@ -1013,10 +1163,7 @@ popup_open_link (GtkAction   *action,
     YelpViewPrivate *priv = GET_PRIV (view);
     YelpUri *uri;
 
-    if (g_str_has_prefix (priv->popup_link_uri, BOGUS_URI))
-        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri + BOGUS_URI_LEN);
-    else
-        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
+    uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
 
     yelp_view_load_uri (view, uri);
     g_object_unref (uri);
@@ -1035,10 +1182,7 @@ popup_open_link_new (GtkAction   *action,
     YelpViewPrivate *priv = GET_PRIV (view);
     YelpUri *uri;
 
-    if (g_str_has_prefix (priv->popup_link_uri, BOGUS_URI))
-        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri + BOGUS_URI_LEN);
-    else
-        uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
+    uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
 
     g_free (priv->popup_link_uri);
     priv->popup_link_uri = NULL;
@@ -1291,10 +1435,10 @@ view_populate_context_menu (YelpView            *view,
       g_variant_dict_init (&dom_info_dict, dom_info_variant);
 
     if (webkit_hit_test_result_context_is_link (hit_test_result)) {
-        gchar *uri;
-        uri = webkit_hit_test_result_get_link_uri (hit_test_result);
+        const gchar *uri = webkit_hit_test_result_get_link_uri (hit_test_result);
         g_free (priv->popup_link_uri);
-        priv->popup_link_uri = uri;
+
+        priv->popup_link_uri = build_yelp_uri (uri);
 
         g_clear_pointer (&priv->popup_link_text, g_free);
         if (dom_info_variant)
@@ -1377,14 +1521,31 @@ view_populate_context_menu (YelpView            *view,
         gboolean image = webkit_hit_test_result_context_is_image (hit_test_result);
         const gchar *uri = image ? webkit_hit_test_result_get_image_uri (hit_test_result) :
           webkit_hit_test_result_get_media_uri (hit_test_result);
+        gchar *yelp_uri;
         g_free (priv->popup_image_uri);
-        if (g_str_has_prefix (uri, BOGUS_URI)) {
-            priv->popup_image_uri = yelp_uri_locate_file_uri (priv->uri, uri + BOGUS_URI_LEN);
-            g_free (uri);
+
+        yelp_uri = build_yelp_uri (uri);
+
+        if (g_str_has_prefix (yelp_uri, "help:") ||
+            g_str_has_prefix (yelp_uri, "ghelp:") ||
+            g_str_has_prefix (yelp_uri, "gnome-help:")) {
+            gchar *image_uri = strstr (yelp_uri, "/");
+
+            if (image_uri) {
+                image_uri[0] = '\0';
+                image_uri++;
+            }
+
+            if (image_uri && image_uri[0] != '\0')
+                priv->popup_image_uri = yelp_uri_locate_file_uri (priv->uri, image_uri);
+            else
+                priv->popup_image_uri = NULL;
         }
         else {
-            priv->popup_image_uri = uri;
+            priv->popup_image_uri = yelp_uri;
         }
+
+        g_free (yelp_uri);
 
         item = webkit_context_menu_item_new_separator ();
         webkit_context_menu_append (context_menu, item);
@@ -1467,100 +1628,148 @@ view_policy_decision_requested (YelpView                *view,
                                 WebKitPolicyDecisionType type,
                                 gpointer                 user_data)
 {
-    if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
-        return FALSE;
-
     YelpViewPrivate *priv = GET_PRIV (view);
     WebKitNavigationPolicyDecision *navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (decision);
     WebKitURIRequest *request = webkit_navigation_policy_decision_get_request (navigation_decision);
     const gchar *requri = webkit_uri_request_get_uri (request);
+    gchar *fixed_uri;
     YelpUri *uri;
 
-    if (priv->bogus_uri &&
-        g_str_has_prefix (requri, priv->bogus_uri) &&
-        requri[strlen(priv->bogus_uri)] == '#') {
-        gchar *tmp = g_strconcat("xref:", requri + strlen(priv->bogus_uri), NULL);
-        uri = yelp_uri_new_relative (priv->uri, tmp);
-        g_free (tmp);
-    }
-    else if (g_str_has_prefix (requri, BOGUS_URI)) {
-        uri = yelp_uri_new_relative (priv->uri, requri + BOGUS_URI_LEN);
-    }
-    else
-        uri = yelp_uri_new_relative (priv->uri, requri);
+    if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
+        return FALSE;
+
+    fixed_uri = build_yelp_uri (requri);
 
     webkit_policy_decision_ignore (decision);
 
+    uri = yelp_uri_new_relative (priv->uri, fixed_uri);
     yelp_view_load_uri ((YelpView *) view, uri);
     g_object_unref (uri);
+    g_free (fixed_uri);
 
     return TRUE;
 }
 
 static void
-view_resource_request (WebKitWebView         *view,
-                       WebKitWebFrame        *frame,
-                       WebKitWebResource     *resource,
-                       WebKitNetworkRequest  *request,
-                       WebKitNetworkResponse *response,
-                       gpointer               user_data)
+view_load_status_changed (WebKitWebView   *view,
+                          WebKitLoadEvent  load_event,
+                          gpointer         user_data)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
-    const gchar *requri = webkit_network_request_get_uri (request);
-    gchar *newpath;
 
-    if (!g_str_has_prefix (requri, BOGUS_URI))
+    if (priv->state == YELP_VIEW_STATE_ERROR)
         return;
 
-    /* We get this signal for the page itself.  Ignore. */
-    if (g_str_equal (requri, priv->bogus_uri))
-        return;
+    switch (load_event) {
+    case WEBKIT_LOAD_COMMITTED: {
+        gchar *real_id;
+        YelpBackEntry *back = NULL;
+        GParamSpec *spec;
 
-    newpath = yelp_uri_locate_file_uri (priv->uri, requri + BOGUS_URI_LEN);
-    if (newpath != NULL) {
-        webkit_network_request_set_uri (request, newpath);
-        g_free (newpath);
+        real_id = yelp_document_get_page_id (priv->document, priv->page_id);
+        if (priv->page_id && real_id && g_str_equal (real_id, priv->page_id)) {
+            g_free (real_id);
+        }
+        else {
+            g_free (priv->page_id);
+            priv->page_id = real_id;
+            spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                                 "page-id");
+            g_signal_emit_by_name (view, "notify::page-id", spec);
+        }
+
+        g_free (priv->root_title);
+        g_free (priv->page_title);
+        g_free (priv->page_desc);
+        g_free (priv->page_icon);
+
+        priv->root_title = yelp_document_get_root_title (priv->document, priv->page_id);
+        priv->page_title = yelp_document_get_page_title (priv->document, priv->page_id);
+        priv->page_desc = yelp_document_get_page_desc (priv->document, priv->page_id);
+        priv->page_icon = yelp_document_get_page_icon (priv->document, priv->page_id);
+
+        if (priv->back_cur)
+            back = priv->back_cur->data;
+        if (back) {
+            g_free (back->title);
+            back->title = g_strdup (priv->page_title);
+            g_free (back->desc);
+            back->desc = g_strdup (priv->page_desc);
+        }
+
+        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                             "root-title");
+        g_signal_emit_by_name (view, "notify::root-title", spec);
+
+        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                             "page-title");
+        g_signal_emit_by_name (view, "notify::page-title", spec);
+
+        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                             "page-desc");
+        g_signal_emit_by_name (view, "notify::page-desc", spec);
+
+        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                             "page-icon");
+        g_signal_emit_by_name (view, "notify::page-icon", spec);
+        break;
     }
-    else {
-        webkit_network_request_set_uri (request, "about:blank");
+    case WEBKIT_LOAD_FINISHED:
+
+        g_signal_handler_unblock (view, priv->navigation_requested);
+
+        g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
+
+        /* Setting adjustments only work after the page is loaded. These
+         * are set by view_history_action, and they're reset to 0 after
+         * each load here.
+         */
+        if (priv->vadjust > 0) {
+            if (priv->vadjustment)
+                gtk_adjustment_set_value (priv->vadjustment, priv->vadjust);
+            priv->vadjust = 0;
+        }
+        if (priv->hadjust > 0) {
+            if (priv->hadjustment)
+                gtk_adjustment_set_value (priv->hadjustment, priv->hadjust);
+            priv->hadjust = 0;
+        }
+
+        /* If the document didn't give us a page title, get it from WebKit.
+         * We let the main loop run through so that WebKit gets the title
+         * set so that we can send notify::page-title before loaded. It
+         * simplifies things if YelpView consumers can assume the title
+         * is set before loaded is triggered.
+         */
+        if (priv->page_title == NULL) {
+            GParamSpec *spec;
+            priv->page_title = g_strdup (webkit_web_view_get_title (view));
+            spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
+                                                 "page-title");
+            g_signal_emit_by_name (view, "notify::page-title", spec);
+        }
+
+        g_signal_emit (view, signals[LOADED], 0);
+
+        break;
+    case WEBKIT_LOAD_STARTED:
+    case WEBKIT_LOAD_REDIRECTED:
+    default:
+        break;
     }
 }
 
 static void
-view_document_loaded (WebKitWebView   *view,
-                      WebKitWebFrame  *frame,
-                      gpointer         user_data)
+view_load_failed (WebKitWebView  *view,
+                  WebKitLoadEvent load_event,
+                  gchar          *failing_uri,
+                  GError         *error,
+                  gpointer        user_data)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
-    gchar *search_terms;
 
-    search_terms = yelp_uri_get_query (priv->uri, "terms");
-
-    if (search_terms) {
-        WebKitDOMDocument *doc;
-        WebKitDOMElement *body, *link;
-        doc = webkit_web_view_get_dom_document (WEBKIT_WEB_VIEW (view));
-        body = webkit_dom_document_query_selector (doc, "div.body", NULL);
-        if (body) {
-            gchar *tmp, *uri, *txt;
-            link = webkit_dom_document_create_element (doc, "a", NULL);
-            webkit_dom_element_set_attribute (link, "class", "fullsearch", NULL);
-            tmp = g_uri_escape_string (search_terms, NULL, FALSE);
-            uri = g_strconcat ("xref:search=", tmp, NULL);
-            webkit_dom_element_set_attribute (link, "href", uri, NULL);
-            g_free (tmp);
-            g_free (uri);
-            txt = g_strdup_printf (_("See all search results for “%s”"),
-                                   search_terms);
-            webkit_dom_node_set_text_content (WEBKIT_DOM_NODE (link), txt, NULL);
-            g_free (txt);
-            webkit_dom_node_insert_before (WEBKIT_DOM_NODE (body),
-                                           WEBKIT_DOM_NODE (link),
-                                           webkit_dom_node_get_first_child (WEBKIT_DOM_NODE (body)),
-                                           NULL);
-        }
-        g_free (search_terms);
-    }
+    g_signal_handler_unblock (view, priv->navigation_requested);
+    view_show_error_page (YELP_VIEW (view), error);
 }
 
 static void
@@ -1595,6 +1804,8 @@ view_history_action (GAction   *action,
     GList *newcur;
     YelpViewPrivate *priv = GET_PRIV (view);
 
+    g_signal_handler_unblock (view, priv->navigation_requested);
+
     if (priv->back_cur == NULL)
         return;
 
@@ -1625,6 +1836,8 @@ view_navigation_action (GAction  *action,
     YelpViewPrivate *priv = GET_PRIV (view);
     gchar *page_id, *new_id, *xref;
     YelpUri *new_uri;
+
+    g_signal_handler_unblock (view, priv->navigation_requested);
 
     page_id = yelp_uri_get_page_id (priv->uri);
 
@@ -1677,7 +1890,7 @@ static void
 view_load_page (YelpView *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
-    gchar *page_id;
+    gchar *uri_str;
 
     g_return_if_fail (priv->cancellable == NULL);
 
@@ -1702,14 +1915,12 @@ view_load_page (YelpView *view)
         return;
     }
 
-    page_id = yelp_uri_get_page_id (priv->uri);
-    priv->cancellable = g_cancellable_new ();
-    yelp_document_request_page (priv->document,
-                                page_id,
-                                priv->cancellable,
-                                (YelpDocumentCallback) document_callback,
-                                view);
-    g_free (page_id);
+    uri_str = build_network_uri (priv->uri, priv->document);
+
+    g_signal_handler_block (view, priv->navigation_requested);
+    webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), uri_str);
+
+    g_free (uri_str);
 }
 
 #define FORMAT_ERRORPAGE \
@@ -1763,7 +1974,7 @@ view_show_error_page (YelpView *view,
     gint iconsize;
     GParamSpec *spec;
     gboolean doc404 = FALSE;
-    const gchar *left = (gtk_widget_get_direction((GtkWidget *) view) == GTK_TEXT_DIR_RTL) ? "right" : "left";
+    const gchar *left = (gtk_widget_get_direction ((GtkWidget *) view) == GTK_TEXT_DIR_RTL) ? "right" : "left";
 
     if (priv->uri && yelp_uri_get_document_type (priv->uri) == YELP_URI_DOCUMENT_TYPE_NOT_FOUND)
         doc404 = TRUE;
@@ -1857,18 +2068,15 @@ view_show_error_page (YelpView *view,
     g_signal_emit_by_name (view, "notify::page-icon", spec);
 
     g_signal_emit (view, signals[LOADED], 0);
+
     g_signal_handler_block (view, priv->navigation_requested);
-    webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
-                                 page,
-                                 "text/html",
-                                 "UTF-8",
-                                 "file:///error/");
-    g_signal_handler_unblock (view, priv->navigation_requested);
+    webkit_web_view_load_html  (WEBKIT_WEB_VIEW (view),
+                                page,
+                                "file:///error/");
     g_free (title_m);
     g_free (content_beg);
     if (content_end != NULL)
         g_free (content_end);
-    g_free (page);
 }
 
 
@@ -2032,191 +2240,19 @@ uri_resolved (YelpUri  *uri,
                                          "page-icon");
     g_signal_emit_by_name (view, "notify::page-icon", spec);
 
-    if (error == NULL)
+    if (error == NULL) {
+        document = yelp_document_get_for_uri (uri);
+        if (priv->document)
+            g_object_unref (priv->document);
+        priv->document = document;
+
         view_load_page (view);
-    else {
+    } else {
+        if (priv->document != NULL) {
+            g_object_unref (priv->document);
+            priv->document = NULL;
+        }
         view_show_error_page (view, error);
         g_error_free (error);
-    }
-}
-
-static void
-document_callback (YelpDocument       *document,
-                   YelpDocumentSignal  signal,
-                   YelpView           *view,
-                   GError             *error)
-{
-    YelpViewPrivate *priv = GET_PRIV (view);
-
-    if (signal == YELP_DOCUMENT_SIGNAL_INFO) {
-        gchar *prev_id, *next_id, *real_id;
-        YelpBackEntry *back = NULL;
-        GParamSpec *spec;
-
-        real_id = yelp_document_get_page_id (document, priv->page_id);
-        if (priv->page_id && real_id && g_str_equal (real_id, priv->page_id)) {
-            g_free (real_id);
-        }
-        else {
-            g_free (priv->page_id);
-            priv->page_id = real_id;
-            spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
-                                                 "page-id");
-            g_signal_emit_by_name (view, "notify::page-id", spec);
-        }
-
-        g_free (priv->root_title);
-        g_free (priv->page_title);
-        g_free (priv->page_desc);
-        g_free (priv->page_icon);
-
-        priv->root_title = yelp_document_get_root_title (document, priv->page_id);
-        priv->page_title = yelp_document_get_page_title (document, priv->page_id);
-        priv->page_desc = yelp_document_get_page_desc (document, priv->page_id);
-        priv->page_icon = yelp_document_get_page_icon (document, priv->page_id);
-
-        if (priv->back_cur)
-            back = priv->back_cur->data;
-        if (back) {
-            g_free (back->title);
-            back->title = g_strdup (priv->page_title);
-            g_free (back->desc);
-            back->desc = g_strdup (priv->page_desc);
-        }
-
-        prev_id = yelp_document_get_prev_id (document, priv->page_id);
-        g_simple_action_set_enabled (priv->prev_action, prev_id != NULL);
-        g_free (prev_id);
-
-        next_id = yelp_document_get_next_id (document, priv->page_id);
-        g_simple_action_set_enabled (priv->next_action, next_id != NULL);
-        g_free (next_id);
-
-        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
-                                             "root-title");
-        g_signal_emit_by_name (view, "notify::root-title", spec);
-
-        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
-                                             "page-title");
-        g_signal_emit_by_name (view, "notify::page-title", spec);
-
-        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
-                                             "page-desc");
-        g_signal_emit_by_name (view, "notify::page-desc", spec);
-
-        spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
-                                             "page-icon");
-        g_signal_emit_by_name (view, "notify::page-icon", spec);
-    }
-    else if (signal == YELP_DOCUMENT_SIGNAL_CONTENTS) {
-        YelpUriDocumentType doctype;
-	const gchar *contents;
-        gchar *mime_type, *page_id, *frag_id, *full_uri;
-        page_id = yelp_uri_get_page_id (priv->uri);
-        mime_type = yelp_document_get_mime_type (document, page_id);
-        contents = yelp_document_read_contents (document, page_id);
-        frag_id = yelp_uri_get_frag_id (priv->uri);
-        g_free (priv->bogus_uri);
-        /* We don't have actual page and frag IDs for DocBook. We just map IDs
-           of block elements.  The result is that we get xref:someid#someid.
-           If someid is really the page ID, we just drop the frag reference.
-           Otherwise, normal page views scroll past the link trail.
-         */
-        if (frag_id != NULL) {
-            if (YELP_IS_DOCBOOK_DOCUMENT (document)) {
-                gchar *real_id = yelp_document_get_page_id (document, page_id);
-                if (g_str_equal (real_id, frag_id)) {
-                    g_free (frag_id);
-                    frag_id = NULL;
-                }
-                g_free (real_id);
-            }
-        }
-        /* We have to give WebKit a URI in a scheme it understands, otherwise we
-           won't get the resource-request-starting signal.  So we can't use the
-           canonical URI, because it might be something like ghelp.  We also have
-           to give it something unique, because WebKit ignores our load_string
-           call if the URI isn't different.  We could try to construct something
-           based on actual file locations, but in fact it doesn't matter.  So
-           we just make a bogus URI that's easy to process later.
-         */
-        doctype = yelp_uri_get_document_type (priv->uri);
-        full_uri = yelp_uri_get_canonical_uri (priv->uri);
-        if (g_str_has_prefix (full_uri, "file:/") &&
-            (doctype == YELP_URI_DOCUMENT_TYPE_TEXT ||
-             doctype == YELP_URI_DOCUMENT_TYPE_HTML ||
-             doctype == YELP_URI_DOCUMENT_TYPE_XHTML )) {
-            priv->bogus_uri = full_uri;
-        }
-        else {
-            g_free (full_uri);
-            if (frag_id != NULL)
-                priv->bogus_uri = g_strdup_printf ("%s%p#%s", BOGUS_URI, priv->uri, frag_id);
-            else
-                priv->bogus_uri = g_strdup_printf ("%s%p", BOGUS_URI, priv->uri);
-        }
-        g_signal_handler_block (view, priv->navigation_requested);
-        webkit_web_view_load_string (WEBKIT_WEB_VIEW (view),
-                                     contents,
-                                     mime_type,
-                                     "UTF-8",
-                                     priv->bogus_uri);
-        g_signal_handler_unblock (view, priv->navigation_requested);
-        g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
-
-        /* If we need to set the GtkAdjustment or trigger the page title
-         * from what WebKit thinks it is (see comment below), we need to
-         * let the main loop run through.
-         */
-        if (priv->vadjust > 0 || priv->hadjust > 0 ||  priv->page_title == NULL)
-            while (g_main_context_pending (NULL)) {
-                WebKitLoadStatus status;
-                status = webkit_web_view_get_load_status (WEBKIT_WEB_VIEW (view));
-                g_main_context_iteration (NULL, FALSE);
-                /* Sometimes some runaway JavaScript causes there to always
-                 * be pending sources. Break out if the document is loaded.
-                 */
-                if (status == WEBKIT_LOAD_FINISHED ||
-                    status == WEBKIT_LOAD_FAILED)
-                    break;
-            }
-
-        /* Setting adjustments only work after the page is loaded. These
-         * are set by view_history_action, and they're reset to 0 after
-         * each load here.
-         */
-        if (priv->vadjust > 0) {
-            if (priv->vadjustment)
-                gtk_adjustment_set_value (priv->vadjustment, priv->vadjust);
-            priv->vadjust = 0;
-        }
-        if (priv->hadjust > 0) {
-            if (priv->hadjustment)
-                gtk_adjustment_set_value (priv->hadjustment, priv->hadjust);
-            priv->hadjust = 0;
-        }
-
-        /* If the document didn't give us a page title, get it from WebKit.
-         * We let the main loop run through so that WebKit gets the title
-         * set so that we can send notify::page-title before loaded. It
-         * simplifies things if YelpView consumers can assume the title
-         * is set before loaded is triggered.
-         */
-        if (priv->page_title == NULL) {
-            GParamSpec *spec;
-            priv->page_title = g_strdup (webkit_web_view_get_title (WEBKIT_WEB_VIEW (view)));
-            spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
-                                                 "page-title");
-            g_signal_emit_by_name (view, "notify::page-title", spec);
-        }
-
-        g_free (frag_id);
-        g_free (page_id);
-        g_free (mime_type);
-	yelp_document_finish_read (document, contents);
-        g_signal_emit (view, signals[LOADED], 0);
-    }
-    else if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {
-        view_show_error_page (view, error);
     }
 }

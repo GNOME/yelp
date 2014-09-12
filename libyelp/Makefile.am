@@ -24,6 +24,7 @@ libyelp_la_SOURCES =                \
 	yelp-transform.c            \
 	yelp-uri.c                  \
 	yelp-types.c                \
+	yelp-uri-builder.c          \
 	yelp-view.c
 
 EXTRA_DIST =                        \
@@ -75,6 +76,7 @@ libyelp_headers =                   \
 	yelp-storage.h              \
 	yelp-transform.h            \
 	yelp-uri.h                  \
+	yelp-uri-builder.h          \
 	yelp-view.h
 
 libyelp_includedir = $(includedir)/libyelp/

@@ -1,0 +1,30 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+/*
+ * Copyright (C) 2014 Igalia S.L.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public
+ * License along with this program; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
+#include <string.h>
+#include <libsoup/soup.h>
+
+#include "yelp-document.h"
+#include "yelp-docbook-document.h"
+#include "yelp-uri.h"
+
+gchar * build_network_uri    (YelpUri *uri, YelpDocument *document);
+gchar * build_yelp_uri       (const gchar *uri);
+gchar * build_network_scheme (const gchar *scheme);
