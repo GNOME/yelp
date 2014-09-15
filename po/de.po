@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: Yelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2014-06-24 22:50+0000\n"
-"PO-Revision-Date: 2014-06-27 12:05+0100\n"
+"POT-Creation-Date: 2014-09-15 10:59+0000\n"
+"PO-Revision-Date: 2014-09-15 21:52+0100\n"
 "Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.9\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -113,17 +113,17 @@ msgstr "Adresse des Dokuments"
 msgid "The URI which identifies the document"
 msgstr "Die Adresse, welche das Dokument referenziert"
 
-#: ../libyelp/yelp-document.c:992
+#: ../libyelp/yelp-document.c:994
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Suchergebnisse für »%s«"
 
-#: ../libyelp/yelp-document.c:1004
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Es wurden keine passenden Hilfeseiten in »%s« gefunden."
 
-#: ../libyelp/yelp-document.c:1010
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "Es wurden keine passenden Hilfeseiten gefunden."
 
@@ -157,7 +157,7 @@ msgstr "Ansicht"
 msgid "A YelpView instance to control"
 msgstr "Eine YelpView-Instanz zur Steuerung"
 
-#: ../libyelp/yelp-search-entry.c:189 ../src/yelp-window.c:400
+#: ../libyelp/yelp-search-entry.c:189 ../src/yelp-window.c:399
 msgid "Bookmarks"
 msgstr "Lesezeichen"
 
@@ -415,13 +415,12 @@ msgstr "Die Adresse »%s« konnte nicht verarbeitet werden."
 msgid "Turn on editor mode"
 msgstr "In den Editor-Modus wechseln"
 
-#: ../src/yelp-application.c:272 ../src/yelp-window.c:1147
+#: ../src/yelp-application.c:272 ../src/yelp-window.c:1165
 #: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Hilfe"
 
 #: ../src/yelp-application.c:322
-#| msgid "_New Window"
 msgid "New Window"
 msgstr "Neues Fenster"
 
@@ -441,53 +440,51 @@ msgstr "Anwendung"
 msgid "A YelpApplication instance that controls this window"
 msgstr "Eine YelpApplication-Instanz, welche dieses Fenster steuert"
 
-#: ../src/yelp-window.c:323
+#: ../src/yelp-window.c:325
 msgid "Back"
 msgstr "Zurück"
 
-#: ../src/yelp-window.c:330
+#: ../src/yelp-window.c:332
 msgid "Forward"
 msgstr "Vor"
 
-#: ../src/yelp-window.c:344
+#: ../src/yelp-window.c:343
 msgid "Menu"
 msgstr "Menü"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:348
 msgid "Find…"
 msgstr "Suchen …"
 
-#: ../src/yelp-window.c:350
+#: ../src/yelp-window.c:349
 msgid "Print…"
 msgstr "Drucken …"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:354
 msgid "Previous Page"
 msgstr "Vorherige Seite"
 
-#: ../src/yelp-window.c:356
+#: ../src/yelp-window.c:355
 msgid "Next Page"
 msgstr "Nächste Seite"
 
-#: ../src/yelp-window.c:361
-#, fuzzy
-#| msgid "Help"
+#: ../src/yelp-window.c:360
 msgid "All Help"
-msgstr "Hilfe"
+msgstr "Alle Hilfedokumente"
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:382
 msgid "Search (Ctrl+S)"
 msgstr "Suchen (Strg+S)"
 
-#: ../src/yelp-window.c:417
+#: ../src/yelp-window.c:416
 msgid "No bookmarks"
 msgstr "Keine Lesezeichen"
 
-#: ../src/yelp-window.c:425
+#: ../src/yelp-window.c:424
 msgid "Add Bookmark"
 msgstr "Lesezeichen hinzufügen"
 
-#: ../src/yelp-window.c:431
+#: ../src/yelp-window.c:430
 msgid "Remove Bookmark"
 msgstr "Lesezeichen entfernen"
 
