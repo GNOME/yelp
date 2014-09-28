@@ -123,7 +123,7 @@ static void
 yelp_transform_init (YelpTransform *transform)
 {
     YelpTransformPrivate *priv = GET_PRIV (transform);
-    priv->queue = g_async_queue_new ();
+    priv->queue = g_async_queue_new_full (g_free);
     priv->chunks = g_hash_table_new_full (g_str_hash,
                                           g_str_equal,
                                           g_free,
@@ -182,9 +182,6 @@ yelp_transform_dispose (GObject *object)
     debug_print (DB_FUNCTION, "entering\n");
 
     if (priv->queue) {
-        gchar *chunk_id;
-        while ((chunk_id = (gchar *) g_async_queue_try_pop (priv->queue)))
-            g_free (chunk_id);
         g_async_queue_unref (priv->queue);
         priv->queue = NULL;
     }
