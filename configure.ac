@@ -46,6 +46,10 @@ AC_SUBST([YELP_LIBS])
 LT_PREREQ([2.2.6])
 LT_INIT
 
+PKG_CHECK_MODULES([YELP_EXTENSION], [webkit2gtk-web-extension-4.0 >= 2.7.2])
+AC_SUBST(YELP_EXTENSION_CFLAGS)
+AC_SUBST(YELP_EXTENSION_LIBS)
+
 # i18n stuff
 AX_REQUIRE_DEFINED([IT_PROG_INTLTOOL])
 IT_PROG_INTLTOOL([0.41.0])
@@ -216,6 +220,7 @@ data/xslt/man2html.xsl
 data/xslt/yelp-common.xsl
 po/Makefile.in
 tests/Makefile
+libyelp/web-extension/Makefile
 yelp.desktop.in
 ])
 

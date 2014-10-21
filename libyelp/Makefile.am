@@ -1,3 +1,5 @@
+SUBDIRS = web-extension
+
 lib_LTLIBRARIES = libyelp.la
 
 libyelp_la_SOURCES =                \
@@ -52,6 +54,9 @@ libyelp_la_CFLAGS =                             \
 	-Wno-deprecated-declarations		\
 	-DDATADIR=\""$(datadir)"\"              \
 	-DYELP_ICON_PATH=\"$(YELP_ICON_PATH)\"
+
+libyelp_la_CPPFLAGS = \
+	-DYELP_WEB_EXTENSIONS_DIR=\""$(pkglibdir)/"web-extensions\"
 
 libyelp_la_LIBADD = $(YELP_LIBS)
 
