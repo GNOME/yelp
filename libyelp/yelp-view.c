@@ -65,23 +65,27 @@ static void        view_set_hadjustment           (YelpView           *view,
 static void        view_set_vadjustment           (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    gpointer            data);
-static void        popup_open_link                (GtkMenuItem        *item,
+static void        popup_open_link                (GtkAction          *action,
                                                    YelpView           *view);
-static void        popup_open_link_new            (GtkMenuItem        *item,
+static void        popup_open_link_new            (GtkAction          *action,
                                                    YelpView           *view);
-static void        popup_copy_link                (GtkMenuItem        *item,
+static void        popup_copy_link                (GtkAction          *action,
                                                    YelpView           *view);
-static void        popup_save_image               (GtkMenuItem        *item,
+static void        popup_save_image               (GtkAction          *action,
                                                    YelpView           *view);
-static void        popup_send_image               (GtkMenuItem        *item,
+static void        popup_send_image               (GtkAction          *action,
                                                    YelpView           *view);
-static void        popup_copy_code                (GtkMenuItem        *item,
+static void        popup_copy_code                (GtkAction          *action,
                                                    YelpView           *view);
-static void        popup_save_code                (GtkMenuItem        *item,
+static void        popup_save_code                (GtkAction          *action,
                                                    YelpView           *view);
-static void        view_populate_popup            (YelpView           *view,
-                                                   GtkMenu            *menu,
-                                                   gpointer            data);
+static void        popup_copy_clipboard           (GtkAction          *action,
+                                                   YelpView           *view);
+static gboolean    view_populate_context_menu     (YelpView            *view,
+                                                   WebKitContextMenu   *context_menu,
+                                                   GdkEvent            *event,
+                                                   WebKitHitTestResult *hit_test_result,
+                                                   gpointer             user_data);
 static gboolean    view_script_dialog             (YelpView           *view,
                                                    WebKitScriptDialog *dialog,
                                                    gpointer            data);
@@ -230,6 +234,8 @@ struct _YelpViewPrivate {
     GSimpleAction  *prev_action;
     GSimpleAction  *next_action;
 
+    GtkActionGroup *popup_actions;
+
     GSList         *link_actions;
 
     gint            navigation_requested;
@@ -243,6 +249,59 @@ enum {
 static void
 yelp_view_init (YelpView *view)
 {
+    static const GtkActionEntry popup_action_entries[] = {
+      {
+        "CopyCode", NULL,
+        N_("C_opy Code Block"), NULL, NULL,
+        G_CALLBACK (popup_copy_code)
+      },
+      {
+        "CopyLink", NULL,
+        N_("_Copy Link Location"), NULL, NULL,
+        G_CALLBACK (popup_copy_link)
+      },
+      {
+        "OpenLink", NULL,
+        N_("_Open Link"), NULL, NULL,
+        G_CALLBACK (popup_open_link)
+      },
+      {
+        "OpenLinkNew", NULL,
+        N_("Open Link in New _Window"), NULL, NULL,
+        G_CALLBACK (popup_open_link_new)
+      },
+      {
+        "SendEmail", NULL,
+        NULL, NULL, NULL,
+        G_CALLBACK (popup_open_link)
+      },
+      {
+        "InstallPackages", NULL,
+        N_("_Install Packages"), NULL, NULL,
+        G_CALLBACK (popup_open_link)
+      },
+      {
+        "SaveCode", NULL,
+        N_("Save Code _Block As…"), NULL, NULL,
+        G_CALLBACK (popup_save_code)
+      },
+      {
+        "SaveMedia", NULL,
+        NULL, NULL, NULL,
+        G_CALLBACK (popup_save_image)
+      },
+      {
+        "SendMedia", NULL,
+        NULL, NULL, NULL,
+        G_CALLBACK (popup_send_image)
+      },
+      {
+        "CopyText", NULL,
+        N_("_Copy Text"), NULL, NULL,
+        G_CALLBACK (popup_copy_clipboard)
+      }
+    };
+
     YelpViewPrivate *priv = GET_PRIV (view);
 
     priv->cancellable = NULL;
@@ -271,10 +330,14 @@ yelp_view_init (YelpView *view)
                       G_CALLBACK (view_set_hadjustment), NULL);
     g_signal_connect (view, "notify::vadjustment",
                       G_CALLBACK (view_set_vadjustment), NULL);
-    g_signal_connect (view, "populate-popup",
-                      G_CALLBACK (view_populate_popup), NULL);
+    g_signal_connect (view, "context-menu",
+                      G_CALLBACK (view_populate_context_menu), NULL);
     g_signal_connect (view, "script-dialog",
                       G_CALLBACK (view_script_dialog), NULL);
+
+    priv->popup_actions = gtk_action_group_new ("PopupActions");
+    gtk_action_group_add_actions (priv->popup_actions, popup_action_entries,
+                                  G_N_ELEMENTS (popup_action_entries), view);
 
     priv->print_action = g_simple_action_new ("yelp-view-print", NULL);
     g_signal_connect (priv->print_action,
@@ -394,6 +457,7 @@ yelp_view_finalize (GObject *object)
     g_free (priv->page_icon);
 
     g_free (priv->bogus_uri);
+    g_object_unref (priv->popup_actions);
 
     G_OBJECT_CLASS (yelp_view_parent_class)->finalize (object);
 }
@@ -971,7 +1035,7 @@ view_set_vadjustment (YelpView      *view,
 }
 
 static void
-popup_open_link (GtkMenuItem *item,
+popup_open_link (GtkAction   *action,
                  YelpView    *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
@@ -993,7 +1057,7 @@ popup_open_link (GtkMenuItem *item,
 }
 
 static void
-popup_open_link_new (GtkMenuItem *item,
+popup_open_link_new (GtkAction   *action,
                      YelpView    *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
@@ -1015,7 +1079,7 @@ popup_open_link_new (GtkMenuItem *item,
 }
 
 static void
-popup_copy_link (GtkMenuItem *item,
+popup_copy_link (GtkAction   *action,
                  YelpView    *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
@@ -1054,7 +1118,7 @@ file_copied (GFile        *file,
 }
 
 static void
-popup_save_image (GtkMenuItem *item,
+popup_save_image (GtkAction   *action,
                   YelpView    *view)
 {
     YelpSaveData *data;
@@ -1109,7 +1173,7 @@ popup_save_image (GtkMenuItem *item,
 }
 
 static void
-popup_send_image (GtkMenuItem *item,
+popup_send_image (GtkAction   *action,
                   YelpView    *view)
 {
     gchar *command;
@@ -1119,7 +1183,7 @@ popup_send_image (GtkMenuItem *item,
     YelpViewPrivate *priv = GET_PRIV (view);
 
     command = g_strdup_printf ("%s %s", nautilus_sendto, priv->popup_image_uri);
-    context = (GAppLaunchContext *) gdk_display_get_app_launch_context (gtk_widget_get_display (GTK_WIDGET (item)));
+    context = (GAppLaunchContext *) gdk_display_get_app_launch_context (gtk_widget_get_display (GTK_WIDGET (view)));
 
     app = g_app_info_create_from_commandline (command, NULL, 0, &error);
     if (app) {
@@ -1139,7 +1203,7 @@ popup_send_image (GtkMenuItem *item,
 }
 
 static void
-popup_copy_code (GtkMenuItem *item,
+popup_copy_code (GtkAction   *action,
                  YelpView    *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
@@ -1150,7 +1214,7 @@ popup_copy_code (GtkMenuItem *item,
 }
 
 static void
-popup_save_code (GtkMenuItem *item,
+popup_save_code (GtkAction   *action,
                  YelpView    *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
@@ -1230,33 +1294,26 @@ popup_save_code (GtkMenuItem *item,
 }
 
 static void
-view_populate_popup (YelpView *view,
-                     GtkMenu  *menu,
-                     gpointer  data)
+popup_copy_clipboard (GtkAction   *action,
+                      YelpView    *view)
 {
-    WebKitHitTestResult *result;
-    WebKitHitTestResultContext context;
-    GdkEvent *event;
+    webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (view), WEBKIT_EDITING_COMMAND_COPY);
+}
+
+static gboolean
+view_populate_context_menu (YelpView            *view,
+                            WebKitContextMenu   *context_menu,
+                            GdkEvent            *event,
+                            WebKitHitTestResult *hit_test_result,
+                            gpointer             user_data)
+{
     YelpViewPrivate *priv = GET_PRIV (view);
-    GList *children;
-    GtkWidget *item;
+    WebKitContextMenuItem *item;
+    GtkAction *action;
     WebKitDOMNode *node, *cur, *link_node = NULL, *code_node = NULL, *code_title_node = NULL;
 
-    children = gtk_container_get_children (GTK_CONTAINER (menu));
-    while (children) {
-        gtk_container_remove (GTK_CONTAINER (menu),
-                              GTK_WIDGET (children->data));
-        children = children->next;
-    }
-    g_list_free (children);
+    webkit_context_menu_remove_all (context_menu);
 
-    event = gtk_get_current_event ();
-
-    result = webkit_web_view_get_hit_test_result (WEBKIT_WEB_VIEW (view), (GdkEventButton *) event);
-    g_object_get (result,
-                  "context", &context,
-                  "inner-node", &node,
-                  NULL);
     for (cur = node; cur != NULL; cur = webkit_dom_node_get_parent_node (cur)) {
         if (WEBKIT_DOM_IS_ELEMENT (cur) &&
             webkit_dom_element_webkit_matches_selector ((WebKitDOMElement *) cur,
@@ -1284,9 +1341,9 @@ view_populate_popup (YelpView *view,
         }
     }
 
-    if (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_LINK) {
+    if (webkit_hit_test_result_context_is_link (hit_test_result)) {
         gchar *uri;
-        g_object_get (result, "link-uri", &uri, NULL);
+        uri = webkit_hit_test_result_get_link_uri (hit_test_result);
         g_free (priv->popup_link_uri);
         priv->popup_link_uri = uri;
 
@@ -1334,44 +1391,39 @@ view_populate_popup (YelpView *view,
         if (g_str_has_prefix (priv->popup_link_uri, "mailto:")) {
             gchar *label = g_strdup_printf (_("Send email to %s"),
                                             priv->popup_link_uri + 7);
-            /* Not using a mnemonic because underscores are common in email
-             * addresses, and we'd have to escape them. There doesn't seem
-             * to be a quick GTK+ function for this. In practice, there will
-             * probably only be one menu item for mailto link popups anyway,
-             * so the mnemonic's not that big of a deal.
-             */
-            item = gtk_menu_item_new_with_label (label);
-            g_signal_connect (item, "activate",
-                              G_CALLBACK (popup_open_link), view);
-            gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+            action = gtk_action_group_get_action (priv->popup_actions,
+              "SendEmail");
+            gtk_action_set_label (action, label);
+            item = webkit_context_menu_item_new (action);
+            webkit_context_menu_append (context_menu, item);
             g_free (label);
         }
         else if (g_str_has_prefix (priv->popup_link_uri, "install:")) {
-            item = gtk_menu_item_new_with_mnemonic (_("_Install Packages"));
-            g_signal_connect (item, "activate",
-                              G_CALLBACK (popup_open_link), view);
-            gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+            action = gtk_action_group_get_action (priv->popup_actions,
+              "InstallPackages");
+            item = webkit_context_menu_item_new (action);
+            webkit_context_menu_append (context_menu, item);
         }
         else {
             GSList *l;
 
-            item = gtk_menu_item_new_with_mnemonic (_("_Open Link"));
-            g_signal_connect (item, "activate",
-                              G_CALLBACK (popup_open_link), view);
-            gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+            action = gtk_action_group_get_action (priv->popup_actions,
+              "OpenLink");
+            item = webkit_context_menu_item_new (action);
+            webkit_context_menu_append (context_menu, item);
 
             if (g_str_has_prefix (priv->popup_link_uri, "http://") ||
                 g_str_has_prefix (priv->popup_link_uri, "https://")) {
-                item = gtk_menu_item_new_with_mnemonic (_("_Copy Link Location"));
-                g_signal_connect (item, "activate",
-                                  G_CALLBACK (popup_copy_link), view);
-                gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+                action = gtk_action_group_get_action (priv->popup_actions,
+                  "CopyLink");
+                item = webkit_context_menu_item_new (action);
+                webkit_context_menu_append (context_menu, item);
             }
             else {
-                item = gtk_menu_item_new_with_mnemonic (_("Open Link in New _Window"));
-                g_signal_connect (item, "activate",
-                                  G_CALLBACK (popup_open_link_new), view);
-                gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+                action = gtk_action_group_get_action (priv->popup_actions,
+                  "OpenLinkNew");
+                item = webkit_context_menu_item_new (action);
+                webkit_context_menu_append (context_menu, item);
             }
 
             for (l = priv->link_actions; l != NULL; l = l->next) {
@@ -1384,8 +1436,8 @@ view_populate_popup (YelpView *view,
                                            priv->popup_link_uri,
                                            entry->data);
                 if (add) {
-                    item = gtk_action_create_menu_item (entry->action);
-                    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+                    item = webkit_context_menu_item_new (entry->action);
+                    webkit_context_menu_append (context_menu, item);
                 }
             }
         }
@@ -1401,14 +1453,14 @@ view_populate_popup (YelpView *view,
 #endif
     }
 
-    if ((context & WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE) ||
-        (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_MEDIA)) {
+    if (webkit_hit_test_result_context_is_image (hit_test_result) ||
+        webkit_hit_test_result_context_is_media (hit_test_result)) {
         /* This doesn't currently work for video with automatic controls,
          * because WebKit puts the hit test on the div with the controls.
          */
-        gboolean image = context & WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE;
-        gchar *uri;
-        g_object_get (result, image ? "image-uri" : "media-uri", &uri, NULL);
+        gboolean image = webkit_hit_test_result_context_is_image (hit_test_result);
+        const gchar *uri = image ? webkit_hit_test_result_get_image_uri (hit_test_result) :
+          webkit_hit_test_result_get_media_uri (hit_test_result);
         g_free (priv->popup_image_uri);
         if (g_str_has_prefix (uri, BOGUS_URI)) {
             priv->popup_image_uri = yelp_uri_locate_file_uri (priv->uri, uri + BOGUS_URI_LEN);
@@ -1418,59 +1470,58 @@ view_populate_popup (YelpView *view,
             priv->popup_image_uri = uri;
         }
 
-        item = gtk_separator_menu_item_new ();
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        item = webkit_context_menu_item_new_separator ();
+        webkit_context_menu_append (context_menu, item);
 
-        if (image)
-            item = gtk_menu_item_new_with_mnemonic (_("_Save Image As…"));
-        else
-            item = gtk_menu_item_new_with_mnemonic (_("_Save Video As…"));
-        g_signal_connect (item, "activate",
-                          G_CALLBACK (popup_save_image), view);
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        action = gtk_action_group_get_action (priv->popup_actions,
+                                      "SaveMedia");
+
+        gtk_action_set_label (action, image ? _("_Save Image As…") :
+                              _("_Save Video As…"));
+
+        item = webkit_context_menu_item_new (action);
+        webkit_context_menu_append (context_menu, item);
 
         if (nautilus_sendto) {
-            if (image)
-                item = gtk_menu_item_new_with_mnemonic (_("S_end Image To…"));
-            else
-                item = gtk_menu_item_new_with_mnemonic (_("S_end Video To…"));
-            g_signal_connect (item, "activate",
-                              G_CALLBACK (popup_send_image), view);
-            gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+            action = gtk_action_group_get_action (priv->popup_actions,
+                                                  "SendMedia");
+            gtk_action_set_label (action, image ? _("S_end Image To…") :
+                                  _("S_end Video To…"));
+
+            item = webkit_context_menu_item_new (action);
+            webkit_context_menu_append (context_menu, item);
         }
     }
 
-    if (context & WEBKIT_HIT_TEST_RESULT_CONTEXT_SELECTION) {
-        item = gtk_separator_menu_item_new ();
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    if (webkit_hit_test_result_context_is_selection (hit_test_result)) {
+        item = webkit_context_menu_item_new_separator ();
+        webkit_context_menu_append (context_menu, item);
 
-        item = gtk_menu_item_new_with_mnemonic (_("_Copy Text"));
-        g_signal_connect_swapped (item, "activate",
-                                  G_CALLBACK (webkit_web_view_copy_clipboard), view);
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        action = gtk_action_group_get_action (priv->popup_actions,
+                                              "CopyText");
+        item = webkit_context_menu_item_new (action);
+        webkit_context_menu_append (context_menu, item);
     }
 
     if (code_node != NULL) {
-        item = gtk_separator_menu_item_new ();
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        item = webkit_context_menu_item_new_separator ();
+        webkit_context_menu_append (context_menu, item);
 
         priv->popup_code_node = code_node;
         priv->popup_code_title = code_title_node;
 
-        item = gtk_menu_item_new_with_mnemonic (_("C_opy Code Block"));
-        g_signal_connect (item, "activate",
-                          G_CALLBACK (popup_copy_code), view);
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        action = gtk_action_group_get_action (priv->popup_actions,
+                                              "CopyCode");
+        item = webkit_context_menu_item_new (action);
+        webkit_context_menu_append (context_menu, item);
 
-        item = gtk_menu_item_new_with_mnemonic (_("Save Code _Block As…"));
-        g_signal_connect (item, "activate",
-                          G_CALLBACK (popup_save_code), view);
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+        action = gtk_action_group_get_action (priv->popup_actions,
+                                              "SaveCode");
+        item = webkit_context_menu_item_new (action);
+        webkit_context_menu_append (context_menu, item);
     }
 
-    g_object_unref (result);
-    gdk_event_free (event);
-    gtk_widget_show_all (GTK_WIDGET (menu));
+    return FALSE;
 }
 
 static gboolean
