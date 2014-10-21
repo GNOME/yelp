@@ -82,9 +82,8 @@ static void        popup_save_code                (GtkMenuItem        *item,
 static void        view_populate_popup            (YelpView           *view,
                                                    GtkMenu            *menu,
                                                    gpointer            data);
-static void        view_script_alert              (YelpView           *view,
-                                                   WebKitWebFrame     *frame,
-                                                   gchar              *message,
+static gboolean    view_script_dialog             (YelpView           *view,
+                                                   WebKitScriptDialog *dialog,
                                                    gpointer            data);
 static gboolean    view_policy_decision_requested (YelpView                *view,
                                                    WebKitPolicyDecision    *decision,
@@ -260,8 +259,8 @@ yelp_view_init (YelpView *view)
                       G_CALLBACK (view_set_vadjustment), NULL);
     g_signal_connect (view, "populate-popup",
                       G_CALLBACK (view_populate_popup), NULL);
-    g_signal_connect (view, "script-alert",
-                      G_CALLBACK (view_script_alert), NULL);
+    g_signal_connect (view, "script-dialog",
+                      G_CALLBACK (view_script_dialog), NULL);
 
     priv->print_action = g_simple_action_new ("yelp-view-print", NULL);
     g_signal_connect (priv->print_action,
@@ -1431,13 +1430,18 @@ view_populate_popup (YelpView *view,
     gtk_widget_show_all (GTK_WIDGET (menu));
 }
 
-static void
-view_script_alert (YelpView        *view,
-                   WebKitWebFrame  *frame,
-                   gchar           *message,
-                   gpointer         data)
+static gboolean
+view_script_dialog (YelpView           *view,
+                    WebKitScriptDialog *dialog,
+                    gpointer            data)
 {
-    printf ("\n\n===ALERT===\n%s\n\n", message);
+    WebKitScriptDialogType type = webkit_script_dialog_get_dialog_type (dialog);
+
+    if (type != WEBKIT_SCRIPT_DIALOG_ALERT)
+      return FALSE;
+
+    printf ("\n\n===ALERT===\n%s\n\n", webkit_script_dialog_get_message (dialog));
+    return TRUE;
 }
 
 static gboolean
