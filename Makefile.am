@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = libyelp src po data tests docs
+SUBDIRS = libyelp libyelp/web-extension src po data tests docs
 
 @INTLTOOL_DESKTOP_RULE@
 

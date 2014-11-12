@@ -1927,11 +1927,43 @@ view_clear_load (YelpView *view)
     }
 }
 
+static gchar*
+fix_docbook_uri (YelpUri *docbook_uri, YelpDocument* document)
+{
+    SoupURI *soup_uri;
+    gchar *retval, *canonical;
+
+    canonical = yelp_uri_get_canonical_uri (docbook_uri);
+    soup_uri = soup_uri_new (canonical);
+    g_free (canonical);
+
+    /* We don't have actual page and frag IDs for DocBook. We just map IDs
+       of block elements.  The result is that we get xref:someid#someid.
+       If someid is really the page ID, we just drop the frag reference.
+       Otherwise, normal page views scroll past the link trail.
+    */
+    if (soup_uri->fragment && YELP_IS_DOCBOOK_DOCUMENT (document)) {
+        gchar *page_id = yelp_uri_get_page_id (docbook_uri);
+        gchar *real_id = yelp_document_get_page_id (document, page_id);
+
+        if (g_str_equal (real_id, soup_uri->fragment))
+            soup_uri_set_fragment (soup_uri, NULL);
+
+        g_free (real_id);
+        g_free (page_id);
+    }
+
+    retval = soup_uri_to_string (soup_uri, FALSE);
+    soup_uri_free (soup_uri);
+
+    return retval;
+}
+
 static void
 view_load_page (YelpView *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
-    gchar *uri_str;
+    gchar *uri_str, *tmp_uri;
 
     g_return_if_fail (priv->cancellable == NULL);
 
@@ -1956,7 +1988,17 @@ view_load_page (YelpView *view)
         return;
     }
 
-    uri_str = build_network_uri (priv->uri, priv->document);
+    uri_str = yelp_uri_get_canonical_uri (priv->uri);
+
+    if (YELP_IS_DOCBOOK_DOCUMENT (priv->document)){
+      tmp_uri = uri_str;
+      uri_str = fix_docbook_uri (priv->uri, priv->document);
+      g_free (tmp_uri);
+    }
+
+    tmp_uri = uri_str;
+    uri_str = build_network_uri (uri_str);
+    g_free (tmp_uri);
 
     g_signal_handler_block (view, priv->navigation_requested);
     webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), uri_str);
