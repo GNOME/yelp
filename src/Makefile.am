@@ -26,6 +26,7 @@ yelp_CFLAGS =					\
 
 yelp_LDADD =					\
 	$(top_builddir)/libyelp/libyelp.la	\
+	$(top_builddir)/libyelp/libyelpcommon.la	\
 	$(YELP_LIBS)				\
 	$(POPT_LIBS)
 

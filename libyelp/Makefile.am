@@ -1,6 +1,62 @@
-SUBDIRS = web-extension
+lib_LTLIBRARIES = libyelpcommon.la
 
-lib_LTLIBRARIES = libyelp.la
+libyelpcommon_la_SOURCES =      \
+	yelp-uri.c                  \
+	yelp-uri-builder.c          \
+	yelp-settings.c
+
+libyelpcommon_la_CFLAGS =               \
+	$(WARN_CFLAGS)				\
+	$(YELP_CFLAGS)                      \
+	-Wno-deprecated-declarations		\
+	-DDATADIR=\""$(datadir)"\"          \
+	-DYELP_ICON_PATH=\"$(YELP_ICON_PATH)\"
+
+
+libyelpcommon_la_LIBADD = $(YELP_LIBS)
+
+libyelpcommon_headers =               \
+	yelp-uri.h                  \
+	yelp-uri-builder.h          \
+	yelp-settings.h
+
+libyelpcommon_includedir = $(includedir)/libyelp/
+
+libyelpcommon_include_HEADERS = $(libyelpcommon_headers) yelp-common-types.h
+
+BUILT_SOURCES =                  \
+	yelp-common-types.c             \
+	yelp-common-types.h
+
+yelp-common-types.h: $(libyelpcommon_headers)
+	$(AM_V_GEN) (cd $(srcdir) && glib-mkenums \
+	--fhead "#ifndef __LIBYELPCOMMON_TYPES_H__\n" \
+	--fhead "#define __LIBYELPCOMMON_TYPES_H__\n\n" \
+	--fhead "#include <glib-object.h>\n\n" \
+	--fhead "G_BEGIN_DECLS\n\n" \
+	--ftail "G_END_DECLS\n\n" \
+	--ftail "#endif /* __LIBYELPCOMMON_TYPES_H__ */\n" \
+	--fprod "#include \"@filename@\"\n" \
+	--eprod "#define YELP_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
+	--eprod "GType @enum_name@_get_type (void);\n" \
+	$(libyelpcommon_headers)) > $@
+
+yelp-common-types.c: $(libyelpcommon_headers)
+	$(AM_V_GEN) (cd $(srcdir) && glib-mkenums \
+	--fhead "#include <glib-object.h>\n" \
+	--fhead "#include \"yelp-types.h\"\n\n" \
+	--fprod "\n/* enumerations from \"@filename@\" */" \
+	--vhead "static const G@Type@Value _@enum_name@_values[] = {" \
+	--vprod "  { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
+	--vtail "  { 0, NULL, NULL }\n};\n\n" \
+	--vtail "GType\n@enum_name@_get_type (void)\n{\n" \
+	--vtail "  static GType type = 0;\n\n" \
+	--vtail "  if (!type)\n" \
+	--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
+	--vtail "  return type;\n}\n\n" \
+	$(libyelpcommon_headers)) > $@
+
+lib_LTLIBRARIES += libyelp.la
 
 libyelp_la_SOURCES =                \
 	yelp-bookmarks.c            \
@@ -17,14 +73,11 @@ libyelp_la_SOURCES =                \
 	yelp-man-parser.c           \
 	yelp-marshal.c              \
 	yelp-search-entry.c         \
-	yelp-settings.c             \
 	yelp-simple-document.c      \
 	yelp-sqlite-storage.c       \
 	yelp-storage.c              \
 	yelp-transform.c            \
-	yelp-uri.c                  \
 	yelp-types.c                \
-	yelp-uri-builder.c          \
 	yelp-view.c
 
 EXTRA_DIST =                        \
@@ -59,7 +112,9 @@ libyelp_la_CFLAGS =                             \
 libyelp_la_CPPFLAGS = \
 	-DYELP_WEB_EXTENSIONS_DIR=\""$(pkglibdir)/"web-extensions\"
 
-libyelp_la_LIBADD = $(YELP_LIBS)
+libyelp_la_LIBADD =  \
+	$(YELP_LIBS)     \
+	libyelpcommon.la
 
 libyelp_headers =                   \
 	yelp-bookmarks.h            \
@@ -70,20 +125,17 @@ libyelp_headers =                   \
 	yelp-mallard-document.h     \
 	yelp-man-document.h         \
 	yelp-search-entry.h         \
-	yelp-settings.h             \
 	yelp-simple-document.h      \
 	yelp-sqlite-storage.h       \
 	yelp-storage.h              \
 	yelp-transform.h            \
-	yelp-uri.h                  \
-	yelp-uri-builder.h          \
 	yelp-view.h
 
 libyelp_includedir = $(includedir)/libyelp/
 
 libyelp_include_HEADERS = $(libyelp_headers) yelp-types.h
 
-BUILT_SOURCES =                  \
+BUILT_SOURCES +=                 \
 	yelp-marshal.c           \
 	yelp-marshal.h           \
 	yelp-types.c             \

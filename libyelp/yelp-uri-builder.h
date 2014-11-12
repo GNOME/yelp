@@ -21,10 +21,8 @@
 #include <string.h>
 #include <libsoup/soup.h>
 
-#include "yelp-document.h"
-#include "yelp-docbook-document.h"
 #include "yelp-uri.h"
 
-gchar * build_network_uri    (YelpUri *uri, YelpDocument *document);
+gchar * build_network_uri    (gchar *uri);
 gchar * build_yelp_uri       (const gchar *uri);
 gchar * build_network_scheme (const gchar *scheme);

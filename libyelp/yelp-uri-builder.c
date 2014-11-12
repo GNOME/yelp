@@ -24,17 +24,12 @@
 #define BOGUS_PREFIX_LEN 6
 
 gchar *
-build_network_uri (YelpUri *uri, YelpDocument *document)
+build_network_uri (gchar *uri)
 {
     SoupURI *soup_uri;
-    gchar *bogus_scheme;
-    gchar *canonical;
-    gchar *path;
-    gchar *retval;
+    gchar *bogus_scheme, *path, *retval;
 
-    canonical = yelp_uri_get_canonical_uri (uri);
-    soup_uri = soup_uri_new (canonical);
-    g_free (canonical);
+    soup_uri = soup_uri_new (uri);
 
     /* Build the URI that will be passed to WebKit. Relative URIs will be
        automatically reolved by WebKit, so we need to add a leading slash to
@@ -58,22 +53,6 @@ build_network_uri (YelpUri *uri, YelpDocument *document)
         path = g_strdup_printf ("/%s", soup_uri->path);
         soup_uri_set_path (soup_uri, path);
         g_free (path);
-    }
-
-    /* We don't have actual page and frag IDs for DocBook. We just map IDs
-       of block elements.  The result is that we get xref:someid#someid.
-       If someid is really the page ID, we just drop the frag reference.
-       Otherwise, normal page views scroll past the link trail.
-    */
-    if (soup_uri->fragment && YELP_IS_DOCBOOK_DOCUMENT (document)) {
-        gchar *page_id = yelp_uri_get_page_id (uri);
-        gchar *real_id = yelp_document_get_page_id (document, page_id);
-
-        if (g_str_equal (real_id, soup_uri->fragment))
-            soup_uri_set_fragment (soup_uri, NULL);
-
-        g_free (real_id);
-        g_free (page_id);
     }
 
     /* We need to use a different scheme from help or ghelp to be able to deal

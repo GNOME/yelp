@@ -20,9 +20,85 @@
 
 #include <webkit2/webkit-web-extension.h>
 #include <string.h>
+#include <stdlib.h>
+#include "yelp-uri.h"
+#include "yelp-uri-builder.h"
 
 #define WEBKIT_DOM_USE_UNSTABLE_API
 #include <webkitdom/WebKitDOMElementUnstable.h>
+
+static YelpUri *current_uri;
+
+static gchar *
+get_resource_path (gchar *uri, YelpUri *document_uri)
+{
+    gchar *resource = NULL;
+    gchar *resource_path = 0;
+
+    if (!g_str_has_prefix (uri, "ghelp") &&
+        !g_str_has_prefix (uri, "gnome-help") &&
+        !g_str_has_prefix (uri, "help")) {
+        return NULL;
+    }
+
+    resource = strstr (uri, "/");
+    if (resource) {
+        resource[0] = '\0';
+        resource++;
+    }
+
+    if (resource && resource[0] != '\0')
+        resource_path = yelp_uri_locate_file_uri (document_uri, resource);
+
+    return resource_path;
+}
+
+static gboolean
+web_page_send_request (WebKitWebPage     *web_page,
+                       WebKitURIRequest  *request,
+                       WebKitURIResponse *redirected_response,
+                       gpointer           user_data)
+{
+    const gchar *wk_uri = webkit_uri_request_get_uri (request);
+    gchar *yelp_uri, *current_uri_canonical, *file_path;
+
+    if (!current_uri)
+        return FALSE;
+
+    yelp_uri = build_yelp_uri (wk_uri);
+    current_uri_canonical = yelp_uri_get_canonical_uri (current_uri);
+
+    file_path = get_resource_path (yelp_uri, current_uri);
+
+    if (file_path) {
+        webkit_uri_request_set_uri (request, file_path);
+        g_free (file_path);
+    }
+
+    g_free (yelp_uri);
+    g_free (current_uri_canonical);
+    return FALSE;
+}
+
+static void
+web_page_notify_uri (WebKitWebPage *web_page,
+                     GParamSpec    *pspec,
+                     gpointer       data)
+{
+    const gchar *uri = webkit_web_page_get_uri (web_page);
+    gchar *yelp_uri;
+
+    yelp_uri = build_yelp_uri (uri);
+
+    if (current_uri)
+        g_object_unref (current_uri);
+    current_uri = yelp_uri_new (yelp_uri);
+
+    if (!yelp_uri_is_resolved (current_uri))
+        yelp_uri_resolve_sync (current_uri);
+
+    g_free (yelp_uri);
+}
 
 static gboolean
 web_page_context_menu (WebKitWebPage          *web_page,
@@ -132,6 +208,12 @@ web_page_created_callback (WebKitWebExtension *extension,
 {
     g_signal_connect (web_page, "context-menu",
                       G_CALLBACK (web_page_context_menu),
+                      NULL);
+    g_signal_connect (web_page, "send-request",
+                      G_CALLBACK (web_page_send_request),
+                      NULL);
+    g_signal_connect (web_page, "notify::uri",
+                      G_CALLBACK (web_page_notify_uri),
                       NULL);
 }
 

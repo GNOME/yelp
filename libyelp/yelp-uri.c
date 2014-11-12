@@ -29,7 +29,6 @@
 #include <gio/gio.h>
 
 #include "yelp-uri.h"
-#include "yelp-debug.h"
 #include "yelp-settings.h"
 
 static void           yelp_uri_dispose           (GObject        *object);
