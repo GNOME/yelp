@@ -19,12 +19,12 @@
  */
 
 #include <gtk/gtk.h>
-#include <webkit/webkit.h>
+#include <webkit2/webkit2.h>
 
 #include "yelp-settings.h"
 
 static YelpSettings *settings;
-static WebKitWebSettings *websettings;
+static WebKitSettings *websettings;
 static GtkWidget *webview;
 static GtkWidget *color_table;
 static GtkWidget *color_buttons[YELP_SETTINGS_NUM_COLORS];
@@ -84,11 +84,9 @@ colors_changed (YelpSettings *unused_settings, gpointer user_data)
 			    colors[YELP_SETTINGS_COLOR_RED_BASE], colors[YELP_SETTINGS_COLOR_RED_BORDER],
 			    colors[YELP_SETTINGS_COLOR_YELLOW_BASE], colors[YELP_SETTINGS_COLOR_YELLOW_BORDER],
 			    colors[YELP_SETTINGS_COLOR_YELLOW_BASE], colors[YELP_SETTINGS_COLOR_YELLOW_BORDER]);
-    webkit_web_view_load_string (WEBKIT_WEB_VIEW (webview),
-                                 page,
-                                 "text/html",
-                                 "UTF-8",
-                                 "file:///dev/null");
+    webkit_web_view_load_html (WEBKIT_WEB_VIEW (webview),
+                               page,
+                               "file:///dev/null");
     g_free (page);
     g_strfreev (colors);
 }
