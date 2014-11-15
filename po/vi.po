@@ -1,111 +1,112 @@
 # Vietnamese translation for Yelp.
-# Copyright © 2008 GNOME i18n Project for Vietnamese.
+# Copyright © 2014 GNOME i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@vnlinux.org>, 2002-2004, 2005, 2012.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
 # Lê Trường An <xinemdungkhoc1@gmail.com>, 2011.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2014.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Yelp 2.11.92 GNOME TRUNK\n"
+"Project-Id-Version: Yelp GNOME master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-02-23 18:38+0000\n"
-"PO-Revision-Date: 2012-03-21 13:28+0700\n"
-"Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@vnlinux.org>\n"
-"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
+"POT-Creation-Date: 2014-11-15 00:02+0000\n"
+"PO-Revision-Date: 2014-11-15 14:18+0700\n"
+"Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
+"Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.7b3\n"
 
+#. (itstool) path: msg/msgstr
 #. ID: install.tooltip
 #. This is a format message used to format tooltips on install: links. These
 #. links allow users to install packages by clicking a link in the help. The
 #. tooltip may also be used as the link text, if there's no link text in the
 #. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#. 
+#.
 #. <string/> - The package to install
-#. 
-#: yelp.xml.in:29(msg/msgstr)
+#.
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Cài đặt <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:146
-#: ../libyelp/yelp-lzma-decompressor.c:155
+#: ../libyelp/yelp-bz2-decompressor.c:144
+#: ../libyelp/yelp-lzma-decompressor.c:153
 msgid "Invalid compressed data"
 msgstr "Dữ liệu nén không hợp lệ"
 
-#: ../libyelp/yelp-bz2-decompressor.c:152
-#: ../libyelp/yelp-lzma-decompressor.c:161
+#: ../libyelp/yelp-bz2-decompressor.c:150
+#: ../libyelp/yelp-lzma-decompressor.c:159
 msgid "Not enough memory"
 msgstr "Không đủ bộ nhớ"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:306
-#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:297 ../libyelp/yelp-info-document.c:237
+#: ../libyelp/yelp-mallard-document.c:305
+#: ../libyelp/yelp-mallard-document.c:456 ../libyelp/yelp-man-document.c:281
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "Không tìm thấy trang '%s' trong tài liệu '%s'."
+msgstr "Không tìm thấy trang “%s” trong tài liệu “%s”."
 
-#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:417
+#: ../libyelp/yelp-docbook-document.c:332 ../libyelp/yelp-info-document.c:371
+#: ../libyelp/yelp-man-document.c:416
 #, c-format
 msgid "The file does not exist."
 msgstr "Tập tin không tồn tại."
 
-#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:427
+#: ../libyelp/yelp-docbook-document.c:342 ../libyelp/yelp-info-document.c:381
+#: ../libyelp/yelp-man-document.c:426
 #, c-format
 msgid "The file ‘%s’ does not exist."
-msgstr "Tập tin '%s' không tồn tại."
+msgstr "Tập tin “%s” không tồn tại."
 
-#: ../libyelp/yelp-docbook-document.c:342
+#: ../libyelp/yelp-docbook-document.c:357
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "Không thể phân tích tập tin '%s' vì nó chứa XML không đúng định dạng."
+msgstr "Không thể phân tích tập tin “%s” vì nó chứa XML không đúng định dạng."
 
-#: ../libyelp/yelp-docbook-document.c:355
+#: ../libyelp/yelp-docbook-document.c:370
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"Không thể phân tích tập tin '%s' vì nó bao gồm nhiều tài liệu XML không đúng "
+"Không thể phân tích tập tin “%s” vì nó bao gồm nhiều tài liệu XML không đúng "
 "định dạng."
 
-#: ../libyelp/yelp-docbook-document.c:765
+#: ../libyelp/yelp-docbook-document.c:803
 msgid "Unknown"
 msgstr "Không rõ"
 
-#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:359
+#: ../libyelp/yelp-docbook-document.c:864 ../libyelp/yelp-info-document.c:314
+#: ../libyelp/yelp-man-document.c:358
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr "Không tìm thấy trang đã yêu cầu trong tài liệu '%s'."
+msgstr "Không tìm thấy trang đã yêu cầu trong tài liệu “%s”."
 
-#: ../libyelp/yelp-document.c:268
+#: ../libyelp/yelp-document.c:266
 msgid "Indexed"
-msgstr "Đánh chỉ mục"
+msgstr "Đánh mục lục"
 
-#: ../libyelp/yelp-document.c:269
+#: ../libyelp/yelp-document.c:267
 msgid "Whether the document content has been indexed"
 msgstr "Nội dung tài liệu đã được lập chỉ mục"
 
-#: ../libyelp/yelp-document.c:277
+#: ../libyelp/yelp-document.c:275
 msgid "Document URI"
 msgstr "URI tài liệu"
 
-#: ../libyelp/yelp-document.c:278
+#: ../libyelp/yelp-document.c:276
 msgid "The URI which identifies the document"
 msgstr "Địa chỉ xác định tài liệu"
 
 #: ../libyelp/yelp-document.c:994
 #, c-format
-#| msgid "Search results for \"%s\""
 msgid "Search results for “%s”"
 msgstr "Kết quả tìm kiếm “%s”"
 
@@ -118,446 +119,442 @@ msgstr "Không tìm thấy trang trợ giúp trùng khớp trong \"%s\"."
 msgid "No matching help pages found."
 msgstr "Không tìm thấy trang trợ giúp nào khớp."
 
-#: ../libyelp/yelp-error.c:37
+#: ../libyelp/yelp-error.c:35
 #, c-format
 msgid "An unknown error occurred."
 msgstr "Có một lỗi không xác định được."
 
-#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:546 ../libyelp/yelp-help-list.c:555
 msgid "All Help Documents"
 msgstr "Tất cả tài liệu trợ giúp"
 
-#: ../libyelp/yelp-info-document.c:397
+#: ../libyelp/yelp-info-document.c:396
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Không thể phân tích tập tin '%s' vì nó không phải trang thông tin đúng định "
+"Không thể phân tích tập tin “%s” vì nó không phải trang thông tin đúng định "
 "dạng."
 
-#: ../libyelp/yelp-location-entry.c:336
+#: ../libyelp/yelp-mallard-document.c:344
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Thư mục “%s” không tồn tại."
+
+#: ../libyelp/yelp-search-entry.c:173
 msgid "View"
 msgstr "Xem"
 
-#: ../libyelp/yelp-location-entry.c:337
+#: ../libyelp/yelp-search-entry.c:174
 msgid "A YelpView instance to control"
 msgstr "Thể hiện YelpView để điều khiển"
 
-#: ../libyelp/yelp-location-entry.c:352
+#: ../libyelp/yelp-search-entry.c:189 ../src/yelp-window.c:399
 msgid "Bookmarks"
 msgstr "Đánh dấu"
 
-#: ../libyelp/yelp-location-entry.c:353
+#: ../libyelp/yelp-search-entry.c:190
 msgid "A YelpBookmarks implementation instance"
 msgstr "Bản cài đặt YelpBookmarks"
 
-#: ../libyelp/yelp-location-entry.c:369
-msgid "Enable Search"
-msgstr "Bật tìm kiếm"
-
-#: ../libyelp/yelp-location-entry.c:370
-msgid "Whether the location entry can be used as a search field"
-msgstr "Có dùng ô nhập vị trí để tìm kiếm không"
-
-#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
-msgid "Search..."
-msgstr "Tìm kiếm..."
-
-#: ../libyelp/yelp-location-entry.c:783
-msgid "Clear the search text"
-msgstr "Làm trống khung tìm kiếm"
-
-#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
-msgid "Bookmark this page"
-msgstr "Đánh dấu trang này"
-
-#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
-msgid "Remove bookmark"
-msgstr "Gỡ bỏ đánh dấu"
-
-#: ../libyelp/yelp-location-entry.c:1154
+#: ../libyelp/yelp-search-entry.c:440
 #, c-format
-#| msgid "Search results for \"%s\""
 msgid "Search for “%s”"
 msgstr "Tìm “%s”"
 
-#: ../libyelp/yelp-location-entry.c:1458
-msgid "Loading"
-msgstr "Đang nạp"
-
-#: ../libyelp/yelp-mallard-document.c:346
-#, c-format
-msgid "The directory ‘%s’ does not exist."
-msgstr "Thư mục '%s' không tồn tại."
-
-#: ../libyelp/yelp-settings.c:154
+#: ../libyelp/yelp-settings.c:152
 msgid "GtkSettings"
-msgstr "Thiết lập Gtk"
+msgstr "Cài đặt Gtk"
 
-#: ../libyelp/yelp-settings.c:155
+#: ../libyelp/yelp-settings.c:153
 msgid "A GtkSettings object to get settings from"
-msgstr "Đối tượng GtkSettings để lấy thiết lập"
+msgstr "Đối tượng GtkSettings để lấy cài đặt"
 
-#: ../libyelp/yelp-settings.c:163
+#: ../libyelp/yelp-settings.c:161
 msgid "GtkIconTheme"
 msgstr "GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:164
+#: ../libyelp/yelp-settings.c:162
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Đối tượng GtkIconTheme để lấy biểu tượng"
 
-#: ../libyelp/yelp-settings.c:172
+#: ../libyelp/yelp-settings.c:170
 msgid "Font Adjustment"
 msgstr "Điều chỉnh phông chữ"
 
-#: ../libyelp/yelp-settings.c:173
+#: ../libyelp/yelp-settings.c:171
 msgid "A size adjustment to add to font sizes"
 msgstr "Điều chỉnh kích thước để thêm vào phông chữ"
 
-#: ../libyelp/yelp-settings.c:181
+#: ../libyelp/yelp-settings.c:179
 msgid "Show Text Cursor"
 msgstr "Hiện con trỏ văn bản"
 
-#: ../libyelp/yelp-settings.c:182
+#: ../libyelp/yelp-settings.c:180
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Hiện con trỏ văn bản hoặc dấu nháy để định hướng truy cập"
 
-#: ../libyelp/yelp-settings.c:190
+#: ../libyelp/yelp-settings.c:188
 msgid "Editor Mode"
 msgstr "Chế độ soạn thảo"
 
-#: ../libyelp/yelp-settings.c:191
+#: ../libyelp/yelp-settings.c:189
 msgid "Enable features useful to editors"
 msgstr "Bật các tính năng hữu ích cho trình soạn thảo"
 
-#: ../libyelp/yelp-sqlite-storage.c:150
+#: ../libyelp/yelp-sqlite-storage.c:147
 msgid "Database filename"
 msgstr "Tên tập tin Cơ sở dữ liệu"
 
-#: ../libyelp/yelp-sqlite-storage.c:151
+#: ../libyelp/yelp-sqlite-storage.c:148
 msgid "The filename of the sqlite database"
 msgstr "Tên tập tin của cơ sở dữ liệu sqlite"
 
-#: ../libyelp/yelp-transform.c:171
+#: ../libyelp/yelp-transform.c:169
 msgid "XSLT Stylesheet"
 msgstr "XSLT Stylesheet"
 
-#: ../libyelp/yelp-transform.c:172
+#: ../libyelp/yelp-transform.c:170
 msgid "The location of the XSLT stylesheet"
 msgstr "Vị trí của XSLT stylesheet"
 
-#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
+#: ../libyelp/yelp-transform.c:378 ../libyelp/yelp-transform.c:393
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr "Bảng tính kiểu XSLT '%s' bị thiếu hoặc không hợp lệ."
+msgstr "Bảng kiểu dáng XSLT “%s” bị thiếu hoặc không hợp lệ."
 
-#: ../libyelp/yelp-transform.c:528
+#: ../libyelp/yelp-transform.c:527
 msgid "No href attribute found on yelp:document\n"
 msgstr "Không tìm thấy thuộc tính href trên yelp:document\n"
 
-#: ../libyelp/yelp-transform.c:543
+#: ../libyelp/yelp-transform.c:542
 msgid "Out of memory"
 msgstr "Không đủ bộ nhớ"
 
-#: ../libyelp/yelp-view.c:131
-msgid "_Print..."
-msgstr "_In..."
-
-#: ../libyelp/yelp-view.c:136
-msgid "_Back"
-msgstr "_Lùi"
-
-#: ../libyelp/yelp-view.c:141
-msgid "_Forward"
-msgstr "Tiế_p"
-
-#: ../libyelp/yelp-view.c:146
-msgid "_Previous Page"
-msgstr "_Trang trước"
-
-#: ../libyelp/yelp-view.c:151
-msgid "_Next Page"
-msgstr "Tr_ang tiếp theo"
-
 # Name: don't translate / Tên: đừng dịch
-#: ../libyelp/yelp-view.c:423
+#: ../libyelp/yelp-view.c:446
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:424
+#: ../libyelp/yelp-view.c:447
 msgid "A YelpUri with the current location"
 msgstr "YelpUri với vị trí hiện thời"
 
-#: ../libyelp/yelp-view.c:432
+#: ../libyelp/yelp-view.c:455
 msgid "Loading State"
 msgstr "Trạng thái nạp"
 
-#: ../libyelp/yelp-view.c:433
+#: ../libyelp/yelp-view.c:456
 msgid "The loading state of the view"
 msgstr "Trạng thái nạp của quan sát"
 
-#: ../libyelp/yelp-view.c:442
+#: ../libyelp/yelp-view.c:465
 msgid "Page ID"
 msgstr "Mã số trang"
 
-#: ../libyelp/yelp-view.c:443
+#: ../libyelp/yelp-view.c:466
 msgid "The ID of the root page of the page being viewed"
 msgstr "Mã số trang gốc của trang được xem"
 
-#: ../libyelp/yelp-view.c:451
+#: ../libyelp/yelp-view.c:474
 msgid "Root Title"
 msgstr "Tên gốc"
 
-#: ../libyelp/yelp-view.c:452
+#: ../libyelp/yelp-view.c:475
 msgid "The title of the root page of the page being viewed"
 msgstr "Tên trang gốc của trang được xem"
 
-#: ../libyelp/yelp-view.c:460
+#: ../libyelp/yelp-view.c:483
 msgid "Page Title"
 msgstr "Tên trang"
 
-#: ../libyelp/yelp-view.c:461
+#: ../libyelp/yelp-view.c:484
 msgid "The title of the page being viewed"
-msgstr "Tên trang được xem"
+msgstr "Tiêu đề của trang đang được xem"
 
-#: ../libyelp/yelp-view.c:469
+#: ../libyelp/yelp-view.c:492
 msgid "Page Description"
 msgstr "Mô tả trang"
 
-#: ../libyelp/yelp-view.c:470
+#: ../libyelp/yelp-view.c:493
 msgid "The description of the page being viewed"
 msgstr "Mô tả của trang được xem"
 
-#: ../libyelp/yelp-view.c:478
+#: ../libyelp/yelp-view.c:501
 msgid "Page Icon"
 msgstr "Biểu tượng trang"
 
-#: ../libyelp/yelp-view.c:479
+#: ../libyelp/yelp-view.c:502
 msgid "The icon of the page being viewed"
 msgstr "Biểu tượng của trang được xem"
 
-#: ../libyelp/yelp-view.c:720
+#: ../libyelp/yelp-view.c:744
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "Bạn không có PackageKit. Các liên kết cài đặt gói yêu cầu PackageKit."
 
-#: ../libyelp/yelp-view.c:1013
+#: ../libyelp/yelp-view.c:1040
 msgid "Save Image"
 msgstr "Lưu hình ảnh"
 
-#: ../libyelp/yelp-view.c:1108
+#: ../libyelp/yelp-view.c:1135
 msgid "Save Code"
 msgstr "Lưu mã"
 
-#: ../libyelp/yelp-view.c:1271
+#: ../libyelp/yelp-view.c:1298
 #, c-format
 msgid "Send email to %s"
-msgstr "Gửi email đến %s"
+msgstr "Gửi thư điện tử đến %s"
 
-#: ../libyelp/yelp-view.c:1286
-#| msgid "Manual Pages"
+#: ../libyelp/yelp-view.c:1313
 msgid "_Install Packages"
 msgstr "Gói _cài đặt"
 
-#: ../libyelp/yelp-view.c:1294
+#: ../libyelp/yelp-view.c:1321
 msgid "_Open Link"
 msgstr "Mở _liên kết"
 
-#: ../libyelp/yelp-view.c:1301
-#| msgid "Open Location"
+#: ../libyelp/yelp-view.c:1328
 msgid "_Copy Link Location"
 msgstr "_Chép địa chỉ liên kết"
 
-#: ../libyelp/yelp-view.c:1307
+#: ../libyelp/yelp-view.c:1334
 msgid "Open Link in New _Window"
 msgstr "Mở liê_n kết trong cửa sổ mới"
 
-#: ../libyelp/yelp-view.c:1359
-msgid "_Save Image As..."
-msgstr "_Lưu ảnh vào..."
+#: ../libyelp/yelp-view.c:1388
+msgid "_Save Image As…"
+msgstr "_Lưu ảnh vào…"
 
-#: ../libyelp/yelp-view.c:1361
-msgid "_Save Video As..."
-msgstr "_Lưu video vào..."
+#: ../libyelp/yelp-view.c:1390
+msgid "_Save Video As…"
+msgstr "_Lưu video vào…"
 
-#: ../libyelp/yelp-view.c:1368
-msgid "S_end Image To..."
-msgstr "_Gửi ảnh đến..."
+#: ../libyelp/yelp-view.c:1397
+msgid "S_end Image To…"
+msgstr "_Gửi ảnh đến…"
 
-#: ../libyelp/yelp-view.c:1370
-msgid "S_end Video To..."
-msgstr "_Gửi video đến..."
+#: ../libyelp/yelp-view.c:1399
+msgid "S_end Video To…"
+msgstr "_Gửi video đến…"
 
-#: ../libyelp/yelp-view.c:1381
+#: ../libyelp/yelp-view.c:1410
 msgid "_Copy Text"
 msgstr "_Chép văn bản"
 
-#: ../libyelp/yelp-view.c:1394
+#: ../libyelp/yelp-view.c:1423
 msgid "C_opy Code Block"
 msgstr "Sa_o chép khối mã"
 
-#: ../libyelp/yelp-view.c:1399
-msgid "Save Code _Block As..."
-msgstr "Lưu _khối mã vào..."
+#: ../libyelp/yelp-view.c:1428
+msgid "Save Code _Block As…"
+msgstr "Lưu _khối mã vào…"
 
-#: ../libyelp/yelp-view.c:1497
+#: ../libyelp/yelp-view.c:1535
 #, c-format
-#| msgid "Search results for \"%s\""
 msgid "See all search results for “%s”"
 msgstr "Xem mọi kết quả tìm kiếm “%s”"
 
-#: ../libyelp/yelp-view.c:1618
+#: ../libyelp/yelp-view.c:1656
 #, c-format
 msgid "Could not load a document for ‘%s’"
-msgstr "Không thể nạp một tài liệu '%s'"
+msgstr "Không thể nạp một tài liệu “%s”"
 
-#: ../libyelp/yelp-view.c:1624
+#: ../libyelp/yelp-view.c:1662
 #, c-format
 msgid "Could not load a document"
 msgstr "Không thể nạp một tài liệu"
 
-#: ../libyelp/yelp-view.c:1698
+#: ../libyelp/yelp-view.c:1737
 msgid "Document Not Found"
 msgstr "Không tìm thấy Tài liệu"
 
-#: ../libyelp/yelp-view.c:1700
+#: ../libyelp/yelp-view.c:1739
 msgid "Page Not Found"
 msgstr "Không tìm thấy trang"
 
-#: ../libyelp/yelp-view.c:1703
+#: ../libyelp/yelp-view.c:1742
 msgid "Cannot Read"
 msgstr "Không thể đọc"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1748
 msgid "Unknown Error"
 msgstr "Lỗi không rõ"
 
-#: ../libyelp/yelp-view.c:1729
+#: ../libyelp/yelp-view.c:1768
 msgid "Search for packages containing this document."
 msgstr "Tìm kiếm các gói có chứa tài liệu này."
 
-#: ../libyelp/yelp-view.c:1882
+#: ../libyelp/yelp-view.c:1918
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "Đường dẫn URI '%s' không trỏ đến một trang hợp lệ."
+msgstr "Đường dẫn URI “%s” không trỏ đến một trang hợp lệ."
 
-#: ../libyelp/yelp-view.c:1888
+#: ../libyelp/yelp-view.c:1924
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI không trỏ đến một trang hợp lệ."
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1930
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "Không thể phân tích đường dẫn URI '%s'."
+msgstr "Không thể phân tích đường dẫn URI “%s”."
 
-#: ../src/yelp-application.c:65
+#: ../src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "Bật chế độ soạn thảo"
 
-#: ../src/yelp-application.c:128
-msgid "_Larger Text"
-msgstr "Chữ _lớn hơn"
-
-#: ../src/yelp-application.c:130
-msgid "Increase the size of the text"
-msgstr "Tăng kích thước chữ"
-
-#: ../src/yelp-application.c:133
-msgid "_Smaller Text"
-msgstr "Chữ _nhỏ hơn"
-
-#: ../src/yelp-application.c:135
-msgid "Decrease the size of the text"
-msgstr "Giảm kích thước chữ"
-
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../src/yelp-application.c:272 ../src/yelp-window.c:1165
 #: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Trợ giúp"
 
-#: ../src/yelp-application.c:288
-msgid "Show Text _Cursor"
-msgstr "Hiện _con trỏ văn bản"
+#: ../src/yelp-application.c:322
+msgid "New Window"
+msgstr "Cửa sổ mới"
 
-#: ../src/yelp-window.c:236
-msgid "_Page"
-msgstr "_Trang"
+#: ../src/yelp-application.c:326
+msgid "Larger Text"
+msgstr "Chữ lớn hơn"
 
-#: ../src/yelp-window.c:237
-msgid "_View"
-msgstr "_Hiển thị"
+#: ../src/yelp-application.c:327
+msgid "Smaller Text"
+msgstr "Chữ nhỏ đi"
 
-#: ../src/yelp-window.c:238
-msgid "_Go"
-msgstr "Đế_n"
-
-#: ../src/yelp-window.c:239
-msgid "_Bookmarks"
-msgstr "Đánh _dấu"
-
-#: ../src/yelp-window.c:242
-msgid "_New Window"
-msgstr "_Cửa sổ mới"
-
-#: ../src/yelp-window.c:247
-msgid "_Close"
-msgstr "Đón_g"
-
-#: ../src/yelp-window.c:252
-msgid "_All Documents"
-msgstr "_Tất cả Tài liệu"
-
-#: ../src/yelp-window.c:256
-msgid "_Add Bookmark"
-msgstr "Thê_m đánh dấu"
-
-#: ../src/yelp-window.c:261
-msgid "_Remove Bookmark"
-msgstr "_Gỡ bỏ đánh dấu"
-
-#: ../src/yelp-window.c:265
-msgid "Find in Page..."
-msgstr "Tìm trong trang..."
-
-#: ../src/yelp-window.c:275
-msgid "Open Location"
-msgstr "Mở địa chỉ"
-
-#: ../src/yelp-window.c:301
+#: ../src/yelp-window.c:206
 msgid "Application"
 msgstr "Ứng dụng"
 
-#: ../src/yelp-window.c:302
+#: ../src/yelp-window.c:207
 msgid "A YelpApplication instance that controls this window"
 msgstr "Một Ứng dụng Yelp điều khiển cửa sổ này"
 
-#: ../src/yelp-window.c:429
-#| msgid "Read Later"
-msgid "Read Link _Later"
-msgstr "Đọc _sau"
+#: ../src/yelp-window.c:325
+msgid "Back"
+msgstr "Trước"
 
-#: ../src/yelp-window.c:526
-#| msgid "_Find:"
-msgid "Find:"
-msgstr "Tìm:"
+#: ../src/yelp-window.c:332
+msgid "Forward"
+msgstr "Tiếp"
 
-#: ../src/yelp-window.c:548
-msgid "Read Later"
-msgstr "Đọc sau"
+#: ../src/yelp-window.c:343
+msgid "Menu"
+msgstr "Trình đơn"
 
-#: ../src/yelp-window.c:1180
-#, c-format
-msgid "%i match"
-msgid_plural "%i matches"
-msgstr[0] "%i trùng khớp"
+#: ../src/yelp-window.c:348
+msgid "Find…"
+msgstr "Tìm…"
 
-#: ../src/yelp-window.c:1189
-msgid "No matches"
-msgstr "Không có kết quả trùng khớp"
+#: ../src/yelp-window.c:349
+msgid "Print…"
+msgstr "In…"
+
+#: ../src/yelp-window.c:354
+msgid "Previous Page"
+msgstr "Trang trước"
+
+#: ../src/yelp-window.c:355
+msgid "Next Page"
+msgstr "Trang kế"
+
+#: ../src/yelp-window.c:360
+msgid "All Help"
+msgstr "Mọi trợ giúp"
+
+#: ../src/yelp-window.c:382
+msgid "Search (Ctrl+S)"
+msgstr "Tìm kiếm (Ctrl+S)"
+
+#: ../src/yelp-window.c:416
+msgid "No bookmarks"
+msgstr "Không có đánh dấu"
+
+#: ../src/yelp-window.c:424
+msgid "Add Bookmark"
+msgstr "Thêm đánh dấu"
+
+#: ../src/yelp-window.c:430
+msgid "Remove Bookmark"
+msgstr "Gỡ bỏ đánh dấu"
 
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
-msgstr "Nhận trợ giúp với GNOME"
+msgstr "Nhận trợ giúp từ GNOME"
+
+#: ../yelp.desktop.in.in.h:3
+msgid "documentation;information;manual;"
+msgstr ""
+"documentation;information;manual;tài;liệu;tai;lieu;thông;tin;hướng;dẫn;huong;"
+"dan;trợ;tro;giúp;giup;help;"
+
+#~ msgid "Enable Search"
+#~ msgstr "Bật tìm kiếm"
+
+#~ msgid "Whether the location entry can be used as a search field"
+#~ msgstr "Có dùng ô nhập vị trí để tìm kiếm không"
+
+#~ msgid "Search..."
+#~ msgstr "Tìm kiếm..."
+
+#~ msgid "Clear the search text"
+#~ msgstr "Làm trống khung tìm kiếm"
+
+#~ msgid "Bookmark this page"
+#~ msgstr "Đánh dấu trang này"
+
+#~ msgid "Remove bookmark"
+#~ msgstr "Gỡ bỏ đánh dấu"
+
+#~ msgid "Loading"
+#~ msgstr "Đang nạp"
+
+#~ msgid "_Print..."
+#~ msgstr "_In..."
+
+#~ msgid "Increase the size of the text"
+#~ msgstr "Tăng kích thước chữ"
+
+#~ msgid "Decrease the size of the text"
+#~ msgstr "Giảm kích thước chữ"
+
+#~ msgid "Show Text _Cursor"
+#~ msgstr "Hiện _con trỏ văn bản"
+
+#~ msgid "_Page"
+#~ msgstr "_Trang"
+
+#~ msgid "_View"
+#~ msgstr "_Hiển thị"
+
+#~ msgid "_Go"
+#~ msgstr "Đế_n"
+
+#~ msgid "_Bookmarks"
+#~ msgstr "Đánh _dấu"
+
+#~ msgid "_Close"
+#~ msgstr "Đón_g"
+
+#~ msgid "_All Documents"
+#~ msgstr "_Tất cả Tài liệu"
+
+#~ msgid "Find in Page..."
+#~ msgstr "Tìm trong trang..."
+
+#~ msgid "Open Location"
+#~ msgstr "Mở địa chỉ"
+
+#~ msgid "Read Link _Later"
+#~ msgstr "Đọc _sau"
+
+#~ msgid "Read Later"
+#~ msgstr "Đọc sau"
+
+#~ msgid "%i match"
+#~ msgid_plural "%i matches"
+#~ msgstr[0] "%i trùng khớp"
+
+#~ msgid "No matches"
+#~ msgstr "Không có kết quả trùng khớp"
 
 #~ msgid "GNU Info Pages"
 #~ msgstr "Trang thông tin GNU"
@@ -854,7 +851,7 @@ msgstr "Nhận trợ giúp với GNOME"
 #~ msgstr "Màn hình làm việc"
 
 #~ msgid "Desktop Settings"
-#~ msgstr "Thiết lập màn hình nền"
+#~ msgstr "Cài đặt màn hình nền"
 
 #~ msgid "Dialup"
 #~ msgstr "Quay số"
@@ -942,7 +939,7 @@ msgstr "Nhận trợ giúp với GNOME"
 #~ msgstr "Rađiô nghiệp dư"
 
 #~ msgid "Hardware Settings"
-#~ msgstr "Thiết lập phần cứng"
+#~ msgstr "Cài đặt phần cứng"
 
 #~ msgid "Have some fun"
 #~ msgstr "Chơi nhé"
@@ -964,552 +961,3 @@ msgstr "Nhận trợ giúp với GNOME"
 
 #~ msgid "Internet"
 #~ msgstr "Internet"
-
-# Name: don't translate/Tên: đừng dịch
-#~ msgid "Java"
-#~ msgstr "Java"
-
-#~ msgid "KDE Applications"
-#~ msgstr "Ứng dụng KDE"
-
-#~ msgid "Kids Games"
-#~ msgstr "Trò chơi thiếu nhi"
-
-#~ msgid ""
-#~ "Learn more about making your system more accessible for a range of "
-#~ "disabilities"
-#~ msgstr "Tìm hiểu thêm để làm cho hệ thống dễ truy cập hơn cho người tàn tật"
-
-#~ msgid "Licenses"
-#~ msgstr "Giấy phép"
-
-#~ msgid "Literature"
-#~ msgstr "Văn học"
-
-#~ msgid "Logic Games"
-#~ msgstr "Trò chơi lôgic"
-
-#~ msgid "Math"
-#~ msgstr "Toán học"
-
-#~ msgid "Medical Software"
-#~ msgstr "Phần mềm y tế"
-
-#~ msgid "Midi"
-#~ msgstr "Midi"
-
-#~ msgid "Miscellaneous Documentation"
-#~ msgstr "Tài liệu linh tinh"
-
-#~ msgid "Mixers"
-#~ msgstr "Hoà âm"
-
-#~ msgid "Monitor"
-#~ msgstr "Theo dõi"
-
-#~ msgid "Motif"
-#~ msgstr "Motif"
-
-#~ msgid "Music"
-#~ msgstr "Nhạc"
-
-#~ msgid "News"
-#~ msgstr "Tin tức"
-
-#~ msgid "Numerical Analysis"
-#~ msgstr "Giải tích số"
-
-#~ msgid "OCR"
-#~ msgstr "OCR"
-
-#~ msgid "Office Applications"
-#~ msgstr "Ứng dụng văn phòng"
-
-#~ msgid "Office applications"
-#~ msgstr "Ứng dụng văn phòng"
-
-#~ msgid "Other Documentation"
-#~ msgstr "Tài liệu khác"
-
-#~ msgid "P2P"
-#~ msgstr "P2P"
-
-#~ msgid "PDA Communication"
-#~ msgstr "Giao tiếp thiết bị PDA"
-
-#~ msgid "Package Manager"
-#~ msgstr "Quản lý gói phần mềm"
-
-#~ msgid "Parallel Computing"
-#~ msgstr "Điện toán song song"
-
-#~ msgid "Photography"
-#~ msgstr "Nhiếp ảnh"
-
-#~ msgid "Physics"
-#~ msgstr "Vật lí"
-
-#~ msgid "Players"
-#~ msgstr "Trình phát"
-
-#~ msgid "Presentation Tools"
-#~ msgstr "Công cụ trình chiếu"
-
-#~ msgid "Printing"
-#~ msgstr "In ấn"
-
-#~ msgid "Profiling Tools"
-#~ msgstr "Công cụ lập hồ sơ"
-
-#~ msgid "Project Management Tools"
-#~ msgstr "Công cụ quản lý dự án"
-
-#~ msgid "Publishing"
-#~ msgstr "Xuất bản"
-
-# Name: don't translate/Tên: đừng dịch
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "Raster Graphics"
-#~ msgstr "Đồ họa Raster"
-
-#~ msgid "Recorders"
-#~ msgstr "Trình thu"
-
-#~ msgid "Remote Access"
-#~ msgstr "Truy cập từ xa"
-
-#~ msgid "Revision Control"
-#~ msgstr "Quản lí thay đổi"
-
-#~ msgid "Robotics"
-#~ msgstr "Người máy"
-
-#~ msgid "Role Playing Games"
-#~ msgstr "Trò chơi nhập vai"
-
-#~ msgid "Scanning"
-#~ msgstr "Quét"
-
-#~ msgid "Science"
-#~ msgstr "Khoa học"
-
-#~ msgid "Security"
-#~ msgstr "An ninh"
-
-#~ msgid "Sequencers"
-#~ msgstr "Máy hòa âm"
-
-#~ msgid "Settings"
-#~ msgstr "Thiết lập"
-
-#~ msgid ""
-#~ "Settings users can manipulate to make their environment more pleasant"
-#~ msgstr ""
-#~ "Các thiết lập người dùng có thể điều chỉnh để làm cho môi trường ưng ý hơn"
-
-#~ msgid "Simulation Games"
-#~ msgstr "Trò chơi mô phỏng"
-
-#~ msgid "Sound"
-#~ msgstr "Âm thanh"
-
-#~ msgid "Sound &amp; Video"
-#~ msgstr "Âm thanh và Ảnh động"
-
-#~ msgid "Sound &amp; Video Editing"
-#~ msgstr "Sửa Âm thanh và Ảnh động"
-
-#~ msgid "Sports"
-#~ msgstr "Thể thao"
-
-#~ msgid "Sports Games"
-#~ msgstr "Trò chơi thể thao"
-
-#~ msgid "Spreadsheet Tools"
-#~ msgstr "Công cụ bảng tính"
-
-#~ msgid "Strategy Games"
-#~ msgstr "Trò chơi chiến lược"
-
-#~ msgid "System"
-#~ msgstr "Hệ thống"
-
-#~ msgid "TV"
-#~ msgstr "TV"
-
-#~ msgid "Telephony"
-#~ msgstr "Điện thoại"
-
-#~ msgid "Telephony Tools"
-#~ msgstr "Công cụ điện thoại"
-
-#~ msgid "Terminal Emulator"
-#~ msgstr "Giao diện dòng lệnh"
-
-#~ msgid "Text Editors"
-#~ msgstr "Trình soạn thảo văn bản"
-
-#~ msgid "Text Tools"
-#~ msgstr "Công cụ văn bản"
-
-#~ msgid "Tools to help you manage your computer"
-#~ msgstr "Công cụ quản lý máy tính"
-
-#~ msgid "Translation Tools"
-#~ msgstr "Công cụ thông dịch"
-
-#~ msgid "Tuners"
-#~ msgstr "Trình điều hưởng"
-
-#~ msgid "Utilities"
-#~ msgstr "Tiện ích"
-
-#~ msgid "Utilities to help you get work done"
-#~ msgstr "Tiện ích hỗ trợ công việc"
-
-#~ msgid "Vector Graphics"
-#~ msgstr "Đồ họa véc-tơ"
-
-#~ msgid "Video"
-#~ msgstr "Video"
-
-#~ msgid "Video Conference"
-#~ msgstr "Hội nghị truyền hình"
-
-#~ msgid "Viewer"
-#~ msgstr "Trình xem"
-
-#~ msgid "Web Browser"
-#~ msgstr "Trình duyệt Web"
-
-#~ msgid "Web Development"
-#~ msgstr "Phát triển Web"
-
-#~ msgid "Welcome to the GNOME Help Browser"
-#~ msgstr "Chào mừng bạn dùng Bộ duyệt trợ giúp GNOME"
-
-#~ msgid "Word Processors"
-#~ msgstr "Trình xử lý văn bản"
-
-#~ msgid "<b>Accessibility</b>"
-#~ msgstr "<b>Khả năng truy cập</b>"
-
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Phông</b>"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Thêm đánh dấu"
-
-#~ msgid "C_ase sensitive"
-#~ msgstr "Phân biệt ho_a/thường"
-
-#~ msgid "Find"
-#~ msgstr "Tìm"
-
-#~ msgid "Preferences"
-#~ msgstr "Tùy thích"
-
-#~ msgid "Re_name"
-#~ msgstr "Đổi tê_n"
-
-#~ msgid "_Bookmarks:"
-#~ msgstr "Đánh _dấu :"
-
-#~ msgid "_Browse with caret"
-#~ msgstr "_Duyệt với con nháy"
-
-#~ msgid "_Fixed width:"
-#~ msgstr "Độ _rộng cố định:"
-
-#~ msgid "_Location:"
-#~ msgstr "Đị_a chỉ:"
-
-#~ msgid "_Title:"
-#~ msgstr "_Tựa đề:"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Dùng phông chữ hệ thống"
-
-#~ msgid "_Variable width:"
-#~ msgstr "Rộng _biến đổi:"
-
-#~ msgid "_Wrap around"
-#~ msgstr "_Bao quanh"
-
-#~ msgid "Font for fixed text"
-#~ msgstr "Phông chữ cho đoạn chữ cố định"
-
-#~ msgid "Font for text"
-#~ msgstr "Phông chữ cho đoạn chữ"
-
-#~ msgid "Font for text with fixed width."
-#~ msgstr "Phông chữ cho đoạn chữ có độ rộng cố định."
-
-#~ msgid "Font for text with variable width."
-#~ msgstr "Phông chữ cho đoạn chữ có độ rộng biến đổi."
-
-#~ msgid "Use a keyboard-controllable caret when viewing pages."
-#~ msgstr "Dùng phím mũi tên điều khiển con trỏ để xem các trang."
-
-#~ msgid "Use caret"
-#~ msgstr "Dùng con trỏ"
-
-#~ msgid "Use system fonts"
-#~ msgstr "Dùng phông chữ hệ thống"
-
-#~ msgid "Use the default fonts set for the system."
-#~ msgstr "Dùng phông mặc định của hệ thống."
-
-#~ msgid "Open Bookmark in New Window"
-#~ msgstr "Mở đánh dấu trong cửa sổ mới"
-
-#~ msgid "Rename Bookmark"
-#~ msgstr "Đổi tên đánh dấu"
-
-#~ msgid "A bookmark titled %s already exists for this page."
-#~ msgstr "Đánh dấu tên %s cho trang này đã có."
-
-#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
-#~ msgstr "Đánh dấu tên <b>%s</b> cho trang này đã có."
-
-#~ msgid "Help Topics"
-#~ msgstr "Chủ đề trợ giúp"
-
-#~ msgid "File not found"
-#~ msgstr "Không tìm thấy tập tin"
-
-#~ msgid "Could not parse file"
-#~ msgstr "Không thể phân tách tập tin"
-
-#~ msgid "Could Not Read File"
-#~ msgstr "Không thể đọc tập tin"
-
-#~ msgid "No information is available about this error."
-#~ msgstr "Không có thông tin về lỗi này."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
-#~ "in an unsupported format."
-#~ msgstr ""
-#~ "Không thể đọc và giải mã tập tin “%s”. Tập tin có thể được nén bằng định "
-#~ "dạng không được hỗ trợ."
-
-#~ msgid "Use a private session"
-#~ msgstr "Dùng phiên làm việc riêng tư"
-
-#~ msgid "Define which cache directory to use"
-#~ msgstr "Định nghĩa thư mục cache cần dùng"
-
-#~ msgid " GNOME Help Browser"
-#~ msgstr " Bộ duyệt trợ giúp Gnome"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
-#~ "page."
-#~ msgstr ""
-#~ "Không thể phân tách tập tin “%s” vì nó không phải trang Man đúng định "
-#~ "dạng."
-
-#~ msgid "Preparing to print"
-#~ msgstr "Đang chuẩn bị in"
-
-#~ msgid "Printing is not supported on this printer"
-#~ msgstr "Không hỗ trợ khả năng in trên máy in này"
-
-#~ msgid "Printer %s does not support postscript printing."
-#~ msgstr "Máy in %s không hỗ trợ khả năng in PostScript"
-
-#~ msgid "Waiting to print"
-#~ msgstr "Đang đợi in"
-
-#~ msgid "An error occurred while printing"
-#~ msgstr "Gặp lỗi khi in"
-
-#~ msgid "It was not possible to print your document: %s"
-#~ msgstr "Không thể in tài liệu: %s"
-
-#~ msgid "the GNOME Support Forums"
-#~ msgstr "diễn đàn hỗ trợ GNOME"
-
-#~ msgid "No results for \"%s\""
-#~ msgstr "Không có kết quả cho “%s”"
-
-#~ msgid ""
-#~ "Try using different words to describe the problem you're having or the "
-#~ "topic you want help with."
-#~ msgstr "Hãy thử dùng cụm từ khác để diễn tả vấn đề hay chủ đề này."
-
-#~ msgid ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-#~ msgstr ""
-#~ "một:các:về:những:tại:vài:như:không:thể:có:lẽ:bởi:do:thoại:làm:bên:trên:"
-#~ "dưới:trái:phải:ở:sẽ:đã:nên:làm:việc:được:từ:đến:tới:đi:cho:giúp:sao:thế:"
-#~ "nào:hộp:khi:lúc:tôi:của:mục:vào:nói:rằng:là:cái:thứ:gì:này:đó:kia:đâu:ai:"
-#~ "với:diễn:tả:ngắt:hỏng"
-
-#~ msgid "re"
-#~ msgstr "NULL"
-
-#~ msgid "ers:er:ing:es:s:'s"
-#~ msgstr "NULL"
-
-#~ msgid "No Comment"
-#~ msgstr "Không đáp ứng"
-
-#~ msgid "Search could not be processed"
-#~ msgstr "Không thể tiến hành tìm kiếm"
-
-#~ msgid "The requested search could not be processed."
-#~ msgstr "Tiến trình tìm kiếm được yêu cầu không thể chạy."
-
-#~ msgid "Cannot process the search"
-#~ msgstr "Không thể chạy tiến trình tìm kiếm"
-
-#~ msgid "The search processor returned invalid results"
-#~ msgstr "Bộ xử lý tìm kiếm đã trả lại kết quả không hợp lệ"
-
-#~ msgid "The page %s was not found in the TOC."
-#~ msgstr "Trang %s không có trong mục lục."
-
-#~ msgid "The requested page was not found in the TOC."
-#~ msgstr "Trang đã yêu cầu không có trong Mục Lục."
-
-#~ msgid ""
-#~ "The TOC file could not be parsed because it is not a well-formed XML "
-#~ "document."
-#~ msgstr ""
-#~ "Không thể phân tách tập tin mục lục vì nó chứa mã XML không đúng định "
-#~ "dạng."
-
-#~ msgid "Broken Transformation"
-#~ msgstr "Tiến trình chuyển dạng bị hỏng"
-
-#~ msgid ""
-#~ "An unknown error occurred while attempting to transform the document."
-#~ msgstr "Gặp lỗi không rõ khi thử chuyển dạng tài liệu."
-
-#~ msgid "_File"
-#~ msgstr "_Tập tin"
-
-#~ msgid "_Edit"
-#~ msgstr "_Sửa"
-
-#~ msgid "_Help"
-#~ msgstr "Trợ g_iúp"
-
-#~ msgid "Print This Document ..."
-#~ msgstr "In tài liệu này..."
-
-#~ msgid "Open _Location"
-#~ msgstr "Mở đị_a chỉ"
-
-#~ msgid "_Close Window"
-#~ msgstr "Đón_g cửa sổ"
-
-#~ msgid "_Select All"
-#~ msgstr "Chọn _tất cả"
-
-#~ msgid "_Find..."
-#~ msgstr "_Tìm..."
-
-#~ msgid "Find Pre_vious"
-#~ msgstr "Tìm _lùi"
-
-#~ msgid "Find previous occurrence of the word or phrase"
-#~ msgstr "Tìm lần xuất hiện trước đó"
-
-#~ msgid "Find Ne_xt"
-#~ msgstr "Tìm tiế_p"
-
-#~ msgid "Find next occurrence of the word or phrase"
-#~ msgstr "Tìm lần xuất hiện sau đó"
-
-#~ msgid "_Preferences"
-#~ msgstr "Tù_y thích"
-
-#~ msgid "_Reload"
-#~ msgstr "Nạp _lại"
-
-#~ msgid "Show previous page in history"
-#~ msgstr "Xem trang trước đó trong lược sử"
-
-#~ msgid "Show next page in history"
-#~ msgstr "Xem trang kế tiếp trong lược sử"
-
-#~ msgid "_Help Topics"
-#~ msgstr "C_hủ đề trợ giúp"
-
-#~ msgid "Go to the listing of help topics"
-#~ msgstr "Tới danh sách các chủ đề trợ giúp"
-
-#~ msgid "_Previous Section"
-#~ msgstr "_Phần trước"
-
-#~ msgid "_Next Section"
-#~ msgstr "Phầ_n kế tiếp"
-
-#~ msgid "_Contents"
-#~ msgstr "Mụ_c lục"
-
-#~ msgid "_Edit Bookmarks..."
-#~ msgstr "_Sửa đánh dấu..."
-
-#~ msgid "_Copy Link Address"
-#~ msgstr "_Chép địa chỉ liên kết"
-
-#~ msgid "Help On this application"
-#~ msgstr "Trợ giúp về ứng dụng này"
-
-#~ msgid "_About"
-#~ msgstr "_Giới thiệu"
-
-#~ msgid "Copy _Email Address"
-#~ msgstr "Chép đị_a chỉ thư"
-
-#~ msgid "Help Browser"
-#~ msgstr "Bộ duyệt trợ giúp"
-
-#~ msgid "Unknown Page"
-#~ msgstr "Trang không rõ"
-
-#~ msgid "The requested URI \"%s\" is invalid"
-#~ msgstr "Yêu cầu URI “%s” không hợp lệ"
-
-#~ msgid "Unable to load page"
-#~ msgstr "Không thể nạp trang"
-
-#~ msgid "Error executing \"gnome-open\""
-#~ msgstr "Gặp lỗi khi thực hiện “gnome-open” (mở)"
-
-#~ msgid "Cannot create search component"
-#~ msgstr "Không thể tạo thành phần tìm kiếm"
-
-#~ msgid "Fin_d:"
-#~ msgstr "Tì_m:"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Tìm _lùi"
-
-#~ msgid "Find _Next"
-#~ msgstr "Tìm tiế_p"
-
-#~ msgid "Phrase not found"
-#~ msgstr "Không tìm thấy cụm từ"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
-#~ "might not have permissions to read it."
-#~ msgstr ""
-#~ "Không thể đọc tập tin “%s”. Hoặc tập tin còn thiếu, hoặc bạn không có "
-#~ "quyền đọc nó."
-
-#~ msgid "translator-credits"
-#~ msgstr "Nhóm Việt hoá GNOME (http://gnomevi.sourceforge.net)"
-
-#~ msgid "A documentation browser and viewer for the Gnome Desktop."
-#~ msgstr "Bộ duyệt và xem tài liệu cho màn hình làm việc GNOME."
