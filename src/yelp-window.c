@@ -285,7 +285,6 @@ yelp_window_set_property (GObject     *object,
 static void
 window_construct (YelpWindow *window)
 {
-    GtkWidget *scroll;
     GtkWidget *box, *button;
     GtkWidget *frame;
     GtkCssProvider *css;
@@ -500,12 +499,7 @@ window_construct (YelpWindow *window)
     box = gtk_overlay_new ();
     gtk_overlay_add_overlay (GTK_OVERLAY (box), GTK_WIDGET (priv->find_bar));
 
-    scroll = gtk_scrolled_window_new (NULL, NULL);
-    g_object_set (scroll, "width-request", 420, NULL);
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scroll),
-                                    GTK_POLICY_AUTOMATIC,
-                                    GTK_POLICY_AUTOMATIC);
-    gtk_container_add (GTK_CONTAINER (box), scroll);
+    gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (priv->view));
     gtk_box_pack_start (GTK_BOX (priv->vbox_view), box, TRUE, TRUE, 0);
 
     g_signal_connect (priv->view, "new-view-requested", G_CALLBACK (view_new_window), window);
@@ -515,7 +509,6 @@ window_construct (YelpWindow *window)
                               G_CALLBACK (window_set_bookmark_buttons), window);
     window_set_bookmark_buttons (window);
     g_signal_connect (priv->view, "notify::root-title", G_CALLBACK (view_root_title), window);
-    gtk_container_add (GTK_CONTAINER (scroll), GTK_WIDGET (priv->view));
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
 
     gtk_drag_dest_set (GTK_WIDGET (window),
