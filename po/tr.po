@@ -9,18 +9,18 @@
 # Fatih Ergüven <fatih@erguven.org>, 2007.
 # Baris Cicek <baris@teamforce.name.tr>, 2004, 2005, 2007, 2008, 2009.
 # Server ACİM <serveracim@gmail.com>, 2010.
-# Muhammet Kara <muhammet.k@gmail.com>, 2011, 2012.
 # Ozan Çağlayan <ozancag@gmail.com>, 2013.
+# Muhammet Kara <muhammetk@gmail.com>, 2011, 2012, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.tr\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2013-04-05 23:43+0000\n"
-"PO-Revision-Date: 2013-04-06 18:35+0300\n"
-"Last-Translator: Ozan Çağlayan <ozancag@gmail.com>\n"
-"Language-Team: Türkçe <>\n"
+"POT-Creation-Date: 2014-12-04 12:02+0000\n"
+"PO-Revision-Date: 2014-12-04 21:07+0200\n"
+"Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
+"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,36 +42,36 @@ msgstr ""
 msgid "Install <string/>"
 msgstr "<string/> ögesini kur"
 
-#: ../libyelp/yelp-bz2-decompressor.c:146
-#: ../libyelp/yelp-lzma-decompressor.c:155
+#: ../libyelp/yelp-bz2-decompressor.c:144
+#: ../libyelp/yelp-lzma-decompressor.c:153
 msgid "Invalid compressed data"
 msgstr "Geçersiz sıkıştırılmış veri"
 
-#: ../libyelp/yelp-bz2-decompressor.c:152
-#: ../libyelp/yelp-lzma-decompressor.c:161
+#: ../libyelp/yelp-bz2-decompressor.c:150
+#: ../libyelp/yelp-lzma-decompressor.c:159
 msgid "Not enough memory"
 msgstr "Bellek yetersiz"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:306
-#: ../libyelp/yelp-mallard-document.c:457 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:297 ../libyelp/yelp-info-document.c:237
+#: ../libyelp/yelp-mallard-document.c:305
+#: ../libyelp/yelp-mallard-document.c:456 ../libyelp/yelp-man-document.c:281
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "%s sayfası %s belgesinde bulunamadı."
 
-#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:417
+#: ../libyelp/yelp-docbook-document.c:332 ../libyelp/yelp-info-document.c:371
+#: ../libyelp/yelp-man-document.c:416
 #, c-format
 msgid "The file does not exist."
 msgstr "Dosya mevcut değil."
 
-#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:427
+#: ../libyelp/yelp-docbook-document.c:342 ../libyelp/yelp-info-document.c:381
+#: ../libyelp/yelp-man-document.c:426
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "'%s' adlı dosya mevcut değil."
 
-#: ../libyelp/yelp-docbook-document.c:342
+#: ../libyelp/yelp-docbook-document.c:357
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -80,7 +80,7 @@ msgstr ""
 "'%s' adlı dosya ayrıştırılamıyor çünkü düzgün biçimlendirilmiş bir XML "
 "belgesi değil."
 
-#: ../libyelp/yelp-docbook-document.c:355
+#: ../libyelp/yelp-docbook-document.c:370
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -89,29 +89,29 @@ msgstr ""
 "'%s' adlı dosya ayrıştırılamıyor çünkü içerdiği dosyalardan biri veya "
 "birkaçı düzgün biçimlendirilmiş XML belgesi değil."
 
-#: ../libyelp/yelp-docbook-document.c:765
+#: ../libyelp/yelp-docbook-document.c:803
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:359
+#: ../libyelp/yelp-docbook-document.c:864 ../libyelp/yelp-info-document.c:314
+#: ../libyelp/yelp-man-document.c:358
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "İstenen sayfa' %s' belgesi içinde bulunamadı."
 
-#: ../libyelp/yelp-document.c:268
+#: ../libyelp/yelp-document.c:266
 msgid "Indexed"
 msgstr "Dizinli"
 
-#: ../libyelp/yelp-document.c:269
+#: ../libyelp/yelp-document.c:267
 msgid "Whether the document content has been indexed"
 msgstr "Belge içeriğinin dizinlenip dizinlenmediğini gösterir"
 
-#: ../libyelp/yelp-document.c:277
+#: ../libyelp/yelp-document.c:275
 msgid "Document URI"
 msgstr "Belge Adresi"
 
-#: ../libyelp/yelp-document.c:278
+#: ../libyelp/yelp-document.c:276
 msgid "The URI which identifies the document"
 msgstr "Belgeyi tanımlayan adres"
 
@@ -129,16 +129,16 @@ msgstr "“%s”de eşleşen yardım sayfası bulunamadı."
 msgid "No matching help pages found."
 msgstr "Eşleşen yardım sayfası bulunamadı."
 
-#: ../libyelp/yelp-error.c:37
+#: ../libyelp/yelp-error.c:35
 #, c-format
 msgid "An unknown error occurred."
 msgstr "Bilinmeyen bir hata oluştu."
 
-#: ../libyelp/yelp-help-list.c:549 ../libyelp/yelp-help-list.c:558
+#: ../libyelp/yelp-help-list.c:546 ../libyelp/yelp-help-list.c:555
 msgid "All Help Documents"
 msgstr "Bütün Yardım Belgeleri"
 
-#: ../libyelp/yelp-info-document.c:397
+#: ../libyelp/yelp-info-document.c:396
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -146,420 +146,364 @@ msgstr ""
 "'%s' dosyası ayrıştırılamıyor çünkü düzgün biçimlendirilmiş bir bilgi "
 "sayfası değil."
 
-#: ../libyelp/yelp-location-entry.c:336
-msgid "View"
-msgstr "Görünüm"
-
-#: ../libyelp/yelp-location-entry.c:337
-msgid "A YelpView instance to control"
-msgstr "Denetleme amaçlı bir YelpGörünümü"
-
-#: ../libyelp/yelp-location-entry.c:352
-msgid "Bookmarks"
-msgstr "Yer İmleri"
-
-#: ../libyelp/yelp-location-entry.c:353
-msgid "A YelpBookmarks implementation instance"
-msgstr "Bir YelpYerİmleri uygulaması örneği"
-
-#: ../libyelp/yelp-location-entry.c:369
-msgid "Enable Search"
-msgstr "Aramayı Etkinleştir"
-
-#: ../libyelp/yelp-location-entry.c:370
-msgid "Whether the location entry can be used as a search field"
-msgstr "Bölge girişi bir arama alanı olarak da kullanılabilir"
-
-#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
-msgid "Search..."
-msgstr "Ara..."
-
-#: ../libyelp/yelp-location-entry.c:783
-msgid "Clear the search text"
-msgstr "Arama metnini temizle"
-
-#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
-msgid "Bookmark this page"
-msgstr "Bu sayfayı yer İmlerine ekle"
-
-#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
-msgid "Remove bookmark"
-msgstr "Yer imini kaldır"
-
-#: ../libyelp/yelp-location-entry.c:1154
-#, c-format
-msgid "Search for “%s”"
-msgstr "\"%s\"i ara"
-
-#: ../libyelp/yelp-location-entry.c:1458
-msgid "Loading"
-msgstr "Yükleniyor"
-
-#: ../libyelp/yelp-mallard-document.c:345
+#: ../libyelp/yelp-mallard-document.c:344
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Dizin '%s' mevcut değil."
 
-#: ../libyelp/yelp-settings.c:156
+#: ../libyelp/yelp-search-entry.c:173
+msgid "View"
+msgstr "Görünüm"
+
+#: ../libyelp/yelp-search-entry.c:174
+msgid "A YelpView instance to control"
+msgstr "Denetleme amaçlı bir YelpGörünümü"
+
+#: ../libyelp/yelp-search-entry.c:189 ../src/yelp-window.c:399
+msgid "Bookmarks"
+msgstr "Yer İmleri"
+
+#: ../libyelp/yelp-search-entry.c:190
+msgid "A YelpBookmarks implementation instance"
+msgstr "Bir YelpYerİmleri uygulaması örneği"
+
+#: ../libyelp/yelp-search-entry.c:440
+#, c-format
+msgid "Search for “%s”"
+msgstr "\"%s\"i ara"
+
+#: ../libyelp/yelp-settings.c:152
 msgid "GtkSettings"
 msgstr "GtkAyarları"
 
-#: ../libyelp/yelp-settings.c:157
+#: ../libyelp/yelp-settings.c:153
 msgid "A GtkSettings object to get settings from"
 msgstr "Bir GtkAyarları nesnesi ayarlarını şuradan alır"
 
-#: ../libyelp/yelp-settings.c:165
+#: ../libyelp/yelp-settings.c:161
 msgid "GtkIconTheme"
 msgstr "GtkSimgeTeması"
 
-#: ../libyelp/yelp-settings.c:166
+#: ../libyelp/yelp-settings.c:162
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Simgeleri şuradan alan bir GtkSimgeTeması"
 
-#: ../libyelp/yelp-settings.c:174
+#: ../libyelp/yelp-settings.c:170
 msgid "Font Adjustment"
 msgstr "Yazıtipi Ayarı"
 
-#: ../libyelp/yelp-settings.c:175
+#: ../libyelp/yelp-settings.c:171
 msgid "A size adjustment to add to font sizes"
 msgstr "Yazıtipi boyutlarına eklenecek olan bir boyut ayarı"
 
-#: ../libyelp/yelp-settings.c:183
+#: ../libyelp/yelp-settings.c:179
 msgid "Show Text Cursor"
 msgstr "Metin İmlecini Göster"
 
-#: ../libyelp/yelp-settings.c:184
+#: ../libyelp/yelp-settings.c:180
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Erişilebilir gezinme için metin imlecini ya da kareti göster"
 
-#: ../libyelp/yelp-settings.c:192
+#: ../libyelp/yelp-settings.c:188
 msgid "Editor Mode"
 msgstr "Düzenleme Kipi"
 
-#: ../libyelp/yelp-settings.c:193
+#: ../libyelp/yelp-settings.c:189
 msgid "Enable features useful to editors"
 msgstr "Düzenleyiciler için özellikleri kullandır"
 
-#: ../libyelp/yelp-sqlite-storage.c:150
+#: ../libyelp/yelp-sqlite-storage.c:147
 msgid "Database filename"
 msgstr "Veritabanı dosya adı"
 
-#: ../libyelp/yelp-sqlite-storage.c:151
+#: ../libyelp/yelp-sqlite-storage.c:148
 msgid "The filename of the sqlite database"
 msgstr "Sqlite veritabanının dosya adı"
 
-#: ../libyelp/yelp-transform.c:171
+#: ../libyelp/yelp-transform.c:169
 msgid "XSLT Stylesheet"
 msgstr "XSLT Stil Sayfası"
 
-#: ../libyelp/yelp-transform.c:172
+#: ../libyelp/yelp-transform.c:170
 msgid "The location of the XSLT stylesheet"
 msgstr "XSLT stil sayfasının bölgesi"
 
-#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
+#: ../libyelp/yelp-transform.c:378 ../libyelp/yelp-transform.c:393
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "XSLT biçem sayfası '%s' ya bulunmuyor ya da geçerli değil."
 
-#: ../libyelp/yelp-transform.c:528
+#: ../libyelp/yelp-transform.c:527
 msgid "No href attribute found on yelp:document\n"
 msgstr "yelp:document üzerinde hiçbir href özniteliği bulunamadı\n"
 
-#: ../libyelp/yelp-transform.c:543
+#: ../libyelp/yelp-transform.c:542
 msgid "Out of memory"
 msgstr "Bellek yetersiz"
 
-#: ../libyelp/yelp-view.c:131
-msgid "_Print..."
-msgstr "_Yazdır..."
-
-#: ../libyelp/yelp-view.c:136
-msgid "_Back"
-msgstr "_Geri"
-
-#: ../libyelp/yelp-view.c:141
-msgid "_Forward"
-msgstr "İ_leri"
-
-#: ../libyelp/yelp-view.c:146
-msgid "_Previous Page"
-msgstr "Ön_ceki Sayfa"
-
-#: ../libyelp/yelp-view.c:151
-msgid "_Next Page"
-msgstr "_Sonraki Sayfa"
-
-#: ../libyelp/yelp-view.c:423
+#: ../libyelp/yelp-view.c:446
 msgid "Yelp URI"
 msgstr "Yelp URI adresi"
 
-#: ../libyelp/yelp-view.c:424
+#: ../libyelp/yelp-view.c:447
 msgid "A YelpUri with the current location"
 msgstr "Şu anki bölge ile birlikte YelpUri adresi"
 
-#: ../libyelp/yelp-view.c:432
+#: ../libyelp/yelp-view.c:455
 msgid "Loading State"
 msgstr "Yükleniyor"
 
-#: ../libyelp/yelp-view.c:433
+#: ../libyelp/yelp-view.c:456
 msgid "The loading state of the view"
 msgstr "Görünümün yükleme durumu"
 
-#: ../libyelp/yelp-view.c:442
+#: ../libyelp/yelp-view.c:465
 msgid "Page ID"
 msgstr "Sayfa Kimliği"
 
-#: ../libyelp/yelp-view.c:443
+#: ../libyelp/yelp-view.c:466
 msgid "The ID of the root page of the page being viewed"
 msgstr "Görüntülenen kök sayfasının kimliği"
 
-#: ../libyelp/yelp-view.c:451
+#: ../libyelp/yelp-view.c:474
 msgid "Root Title"
 msgstr "Kök Başlık"
 
-#: ../libyelp/yelp-view.c:452
+#: ../libyelp/yelp-view.c:475
 msgid "The title of the root page of the page being viewed"
 msgstr "Görüntülenen kök sayfasının başlığı"
 
-#: ../libyelp/yelp-view.c:460
+#: ../libyelp/yelp-view.c:483
 msgid "Page Title"
 msgstr "Sayfa Başlığı"
 
-#: ../libyelp/yelp-view.c:461
+#: ../libyelp/yelp-view.c:484
 msgid "The title of the page being viewed"
 msgstr "Görüntülenen sayfanın başlığı"
 
-#: ../libyelp/yelp-view.c:469
+#: ../libyelp/yelp-view.c:492
 msgid "Page Description"
 msgstr "Sayfa Tanımı"
 
-#: ../libyelp/yelp-view.c:470
+#: ../libyelp/yelp-view.c:493
 msgid "The description of the page being viewed"
 msgstr "Görüntülenen sayfanın tanımı"
 
-#: ../libyelp/yelp-view.c:478
+#: ../libyelp/yelp-view.c:501
 msgid "Page Icon"
 msgstr "Sayfa Simgesi"
 
-#: ../libyelp/yelp-view.c:479
+#: ../libyelp/yelp-view.c:502
 msgid "The icon of the page being viewed"
 msgstr "Görüntülenen sayfanın simgesi"
 
-#: ../libyelp/yelp-view.c:720
+#: ../libyelp/yelp-view.c:744
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "PackageKit kurulmamış. Paket kurulum bağlantıları PackageKit kurulumunu "
 "gerekli kılıyor."
 
-#: ../libyelp/yelp-view.c:1014
+#: ../libyelp/yelp-view.c:1040
 msgid "Save Image"
 msgstr "Resmi Kaydet"
 
-#: ../libyelp/yelp-view.c:1109
+#: ../libyelp/yelp-view.c:1135
 msgid "Save Code"
 msgstr "Kodu Kaydet"
 
-#: ../libyelp/yelp-view.c:1272
+#: ../libyelp/yelp-view.c:1298
 #, c-format
 msgid "Send email to %s"
 msgstr "%s kişisine e-posta gönder"
 
-#: ../libyelp/yelp-view.c:1287
+#: ../libyelp/yelp-view.c:1313
 msgid "_Install Packages"
 msgstr "Paketleri _Kur"
 
-#: ../libyelp/yelp-view.c:1295
+#: ../libyelp/yelp-view.c:1321
 msgid "_Open Link"
 msgstr "Bağlantı _Aç"
 
-#: ../libyelp/yelp-view.c:1302
+#: ../libyelp/yelp-view.c:1328
 msgid "_Copy Link Location"
 msgstr "Bağlantı Konumunu _Kopyala"
 
-#: ../libyelp/yelp-view.c:1308
+#: ../libyelp/yelp-view.c:1334
 msgid "Open Link in New _Window"
 msgstr "Yeni Pencerede Bağlantı _Aç"
 
-#: ../libyelp/yelp-view.c:1360
-msgid "_Save Image As..."
-msgstr "_Sayfayı Farklı Kaydet..."
+#: ../libyelp/yelp-view.c:1388
+#| msgid "_Save Image As..."
+msgid "_Save Image As…"
+msgstr "_Resmi Farklı Kaydet…"
 
-#: ../libyelp/yelp-view.c:1362
-msgid "_Save Video As..."
-msgstr "_Vidyoyu Farklı Kaydet..."
+#: ../libyelp/yelp-view.c:1390
+#| msgid "_Save Video As..."
+msgid "_Save Video As…"
+msgstr "_Videoyu Farklı Kaydet…"
 
-#: ../libyelp/yelp-view.c:1369
-msgid "S_end Image To..."
-msgstr "Resmi Gö_nder..."
+#: ../libyelp/yelp-view.c:1397
+#| msgid "S_end Image To..."
+msgid "S_end Image To…"
+msgstr "Resmi Gö_nder…"
 
-#: ../libyelp/yelp-view.c:1371
-msgid "S_end Video To..."
-msgstr "Vidyoyu Gön_der..."
+#: ../libyelp/yelp-view.c:1399
+#| msgid "S_end Video To..."
+msgid "S_end Video To…"
+msgstr "Videoyu Gön_der…"
 
-#: ../libyelp/yelp-view.c:1382
+#: ../libyelp/yelp-view.c:1410
 msgid "_Copy Text"
 msgstr "_Metni Kopyala"
 
-#: ../libyelp/yelp-view.c:1395
+#: ../libyelp/yelp-view.c:1423
 msgid "C_opy Code Block"
 msgstr "Kod Bloğunu K_aydet"
 
-#: ../libyelp/yelp-view.c:1400
-msgid "Save Code _Block As..."
-msgstr "Kod Bloğuğu F_arklı Kaydet..."
+#: ../libyelp/yelp-view.c:1428
+#| msgid "Save Code _Block As..."
+msgid "Save Code _Block As…"
+msgstr "Kod Bloğunu F_arklı Kaydet…"
 
-#: ../libyelp/yelp-view.c:1507
+#: ../libyelp/yelp-view.c:1535
 #, c-format
 msgid "See all search results for “%s”"
 msgstr "\"%s\" için tüm arama sonuçlarını gör"
 
-#: ../libyelp/yelp-view.c:1628
+#: ../libyelp/yelp-view.c:1656
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "‘%s’ için belge yüklenemiyor"
 
-#: ../libyelp/yelp-view.c:1634
+#: ../libyelp/yelp-view.c:1662
 #, c-format
 msgid "Could not load a document"
 msgstr "Belge yüklenemiyor"
 
-#: ../libyelp/yelp-view.c:1709
+#: ../libyelp/yelp-view.c:1737
 msgid "Document Not Found"
 msgstr "Belge Bulunamadı"
 
-#: ../libyelp/yelp-view.c:1711
+#: ../libyelp/yelp-view.c:1739
 msgid "Page Not Found"
 msgstr "Sayfa Bulunamadı"
 
-#: ../libyelp/yelp-view.c:1714
+#: ../libyelp/yelp-view.c:1742
 msgid "Cannot Read"
 msgstr "Okunamıyor"
 
-#: ../libyelp/yelp-view.c:1720
+#: ../libyelp/yelp-view.c:1748
 msgid "Unknown Error"
 msgstr "Bilinmeyen Hata"
 
-#: ../libyelp/yelp-view.c:1740
+#: ../libyelp/yelp-view.c:1768
 msgid "Search for packages containing this document."
 msgstr "Bu belgeyi içeren paketleri ara."
 
-#: ../libyelp/yelp-view.c:1892
+#: ../libyelp/yelp-view.c:1918
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Bu URI ‘%s’ geçerli bir sayfaya yönlendirilemiyor."
 
-#: ../libyelp/yelp-view.c:1898
+#: ../libyelp/yelp-view.c:1924
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI geçerli bir sayfaya yönlendirmiyor."
 
-#: ../libyelp/yelp-view.c:1904
+#: ../libyelp/yelp-view.c:1930
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Bu URI ‘%s’ çözümlenemiyor."
 
-#: ../src/yelp-application.c:65
+#: ../src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "Düzenleyici kipini aç"
 
-#: ../src/yelp-application.c:128
-msgid "_Larger Text"
-msgstr "_Daha Büyük Metin"
-
-#: ../src/yelp-application.c:130
-msgid "Increase the size of the text"
-msgstr "Metnin boyutunu büyüt"
-
-#: ../src/yelp-application.c:133
-msgid "_Smaller Text"
-msgstr "_Daha Küçük Metin"
-
-#: ../src/yelp-application.c:135
-msgid "Decrease the size of the text"
-msgstr "Metnin boyutunu küçült"
-
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
+#: ../src/yelp-application.c:272 ../src/yelp-window.c:1165
 #: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Yardım"
 
-#: ../src/yelp-application.c:288
-msgid "Show Text _Cursor"
-msgstr "Metin İmlecini _Göster"
+#: ../src/yelp-application.c:322
+#| msgid "_New Window"
+msgid "New Window"
+msgstr "Yeni Pencere"
 
-#: ../src/yelp-window.c:236
-msgid "_Page"
-msgstr "_Sayfa"
+#: ../src/yelp-application.c:326
+#| msgid "_Larger Text"
+msgid "Larger Text"
+msgstr "Daha Büyük Metin"
 
-#: ../src/yelp-window.c:237
-msgid "_View"
-msgstr "_Görünüm"
+#: ../src/yelp-application.c:327
+#| msgid "_Smaller Text"
+msgid "Smaller Text"
+msgstr "Daha Küçük Metin"
 
-#: ../src/yelp-window.c:238
-msgid "_Go"
-msgstr "_Git"
-
-#: ../src/yelp-window.c:239
-msgid "_Bookmarks"
-msgstr "_Yer İmleri"
-
-#: ../src/yelp-window.c:242
-msgid "_New Window"
-msgstr "_Yeni Pencere"
-
-#: ../src/yelp-window.c:247
-msgid "_Close"
-msgstr "_Kapat"
-
-#: ../src/yelp-window.c:252
-msgid "_All Documents"
-msgstr "_Tüm Belgeler"
-
-#: ../src/yelp-window.c:256
-msgid "_Add Bookmark"
-msgstr "Yer İmi _Ekle"
-
-#: ../src/yelp-window.c:261
-msgid "_Remove Bookmark"
-msgstr "_Yer İmini Kaldır"
-
-#: ../src/yelp-window.c:265
-msgid "Find in Page..."
-msgstr "Sayfada Bul..."
-
-#: ../src/yelp-window.c:275
-msgid "Open Location"
-msgstr "Konumu Aç"
-
-#: ../src/yelp-window.c:301
+#: ../src/yelp-window.c:206
 msgid "Application"
 msgstr "Uygulama"
 
-#: ../src/yelp-window.c:302
+#: ../src/yelp-window.c:207
 msgid "A YelpApplication instance that controls this window"
 msgstr "Bu pencereyi denetleyen bir YelpUygulama örneği"
 
-#: ../src/yelp-window.c:429
-msgid "Read Link _Later"
-msgstr "Bağlantıyı _Daha Sonra Oku"
+#: ../src/yelp-window.c:325
+#| msgid "_Back"
+msgid "Back"
+msgstr "Geri"
 
-#: ../src/yelp-window.c:526
-msgid "Find:"
-msgstr "Bul:"
+#: ../src/yelp-window.c:332
+#| msgid "_Forward"
+msgid "Forward"
+msgstr "İleri"
 
-#: ../src/yelp-window.c:548
-msgid "Read Later"
-msgstr "Sonra Oku"
+#: ../src/yelp-window.c:343
+msgid "Menu"
+msgstr ""
 
-#: ../src/yelp-window.c:1180
-#, c-format
-msgid "%i match"
-msgid_plural "%i matches"
-msgstr[0] "%i uyar"
+#: ../src/yelp-window.c:348
+#| msgid "Find:"
+msgid "Find…"
+msgstr "Bul…"
 
-#: ../src/yelp-window.c:1189
-msgid "No matches"
-msgstr "Uyan yok"
+#: ../src/yelp-window.c:349
+msgid "Print…"
+msgstr ""
+
+#: ../src/yelp-window.c:354
+#| msgid "_Previous Page"
+msgid "Previous Page"
+msgstr "Önceki Sayfa"
+
+#: ../src/yelp-window.c:355
+#| msgid "_Next Page"
+msgid "Next Page"
+msgstr "Sonraki Sayfa"
+
+#: ../src/yelp-window.c:360
+#, fuzzy
+#| msgid "Help"
+msgid "All Help"
+msgstr "Yardım"
+
+#: ../src/yelp-window.c:382
+msgid "Search (Ctrl+S)"
+msgstr ""
+
+#: ../src/yelp-window.c:416
+#| msgid "Bookmarks"
+msgid "No bookmarks"
+msgstr "Yer imi yok"
+
+#: ../src/yelp-window.c:424
+#| msgid "_Add Bookmark"
+msgid "Add Bookmark"
+msgstr "Yer İmi Ekle"
+
+#: ../src/yelp-window.c:430
+#| msgid "_Remove Bookmark"
+msgid "Remove Bookmark"
+msgstr "Yer İmini Kaldır"
 
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
@@ -568,3 +512,73 @@ msgstr "GNOME ile yardım alın"
 #: ../yelp.desktop.in.in.h:3
 msgid "documentation;information;manual;"
 msgstr "belgelendirme;bilgi;kılavuz;"
+
+#~ msgid "Enable Search"
+#~ msgstr "Aramayı Etkinleştir"
+
+#~ msgid "Whether the location entry can be used as a search field"
+#~ msgstr "Bölge girişi bir arama alanı olarak da kullanılabilir"
+
+#~ msgid "Search..."
+#~ msgstr "Ara..."
+
+#~ msgid "Clear the search text"
+#~ msgstr "Arama metnini temizle"
+
+#~ msgid "Bookmark this page"
+#~ msgstr "Bu sayfayı yer İmlerine ekle"
+
+#~ msgid "Remove bookmark"
+#~ msgstr "Yer imini kaldır"
+
+#~ msgid "Loading"
+#~ msgstr "Yükleniyor"
+
+#~ msgid "_Print..."
+#~ msgstr "_Yazdır..."
+
+#~ msgid "Increase the size of the text"
+#~ msgstr "Metnin boyutunu büyüt"
+
+#~ msgid "Decrease the size of the text"
+#~ msgstr "Metnin boyutunu küçült"
+
+#~ msgid "Show Text _Cursor"
+#~ msgstr "Metin İmlecini _Göster"
+
+#~ msgid "_Page"
+#~ msgstr "_Sayfa"
+
+#~ msgid "_View"
+#~ msgstr "_Görünüm"
+
+#~ msgid "_Go"
+#~ msgstr "_Git"
+
+#~ msgid "_Bookmarks"
+#~ msgstr "_Yer İmleri"
+
+#~ msgid "_Close"
+#~ msgstr "_Kapat"
+
+#~ msgid "_All Documents"
+#~ msgstr "_Tüm Belgeler"
+
+#~ msgid "Find in Page..."
+#~ msgstr "Sayfada Bul..."
+
+#~ msgid "Open Location"
+#~ msgstr "Konumu Aç"
+
+#~ msgid "Read Link _Later"
+#~ msgstr "Bağlantıyı _Daha Sonra Oku"
+
+#~ msgid "Read Later"
+#~ msgstr "Sonra Oku"
+
+#~ msgid "%i match"
+#~ msgid_plural "%i matches"
+#~ msgstr[0] "%i uyar"
+
+#~ msgid "No matches"
+#~ msgstr "Uyan yok"
