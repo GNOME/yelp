@@ -160,7 +160,7 @@ main (gint argc, gchar **argv)
     xmlXIncludeProcessFlags (doc,
 			     XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
 			     XML_PARSE_NOENT   | XML_PARSE_NONET   );
-    if (!yelp_transform_start (transform, doc, (xmlDocPtr)params, NULL))
+    if (!yelp_transform_start (transform, doc, NULL, (const gchar **) params))
 	return 1;
 
     if (random_timeout) {
