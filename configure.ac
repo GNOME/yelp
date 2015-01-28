@@ -60,6 +60,7 @@ if test "x$GCC" = "xyes"; then
 fi
 
 # i18n stuff
+AX_REQUIRE_DEFINED([IT_PROG_INTLTOOL])
 IT_PROG_INTLTOOL([0.41.0])
 
 ALL_LINGUAS="`grep -v '^#' "$srcdir/po/LINGUAS" | tr '\n' ' '`"
@@ -167,6 +168,7 @@ AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CFLAGS])
 AC_SUBST([AM_LDFLAGS])
 
+AX_REQUIRE_DEFINED([GTK_DOC_CHECK])
 GTK_DOC_CHECK([1.13],[--flavour no-tmpl])
 
 AC_CONFIG_FILES([
