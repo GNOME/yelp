@@ -117,8 +117,6 @@ main (gint argc, gchar **argv)
     gchar *stylesheet;
     gchar *file;
 
-    g_type_init ();
-
     context = g_option_context_new ("[STYLESHEET] FILE");
     g_option_context_add_main_entries (context, options, NULL);
     g_option_context_parse (context, &argc, &argv, NULL);

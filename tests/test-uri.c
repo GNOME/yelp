@@ -223,7 +223,6 @@ main (int argc, char **argv)
     YelpUri *parent = NULL;
     YelpUri *uri = NULL;
 
-    g_type_init ();
     g_log_set_always_fatal (G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL);
         
     if (argc < 2) {

@@ -41,8 +41,6 @@ main (int argc, char **argv)
         return 1;
     }
 
-    g_type_init ();
-
     file = g_file_new_for_path (argv[1]);
     file_stream = g_file_read (file, NULL, NULL);
     converter = yelp_magic_decompressor_new ();
