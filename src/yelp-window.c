@@ -37,8 +37,6 @@
 #include "yelp-application.h"
 #include "yelp-window.h"
 
-static void          yelp_window_init             (YelpWindow         *window);
-static void          yelp_window_class_init       (YelpWindowClass    *klass);
 static void          yelp_window_dispose          (GObject            *object);
 static void          yelp_window_finalize         (GObject            *object);
 static void          yelp_window_get_property     (GObject            *object,

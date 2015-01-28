@@ -68,8 +68,6 @@ struct _YelpApplicationLoad {
     gboolean new;
 };
 
-static void          yelp_application_init             (YelpApplication        *app);
-static void          yelp_application_class_init       (YelpApplicationClass   *klass);
 static void          yelp_application_iface_init       (YelpBookmarksInterface *iface);
 static void          yelp_application_dispose          (GObject                *object);
 static void          yelp_application_finalize         (GObject                *object);
