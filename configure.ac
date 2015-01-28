@@ -10,6 +10,8 @@ AM_MAINTAINER_MODE([enable])
 
 AM_SILENT_RULES([yes])
 
+AX_CHECK_ENABLE_DEBUG([info], [YELP_DEBUG])
+
 # Check for programs
 AC_PROG_CC
 AC_PROG_CC_C_O
@@ -42,16 +44,10 @@ AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
 
 
-GNOME_DEBUG_CHECK
 GNOME_COMPILE_WARNINGS([maximum])
 GNOME_MAINTAINER_MODE_DEFINES
 
 MORE_WARN_FLAGS=
-
-if test "x$enable_debug" = "xyes"; then
-	AC_DEFINE([YELP_DEBUG],[1],[Enable Yelp debugging])
-	AM_CFLAGS="$AM_CFLAGS -pedantic -ansi"
-fi
 
 dnl NOTE : it appears that some systems do not like it when you use line
 dnl        continuation charactes to split CFLAGS into readable chunks
