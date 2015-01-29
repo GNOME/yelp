@@ -106,4 +106,6 @@ main (int argc, char **argv)
     gtk_widget_show_all (GTK_WIDGET (window));
 
     gtk_main ();
+
+    return 0;
 }
