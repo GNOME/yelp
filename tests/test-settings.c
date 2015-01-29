@@ -33,43 +33,43 @@ static GtkWidget *icon_choosers[YELP_SETTINGS_NUM_ICONS];
 static GtkWidget *icon_images[YELP_SETTINGS_NUM_ICONS];
 static GtkWidget *font_choosers[YELP_SETTINGS_NUM_FONTS];
 
+#define FORMAT_TMPL "<html><head>" \
+    "<style>" \
+    "body { background-color: %s; color: %s; }" \
+    "div, pre {" \
+    "  margin: 0.5em; padding: 0.2em;" \
+    "  border: solid 3px %s;" \
+    "}" \
+    "</style>" \
+    "</head><body>" \
+    "<pre>SOME\nMONOSPACE\nTEXT</pre>" \
+    "<div><table>" \
+    "<tr><td>YELP_SETTINGS_COLOR_BASE:</td><td>%s</td></tr>" \
+    "<tr style='color: %s'><td>YELP_SETTINGS_COLOR_TEXT:</td><td>%s</td></tr>" \
+    "<tr style='color: %s'><td>YELP_SETTINGS_COLOR_TEXT_LIGHT:</td><td>%s</td></tr>" \
+    "<tr style='color: %s'><td>YELP_SETTINGS_COLOR_LINK:</td><td>%s</td></tr>" \
+    "<tr style='color: %s'><td>YELP_SETTINGS_COLOR_LINK_VISITED:</td><td>%s</td></tr>" \
+    "</table></div>" \
+    "<div style='background-color:%s;border-color:%s'>" \
+    "<table><tr><td>YELP_SETTINGS_COLOR_GRAY_BASE:</td><td>%s</td></tr>" \
+    "<tr><td>YELP_SETTINGS_COLOR_GRAY_BORDER:</td><td>%s</tr></table></div>" \
+    "<div style='background-color:%s;border-color:%s'>" \
+    "<table><tr><td>YELP_SETTINGS_COLOR_BLUE_BASE:</td><td>%s</td></tr>" \
+    "<tr><td>YELP_SETTINGS_COLOR_BLUE_BORDER:</td><td>%s</tr></table></div>" \
+    "<div style='background-color:%s;border-color:%s'>" \
+    "<table><tr><td>YELP_SETTINGS_COLOR_RED_BASE:</td><td>%s</td></tr>" \
+    "<tr><td>YELP_SETTINGS_COLOR_RED_BORDER:</td><td>%s</tr></table></div>" \
+    "<div style='background-color:%s;border-color:%s'>" \
+    "<table><tr><td>YELP_SETTINGS_COLOR_YELLOW_BASE:</td><td>%s</td></tr>" \
+    "<tr><td>YELP_SETTINGS_COLOR_YELLOW_BORDER:</td><td>%s</tr></table></div>" \
+    "</body></html>"
+
 static void
 colors_changed (YelpSettings *unused_settings, gpointer user_data)
 {
-    static const gchar *tmpl =
-	"<html><head>"
-	"<style>"
-	"body { background-color: %s; color: %s; }"
-	"div, pre {"
-	"  margin: 0.5em; padding: 0.2em;"
-	"  border: solid 3px %s;"
-	"}"
-	"</style>"
-	"</head><body>"
-	"<pre>SOME\nMONOSPACE\nTEXT</pre>"
-	"<div><table>"
-	"<tr><td>YELP_SETTINGS_COLOR_BASE:</td><td>%s</td></tr>"
-	"<tr style='color: %s'><td>YELP_SETTINGS_COLOR_TEXT:</td><td>%s</td></tr>"
-	"<tr style='color: %s'><td>YELP_SETTINGS_COLOR_TEXT_LIGHT:</td><td>%s</td></tr>"
-	"<tr style='color: %s'><td>YELP_SETTINGS_COLOR_LINK:</td><td>%s</td></tr>"
-	"<tr style='color: %s'><td>YELP_SETTINGS_COLOR_LINK_VISITED:</td><td>%s</td></tr>"
-	"</table></div>"
-	"<div style='background-color:%s;border-color:%s'>"
-	"<table><tr><td>YELP_SETTINGS_COLOR_GRAY_BASE:</td><td>%s</td></tr>"
-	"<tr><td>YELP_SETTINGS_COLOR_GRAY_BORDER:</td><td>%s</tr></table></div>"
-	"<div style='background-color:%s;border-color:%s'>"
-	"<table><tr><td>YELP_SETTINGS_COLOR_BLUE_BASE:</td><td>%s</td></tr>"
-	"<tr><td>YELP_SETTINGS_COLOR_BLUE_BORDER:</td><td>%s</tr></table></div>"
-	"<div style='background-color:%s;border-color:%s'>"
-	"<table><tr><td>YELP_SETTINGS_COLOR_RED_BASE:</td><td>%s</td></tr>"
-	"<tr><td>YELP_SETTINGS_COLOR_RED_BORDER:</td><td>%s</tr></table></div>"
-	"<div style='background-color:%s;border-color:%s'>"
-	"<table><tr><td>YELP_SETTINGS_COLOR_YELLOW_BASE:</td><td>%s</td></tr>"
-	"<tr><td>YELP_SETTINGS_COLOR_YELLOW_BORDER:</td><td>%s</tr></table></div>"
-	"</body></html>";
     gchar **colors = yelp_settings_get_colors (settings);
     gchar *page;
-    page = g_strdup_printf (tmpl,
+    page = g_strdup_printf (FORMAT_TMPL,
 			    colors[YELP_SETTINGS_COLOR_BASE], colors[YELP_SETTINGS_COLOR_TEXT],
 			    colors[YELP_SETTINGS_COLOR_BASE], colors[YELP_SETTINGS_COLOR_BASE],
 			    colors[YELP_SETTINGS_COLOR_TEXT], colors[YELP_SETTINGS_COLOR_TEXT],
