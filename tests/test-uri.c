@@ -76,6 +76,9 @@ print_uri (gchar *orig, YelpUri *uri, GOutputStream *stream)
     case YELP_URI_DOCUMENT_TYPE_UNRESOLVED:
         type = "UNRESOLVED";
         break;
+    default:
+        g_assert_not_reached ();
+        break;
     }
 
     out = g_strdup_printf ("DOCUMENT TYPE: %s\n", type);
