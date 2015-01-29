@@ -61,9 +61,6 @@ int
 main (int argc, char **argv)
 {
     GtkWidget *window, *vbox, *entry, *scroll, *view;
-    YelpUri *uri;
-    YelpDocument *document;
-    GCancellable *cancellable;
 
     gtk_init (&argc, &argv);
 
