@@ -34,7 +34,7 @@ static GtkWidget *icon_images[YELP_SETTINGS_NUM_ICONS];
 static GtkWidget *font_choosers[YELP_SETTINGS_NUM_FONTS];
 
 static void
-colors_changed (YelpSettings *settings, gpointer user_data)
+colors_changed (YelpSettings *unused_settings, gpointer user_data)
 {
     static const gchar *tmpl =
 	"<html><head>"
@@ -94,7 +94,7 @@ colors_changed (YelpSettings *settings, gpointer user_data)
 }
 
 static void
-icons_changed (YelpSettings *settings, gpointer user_data)
+icons_changed (YelpSettings *unused_settings, gpointer user_data)
 {
     gint i;
     for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++) {
@@ -107,7 +107,7 @@ icons_changed (YelpSettings *settings, gpointer user_data)
 }
 
 static void
-fonts_changed (YelpSettings *settings, gpointer user_data)
+fonts_changed (YelpSettings *unused_settings, gpointer user_data)
 {
     g_object_set (websettings,
 		  "default-font-family", yelp_settings_get_font_family (settings, YELP_SETTINGS_FONT_VARIABLE),
