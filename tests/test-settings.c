@@ -121,7 +121,7 @@ static void
 color_set (GtkColorButton *button,
 	   gpointer        user_data)
 {
-    GdkColor color;
+    GdkRGBA rgba;
     gchar str[8];
     gint i;
     for (i = 0; i < YELP_SETTINGS_NUM_COLORS; i++)
@@ -129,8 +129,11 @@ color_set (GtkColorButton *button,
 	    break;
     g_return_if_fail (i < YELP_SETTINGS_NUM_COLORS);
 
-    gtk_color_button_get_color (button, &color);
-    g_snprintf (str, 8, "#%02X%02X%02X", color.red / 255, color.green / 255, color.blue / 255);
+    gtk_color_chooser_get_rgba (GTK_COLOR_CHOOSER (button), &rgba);
+    g_snprintf (str, 8, "#%02X%02X%02X",
+                (guint)(0.5 + CLAMP (rgba.red, 0., 1.) * 255),
+                (guint)(0.5 + CLAMP (rgba.green, 0., 1.) * 255),
+                (guint)(0.5 + CLAMP (rgba.blue, 0., 1.) * 255));
     yelp_settings_set_colors (settings, i, str, -1);
 }
 
@@ -225,7 +228,7 @@ main (int argc, char **argv)
     g_signal_connect (widget, "toggled", G_CALLBACK (use_gtk_settings_toggled), NULL);
     gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
 
-    color_table = gtk_table_new (2, 7, TRUE);
+    color_table = gtk_grid_new ();
     gtk_widget_set_sensitive (color_table, FALSE);
     gtk_box_pack_start (GTK_BOX (vbox), color_table, FALSE, FALSE, 0);
 
@@ -233,16 +236,15 @@ main (int argc, char **argv)
 	color_buttons[i] = gtk_color_button_new ();
 	g_signal_connect (color_buttons[i], "color-set", G_CALLBACK (color_set), NULL);
 	if (i == 0) {
-	    gtk_table_attach (GTK_TABLE (color_table), color_buttons[i],
-			      0, 1, 0, 2, 0, GTK_FILL, 0, 0);
+            gtk_grid_attach (GTK_GRID (color_table), color_buttons[i],
+                             0, 0, 1, 2);
 	}
 	else {
-	    gtk_table_attach (GTK_TABLE (color_table), color_buttons[i],
-			      (i + 1) / 2,
-			      (i + 1) / 2 + 1,
-			      (i + 1) % 2, 
-			      (i + 1) % 2 + 1,
-			      0, 0, 0, 0);
+	    gtk_grid_attach (GTK_GRID (color_table), color_buttons[i],
+			     (i + 1) / 2,
+			     (i + 1) % 2,
+			     1,
+			     1);
 	}
     }
 
@@ -260,30 +262,30 @@ main (int argc, char **argv)
     vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 6);
     gtk_box_pack_start (GTK_BOX (hbox), vbox, TRUE, TRUE, 0);
 
-    table = gtk_table_new (2, 2, FALSE);
+    table = gtk_grid_new ();
     gtk_box_pack_start (GTK_BOX (vbox), table, FALSE, FALSE, 0);
 
     widget = gtk_label_new ("Variable");
     g_object_set (widget, "xalign", 0.0, NULL);
-    gtk_table_attach (GTK_TABLE (table), widget, 0, 1, 0, 1, GTK_FILL, 0, 0, 0);
+    gtk_grid_attach (GTK_GRID (table), widget, 0, 0, 1, 1);
     font_choosers[YELP_SETTINGS_FONT_VARIABLE] = gtk_font_button_new ();
     g_signal_connect (font_choosers[YELP_SETTINGS_FONT_VARIABLE], "notify::font-name",
 		      G_CALLBACK (font_set), NULL);
     gtk_font_button_set_font_name (GTK_FONT_BUTTON (font_choosers[YELP_SETTINGS_FONT_VARIABLE]),
 				   "Sans 8");
-    gtk_table_attach (GTK_TABLE (table), font_choosers[YELP_SETTINGS_FONT_VARIABLE],
-		      1, 2, 0, 1, GTK_FILL | GTK_EXPAND, 0, 6, 0);
+    gtk_grid_attach (GTK_GRID (table), font_choosers[YELP_SETTINGS_FONT_VARIABLE],
+                     1, 0, 1, 1);
 
     widget = gtk_label_new ("Fixed");
     g_object_set (widget, "xalign", 0.0, NULL);
-    gtk_table_attach (GTK_TABLE (table), widget, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
+    gtk_grid_attach (GTK_GRID (table), widget, 0, 1, 1, 1);
     font_choosers[YELP_SETTINGS_FONT_FIXED] = gtk_font_button_new ();
     g_signal_connect (font_choosers[YELP_SETTINGS_FONT_FIXED], "notify::font-name",
 		      G_CALLBACK (font_set), NULL);
     gtk_font_button_set_font_name (GTK_FONT_BUTTON (font_choosers[YELP_SETTINGS_FONT_FIXED]),
 				   "Monospace 8");
-    gtk_table_attach (GTK_TABLE (table), font_choosers[YELP_SETTINGS_FONT_FIXED],
-		      1, 2, 1, 2, GTK_FILL | GTK_EXPAND, 0, 6, 0);
+    gtk_grid_attach (GTK_GRID (table), font_choosers[YELP_SETTINGS_FONT_FIXED],
+                     1, 1, 1, 1);
 
     widget = gtk_check_button_new_with_label ("Use GtkIconTheme");
     g_object_set (widget, "active", TRUE, NULL);
@@ -294,20 +296,19 @@ main (int argc, char **argv)
     g_signal_connect (widget, "toggled", G_CALLBACK (use_small_icons_toggled), NULL);
     gtk_box_pack_start (GTK_BOX (vbox), widget, FALSE, FALSE, 0);
 
-    icon_table = gtk_table_new (6, 2, FALSE);
+    icon_table = gtk_grid_new ();
     gtk_widget_set_sensitive (icon_table, FALSE);
     gtk_box_pack_start (GTK_BOX (vbox), icon_table, FALSE, FALSE, 0);
 
     for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++) {
 	const gchar *labels[YELP_SETTINGS_NUM_ICONS] =
-	    {"BUG", "CAUTION", "IMPORTANT", "NOTE", "TIP", "WARNING"};
+	    {"BUG", "IMPORTANT", "NOTE", "TIP", "WARNING"};
 	widget = gtk_label_new (labels[i]);
 	g_object_set (widget, "xalign", 0.0, NULL);
-	gtk_table_attach (GTK_TABLE (icon_table), widget,
-			  0, 1, i, i + 1, GTK_FILL, 0, 0, 0);
+	gtk_grid_attach (GTK_GRID (icon_table), widget, 0, i, 1, 1);
 	icon_choosers[i] = gtk_file_chooser_button_new (labels[i], GTK_FILE_CHOOSER_ACTION_OPEN);
-	gtk_table_attach (GTK_TABLE (icon_table), icon_choosers[i],
-			  1, 2, i, i + 1, GTK_FILL | GTK_EXPAND, GTK_FILL, 6, 0);
+	gtk_grid_attach (GTK_GRID (icon_table), icon_choosers[i],
+			 1, i, 2, 1);
 	g_signal_connect (icon_choosers[i], "file-set", G_CALLBACK (icon_file_set), NULL);
     }
 
