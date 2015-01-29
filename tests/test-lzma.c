@@ -43,8 +43,9 @@ main (int argc, char **argv)
 
     file = g_file_new_for_path (argv[1]);
     file_stream = g_file_read (file, NULL, NULL);
-    converter = yelp_lzma_decompressor_new ();
-    stream = g_converter_input_stream_new (file_stream, converter);
+    converter = G_CONVERTER (yelp_lzma_decompressor_new ());
+    stream = g_converter_input_stream_new (G_INPUT_STREAM (file_stream),
+                                           converter);
 
     while ((bytes = g_input_stream_read (stream, buf, 1024, NULL, NULL)) > 0) {
         gchar *out = g_strndup (buf, bytes);
