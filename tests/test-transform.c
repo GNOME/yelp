@@ -114,7 +114,7 @@ main (gint argc, gchar **argv)
     xmlDocPtr doc;
     YelpTransform *transform;
     gchar **params;
-    gchar *stylesheet;
+    const gchar *stylesheet;
     gchar *file;
 
     context = g_option_context_new ("[STYLESHEET] FILE");
@@ -135,12 +135,12 @@ main (gint argc, gchar **argv)
     }
 
     params = g_new0 (gchar *, 7);
-    params[0] = "db.chunk.extension";
-    params[1] = "\"\"";
-    params[2] = "db.chunk.info_basename";
-    params[3] = "\"x-yelp-titlepage\"";
-    params[4] = "db.chunk.max_depth";
-    params[5] = "2";
+    params[0] = g_strdup ("db.chunk.extension");
+    params[1] = g_strdup ("\"\"");
+    params[2] = g_strdup ("db.chunk.info_basename");
+    params[3] = g_strdup ("\"x-yelp-titlepage\"");
+    params[4] = g_strdup ("db.chunk.max_depth");
+    params[5] = g_strdup ("2");
     params[6] = NULL;
 
     transform = yelp_transform_new (stylesheet);
@@ -160,7 +160,7 @@ main (gint argc, gchar **argv)
     xmlXIncludeProcessFlags (doc,
 			     XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
 			     XML_PARSE_NOENT   | XML_PARSE_NONET   );
-    if (!yelp_transform_start (transform, doc, params, NULL))
+    if (!yelp_transform_start (transform, doc, (xmlDocPtr)params, NULL))
 	return 1;
 
     if (random_timeout) {

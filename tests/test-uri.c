@@ -33,7 +33,8 @@ static void
 print_uri (gchar *orig, YelpUri *uri, GOutputStream *stream)
 {
     GFile *file;
-    gchar *type = NULL, *tmp, **tmpv, *out;
+    const gchar *type = NULL;
+    gchar *tmp, **tmpv, *out;
 
     g_output_stream_write (stream, orig, strlen (orig), NULL, NULL);
     g_output_stream_write (stream, "\n", 1, NULL, NULL);
