@@ -21,7 +21,7 @@ YELP_DEFINES =								\
 yelp_CFLAGS =					\
 	-I$(top_srcdir)/libyelp			\
 	$(YELP_CFLAGS)				\
-	$(AM_CFLAGS)				\
+	$(WARN_CFLAGS)				\
 	$(YELP_DEFINES)
 
 yelp_LDADD =					\

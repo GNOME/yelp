@@ -1,6 +1,6 @@
 YELP_COMMON_CFLAGS =				\
 	$(YELP_CFLAGS)				\
-	$(AM_CFLAGS)				\
+	$(WARN_CFLAGS)				\
 	$(YELP_DEFINES)				\
 	-DDATADIR=\""$(datadir)"\"		\
 	-I$(top_srcdir)/libyelp
