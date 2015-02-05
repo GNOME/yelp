@@ -10,6 +10,7 @@ AM_MAINTAINER_MODE([enable])
 
 AM_SILENT_RULES([yes])
 
+AX_IS_RELEASE([git-directory])
 AX_CHECK_ENABLE_DEBUG([info], [YELP_DEBUG])
 
 # Check for programs
@@ -39,7 +40,7 @@ PKG_CHECK_MODULES(YELP,
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
 
-AX_COMPILER_FLAGS
+AX_COMPILER_FLAGS([], [], [$ax_is_release])
 
 # Initialize libtool
 LT_PREREQ([2.2.6])
