@@ -17,10 +17,6 @@ AC_PROG_CC
 AC_PROG_CC_C_O
 AC_PROG_LN_S
 
-# Initialize libtool
-LT_PREREQ([2.2.6])
-LT_INIT
-
 AC_PATH_PROGS(SED, gsed sed)
 
 AM_PATH_GLIB_2_0
@@ -43,16 +39,11 @@ PKG_CHECK_MODULES(YELP,
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
 
+AX_COMPILER_FLAGS
 
-GNOME_COMPILE_WARNINGS([maximum])
-
-MORE_WARN_FLAGS=
-
-dnl NOTE : it appears that some systems do not like it when you use line
-dnl        continuation charactes to split CFLAGS into readable chunks
-if test "x$GCC" = "xyes"; then
-   AM_CFLAGS="$AM_CFLAGS -Wall -Wno-uninitialized -Wmissing-prototypes -Wnested-externs -Wpointer-arith -Wno-sign-compare"
-fi
+# Initialize libtool
+LT_PREREQ([2.2.6])
+LT_INIT
 
 # i18n stuff
 AX_REQUIRE_DEFINED([IT_PROG_INTLTOOL])
@@ -155,8 +146,8 @@ AC_SUBST(GLIB_GENMARSHAL)
 
 
 # Set flags
-AM_CPPFLAGS="$AM_CPPFLAGS $DEPRECATION_FLAGS"
-AM_CFLAGS="$AM_CFLAGS $WARN_CFLAGS $MORE_WARN_FLAGS"
+AM_CPPFLAGS="$AM_CPPFLAGS"
+AM_CFLAGS="$AM_CFLAGS $WARN_CFLAGS"
 
 
 AC_SUBST([AM_CPPFLAGS])

@@ -29,7 +29,7 @@ yelp_LDADD =					\
 	$(YELP_LIBS)				\
 	$(POPT_LIBS)
 
-yelp_LDFLAGS = $(AM_LDFLAGS)
+yelp_LDFLAGS = $(WARN_LDFLAGS)
 
 install-exec-hook:
 	rm -f $(DESTDIR)$(bindir)/gnome-help && \

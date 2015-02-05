@@ -6,6 +6,7 @@ YELP_COMMON_CFLAGS =				\
 	-I$(top_srcdir)/libyelp
 YELP_COMMON_LDADD =				\
 	$(YELP_LIBS)				\
+	$(WARN_LDFLAGS)				\
 	$(top_builddir)/libyelp/libyelp.la
 
 check_PROGRAMS =				\
