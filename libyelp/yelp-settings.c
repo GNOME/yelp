@@ -849,7 +849,7 @@ yelp_settings_get_all_params (YelpSettings *settings,
         g_string_append (malstr, (gchar *) envi->data);
         if (g_str_has_prefix ((gchar *) envi->data, "platform:")) {
             g_string_append_c (dbstr, ';');
-            g_string_append (dbstr, (gchar *) (envi->data + 9));
+            g_string_append (dbstr, (gchar *) (envi->data) + 9);
         }
     }
     g_string_append_c (malstr, '\'');
