@@ -1697,50 +1697,51 @@ view_load_page (YelpView *view)
     g_free (page_id);
 }
 
+#define FORMAT_ERRORPAGE \
+    "<html><head>" \
+    "<style type='text/css'>" \
+    "body {" \
+    " margin: 1em;" \
+    " color: %s;" \
+    " background-color: %s;" \
+    " }\n" \
+    "p { margin: 1em 0 0 0; }\n" \
+    "div.note {" \
+    " padding: 6px;" \
+    " border-color: %s;" \
+    " border-top: solid 1px;" \
+    " border-bottom: solid 1px;" \
+    " background-color: %s;" \
+    " }\n" \
+    "div.note div.inner {" \
+    " margin: 0; padding: 0;" \
+    " background-image: url(%s);" \
+    " background-position: %s top;" \
+    " background-repeat: no-repeat;" \
+    " min-height: %ipx;" \
+    " }\n" \
+    "div.note div.contents {" \
+    " margin-%s: %ipx;" \
+    " }\n" \
+    "div.note div.title {" \
+    " margin-%s: %ipx;" \
+    " margin-bottom: 0.2em;" \
+    " font-weight: bold;" \
+    " color: %s;" \
+    " }\n" \
+    "a { color: %s; text-decoration: none; }\n" \
+    "</style>" \
+    "</head><body>" \
+    "<div class='note'><div class='inner'>" \
+    "%s<div class='contents'>%s%s</div>" \
+    "</div></div>" \
+    "</body></html>"
+
 static void
 view_show_error_page (YelpView *view,
                       GError   *error)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
-    static const gchar *errorpage =
-        "<html><head>"
-        "<style type='text/css'>"
-        "body {"
-        " margin: 1em;"
-        " color: %s;"
-        " background-color: %s;"
-        " }\n"
-        "p { margin: 1em 0 0 0; }\n"
-        "div.note {"
-        " padding: 6px;"
-        " border-color: %s;"
-        " border-top: solid 1px;"
-        " border-bottom: solid 1px;"
-        " background-color: %s;"
-        " }\n"
-        "div.note div.inner {"
-        " margin: 0; padding: 0;"
-        " background-image: url(%s);"
-        " background-position: %s top;"
-        " background-repeat: no-repeat;"
-        " min-height: %ipx;"
-        " }\n"
-        "div.note div.contents {"
-        " margin-%s: %ipx;"
-        " }\n"
-        "div.note div.title {"
-        " margin-%s: %ipx;"
-        " margin-bottom: 0.2em;"
-        " font-weight: bold;"
-        " color: %s;"
-        " }\n"
-        "a { color: %s; text-decoration: none; }\n"
-        "</style>"
-        "</head><body>"
-        "<div class='note'><div class='inner'>"
-        "%s<div class='contents'>%s%s</div>"
-        "</div></div>"
-        "</body></html>";
     YelpSettings *settings = yelp_settings_get_default ();
     gchar *page, *title = NULL, *title_m, *content_beg, *content_end;
     gchar *textcolor, *bgcolor, *noteborder, *notebg, *titlecolor, *noteicon, *linkcolor;
@@ -1799,7 +1800,7 @@ view_show_error_page (YelpView *view,
     noteicon = yelp_settings_get_icon (settings, YELP_SETTINGS_ICON_WARNING);
     iconsize = yelp_settings_get_icon_size (settings) + 6;
 
-    page = g_strdup_printf (errorpage,
+    page = g_strdup_printf (FORMAT_ERRORPAGE,
                             textcolor, bgcolor, noteborder, notebg, noteicon,
                             left, iconsize, left, iconsize, left, iconsize,
                             titlecolor, linkcolor, title_m, content_beg,
