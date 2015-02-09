@@ -28,6 +28,7 @@
 #include <libxml/parser.h>
 #include <libxml/parserInternals.h>
 #include <libxml/xinclude.h>
+#include <libxml/xpathInternals.h>
 
 #include "yelp-error.h"
 #include "yelp-mallard-document.h"

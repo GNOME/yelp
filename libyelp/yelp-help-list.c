@@ -29,6 +29,7 @@
 #include <libxml/parser.h>
 #include <libxml/xinclude.h>
 #include <libxml/xpath.h>
+#include <libxml/xpathInternals.h>
 
 #include "yelp-help-list.h"
 #include "yelp-settings.h"
