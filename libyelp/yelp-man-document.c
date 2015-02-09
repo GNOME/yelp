@@ -64,8 +64,8 @@ struct _YelpManDocumentPrivate {
 
 typedef struct _YelpLangEncodings YelpLangEncodings;
 struct _YelpLangEncodings {
-    gchar *language;
-    gchar *encoding;
+    const gchar *language;
+    const gchar *encoding;
 };
 /* http://www.w3.org/International/O-charset-lang.html */
 static const YelpLangEncodings langmap[] = {

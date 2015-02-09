@@ -560,7 +560,7 @@ help_list_handle_page (YelpHelpList *list,
     for (cur = priv->all_entries; cur != NULL; cur = cur->next) {
         HelpListEntry *entry = (HelpListEntry *) cur->data;
         gchar *title = entry->title ? entry->title : (strchr (entry->id, ':') + 1);
-        gchar *desc = entry->desc ? entry->desc : "";
+        const gchar *desc = entry->desc ? entry->desc : "";
 
         tmp = g_markup_printf_escaped ("<a href='%s'><div class='linkdiv'>",
                                        entry->id);

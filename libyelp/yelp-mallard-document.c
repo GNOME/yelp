@@ -843,7 +843,7 @@ xml_node_get_icon (xmlNodePtr node)
 {
     xmlChar *style;
     gchar **styles;
-    gchar *icon = "yelp-page-symbolic";
+    const gchar *icon = "yelp-page-symbolic";
     style = xmlGetProp (node, BAD_CAST "style");
     if (style) {
         gint i;

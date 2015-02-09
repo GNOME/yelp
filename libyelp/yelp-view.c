@@ -781,7 +781,7 @@ view_install_uri (YelpView    *view,
     GtkWidget *gtkwin;
     GdkWindow *gdkwin;
     /* do not free */
-    gchar *pkg, *confirm_search;
+    const gchar *pkg, *confirm_search;
 
     if (g_str_has_prefix (uri, "install-help:")) {
         help = TRUE;
@@ -1774,7 +1774,7 @@ view_show_error_page (YelpView *view,
     if (doc404) {
         gchar *struri = yelp_uri_get_document_uri (priv->uri);
         /* do not free */
-        gchar *pkg = NULL, *scheme = NULL;
+        const gchar *pkg = NULL, *scheme = NULL;
         if (g_str_has_prefix (struri, "help:")) {
             scheme = "help";
             pkg = struri + 5;

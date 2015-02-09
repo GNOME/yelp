@@ -369,9 +369,8 @@ get_troff (gchar *path, GError **error)
 {
     gint ystdout;
     GError *err = NULL;
-    gchar *argv[] = { "man", "-Z", "-Tutf8", "-EUTF-8", NULL, NULL };
-
-    argv[4] = path;
+    gchar *argv[] = { g_strdup ("man"), g_strdup ("-Z"), g_strdup ("-Tutf8"),
+                      g_strdup ("-EUTF-8"), g_strdup (path), NULL };
 
     if (!g_spawn_async_with_pipes (NULL, argv, NULL,
                                    G_SPAWN_SEARCH_PATH, NULL, NULL,
@@ -380,8 +379,11 @@ get_troff (gchar *path, GError **error)
         *error = g_error_new (YELP_ERROR, YELP_ERROR_UNKNOWN,
                               "%s", err->message);
         g_error_free (err);
+        g_strfreev (argv);
         return NULL;
     }
+
+    g_strfreev (argv);
 
     return (GInputStream*) g_unix_input_stream_new (ystdout, TRUE);
 }
