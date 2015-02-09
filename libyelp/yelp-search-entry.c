@@ -43,7 +43,6 @@ static void     search_entry_set_property    (GObject           *object,
 					      GParamSpec        *pspec);
 
 /* Signals */
-static void     search_entry_location_selected (YelpSearchEntry *entry);
 static void     search_entry_search_activated  (YelpSearchEntry *entry);
 static void     search_entry_bookmark_clicked  (YelpSearchEntry *entry);
 

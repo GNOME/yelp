@@ -56,9 +56,6 @@ static void      yelp_transform_set_property (GObject                 *object,
                                               GParamSpec              *pspec);
 
 static void      transform_run              (YelpTransform           *transform);
-static gboolean  transform_free             (YelpTransform           *transform);
-static void      transform_set_error        (YelpTransform           *transform,
-                                             YelpError               *error);
 
 static gboolean  transform_chunk            (YelpTransform           *transform);
 static gboolean  transform_error            (YelpTransform           *transform);
