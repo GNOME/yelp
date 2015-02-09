@@ -77,27 +77,16 @@ libyelp_includedir = $(includedir)/libyelp/
 libyelp_include_HEADERS = $(libyelp_headers) yelp-types.h
 
 BUILT_SOURCES =                  \
-	stamp-yelp-marshal.h     \
 	yelp-marshal.c           \
 	yelp-marshal.h           \
 	yelp-types.c             \
 	yelp-types.h
 
-yelp-marshal.h: stamp-yelp-marshal.h
-	@true
-
-stamp-yelp-marshal.h: yelp-marshal.list
-	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header > xgen-ymh \
-	&& (cmp -s xgen-ymh yelp-marshal.h || cp xgen-ymh yelp-marshal.h) \
-	&& rm -f xgen-ymh xgen-ymh~ \
-	&& echo timestamp > $(@F)
+yelp-marshal.h: yelp-marshal.list
+	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header $< > $@
 
 yelp-marshal.c: yelp-marshal.list
-	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --body > xgen-ymc \
-	&& cp xgen-ymc yelp-marshal.c \
-	&& rm -f xgen-ymc xgen-ymc~
-
-yelp-marshal-main.c: yelp-marshal.c
+	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header --body $< > $@
 
 CLEANFILES = $(BUILT_SOURCES)
 
