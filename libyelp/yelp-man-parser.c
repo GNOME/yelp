@@ -501,10 +501,12 @@ get_font (const YelpManParser *parser)
 static gboolean
 parser_parse_line (YelpManParser *parser, GError **error)
 {
+    const struct LineParsePair *p;
+
     if (parser->line_no <= 3)
         return parse_prologue_line (parser, error);
 
-    const struct LineParsePair *p = line_parsers;
+    p = line_parsers;
     while (p->handler != NULL) {
         if (g_str_has_prefix (parser->buffer, p->prefix)) {
             return p->handler(parser, error);

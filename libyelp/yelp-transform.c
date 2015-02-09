@@ -131,9 +131,9 @@ yelp_transform_init (YelpTransform *transform)
 static void
 yelp_transform_class_init (YelpTransformClass *klass)
 {
-    exsltRegisterAll ();
-
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+    exsltRegisterAll ();
 
     object_class->dispose = yelp_transform_dispose;
     object_class->finalize = yelp_transform_finalize;

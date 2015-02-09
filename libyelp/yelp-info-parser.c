@@ -115,6 +115,10 @@ info_image_get_attributes (gchar const* string)
 static xmlNodePtr
 info_insert_image (xmlNodePtr parent, GMatchInfo *match_info)
 {
+  gchar *title;
+  gchar *text;
+  gchar *alt;
+  xmlNodePtr img;
   GHashTable *h = info_image_get_attributes (g_match_info_fetch (match_info, 1));
   gchar *source;
   if (h)
@@ -124,11 +128,11 @@ info_insert_image (xmlNodePtr parent, GMatchInfo *match_info)
     return xmlNewTextChild (parent, NULL, BAD_CAST "para",
                             BAD_CAST "[broken image]");
 
-  gchar *title = (gchar*)g_hash_table_lookup (h, "title");
-  gchar *text = (gchar*)g_hash_table_lookup (h, "text");
-  gchar *alt = (gchar*)g_hash_table_lookup (h, "alt");
+  title = (gchar*)g_hash_table_lookup (h, "title");
+  text = (gchar*)g_hash_table_lookup (h, "text");
+  alt = (gchar*)g_hash_table_lookup (h, "alt");
   g_hash_table_destroy (h);
-  xmlNodePtr img = xmlNewChild (parent, NULL, BAD_CAST "img", NULL);
+  img = xmlNewChild (parent, NULL, BAD_CAST "img", NULL);
   xmlNewProp (img, BAD_CAST "src", BAD_CAST source);
   xmlNewProp (img, BAD_CAST "title", BAD_CAST (title ? title : ""));
   xmlNewProp (img, BAD_CAST "text", BAD_CAST (text ? text : ""));
@@ -179,12 +183,15 @@ static gchar*
 join_strings_subset (const gchar *separator,
                      gchar** strings, gchar** end)
 {
+  gchar *ptr;
+  gchar *glob;
+
   g_assert(end > strings);
 
-  gchar *ptr = *end;
+  ptr = *end;
   *end = NULL;
   
-  gchar *glob = g_strjoinv (separator, strings);
+  glob = g_strjoinv (separator, strings);
   *end = ptr;
   return glob;
 }
@@ -304,6 +311,11 @@ info_body_text (xmlNodePtr parent, xmlNodePtr *paragraph, xmlNsPtr ns,
                 gboolean inline_p, gchar const *content)
 {
   xmlNodePtr thepara = NULL;
+  gint content_len;
+  gint pos;
+  GRegex *regex;
+  GMatchInfo *match_info;
+  gchar *after;
   if (paragraph == NULL) paragraph = &thepara;
 
   if (!strstr (content, INFO_C_IMAGE_TAG_OPEN)) {
@@ -311,10 +323,9 @@ info_body_text (xmlNodePtr parent, xmlNodePtr *paragraph, xmlNsPtr ns,
     return;
   }
 
-  gint content_len = strlen (content);
-  gint pos = 0;
-  GRegex *regex = g_regex_new ("(" INFO_C_IMAGE_TAG_OPEN_RE "((?:[^" INFO_TAG_1 "]|[^" INFO_C_TAG_0 "]+" INFO_TAG_1 ")*)" INFO_C_TAG_CLOSE_RE ")", 0, 0, NULL);
-  GMatchInfo *match_info;
+  content_len = strlen (content);
+  pos = 0;
+  regex = g_regex_new ("(" INFO_C_IMAGE_TAG_OPEN_RE "((?:[^" INFO_TAG_1 "]|[^" INFO_C_TAG_0 "]+" INFO_TAG_1 ")*)" INFO_C_TAG_CLOSE_RE ")", 0, 0, NULL);
 
   g_regex_match (regex, content, 0, &match_info);
   while (g_match_info_matches (match_info))
@@ -335,7 +346,7 @@ info_body_text (xmlNodePtr parent, xmlNodePtr *paragraph, xmlNsPtr ns,
 	info_insert_image (parent, match_info);
       g_match_info_next (match_info, NULL);
     }
-  gchar *after = g_strndup (&content[pos], content_len - pos);
+  after = g_strndup (&content[pos], content_len - pos);
   info_body_parse_text (parent, paragraph, NULL, TRUE, after);
   g_free (after);
 }
