@@ -59,8 +59,6 @@ struct _YelpSimpleDocumentPriv {
 G_DEFINE_TYPE (YelpSimpleDocument, yelp_simple_document, YELP_TYPE_DOCUMENT)
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SIMPLE_DOCUMENT, YelpSimpleDocumentPriv))
 
-static void           yelp_simple_document_class_init  (YelpSimpleDocumentClass *klass);
-static void           yelp_simple_document_init        (YelpSimpleDocument      *document);
 static void           yelp_simple_document_dispose     (GObject                 *object);
 static void           yelp_simple_document_finalize    (GObject                 *object);
 

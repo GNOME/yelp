@@ -76,8 +76,6 @@ static gchar *icon_names[YELP_SETTINGS_NUM_ICONS];
 G_DEFINE_TYPE (YelpSettings, yelp_settings, G_TYPE_OBJECT)
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SETTINGS, YelpSettingsPriv))
 
-static void           yelp_settings_class_init   (YelpSettingsClass    *klass);
-static void           yelp_settings_init         (YelpSettings         *settings);
 static void           yelp_settings_constructed  (GObject              *object);
 static void           yelp_settings_dispose      (GObject              *object);
 static void           yelp_settings_finalize     (GObject              *object);

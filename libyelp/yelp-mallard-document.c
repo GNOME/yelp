@@ -71,8 +71,6 @@ typedef struct {
     gchar         *next_page;
 } MallardPageData;
 
-static void           yelp_mallard_document_class_init (YelpMallardDocumentClass *klass);
-static void           yelp_mallard_document_init       (YelpMallardDocument      *mallard);
 static void           yelp_mallard_document_dispose    (GObject                  *object);
 static void           yelp_mallard_document_finalize   (GObject                  *object);
 

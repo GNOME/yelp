@@ -98,8 +98,6 @@ G_DEFINE_TYPE (YelpDocument, yelp_document, G_TYPE_OBJECT)
 
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_DOCUMENT, YelpDocumentPriv))
 
-static void           yelp_document_class_init  (YelpDocumentClass    *klass);
-static void           yelp_document_init        (YelpDocument         *document);
 static void           yelp_document_dispose     (GObject              *object);
 static void           yelp_document_finalize    (GObject              *object);
 static void           document_get_property     (GObject              *object,

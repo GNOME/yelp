@@ -42,8 +42,6 @@
 #define BOGUS_URI "file:///bogus/"
 #define BOGUS_URI_LEN 14
 
-static void        yelp_view_init                 (YelpView           *view);
-static void        yelp_view_class_init           (YelpViewClass      *klass);
 static void        yelp_view_dispose              (GObject            *object);
 static void        yelp_view_finalize             (GObject            *object);
 static void        yelp_view_get_property         (GObject            *object,

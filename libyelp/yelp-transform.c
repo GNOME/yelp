@@ -44,8 +44,6 @@
 
 #define YELP_NAMESPACE "http://www.gnome.org/yelp/ns"
 
-static void      yelp_transform_init         (YelpTransform           *transform);
-static void      yelp_transform_class_init   (YelpTransformClass      *klass);
 static void      yelp_transform_dispose      (GObject                 *object);
 static void      yelp_transform_finalize     (GObject                 *object);
 static void      yelp_transform_get_property (GObject                 *object,

@@ -68,8 +68,6 @@ struct _YelpInfoDocumentPrivate {
 };
 
 
-static void           yelp_info_document_class_init       (YelpInfoDocumentClass  *klass);
-static void           yelp_info_document_init             (YelpInfoDocument       *info);
 static void           yelp_info_document_dispose          (GObject                *object);
 static void           yelp_info_document_finalize         (GObject                *object);
 

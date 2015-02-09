@@ -118,8 +118,6 @@ static const YelpLangEncodings langmap[] = {
     { NULL,    NULL },
 };
 
-static void           yelp_man_document_class_init       (YelpManDocumentClass   *klass);
-static void           yelp_man_document_init             (YelpManDocument        *man);
 static void           yelp_man_document_dispose          (GObject                *object);
 static void           yelp_man_document_finalize         (GObject                *object);
 

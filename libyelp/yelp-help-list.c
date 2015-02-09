@@ -36,8 +36,6 @@
 
 typedef struct _HelpListEntry HelpListEntry;
 
-static void           yelp_help_list_class_init      (YelpHelpListClass     *klass);
-static void           yelp_help_list_init            (YelpHelpList          *list);
 static void           yelp_help_list_dispose         (GObject               *object);
 static void           yelp_help_list_finalize        (GObject               *object);
 

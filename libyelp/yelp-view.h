@@ -61,7 +61,6 @@ typedef enum {
 } YelpViewState;
 
 GType              yelp_view_get_type             (void);
-GType              yelp_view_state_get_type       (void);
 
 GtkWidget *        yelp_view_new                  (void);
 void               yelp_view_load                 (YelpView                *view,

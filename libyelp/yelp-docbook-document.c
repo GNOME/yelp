@@ -52,8 +52,6 @@ enum {
     DOCBOOK_COLUMN_TITLE
 };
 
-static void           yelp_docbook_document_class_init      (YelpDocbookDocumentClass *klass);
-static void           yelp_docbook_document_init            (YelpDocbookDocument      *docbook);
 static void           yelp_docbook_document_dispose         (GObject                  *object);
 static void           yelp_docbook_document_finalize        (GObject                  *object);
 

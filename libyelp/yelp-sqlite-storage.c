@@ -25,8 +25,6 @@
 
 #include "yelp-sqlite-storage.h"
 
-static void        yelp_sqlite_storage_init         (YelpSqliteStorage      *storage);
-static void        yelp_sqlite_storage_class_init   (YelpSqliteStorageClass *klass);
 static void        yelp_sqlite_storage_iface_init   (YelpStorageInterface   *iface);
 static void        yelp_sqlite_storage_finalize     (GObject                *object);
 static void        yelp_sqlite_storage_get_property (GObject                *object,

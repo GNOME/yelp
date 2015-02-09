@@ -32,8 +32,6 @@
 #include "yelp-debug.h"
 #include "yelp-settings.h"
 
-static void           yelp_uri_class_init        (YelpUriClass   *klass);
-static void           yelp_uri_init              (YelpUri        *uri);
 static void           yelp_uri_dispose           (GObject        *object);
 static void           yelp_uri_finalize          (GObject        *object);
 
