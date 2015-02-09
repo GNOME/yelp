@@ -1378,7 +1378,7 @@ fixup_links (YelpManParser *parser,
     xmlXPathContextPtr context;
     xmlXPathObjectPtr path_obj;
     xmlNodeSetPtr nodeset;
-    guint i;
+    gint i;
 
     context = xmlXPathNewContext (parser->doc);
     g_return_if_fail (context);

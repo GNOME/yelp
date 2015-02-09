@@ -387,7 +387,7 @@ static char
     gssize bytes;
     GString *string;
     gchar *str;
-    int i;
+    gsize i;
 
     gfile = g_file_new_for_path (file);
     file_stream = g_file_read (gfile, NULL, NULL);
@@ -470,8 +470,8 @@ static char
 		char *filename;
 		char *str;
 		char **pages;
-		int offset;
-		int plength;
+		gsize offset;
+		gsize plength;
 
 		debug_print (DB_DEBUG, "Line: %s\n", *ptr);
 		items = g_strsplit (*ptr, ": ", 2);
@@ -492,7 +492,7 @@ static char
 		  		continue;
 			}
 
-			offset =  atoi(items[1]);
+			offset = (gsize) atoi (items[1]);
 			plength = strlen(pages[1]);
 			
 			debug_print (DB_DEBUG, "Need to make string %s+%i bytes = %i\n",
