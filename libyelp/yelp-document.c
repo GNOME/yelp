@@ -1349,7 +1349,7 @@ request_idle_contents (Request *request)
     YelpDocument *document;
     YelpDocumentPriv *priv;
     YelpDocumentCallback callback = NULL;
-    gpointer user_data = user_data;
+    gpointer user_data;
 
     g_assert (request != NULL && YELP_IS_DOCUMENT (request->document));
 
@@ -1416,7 +1416,7 @@ request_idle_error (Request *request)
     YelpDocumentPriv *priv;
     YelpDocumentCallback callback = NULL;
     GError *error = NULL;
-    gpointer user_data = user_data;
+    gpointer user_data;
 
     g_assert (request != NULL && YELP_IS_DOCUMENT (request->document));
 

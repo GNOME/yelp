@@ -773,7 +773,7 @@ view_install_uri (YelpView    *view,
                   const gchar *uri)
 {
     GDBusConnection *connection;
-    GError *error;
+    GError *error = NULL;
     gboolean help = FALSE, ghelp = FALSE;
     GVariantBuilder *strv;
     YelpInstallInfo *info;
@@ -796,7 +796,7 @@ view_install_uri (YelpView    *view,
         pkg = (gchar *) uri + 8;
     }
 
-    connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
+    connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
     if (connection == NULL) {
         g_warning ("Unable to connect to dbus: %s", error->message);
         g_error_free (error);
