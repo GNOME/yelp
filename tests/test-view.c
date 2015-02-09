@@ -43,7 +43,7 @@ state_cb (YelpView   *view,
 {
     YelpViewState state;
     g_object_get (view, "state", &state, NULL);
-    printf ("STATE: %i\n", state);
+    printf ("STATE: %i\n", (int)state);
 }
 
 static void
