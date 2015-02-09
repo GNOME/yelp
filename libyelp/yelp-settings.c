@@ -904,21 +904,21 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
 
     /* YELP_SETTINGS_COLOR_BASE */
     g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_BASE], 8, "#%02X%02X%02X",
-                (gint) (base.red * 255), (gint) (base.green * 255), (gint) (base.blue * 255));
+                (guint) (base.red * 255), (guint) (base.green * 255), (guint) (base.blue * 255));
 
     /* YELP_SETTINGS_COLOR_TEXT */
     g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_TEXT], 8, "#%02X%02X%02X",
-                (gint) (text.red * 255), (gint) (text.green * 255), (gint) (text.blue * 255));
+                (guint) (text.red * 255), (guint) (text.green * 255), (guint) (text.blue * 255));
 
     /* YELP_SETTINGS_COLOR_LINK */
     gtk_style_context_get_color (linkcontext, GTK_STATE_FLAG_LINK, &link);
     g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_LINK], 8, "#%02X%02X%02X",
-                (gint) (link.red * 255), (gint) (link.green * 255), (gint) (link.blue * 255));
+                (guint) (link.red * 255), (guint) (link.green * 255), (guint) (link.blue * 255));
 
     /* YELP_SETTINGS_COLOR_LINK_VISITED */
     gtk_style_context_get_color (linkcontext, GTK_STATE_FLAG_VISITED, &link);
     g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_LINK_VISITED], 8, "#%02X%02X%02X",
-                (gint) (link.red * 255), (gint) (link.green * 255), (gint) (link.blue * 255));
+                (guint) (link.red * 255), (guint) (link.green * 255), (guint) (link.blue * 255));
 
     /* YELP_SETTINGS_COLOR_TEXT_LIGHT */
     hsv_to_hex (text_h, text_s, text_v - ((text_v - base_v) * 0.25),
@@ -1102,7 +1102,7 @@ hsv_to_hex (gdouble h, gdouble s, gdouble v, gchar *str)
     gint hue;
     gdouble m1, m2, m3;
     gdouble r, g, b;
-    guint8 red, green, blue;
+    guint red, green, blue;
 
     h /= 60;
     hue = (int) h;

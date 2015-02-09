@@ -459,7 +459,7 @@ static void
 set_font_register (YelpManParser *parser, guint k, const gchar* name)
 {
     if (k > MAN_FONTS) {
-        g_warning ("Tried to set nonexistant font register %d to %s",
+        g_warning ("Tried to set nonexistant font register %u to %s",
                    k, name);
         return;
     }
@@ -474,7 +474,7 @@ get_font (const YelpManParser *parser)
     if (k > MAN_FONTS ||
         parser->font_registers[k] == NULL) {
 
-        g_warning ("Tried to get nonexistant font register %d", k);
+        g_warning ("Tried to get nonexistant font register %u", k);
 
         return "";
     }
