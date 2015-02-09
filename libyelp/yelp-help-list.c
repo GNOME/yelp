@@ -246,7 +246,7 @@ help_list_think (YelpHelpList *list)
             g_free (helpdirname);
             continue;
         }
-        while (child = g_file_enumerator_next_file (children, NULL, NULL)) {
+        while ((child = g_file_enumerator_next_file (children, NULL, NULL))) {
             gchar *docid;
             HelpListEntry *entry = NULL;
 
@@ -323,7 +323,7 @@ help_list_think (YelpHelpList *list)
                 g_free (langdirname);
                 continue;
             }
-            while (child = g_file_enumerator_next_file (children, NULL, NULL)) {
+            while ((child = g_file_enumerator_next_file (children, NULL, NULL))) {
                 gchar *docid, *filename;
                 HelpListEntry *entry = NULL;
                 if (g_file_info_get_file_type (child) != G_FILE_TYPE_DIRECTORY) {
