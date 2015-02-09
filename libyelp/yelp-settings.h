@@ -78,6 +78,7 @@ typedef enum {
     YELP_SETTINGS_NUM_ICONS
 } YelpSettingsIcon;
 
+GType               yelp_settings_get_type             (void);
 YelpSettings *      yelp_settings_get_default          (void);
 
 gchar *             yelp_settings_get_color            (YelpSettings       *settings,

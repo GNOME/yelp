@@ -42,6 +42,7 @@ struct _YelpTransformClass {
     GObjectClass  parent_class;
 };
 
+GType            yelp_transform_get_type       (void);
 YelpTransform  * yelp_transform_new            (const gchar         *stylesheet);
 gboolean         yelp_transform_start          (YelpTransform       *transform,
                                                 xmlDocPtr            document,
