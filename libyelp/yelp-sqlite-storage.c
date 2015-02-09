@@ -300,7 +300,7 @@ yelp_sqlite_storage_get_root_title (YelpStorage *storage,
     sqlite3_bind_text (stmt, 1, doc_uri, -1, SQLITE_TRANSIENT);
     sqlite3_bind_text (stmt, 2, g_get_language_names()[0], -1, SQLITE_STATIC);
     if (sqlite3_step (stmt) == SQLITE_ROW)
-        ret = g_strdup (sqlite3_column_text (stmt, 0));
+        ret = g_strdup ((const gchar *) sqlite3_column_text (stmt, 0));
     sqlite3_finalize (stmt);
 
     g_mutex_unlock (&priv->mutex);

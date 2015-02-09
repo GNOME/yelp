@@ -790,7 +790,7 @@ docbook_walk_get_title (YelpDocbookDocument *docbook,
 
     if (title) {
         xmlChar *title_s = xmlNodeGetContent (title);
-        gchar *ret = g_strdup (title_s);
+        gchar *ret = g_strdup ((const gchar *) title_s);
         xmlFree (title_s);
         return ret;
     }
@@ -929,11 +929,11 @@ docbook_index_node (DocbookIndexData *index)
         g_string_append_c (index->str, ' ');
     }
     if (index->cur->type == XML_TEXT_NODE) {
-        g_string_append (index->str, index->cur->content);
+        g_string_append (index->str, (const gchar *) index->cur->content);
         return;
     }
     if (index->cur->type != XML_ELEMENT_NODE ||
-        g_str_has_suffix (index->cur->name, "info") ||
+        g_str_has_suffix ((const gchar *) index->cur->name, "info") ||
         g_str_equal (index->cur->name, "remark"))
         return;
     oldcur = index->cur;

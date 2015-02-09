@@ -128,15 +128,15 @@ yelp_help_list_init (YelpHelpList *list)
                                            g_free,
                                            (GDestroyNotify) help_list_entry_free);
 
-    priv->get_docbook_title = xmlXPathCompile ("normalize-space("
+    priv->get_docbook_title = xmlXPathCompile (BAD_CAST "normalize-space("
                                                "( /*/title | /*/db:title"
                                                "| /*/articleinfo/title"
                                                "| /*/bookinfo/title"
                                                "| /*/db:info/db:title"
                                                ")[1])");
-    priv->get_mallard_title = xmlXPathCompile ("normalize-space((/mal:page/mal:info/mal:title[@type='text'] |"
+    priv->get_mallard_title = xmlXPathCompile (BAD_CAST "normalize-space((/mal:page/mal:info/mal:title[@type='text'] |"
                                                "                 /mal:page/mal:title)[1])");
-    priv->get_mallard_desc = xmlXPathCompile ("normalize-space(/mal:page/mal:info/mal:desc[1])");
+    priv->get_mallard_desc = xmlXPathCompile (BAD_CAST "normalize-space(/mal:page/mal:info/mal:desc[1])");
 
     yelp_document_set_page_id ((YelpDocument *) list, NULL, "index");
     yelp_document_set_page_id ((YelpDocument *) list, "index", "index");
@@ -628,7 +628,7 @@ help_list_process_docbook (YelpHelpList  *list,
     obj = xmlXPathCompiledEval (priv->get_docbook_title, xpath);
     if (obj) {
         if (obj->stringval)
-            entry->title = g_strdup (obj->stringval);
+            entry->title = g_strdup ((const gchar *) obj->stringval);
         xmlXPathFreeObject (obj);
     }
 
@@ -668,14 +668,14 @@ help_list_process_mallard (YelpHelpList  *list,
     obj = xmlXPathCompiledEval (priv->get_mallard_title, xpath);
     if (obj) {
         if (obj->stringval)
-            entry->title = g_strdup (obj->stringval);
+            entry->title = g_strdup ((const gchar *) obj->stringval);
         xmlXPathFreeObject (obj);
     }
 
     obj = xmlXPathCompiledEval (priv->get_mallard_desc, xpath);
     if (obj) {
         if (obj->stringval)
-            entry->desc = g_strdup (obj->stringval);
+            entry->desc = g_strdup ((const gchar *) obj->stringval);
         xmlXPathFreeObject (obj);
     }
 

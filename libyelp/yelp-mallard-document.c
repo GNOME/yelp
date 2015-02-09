@@ -38,7 +38,7 @@
 #include "yelp-debug.h"
 
 #define STYLESHEET DATADIR"/yelp/xslt/mal2html.xsl"
-#define MALLARD_NS "http://projectmallard.org/1.0/"
+#define MALLARD_NS BAD_CAST "http://projectmallard.org/1.0/"
 
 typedef enum {
     MALLARD_STATE_BLANK,
@@ -165,7 +165,7 @@ yelp_mallard_document_init (YelpMallardDocument *mallard)
     priv->index_running = FALSE;
 
     priv->cache = xmlNewDoc (BAD_CAST "1.0");
-    priv->cache_ns = xmlNewNs (NULL, BAD_CAST MALLARD_NS, BAD_CAST "mal");
+    priv->cache_ns = xmlNewNs (NULL, MALLARD_NS, BAD_CAST "mal");
     cur = xmlNewDocNode (priv->cache, priv->cache_ns, BAD_CAST "cache", NULL);
     xmlDocSetRootElement (priv->cache, cur);
     priv->cache_ns->next = cur->nsDef;
@@ -173,7 +173,7 @@ yelp_mallard_document_init (YelpMallardDocument *mallard)
     priv->pages_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
                                               NULL,
                                               (GDestroyNotify) mallard_page_data_free);
-    priv->normalize = xmlXPathCompile ("normalize-space(.)");
+    priv->normalize = xmlXPathCompile (BAD_CAST "normalize-space(.)");
 }
 
 static void
@@ -646,7 +646,7 @@ mallard_page_data_info (MallardPageData *page_data,
                     page_data->xpath->node = child;
                     obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
                     g_free (page_data->page_title);
-                    page_data->page_title = g_strdup (obj->stringval);
+                    page_data->page_title = g_strdup ((const gchar *) obj->stringval);
                     xmlXPathFreeObject (obj);
                 }
                 if (role != NULL)
@@ -659,7 +659,7 @@ mallard_page_data_info (MallardPageData *page_data,
             xmlXPathObjectPtr obj;
             page_data->xpath->node = child;
             obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
-            page_data->page_desc = g_strdup (obj->stringval);
+            page_data->page_desc = g_strdup ((const gchar *) obj->stringval);
             xmlXPathFreeObject (obj);
 
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
@@ -671,12 +671,12 @@ mallard_page_data_info (MallardPageData *page_data,
 
             type = xmlGetProp (child, BAD_CAST "type");
             if (type != NULL) {
-                if (xmlStrEqual (type, "next")) {
+                if (xmlStrEqual (type, BAD_CAST "next")) {
                     next = xmlGetProp (child, BAD_CAST "xref");
                     if (next != NULL) {
                         if (page_data->next_page != NULL)
                             g_free (page_data->next_page);
-                        page_data->next_page = g_strdup (next);
+                        page_data->next_page = g_strdup ((const gchar *) next);
                         xmlFree (next);
                     }
                 }
@@ -844,7 +844,7 @@ xml_node_get_icon (xmlNodePtr node)
     style = xmlGetProp (node, BAD_CAST "style");
     if (style) {
         gint i;
-        styles = g_strsplit (style, " ", -1);
+        styles = g_strsplit ((const gchar *)style, " ", -1);
         for (i = 0; styles[i] != NULL; i++) {
             if (g_str_equal (styles[i], "video")) {
                 icon = "yelp-page-video-symbolic";
@@ -912,7 +912,7 @@ mallard_index_node (MallardIndexData *index)
                 g_string_append_c (index->str, ' ');
             }
             if (child->type == XML_TEXT_NODE) {
-                g_string_append (index->str, child->content);
+                g_string_append (index->str, (const gchar *) child->content);
                 continue;
             }
         }
@@ -1016,23 +1016,23 @@ mallard_index_threaded (YelpMallardDocument *mallard)
             if (g_hash_table_lookup (ids, id))
                 goto done;
             /* We never use the value. Just need something non-NULL. */
-            g_hash_table_insert (ids, g_strdup (id), id);
+            g_hash_table_insert (ids, g_strdup ((const gchar *) id), id);
 
             xpath = xmlXPathNewContext (index->doc);
-            xmlXPathRegisterNs (xpath, BAD_CAST "mal", BAD_CAST MALLARD_NS);
+            xmlXPathRegisterNs (xpath, BAD_CAST "mal", MALLARD_NS);
             obj = xmlXPathEvalExpression (BAD_CAST
                                           "normalize-space((/mal:page/mal:info/mal:title[@type='text'] |"
                                           "/mal:page/mal:title)[1])",
                                           xpath);
-            title = g_strdup (obj->stringval);
+            title = g_strdup ((const gchar *) obj->stringval);
             xmlXPathFreeObject (obj);
             obj = xmlXPathEvalExpression (BAD_CAST
                                           "normalize-space(/mal:page/mal:info/mal:desc[1])",
                                           xpath);
-            desc = g_strdup (obj->stringval);
+            desc = g_strdup ((const gchar *) obj->stringval);
             xmlXPathFreeObject (obj);
 
-            index->str = g_string_new (desc);
+            index->str = g_string_new ((const gchar *) desc);
             g_string_append_c (index->str, ' ');
             mallard_index_node (index);
 
@@ -1133,7 +1133,7 @@ mallard_monitor_changed (GFileMonitor         *monitor,
 
     xmlFreeDoc (priv->cache);
     priv->cache = xmlNewDoc (BAD_CAST "1.0");
-    priv->cache_ns = xmlNewNs (NULL, BAD_CAST MALLARD_NS, BAD_CAST "mal");
+    priv->cache_ns = xmlNewNs (NULL, MALLARD_NS, BAD_CAST "mal");
     cur = xmlNewDocNode (priv->cache, priv->cache_ns, BAD_CAST "cache", NULL);
     xmlDocSetRootElement (priv->cache, cur);
     priv->cache_ns->next = cur->nsDef;
