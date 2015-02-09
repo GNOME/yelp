@@ -240,6 +240,9 @@ info_request_page (YelpDocument         *document,
                               error);
         g_error_free (error);
         break;
+    default:
+        g_assert_not_reached ();
+        break;
     }
 
     g_mutex_unlock (&priv->mutex);

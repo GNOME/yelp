@@ -1124,6 +1124,8 @@ hsv_to_hex (gdouble h, gdouble s, gdouble v, gchar *str)
         g = m1; r = m3; break;
     case 5:
         g = m1; b = m2; break;
+    default:
+        g_assert_not_reached (); break;
     }
 
     red = r * 255;

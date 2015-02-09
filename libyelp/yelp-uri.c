@@ -362,6 +362,9 @@ resolve_sync (YelpUri *uri)
         case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
         case YELP_URI_DOCUMENT_TYPE_ERROR:
             break;
+        default:
+            g_assert_not_reached ();
+            break;
         }
     }
     else if (strchr (priv->res_arg, ':')) {

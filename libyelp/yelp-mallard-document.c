@@ -308,7 +308,10 @@ mallard_request_page (YelpDocument         *document,
                               YELP_DOCUMENT_SIGNAL_ERROR,
                               error);
         g_error_free (error);
-	break;
+        break;
+    default:
+        g_assert_not_reached ();
+        break;
     }
 
     g_mutex_unlock (&priv->mutex);
