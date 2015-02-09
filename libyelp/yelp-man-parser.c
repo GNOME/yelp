@@ -1050,7 +1050,7 @@ right_truncate_common (gchar *dst, const gchar *src)
     dst += len_dst - 1;
     src += len_src - 1;
 
-    while (k >= 0) {
+    while (k > 0) {
         if (*dst != *src) break;
         *dst = '\0';
 
