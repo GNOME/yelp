@@ -241,7 +241,6 @@ enum {
 static void
 yelp_view_init (YelpView *view)
 {
-    GtkAction *action;
     YelpViewPrivate *priv = GET_PRIV (view);
 
     g_object_set (view, "settings", websettings, NULL);
@@ -1486,7 +1485,6 @@ view_resource_request (WebKitWebView         *view,
 {
     YelpViewPrivate *priv = GET_PRIV (view);
     const gchar *requri = webkit_network_request_get_uri (request);
-    gchar last;
     gchar *newpath;
 
     if (!g_str_has_prefix (requri, BOGUS_URI))
@@ -1744,7 +1742,7 @@ view_show_error_page (YelpView *view,
         "</div></div>"
         "</body></html>";
     YelpSettings *settings = yelp_settings_get_default ();
-    gchar *page, *title = NULL, *link = NULL, *title_m, *content_beg, *content_end;
+    gchar *page, *title = NULL, *title_m, *content_beg, *content_end;
     gchar *textcolor, *bgcolor, *noteborder, *notebg, *titlecolor, *noteicon, *linkcolor;
     gint iconsize;
     GParamSpec *spec;

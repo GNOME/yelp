@@ -126,7 +126,6 @@ yelp_bz2_decompressor_convert (GConverter *converter,
                                GError    **error)
 {
     YelpBz2Decompressor *decompressor;
-    gsize header_size;
     int res;
 
     decompressor = YELP_BZ2_DECOMPRESSOR (converter);

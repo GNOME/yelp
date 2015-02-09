@@ -217,7 +217,6 @@ static void
 yelp_transform_finalize (GObject *object)
 {
     YelpTransformPrivate *priv = GET_PRIV (object);
-    xsltDocumentPtr xsltdoc;
     GHashTableIter iter;
     gpointer chunk;
 

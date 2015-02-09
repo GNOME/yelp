@@ -223,7 +223,7 @@ help_list_think (YelpHelpList *list)
     YelpHelpListPrivate *priv = GET_PRIV (list);
     /* The strings are still owned by GLib; we just own the array. */
     gchar **datadirs;
-    gint datadir_i, subdir_i, lang_i;
+    gint datadir_i, lang_i;
     GList *cur;
     GtkIconTheme *theme;
 

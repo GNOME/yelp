@@ -135,7 +135,6 @@ yelp_lzma_decompressor_convert (GConverter *converter,
                                 GError    **error)
 {
     YelpLzmaDecompressor *decompressor;
-    gsize header_size;
     lzma_ret res;
 
     decompressor = YELP_LZMA_DECOMPRESSOR (converter);

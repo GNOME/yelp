@@ -202,15 +202,11 @@ yelp_search_entry_class_init (YelpSearchEntryClass *klass)
 static void
 yelp_search_entry_init (YelpSearchEntry *entry)
 {
-    YelpSearchEntryPrivate *priv = GET_PRIV (entry);
 }
 
 static void
 search_entry_constructed (GObject *object)
 {
-    GtkCellRenderer *bookmark_cell;
-    GList *cells;
-    GtkTreeIter iter;
     YelpSearchEntryPrivate *priv = GET_PRIV (object);
 
     g_signal_connect (object, "activate",
@@ -388,7 +384,6 @@ static void
 entry_activate_cb (GtkEntry  *text_entry,
                    gpointer   user_data)
 {
-    YelpSearchEntryPrivate *priv = GET_PRIV (user_data);
     gchar *text = g_strdup (gtk_entry_get_text (text_entry));
 
     if (text == NULL || strlen(text) == 0)
@@ -433,7 +428,6 @@ cell_set_completion_text_cell (GtkCellLayout     *layout,
 {
     gchar *title;
     gint flags;
-    YelpSearchEntryPrivate *priv = GET_PRIV (entry);
 
     gtk_tree_model_get (model, iter, COMPLETION_COL_FLAGS, &flags, -1);
     if (flags & COMPLETION_FLAG_ACTIVATE_SEARCH) {
@@ -463,7 +457,6 @@ entry_match_func (GtkEntryCompletion *completion,
     gchar **strs;
     gint flags;
     GtkTreeModel *model = gtk_entry_completion_get_model (completion);
-    YelpSearchEntryPrivate *priv = GET_PRIV (entry);
     static GRegex *nonword = NULL;
 
     if (nonword == NULL)
@@ -587,7 +580,6 @@ view_loaded (YelpView          *view,
     gchar **ids;
     gint i;
     GtkTreeIter iter;
-    gint flags;
     YelpUri *uri;
     gchar *doc_uri;
     GtkTreeModel *completion;

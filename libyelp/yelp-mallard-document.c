@@ -621,14 +621,13 @@ mallard_page_data_info (MallardPageData *page_data,
                         xmlNodePtr       cache_node)
 {
     xmlNodePtr child;
-    gboolean editor_mode = yelp_settings_get_editor_mode (yelp_settings_get_default ());
 
     for (child = info_node->children; child; child = child->next) {
         if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "info")) {
             mallard_page_data_info (page_data, child, cache_node);
         }
         else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "title")) {
-            xmlNodePtr node, title_node;
+            xmlNodePtr title_node;
             xmlChar *type, *role;
             title_node = xmlCopyNode (child, 1);
             xmlAddChild (cache_node, title_node);
@@ -701,7 +700,6 @@ mallard_page_data_run (MallardPageData *page_data)
 {
     YelpSettings *settings = yelp_settings_get_default ();
     YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
-    gint i, ix;
     gchar **params = NULL;
 
     mallard_page_data_cancel (page_data);

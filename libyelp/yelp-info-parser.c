@@ -1334,7 +1334,7 @@ info_process_text_notes (xmlNodePtr *node, gchar *content, GtkTreeStore *tree)
   notes = g_regex_split_simple ("\\*[Nn]ote(?!_)", content, 0, 0);
 
   for (current = notes; *current != NULL; current++) {
-    gchar *url, **urls, **ulink;
+    gchar *url, **urls;
     gchar *append;
     gchar *alt_append, *alt_append1;
     gchar *link_text;

@@ -409,8 +409,6 @@ stream_close_cb (GInputStream       *stream,
 		 GAsyncResult       *result,
 		 YelpSimpleDocument *document)
 {
-    GSList *cur;
-
     document->priv->finished = TRUE;
     document_signal_all (document);
 }

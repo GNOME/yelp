@@ -77,7 +77,6 @@ G_DEFINE_TYPE (YelpSettings, yelp_settings, G_TYPE_OBJECT)
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SETTINGS, YelpSettingsPriv))
 
 static void           yelp_settings_constructed  (GObject              *object);
-static void           yelp_settings_dispose      (GObject              *object);
 static void           yelp_settings_finalize     (GObject              *object);
 static void           yelp_settings_get_property (GObject              *object,
 						  guint                 prop_id,
@@ -117,7 +116,6 @@ yelp_settings_class_init (YelpSettingsClass *klass)
     gint i;
 
     object_class->constructed  = yelp_settings_constructed;
-    object_class->dispose  = yelp_settings_dispose;
     object_class->finalize = yelp_settings_finalize;
     object_class->get_property = yelp_settings_get_property;
     object_class->set_property = yelp_settings_set_property;
@@ -242,7 +240,6 @@ yelp_settings_constructed (GObject *object)
     YelpSettings *settings = YELP_SETTINGS (object);
     GDBusConnection *connection;
     GVariant *ret, *names;
-    GVariant *ret2;
     GVariantIter iter;
     gchar *name;
     gboolean env_shell, env_classic, env_panel, env_unity, env_xfce;
@@ -328,14 +325,6 @@ yelp_settings_constructed (GObject *object)
         yelp_settings_set_if_token (settings, "platform:gnome-panel");
 
     yelp_settings_set_if_token (settings, "action:install");
-}
-
-static void
-yelp_settings_dispose (GObject *object)
-{
-    YelpSettings *settings = YELP_SETTINGS (object);
-
-    G_OBJECT_CLASS (yelp_settings_parent_class)->dispose (object);
 }
 
 static void
@@ -1111,12 +1100,10 @@ static void
 hsv_to_hex (gdouble h, gdouble s, gdouble v, gchar *str)
 {
     gint hue;
-    gdouble c;
     gdouble m1, m2, m3;
     gdouble r, g, b;
     guint8 red, green, blue;
 
-    c = v * s;
     h /= 60;
     hue = (int) h;
     m1 = v * (1 - s);
