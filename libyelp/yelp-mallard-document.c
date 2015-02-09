@@ -114,7 +114,7 @@ static gboolean       xml_node_is_ns_name       (xmlNodePtr            node,
                                                  const xmlChar        *name);
 
 
-G_DEFINE_TYPE (YelpMallardDocument, yelp_mallard_document, YELP_TYPE_DOCUMENT);
+G_DEFINE_TYPE (YelpMallardDocument, yelp_mallard_document, YELP_TYPE_DOCUMENT)
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_MALLARD_DOCUMENT, YelpMallardDocumentPrivate))
 
 typedef struct _YelpMallardDocumentPrivate  YelpMallardDocumentPrivate;

@@ -90,7 +90,7 @@ enum {
 };
 static gint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (YelpTransform, yelp_transform, G_TYPE_OBJECT);
+G_DEFINE_TYPE (YelpTransform, yelp_transform, G_TYPE_OBJECT)
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_TRANSFORM, YelpTransformPrivate))
 
 typedef struct _YelpTransformPrivate YelpTransformPrivate;

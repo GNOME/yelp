@@ -93,7 +93,7 @@ static void           transform_error           (YelpTransform        *transform
 static void           transform_finalized       (YelpDocbookDocument  *docbook,
                                                  gpointer              transform);
 
-G_DEFINE_TYPE (YelpDocbookDocument, yelp_docbook_document, YELP_TYPE_DOCUMENT);
+G_DEFINE_TYPE (YelpDocbookDocument, yelp_docbook_document, YELP_TYPE_DOCUMENT)
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_DOCBOOK_DOCUMENT, YelpDocbookDocumentPrivate))
 
 typedef struct _YelpDocbookDocumentPrivate  YelpDocbookDocumentPrivate;

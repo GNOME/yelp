@@ -99,7 +99,7 @@ static gboolean       info_sections_visit       (GtkTreeModel         *model,
 static void           info_document_disconnect  (YelpInfoDocument     *info);
 
 
-G_DEFINE_TYPE (YelpInfoDocument, yelp_info_document, YELP_TYPE_DOCUMENT);
+G_DEFINE_TYPE (YelpInfoDocument, yelp_info_document, YELP_TYPE_DOCUMENT)
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_INFO_DOCUMENT, YelpInfoDocumentPrivate))
 
 static void

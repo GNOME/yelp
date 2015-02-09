@@ -86,7 +86,7 @@ help_list_entry_cmp (HelpListEntry *a, HelpListEntry *b)
     return g_utf8_collate (as, bs);
 }
 
-G_DEFINE_TYPE (YelpHelpList, yelp_help_list, YELP_TYPE_DOCUMENT);
+G_DEFINE_TYPE (YelpHelpList, yelp_help_list, YELP_TYPE_DOCUMENT)
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_HELP_LIST, YelpHelpListPrivate))
 
 typedef struct _YelpHelpListPrivate  YelpHelpListPrivate;

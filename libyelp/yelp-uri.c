@@ -63,7 +63,7 @@ static void           resolve_gfile              (YelpUri        *uri,
 static gboolean       is_man_path                (const gchar    *uri,
                                                   const gchar    *encoding);
 
-G_DEFINE_TYPE (YelpUri, yelp_uri, G_TYPE_OBJECT);
+G_DEFINE_TYPE (YelpUri, yelp_uri, G_TYPE_OBJECT)
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_URI, YelpUriPrivate))
 
 typedef struct _YelpUriPrivate YelpUriPrivate;

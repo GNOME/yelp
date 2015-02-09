@@ -94,7 +94,7 @@ struct _YelpDocumentPriv {
     GError *idle_error;
 };
 
-G_DEFINE_TYPE (YelpDocument, yelp_document, G_TYPE_OBJECT);
+G_DEFINE_TYPE (YelpDocument, yelp_document, G_TYPE_OBJECT)
 
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_DOCUMENT, YelpDocumentPriv))
 

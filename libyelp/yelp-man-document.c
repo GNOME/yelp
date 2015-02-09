@@ -147,7 +147,7 @@ static void           man_document_process               (YelpManDocument       
 static void           man_document_disconnect            (YelpManDocument        *man);
 
 
-G_DEFINE_TYPE (YelpManDocument, yelp_man_document, YELP_TYPE_DOCUMENT);
+G_DEFINE_TYPE (YelpManDocument, yelp_man_document, YELP_TYPE_DOCUMENT)
 #define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_MAN_DOCUMENT, YelpManDocumentPrivate))
 
 static void

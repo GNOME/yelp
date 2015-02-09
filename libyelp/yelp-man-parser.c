@@ -140,19 +140,19 @@ typedef gboolean (*LineParser)(YelpManParser *, GError **);
 #define DECLARE_LINE_PARSER(name) \
     static gboolean (name) (YelpManParser *parser, GError **error);
 
-DECLARE_LINE_PARSER (parse_xf);
-DECLARE_LINE_PARSER (parse_f);
-DECLARE_LINE_PARSER (parse_V);
-DECLARE_LINE_PARSER (parse_H);
-DECLARE_LINE_PARSER (parse_v);
-DECLARE_LINE_PARSER (parse_h);
-DECLARE_LINE_PARSER (parse_text);
-DECLARE_LINE_PARSER (parse_w);
-DECLARE_LINE_PARSER (parse_body_text);
-DECLARE_LINE_PARSER (parse_n);
-DECLARE_LINE_PARSER (parse_N);
-DECLARE_LINE_PARSER (parse_C);
-DECLARE_LINE_PARSER (parse_p);
+DECLARE_LINE_PARSER (parse_xf)
+DECLARE_LINE_PARSER (parse_f)
+DECLARE_LINE_PARSER (parse_V)
+DECLARE_LINE_PARSER (parse_H)
+DECLARE_LINE_PARSER (parse_v)
+DECLARE_LINE_PARSER (parse_h)
+DECLARE_LINE_PARSER (parse_text)
+DECLARE_LINE_PARSER (parse_w)
+DECLARE_LINE_PARSER (parse_body_text)
+DECLARE_LINE_PARSER (parse_n)
+DECLARE_LINE_PARSER (parse_N)
+DECLARE_LINE_PARSER (parse_C)
+DECLARE_LINE_PARSER (parse_p)
 
 /* Declare a sort of alist registry of parsers for different lines. */
 struct LineParsePair
