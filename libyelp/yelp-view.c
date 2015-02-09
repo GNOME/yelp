@@ -896,7 +896,7 @@ view_scrolled (GtkAdjustment *adjustment,
         return;
     if (adjustment == priv->vadjustment)
         ((YelpBackEntry *) priv->back_cur->data)->vadj = gtk_adjustment_get_value (adjustment);
-    else if (adjustment = priv->hadjustment)
+    else if (adjustment == priv->hadjustment)
         ((YelpBackEntry *) priv->back_cur->data)->hadj = gtk_adjustment_get_value (adjustment);
 }
 
