@@ -47,6 +47,7 @@ EXTRA_DIST += yelp-bz2-decompressor.c
 endif
 
 libyelp_la_CFLAGS =                             \
+	$(WARN_CFLAGS)				\
 	$(YELP_CFLAGS)                          \
 	-Wno-deprecated-declarations		\
 	-DDATADIR=\""$(datadir)"\"              \
