@@ -1905,20 +1905,22 @@ uri_resolved (YelpUri  *uri,
               YelpView *view)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
+    YelpUriDocumentType doctype;
     YelpDocument *document;
     YelpBackEntry *back;
     GError *error = NULL;
     gchar *struri;
     GParamSpec *spec;
 
-    if (yelp_uri_get_document_type (uri) != YELP_URI_DOCUMENT_TYPE_EXTERNAL) {
+    doctype = yelp_uri_get_document_type (uri);
+
+    if (doctype != YELP_URI_DOCUMENT_TYPE_EXTERNAL) {
         g_object_ref (uri);
         view_clear_load (view);
         priv->uri = uri;
     }
 
-    switch (yelp_uri_get_document_type (uri)) {
-    case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
+    if (doctype == YELP_URI_DOCUMENT_TYPE_EXTERNAL) {
         g_object_set (view, "state", priv->prevstate, NULL);
         struri = yelp_uri_get_canonical_uri (uri);
         if (g_str_has_prefix (struri, "install:") ||
@@ -1932,7 +1934,8 @@ uri_resolved (YelpUri  *uri,
         }
         g_free (struri);
         return;
-    case YELP_URI_DOCUMENT_TYPE_NOT_FOUND:
+    }
+    else if (doctype == YELP_URI_DOCUMENT_TYPE_NOT_FOUND) {
         struri = yelp_uri_get_canonical_uri (uri);
         if (struri != NULL) {
             error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
@@ -1944,16 +1947,13 @@ uri_resolved (YelpUri  *uri,
             error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
                                  _("The URI does not point to a valid page."));
         }
-        break;
-    case YELP_URI_DOCUMENT_TYPE_ERROR:
+    }
+    else if (doctype == YELP_URI_DOCUMENT_TYPE_ERROR) {
         struri = yelp_uri_get_canonical_uri (uri);
         error = g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,
                              _("The URI ‘%s’ could not be parsed."),
                              struri);
         g_free (struri);
-        break;
-    default:
-        break;
     }
 
     if (error == NULL) {

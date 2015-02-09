@@ -158,6 +158,7 @@ YelpDocument *
 yelp_document_get_for_uri (YelpUri *uri)
 {
     static GHashTable *documents = NULL;
+    YelpUriDocumentType doctype;
     gchar *docuri = NULL;
     gchar *page_id, *tmp;
     YelpDocument *document = NULL;
@@ -168,10 +169,11 @@ yelp_document_get_for_uri (YelpUri *uri)
 
     g_return_val_if_fail (yelp_uri_is_resolved (uri), NULL);
 
-    switch (yelp_uri_get_document_type (uri)) {
-    case YELP_URI_DOCUMENT_TYPE_TEXT:
-    case YELP_URI_DOCUMENT_TYPE_HTML:
-    case YELP_URI_DOCUMENT_TYPE_XHTML:
+    doctype = yelp_uri_get_document_type (uri);
+
+    if (doctype == YELP_URI_DOCUMENT_TYPE_TEXT ||
+        doctype == YELP_URI_DOCUMENT_TYPE_HTML ||
+        doctype == YELP_URI_DOCUMENT_TYPE_XHTML) {
         /* We use YelpSimpleDocument for these, which is a single-file
          * responder. But the document URI may be set to the directory
          * holding the file, to allow a directory of HTML files to act
@@ -183,16 +185,15 @@ yelp_document_get_for_uri (YelpUri *uri)
         g_free (docuri);
         g_free (page_id);
         docuri = tmp;
-        break;
-    case YELP_URI_DOCUMENT_TYPE_MAN:
+    }
+    else if (doctype == YELP_URI_DOCUMENT_TYPE_MAN) {
         /* The document URI for man pages is just man:, so we use the
          * full canonical URI to look these up.
          */
         docuri = yelp_uri_get_canonical_uri (uri);
-        break;
-    default:
+    }
+    else {
         docuri = yelp_uri_get_document_uri (uri);
-        break;
     }
 
     if (docuri == NULL)
@@ -229,6 +230,7 @@ yelp_document_get_for_uri (YelpUri *uri)
     case YELP_URI_DOCUMENT_TYPE_EXTERNAL:
     case YELP_URI_DOCUMENT_TYPE_ERROR:
         break;
+    case YELP_URI_DOCUMENT_TYPE_UNRESOLVED:
     default:
         g_assert_not_reached ();
     }
