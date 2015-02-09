@@ -1154,26 +1154,26 @@ popup_save_code (GtkMenuItem *item,
                                                     NULL,
                                                     &error);
         if (stream == NULL) {
-            GtkWidget *dialog = gtk_message_dialog_new (gtk_widget_get_visible (window) ? GTK_WINDOW (window) : NULL,
-                                                        GTK_DIALOG_DESTROY_WITH_PARENT,
-                                                        GTK_MESSAGE_ERROR,
-                                                        GTK_BUTTONS_OK,
-                                                        "%s", error->message);
-            gtk_dialog_run (GTK_DIALOG (dialog));
-            gtk_widget_destroy (dialog);
+            GtkWidget *dlg = gtk_message_dialog_new (gtk_widget_get_visible (window) ? GTK_WINDOW (window) : NULL,
+                                                     GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                     GTK_MESSAGE_ERROR,
+                                                     GTK_BUTTONS_OK,
+                                                     "%s", error->message);
+            gtk_dialog_run (GTK_DIALOG (dlg));
+            gtk_widget_destroy (dlg);
             g_error_free (error);
         }
         else {
             /* FIXME: we should do this async */
             GDataOutputStream *datastream = g_data_output_stream_new (G_OUTPUT_STREAM (stream));
             if (!g_data_output_stream_put_string (datastream, priv->popup_code_text, NULL, &error)) {
-                GtkWidget *dialog = gtk_message_dialog_new (gtk_widget_get_visible (window) ? GTK_WINDOW (window) : NULL,
-                                                            GTK_DIALOG_DESTROY_WITH_PARENT,
-                                                            GTK_MESSAGE_ERROR,
-                                                            GTK_BUTTONS_OK,
-                                                            "%s", error->message);
-                gtk_dialog_run (GTK_DIALOG (dialog));
-                gtk_widget_destroy (dialog);
+                GtkWidget *dlg = gtk_message_dialog_new (gtk_widget_get_visible (window) ? GTK_WINDOW (window) : NULL,
+                                                         GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                         GTK_MESSAGE_ERROR,
+                                                         GTK_BUTTONS_OK,
+                                                         "%s", error->message);
+                gtk_dialog_run (GTK_DIALOG (dlg));
+                gtk_widget_destroy (dlg);
                 g_error_free (error);
             }
             g_object_unref (datastream);
@@ -1313,7 +1313,7 @@ view_populate_popup (YelpView *view,
             gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
         }
         else {
-            GSList *cur;
+            GSList *l;
 
             item = gtk_menu_item_new_with_mnemonic (_("_Open Link"));
             g_signal_connect (item, "activate",
@@ -1334,9 +1334,9 @@ view_populate_popup (YelpView *view,
                 gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
             }
 
-            for (cur = priv->link_actions; cur != NULL; cur = cur->next) {
+            for (l = priv->link_actions; l != NULL; l = l->next) {
                 gboolean add;
-                YelpActionEntry *entry = (YelpActionEntry *) cur->data;
+                YelpActionEntry *entry = (YelpActionEntry *) l->data;
                 if (entry->func == NULL)
                     add = TRUE;
                 else
@@ -2047,7 +2047,6 @@ document_callback (YelpDocument       *document,
             g_free (real_id);
         }
         else {
-            GParamSpec *spec;
             g_free (priv->page_id);
             priv->page_id = real_id;
             spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),

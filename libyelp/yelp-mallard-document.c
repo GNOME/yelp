@@ -574,25 +574,24 @@ mallard_page_data_walk (MallardPageData *page_data)
                     xmlAddChild (title_node, xmlCopyNode (node, 1));
                 }
                 if (!page_data->link_title) {
-                    xmlNodePtr title_node = xmlNewChild (info,
-                                                         priv->cache_ns,
-                                                         BAD_CAST "title", NULL);
-                    xmlSetProp (title_node, BAD_CAST "type", BAD_CAST "link");
+                    xmlNodePtr title_node2 = xmlNewChild (info,
+                                                          priv->cache_ns,
+                                                          BAD_CAST "title", NULL);
+                    xmlSetProp (title_node2, BAD_CAST "type", BAD_CAST "link");
                     for (node = child->children; node; node = node->next) {
-                        xmlAddChild (title_node, xmlCopyNode (node, 1));
+                        xmlAddChild (title_node2, xmlCopyNode (node, 1));
                     }
                 }
                 if (!page_data->sort_title) {
-                    xmlNodePtr title_node = xmlNewChild (info,
-                                                         priv->cache_ns,
-                                                         BAD_CAST "title", NULL);
-                    xmlSetProp (title_node, BAD_CAST "type", BAD_CAST "sort");
+                    xmlNodePtr title_node2 = xmlNewChild (info,
+                                                          priv->cache_ns,
+                                                          BAD_CAST "title", NULL);
+                    xmlSetProp (title_node2, BAD_CAST "type", BAD_CAST "sort");
                     for (node = child->children; node; node = node->next) {
-                        xmlAddChild (title_node, xmlCopyNode (node, 1));
+                        xmlAddChild (title_node2, xmlCopyNode (node, 1));
                     }
                 }
                 if (page_data->page_title == NULL) {
-                    YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
                     xmlXPathObjectPtr obj;
                     page_data->xpath->node = child;
                     obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);

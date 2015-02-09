@@ -306,7 +306,6 @@ resolve_start (YelpUri *uri)
 static void
 resolve_sync (YelpUri *uri)
 {
-    gchar *tmp;
     YelpUriPrivate *priv = GET_PRIV (uri);
 
     if (g_str_has_prefix (priv->res_arg, "ghelp:")
