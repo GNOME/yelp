@@ -11,7 +11,7 @@ AM_MAINTAINER_MODE([enable])
 AM_SILENT_RULES([yes])
 
 AX_IS_RELEASE([git-directory])
-AX_CHECK_ENABLE_DEBUG([info], [YELP_DEBUG])
+AX_CHECK_ENABLE_DEBUG([info], [YELP_DEBUG], [$ax_is_release])
 
 # Check for programs
 AC_PROG_CC
