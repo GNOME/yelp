@@ -855,7 +855,7 @@ help_cb_uri_resolved (YelpUri                *uri,
         }
 
         webkit_uri_scheme_request_finish_error (request, error);
-        g_object_unref (error);
+        g_error_free (error);
     }
 }
 
