@@ -1,4 +1,4 @@
-lib_LTLIBRARIES = libyelpcommon.la
+pkglib_LTLIBRARIES = libyelpcommon.la
 
 libyelpcommon_la_SOURCES =      \
 	yelp-uri.c                  \
@@ -14,6 +14,9 @@ libyelpcommon_la_CFLAGS =               \
 
 
 libyelpcommon_la_LIBADD = $(YELP_LIBS)
+libyelpcommon_la_LDFLAGS = 	\
+	-avoid-version		\
+	-no-undefined
 
 libyelpcommon_headers =               \
 	yelp-uri.h                  \
@@ -56,7 +59,7 @@ yelp-common-types.c: $(libyelpcommon_headers)
 	--vtail "  return type;\n}\n\n" \
 	$(libyelpcommon_headers)) > $@
 
-lib_LTLIBRARIES += libyelp.la
+lib_LTLIBRARIES = libyelp.la
 
 libyelp_la_SOURCES =                \
 	yelp-bookmarks.c            \
