@@ -18,7 +18,7 @@ GTKDOC_LIBS =					\
 
 HFILE_GLOB = $(top_srcdir)/libyelp/*.h
 CFILE_GLOB = $(top_srcdir)/libyelp/*.c
-IGNORE_HFILES = yelp-debug.h yelp-types.h
+IGNORE_HFILES = yelp-common-types.h yelp-debug.h yelp-types.h
 IGNORE_CFILES =
 
 if !ENABLE_LZMA
