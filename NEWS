@@ -1,3 +1,20 @@
+3.15.90
+=======
+* Use a default filename when priting to a file, #737206 (David King)
+* Use g_async_queue_new_full(), #737528 (Paolo Borelli)
+* Ignore unused decompressor files, #737519 (Gergely Polonkai)
+* Remove g_type_init() calls, #737518 (Gergely Polonkai)
+* Use AX_COMPILER_FLAGS (David King, Philip Withnall)
+* Fix many compiler warnings (David King)
+* Check if __STDC_VERSION__ is defined, #744454 (Mark Chalupa)
+* Updated translations:
+  he    (Yosef Or Boczko)
+  is    (Sveinn í Felli)
+  nl    (hanniedu)
+  pt    (Pedro Albuquerque)
+  tr    (Muhammet Kara, Yaşar Şentürk)
+  vi    (Trần Ngọc Quân)
+
 3.14.1
 ======
 * Updated translations:
