@@ -1,3 +1,8 @@
+# Libtool is utterly broken when it comes to ordering library dependencies.
+# Hack around this awfulness: https://lists.gnu.org/archive/html/libtool/2004-10/msg00051.html
+# As libyelp depends on libyelpcommon, force libyelpcommon to be installed
+# first.
+install-exec-am: install-pkglibLTLIBRARIES install-libLTLIBRARIES
 pkglib_LTLIBRARIES = libyelpcommon.la
 
 libyelpcommon_la_SOURCES =      \
