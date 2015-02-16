@@ -369,21 +369,24 @@ get_troff (gchar *path, GError **error)
 {
     gint ystdout;
     GError *err = NULL;
-    gchar *argv[] = { g_strdup ("man"), g_strdup ("-Z"), g_strdup ("-Tutf8"),
-                      g_strdup ("-EUTF-8"), g_strdup (path), NULL };
+    const gchar *argv[] = { "man", "-Z", "-Tutf8", "-EUTF-8", path, NULL };
+    gchar **my_argv;
 
-    if (!g_spawn_async_with_pipes (NULL, argv, NULL,
+    /* g_strdupv() should accept a "const gchar **". */
+    my_argv = g_strdupv ((gchar **) argv);
+
+    if (!g_spawn_async_with_pipes (NULL, my_argv, NULL,
                                    G_SPAWN_SEARCH_PATH, NULL, NULL,
                                    NULL, NULL, &ystdout, NULL, &err)) {
         /* We failed to run the man program. Return a "Huh?" error. */
         *error = g_error_new (YELP_ERROR, YELP_ERROR_UNKNOWN,
                               "%s", err->message);
         g_error_free (err);
-        g_strfreev (argv);
+        g_strfreev (my_argv);
         return NULL;
     }
 
-    g_strfreev (argv);
+    g_strfreev (my_argv);
 
     return (GInputStream*) g_unix_input_stream_new (ystdout, TRUE);
 }

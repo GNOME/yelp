@@ -916,7 +916,8 @@ resolve_help_list_uri (YelpUri *uri)
 static gchar*
 find_man_path (gchar* name, gchar* section)
 {
-    gchar* argv[] = { g_strdup ("man"), g_strdup ("-w"), NULL, NULL, NULL };
+    const gchar* argv[] = { "man", "-w", NULL, NULL, NULL };
+    gchar **my_argv;
     gchar *ystdout = NULL;
     gint status;
     gchar **lines;
@@ -925,13 +926,16 @@ find_man_path (gchar* name, gchar* section)
     /* Syntax for man is "man -w <section> <name>", possibly omitting
        section */
     if (section) {
-        argv[2] = g_strdup (section);
-        argv[3] = g_strdup (name);
+        argv[2] = section;
+        argv[3] = name;
     } else {
-        argv[2] = g_strdup (name);
+        argv[2] = name;
     }
 
-    if (!g_spawn_sync (NULL, argv, NULL,
+    /* g_strdupv() should accept a "const gchar **". */
+    my_argv = g_strdupv ((gchar **) argv);
+
+    if (!g_spawn_sync (NULL, my_argv, NULL,
                        G_SPAWN_SEARCH_PATH | G_SPAWN_STDERR_TO_DEV_NULL,
                        NULL, NULL,
                        &ystdout, NULL, &status, &error)) {
@@ -940,7 +944,7 @@ find_man_path (gchar* name, gchar* section)
         g_error_free (error);
     }
 
-    g_strfreev (argv);
+    g_strfreev (my_argv);
 
     if (status == 0) {
         lines = g_strsplit (ystdout, "\n", 2);
