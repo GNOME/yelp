@@ -126,6 +126,9 @@ static void        document_callback              (YelpDocument       *document,
                                                    YelpDocumentSignal  signal,
                                                    YelpView           *view,
                                                    GError             *error);
+static void        gtk_xft_dpi_changed            (GtkSettings        *gtk_settings,
+                                                   GParamSpec         *pspec,
+                                                   gpointer            user_data);
 
 static gchar *nautilus_sendto = NULL;
 
@@ -194,6 +197,8 @@ struct _YelpViewPrivate {
     gulong         uri_resolved;
     gchar         *bogus_uri;
     YelpDocument  *document;
+    GtkSettings   *gtk_settings;
+    gulong         gtk_xft_dpi_changed;
     GCancellable  *cancellable;
     GtkAdjustment *vadjustment;
     GtkAdjustment *hadjustment;
@@ -248,6 +253,17 @@ yelp_view_init (YelpView *view)
     priv->cancellable = NULL;
 
     priv->prevstate = priv->state = YELP_VIEW_STATE_BLANK;
+
+    /* FIXME: We should use the GtkSettings from the right GdkScreen instead
+     * of the the detault one, but we can't get it from here since the view
+     * has not been added to any top level GtkWidget yet.
+     */
+    priv->gtk_settings = gtk_settings_get_default ();
+    if (priv->gtk_settings) {
+        priv->gtk_xft_dpi_changed =
+            g_signal_connect (priv->gtk_settings, "notify::gtk-xft-dpi",
+                              G_CALLBACK (gtk_xft_dpi_changed), NULL);
+    }
 
     priv->navigation_requested =
         g_signal_connect (view, "navigation-policy-decision-requested",
@@ -306,6 +322,11 @@ yelp_view_dispose (GObject *object)
     YelpViewPrivate *priv = GET_PRIV (object);
 
     view_clear_load (YELP_VIEW (object));
+
+    if (priv->gtk_xft_dpi_changed > 0) {
+        g_signal_handler_disconnect (priv->gtk_settings, priv->gtk_xft_dpi_changed);
+        priv->gtk_xft_dpi_changed = 0;
+    }
 
     if (priv->vadjuster > 0) {
         g_signal_handler_disconnect (priv->vadjustment, priv->vadjuster);
@@ -1856,6 +1877,25 @@ view_show_error_page (YelpView *view,
     g_free (page);
 }
 
+static gint
+normalize_font_size (gdouble font_size)
+{
+  GtkSettings *settings = NULL;
+  gint gtk_xft_dpi = -1;
+  gdouble dpi = 96;
+
+  /* FIXME: We should use the GtkSettings from the right GdkScreen instead
+   * of the the detault one, but we don't have access to the view here.
+   */
+  settings = gtk_settings_get_default ();
+  if (settings) {
+      g_object_get (settings, "gtk-xft-dpi", &gtk_xft_dpi, NULL);
+      dpi = (gtk_xft_dpi != -1) ? gtk_xft_dpi / 1024.0 : 96;
+  }
+
+  /* Use 96 DPI as the reference value for font size calculation */
+  return font_size * dpi / 96;
+}
 
 static void
 settings_set_fonts (YelpSettings *settings)
@@ -1875,7 +1915,7 @@ settings_set_fonts (YelpSettings *settings)
     g_object_set (websettings,
                   "default-font-family", family,
                   "sans-serif-font-family", family,
-                  "default-font-size", size,
+                  "default-font-size", normalize_font_size (size),
                   NULL);
     g_free (family);
 
@@ -1885,7 +1925,7 @@ settings_set_fonts (YelpSettings *settings)
                                         YELP_SETTINGS_FONT_FIXED);
     g_object_set (websettings,
                   "monospace-font-family", family,
-                  "default-monospace-font-size", size,
+                  "default-monospace-font-size", normalize_font_size (size),
                   NULL);
     g_free (family);
 }
@@ -2209,4 +2249,13 @@ document_callback (YelpDocument       *document,
     else if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {
         view_show_error_page (view, error);
     }
+}
+
+static void
+gtk_xft_dpi_changed (GtkSettings *gtk_settings,
+                     GParamSpec  *pspec,
+                     gpointer     user_data)
+{
+    YelpSettings *settings = yelp_settings_get_default ();
+    settings_set_fonts (settings);
 }
