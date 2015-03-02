@@ -728,7 +728,27 @@ view_external_uri (YelpView *view,
                    YelpUri  *uri)
 {
     gchar *struri = yelp_uri_get_canonical_uri (uri);
-    g_app_info_launch_default_for_uri (struri, NULL, NULL);
+    gchar *uri_scheme;
+    GAppInfo *app_info = NULL;
+
+    uri_scheme = g_uri_parse_scheme (struri);
+    if (uri_scheme && *uri_scheme)
+      app_info = g_app_info_get_default_for_uri_scheme (uri_scheme);
+    g_free (uri_scheme);
+
+    if (app_info)
+      {
+        if (!strstr (g_app_info_get_executable (app_info), "yelp"))
+          {
+            GList l;
+
+            l.data = struri;
+            l.next = l.prev = NULL;
+            g_app_info_launch_uris (app_info, &l, NULL, NULL);
+          }
+
+        g_object_unref (app_info);
+      }
     g_free (struri);
     return TRUE;
 }
