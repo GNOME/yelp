@@ -255,7 +255,7 @@ struct _YelpViewPrivate {
 
     GSList         *link_actions;
 
-    gint            navigation_requested;
+    gboolean        resolve_uri_on_policy_decision;
 };
 
 #define TARGET_TYPE_URI_LIST     "text/uri-list"
@@ -325,9 +325,9 @@ yelp_view_init (YelpView *view)
 
     priv->prevstate = priv->state = YELP_VIEW_STATE_BLANK;
 
-    priv->navigation_requested =
-        g_signal_connect (view, "decide-policy",
-                          G_CALLBACK (view_policy_decision_requested), NULL);
+    priv->resolve_uri_on_policy_decision = TRUE;
+    g_signal_connect (view, "decide-policy",
+                      G_CALLBACK (view_policy_decision_requested), NULL);
     g_signal_connect (view, "load-changed",
                       G_CALLBACK (view_load_status_changed), NULL);
     g_signal_connect (view, "load-failed",
@@ -1650,16 +1650,20 @@ view_policy_decision_requested (YelpView                *view,
                                 gpointer                 user_data)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
-    WebKitNavigationPolicyDecision *navigation_decision = WEBKIT_NAVIGATION_POLICY_DECISION (decision);
-    WebKitURIRequest *request = webkit_navigation_policy_decision_get_request (navigation_decision);
-    const gchar *requri = webkit_uri_request_get_uri (request);
+    WebKitURIRequest *request;
     gchar *fixed_uri;
     YelpUri *uri;
 
     if (type != WEBKIT_POLICY_DECISION_TYPE_NAVIGATION_ACTION)
         return FALSE;
 
-    fixed_uri = build_yelp_uri (requri);
+    if (!priv->resolve_uri_on_policy_decision) {
+        priv->resolve_uri_on_policy_decision = TRUE;
+        return FALSE;
+    }
+
+    request = webkit_navigation_policy_decision_get_request (WEBKIT_NAVIGATION_POLICY_DECISION (decision));
+    fixed_uri = build_yelp_uri (webkit_uri_request_get_uri (request));
 
     webkit_policy_decision_ignore (decision);
 
@@ -1736,9 +1740,6 @@ view_load_status_changed (WebKitWebView   *view,
         break;
     }
     case WEBKIT_LOAD_FINISHED:
-
-        g_signal_handler_unblock (view, priv->navigation_requested);
-
         g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
 
         /* Setting adjustments only work after the page is loaded. These
@@ -1787,9 +1788,6 @@ view_load_failed (WebKitWebView  *view,
                   GError         *error,
                   gpointer        user_data)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
-
-    g_signal_handler_unblock (view, priv->navigation_requested);
     view_show_error_page (YELP_VIEW (view), error);
 }
 
@@ -1825,8 +1823,6 @@ view_history_action (GAction   *action,
     GList *newcur;
     YelpViewPrivate *priv = GET_PRIV (view);
 
-    g_signal_handler_unblock (view, priv->navigation_requested);
-
     if (priv->back_cur == NULL)
         return;
 
@@ -1857,8 +1853,6 @@ view_navigation_action (GAction  *action,
     YelpViewPrivate *priv = GET_PRIV (view);
     gchar *page_id, *new_id, *xref;
     YelpUri *new_uri;
-
-    g_signal_handler_unblock (view, priv->navigation_requested);
 
     page_id = yelp_uri_get_page_id (priv->uri);
 
@@ -1980,7 +1974,7 @@ view_load_page (YelpView *view)
     uri_str = build_network_uri (uri_str);
     g_free (tmp_uri);
 
-    g_signal_handler_block (view, priv->navigation_requested);
+    priv->resolve_uri_on_policy_decision = FALSE;
     webkit_web_view_load_uri (WEBKIT_WEB_VIEW (view), uri_str);
 
     g_free (uri_str);
@@ -2132,7 +2126,7 @@ view_show_error_page (YelpView *view,
 
     g_signal_emit (view, signals[LOADED], 0);
 
-    g_signal_handler_block (view, priv->navigation_requested);
+    priv->resolve_uri_on_policy_decision = FALSE;
     webkit_web_view_load_html  (WEBKIT_WEB_VIEW (view),
                                 page,
                                 "file:///error/");
