@@ -414,7 +414,7 @@ yelp_view_dispose (GObject *object)
     }
 
     if (priv->fonts_changed > 0) {
-        g_signal_handler_disconnect (webkit_web_view_get_settings (WEBKIT_WEB_VIEW (object)),
+        g_signal_handler_disconnect (yelp_settings_get_default (),
                                      priv->fonts_changed);
         priv->fonts_changed = 0;
     }
