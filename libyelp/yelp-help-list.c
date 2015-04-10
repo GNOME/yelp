@@ -445,7 +445,7 @@ help_list_handle_page (YelpHelpList *list,
     YelpHelpListPrivate *priv = GET_PRIV (list);
     GtkTextDirection direction = gtk_widget_get_default_direction ();
     GString *string = g_string_new
-        ("<html><head><style type='text/css'>\n"
+        ("<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><style type='text/css'>\n"
          "html { height: 100%; }\n"
          "body { margin: 0; padding: 0; max-width: 100%;");
     colors = yelp_settings_get_colors (yelp_settings_get_default ());
@@ -591,7 +591,7 @@ help_list_handle_page (YelpHelpList *list,
 
     yelp_document_give_contents (YELP_DOCUMENT (list), page_id,
                                  string->str,
-                                 "text/html");
+                                 "application/xhtml+xml");
     g_strfreev (colors);
     g_string_free (string, FALSE);
     yelp_document_signal (YELP_DOCUMENT (list), page_id,

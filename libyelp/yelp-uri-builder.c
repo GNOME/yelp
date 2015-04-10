@@ -48,7 +48,7 @@ build_network_uri (const gchar *uri)
         soup_uri_set_path (soup_uri, path);
         g_free (path);
     }
-    else if (g_str_equal (soup_uri->scheme, "help")) {
+    else if (g_str_equal (soup_uri->scheme, "help") || g_str_equal (soup_uri->scheme, "help-list")) {
         /* Page is part of the path, add only leading slash */
         path = g_strdup_printf ("/%s", soup_uri->path);
         soup_uri_set_path (soup_uri, path);
@@ -80,7 +80,9 @@ build_yelp_uri (const gchar *uri_str)
 
   if (!g_str_has_prefix (uri, BOGUS_PREFIX "ghelp:/") &&
       !g_str_has_prefix (uri, BOGUS_PREFIX "gnome-help:/") &&
-      !g_str_has_prefix (uri, BOGUS_PREFIX "help:/")) {
+      !g_str_has_prefix (uri, BOGUS_PREFIX "help:/") &&
+      !g_str_has_prefix (uri, BOGUS_PREFIX "help-list:/"))
+  {
     return uri;
   }
 
