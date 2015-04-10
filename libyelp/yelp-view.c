@@ -2178,19 +2178,6 @@ uri_resolved (YelpUri  *uri,
         g_free (struri);
     }
 
-    if (error == NULL) {
-        document  = yelp_document_get_for_uri (uri);
-        if (priv->document)
-            g_object_unref (priv->document);
-        priv->document = document;
-    }
-    else {
-        if (priv->document != NULL) {
-            g_object_unref (priv->document);
-            priv->document = NULL;
-        }
-    }
-
     if (!priv->back_load) {
         back = g_new0 (YelpBackEntry, 1);
         back->uri = g_object_ref (uri);
