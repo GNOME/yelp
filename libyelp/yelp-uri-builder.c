@@ -32,24 +32,11 @@ build_network_uri (const gchar *uri)
     soup_uri = soup_uri_new (uri);
 
     /* Build the URI that will be passed to WebKit. Relative URIs will be
-       automatically reolved by WebKit, so we need to add a leading slash to
-       help: and ghelp: URIs to be considered as absolute by WebKit. The last
-       component of the URI is considered as a file by WebKit, unless there's
-       a trailing slash. For help: URIs this assumption is always correct, because
-       the page ID is part of the URI, and when resolved by WebKit, the page ID is
-       removed and the relative path is appended to the document URI. For ghelp: URIs
-       where the page ID is part of the query, we need to add a slash after the
-       document URI so that it's considered a directory and the relative path is appended
-       to the document URI.
-    */
-    if (g_str_equal (soup_uri->scheme, "ghelp") || g_str_equal (soup_uri->scheme, "gnome-help")) {
-        /* Pages are part of the query, add leading and trailing slash */
-        path = g_strdup_printf ("/%s/", soup_uri->path);
-        soup_uri_set_path (soup_uri, path);
-        g_free (path);
-    }
-    else if (g_str_equal (soup_uri->scheme, "help") || g_str_equal (soup_uri->scheme, "help-list")) {
-        /* Page is part of the path, add only leading slash */
+     * automatically resolved by WebKit, so we need to add a leading slash to
+     * help: and ghelp: URIs to be considered as absolute by WebKit.
+     */
+    if (g_str_equal (soup_uri->scheme, "ghelp") || g_str_equal (soup_uri->scheme, "gnome-help") ||
+        g_str_equal (soup_uri->scheme, "help") || g_str_equal (soup_uri->scheme, "help-list")) {
         path = g_strdup_printf ("/%s", soup_uri->path);
         soup_uri_set_path (soup_uri, path);
         g_free (path);
