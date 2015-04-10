@@ -23,6 +23,6 @@
 
 #include "yelp-uri.h"
 
-gchar * build_network_uri    (gchar *uri);
+gchar * build_network_uri    (const gchar *uri);
 gchar * build_yelp_uri       (const gchar *uri);
 gchar * build_network_scheme (const gchar *scheme);

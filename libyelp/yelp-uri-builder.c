@@ -24,7 +24,7 @@
 #define BOGUS_PREFIX_LEN 6
 
 gchar *
-build_network_uri (gchar *uri)
+build_network_uri (const gchar *uri)
 {
     SoupURI *soup_uri;
     gchar *bogus_scheme, *path, *retval;
