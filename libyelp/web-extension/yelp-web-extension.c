@@ -30,10 +30,10 @@
 static YelpUri *current_uri;
 
 static gchar *
-get_resource_path (gchar *uri, YelpUri *document_uri)
+get_resource_path (gchar *uri, YelpUri *current_uri)
 {
+    gchar *doc_uri;
     gchar *resource = NULL;
-    gchar *resource_path = 0;
 
     if (!g_str_has_prefix (uri, "ghelp") &&
         !g_str_has_prefix (uri, "gnome-help") &&
@@ -41,16 +41,30 @@ get_resource_path (gchar *uri, YelpUri *document_uri)
         return NULL;
     }
 
-    resource = strstr (uri, "/");
-    if (resource) {
-        resource[0] = '\0';
-        resource++;
+    doc_uri = yelp_uri_get_document_uri (current_uri);
+    if (g_str_has_prefix (uri, doc_uri)) {
+        /* If the uri starts with the document uri,
+         * simply remove the document uri to get the
+         * resource path.
+         */
+        uri[strlen (doc_uri)] = '\0';
+        resource = uri + strlen (doc_uri) + 1;
+    } else {
+        /* If the uri doesn't contain the document uri,
+         * the full path is the resource path.
+         */
+        resource = strstr (uri, ":");
+        if (resource) {
+            resource[0] = '\0';
+            resource++;
+        }
     }
+    g_free (doc_uri);
 
     if (resource && resource[0] != '\0')
-        resource_path = yelp_uri_locate_file_uri (document_uri, resource);
+        return yelp_uri_locate_file_uri (current_uri, resource);
 
-    return resource_path;
+    return NULL;
 }
 
 static gboolean
@@ -59,24 +73,20 @@ web_page_send_request (WebKitWebPage     *web_page,
                        WebKitURIResponse *redirected_response,
                        gpointer           user_data)
 {
-    const gchar *wk_uri = webkit_uri_request_get_uri (request);
-    gchar *yelp_uri, *current_uri_canonical, *file_path;
+    const gchar *resource_uri = webkit_uri_request_get_uri (request);
+    gchar *yelp_uri, *file_path;
 
     if (!current_uri)
         return FALSE;
 
-    yelp_uri = build_yelp_uri (wk_uri);
-    current_uri_canonical = yelp_uri_get_canonical_uri (current_uri);
-
+    yelp_uri = build_yelp_uri (resource_uri);
     file_path = get_resource_path (yelp_uri, current_uri);
-
     if (file_path) {
         webkit_uri_request_set_uri (request, file_path);
         g_free (file_path);
     }
-
     g_free (yelp_uri);
-    g_free (current_uri_canonical);
+
     return FALSE;
 }
 
