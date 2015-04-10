@@ -57,14 +57,6 @@ static gboolean    view_external_uri                 (YelpView           *view,
                                                       YelpUri            *uri);
 static void        view_install_uri                  (YelpView           *view,
                                                       const gchar        *uri);
-static void        view_scrolled                     (GtkAdjustment      *adjustment,
-                                                      YelpView           *view);
-static void        view_set_hadjustment              (YelpView           *view,
-                                                      GParamSpec         *pspec,
-                                                      gpointer            data);
-static void        view_set_vadjustment              (YelpView           *view,
-                                                      GParamSpec         *pspec,
-                                                      gpointer            data);
 static void        popup_open_link                   (GtkAction          *action,
                                                       YelpView           *view);
 static void        popup_open_link_new               (GtkAction          *action,
@@ -218,12 +210,6 @@ struct _YelpViewPrivate {
     gulong         uri_resolved;
     YelpDocument  *document;
     GCancellable  *cancellable;
-    GtkAdjustment *vadjustment;
-    GtkAdjustment *hadjustment;
-    gdouble        vadjust;
-    gdouble        hadjust;
-    gulong         vadjuster;
-    gulong         hadjuster;
     gulong         fonts_changed;
 
     gchar         *popup_link_uri;
@@ -332,10 +318,6 @@ yelp_view_init (YelpView *view)
                       G_CALLBACK (view_load_status_changed), NULL);
     g_signal_connect (view, "load-failed",
                       G_CALLBACK (view_load_failed), NULL);
-    g_signal_connect (view, "notify::hadjustment",
-                      G_CALLBACK (view_set_hadjustment), NULL);
-    g_signal_connect (view, "notify::vadjustment",
-                      G_CALLBACK (view_set_vadjustment), NULL);
     g_signal_connect (view, "context-menu",
                       G_CALLBACK (view_populate_context_menu), NULL);
     g_signal_connect (view, "script-dialog",
@@ -402,16 +384,6 @@ yelp_view_dispose (GObject *object)
     YelpViewPrivate *priv = GET_PRIV (object);
 
     view_clear_load (YELP_VIEW (object));
-
-    if (priv->vadjuster > 0) {
-        g_signal_handler_disconnect (priv->vadjustment, priv->vadjuster);
-        priv->vadjuster = 0;
-    }
-
-    if (priv->hadjuster > 0) {
-        g_signal_handler_disconnect (priv->hadjustment, priv->hadjuster);
-        priv->hadjuster = 0;
-    }
 
     if (priv->fonts_changed > 0) {
         g_signal_handler_disconnect (yelp_settings_get_default (),
@@ -1135,49 +1107,6 @@ view_install_uri (YelpView    *view,
 }
 
 static void
-view_scrolled (GtkAdjustment *adjustment,
-               YelpView      *view)
-{
-    YelpViewPrivate *priv = GET_PRIV (view);
-    if (priv->back_cur == NULL || priv->back_cur->data == NULL)
-        return;
-    if (adjustment == priv->vadjustment)
-        ((YelpBackEntry *) priv->back_cur->data)->vadj = gtk_adjustment_get_value (adjustment);
-    else if (adjustment == priv->hadjustment)
-        ((YelpBackEntry *) priv->back_cur->data)->hadj = gtk_adjustment_get_value (adjustment);
-}
-
-static void
-view_set_hadjustment (YelpView      *view,
-                      GParamSpec    *pspec,
-                      gpointer       data)
-{
-    YelpViewPrivate *priv = GET_PRIV (view);
-    priv->hadjustment = gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (view));
-    if (priv->hadjuster > 0)
-        g_signal_handler_disconnect (priv->hadjustment, priv->hadjuster);
-    priv->hadjuster = 0;
-    if (priv->hadjustment)
-        priv->hadjuster = g_signal_connect (priv->hadjustment, "value-changed",
-                                            G_CALLBACK (view_scrolled), view);
-}
-
-static void
-view_set_vadjustment (YelpView      *view,
-                      GParamSpec    *pspec,
-                      gpointer       data)
-{
-    YelpViewPrivate *priv = GET_PRIV (view);
-    priv->vadjustment = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (view));
-    if (priv->vadjuster > 0)
-        g_signal_handler_disconnect (priv->vadjustment, priv->vadjuster);
-    priv->vadjuster = 0;
-    if (priv->vadjustment)
-        priv->vadjuster = g_signal_connect (priv->vadjustment, "value-changed",
-                                            G_CALLBACK (view_scrolled), view);
-}
-
-static void
 popup_open_link (GtkAction   *action,
                  YelpView    *view)
 {
@@ -1742,21 +1671,6 @@ view_load_status_changed (WebKitWebView   *view,
     case WEBKIT_LOAD_FINISHED:
         g_object_set (view, "state", YELP_VIEW_STATE_LOADED, NULL);
 
-        /* Setting adjustments only work after the page is loaded. These
-         * are set by view_history_action, and they're reset to 0 after
-         * each load here.
-         */
-        if (priv->vadjust > 0) {
-            if (priv->vadjustment)
-                gtk_adjustment_set_value (priv->vadjustment, priv->vadjust);
-            priv->vadjust = 0;
-        }
-        if (priv->hadjust > 0) {
-            if (priv->hadjustment)
-                gtk_adjustment_set_value (priv->hadjustment, priv->hadjust);
-            priv->hadjust = 0;
-        }
-
         /* If the document didn't give us a page title, get it from WebKit.
          * We let the main loop run through so that WebKit gets the title
          * set so that we can send notify::page-title before loaded. It
@@ -1841,8 +1755,6 @@ view_history_action (GAction   *action,
 
     priv->back_load = TRUE;
     yelp_view_load_uri (view, ((YelpBackEntry *) priv->back_cur->data)->uri);
-    priv->vadjust = ((YelpBackEntry *) priv->back_cur->data)->vadj;
-    priv->hadjust = ((YelpBackEntry *) priv->back_cur->data)->hadj;
 }
 
 static void
