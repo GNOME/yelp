@@ -1,21 +1,22 @@
+# translation of yelp.gnome-3-16.is.po to Icelandic
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Samúel Jón Gunnarsson  <sammi@techattack.nu>
 # Sveinn í Felli <sv1@fellsnet.is>, 2015.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2014-06-24 00:11+0000\n"
-"PO-Revision-Date: 2015-02-02 10:16+0000\n"
+"Project-Id-Version: yelp.gnome-3-16.is\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&"
+"keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2015-03-25 12:40+0000\n"
+"PO-Revision-Date: 2015-04-21 13:38+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "X-Generator: Lokalize 1.5\n"
 
 #. (itstool) path: msg/msgstr
@@ -29,389 +30,381 @@ msgstr ""
 #. <string/> - The package to install
 #.
 #: yelp.xml.in:36
-#, fuzzy
 msgid "Install <string/>"
-msgstr "Setja inn"
+msgstr "Setja inn <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:144
-#: ../libyelp/yelp-lzma-decompressor.c:153
+#: ../libyelp/yelp-bz2-decompressor.c:143
+#: ../libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
-msgstr ""
+msgstr "Ógild þjöppuð gögn"
 
-#: ../libyelp/yelp-bz2-decompressor.c:150
-#: ../libyelp/yelp-lzma-decompressor.c:159
-#, fuzzy
+#: ../libyelp/yelp-bz2-decompressor.c:149
+#: ../libyelp/yelp-lzma-decompressor.c:158
 #| msgid "Out of memory"
 msgid "Not enough memory"
-msgstr "Ekki nægjanlegt minni"
+msgstr "Ekki nógu mikið laust minni"
 
-#: ../libyelp/yelp-docbook-document.c:297 ../libyelp/yelp-info-document.c:237
-#: ../libyelp/yelp-mallard-document.c:305
-#: ../libyelp/yelp-mallard-document.c:456 ../libyelp/yelp-man-document.c:281
-#, fuzzy, c-format
+#: ../libyelp/yelp-docbook-document.c:295 ../libyelp/yelp-info-document.c:235
+#: ../libyelp/yelp-mallard-document.c:304
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:279
+#, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "þetta gagn '%s' fannst ekki"
+msgstr "Síðan '%s' fannst ekki í skjalinu '%s'."
 
-#: ../libyelp/yelp-docbook-document.c:332 ../libyelp/yelp-info-document.c:371
-#: ../libyelp/yelp-man-document.c:416
-#, fuzzy, c-format
+#: ../libyelp/yelp-docbook-document.c:333 ../libyelp/yelp-info-document.c:372
+#: ../libyelp/yelp-man-document.c:417
+#, c-format
 msgid "The file does not exist."
-msgstr "þetta gagn '%s' fannst ekki"
+msgstr "Skráin er ekki til."
 
-#: ../libyelp/yelp-docbook-document.c:342 ../libyelp/yelp-info-document.c:381
-#: ../libyelp/yelp-man-document.c:426
+#: ../libyelp/yelp-docbook-document.c:343 ../libyelp/yelp-info-document.c:382
+#: ../libyelp/yelp-man-document.c:427
 #, c-format
 msgid "The file ‘%s’ does not exist."
-msgstr ""
+msgstr "Skráin '%s' er ekki til."
 
-#: ../libyelp/yelp-docbook-document.c:357
+#: ../libyelp/yelp-docbook-document.c:358
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
+"Ekki er hægt að þátta skrána ‚%s‘ vegna þess að hún er ekki velformað XML "
+"skjal."
 
-#: ../libyelp/yelp-docbook-document.c:370
+#: ../libyelp/yelp-docbook-document.c:371
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
+"Ekki er hægt að þátta skrána ‚%s‘ vegna þess að ein eða fleiri af skránum "
+"sem hún inniheldur er ekki velformað XML skjal."
 
-#: ../libyelp/yelp-docbook-document.c:803
+#: ../libyelp/yelp-docbook-document.c:801
 msgid "Unknown"
 msgstr "Óþekkt"
 
-#: ../libyelp/yelp-docbook-document.c:864 ../libyelp/yelp-info-document.c:314
-#: ../libyelp/yelp-man-document.c:358
-#, fuzzy, c-format
+#: ../libyelp/yelp-docbook-document.c:862 ../libyelp/yelp-info-document.c:315
+#: ../libyelp/yelp-man-document.c:359
+#, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr "þetta gagn '%s' fannst ekki"
+msgstr "Umbeðin síða fannst ekki í skjalinu ‘%s’."
 
-#: ../libyelp/yelp-document.c:266
-#, fuzzy
+#: ../libyelp/yelp-document.c:268
 #| msgid "Index"
 msgid "Indexed"
 msgstr "Skráð"
 
-#: ../libyelp/yelp-document.c:267
-#, fuzzy
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
-msgstr "þetta gagn '%s' fannst ekki"
+msgstr "Hvort efni skjalsins hafi verið sett í yfirlitsskrá"
 
-#: ../libyelp/yelp-document.c:275
-#, fuzzy
+#: ../libyelp/yelp-document.c:277
 #| msgid "Documents"
 msgid "Document URI"
-msgstr "Gögn"
+msgstr "Slóð á skjal"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr ""
 
-#: ../libyelp/yelp-document.c:992
+#: ../libyelp/yelp-document.c:996
 #, c-format
 msgid "Search results for “%s”"
-msgstr ""
+msgstr "Leitarniðurstöður fyrir “%s”"
 
-#: ../libyelp/yelp-document.c:1004
+#: ../libyelp/yelp-document.c:1008
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr ""
 
-#: ../libyelp/yelp-document.c:1010
+#: ../libyelp/yelp-document.c:1014
 msgid "No matching help pages found."
 msgstr ""
 
 #: ../libyelp/yelp-error.c:35
 #, c-format
 msgid "An unknown error occurred."
-msgstr ""
+msgstr "Óþekkt villa kom upp."
 
-#: ../libyelp/yelp-help-list.c:546 ../libyelp/yelp-help-list.c:555
-#, fuzzy
+#: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
 #| msgid "Documents"
 msgid "All Help Documents"
-msgstr "Gögn"
+msgstr "Öll hjálparskjöl"
 
-#: ../libyelp/yelp-info-document.c:396
+#: ../libyelp/yelp-info-document.c:397
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
+"Ekki er hægt að þátta skrána '%s' vegna þess að hún er ekki rétt formuð "
+"upplýsingasíða."
 
-#: ../libyelp/yelp-mallard-document.c:344
+#: ../libyelp/yelp-mallard-document.c:346
 #, c-format
 msgid "The directory ‘%s’ does not exist."
-msgstr ""
+msgstr "Mappan ‘%s’ er ekki til."
+
+#: ../libyelp/yelp-search-entry.c:172
+msgid "View"
+msgstr "Sýn"
 
 #: ../libyelp/yelp-search-entry.c:173
-#, fuzzy
-msgid "View"
-msgstr "Skoða"
-
-#: ../libyelp/yelp-search-entry.c:174
 msgid "A YelpView instance to control"
 msgstr ""
 
-#: ../libyelp/yelp-search-entry.c:189 ../src/yelp-window.c:400
-#, fuzzy
+#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:397
 msgid "Bookmarks"
 msgstr "Bókamerki"
 
-#: ../libyelp/yelp-search-entry.c:190
+#: ../libyelp/yelp-search-entry.c:189
 msgid "A YelpBookmarks implementation instance"
 msgstr ""
 
-#: ../libyelp/yelp-search-entry.c:440
-#, fuzzy, c-format
+#: ../libyelp/yelp-search-entry.c:433
+#, c-format
 msgid "Search for “%s”"
 msgstr "Leita að “%s”"
 
-#: ../libyelp/yelp-settings.c:152
+#: ../libyelp/yelp-settings.c:148
 msgid "GtkSettings"
 msgstr ""
 
-#: ../libyelp/yelp-settings.c:153
+#: ../libyelp/yelp-settings.c:149
 msgid "A GtkSettings object to get settings from"
 msgstr ""
 
-#: ../libyelp/yelp-settings.c:161
+#: ../libyelp/yelp-settings.c:157
 msgid "GtkIconTheme"
 msgstr ""
 
-#: ../libyelp/yelp-settings.c:162
+#: ../libyelp/yelp-settings.c:158
 msgid "A GtkIconTheme object to get icons from"
 msgstr ""
 
-#: ../libyelp/yelp-settings.c:170
+#: ../libyelp/yelp-settings.c:166
 msgid "Font Adjustment"
-msgstr ""
+msgstr "Aðlögun á letri"
 
-#: ../libyelp/yelp-settings.c:171
+#: ../libyelp/yelp-settings.c:167
 msgid "A size adjustment to add to font sizes"
 msgstr ""
 
-#: ../libyelp/yelp-settings.c:179
+#: ../libyelp/yelp-settings.c:175
 msgid "Show Text Cursor"
-msgstr ""
+msgstr "Birta textabendil"
 
-#: ../libyelp/yelp-settings.c:180
+#: ../libyelp/yelp-settings.c:176
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr ""
 
-#: ../libyelp/yelp-settings.c:188
-#, fuzzy
+#: ../libyelp/yelp-settings.c:184
 #| msgid "Editor"
 msgid "Editor Mode"
-msgstr "Ritill"
+msgstr "Ritilhamur"
 
-#: ../libyelp/yelp-settings.c:189
+#: ../libyelp/yelp-settings.c:185
 msgid "Enable features useful to editors"
 msgstr ""
 
-#: ../libyelp/yelp-sqlite-storage.c:147
+#: ../libyelp/yelp-sqlite-storage.c:145
 msgid "Database filename"
-msgstr ""
+msgstr "Skráarheiti gagnagrunns"
 
-#: ../libyelp/yelp-sqlite-storage.c:148
+#: ../libyelp/yelp-sqlite-storage.c:146
 msgid "The filename of the sqlite database"
 msgstr ""
 
-#: ../libyelp/yelp-transform.c:169
+#: ../libyelp/yelp-transform.c:164
 msgid "XSLT Stylesheet"
-msgstr ""
+msgstr "XSLT stílblað"
 
-#: ../libyelp/yelp-transform.c:170
+#: ../libyelp/yelp-transform.c:165
 msgid "The location of the XSLT stylesheet"
 msgstr ""
 
-#: ../libyelp/yelp-transform.c:378 ../libyelp/yelp-transform.c:393
+#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr ""
 
-#: ../libyelp/yelp-transform.c:527
+#: ../libyelp/yelp-transform.c:518
 msgid "No href attribute found on yelp:document\n"
 msgstr ""
 
-#: ../libyelp/yelp-transform.c:542
+#: ../libyelp/yelp-transform.c:533
 msgid "Out of memory"
 msgstr "Minnið er búið"
 
-#: ../libyelp/yelp-view.c:446
-#, fuzzy
+#: ../libyelp/yelp-view.c:464
 #| msgid "Yelp"
 msgid "Yelp URI"
-msgstr "Yelp"
+msgstr "Slóð á Yelp"
 
-#: ../libyelp/yelp-view.c:447
+#: ../libyelp/yelp-view.c:465
 msgid "A YelpUri with the current location"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:455
-#, fuzzy
+#: ../libyelp/yelp-view.c:473
 #| msgid "Loading..."
 msgid "Loading State"
-msgstr "Hleð..."
+msgstr "Staða hleðslu..."
 
-#: ../libyelp/yelp-view.c:456
+#: ../libyelp/yelp-view.c:474
 msgid "The loading state of the view"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:465
+#: ../libyelp/yelp-view.c:483
 msgid "Page ID"
-msgstr ""
+msgstr "Síðuauðkenni"
 
-#: ../libyelp/yelp-view.c:466
+#: ../libyelp/yelp-view.c:484
 msgid "The ID of the root page of the page being viewed"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:474
+#: ../libyelp/yelp-view.c:492
 #, fuzzy
 #| msgid "Title"
 msgid "Root Title"
 msgstr "Titill"
 
-#: ../libyelp/yelp-view.c:475
+#: ../libyelp/yelp-view.c:493
 msgid "The title of the root page of the page being viewed"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:483
-#, fuzzy
+#: ../libyelp/yelp-view.c:501
 #| msgid "Title"
 msgid "Page Title"
-msgstr "Titill"
+msgstr "Titill síðu"
 
-#: ../libyelp/yelp-view.c:484
+#: ../libyelp/yelp-view.c:502
 msgid "The title of the page being viewed"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:492
+#: ../libyelp/yelp-view.c:510
 msgid "Page Description"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:493
+#: ../libyelp/yelp-view.c:511
 msgid "The description of the page being viewed"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:501
+#: ../libyelp/yelp-view.c:519
 msgid "Page Icon"
-msgstr ""
+msgstr "Táknmynd síðu"
 
-#: ../libyelp/yelp-view.c:502
+#: ../libyelp/yelp-view.c:520
 msgid "The icon of the page being viewed"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:744
+#: ../libyelp/yelp-view.c:782
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 
-#: ../libyelp/yelp-view.c:1040
+#: ../libyelp/yelp-view.c:1078
 msgid "Save Image"
 msgstr "Vista mynd"
 
-#: ../libyelp/yelp-view.c:1135
+#: ../libyelp/yelp-view.c:1173
 msgid "Save Code"
-msgstr ""
+msgstr "Vista kóða"
 
-#: ../libyelp/yelp-view.c:1298
+#: ../libyelp/yelp-view.c:1336
 #, c-format
 msgid "Send email to %s"
-msgstr ""
+msgstr "Senda tölvupóst á %s"
 
-#: ../libyelp/yelp-view.c:1313
+#: ../libyelp/yelp-view.c:1351
 msgid "_Install Packages"
-msgstr ""
+msgstr "Setja upp pakka"
 
-#: ../libyelp/yelp-view.c:1321
+#: ../libyelp/yelp-view.c:1359
 msgid "_Open Link"
 msgstr "_Opna tengil"
 
-#: ../libyelp/yelp-view.c:1328
+#: ../libyelp/yelp-view.c:1366
 msgid "_Copy Link Location"
 msgstr "_Afrita staðsetningu tengils"
 
-#: ../libyelp/yelp-view.c:1334
+#: ../libyelp/yelp-view.c:1372
 msgid "Open Link in New _Window"
 msgstr "Opna tengil í nýjum _glugga"
 
-#: ../libyelp/yelp-view.c:1388
+#: ../libyelp/yelp-view.c:1426
 msgid "_Save Image As…"
 msgstr "Vi_sta mynd sem…"
 
-#: ../libyelp/yelp-view.c:1390
+#: ../libyelp/yelp-view.c:1428
 msgid "_Save Video As…"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:1397
+#: ../libyelp/yelp-view.c:1435
 msgid "S_end Image To…"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:1399
+#: ../libyelp/yelp-view.c:1437
 msgid "S_end Video To…"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:1410
+#: ../libyelp/yelp-view.c:1448
 msgid "_Copy Text"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:1423
+#: ../libyelp/yelp-view.c:1461
 msgid "C_opy Code Block"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:1428
+#: ../libyelp/yelp-view.c:1466
 msgid "Save Code _Block As…"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:1535
+#: ../libyelp/yelp-view.c:1572
 #, c-format
 msgid "See all search results for “%s”"
 msgstr ""
 
-#: ../libyelp/yelp-view.c:1656
+#: ../libyelp/yelp-view.c:1718
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Gat ekki lesið skjal fyrir ‘%s’"
 
-#: ../libyelp/yelp-view.c:1662
+#: ../libyelp/yelp-view.c:1724
 #, c-format
 msgid "Could not load a document"
 msgstr "Gat ekki lesið skjal"
 
-#: ../libyelp/yelp-view.c:1737
+#: ../libyelp/yelp-view.c:1800
 msgid "Document Not Found"
 msgstr "Skjal fannst ekki"
 
-#: ../libyelp/yelp-view.c:1739
+#: ../libyelp/yelp-view.c:1802
 msgid "Page Not Found"
 msgstr "Síða fannst ekki"
 
-#: ../libyelp/yelp-view.c:1742
+#: ../libyelp/yelp-view.c:1805
 msgid "Cannot Read"
 msgstr "Gat ekki lesið"
 
-#: ../libyelp/yelp-view.c:1748
-#| msgid "Unknown"
+#: ../libyelp/yelp-view.c:1811
 msgid "Unknown Error"
 msgstr "Óþekkt villa"
 
-#: ../libyelp/yelp-view.c:1768
-#, fuzzy
+#: ../libyelp/yelp-view.c:1831
 msgid "Search for packages containing this document."
-msgstr "þetta gagn '%s' fannst ekki"
+msgstr "Leita að pökkum sem innihalda þetta skjal."
 
-#: ../libyelp/yelp-view.c:1918
+#: ../libyelp/yelp-view.c:2003
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr ""
 
-#: ../libyelp/yelp-view.c:1924
+#: ../libyelp/yelp-view.c:2009
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr ""
 
-#: ../libyelp/yelp-view.c:1930
+#: ../libyelp/yelp-view.c:2015
 #, fuzzy, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "þetta gagn '%s' fannst ekki"
@@ -420,29 +413,28 @@ msgstr "þetta gagn '%s' fannst ekki"
 msgid "Turn on editor mode"
 msgstr ""
 
-#: ../src/yelp-application.c:272 ../src/yelp-window.c:1147
+#: ../src/yelp-application.c:270 ../src/yelp-window.c:1163
 #: ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Hjálp"
 
-#: ../src/yelp-application.c:322
+#: ../src/yelp-application.c:320
 msgid "New Window"
 msgstr "Nýr gluggi"
 
-#: ../src/yelp-application.c:326
+#: ../src/yelp-application.c:324
 msgid "Larger Text"
 msgstr ""
 
-#: ../src/yelp-application.c:327
+#: ../src/yelp-application.c:325
 msgid "Smaller Text"
 msgstr ""
 
-#: ../src/yelp-window.c:206
-#| msgid "Applications"
+#: ../src/yelp-window.c:204
 msgid "Application"
 msgstr "Forrit"
 
-#: ../src/yelp-window.c:207
+#: ../src/yelp-window.c:205
 msgid "A YelpApplication instance that controls this window"
 msgstr ""
 
@@ -454,46 +446,43 @@ msgstr "Til baka"
 msgid "Forward"
 msgstr "Áfram"
 
-#: ../src/yelp-window.c:344
+#: ../src/yelp-window.c:341
 msgid "Menu"
 msgstr "Valmynd"
 
-#: ../src/yelp-window.c:349
-#| msgid "Find"
+#: ../src/yelp-window.c:346
 msgid "Find…"
 msgstr "Finna…"
 
-#: ../src/yelp-window.c:350
+#: ../src/yelp-window.c:347
 msgid "Print…"
 msgstr "Prenta…"
 
-#: ../src/yelp-window.c:355
-#| msgid "_Previous"
+#: ../src/yelp-window.c:352
 msgid "Previous Page"
 msgstr "Fyrri síða"
 
-#: ../src/yelp-window.c:356
+#: ../src/yelp-window.c:353
 msgid "Next Page"
 msgstr "Næsta síða"
 
-#: ../src/yelp-window.c:361
-#| msgid "Help"
+#: ../src/yelp-window.c:358
 msgid "All Help"
 msgstr "Öll hjálp"
 
-#: ../src/yelp-window.c:383
+#: ../src/yelp-window.c:380
 msgid "Search (Ctrl+S)"
 msgstr "Leita (Ctrl+S)"
 
-#: ../src/yelp-window.c:417
+#: ../src/yelp-window.c:414
 msgid "No bookmarks"
 msgstr "Engin bókamerki"
 
-#: ../src/yelp-window.c:425
+#: ../src/yelp-window.c:422
 msgid "Add Bookmark"
 msgstr "Bæta við bókamerki"
 
-#: ../src/yelp-window.c:431
+#: ../src/yelp-window.c:428
 msgid "Remove Bookmark"
 msgstr "Fjarlægja bókamerki"
 
@@ -506,396 +495,4 @@ msgstr "Fá hjálp með GNOME"
 msgid "documentation;information;manual;"
 msgstr "Gögn"
 
-#~ msgid "Configuration Files"
-#~ msgstr "Stillingarskrár"
 
-#~ msgid "Development"
-#~ msgstr "Þróun"
-
-#~ msgid "Games"
-#~ msgstr "Leikir"
-
-#~ msgid "Hardware Devices"
-#~ msgstr "Vélbúnaðareiningar"
-
-#~ msgid "Kernel Routines"
-#~ msgstr "Kernel Routines"
-
-#~ msgid "Library Functions"
-#~ msgstr "Library Functions"
-
-#, fuzzy
-#~ msgid "OpenSSL Applications"
-#~ msgstr "Forrit"
-
-#, fuzzy
-#~ msgid "OpenSSL Configuration"
-#~ msgstr "Stillingarskrár"
-
-#, fuzzy
-#~ msgid "OpenSSL Overviews"
-#~ msgstr "Yfirlit"
-
-#~ msgid "Overviews"
-#~ msgstr "Yfirlit"
-
-#, fuzzy
-#~ msgid "Perl Functions"
-#~ msgstr "Library Functions"
-
-#, fuzzy
-#~ msgid "Qt Functions"
-#~ msgstr "Library Functions"
-
-#~ msgid "System Administration"
-#~ msgstr "Kerfisstjórnun"
-
-#~ msgid "System Calls"
-#~ msgstr "System Calls"
-
-#, fuzzy
-#~ msgid "Termcap Applications"
-#~ msgstr "Forrit"
-
-#, fuzzy
-#~ msgid "X11 Applications"
-#~ msgstr "Forrit"
-
-#, fuzzy
-#~ msgid "X11 Configuration"
-#~ msgstr "Stillingarskrár"
-
-#, fuzzy
-#~ msgid "X11 Functions"
-#~ msgstr "Library Functions"
-
-#, fuzzy
-#~ msgid "X11 Games"
-#~ msgstr "Leikir"
-
-#, fuzzy
-#~ msgid "X11 Overviews"
-#~ msgstr "Yfirlit"
-
-#, fuzzy
-#~ msgid "Applets"
-#~ msgstr "Forrit"
-
-#~ msgid "Desktop"
-#~ msgstr "GNOME - Skjáborðið"
-
-#, fuzzy
-#~ msgid "Education Applications"
-#~ msgstr "Forrit"
-
-#, fuzzy
-#~ msgid "Help Topics"
-#~ msgstr "Hjálparvafri"
-
-#, fuzzy
-#~ msgid "Internet"
-#~ msgstr "Innihald hjálpar"
-
-#~ msgid "KDE"
-#~ msgstr "KDE"
-
-#, fuzzy
-#~ msgid "Other Documentation"
-#~ msgstr "Gögn"
-
-#, fuzzy
-#~ msgid "Scientific"
-#~ msgstr "Forrit"
-
-#, fuzzy
-#~ msgid "System Tools"
-#~ msgstr "System Calls"
-
-#, fuzzy
-#~ msgid "X Applications"
-#~ msgstr "Forrit"
-
-#, fuzzy
-#~ msgid "<b>_Bookmarks:</b>"
-#~ msgstr "Bók"
-
-#~ msgid "_Find: "
-#~ msgstr "Leita:"
-
-#, fuzzy
-#~ msgid "_Location:"
-#~ msgstr "Deildir"
-
-#~ msgid "_Next"
-#~ msgstr "_Næsta"
-
-#~ msgid "Yelp Factory"
-#~ msgstr "Yelp Verksmiðjan"
-
-#, fuzzy
-#~ msgid "Could not read the table of contents"
-#~ msgstr "Ekki tókst að virkja Yelp: '%s'"
-
-#~ msgid "Define which cache directory to use"
-#~ msgstr "Skilgreindu möppu sem nota á sem skyndiminni"
-
-#~ msgid "Could not activate Yelp: '%s'"
-#~ msgstr "Ekki tókst að virkja Yelp: '%s'"
-
-#~ msgid "Could not open new window."
-#~ msgstr "Ekki tókst að opna nýja glugga."
-
-#, fuzzy
-#~ msgid "Could not load the OMF file '%s'."
-#~ msgstr "Ekki tókst að virkja Yelp: '%s'"
-
-#~ msgid "Help Contents"
-#~ msgstr "Innihald hjálpar"
-
-#, fuzzy
-#~ msgid "_File"
-#~ msgstr "/_Skrá"
-
-#, fuzzy
-#~ msgid "_Edit"
-#~ msgstr "/Sýs_l"
-
-#, fuzzy
-#~ msgid "_Go"
-#~ msgstr "/Fa_ra"
-
-#, fuzzy
-#~ msgid "_Help"
-#~ msgstr "/_Hjálp"
-
-#, fuzzy
-#~ msgid "About This Document"
-#~ msgstr "Um Þessa Bók"
-
-#, fuzzy
-#~ msgid "_Close Window"
-#~ msgstr "/Skrá/_Loka glugga"
-
-#, fuzzy
-#~ msgid "_Select All"
-#~ msgstr "Sjá einnig"
-
-#, fuzzy
-#~ msgid "_Find..."
-#~ msgstr "/Sýsl/_Finna á síðu..."
-
-#~ msgid "Show previous page in history"
-#~ msgstr "Sýna fyrri síðu í ferilskrá"
-
-#~ msgid "Show next page in history"
-#~ msgstr "Sýna næstu síðu í ferilskrá"
-
-#, fuzzy
-#~ msgid "_Previous Section"
-#~ msgstr "_Fyrra"
-
-#, fuzzy
-#~ msgid "_Next Section"
-#~ msgstr "Deildir"
-
-#, fuzzy
-#~ msgid "_Contents"
-#~ msgstr "Innihald hjálpar"
-
-#, fuzzy
-#~ msgid "_About"
-#~ msgstr "/Hjálp/_Um"
-
-#~ msgid "Help Browser"
-#~ msgstr "Hjálparvafri"
-
-#, fuzzy
-#~ msgid "Find:"
-#~ msgstr "Leita"
-
-#, fuzzy
-#~ msgid "Find _Next"
-#~ msgstr "/Sýsl/_Finna á ný"
-
-#, fuzzy
-#~ msgid "Find _Previous"
-#~ msgstr "_Fyrra"
-
-#  Note to translators: put here your name (and address) so it
-#  * will shop up in the "about" box
-#, fuzzy
-#~ msgid "translator-credits"
-#~ msgstr "Samúel Jón Gunnarsson <sammi@techattack.nu>"
-
-#, fuzzy
-#~ msgid "_Home"
-#~ msgstr "Heim"
-
-#~ msgid "Go to home view"
-#~ msgstr "Fara yfir í heima-sýn"
-
-#, fuzzy
-#~ msgid "Fin_d"
-#~ msgstr "Leita"
-
-#~ msgid "Development Environments"
-#~ msgstr "Þróunar Umhverfi"
-
-#~ msgid "Development Tools"
-#~ msgstr "Þróunar Tól"
-
-#~ msgid "Editors"
-#~ msgstr "Ritlar"
-
-#~ msgid "Games and Entertainment"
-#~ msgstr "Leikir og skemmtun"
-
-#~ msgid "General"
-#~ msgstr "Almennt"
-
-#, fuzzy
-#~ msgid "Internet Applications"
-#~ msgstr "Forrit"
-
-#, fuzzy
-#~ msgid "Kernels"
-#~ msgstr "Kernel Routines"
-
-#~ msgid "Multimedia Applications"
-#~ msgstr "Margmiðlunar Forrit"
-
-#, fuzzy
-#~ msgid "System"
-#~ msgstr "System Calls"
-
-#~ msgid "Utilities"
-#~ msgstr "Tól"
-
-#~ msgid "*"
-#~ msgstr "*"
-
-#, fuzzy
-#~ msgid "The table of contents could not be read."
-#~ msgstr "þetta gagn '%s' fannst ekki"
-
-#, fuzzy
-#~ msgid "The selected file could not be read."
-#~ msgstr "þetta gagn '%s' fannst ekki"
-
-#~ msgid "X11"
-#~ msgstr "X11"
-
-#~ msgid "OpenSSL"
-#~ msgstr "OpenSSL"
-
-#~ msgid "Termcap"
-#~ msgstr "Termcap"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "TIFF"
-#~ msgstr "TIFF"
-
-#~ msgid "PThreads"
-#~ msgstr "PThreads"
-
-#~ msgid "Categories"
-#~ msgstr "Flokkar"
-
-#~ msgid "About This Article"
-#~ msgstr "Um Þessa Grein"
-
-#~ msgid "About This Chapter"
-#~ msgstr "Um Þennan Kafla"
-
-#~ msgid "About This Part"
-#~ msgstr "Um Þennan Part"
-
-#, fuzzy
-#~ msgid "Affiliation"
-#~ msgstr "Forrit"
-
-#~ msgid "Article"
-#~ msgstr "Grein"
-
-#~ msgid "Author"
-#~ msgstr "Höfundur"
-
-#~ msgid "Authors"
-#~ msgstr "Höfundar"
-
-#~ msgid "Chapter"
-#~ msgstr "Kafli"
-
-#~ msgid "Copyright"
-#~ msgstr "Höfundaréttur"
-
-#~ msgid "Copyrights"
-#~ msgstr "Höfundaréttir"
-
-#~ msgid "Date"
-#~ msgstr "Dagsetning"
-
-#, fuzzy
-#~ msgid "Dedication"
-#~ msgstr "Deildir"
-
-#~ msgid "Email"
-#~ msgstr "Email"
-
-#~ msgid "Example"
-#~ msgstr "Dæmi"
-
-#~ msgid "Important"
-#~ msgstr "Mikilvægt"
-
-#~ msgid "Publisher"
-#~ msgstr "Útgefandi"
-
-#~ msgid "Publishers"
-#~ msgstr "Útgefendur"
-
-#, fuzzy
-#~ msgid "Set Index"
-#~ msgstr "Spjaldskrá"
-
-#~ msgid "Table"
-#~ msgstr "Tafla"
-
-#, fuzzy
-#~ msgid "Table of Contents"
-#~ msgstr "Innihald hjálpar"
-
-#~ msgid "Tip"
-#~ msgstr "Ábending"
-
-#~ msgid "Warning"
-#~ msgstr "Aðvörun"
-
-#, fuzzy
-#~ msgid "/Edit/Find Pre_vious"
-#~ msgstr "/Sýsl/_Finna á ný"
-
-#~ msgid "/Go/_Back"
-#~ msgstr "/Fara/Til_baka"
-
-#~ msgid "/Go/_Forward"
-#~ msgstr "/Fara/Á_fram"
-
-#~ msgid "/Go/_Home"
-#~ msgstr "/Fara/_Heim"
-
-#, fuzzy
-#~ msgid "/Go/"
-#~ msgstr "/Fa_ra"
-
-#, fuzzy
-#~ msgid "/Go/_Contents"
-#~ msgstr "Innihald hjálpar"
-
-#~ msgid "A Help Browser for GNOME"
-#~ msgstr "Hjálparvafri fyrir GNOME"
