@@ -243,6 +243,7 @@ yelp_settings_constructed (GObject *object)
     GVariantIter iter;
     gchar *name;
     gboolean env_shell, env_classic, env_panel, env_unity, env_xfce;
+    gchar *os_release = NULL;
     GError *error = NULL;
 
     connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
@@ -323,6 +324,65 @@ yelp_settings_constructed (GObject *object)
         yelp_settings_set_if_token (settings, "platform:xfce");
     else if (env_panel)
         yelp_settings_set_if_token (settings, "platform:gnome-panel");
+
+    g_file_get_contents ("/etc/os-release", &os_release, NULL, NULL);
+    if (os_release == NULL)
+        g_file_get_contents ("/usr/lib/os-release", &os_release, NULL, NULL);
+
+    if (os_release != NULL) {
+        gint i;
+        gchar **lines = g_strsplit(os_release, "\n", -1);
+        gchar *osid = NULL, *osversion = NULL, *end;
+        g_free (os_release);
+
+        for (i = 0; lines[i] != NULL; i++) {
+            if (g_str_has_prefix (lines[i], "ID=")) {
+                if (lines[i][3] == '"') {
+                    end = strchr (lines[i] + 4, '"');
+                    if (end != NULL)
+                        osid = g_strndup (lines[i] + 4, end - lines[i] - 4);
+                }
+                else if (lines[i][3] == '\'') {
+                    end = strchr (lines[i] + 4, '\'');
+                    if (end != NULL)
+                        osid = g_strndup (lines[i] + 4, end - lines[i] - 4);
+                }
+                else {
+                    osid = g_strdup (lines[i] + 3);
+                }
+            }
+            else if (g_str_has_prefix (lines[i], "VERSION_ID=")) {
+                if (lines[i][11] == '"') {
+                    end = strchr (lines[i] + 12, '"');
+                    if (end != NULL)
+                        osversion = g_strndup (lines[i] + 12, end - lines[i] - 12);
+                }
+                else if (lines[i][11] == '\'') {
+                    end = strchr (lines[i] + 12, '\'');
+                    if (end != NULL)
+                        osversion = g_strndup (lines[i] + 12, end - lines[i] - 12);
+                }
+                else {
+                    osversion = g_strdup (lines[i] + 11);
+                }
+            }
+        }
+
+        if (osid) {
+            gchar *token = g_strconcat("platform:", osid, NULL);
+            yelp_settings_set_if_token (settings, token);
+            g_free (token);
+            if (osversion) {
+                token = g_strconcat("platform:", osid, "-", osversion, NULL);
+                yelp_settings_set_if_token (settings, token);
+                g_free (token);
+                g_free (osversion);
+            }
+            g_free (osid);
+        }
+
+        g_strfreev(lines);
+    }
 
     yelp_settings_set_if_token (settings, "action:install");
 }
