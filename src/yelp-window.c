@@ -184,6 +184,8 @@ struct _YelpWindowPrivate {
     gint height;
 
     gboolean configured;
+
+    gboolean use_header;
 };
 
 static void
@@ -294,6 +296,7 @@ window_construct (YelpWindow *window)
     GtkSizeGroup *size_group;
     GMenu *menu, *section;
     YelpWindowPrivate *priv = GET_PRIV (window);
+    GtkStyleContext *headerbar_context;
 
     const GActionEntry entries[] = {
         { "yelp-window-new",    action_new_window,   NULL, NULL, NULL },
@@ -305,6 +308,11 @@ window_construct (YelpWindow *window)
     };
 
     gtk_window_set_icon_name (GTK_WINDOW (window), "help-browser");
+
+    g_object_get (gtk_settings_get_default (),
+                  "gtk-dialogs-use-header", &priv->use_header,
+                  NULL);
+
     priv->view = (YelpView *) yelp_view_new ();
 
     g_action_map_add_action_entries (G_ACTION_MAP (window),
@@ -315,8 +323,16 @@ window_construct (YelpWindow *window)
     gtk_container_add (GTK_CONTAINER (window), priv->vbox_full);
 
     priv->header = gtk_header_bar_new ();
-    gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (priv->header), TRUE);
-    gtk_window_set_titlebar (GTK_WINDOW (window), priv->header);
+    if (priv->use_header) {
+        gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (priv->header), TRUE);
+        gtk_window_set_titlebar (GTK_WINDOW (window), priv->header);
+    } else {
+        headerbar_context = gtk_widget_get_style_context (GTK_WIDGET (priv->header));
+        gtk_container_add (GTK_CONTAINER (priv->vbox_full), GTK_WIDGET (priv->header));
+        gtk_style_context_remove_class (headerbar_context, "header-bar");
+        gtk_style_context_add_class (headerbar_context, GTK_STYLE_CLASS_TOOLBAR);
+        gtk_style_context_add_class (headerbar_context, GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
+    }
 
     /** Back/Forward **/
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
@@ -1157,19 +1173,28 @@ view_root_title (YelpView    *view,
     gchar *root_title, *page_title;
     g_object_get (view, "root-title", &root_title, "page-title", &page_title, NULL);
 
-    if (page_title) {
-        gtk_header_bar_set_title (GTK_HEADER_BAR (priv->header), page_title);
-        g_free (page_title);
-    } else {
-        gtk_header_bar_set_title (GTK_HEADER_BAR (priv->header), _("Help"));
+    if (!priv->use_header) {
+        if (root_title)
+            gtk_window_set_title (GTK_WINDOW (window), root_title);
+        else
+            gtk_window_set_title (GTK_WINDOW (window), _("Help"));
+
+        goto out;
     }
 
-    if (root_title) {
+    if (page_title)
+        gtk_header_bar_set_title (GTK_HEADER_BAR (priv->header), page_title);
+    else
+        gtk_header_bar_set_title (GTK_HEADER_BAR (priv->header), _("Help"));
+
+    if (root_title)
         gtk_header_bar_set_subtitle (GTK_HEADER_BAR (priv->header), root_title);
-        g_free (root_title);
-    } else {
+    else
         gtk_header_bar_set_subtitle (GTK_HEADER_BAR (priv->header), NULL);
-    }
+
+out:
+    g_free (root_title);
+    g_free (page_title);
 }
 
 static void
