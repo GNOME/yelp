@@ -957,7 +957,7 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
     linkcontext = gtk_widget_get_style_context (tmplink);
 
     gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &text);
-    gtk_style_context_get_background_color (context, GTK_STATE_FLAG_ACTIVE, &base);
+    gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL, &base);
 
     rgb_to_hsv (text, &text_h, &text_s, &text_v);
     rgb_to_hsv (base, &base_h, &base_s, &base_v);
