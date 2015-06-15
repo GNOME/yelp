@@ -36,8 +36,15 @@ build_network_uri (const gchar *uri)
      * help: and ghelp: URIs to be considered as absolute by WebKit.
      */
     if (g_str_equal (soup_uri->scheme, "ghelp") || g_str_equal (soup_uri->scheme, "gnome-help") ||
-        g_str_equal (soup_uri->scheme, "help") || g_str_equal (soup_uri->scheme, "help-list")) {
-        path = g_strdup_printf ("/%s", soup_uri->path);
+        g_str_equal (soup_uri->scheme, "help") || g_str_equal (soup_uri->scheme, "help-list") ||
+        g_str_equal (soup_uri->scheme, "info")) {
+
+        if (g_str_equal (soup_uri->scheme, "info") && soup_uri->fragment) {
+            path = g_strdup_printf ("/%s/%s", soup_uri->path, soup_uri->fragment);
+            soup_uri_set_fragment (soup_uri, NULL);
+        } else {
+            path = g_strdup_printf ("/%s", soup_uri->path);
+        }
         soup_uri_set_path (soup_uri, path);
         g_free (path);
     }
@@ -65,13 +72,8 @@ build_yelp_uri (const gchar *uri_str)
   int path_len;
   gchar *uri = g_strdup (uri_str);
 
-  if (!g_str_has_prefix (uri, BOGUS_PREFIX "ghelp:/") &&
-      !g_str_has_prefix (uri, BOGUS_PREFIX "gnome-help:/") &&
-      !g_str_has_prefix (uri, BOGUS_PREFIX "help:/") &&
-      !g_str_has_prefix (uri, BOGUS_PREFIX "help-list:/"))
-  {
-    return uri;
-  }
+  if (!g_str_has_prefix (uri, BOGUS_PREFIX))
+      return uri;
 
   memmove (uri, uri + BOGUS_PREFIX_LEN, strlen (uri) - BOGUS_PREFIX_LEN + 1);
 
@@ -80,10 +82,18 @@ build_yelp_uri (const gchar *uri_str)
   resource++;
   memmove (resource, resource + 1, strlen (resource));
 
-  /*Remove the last / if any */
+  /* Remove the trailing slash if any */
   path_len = strlen (uri);
   if (uri[path_len - 1] == '/')
     uri[path_len - 1] = '\0';
+
+  if (g_str_has_prefix (uri, "info:")) {
+      gchar *frag;
+
+      frag = g_strrstr (uri, "/");
+      if (frag)
+          frag[0] = '#';
+  }
 
   return uri;
 }
