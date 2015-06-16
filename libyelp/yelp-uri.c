@@ -999,10 +999,24 @@ resolve_man_uri (YelpUri *uri)
                         0, &match_info)) {
         /* The regexp didn't match, so treat as a file name. */
         gchar *newuri;
+        guint i;
+        static const char *man_suffixes[] = { "gz", "bz2", "lzma", NULL };
+
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
         newuri = g_strdup_printf ("file:%s", priv->res_arg + 4);
         g_free (priv->res_arg);
         priv->res_arg = newuri;
+        name = g_path_get_basename (newuri + 5);
+        for (i = 0; i < G_N_ELEMENTS (man_suffixes); i++) {
+            if (is_man_path (name, man_suffixes[i])) {
+                if (man_suffixes[i])
+                    name[strlen (name) - strlen (man_suffixes[i]) - 1] = '\0';
+                break;
+            }
+        }
+        priv->docuri = g_strdup ("man:");
+        priv->fulluri = g_strconcat ("man:", name, NULL);
+        priv->page_id = name;
         resolve_file_uri (uri);
     }
     else {
