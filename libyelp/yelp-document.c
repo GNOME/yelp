@@ -857,7 +857,7 @@ document_request_page (YelpDocument         *document,
 
     g_mutex_lock (&document->priv->mutex);
 
-    if (g_str_has_prefix (page_id, "search=")) {
+    if (page_id && g_str_has_prefix (page_id, "search=")) {
         document->priv->reqs_search = g_slist_prepend (document->priv->reqs_search, request);
         if (document->priv->indexed)
             g_idle_add ((GSourceFunc) document_indexed, document);
