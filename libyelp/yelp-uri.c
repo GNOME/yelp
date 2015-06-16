@@ -1060,12 +1060,43 @@ resolve_info_uri (YelpUri *uri)
     gint infopath_i, suffix_i;
 
     if (g_str_has_prefix (priv->res_arg, "info:/")) {
-        gchar *newuri;
+        gchar *newuri, *basename;
+        const gchar *hash;
+
         priv->tmptype = YELP_URI_DOCUMENT_TYPE_INFO;
         newuri = g_strdup_printf ("file:%s", priv->res_arg + 5);
         g_free (priv->res_arg);
         priv->res_arg = newuri;
+        basename = g_path_get_basename (newuri + 5);
+        hash = g_strrstr (basename, "#");
+        if (hash) {
+            name = g_strndup (basename, hash - basename);
+            sect = g_strdup (hash + 1);
+        } else {
+            name = g_strdup (basename);
+            sect = NULL;
+        }
+        g_free (basename);
+        for (suffix_i = 0; infosuffix[suffix_i]; suffix_i++) {
+            if (g_str_has_suffix (name, infosuffix[suffix_i])) {
+                name[strlen (name) - strlen (infosuffix[suffix_i])] = '\0';
+                break;
+            }
+        }
+
+        priv->docuri = g_strconcat ("info:", name, NULL);
+        if (sect) {
+            priv->fulluri = g_strconcat ("info:", name, "#", sect, NULL);
+            priv->page_id = g_strdup (sect);
+            priv->frag_id = sect;
+            sect = NULL; /* steal memory */
+        } else {
+            priv->fulluri = g_strdup (priv->docuri);
+        }
         resolve_file_uri (uri);
+
+        g_free (name);
+        g_free (sect);
         return;
     }
 
