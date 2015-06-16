@@ -122,6 +122,9 @@ static void          view_new_window              (YelpView           *view,
                                                    YelpWindow         *window);
 static void          view_loaded                  (YelpView           *view,
                                                    YelpWindow         *window);
+static void          view_is_loading_changed      (YelpView           *view,
+                                                   GParamSpec         *pspec,
+                                                   YelpWindow         *window);
 static void          view_uri_selected            (YelpView           *view,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
@@ -504,6 +507,7 @@ window_construct (YelpWindow *window)
 
     g_signal_connect (priv->view, "new-view-requested", G_CALLBACK (view_new_window), window);
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
+    g_signal_connect (priv->view, "notify::is-loading", G_CALLBACK (view_is_loading_changed), window);
     g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), window);
     g_signal_connect_swapped (priv->view, "notify::page-id",
                               G_CALLBACK (window_set_bookmark_buttons), window);
@@ -1066,7 +1070,6 @@ view_loaded (YelpView   *view,
     YelpUri *uri;
     gchar *doc_uri;
     YelpViewState state;
-    GdkWindow *gdkwin;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     g_object_get (view,
@@ -1074,10 +1077,6 @@ view_loaded (YelpView   *view,
                   "state", &state,
                   NULL);
     doc_uri = yelp_uri_get_document_uri (uri);
-
-    gdkwin = gtk_widget_get_window (GTK_WIDGET (window));
-    if (gdkwin != NULL)
-        gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)), NULL);
 
     if (state != YELP_VIEW_STATE_ERROR) {
         gchar *page_id, *icon, *title;
@@ -1104,24 +1103,37 @@ view_loaded (YelpView   *view,
 }
 
 static void
+view_is_loading_changed (YelpView   *view,
+                         GParamSpec *pspec,
+                         YelpWindow *window)
+{
+    GdkWindow *gdkwin;
+
+    gdkwin = gtk_widget_get_window (GTK_WIDGET (window));
+    if (!gdkwin)
+        return;
+
+    if (webkit_web_view_is_loading (WEBKIT_WEB_VIEW (view))) {
+        gdk_window_set_cursor (gdkwin,
+                               gdk_cursor_new_for_display (gdk_window_get_display (gdkwin),
+                                                           GDK_WATCH));
+    } else {
+        gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)), NULL);
+    }
+}
+
+static void
 view_uri_selected (YelpView     *view,
                    GParamSpec   *pspec,
                    YelpWindow   *window)
 {
     YelpUri *uri;
     gchar *doc_uri;
-    GdkWindow *gdkwin;
     YelpWindowPrivate *priv = GET_PRIV (window);
 
     g_object_get (G_OBJECT (view), "yelp-uri", &uri, NULL);
     if (uri == NULL)
         return;
-
-    gdkwin = gtk_widget_get_window (GTK_WIDGET (window));
-    if (gdkwin != NULL)
-        gdk_window_set_cursor (gdkwin,
-                               gdk_cursor_new_for_display (gdk_window_get_display (gdkwin),
-                                                           GDK_WATCH));
 
     doc_uri = yelp_uri_get_document_uri (uri);
     if (priv->doc_uri == NULL || !g_str_equal (priv->doc_uri, doc_uri)) {
