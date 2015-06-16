@@ -37,7 +37,7 @@ build_network_uri (const gchar *uri)
      */
     if (g_str_equal (soup_uri->scheme, "ghelp") || g_str_equal (soup_uri->scheme, "gnome-help") ||
         g_str_equal (soup_uri->scheme, "help") || g_str_equal (soup_uri->scheme, "help-list") ||
-        g_str_equal (soup_uri->scheme, "info")) {
+        g_str_equal (soup_uri->scheme, "info") || g_str_equal (soup_uri->scheme, "man")) {
 
         if (g_str_equal (soup_uri->scheme, "info") && soup_uri->fragment) {
             path = g_strdup_printf ("/%s/%s", soup_uri->path, soup_uri->fragment);
