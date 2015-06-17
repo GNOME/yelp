@@ -91,6 +91,7 @@ static void        view_print_action                 (GAction            *action
 static void        view_history_action               (GAction            *action,
                                                       GVariant           *parameter,
                                                       YelpView           *view);
+static void        view_history_changed              (YelpView           *view);
 static void        view_navigation_action            (GAction            *action,
                                                       GVariant           *parameter,
                                                       YelpView           *view);
@@ -161,25 +162,6 @@ action_entry_free (YelpActionEntry *entry)
     g_free (entry);
 }
 
-typedef struct _YelpBackEntry YelpBackEntry;
-struct _YelpBackEntry {
-    YelpUri *uri;
-    gchar   *title;
-    gchar   *desc;
-    gdouble  hadj;
-    gdouble  vadj;
-};
-static void
-back_entry_free (YelpBackEntry *back)
-{
-    if (back == NULL)
-        return;
-    g_object_unref (back->uri);
-    g_free (back->title);
-    g_free (back->desc);
-    g_free (back);
-}
-
 typedef struct _RequestAsyncData RequestAsyncData;
 struct _RequestAsyncData {
     WebKitURISchemeRequest *request;
@@ -231,10 +213,6 @@ struct _YelpViewPrivate {
     gchar         *page_title;
     gchar         *page_desc;
     gchar         *page_icon;
-
-    GList          *back_list;
-    GList          *back_cur;
-    gboolean        back_load;
 
     GSimpleAction  *print_action;
     GSimpleAction  *back_action;
@@ -387,6 +365,11 @@ yelp_view_constructed (GObject *object)
 
     G_OBJECT_CLASS (yelp_view_parent_class)->constructed (object);
 
+    g_signal_connect_swapped (webkit_web_view_get_back_forward_list (WEBKIT_WEB_VIEW (view)),
+                              "changed",
+                              G_CALLBACK (view_history_changed),
+                              view);
+
     priv->fonts_changed = g_signal_connect (settings,
                                             "fonts-changed",
                                             G_CALLBACK (settings_set_fonts),
@@ -445,12 +428,6 @@ yelp_view_dispose (GObject *object)
     while (priv->link_actions) {
         action_entry_free (priv->link_actions->data);
         priv->link_actions = g_slist_delete_link (priv->link_actions, priv->link_actions);
-    }
-
-    priv->back_cur = NULL;
-    while (priv->back_list) {
-        back_entry_free ((YelpBackEntry *) priv->back_list->data);
-        priv->back_list = g_list_delete_link (priv->back_list, priv->back_list);
     }
 
     G_OBJECT_CLASS (yelp_view_parent_class)->dispose (object);
@@ -1620,6 +1597,7 @@ view_policy_decision_requested (YelpView                *view,
                                 gpointer                 user_data)
 {
     YelpViewPrivate *priv = GET_PRIV (view);
+    WebKitNavigationAction *action;
     WebKitURIRequest *request;
     gchar *fixed_uri;
     YelpUri *uri;
@@ -1632,7 +1610,11 @@ view_policy_decision_requested (YelpView                *view,
         return FALSE;
     }
 
-    request = webkit_navigation_policy_decision_get_request (WEBKIT_NAVIGATION_POLICY_DECISION (decision));
+    action = webkit_navigation_policy_decision_get_navigation_action (WEBKIT_NAVIGATION_POLICY_DECISION (decision));
+    if (webkit_navigation_action_get_navigation_type (action) == WEBKIT_NAVIGATION_TYPE_BACK_FORWARD)
+        return FALSE;
+
+    request = webkit_navigation_action_get_request (action);
     fixed_uri = build_yelp_uri (webkit_uri_request_get_uri (request));
 
     webkit_policy_decision_ignore (decision);
@@ -1658,7 +1640,6 @@ view_load_status_changed (WebKitWebView   *view,
     switch (load_event) {
     case WEBKIT_LOAD_COMMITTED: {
         gchar *real_id;
-        YelpBackEntry *back = NULL;
         GParamSpec *spec;
 
         real_id = yelp_document_get_page_id (priv->document, priv->page_id);
@@ -1682,15 +1663,6 @@ view_load_status_changed (WebKitWebView   *view,
         priv->page_title = yelp_document_get_page_title (priv->document, priv->page_id);
         priv->page_desc = yelp_document_get_page_desc (priv->document, priv->page_id);
         priv->page_icon = yelp_document_get_page_icon (priv->document, priv->page_id);
-
-        if (priv->back_cur)
-            back = priv->back_cur->data;
-        if (back) {
-            g_free (back->title);
-            back->title = g_strdup (priv->page_title);
-            g_free (back->desc);
-            back->desc = g_strdup (priv->page_desc);
-        }
 
         spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
                                              "root-title");
@@ -1775,27 +1747,20 @@ view_history_action (GAction   *action,
                      GVariant  *parameter,
                      YelpView  *view)
 {
-    GList *newcur;
-    YelpViewPrivate *priv = GET_PRIV (view);
-
-    if (priv->back_cur == NULL)
-        return;
-
     if (g_str_equal (g_action_get_name (action), "yelp-view-go-back"))
-        newcur = priv->back_cur->next;
+        webkit_web_view_go_back (WEBKIT_WEB_VIEW (view));
     else
-        newcur = priv->back_cur->prev;
+        webkit_web_view_go_forward (WEBKIT_WEB_VIEW (view));
+}
 
-    if (newcur == NULL)
-        return;
+static void
+view_history_changed (YelpView *view)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+    WebKitWebView *web_view = WEBKIT_WEB_VIEW (view);
 
-    priv->back_cur = newcur;
-
-    if (priv->back_cur->data == NULL)
-        return;
-
-    priv->back_load = TRUE;
-    yelp_view_load_uri (view, ((YelpBackEntry *) priv->back_cur->data)->uri);
+    g_simple_action_set_enabled (priv->back_action, webkit_web_view_can_go_back (web_view));
+    g_simple_action_set_enabled (priv->forward_action, webkit_web_view_can_go_forward (web_view));
 }
 
 static void
@@ -2177,7 +2142,6 @@ uri_resolved (YelpUri  *uri,
     YelpViewPrivate *priv = GET_PRIV (view);
     YelpUriDocumentType doctype;
     YelpDocument *document;
-    YelpBackEntry *back;
     GError *error = NULL;
     gchar *struri;
     GParamSpec *spec;
@@ -2225,21 +2189,6 @@ uri_resolved (YelpUri  *uri,
                              struri);
         g_free (struri);
     }
-
-    if (!priv->back_load) {
-        back = g_new0 (YelpBackEntry, 1);
-        back->uri = g_object_ref (uri);
-        while (priv->back_list != priv->back_cur) {
-            back_entry_free ((YelpBackEntry *) priv->back_list->data);
-            priv->back_list = g_list_delete_link (priv->back_list, priv->back_list);
-        }
-        priv->back_list = g_list_prepend (priv->back_list, back);
-        priv->back_cur = priv->back_list;
-    }
-    priv->back_load = FALSE;
-
-    g_simple_action_set_enabled (priv->back_action, (priv->back_cur->next && priv->back_cur->next->data));
-    g_simple_action_set_enabled (priv->forward_action, (priv->back_cur->prev && priv->back_cur->prev->data));
 
     spec = g_object_class_find_property ((GObjectClass *) YELP_VIEW_GET_CLASS (view),
                                          "yelp-uri");
