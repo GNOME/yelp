@@ -324,8 +324,8 @@ mallard_think (YelpMallardDocument *mallard)
 
     gchar **path;
     gint path_i;
-    GFile *gfile;
-    GFileEnumerator *children;
+    GFile *gfile = NULL;
+    GFileEnumerator *children = NULL;
     GFileInfo *pageinfo;
 
     editor_mode = yelp_settings_get_editor_mode (yelp_settings_get_default ());
@@ -976,7 +976,7 @@ mallard_index_threaded (YelpMallardDocument *mallard)
             xmlXPathContextPtr xpath = NULL;
             xmlXPathObjectPtr obj;
             MallardIndexData *index = NULL;
-            xmlChar *id;
+            xmlChar *id = NULL;
             YelpUri *uri;
             gchar *title, *desc, *fulltext, *tmp, *full_uri;
 

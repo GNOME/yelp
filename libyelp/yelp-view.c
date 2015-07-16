@@ -1018,7 +1018,7 @@ view_install_uri (YelpView    *view,
     GtkWidget *gtkwin;
     GdkWindow *gdkwin;
     /* do not free */
-    const gchar *pkg, *confirm_search;
+    const gchar *pkg = NULL, *confirm_search;
 
     if (g_str_has_prefix (uri, "install-help:")) {
         help = TRUE;
@@ -2058,7 +2058,7 @@ static gdouble
 get_screen_dpi (GdkScreen *screen)
 {
     GtkSettings *settings = NULL;
-    gdouble dpi;
+    gdouble dpi = -1;
     gdouble dp, di;
 
     settings = gtk_settings_get_for_screen (screen);
