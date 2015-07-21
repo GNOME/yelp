@@ -877,7 +877,7 @@ MAINTAINERCLEANFILES = \
 	$(gsettings_SCHEMAS:.xml=.valid) \
 	mkinstalldirs
 
-DISTCHECK_CONFIGURE_FLAGS = \
+AM_DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-bz2 \
 	--enable-gtk-doc \
 	--enable-lzma
