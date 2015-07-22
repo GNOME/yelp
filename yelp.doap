@@ -1,3 +1,4 @@
+
 <Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:foaf="http://xmlns.com/foaf/0.1/"
@@ -6,14 +7,23 @@
 
   <name xml:lang="en">Help</name>
   <shortdesc xml:lang="en">Get help with GNOME</shortdesc>
+  <description>Get help with GNOME</description>
 
-  <homepage rdf:resource="https://wiki.gnome.org/Apps/Yelp" />
+  <homepage rdf:resource="http://yelp.io/" />
   <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/gnome-doc-devel-list" />
   <download-page rdf:resource="http://download.gnome.org/sources/yelp/" />
   <bug-database rdf:resource="https://bugzilla.gnome.org/browse.cgi?product=Yelp" />
   <category rdf:resource="http://api.gnome.org/doap-extensions#core" />
   <programming-language>C</programming-language>
 
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>David King</foaf:name>
+      <foaf:mbox rdf:resource="mailto:amigadave@amigadave.com" />
+      <foaf:seeAlso rdf:resource="http://amigadave.com/foaf.rdf#david" />
+      <gnome:userid>davidk</gnome:userid>
+    </foaf:Person>
+  </maintainer>
   <maintainer>
     <foaf:Person>
       <foaf:name>Shaun McCance</foaf:name>
