@@ -1187,7 +1187,7 @@ view_root_title (YelpView    *view,
     else
         gtk_header_bar_set_title (GTK_HEADER_BAR (priv->header), _("Help"));
 
-    if (root_title)
+    if (root_title && strcmp (root_title, page_title))
         gtk_header_bar_set_subtitle (GTK_HEADER_BAR (priv->header), root_title);
     else
         gtk_header_bar_set_subtitle (GTK_HEADER_BAR (priv->header), NULL);
