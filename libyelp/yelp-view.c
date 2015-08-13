@@ -52,6 +52,8 @@ static void        yelp_view_set_property            (GObject            *object
                                                       guint               prop_id,
                                                       const GValue       *value,
                                                       GParamSpec         *pspec);
+static void        yelp_view_resolve_uri             (YelpView           *view,
+                                                      YelpUri            *uri);
 
 static gboolean    view_external_uri                 (YelpView           *view,
                                                       YelpUri            *uri);
@@ -225,6 +227,7 @@ struct _YelpViewPrivate {
     GSList         *link_actions;
 
     gboolean        resolve_uri_on_policy_decision;
+    gboolean        load_page_after_resolved;
 };
 
 #define TARGET_TYPE_URI_LIST     "text/uri-list"
@@ -671,23 +674,8 @@ yelp_view_load_uri (YelpView *view,
     g_simple_action_set_enabled (priv->prev_action, FALSE);
     g_simple_action_set_enabled (priv->next_action, FALSE);
 
-    if (!yelp_uri_is_resolved (uri)) {
-        if (priv->resolve_uri != NULL) {
-            if (priv->uri_resolved != 0) {
-                g_signal_handler_disconnect (priv->resolve_uri, priv->uri_resolved);
-                priv->uri_resolved = 0;
-            }
-            g_object_unref (priv->resolve_uri);
-        }
-        priv->resolve_uri = g_object_ref (uri);
-        priv->uri_resolved = g_signal_connect (uri, "resolved",
-                                               G_CALLBACK (uri_resolved),
-                                               view);
-        yelp_uri_resolve (uri);
-    }
-    else {
-        uri_resolved (uri, view);
-    }
+    priv->load_page_after_resolved = TRUE;
+    yelp_view_resolve_uri (view, uri);
 }
 
 void
@@ -736,6 +724,31 @@ yelp_view_register_actions (YelpView   *view,
 }
 
 /******************************************************************************/
+
+static void
+yelp_view_resolve_uri (YelpView *view,
+                       YelpUri  *uri)
+{
+    YelpViewPrivate *priv = GET_PRIV (view);
+
+    if (yelp_uri_is_resolved (uri)) {
+        uri_resolved (uri, view);
+        return;
+    }
+
+    if (priv->resolve_uri != NULL) {
+        if (priv->uri_resolved != 0) {
+            g_signal_handler_disconnect (priv->resolve_uri, priv->uri_resolved);
+            priv->uri_resolved = 0;
+        }
+        g_object_unref (priv->resolve_uri);
+    }
+    priv->resolve_uri = g_object_ref (uri);
+    priv->uri_resolved = g_signal_connect (uri, "resolved",
+                                           G_CALLBACK (uri_resolved),
+                                           view);
+    yelp_uri_resolve (uri);
+}
 
 static void
 document_callback (YelpDocument       *document,
@@ -1611,11 +1624,17 @@ view_policy_decision_requested (YelpView                *view,
     }
 
     action = webkit_navigation_policy_decision_get_navigation_action (WEBKIT_NAVIGATION_POLICY_DECISION (decision));
-    if (webkit_navigation_action_get_navigation_type (action) == WEBKIT_NAVIGATION_TYPE_BACK_FORWARD)
-        return FALSE;
-
     request = webkit_navigation_action_get_request (action);
     fixed_uri = build_yelp_uri (webkit_uri_request_get_uri (request));
+    if (webkit_navigation_action_get_navigation_type (action) == WEBKIT_NAVIGATION_TYPE_BACK_FORWARD) {
+        uri = yelp_uri_new (fixed_uri);
+        priv->load_page_after_resolved = FALSE;
+        yelp_view_resolve_uri (view, uri);
+        g_object_unref (uri);
+        g_free (fixed_uri);
+
+        return FALSE;
+    }
 
     webkit_policy_decision_ignore (decision);
 
@@ -2233,7 +2252,8 @@ uri_resolved (YelpUri  *uri,
             g_object_unref (priv->document);
         priv->document = document;
 
-        view_load_page (view);
+        if (priv->load_page_after_resolved)
+            view_load_page (view);
     } else {
         if (priv->document != NULL) {
             g_object_unref (priv->document);
