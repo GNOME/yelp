@@ -238,92 +238,11 @@ static void
 yelp_settings_constructed (GObject *object)
 {
     YelpSettings *settings = YELP_SETTINGS (object);
-    GDBusConnection *connection;
-    GVariant *ret, *names;
-    GVariantIter iter;
-    gchar *name;
-    gboolean env_shell, env_classic, env_panel, env_unity, env_xfce;
+    gboolean skip_dbus_checks = FALSE;
     gchar *os_release = NULL;
-    GError *error = NULL;
+    const gchar *desktop;
 
-    connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
-    if (connection == NULL) {
-        g_warning ("Unable to connect to dbus: %s", error->message);
-        g_error_free (error);
-        return;
-    }
-
-    ret = g_dbus_connection_call_sync (connection,
-                                       "org.freedesktop.DBus",
-                                       "/org/freedesktop/DBus",
-                                       "org.freedesktop.DBus",
-                                       "ListNames",
-                                       NULL,
-                                       G_VARIANT_TYPE ("(as)"),
-                                       G_DBUS_CALL_FLAGS_NONE,
-                                       -1, NULL, &error);
-    if (ret == NULL) {
-        g_warning ("Unable to query dbus: %s", error->message);
-        g_error_free (error);
-        return;
-    }
-    env_shell = env_classic = env_panel = env_unity = env_xfce = FALSE;
-    names = g_variant_get_child_value (ret, 0);
-    g_variant_iter_init (&iter, names);
-    while (g_variant_iter_loop (&iter, "&s", &name)) {
-        if (g_str_equal (name, "org.gnome.Panel"))
-            env_panel = TRUE;
-        else if (g_str_equal (name, "org.gnome.Shell"))
-            env_shell = TRUE;
-        else if (g_str_equal (name, "com.canonical.Unity"))
-            env_unity = TRUE;
-        else if (g_str_equal (name, "org.xfce.Panel"))
-            env_xfce = TRUE;
-    }
-    g_variant_unref (names);
-    g_variant_unref (ret);
-    if (env_shell) {
-        ret = g_dbus_connection_call_sync (connection,
-                                               "org.gnome.Shell",
-                                               "/org/gnome/Shell",
-                                               "org.freedesktop.DBus.Properties",
-                                               "Get",
-                                               g_variant_new ("(ss)",
-                                                              "org.gnome.Shell",
-                                                              "Mode"),
-                                               G_VARIANT_TYPE ("(v)"),
-                                               G_DBUS_CALL_FLAGS_NONE,
-                                               -1, NULL, &error);
-        if (ret == NULL) {
-            g_warning ("Failed to get GNOME shell mode: %s", error->message);
-            g_error_free (error);
-        } else {
-            GVariant *v;
-            g_variant_get (ret, "(v)", &v);
-            if (g_variant_is_of_type (v, G_VARIANT_TYPE_STRING) &&
-                g_str_equal (g_variant_get_string (v, NULL), "classic")) {
-                env_classic = TRUE;
-            }
-            g_variant_unref (v);
-            g_variant_unref (ret);
-        }
-    }
-
-    if (env_classic)
-        yelp_settings_set_if_token (settings, "platform:gnome-classic");
-
-    /* order is important:
-       gnome-shell also provides org.gnome.Panel
-       unity also provides org.gnome.Shell
-     */
-    if (env_unity)
-        yelp_settings_set_if_token (settings, "platform:unity");
-    else if (env_shell)
-        yelp_settings_set_if_token (settings, "platform:gnome-shell");
-    else if (env_xfce)
-        yelp_settings_set_if_token (settings, "platform:xfce");
-    else if (env_panel)
-        yelp_settings_set_if_token (settings, "platform:gnome-panel");
+    yelp_settings_set_if_token (settings, "action:install");
 
     g_file_get_contents ("/etc/os-release", &os_release, NULL, NULL);
     if (os_release == NULL)
@@ -384,7 +303,148 @@ yelp_settings_constructed (GObject *object)
         g_strfreev(lines);
     }
 
-    yelp_settings_set_if_token (settings, "action:install");
+    desktop = g_getenv ("XDG_CURRENT_DESKTOP");
+    if (desktop != NULL) {
+        gchar **desktops = g_strsplit (desktop, ":", -1);
+        gint i;
+        gboolean xdg_gnome = FALSE, xdg_gnome_classic = FALSE;
+        for (i = 0; desktops[i]; i++) {
+            if (!g_ascii_strcasecmp (desktops[i], "gnome")) {
+                xdg_gnome = TRUE;
+            }
+            else if (!g_ascii_strcasecmp (desktops[i], "gnome")) {
+                xdg_gnome_classic = TRUE;
+            }
+            else if (!g_ascii_strcasecmp (desktops[i], "kde")) {
+                yelp_settings_set_if_token (settings, "platform:kde");
+                skip_dbus_checks = TRUE;
+                break;
+            }
+            else if (!g_ascii_strcasecmp (desktops[i], "mate")) {
+                yelp_settings_set_if_token (settings, "platform:mate");
+                yelp_settings_set_if_token (settings, "platform:gnome-panel");
+                skip_dbus_checks = TRUE;
+                break;
+            }
+            else if (!g_ascii_strcasecmp (desktops[i], "pantheon")) {
+                yelp_settings_set_if_token (settings, "platform:pantheon");
+                yelp_settings_set_if_token (settings, "platform:gnome-shell");
+                skip_dbus_checks = TRUE;
+                break;
+            }
+            else if (!g_ascii_strcasecmp (desktops[i], "unity")) {
+                yelp_settings_set_if_token (settings, "platform:unity");
+                skip_dbus_checks = TRUE;
+                break;
+            }
+            else if (!g_ascii_strcasecmp (desktops[i], "x-cinnamon")) {
+                yelp_settings_set_if_token (settings, "platform:cinnamon");
+                yelp_settings_set_if_token (settings, "platform:gnome-shell");
+                skip_dbus_checks = TRUE;
+                break;
+            }
+        }
+        if (xdg_gnome) {
+            yelp_settings_set_if_token (settings, "platform:gnome-shell");
+            if (!xdg_gnome_classic)
+                yelp_settings_set_if_token (settings, "platform:gnome-3");
+            skip_dbus_checks = TRUE;
+        }
+        if (xdg_gnome_classic) {
+            yelp_settings_set_if_token (settings, "platform:gnome-classic");
+            yelp_settings_set_if_token (settings, "platform:gnome-shell");
+            skip_dbus_checks = TRUE;
+        }
+        g_strfreev (desktops);
+    }
+
+    if (!skip_dbus_checks) {
+        GDBusConnection *connection;
+        GVariant *ret, *names;
+        GVariantIter iter;
+        gchar *name;
+        gboolean env_shell, env_classic, env_panel, env_unity, env_xfce;
+        GError *error = NULL;
+
+        connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+        if (connection == NULL) {
+            g_warning ("Unable to connect to dbus: %s", error->message);
+            g_error_free (error);
+            return;
+        }
+
+        ret = g_dbus_connection_call_sync (connection,
+                                           "org.freedesktop.DBus",
+                                           "/org/freedesktop/DBus",
+                                           "org.freedesktop.DBus",
+                                           "ListNames",
+                                           NULL,
+                                           G_VARIANT_TYPE ("(as)"),
+                                           G_DBUS_CALL_FLAGS_NONE,
+                                           -1, NULL, &error);
+        if (ret == NULL) {
+            g_warning ("Unable to query dbus: %s", error->message);
+            g_error_free (error);
+            return;
+        }
+        env_shell = env_classic = env_panel = env_unity = env_xfce = FALSE;
+        names = g_variant_get_child_value (ret, 0);
+        g_variant_iter_init (&iter, names);
+        while (g_variant_iter_loop (&iter, "&s", &name)) {
+            if (g_str_equal (name, "org.gnome.Panel"))
+                env_panel = TRUE;
+            else if (g_str_equal (name, "org.gnome.Shell"))
+                env_shell = TRUE;
+            else if (g_str_equal (name, "com.canonical.Unity"))
+                env_unity = TRUE;
+            else if (g_str_equal (name, "org.xfce.Panel"))
+                env_xfce = TRUE;
+        }
+        g_variant_unref (names);
+        g_variant_unref (ret);
+        if (env_shell) {
+            ret = g_dbus_connection_call_sync (connection,
+                                                   "org.gnome.Shell",
+                                                   "/org/gnome/Shell",
+                                                   "org.freedesktop.DBus.Properties",
+                                                   "Get",
+                                                   g_variant_new ("(ss)",
+                                                                  "org.gnome.Shell",
+                                                                  "Mode"),
+                                                   G_VARIANT_TYPE ("(v)"),
+                                                   G_DBUS_CALL_FLAGS_NONE,
+                                                   -1, NULL, &error);
+            if (ret == NULL) {
+                g_warning ("Failed to get GNOME shell mode: %s", error->message);
+                g_error_free (error);
+            } else {
+                GVariant *v;
+                g_variant_get (ret, "(v)", &v);
+                if (g_variant_is_of_type (v, G_VARIANT_TYPE_STRING) &&
+                    g_str_equal (g_variant_get_string (v, NULL), "classic")) {
+                    env_classic = TRUE;
+                }
+                g_variant_unref (v);
+                g_variant_unref (ret);
+            }
+        }
+
+        if (env_classic)
+            yelp_settings_set_if_token (settings, "platform:gnome-classic");
+
+        /* order is important:
+           gnome-shell also provides org.gnome.Panel
+           unity also provides org.gnome.Shell
+         */
+        if (env_unity)
+            yelp_settings_set_if_token (settings, "platform:unity");
+        else if (env_shell)
+            yelp_settings_set_if_token (settings, "platform:gnome-shell");
+        else if (env_xfce)
+            yelp_settings_set_if_token (settings, "platform:xfce");
+        else if (env_panel)
+            yelp_settings_set_if_token (settings, "platform:gnome-panel");
+    }
 }
 
 static void
