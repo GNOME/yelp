@@ -312,7 +312,7 @@ yelp_settings_constructed (GObject *object)
             if (!g_ascii_strcasecmp (desktops[i], "gnome")) {
                 xdg_gnome = TRUE;
             }
-            else if (!g_ascii_strcasecmp (desktops[i], "gnome")) {
+            else if (!g_ascii_strcasecmp (desktops[i], "gnome-classic")) {
                 xdg_gnome_classic = TRUE;
             }
             else if (!g_ascii_strcasecmp (desktops[i], "kde")) {
