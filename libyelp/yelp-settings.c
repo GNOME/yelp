@@ -343,6 +343,11 @@ yelp_settings_constructed (GObject *object)
                 skip_dbus_checks = TRUE;
                 break;
             }
+            else if (!g_ascii_strcasecmp (desktops[i], "xfce")) {
+                yelp_settings_set_if_token (settings, "platform:xfce");
+                skip_dbus_checks = TRUE;
+                break;
+            }
         }
         if (xdg_gnome) {
             yelp_settings_set_if_token (settings, "platform:gnome-shell");
