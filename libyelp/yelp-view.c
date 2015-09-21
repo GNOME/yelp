@@ -147,7 +147,16 @@ static gint signals[LAST_SIGNAL] = { 0 };
 G_DEFINE_TYPE (YelpView, yelp_view, WEBKIT_TYPE_WEB_VIEW)
 #define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_VIEW, YelpViewPrivate))
 
-static WebKitSettings *websettings;
+static WebKitSettings *
+yelp_view_get_global_settings (void)
+{
+    static WebKitSettings *websettings = NULL;
+
+    if (!websettings)
+        websettings = webkit_settings_new_with_settings ("default-charset", "utf-8", NULL);
+
+    return websettings;
+}
 
 typedef struct _YelpActionEntry YelpActionEntry;
 struct _YelpActionEntry {
@@ -466,10 +475,6 @@ yelp_view_class_init (YelpViewClass *klass)
 
     nautilus_sendto = g_find_program_in_path ("nautilus-sendto");
 
-    websettings = webkit_settings_new_with_settings (
-                    "default-charset", "utf-8",
-                    NULL);
-
     g_signal_connect (settings,
                       "notify::show-text-cursor",
                       G_CALLBACK (settings_show_text_cursor),
@@ -651,7 +656,7 @@ GtkWidget *
 yelp_view_new (void)
 {
     return GTK_WIDGET (g_object_new (YELP_TYPE_VIEW,
-                       "settings", websettings, NULL));
+                       "settings", yelp_view_get_global_settings (), NULL));
 }
 
 void
@@ -2146,10 +2151,8 @@ settings_set_fonts (YelpSettings *settings,
 static void
 settings_show_text_cursor (YelpSettings *settings)
 {
-    g_object_set (websettings,
-                  "enable-caret-browsing",
-                  yelp_settings_get_show_text_cursor (settings),
-                  NULL);
+    webkit_settings_set_enable_caret_browsing (yelp_view_get_global_settings (),
+                                               yelp_settings_get_show_text_cursor (settings));
 }
 
 /******************************************************************************/
