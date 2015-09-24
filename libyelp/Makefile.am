@@ -18,7 +18,7 @@ libyelpcommon_la_CFLAGS =               \
 	-DYELP_ICON_PATH=\"$(YELP_ICON_PATH)\"
 
 
-libyelpcommon_la_LIBADD = $(YELP_LIBS)
+libyelpcommon_la_LIBADD = $(YELP_LIBS) $(LIBM)
 libyelpcommon_la_LDFLAGS = 	\
 	-avoid-version		\
 	-no-undefined

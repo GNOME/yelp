@@ -25,6 +25,7 @@ AM_PATH_GLIB_2_0
 GLIB_GSETTINGS
 
 # Library dependecies
+LT_LIB_M
 PKG_CHECK_MODULES(YELP,
 [
 	gio-2.0 >= 2.38.0
