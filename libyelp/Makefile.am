@@ -18,7 +18,7 @@ libyelpcommon_la_CFLAGS =               \
 	-DYELP_ICON_PATH=\"$(YELP_ICON_PATH)\"
 
 
-libyelpcommon_la_LIBADD = $(YELP_LIBS) $(LIBM)
+libyelpcommon_la_LIBADD = $(YELP_LIBS)
 libyelpcommon_la_LDFLAGS = 	\
 	-avoid-version		\
 	-no-undefined
@@ -121,6 +121,7 @@ libyelp_la_CPPFLAGS = \
 	-DYELP_WEB_EXTENSIONS_DIR=\""$(pkglibdir)/"web-extensions\"
 
 libyelp_la_LIBADD =  \
+	$(LIBM) \
 	$(YELP_LIBS)     \
 	libyelpcommon.la
 
