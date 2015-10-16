@@ -36,10 +36,3 @@ yelp_error_copy (GError *error)
     else
         return g_error_copy (error);
 }
-
-const gchar *
-yelp_error_get_title (GError *error)
-{
-    /* FIXME */
-    return NULL;
-}

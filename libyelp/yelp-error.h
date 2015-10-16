@@ -35,7 +35,6 @@ typedef enum {
 } YelpError;
 
 GError *            yelp_error_copy               (GError *error);
-const gchar *       yelp_error_get_title          (GError *error);
 
 G_END_DECLS
 
