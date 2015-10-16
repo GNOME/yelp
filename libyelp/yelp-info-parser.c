@@ -36,7 +36,7 @@ static GtkTreeIter *  find_real_top                      (GtkTreeModel *model,
 static GtkTreeIter *  find_real_sibling                  (GtkTreeModel *model,
 							  GtkTreeIter *it, 
 							  GtkTreeIter *comp);
-xmlNodePtr            yelp_info_parse_menu               (GtkTreeStore *tree,
+static xmlNodePtr     yelp_info_parse_menu               (GtkTreeStore *tree,
 							  xmlNodePtr *node,
 							  gchar *page_content,
 							  gboolean notes);
@@ -1164,7 +1164,7 @@ first_non_space (gchar* str)
   return str;
 }
 
-xmlNodePtr
+static xmlNodePtr
 yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node, 
 		      gchar *page_content, gboolean notes)
 {
