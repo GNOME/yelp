@@ -41,8 +41,10 @@ struct _YelpLzmaDecompressorClass
     GObjectClass parent_class;
 };
 
+G_GNUC_INTERNAL
 GType                 yelp_lzma_decompressor_get_type (void);
 
+G_GNUC_INTERNAL
 YelpLzmaDecompressor *yelp_lzma_decompressor_new (void);
 
 G_END_DECLS

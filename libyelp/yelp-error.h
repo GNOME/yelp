@@ -34,6 +34,7 @@ typedef enum {
     YELP_ERROR_UNKNOWN
 } YelpError;
 
+G_GNUC_INTERNAL
 GError *            yelp_error_copy               (GError *error);
 
 G_END_DECLS

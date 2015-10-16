@@ -41,8 +41,10 @@ struct _YelpMagicDecompressorClass
     GObjectClass parent_class;
 };
 
+G_GNUC_INTERNAL
 GType                 yelp_magic_decompressor_get_type (void);
 
+G_GNUC_INTERNAL
 YelpMagicDecompressor *yelp_magic_decompressor_new (void);
 
 G_END_DECLS

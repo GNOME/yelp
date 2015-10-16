@@ -42,8 +42,10 @@ struct _YelpBz2DecompressorClass
     GObjectClass parent_class;
 };
 
+G_GNUC_INTERNAL
 GType               yelp_bz2_decompressor_get_type (void);
 
+G_GNUC_INTERNAL
 YelpBz2Decompressor *yelp_bz2_decompressor_new (void);
 
 G_END_DECLS

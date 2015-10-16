@@ -151,10 +151,10 @@ BUILT_SOURCES +=                 \
 	yelp-types.h
 
 yelp-marshal.h: yelp-marshal.list
-	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header $< > $@
+	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header --internal $< > $@
 
 yelp-marshal.c: yelp-marshal.list
-	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header --body $< > $@
+	$(AM_V_GEN) glib-genmarshal --prefix=yelp_marshal $(srcdir)/yelp-marshal.list --header --body --internal $< > $@
 
 CLEANFILES = $(BUILT_SOURCES)
 

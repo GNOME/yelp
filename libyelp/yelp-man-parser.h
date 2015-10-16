@@ -26,10 +26,13 @@
 
 typedef struct _YelpManParser YelpManParser;
 
+G_GNUC_INTERNAL
 YelpManParser *     yelp_man_parser_new         (void);
+G_GNUC_INTERNAL
 xmlDocPtr           yelp_man_parser_parse_file  (YelpManParser   *parser,
                                                  gchar           *path,
                                                  GError         **error);
+G_GNUC_INTERNAL
 void                yelp_man_parser_free        (YelpManParser   *parser);
 
 #endif /* __YELP_MAN_PARSER_H__ */

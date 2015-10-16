@@ -33,7 +33,9 @@ enum {
 };
 
 
+G_GNUC_INTERNAL
 GtkTreeStore          *yelp_info_parser_parse_file  (char           *file);
+G_GNUC_INTERNAL
 xmlDocPtr	       yelp_info_parser_parse_tree  (GtkTreeStore   *tree);
 
 #endif /* __YELP_INFO_PARSER_H__ */

@@ -66,6 +66,7 @@ typedef enum {
 # define d(x)
 #endif
 
+G_GNUC_INTERNAL
 void yelp_debug (const gchar *file, guint line, 
                  const gchar *function, guint flags, const gchar *format, ...);
 
