@@ -18,18 +18,14 @@ GTKDOC_LIBS =					\
 
 HFILE_GLOB = $(top_srcdir)/libyelp/*.h
 CFILE_GLOB = $(top_srcdir)/libyelp/*.c
-IGNORE_HFILES = yelp-common-types.h yelp-debug.h yelp-types.h
-IGNORE_CFILES =
-
-if !ENABLE_LZMA
-IGNORE_HFILES += $(top_srcdir)/libyelp/yelp-lzma-decompressor.h
-IGNORE_CFILES += $(top_srcdir)/libyelp/yelp-lzma-decompressor.c
-endif
-
-if !ENABLE_BZ2
-IGNORE_HFILES += $(top_srcdir)/libyelp/yelp-bz2-decompressor.h
-IGNORE_CFILES += $(top_srcdir)/libyelp/yelp-bz2-decompressor.c
-endif
+IGNORE_HFILES = yelp-common-types.h \
+	yelp-debug.h \
+	yelp-types.h \
+	$(top_srcdir)/libyelp/yelp-bz2-decompressor.h \
+	$(top_srcdir)/libyelp/yelp-lzma-decompressor.h \
+	$(top_srcdir)/libyelp/yelp-magic-decompressor.h
+IGNORE_CFILES = $(top_srcdir)/libyelp/yelp-lzma-decompressor.c \
+	$(top_srcdir)/libyelp/yelp-bz2-decompressor.c
 
 MKDB_OPTIONS = --output-format=xml --sgml-mode --name-space=yelp --ignore-files='yelp-debug.c yelp-debug.h yelp-types.c yelp-types.h'
 
