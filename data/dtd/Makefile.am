@@ -1,6 +1,6 @@
 dtddir=$(datadir)/yelp/dtd
 
-dtd_DATA =		\
+dist_dtd_DATA = \
 	docbookx.dtd	\
 	isoamsa.ent	\
 	isoamsb.ent	\
@@ -20,7 +20,7 @@ dtd_DATA =		\
 	isolat2.ent	\
 	isonum.ent	\
 	isopub.ent	\
-	isotech.ent	\
-	catalog
+	isotech.ent
 
-EXTRA_DIST = $(dtd_DATA) catalog.in
+dtd_DATA =		\
+	catalog

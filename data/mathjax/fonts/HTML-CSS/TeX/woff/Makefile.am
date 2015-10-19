@@ -1,6 +1,6 @@
 mjdir=$(datadir)/yelp/mathjax/fonts/HTML-CSS/TeX/woff
 
-mj_DATA =					\
+dist_mj_DATA =					\
 	MathJax_AMS-Regular.woff		\
 	MathJax_Caligraphic-Bold.woff		\
 	MathJax_Caligraphic-Regular.woff	\
@@ -21,5 +21,3 @@ mj_DATA =					\
 	MathJax_Size3-Regular.woff		\
 	MathJax_Size4-Regular.woff		\
 	MathJax_Typewriter-Regular.woff
-
-EXTRA_DIST = $(mj_DATA)

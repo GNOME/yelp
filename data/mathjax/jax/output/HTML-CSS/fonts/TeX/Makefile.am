@@ -25,6 +25,4 @@ SUBDIRS =			\
 
 mjdir=$(datadir)/yelp/mathjax/jax/output/HTML-CSS/fonts/TeX
 
-mj_DATA = fontdata-extra.js fontdata.js
-
-EXTRA_DIST = $(mj_DATA)
+dist_mj_DATA = fontdata-extra.js fontdata.js

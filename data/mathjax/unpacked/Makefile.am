@@ -1,4 +1,4 @@
-EXTRA_DIST =									\
+dist_noinst_DATA =									\
 	MathJax.js								\
 	config/MMLorHTML.js							\
 	extensions/HTML-CSS/handle-floats.js					\

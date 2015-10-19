@@ -35,8 +35,6 @@ extra_files = version.xml.in
 
 include $(top_srcdir)/gtk-doc.make
 
-EXTRA_DIST += version.xml.in
-
 # Extra options to supply to gtkdoc-mktmpl
 # e.g. MKTMPL_OPTIONS=--only-section-tmpl
 #MKTMPL_OPTIONS=

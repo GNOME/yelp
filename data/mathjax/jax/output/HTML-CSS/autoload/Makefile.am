@@ -1,6 +1,6 @@
 mjdir=$(datadir)/yelp/mathjax/jax/output/HTML-CSS/autoload
 
-mj_DATA =			\
+dist_mj_DATA =			\
 	annotation-xml.js	\
 	maction.js		\
 	Makefile.am		\
@@ -10,5 +10,3 @@ mj_DATA =			\
 	ms.js			\
 	mtable.js		\
 	multiline.js
-
-EXTRA_DIST = $(mj_DATA)

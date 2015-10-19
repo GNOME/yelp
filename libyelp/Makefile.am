@@ -88,7 +88,7 @@ libyelp_la_SOURCES =                \
 	yelp-types.c                \
 	yelp-view.c
 
-EXTRA_DIST =                        \
+dist_noinst_DATA = \
 	yelp-bz2-decompressor.h     \
 	yelp-debug.h                \
 	yelp-error.h                \
@@ -100,14 +100,10 @@ EXTRA_DIST =                        \
 
 if ENABLE_LZMA
 libyelp_la_SOURCES += yelp-lzma-decompressor.c
-else
-EXTRA_DIST += yelp-lzma-decompressor.c
 endif
 
 if ENABLE_BZ2
 libyelp_la_SOURCES += yelp-bz2-decompressor.c
-else
-EXTRA_DIST += yelp-bz2-decompressor.c
 endif
 
 libyelp_la_CFLAGS =                             \

@@ -8,9 +8,11 @@ desktopdir = $(datadir)/applications
 desktop_in_files=yelp.desktop.in.in
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
-EXTRA_DIST = 						\
-	autogen.sh					\
+dist_noinst_DATA = \
 	$(desktop_in_files)
+
+dist_noinst_SCRIPTS = \
+	autogen.sh
 
 CLEANFILES = $(desktop_DATA)
 

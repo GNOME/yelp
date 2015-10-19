@@ -1,6 +1,6 @@
 mjdir=$(datadir)/yelp/mathjax/jax/input/MathML/entities
 
-mj_DATA =	\
+dist_mj_DATA =	\
 	a.js	\
 	b.js	\
 	c.js	\
@@ -30,5 +30,3 @@ mj_DATA =	\
 	x.js	\
 	y.js	\
 	z.js
-
-EXTRA_DIST = $(mj_DATA)

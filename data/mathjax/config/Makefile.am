@@ -1,5 +1,3 @@
 mjdir=$(datadir)/yelp/mathjax/config
 
-mj_DATA = MMLorHTML.js yelp.js
-
-EXTRA_DIST = $(mj_DATA)
+dist_mj_DATA = MMLorHTML.js yelp.js

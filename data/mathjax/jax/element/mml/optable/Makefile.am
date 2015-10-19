@@ -1,6 +1,6 @@
 mjdir=$(datadir)/yelp/mathjax/jax/element/mml/optable
 
-mj_DATA =			\
+dist_mj_DATA =			\
 	Arrows.js		\
 	BasicLatin.js		\
 	CombDiacritMarks.js	\
@@ -21,5 +21,3 @@ mj_DATA =			\
 	SupplementalArrowsA.js	\
 	SupplementalArrowsB.js	\
 	SuppMathOperators.js
-
-EXTRA_DIST = $(mj_DATA)

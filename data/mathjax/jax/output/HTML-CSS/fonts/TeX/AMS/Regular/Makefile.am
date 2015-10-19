@@ -1,6 +1,6 @@
 mjdir=$(datadir)/yelp/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular
 
-mj_DATA =			\
+dist_mj_DATA =			\
 	Arrows.js		\
 	MathOperators.js	\
 	BBBold.js		\
@@ -21,5 +21,3 @@ mj_DATA =			\
 	GreekAndCoptic.js	\
 	SpacingModLetters.js	\
 	CombDiacritMarks.js
-
-EXTRA_DIST = $(mj_DATA)

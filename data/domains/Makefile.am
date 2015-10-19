@@ -15,4 +15,4 @@ xsldir=$(datadir)/yelp-xsl/xslt/common/domains
 
 xsl_DATA = yelp.xml
 
-EXTRA_DIST = yelp.xml.in yelp.xml yelp.pot
+dist_noinst_DATA = yelp.xml.in yelp.xml yelp.pot
