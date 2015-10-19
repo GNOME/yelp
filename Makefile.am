@@ -10,15 +10,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
 EXTRA_DIST = 						\
 	autogen.sh					\
-	intltool-extract.in  				\
-	intltool-merge.in    				\
-	intltool-update.in				\
 	$(desktop_in_files)
-
-DISTCLEANFILES = 					\
-	intltool-extract 				\
-	intltool-merge 					\
-	intltool-update
 
 CLEANFILES = $(desktop_DATA)
 
