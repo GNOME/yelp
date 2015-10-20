@@ -160,7 +160,6 @@ docs/Makefile
 docs/libyelp/Makefile
 docs/libyelp/version.xml
 libyelp/Makefile
-src/Makefile
 data/Makefile
 data/domains/Makefile
 data/dtd/Makefile

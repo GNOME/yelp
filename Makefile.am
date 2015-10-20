@@ -1,12 +1,46 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = libyelp libyelp/web-extension src po data docs
+SUBDIRS = libyelp libyelp/web-extension po data docs
+
+bin_PROGRAMS = yelp
+
+yelp_SOURCES = \
+	src/yelp-application.c \
+	src/yelp-window.c \
+	src/yelp.c
+
+yelp_headers = \
+	src/yelp-application.h \
+	src/yelp-window.h
+
+YELP_DEFINES =								\
+	-DG_LOG_DOMAIN=\"Yelp\"						\
+	-DDATADIR=\""$(datadir)"\"					\
+	-DLOCALEDIR=\""$(localedir)"\"
+
+yelp_CFLAGS =					\
+	$(YELP_CFLAGS)				\
+	$(WARN_CFLAGS)
+
+yelp_CPPFLAGS = \
+	-I$(top_srcdir)/libyelp \
+	$(YELP_DEFINES)
+
+yelp_LDADD =					\
+	$(top_builddir)/libyelp/libyelp.la	\
+	$(top_builddir)/libyelp/libyelpcommon.la	\
+	$(YELP_LIBS)
+
+yelp_LDFLAGS = $(WARN_LDFLAGS)
+
+install-exec-hook:
+	rm -f $(DESTDIR)$(bindir)/gnome-help && \
+	$(LN_S) yelp $(DESTDIR)$(bindir)/gnome-help
 
 YELP_COMMON_CFLAGS =				\
 	$(YELP_CFLAGS)				\
 	$(WARN_CFLAGS)				\
 	$(YELP_DEFINES)				\
-	-DDATADIR=\""$(datadir)"\"		\
 	-I$(top_srcdir)/libyelp
 YELP_COMMON_LDADD =				\
 	$(YELP_LIBS)				\
@@ -69,7 +103,8 @@ desktop_in_files=yelp.desktop.in.in
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
 dist_noinst_DATA = \
-	$(desktop_in_files)
+	$(desktop_in_files) \
+	$(yelp_headers)
 
 dist_noinst_SCRIPTS = \
 	autogen.sh
