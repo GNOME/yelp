@@ -102,8 +102,14 @@ desktopdir = $(datadir)/applications
 desktop_in_files=yelp.desktop.in.in
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
+@INTLTOOL_SCHEMAS_RULE@
+
+gsettings_SCHEMAS = data/org.gnome.yelp.gschema.xml
+@GSETTINGS_RULES@
+
 dist_noinst_DATA = \
 	$(desktop_in_files) \
+	$(gsettings_SCHEMAS) \
 	$(yelp_headers)
 
 dist_noinst_SCRIPTS = \
