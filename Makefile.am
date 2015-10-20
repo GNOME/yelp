@@ -107,6 +107,25 @@ desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 gsettings_SCHEMAS = data/org.gnome.yelp.gschema.xml
 @GSETTINGS_RULES@
 
+16icondir = $(pkgdatadir)/icons/hicolor/16x16/status
+scalableicondir = $(pkgdatadir)/icons/hicolor/scalable/status
+
+dist_16icon_DATA = \
+	data/icons/hicolor/16x16/status/bookmark.png \
+	data/icons/hicolor/16x16/status/yelp-page-task.png \
+	data/icons/hicolor/16x16/status/yelp-page-tip.png \
+	data/icons/hicolor/16x16/status/yelp-page-ui.png \
+	data/icons/hicolor/16x16/status/yelp-page-video.png
+
+dist_scalableicon_DATA = \
+	data/icons/hicolor/scalable/status/yelp-page-problem-symbolic.svg \
+	data/icons/hicolor/scalable/status/yelp-page-search-symbolic.svg \
+	data/icons/hicolor/scalable/status/yelp-page-task-symbolic.svg \
+	data/icons/hicolor/scalable/status/yelp-page-tip-symbolic.svg \
+	data/icons/hicolor/scalable/status/yelp-page-ui-symbolic.svg \
+	data/icons/hicolor/scalable/status/yelp-page-video-symbolic.svg \
+	data/icons/hicolor/scalable/status/yelp-page-symbolic.svg
+
 dist_noinst_DATA = \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \

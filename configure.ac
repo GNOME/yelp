@@ -160,12 +160,6 @@ data/Makefile
 data/domains/Makefile
 data/dtd/Makefile
 data/dtd/catalog
-data/icons/Makefile
-data/icons/hicolor/Makefile
-data/icons/hicolor/16x16/Makefile
-data/icons/hicolor/16x16/status/Makefile
-data/icons/hicolor/scalable/Makefile
-data/icons/hicolor/scalable/status/Makefile
 data/mathjax/Makefile
 data/mathjax/config/Makefile
 data/mathjax/extensions/HTML-CSS/Makefile
