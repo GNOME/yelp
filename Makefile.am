@@ -126,6 +126,21 @@ dist_scalableicon_DATA = \
 	data/icons/hicolor/scalable/status/yelp-page-video-symbolic.svg \
 	data/icons/hicolor/scalable/status/yelp-page-symbolic.svg
 
+domaindir = $(datadir)/yelp-xsl/xslt/common/domains
+
+data/domains/yelp.pot: data/domains/yelp.xml.in
+	$(ITSTOOL) -o "$@" "$^"
+
+data/domains/yelp.xml: data/domains/yelp.xml.in
+	$(AM_V_GEN) ( \
+	for lang in $(ALL_LINGUAS); do \
+	  msgfmt -o "$$lang.mo" "$(top_srcdir)/po/$$lang.po" || exit 1; \
+	done; \
+	$(ITSTOOL) -o "$@" -j "$^" $(foreach ll,$(ALL_LINGUAS),$(ll).mo); \
+	rm $(foreach ll,$(ALL_LINGUAS),$(ll).mo))
+	
+domain_DATA = data/domains/yelp.xml
+
 xsldir = $(pkgdatadir)/xslt
 
 xsl_DATA = \
@@ -138,7 +153,10 @@ xsl_DATA = \
 dist_noinst_DATA = \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \
-	$(yelp_headers)
+	$(yelp_headers) \
+	data/domains/yelp.pot \
+	data/domains/yelp.xml.in \
+	data/domains/yelp.xml
 
 dist_noinst_SCRIPTS = \
 	autogen.sh

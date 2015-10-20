@@ -1,1 +1,1 @@
-SUBDIRS = domains dtd mathjax
+SUBDIRS = dtd mathjax

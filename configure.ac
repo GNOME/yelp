@@ -157,7 +157,6 @@ docs/libyelp/Makefile
 docs/libyelp/version.xml
 libyelp/Makefile
 data/Makefile
-data/domains/Makefile
 data/dtd/Makefile
 data/dtd/catalog
 data/mathjax/Makefile
