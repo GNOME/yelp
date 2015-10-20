@@ -126,6 +126,15 @@ dist_scalableicon_DATA = \
 	data/icons/hicolor/scalable/status/yelp-page-video-symbolic.svg \
 	data/icons/hicolor/scalable/status/yelp-page-symbolic.svg
 
+xsldir = $(pkgdatadir)/xslt
+
+xsl_DATA = \
+	data/xslt/db2html.xsl \
+	data/xslt/info2html.xsl \
+	data/xslt/mal2html.xsl \
+	data/xslt/man2html.xsl \
+	data/xslt/yelp-common.xsl
+
 dist_noinst_DATA = \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \

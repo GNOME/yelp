@@ -202,7 +202,6 @@ data/mathjax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/Makefile
 data/mathjax/jax/output/Makefile
 data/mathjax/jax/output/NativeMML/Makefile
 data/mathjax/unpacked/Makefile
-data/xslt/Makefile
 data/xslt/db2html.xsl
 data/xslt/info2html.xsl
 data/xslt/mal2html.xsl

@@ -1,1 +1,1 @@
-SUBDIRS = domains dtd mathjax xslt
+SUBDIRS = domains dtd mathjax
