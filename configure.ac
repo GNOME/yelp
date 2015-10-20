@@ -18,10 +18,6 @@ AX_COMPILER_FLAGS([], [], [$ax_is_release])
 AC_PROG_CC
 AC_PROG_CC_C_O
 AC_PROG_LN_S
-
-AC_PATH_PROGS(SED, gsed sed)
-
-AM_PATH_GLIB_2_0
 GLIB_GSETTINGS
 
 # Library dependecies
