@@ -155,7 +155,6 @@ Makefile
 docs/Makefile
 docs/libyelp/Makefile
 docs/libyelp/version.xml
-libyelp/Makefile
 data/Makefile
 data/dtd/catalog
 data/mathjax/Makefile
@@ -206,7 +205,6 @@ data/xslt/mal2html.xsl
 data/xslt/man2html.xsl
 data/xslt/yelp-common.xsl
 po/Makefile.in
-libyelp/web-extension/Makefile
 yelp.desktop.in
 ])
 
