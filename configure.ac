@@ -220,7 +220,6 @@ data/xslt/mal2html.xsl
 data/xslt/man2html.xsl
 data/xslt/yelp-common.xsl
 po/Makefile.in
-tests/Makefile
 libyelp/web-extension/Makefile
 yelp.desktop.in
 ])

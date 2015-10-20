@@ -1,6 +1,66 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = libyelp libyelp/web-extension src po data tests docs
+SUBDIRS = libyelp libyelp/web-extension src po data docs
+
+YELP_COMMON_CFLAGS =				\
+	$(YELP_CFLAGS)				\
+	$(WARN_CFLAGS)				\
+	$(YELP_DEFINES)				\
+	-DDATADIR=\""$(datadir)"\"		\
+	-I$(top_srcdir)/libyelp
+YELP_COMMON_LDADD =				\
+	$(YELP_LIBS)				\
+	$(WARN_LDFLAGS)
+
+check_PROGRAMS =				\
+	tests/test-magic			\
+	tests/test-settings			\
+	tests/test-transform			\
+	tests/test-uri				\
+	tests/test-view
+
+if ENABLE_LZMA
+check_PROGRAMS += tests/test-lzma
+tests_test_lzma_libyelp_sources = $(top_srcdir)/libyelp/yelp-lzma-decompressor.c
+tests_test_lzma_CFLAGS = $(YELP_COMMON_CFLAGS)
+tests_test_lzma_LDADD = $(YELP_COMMON_LDADD)
+tests_test_lzma_SOURCES = tests/test-lzma.c $(tests_test_lzma_libyelp_sources)
+endif
+
+if ENABLE_BZ2
+check_PROGRAMS += tests/test-bz2
+tests_test_bz2_libyelp_sources = libyelp/yelp-bz2-decompressor.c
+tests_test_bz2_CFLAGS = $(YELP_COMMON_CFLAGS)
+tests_test_bz2_LDADD = $(YELP_COMMON_LDADD)
+tests_test_bz2_SOURCES = tests/test-bz2.c $(tests_test_bz2_libyelp_sources)
+endif
+
+tests_test_magic_CFLAGS = $(YELP_COMMON_CFLAGS)
+tests_test_magic_LDADD = $(YELP_COMMON_LDADD)
+tests_test_magic_SOURCES = tests/test-magic.c \
+	$(tests_test_bz2_libyelp_sources) \
+	$(tests_test_lzma_libyelp_sources) \
+	libyelp/yelp-magic-decompressor.c
+
+tests_test_settings_CFLAGS = $(YELP_COMMON_CFLAGS)
+tests_test_settings_LDADD = \
+	$(YELP_COMMON_LDADD) \
+	$(top_builddir)/libyelp/libyelp.la
+
+tests_test_transform_CFLAGS = $(YELP_COMMON_CFLAGS)
+tests_test_transform_LDADD = \
+	$(YELP_COMMON_LDADD) \
+	$(top_builddir)/libyelp/libyelp.la
+
+tests_test_uri_CFLAGS = $(YELP_COMMON_CFLAGS)
+tests_test_uri_LDADD = \
+	$(YELP_COMMON_LDADD) \
+	$(top_builddir)/libyelp/libyelp.la
+
+tests_test_view_CFLAGS = $(YELP_COMMON_CFLAGS)
+tests_test_view_LDADD = \
+	$(YELP_COMMON_LDADD) \
+	$(top_builddir)/libyelp/libyelp.la
 
 @INTLTOOL_DESKTOP_RULE@
 
