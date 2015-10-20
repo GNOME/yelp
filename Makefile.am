@@ -141,6 +141,33 @@ data/domains/yelp.xml: data/domains/yelp.xml.in
 	
 domain_DATA = data/domains/yelp.xml
 
+dtddir = $(pkgdatadir)/dtd
+
+dist_dtd_DATA = \
+	data/dtd/docbookx.dtd \
+	data/dtd/isoamsa.ent \
+	data/dtd/isoamsb.ent \
+	data/dtd/isoamsc.ent \
+	data/dtd/isoamsn.ent \
+	data/dtd/isoamso.ent \
+	data/dtd/isoamsr.ent \
+	data/dtd/isobox.ent \
+	data/dtd/isocyr1.ent \
+	data/dtd/isocyr2.ent \
+	data/dtd/isodia.ent \
+	data/dtd/isogrk1.ent \
+	data/dtd/isogrk2.ent \
+	data/dtd/isogrk3.ent \
+	data/dtd/isogrk4.ent \
+	data/dtd/isolat1.ent \
+	data/dtd/isolat2.ent \
+	data/dtd/isonum.ent \
+	data/dtd/isopub.ent \
+	data/dtd/isotech.ent
+
+dtd_DATA = \
+	data/dtd/catalog
+
 xsldir = $(pkgdatadir)/xslt
 
 xsl_DATA = \

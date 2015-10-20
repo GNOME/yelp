@@ -1,1 +1,1 @@
-SUBDIRS = dtd mathjax
+SUBDIRS = mathjax
