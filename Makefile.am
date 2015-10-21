@@ -29,26 +29,24 @@ libyelp_libyelpcommon_la_LDFLAGS = \
 	-no-undefined
 
 libyelp_libyelpcommon_la_headers = \
-	libyelp/yelp-uri.h \
-	libyelp/yelp-uri-builder.h \
-	libyelp/yelp-settings.h
+	$(top_srcdir)/libyelp/yelp-uri.h \
+	$(top_srcdir)/libyelp/yelp-uri-builder.h \
+	$(top_srcdir)/libyelp/yelp-settings.h
 
 libyelp_libyelpcommon_includedir = $(includedir)/libyelp/
 
 libyelp_libyelpcommon_include_HEADERS = \
-	$(libyelp_libyelpcommon_la_headers) \
+	$(libyelp_libyelpcommon_la_headers)
+
+nodist_libyelp_libyelpcommon_include_HEADERS = \
 	libyelp/yelp-common-types.h
 
 BUILT_SOURCES = \
-	libyelp/yelp-common-types.c \
-	libyelp/yelp-common-types.h \
-	libyelp/yelp-marshal.c \
-	libyelp/yelp-marshal.h \
-	libyelp/yelp-types.c \
-	libyelp/yelp-types.h
+	$(nodist_libyelp_libyelp_la_SOURCES) \
+	$(nodist_libyelp_libyelpcommon_la_SOURCES)
 
 libyelp/yelp-common-types.h: $(libyelp_libyelpcommon_la_headers)
-	$(AM_V_GEN) (cd $(srcdir) && glib-mkenums \
+	$(AM_V_GEN) glib-mkenums \
 	--fhead "#ifndef __LIBYELPCOMMON_TYPES_H__\n" \
 	--fhead "#define __LIBYELPCOMMON_TYPES_H__\n\n" \
 	--fhead "#include <glib-object.h>\n\n" \
@@ -58,10 +56,10 @@ libyelp/yelp-common-types.h: $(libyelp_libyelpcommon_la_headers)
 	--fprod "#include \"@filename@\"\n" \
 	--eprod "#define YELP_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
 	--eprod "GType @enum_name@_get_type (void);\n" \
-	$(libyelp_libyelpcommon_la_headers)) > $@
+	$(libyelp_libyelpcommon_la_headers) > $@
 
-libyelp/yelp-common-types.c: $(libyelp_libyelpcommon_la_headers)
-	$(AM_V_GEN) (cd $(srcdir) && glib-mkenums \
+libyelp/yelp-common-types.c: $(libyelp_libyelpcommon_la_headers) libyelp/yelp-common-types.h
+	$(AM_V_GEN) glib-mkenums \
 	--fhead "#include <glib-object.h>\n" \
 	--fhead "#include \"yelp-types.h\"\n\n" \
 	--fprod "\n/* enumerations from \"@filename@\" */" \
@@ -73,7 +71,7 @@ libyelp/yelp-common-types.c: $(libyelp_libyelpcommon_la_headers)
 	--vtail "  if (!type)\n" \
 	--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
 	--vtail "  return type;\n}\n\n" \
-	$(libyelp_libyelpcommon_la_headers)) > $@
+	$(libyelp_libyelpcommon_la_headers) > $@
 
 lib_LTLIBRARIES = libyelp/libyelp.la
 
@@ -90,24 +88,25 @@ libyelp_libyelp_la_SOURCES = \
 	libyelp/yelp-mallard-document.c \
 	libyelp/yelp-man-document.c \
 	libyelp/yelp-man-parser.c \
-	libyelp/yelp-marshal.c \
 	libyelp/yelp-search-entry.c \
 	libyelp/yelp-simple-document.c \
 	libyelp/yelp-sqlite-storage.c \
 	libyelp/yelp-storage.c \
 	libyelp/yelp-transform.c \
-	libyelp/yelp-types.c \
 	libyelp/yelp-view.c
 
-libyelp_libyelp_la_headers = \
+nodist_libyelp_libyelp_la_SOURCES = \
+	libyelp/yelp-marshal.c \
+	libyelp/yelp-types.c
+
+noinst_libyelp_libyelp_la_headers = \
 	libyelp/yelp-bz2-decompressor.h \
 	libyelp/yelp-debug.h \
 	libyelp/yelp-error.h \
 	libyelp/yelp-info-parser.h \
 	libyelp/yelp-man-parser.h \
 	libyelp/yelp-lzma-decompressor.h \
-	libyelp/yelp-magic-decompressor.h \
-	libyelp/yelp-marshal.list
+	libyelp/yelp-magic-decompressor.h
 
 if ENABLE_LZMA
 libyelp_libyelp_la_SOURCES += libyelp/yelp-lzma-decompressor.c
@@ -134,32 +133,43 @@ libyelp_libyelp_la_LIBADD = \
 	libyelp/libyelpcommon.la
 
 libyelp_libyelp_la_headers = \
-	libyelp/yelp-bookmarks.h \
-	libyelp/yelp-docbook-document.h \
-	libyelp/yelp-document.h \
-	libyelp/yelp-help-list.h \
-	libyelp/yelp-info-document.h \
-	libyelp/yelp-mallard-document.h \
-	libyelp/yelp-man-document.h \
-	libyelp/yelp-search-entry.h \
-	libyelp/yelp-simple-document.h \
-	libyelp/yelp-sqlite-storage.h \
-	libyelp/yelp-storage.h \
-	libyelp/yelp-transform.h \
-	libyelp/yelp-view.h
+	$(top_srcdir)/libyelp/yelp-bookmarks.h \
+	$(top_srcdir)/libyelp/yelp-docbook-document.h \
+	$(top_srcdir)/libyelp/yelp-document.h \
+	$(top_srcdir)/libyelp/yelp-help-list.h \
+	$(top_srcdir)/libyelp/yelp-info-document.h \
+	$(top_srcdir)/libyelp/yelp-mallard-document.h \
+	$(top_srcdir)/libyelp/yelp-man-document.h \
+	$(top_srcdir)/libyelp/yelp-search-entry.h \
+	$(top_srcdir)/libyelp/yelp-simple-document.h \
+	$(top_srcdir)/libyelp/yelp-sqlite-storage.h \
+	$(top_srcdir)/libyelp/yelp-storage.h \
+	$(top_srcdir)/libyelp/yelp-transform.h \
+	$(top_srcdir)/libyelp/yelp-view.h
 
 libyelp_includedir = $(includedir)/libyelp/
 
-libyelp_include_HEADERS = $(libyelp_libyelp_la_headers) libyelp/yelp-types.h
+libyelp_include_HEADERS = $(libyelp_libyelp_la_headers)
+nodist_libyelp_include_HEADERS = libyelp/yelp-types.h
+
+marshal_data = \
+	libyelp/yelp-marshal.c \
+	libyelp/yelp-marshal.h
 
 libyelp/yelp-marshal.h: libyelp/yelp-marshal.list
-	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=yelp_marshal $(top_srcdir)/libyelp/yelp-marshal.list --header --internal $< > $@
+	$(AM_V_GEN)$(GLIB_GENMARSHAL) --prefix=yelp_marshal --header --internal $< > $@
 
 libyelp/yelp-marshal.c: libyelp/yelp-marshal.list libyelp/yelp-marshal.h
-	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=yelp_marshal $(top_srcdir)/libyelp/yelp-marshal.list --header --body --internal $< > $@
+	$(AM_V_GEN)$(GLIB_GENMARSHAL) --prefix=yelp_marshal --header --body --internal $< > $@
+
+enum_data = \
+	libyelp/yelp-common-types.c \
+	libyelp/yelp-common-types.h \
+	libyelp/yelp-types.c \
+	libyelp/yelp-types.h
 
 libyelp/yelp-types.h: $(libyelp_libyelp_la_headers)
-	$(AM_V_GEN) (cd $(srcdir) && glib-mkenums \
+	$(AM_V_GEN) glib-mkenums \
 	--fhead "#ifndef __LIBYELP_TYPES_H__\n" \
 	--fhead "#define __LIBYELP_TYPES_H__\n\n" \
 	--fhead "#include <glib-object.h>\n\n" \
@@ -169,10 +179,10 @@ libyelp/yelp-types.h: $(libyelp_libyelp_la_headers)
 	--fprod "#include \"@filename@\"\n" \
 	--eprod "#define YELP_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
 	--eprod "GType @enum_name@_get_type (void);\n" \
-	$(libyelp_libyelp_la_headers)) > $@
+	$(libyelp_libyelp_la_headers) > $@
 
 libyelp/yelp-types.c: $(libyelp_libyelp_la_headers) libyelp/yelp-types.h
-	$(AM_V_GEN) (cd $(srcdir) && glib-mkenums \
+	$(AM_V_GEN) glib-mkenums \
 	--fhead "#include <glib-object.h>\n" \
 	--fhead "#include \"yelp-types.h\"\n\n" \
 	--fprod "\n/* enumerations from \"@filename@\" */" \
@@ -184,7 +194,7 @@ libyelp/yelp-types.c: $(libyelp_libyelp_la_headers) libyelp/yelp-types.h
 	--vtail "  if (!type)\n" \
 	--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
 	--vtail "  return type;\n}\n\n" \
-	$(libyelp_libyelp_la_headers)) > $@
+	$(libyelp_libyelp_la_headers) > $@
 
 webextension_LTLIBRARIES = libyelp/web-extension/libyelpwebextension.la
 webextensiondir = $(pkglibdir)/web-extensions
@@ -260,7 +270,7 @@ check_PROGRAMS =				\
 
 if ENABLE_LZMA
 check_PROGRAMS += tests/test-lzma
-tests_test_lzma_libyelp_sources = $(top_srcdir)/libyelp/yelp-lzma-decompressor.c
+tests_test_lzma_libyelp_sources = libyelp/yelp-lzma-decompressor.c
 tests_test_lzma_CFLAGS = $(YELP_COMMON_CFLAGS)
 tests_test_lzma_LDADD = $(YELP_COMMON_LDADD)
 tests_test_lzma_SOURCES = tests/test-lzma.c $(tests_test_lzma_libyelp_sources)
@@ -386,17 +396,20 @@ dist_noinst_DATA = \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \
 	$(libyelp_libyelp_la_headers) \
+	$(noinst_libyelp_libyelp_la_headers) \
 	$(yelp_headers) \
 	data/domains/yelp.pot \
 	data/domains/yelp.xml.in \
-	data/domains/yelp.xml
+	data/domains/yelp.xml \
+	libyelp/yelp-marshal.list
 
 dist_noinst_SCRIPTS = \
 	autogen.sh
 
 CLEANFILES = \
 	$(desktop_DATA) \
-	$(BUILT_SOURCES)
+	$(enum_data) \
+	$(marshal_data)
 
 DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-bz2 \
