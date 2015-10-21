@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = po data docs
+SUBDIRS = po data
 
 # Libtool is utterly broken when it comes to ordering library dependencies.
 # Hack around this awfulness: https://lists.gnu.org/archive/html/libtool/2004-10/msg00051.html
@@ -248,10 +248,6 @@ yelp_LDADD = \
 
 yelp_LDFLAGS = $(WARN_LDFLAGS)
 
-install-exec-hook:
-	rm -f $(DESTDIR)$(bindir)/gnome-help && \
-	$(LN_S) yelp $(DESTDIR)$(bindir)/gnome-help
-
 YELP_COMMON_CFLAGS =				\
 	$(YELP_CFLAGS)				\
 	$(WARN_CFLAGS)				\
@@ -310,6 +306,39 @@ tests_test_view_CFLAGS = $(YELP_COMMON_CFLAGS)
 tests_test_view_LDADD = \
 	$(YELP_COMMON_LDADD) \
 	libyelp/libyelp.la
+
+gtkdoc_builddir = $(top_builddir)/docs/libyelp
+gtkdoc_distdir = $(top_distdir)/docs/libyelp
+gtkdoc_srcdir = $(top_srcdir)/docs/libyelp
+
+all-local: $(bin_PROGRAMS)
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) all
+check-local:
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) check
+clean-local:
+	cd $(gtkdoc_builddir) && if test -e Makefile ; then \
+		$(MAKE) $(AM_MAKEFLAGS) clean ; \
+	fi
+distclean-local:
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) distclean
+docs: $(lib_LTLIBRARIES)
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) docs
+install-data-local:
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) install-data
+uninstall-local:
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) uninstall
+
+dist-hook:
+	$(MKDIR_P) $(gtkdoc_distdir)
+	cp $(gtkdoc_srcdir)/Makefile.am $(gtkdoc_srcdir)/Makefile.in $(gtkdoc_distdir)
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) \
+		distdir="../../$(gtkdoc_distdir)" \
+		top_distdir="../../$(top_distdir)" \
+		dist-hook
+
+install-exec-hook:
+	rm -f $(DESTDIR)$(bindir)/gnome-help && \
+	$(LN_S) yelp $(DESTDIR)$(bindir)/gnome-help
 
 @INTLTOOL_DESKTOP_RULE@
 
@@ -401,7 +430,10 @@ dist_noinst_DATA = \
 	data/domains/yelp.pot \
 	data/domains/yelp.xml.in \
 	data/domains/yelp.xml \
-	libyelp/yelp-marshal.list
+	docs/libyelp/libyelp-docs.xml \
+	docs/libyelp/version.xml.in \
+	libyelp/yelp-marshal.list \
+	gtk-doc.make
 
 dist_noinst_SCRIPTS = \
 	autogen.sh
@@ -415,3 +447,5 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-bz2 \
 	--enable-gtk-doc \
 	--enable-lzma
+
+.PHONY: docs

@@ -152,7 +152,6 @@ GTK_DOC_CHECK([1.13],[--flavour no-tmpl])
 
 AC_CONFIG_FILES([
 Makefile
-docs/Makefile
 docs/libyelp/Makefile
 docs/libyelp/version.xml
 data/Makefile
