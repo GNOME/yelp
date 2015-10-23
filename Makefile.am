@@ -443,6 +443,20 @@ CLEANFILES = \
 	$(enum_data) \
 	$(marshal_data)
 
+MAINTAINERCLEANFILES = \
+	build-aux/compile \
+	build-aux/config.guess \
+	build-aux/config.sub \
+	build-aux/depcomp \
+	build-aux/install-sh \
+	build-aux/ltmain.sh \
+	build-aux/missing \
+	build-aux/test-driver \
+	aclocal.m4 \
+	config.h.in \
+	$(gsettings_SCHEMAS:.xml=.valid) \
+	mkinstalldirs
+
 DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-bz2 \
 	--enable-gtk-doc \
