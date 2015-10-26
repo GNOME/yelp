@@ -320,7 +320,7 @@ data/domains/yelp.xml: data/domains/yelp.xml.in
 	done; \
 	$(ITSTOOL) -o "$@" -j "$^" $(foreach ll,$(ALL_LINGUAS),$(ll).mo); \
 	rm $(foreach ll,$(ALL_LINGUAS),$(ll).mo))
-	
+
 domain_DATA = data/domains/yelp.xml
 
 dtddir = $(pkgdatadir)/dtd
