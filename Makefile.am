@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = po data
+SUBDIRS = po
 
 BUILT_SOURCES = \
 	$(nodist_libyelp_libyelp_la_SOURCES)
@@ -350,6 +350,328 @@ dist_dtd_DATA = \
 dtd_DATA = \
 	data/dtd/catalog
 
+mjdir = $(pkgdatadir)/mathjax
+
+dist_mj_DATA = data/mathjax/MathJax.js
+
+mjconfigdir = $(pkgdatadir)/mathjax/config
+
+dist_mjconfig_DATA = \
+	data/mathjax/config/MMLorHTML.js \
+	data/mathjax/config/yelp.js
+
+mjextensionsdir = $(pkgdatadir)/mathjax/extensions
+
+dist_mjextensions_DATA = \
+	data/mathjax/extensions/MathEvents.js \
+	data/mathjax/extensions/MathMenu.js \
+	data/mathjax/extensions/MathZoom.js \
+	data/mathjax/extensions/mml2jax.js
+
+mjextensionshtmlcssdir = $(pkgdatadir)/mathjax/extensions/HTML-CSS
+
+dist_mjextensionshtmlcss_DATA = \
+	data/mathjax/extensions/HTML-CSS/handle-floats.js
+
+mjfontsdir = $(pkgdatadir)/mathjax/fonts/HTML-CSS/TeX/woff
+
+dist_mjfonts_DATA = \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_AMS-Regular.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Bold.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Bold.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Regular.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Math-BoldItalic.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Math-Regular.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Bold.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Italic.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Regular.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Script-Regular.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff \
+	data/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Typewriter-Regular.woff
+
+mjelementsdir = $(pkgdatadir)/mathjax/jax/element/mml
+
+dist_mjelements_DATA = \
+	data/mathjax/jax/element/mml/jax.js
+
+mjelementsoptabledir = $(pkgdatadir)/mathjax/jax/element/mml/optable
+
+dist_mjelementsoptable_DATA = \
+	data/mathjax/jax/element/mml/optable/Arrows.js \
+	data/mathjax/jax/element/mml/optable/BasicLatin.js \
+	data/mathjax/jax/element/mml/optable/CombDiacritMarks.js \
+	data/mathjax/jax/element/mml/optable/CombDiactForSymbols.js \
+	data/mathjax/jax/element/mml/optable/Dingbats.js \
+	data/mathjax/jax/element/mml/optable/GeneralPunctuation.js \
+	data/mathjax/jax/element/mml/optable/GeometricShapes.js \
+	data/mathjax/jax/element/mml/optable/GreekAndCoptic.js \
+	data/mathjax/jax/element/mml/optable/Latin1Supplement.js \
+	data/mathjax/jax/element/mml/optable/LetterlikeSymbols.js \
+	data/mathjax/jax/element/mml/optable/MathOperators.js \
+	data/mathjax/jax/element/mml/optable/MiscMathSymbolsA.js \
+	data/mathjax/jax/element/mml/optable/MiscMathSymbolsB.js \
+	data/mathjax/jax/element/mml/optable/MiscSymbolsAndArrows.js \
+	data/mathjax/jax/element/mml/optable/MiscTechnical.js \
+	data/mathjax/jax/element/mml/optable/SpacingModLetters.js \
+	data/mathjax/jax/element/mml/optable/SupplementalArrowsA.js \
+	data/mathjax/jax/element/mml/optable/SupplementalArrowsB.js \
+	data/mathjax/jax/element/mml/optable/SuppMathOperators.js
+
+mkinputdir = $(pkgdatadir)/mathjax/jax/input/MathML
+
+dist_mkinput_DATA = \
+	data/mathjax/jax/input/MathML/config.js \
+	data/mathjax/jax/input/MathML/jax.js
+
+mkinputentitiesdir = $(pkgdatadir)/mathjax/jax/input/MathML/entities
+
+dist_mkinputentities_DATA = \
+	data/mathjax/jax/input/MathML/entities/a.js \
+	data/mathjax/jax/input/MathML/entities/b.js \
+	data/mathjax/jax/input/MathML/entities/c.js \
+	data/mathjax/jax/input/MathML/entities/d.js \
+	data/mathjax/jax/input/MathML/entities/e.js \
+	data/mathjax/jax/input/MathML/entities/f.js \
+	data/mathjax/jax/input/MathML/entities/fr.js \
+	data/mathjax/jax/input/MathML/entities/g.js \
+	data/mathjax/jax/input/MathML/entities/h.js \
+	data/mathjax/jax/input/MathML/entities/i.js \
+	data/mathjax/jax/input/MathML/entities/j.js \
+	data/mathjax/jax/input/MathML/entities/k.js \
+	data/mathjax/jax/input/MathML/entities/l.js \
+	data/mathjax/jax/input/MathML/entities/m.js \
+	data/mathjax/jax/input/MathML/entities/n.js \
+	data/mathjax/jax/input/MathML/entities/o.js \
+	data/mathjax/jax/input/MathML/entities/opf.js \
+	data/mathjax/jax/input/MathML/entities/p.js \
+	data/mathjax/jax/input/MathML/entities/q.js \
+	data/mathjax/jax/input/MathML/entities/r.js \
+	data/mathjax/jax/input/MathML/entities/scr.js \
+	data/mathjax/jax/input/MathML/entities/s.js \
+	data/mathjax/jax/input/MathML/entities/t.js \
+	data/mathjax/jax/input/MathML/entities/u.js \
+	data/mathjax/jax/input/MathML/entities/v.js \
+	data/mathjax/jax/input/MathML/entities/w.js \
+	data/mathjax/jax/input/MathML/entities/x.js \
+	data/mathjax/jax/input/MathML/entities/y.js \
+	data/mathjax/jax/input/MathML/entities/z.js
+
+mjoutputhtmlcssdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS
+
+dist_mjoutputhtmlcss_DATA = \
+	data/mathjax/jax/output/HTML-CSS/config.js \
+	data/mathjax/jax/output/HTML-CSS/jax.js
+
+mjoutputautoloaddir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/autoload
+
+dist_mjoutputautoload_DATA = \
+	data/mathjax/jax/output/HTML-CSS/autoload/annotation-xml.js \
+	data/mathjax/jax/output/HTML-CSS/autoload/maction.js \
+	data/mathjax/jax/output/HTML-CSS/autoload/menclose.js \
+	data/mathjax/jax/output/HTML-CSS/autoload/mglyph.js \
+	data/mathjax/jax/output/HTML-CSS/autoload/mmultiscripts.js \
+	data/mathjax/jax/output/HTML-CSS/autoload/ms.js \
+	data/mathjax/jax/output/HTML-CSS/autoload/mtable.js \
+	data/mathjax/jax/output/HTML-CSS/autoload/multiline.js
+
+mjoutputfontsdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX
+
+dist_mjoutputfonts_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/fontdata-extra.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/fontdata.js
+
+mjoutputamsdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular
+
+dist_mjoutputams_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Arrows.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/BBBold.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/BoxDrawing.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/CombDiacritMarks.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Dingbats.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/EnclosedAlphanum.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/GeneralPunctuation.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/GeometricShapes.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/GreekAndCoptic.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/LatinExtendedA.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Latin1Supplement.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/LetterlikeSymbols.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Main.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MathOperators.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MiscMathSymbolsB.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MiscSymbols.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MiscTechnical.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/PUA.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/SpacingModLetters.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/SuppMathOperators.js
+
+mjoutputcalbolddir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Bold
+
+dist_mjoutputcalbold_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Bold/Main.js
+
+mjoutputcalregulardir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Regular
+
+dist_mjoutputcalregular_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Regular/Main.js
+
+mjoutputfrakturbolddir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold
+
+dist_mjoutputfrakturbold_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/BasicLatin.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/Main.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/Other.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/PUA.js
+
+mjoutputfrakturregdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular
+
+dist_mjoutputfrakturreg_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/BasicLatin.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/Main.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/Other.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/PUA.js
+
+mjoutputgreekbolddir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Bold
+
+dist_mjoutputgreekbold_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Bold/Main.js
+
+mjoutputgreekbolditalicdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/BoldItalic
+
+dist_mjoutputgreekbolditalic_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/BoldItalic/Main.js
+
+mjoutputgreekitalicdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Italic
+
+dist_mjoutputgreekitalic_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Italic/Main.js
+
+mjoutputgreekregdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Regular
+
+dist_mjoutputgreekreg_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Greek/Regular/Main.js
+
+mjoutputmainbolddir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold
+
+dist_mjoutputmainbold_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/Arrows.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/CombDiactForSymbols.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/CombDiacritMarks.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/GeneralPunctuation.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/GeometricShapes.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/LatinExtendedA.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/LatinExtendedB.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/Latin1Supplement.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/LetterlikeSymbols.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/Main.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MathOperators.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MiscMathSymbolsA.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MiscSymbols.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MiscTechnical.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/SpacingModLetters.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/SupplementalArrowsA.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Bold/SuppMathOperators.js
+
+mjoutputmainitalicdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Italic
+
+dist_mjoutputmainitalic_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/CombDiacritMarks.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/GeneralPunctuation.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/Latin1Supplement.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/LetterlikeSymbols.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/Main.js
+
+mjoutputmainregdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Regular
+
+dist_mjoutputmainreg_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/CombDiacritMarks.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/GeometricShapes.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/Main.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/MiscSymbols.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/SpacingModLetters.js
+
+mjoutputmathbolddir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Math/BoldItalic
+
+dist_mjoutputmathbold_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Math/BoldItalic/Main.js
+
+mjoutputmathitalicdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Math/Italic
+
+dist_mjoutputmathitalic_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Math/Italic/Main.js
+
+mjoutputsanserifbolddir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold
+
+dist_mjoutputsanserifbold_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/BasicLatin.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/CombDiacritMarks.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/Main.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/Other.js
+
+mjoutputsanserifitalicdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic
+
+dist_mjoutputsanserifitalic_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/BasicLatin.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/CombDiacritMarks.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/Main.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/Other.js
+
+mjoutputsanserifregdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular
+
+dist_mjoutputsanserifreg_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/BasicLatin.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/CombDiacritMarks.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/Main.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/Other.js
+
+mjoutputscriptdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Script/Regular
+
+dist_mjoutputscript_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Script/Regular/BasicLatin.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Script/Regular/Main.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Script/Regular/Other.js
+
+mjoutputsize1dir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Size1/Regular
+
+dist_mjoutputsize1_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Size1/Regular/Main.js
+
+mjoutputsize2dir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Size2/Regular
+
+dist_mjoutputsize2_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Size2/Regular/Main.js
+
+mjoutputsize3dir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Size3/Regular
+
+dist_mjoutputsize3_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Size3/Regular/Main.js
+
+mjoutputsize4dir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Size4/Regular
+
+dist_mjoutputsize4_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Size4/Regular/Main.js
+
+mjoutputtypewriterdir = $(pkgdatadir)/mathjax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular
+
+dist_mjoutputtypewriter_DATA = \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/BasicLatin.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/CombDiacritMarks.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/Main.js \
+	data/mathjax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/Other.js
+
+mjoutputnativemmldir = $(pkgdatadir)/mathjax/jax/output/NativeMML
+
+dist_mjoutputnativemml_DATA = \
+	data/mathjax/jax/output/NativeMML/config.js \
+	data/mathjax/jax/output/NativeMML/jax.js
+
 xsldir = $(pkgdatadir)/xslt
 
 xsl_DATA = \
@@ -368,6 +690,165 @@ dist_noinst_DATA = \
 	data/domains/yelp.pot \
 	data/domains/yelp.xml.in \
 	data/domains/yelp.xml \
+	data/mathjax/unpacked/MathJax.js \
+	data/mathjax/unpacked/config/MMLorHTML.js \
+	data/mathjax/unpacked/extensions/HTML-CSS/handle-floats.js \
+	data/mathjax/unpacked/extensions/MathEvents.js \
+	data/mathjax/unpacked/extensions/MathMenu.js \
+	data/mathjax/unpacked/extensions/MathZoom.js \
+	data/mathjax/unpacked/extensions/mml2jax.js \
+	data/mathjax/unpacked/jax/element/mml/jax.js \
+	data/mathjax/unpacked/jax/element/mml/optable/Arrows.js \
+	data/mathjax/unpacked/jax/element/mml/optable/BasicLatin.js \
+	data/mathjax/unpacked/jax/element/mml/optable/CombDiacritMarks.js \
+	data/mathjax/unpacked/jax/element/mml/optable/CombDiactForSymbols.js \
+	data/mathjax/unpacked/jax/element/mml/optable/Dingbats.js \
+	data/mathjax/unpacked/jax/element/mml/optable/GeneralPunctuation.js \
+	data/mathjax/unpacked/jax/element/mml/optable/GeometricShapes.js \
+	data/mathjax/unpacked/jax/element/mml/optable/GreekAndCoptic.js \
+	data/mathjax/unpacked/jax/element/mml/optable/Latin1Supplement.js \
+	data/mathjax/unpacked/jax/element/mml/optable/LetterlikeSymbols.js \
+	data/mathjax/unpacked/jax/element/mml/optable/MathOperators.js \
+	data/mathjax/unpacked/jax/element/mml/optable/MiscMathSymbolsA.js \
+	data/mathjax/unpacked/jax/element/mml/optable/MiscMathSymbolsB.js \
+	data/mathjax/unpacked/jax/element/mml/optable/MiscSymbolsAndArrows.js \
+	data/mathjax/unpacked/jax/element/mml/optable/MiscTechnical.js \
+	data/mathjax/unpacked/jax/element/mml/optable/SpacingModLetters.js \
+	data/mathjax/unpacked/jax/element/mml/optable/SuppMathOperators.js \
+	data/mathjax/unpacked/jax/element/mml/optable/SupplementalArrowsA.js \
+	data/mathjax/unpacked/jax/element/mml/optable/SupplementalArrowsB.js \
+	data/mathjax/unpacked/jax/input/MathML/config.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/a.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/b.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/c.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/d.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/e.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/f.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/fr.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/g.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/h.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/i.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/j.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/k.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/l.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/m.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/n.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/o.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/opf.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/p.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/q.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/r.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/s.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/scr.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/t.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/u.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/v.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/w.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/x.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/y.js \
+	data/mathjax/unpacked/jax/input/MathML/entities/z.js \
+	data/mathjax/unpacked/jax/input/MathML/jax.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/autoload/annotation-xml.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/autoload/maction.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/autoload/menclose.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/autoload/mglyph.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/autoload/mmultiscripts.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/autoload/ms.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/autoload/mtable.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/autoload/multiline.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/config.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Arrows.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/BBBold.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/BoxDrawing.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/CombDiacritMarks.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Dingbats.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/EnclosedAlphanum.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/GeneralPunctuation.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/GeometricShapes.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/GreekAndCoptic.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Latin1Supplement.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/LatinExtendedA.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/LetterlikeSymbols.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MathOperators.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MiscMathSymbolsB.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MiscSymbols.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/MiscTechnical.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/PUA.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/SpacingModLetters.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/SuppMathOperators.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Bold/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Caligraphic/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/BasicLatin.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/Other.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Fraktur/Bold/PUA.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/BasicLatin.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/Other.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Fraktur/Regular/PUA.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Greek/Bold/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Greek/BoldItalic/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Greek/Italic/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Greek/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/Arrows.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/CombDiacritMarks.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/CombDiactForSymbols.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/GeneralPunctuation.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/GeometricShapes.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/Latin1Supplement.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/LatinExtendedA.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/LatinExtendedB.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/LetterlikeSymbols.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MathOperators.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MiscMathSymbolsA.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MiscSymbols.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/MiscTechnical.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/SpacingModLetters.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/SuppMathOperators.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Bold/SupplementalArrowsA.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Italic/CombDiacritMarks.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Italic/Latin1Supplement.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Italic/LetterlikeSymbols.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Italic/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Regular/CombDiacritMarks.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Regular/GeometricShapes.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Regular/MiscSymbols.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Main/Regular/SpacingModLetters.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Math/BoldItalic/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Math/Italic/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/BasicLatin.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/CombDiacritMarks.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/Other.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/BasicLatin.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/CombDiacritMarks.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Italic/Other.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/BasicLatin.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/CombDiacritMarks.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/Other.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Script/Regular/BasicLatin.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Script/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Script/Regular/Other.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Size1/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Size2/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Size3/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Size4/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/BasicLatin.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/CombDiacritMarks.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/Main.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/Other.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/fontdata.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/fonts/TeX/fontdata-extra.js \
+	data/mathjax/unpacked/jax/output/HTML-CSS/jax.js \
+	data/mathjax/unpacked/jax/output/NativeMML/config.js \
+	data/mathjax/unpacked/jax/output/NativeMML/jax.js \
+	data/mathjax/LICENSE \
+	data/mathjax/README \
 	docs/libyelp/libyelp-docs.xml \
 	docs/libyelp/version.xml.in \
 	libyelp/yelp-marshal.list \

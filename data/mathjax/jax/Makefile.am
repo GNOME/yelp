@@ -1,1 +1,0 @@
-SUBDIRS = element input output
