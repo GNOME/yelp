@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-04-24 00:11+0000\n"
-"PO-Revision-Date: 2015-04-24 13:59+0000\n"
+"POT-Creation-Date: 2015-10-27 14:58+0000\n"
+"PO-Revision-Date: 2015-10-29 08:39+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
@@ -39,30 +39,29 @@ msgstr "Ógild þjöppuð gögn"
 
 #: ../libyelp/yelp-bz2-decompressor.c:149
 #: ../libyelp/yelp-lzma-decompressor.c:158
-#| msgid "Out of memory"
 msgid "Not enough memory"
 msgstr "Ekki nógu mikið laust minni"
 
-#: ../libyelp/yelp-docbook-document.c:295 ../libyelp/yelp-info-document.c:235
-#: ../libyelp/yelp-mallard-document.c:304
-#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:279
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
+#: ../libyelp/yelp-mallard-document.c:298
+#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Síðan '%s' fannst ekki í skjalinu '%s'."
 
-#: ../libyelp/yelp-docbook-document.c:333 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:417
+#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
+#: ../libyelp/yelp-man-document.c:390
 #, c-format
 msgid "The file does not exist."
 msgstr "Skráin er ekki til."
 
-#: ../libyelp/yelp-docbook-document.c:343 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:427
+#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
+#: ../libyelp/yelp-man-document.c:400
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Skráin '%s' er ekki til."
 
-#: ../libyelp/yelp-docbook-document.c:358
+#: ../libyelp/yelp-docbook-document.c:345
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -71,7 +70,7 @@ msgstr ""
 "Ekki er hægt að þátta skrána ‚%s‘ vegna þess að hún er ekki velformað XML "
 "skjal."
 
-#: ../libyelp/yelp-docbook-document.c:371
+#: ../libyelp/yelp-docbook-document.c:358
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -80,45 +79,43 @@ msgstr ""
 "Ekki er hægt að þátta skrána ‚%s‘ vegna þess að ein eða fleiri af skránum "
 "sem hún inniheldur er ekki velformað XML skjal."
 
-#: ../libyelp/yelp-docbook-document.c:801
+#: ../libyelp/yelp-docbook-document.c:788
 msgid "Unknown"
 msgstr "Óþekkt"
 
-#: ../libyelp/yelp-docbook-document.c:862 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:359
+#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
+#: ../libyelp/yelp-man-document.c:332
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Umbeðin síða fannst ekki í skjalinu ‘%s’."
 
-#: ../libyelp/yelp-document.c:268
-#| msgid "Index"
+#: ../libyelp/yelp-document.c:278
 msgid "Indexed"
 msgstr "Skráð"
 
-#: ../libyelp/yelp-document.c:269
+#: ../libyelp/yelp-document.c:279
 msgid "Whether the document content has been indexed"
 msgstr "Hvort efni skjalsins hafi verið sett í yfirlitsskrá"
 
-#: ../libyelp/yelp-document.c:277
-#| msgid "Documents"
+#: ../libyelp/yelp-document.c:287
 msgid "Document URI"
 msgstr "Slóð á skjal"
 
-#: ../libyelp/yelp-document.c:278
+#: ../libyelp/yelp-document.c:288
 msgid "The URI which identifies the document"
 msgstr "URI-slóðin sem auðkennir skjalið"
 
-#: ../libyelp/yelp-document.c:996
+#: ../libyelp/yelp-document.c:1022
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Leitarniðurstöður fyrir “%s”"
 
-#: ../libyelp/yelp-document.c:1008
+#: ../libyelp/yelp-document.c:1034
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Engar samsvarandi hjálparsíður fundust í \"%s\"."
 
-#: ../libyelp/yelp-document.c:1014
+#: ../libyelp/yelp-document.c:1040
 msgid "No matching help pages found."
 msgstr "Engar samsvarandi hjálparsíður fundust."
 
@@ -128,11 +125,10 @@ msgid "An unknown error occurred."
 msgstr "Óþekkt villa kom upp."
 
 #: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
-#| msgid "Documents"
 msgid "All Help Documents"
 msgstr "Öll hjálparskjöl"
 
-#: ../libyelp/yelp-info-document.c:397
+#: ../libyelp/yelp-info-document.c:380
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -140,20 +136,20 @@ msgstr ""
 "Ekki er hægt að þátta skrána '%s' vegna þess að hún er ekki rétt formuð "
 "upplýsingasíða."
 
-#: ../libyelp/yelp-mallard-document.c:346
+#: ../libyelp/yelp-mallard-document.c:340
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Mappan ‘%s’ er ekki til."
 
 #: ../libyelp/yelp-search-entry.c:172
 msgid "View"
-msgstr "Sýn"
+msgstr "Skoða"
 
 #: ../libyelp/yelp-search-entry.c:173
 msgid "A YelpView instance to control"
 msgstr ""
 
-#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:397
+#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
 msgid "Bookmarks"
 msgstr "Bókamerki"
 
@@ -188,7 +184,7 @@ msgstr "Aðlögun á letri"
 
 #: ../libyelp/yelp-settings.c:167
 msgid "A size adjustment to add to font sizes"
-msgstr ""
+msgstr "Stærðarbreyting sem bæta á við leturstærðir"
 
 #: ../libyelp/yelp-settings.c:175
 msgid "Show Text Cursor"
@@ -196,16 +192,15 @@ msgstr "Birta textabendil"
 
 #: ../libyelp/yelp-settings.c:176
 msgid "Show the text cursor or caret for accessible navigation"
-msgstr ""
+msgstr "Birta textabendil fyrir aukið aðgengi"
 
 #: ../libyelp/yelp-settings.c:184
-#| msgid "Editor"
 msgid "Editor Mode"
 msgstr "Ritilhamur"
 
 #: ../libyelp/yelp-settings.c:185
 msgid "Enable features useful to editors"
-msgstr ""
+msgstr "Virkja eiginleika sem nýtast ritstjórum"
 
 #: ../libyelp/yelp-sqlite-storage.c:145
 msgid "Database filename"
@@ -213,7 +208,7 @@ msgstr "Skráarheiti gagnagrunns"
 
 #: ../libyelp/yelp-sqlite-storage.c:146
 msgid "The filename of the sqlite database"
-msgstr ""
+msgstr "Skráarheiti sqlite gagnagrunnsins"
 
 #: ../libyelp/yelp-transform.c:164
 msgid "XSLT Stylesheet"
@@ -221,199 +216,198 @@ msgstr "XSLT stílblað"
 
 #: ../libyelp/yelp-transform.c:165
 msgid "The location of the XSLT stylesheet"
-msgstr ""
+msgstr "Staðsetning XSLT-stílblaðsins"
 
 #: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr ""
+msgstr "XSLT-stílblaðið ‘%s’ vantar eða að það er ógilt."
 
 #: ../libyelp/yelp-transform.c:518
 msgid "No href attribute found on yelp:document\n"
-msgstr ""
+msgstr "Ekkert href-eigindi fannst í yelp:skjal\n"
 
 #: ../libyelp/yelp-transform.c:533
 msgid "Out of memory"
 msgstr "Minnið er búið"
 
-#: ../libyelp/yelp-view.c:464
-#| msgid "Yelp"
+#: ../libyelp/yelp-view.c:253
+msgid "C_opy Code Block"
+msgstr "Afrita _kóðablokk"
+
+#: ../libyelp/yelp-view.c:258
+msgid "_Copy Link Location"
+msgstr "_Afrita staðsetningu tengils"
+
+#: ../libyelp/yelp-view.c:263
+msgid "_Open Link"
+msgstr "_Opna tengil"
+
+#: ../libyelp/yelp-view.c:268
+msgid "Open Link in New _Window"
+msgstr "Opna tengil í nýjum _glugga"
+
+#: ../libyelp/yelp-view.c:278
+msgid "_Install Packages"
+msgstr "Setja upp pakka"
+
+#: ../libyelp/yelp-view.c:283
+msgid "Save Code _Block As…"
+msgstr "Vista _kóðablokk sem…"
+
+#: ../libyelp/yelp-view.c:298
+msgid "_Copy Text"
+msgstr "_Afrita texta"
+
+#: ../libyelp/yelp-view.c:525
 msgid "Yelp URI"
-msgstr "Slóð á Yelp"
+msgstr "Yelp-slóð"
 
-#: ../libyelp/yelp-view.c:465
+#: ../libyelp/yelp-view.c:526
 msgid "A YelpUri with the current location"
-msgstr ""
+msgstr "YelpUri-slóð með núverandi staðsetningu"
 
-#: ../libyelp/yelp-view.c:473
-#| msgid "Loading..."
+#: ../libyelp/yelp-view.c:534
 msgid "Loading State"
 msgstr "Staða hleðslu..."
 
-#: ../libyelp/yelp-view.c:474
+#: ../libyelp/yelp-view.c:535
 msgid "The loading state of the view"
-msgstr ""
+msgstr "Staða hleðslu sýnarinnar"
 
-#: ../libyelp/yelp-view.c:483
+#: ../libyelp/yelp-view.c:544
 msgid "Page ID"
-msgstr "Síðuauðkenni"
+msgstr "Auðkenni síðu"
 
-#: ../libyelp/yelp-view.c:484
+#: ../libyelp/yelp-view.c:545
 msgid "The ID of the root page of the page being viewed"
-msgstr ""
+msgstr "Auðkenni grunnsíðu (root page) síðunnar sem verið er að skoða"
 
-#: ../libyelp/yelp-view.c:492
-#, fuzzy
+#: ../libyelp/yelp-view.c:553
 #| msgid "Title"
 msgid "Root Title"
-msgstr "Titill"
+msgstr "Titill grunnsíðu"
 
-#: ../libyelp/yelp-view.c:493
+#: ../libyelp/yelp-view.c:554
 msgid "The title of the root page of the page being viewed"
-msgstr ""
+msgstr "Titill grunnsíðu (root page) síðunnar sem verið er að skoða"
 
-#: ../libyelp/yelp-view.c:501
-#| msgid "Title"
+#: ../libyelp/yelp-view.c:562
 msgid "Page Title"
 msgstr "Titill síðu"
 
-#: ../libyelp/yelp-view.c:502
+#: ../libyelp/yelp-view.c:563
 msgid "The title of the page being viewed"
-msgstr ""
+msgstr "Titill síðunnar sem verið er að skoða"
 
-#: ../libyelp/yelp-view.c:510
+#: ../libyelp/yelp-view.c:571
 msgid "Page Description"
 msgstr "Lýsing síðu"
 
-#: ../libyelp/yelp-view.c:511
+#: ../libyelp/yelp-view.c:572
 msgid "The description of the page being viewed"
-msgstr ""
+msgstr "Lýsing á síðunni sem verið er að skoða"
 
-#: ../libyelp/yelp-view.c:519
+#: ../libyelp/yelp-view.c:580
 msgid "Page Icon"
 msgstr "Táknmynd síðu"
 
-#: ../libyelp/yelp-view.c:520
+#: ../libyelp/yelp-view.c:581
 msgid "The icon of the page being viewed"
-msgstr ""
+msgstr "Táknmynd síðunnar sem verið er að skoða"
 
-#: ../libyelp/yelp-view.c:782
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
+#, c-format
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "URI-slóðin ‘%s’ beinir ekki á gilda síðu."
+
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
+#, c-format
+msgid "The URI does not point to a valid page."
+msgstr "URI-slóðin beinir ekki á gilda síðu."
+
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
+#, c-format
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "Ekki var hægt að þátta URI-slóðina '%s'."
+
+#: ../libyelp/yelp-view.c:842
+#, c-format
+#| msgid "Unknown Error"
+msgid "Unknown Error."
+msgstr "Óþekkt villa."
+
+#: ../libyelp/yelp-view.c:996
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
+"Þú ert ekki með PackageKit uppsett. Tenglar fyrir uppsetningu pakka þarfnast "
+"PackageKit."
 
-#: ../libyelp/yelp-view.c:1078
+#: ../libyelp/yelp-view.c:1243
 msgid "Save Image"
 msgstr "Vista mynd"
 
-#: ../libyelp/yelp-view.c:1173
+#: ../libyelp/yelp-view.c:1342
 msgid "Save Code"
 msgstr "Vista kóða"
 
-#: ../libyelp/yelp-view.c:1336
+#: ../libyelp/yelp-view.c:1438
 #, c-format
 msgid "Send email to %s"
 msgstr "Senda tölvupóst á %s"
 
-#: ../libyelp/yelp-view.c:1351
-msgid "_Install Packages"
-msgstr "Setja upp pakka"
-
-#: ../libyelp/yelp-view.c:1359
-msgid "_Open Link"
-msgstr "_Opna tengil"
-
-#: ../libyelp/yelp-view.c:1366
-msgid "_Copy Link Location"
-msgstr "_Afrita staðsetningu tengils"
-
-#: ../libyelp/yelp-view.c:1372
-msgid "Open Link in New _Window"
-msgstr "Opna tengil í nýjum _glugga"
-
-#: ../libyelp/yelp-view.c:1426
+#: ../libyelp/yelp-view.c:1542
 msgid "_Save Image As…"
 msgstr "Vi_sta mynd sem…"
 
-#: ../libyelp/yelp-view.c:1428
+#: ../libyelp/yelp-view.c:1543
 msgid "_Save Video As…"
 msgstr "Vi_sta myndskeið sem..."
 
-#: ../libyelp/yelp-view.c:1435
+#: ../libyelp/yelp-view.c:1551
 msgid "S_end Image To…"
 msgstr "S_enda mynd til…"
 
-#: ../libyelp/yelp-view.c:1437
+#: ../libyelp/yelp-view.c:1552
 msgid "S_end Video To…"
 msgstr "S_enda myndskeið til…"
 
-#: ../libyelp/yelp-view.c:1448
-msgid "_Copy Text"
-msgstr "_Afrita texta"
-
-#: ../libyelp/yelp-view.c:1461
-msgid "C_opy Code Block"
-msgstr "Afrita _kóðablokk"
-
-#: ../libyelp/yelp-view.c:1466
-msgid "Save Code _Block As…"
-msgstr "Vista _kóðablokk sem…"
-
-#: ../libyelp/yelp-view.c:1572
-#, c-format
-msgid "See all search results for “%s”"
-msgstr "Skoða allar leitarniðurstöður fyrir “%s”"
-
-#: ../libyelp/yelp-view.c:1718
+#: ../libyelp/yelp-view.c:1894
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Gat ekki lesið skjal fyrir ‘%s’"
 
-#: ../libyelp/yelp-view.c:1724
+#: ../libyelp/yelp-view.c:1900
 #, c-format
 msgid "Could not load a document"
 msgstr "Gat ekki lesið skjal"
 
-#: ../libyelp/yelp-view.c:1800
+#: ../libyelp/yelp-view.c:1984
 msgid "Document Not Found"
 msgstr "Skjal fannst ekki"
 
-#: ../libyelp/yelp-view.c:1802
+#: ../libyelp/yelp-view.c:1986
 msgid "Page Not Found"
 msgstr "Síða fannst ekki"
 
-#: ../libyelp/yelp-view.c:1805
+#: ../libyelp/yelp-view.c:1989
 msgid "Cannot Read"
 msgstr "Gat ekki lesið"
 
-#: ../libyelp/yelp-view.c:1811
+#: ../libyelp/yelp-view.c:1995
 msgid "Unknown Error"
 msgstr "Óþekkt villa"
 
-#: ../libyelp/yelp-view.c:1831
+#: ../libyelp/yelp-view.c:2015
 msgid "Search for packages containing this document."
 msgstr "Leita að pökkum sem innihalda þetta skjal."
-
-#: ../libyelp/yelp-view.c:2003
-#, c-format
-msgid "The URI ‘%s’ does not point to a valid page."
-msgstr ""
-
-#: ../libyelp/yelp-view.c:2009
-#, c-format
-msgid "The URI does not point to a valid page."
-msgstr ""
-
-#: ../libyelp/yelp-view.c:2015
-#, c-format
-msgid "The URI ‘%s’ could not be parsed."
-msgstr "Ekki var hægt að þátta URI-slóðina '%s'."
 
 #: ../src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "Kveikja á ritilham"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1163
-#: ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Hjálp"
 
@@ -429,59 +423,59 @@ msgstr "Stærri texti"
 msgid "Smaller Text"
 msgstr "Minni texti"
 
-#: ../src/yelp-window.c:204
+#: ../src/yelp-window.c:211
 msgid "Application"
 msgstr "Forrit"
 
-#: ../src/yelp-window.c:205
+#: ../src/yelp-window.c:212
 msgid "A YelpApplication instance that controls this window"
 msgstr ""
 
-#: ../src/yelp-window.c:323
+#: ../src/yelp-window.c:343
 msgid "Back"
 msgstr "Til baka"
 
-#: ../src/yelp-window.c:330
+#: ../src/yelp-window.c:350
 msgid "Forward"
 msgstr "Áfram"
 
-#: ../src/yelp-window.c:341
+#: ../src/yelp-window.c:361
 msgid "Menu"
 msgstr "Valmynd"
 
-#: ../src/yelp-window.c:346
+#: ../src/yelp-window.c:366
 msgid "Find…"
 msgstr "Finna…"
 
-#: ../src/yelp-window.c:347
+#: ../src/yelp-window.c:367
 msgid "Print…"
 msgstr "Prenta…"
 
-#: ../src/yelp-window.c:352
+#: ../src/yelp-window.c:372
 msgid "Previous Page"
 msgstr "Fyrri síða"
 
-#: ../src/yelp-window.c:353
+#: ../src/yelp-window.c:373
 msgid "Next Page"
 msgstr "Næsta síða"
 
-#: ../src/yelp-window.c:358
+#: ../src/yelp-window.c:378
 msgid "All Help"
 msgstr "Öll hjálp"
 
-#: ../src/yelp-window.c:380
+#: ../src/yelp-window.c:400
 msgid "Search (Ctrl+S)"
 msgstr "Leita (Ctrl+S)"
 
-#: ../src/yelp-window.c:414
+#: ../src/yelp-window.c:434
 msgid "No bookmarks"
 msgstr "Engin bókamerki"
 
-#: ../src/yelp-window.c:422
+#: ../src/yelp-window.c:442
 msgid "Add Bookmark"
 msgstr "Bæta við bókamerki"
 
-#: ../src/yelp-window.c:428
+#: ../src/yelp-window.c:448
 msgid "Remove Bookmark"
 msgstr "Fjarlægja bókamerki"
 
@@ -492,6 +486,9 @@ msgstr "Fá hjálp með GNOME"
 #: ../yelp.desktop.in.in.h:3
 msgid "documentation;information;manual;"
 msgstr "Handbækur;Handbók;Hjálparskjöl;Skjölun;Upplýsingar;Leiðbeiningar;"
+
+#~ msgid "See all search results for “%s”"
+#~ msgstr "Skoða allar leitarniðurstöður fyrir “%s”"
 
 #~ msgid "Configuration Files"
 #~ msgstr "Stillingarskrár"
