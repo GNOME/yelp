@@ -142,8 +142,8 @@ yelp_sqlite_storage_class_init (YelpSqliteStorageClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_FILENAME,
                                      g_param_spec_string ("filename",
-                                                          N_("Database filename"),
-                                                          N_("The filename of the sqlite database"),
+                                                          "Database filename",
+                                                          "The filename of the sqlite database",
                                                           NULL,
                                                           G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE |
                                                           G_PARAM_STATIC_STRINGS));

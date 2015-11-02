@@ -161,8 +161,8 @@ yelp_transform_class_init (YelpTransformClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_STYLESHEET,
                                      g_param_spec_string ("stylesheet",
-                                                          N_("XSLT Stylesheet"),
-                                                          N_("The location of the XSLT stylesheet"),
+                                                          "XSLT Stylesheet",
+                                                          "The location of the XSLT stylesheet",
                                                           NULL,
                                                           G_PARAM_CONSTRUCT_ONLY |
                                                           G_PARAM_READWRITE | G_PARAM_STATIC_NAME |

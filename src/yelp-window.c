@@ -208,8 +208,8 @@ yelp_window_class_init (YelpWindowClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_APPLICATION,
                                      g_param_spec_object ("application",
-							  _("Application"),
-							  _("A YelpApplication instance that controls this window"),
+							  "Application",
+							  "A YelpApplication instance that controls this window",
                                                           YELP_TYPE_APPLICATION,
                                                           G_PARAM_CONSTRUCT_ONLY |
 							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |

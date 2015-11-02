@@ -277,8 +277,8 @@ yelp_document_class_init (YelpDocumentClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_INDEXED,
                                      g_param_spec_boolean ("indexed",
-                                                           N_("Indexed"),
-                                                           N_("Whether the document content has been indexed"),
+                                                           "Indexed",
+                                                           "Whether the document content has been indexed",
                                                            FALSE,
                                                            G_PARAM_CONSTRUCT | G_PARAM_READWRITE |
                                                            G_PARAM_STATIC_STRINGS));
@@ -286,8 +286,8 @@ yelp_document_class_init (YelpDocumentClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_URI,
                                      g_param_spec_object ("document-uri",
-                                                          N_("Document URI"),
-                                                          N_("The URI which identifies the document"),
+                                                          "Document URI",
+                                                          "The URI which identifies the document",
                                                           YELP_TYPE_URI,
                                                           G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE |
                                                           G_PARAM_STATIC_STRINGS));

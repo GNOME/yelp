@@ -522,8 +522,8 @@ yelp_view_class_init (YelpViewClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_URI,
                                      g_param_spec_object ("yelp-uri",
-							  _("Yelp URI"),
-							  _("A YelpUri with the current location"),
+							  "Yelp URI",
+							  "A YelpUri with the current location",
                                                           YELP_TYPE_URI,
 							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
 							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -531,8 +531,8 @@ yelp_view_class_init (YelpViewClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_STATE,
                                      g_param_spec_enum ("state",
-                                                        N_("Loading State"),
-                                                        N_("The loading state of the view"),
+                                                        "Loading State",
+                                                        "The loading state of the view",
                                                         YELP_TYPE_VIEW_STATE,
                                                         YELP_VIEW_STATE_BLANK,
                                                         G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
@@ -541,8 +541,8 @@ yelp_view_class_init (YelpViewClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_PAGE_ID,
                                      g_param_spec_string ("page-id",
-                                                          N_("Page ID"),
-                                                          N_("The ID of the root page of the page being viewed"),
+                                                          "Page ID",
+                                                          "The ID of the root page of the page being viewed",
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -550,8 +550,8 @@ yelp_view_class_init (YelpViewClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_ROOT_TITLE,
                                      g_param_spec_string ("root-title",
-                                                          N_("Root Title"),
-                                                          N_("The title of the root page of the page being viewed"),
+                                                          "Root Title",
+                                                          "The title of the root page of the page being viewed",
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -559,8 +559,8 @@ yelp_view_class_init (YelpViewClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_PAGE_TITLE,
                                      g_param_spec_string ("page-title",
-                                                          N_("Page Title"),
-                                                          N_("The title of the page being viewed"),
+                                                          "Page Title",
+                                                          "The title of the page being viewed",
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -568,8 +568,8 @@ yelp_view_class_init (YelpViewClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_PAGE_DESC,
                                      g_param_spec_string ("page-desc",
-                                                          N_("Page Description"),
-                                                          N_("The description of the page being viewed"),
+                                                          "Page Description",
+                                                          "The description of the page being viewed",
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -577,8 +577,8 @@ yelp_view_class_init (YelpViewClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_PAGE_ICON,
                                      g_param_spec_string ("page-icon",
-                                                          N_("Page Icon"),
-                                                          N_("The icon of the page being viewed"),
+                                                          "Page Icon",
+                                                          "The icon of the page being viewed",
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));

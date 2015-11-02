@@ -145,8 +145,8 @@ yelp_settings_class_init (YelpSettingsClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_GTK_SETTINGS,
                                      g_param_spec_object ("gtk-settings",
-							  _("GtkSettings"),
-							  _("A GtkSettings object to get settings from"),
+							  "GtkSettings",
+							  "A GtkSettings object to get settings from",
 							  GTK_TYPE_SETTINGS,
 							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
 							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -154,8 +154,8 @@ yelp_settings_class_init (YelpSettingsClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_GTK_ICON_THEME,
                                      g_param_spec_object ("gtk-icon-theme",
-							  _("GtkIconTheme"),
-							  _("A GtkIconTheme object to get icons from"),
+							  "GtkIconTheme",
+							  "A GtkIconTheme object to get icons from",
 							  GTK_TYPE_ICON_THEME,
 							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
 							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -163,8 +163,8 @@ yelp_settings_class_init (YelpSettingsClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_FONT_ADJUSTMENT,
                                      g_param_spec_int ("font-adjustment",
-                                                       _("Font Adjustment"),
-                                                       _("A size adjustment to add to font sizes"),
+                                                       "Font Adjustment",
+                                                       "A size adjustment to add to font sizes",
                                                        -3, 10, 0,
                                                        G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
                                                        G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -172,8 +172,8 @@ yelp_settings_class_init (YelpSettingsClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_SHOW_TEXT_CURSOR,
                                      g_param_spec_boolean ("show-text-cursor",
-                                                           _("Show Text Cursor"),
-                                                           _("Show the text cursor or caret for accessible navigation"),
+                                                           "Show Text Cursor",
+                                                           "Show the text cursor or caret for accessible navigation",
                                                            FALSE,
                                                            G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
                                                            G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
@@ -181,8 +181,8 @@ yelp_settings_class_init (YelpSettingsClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_EDITOR_MODE,
                                      g_param_spec_boolean ("editor-mode",
-                                                           _("Editor Mode"),
-                                                           _("Enable features useful to editors"),
+                                                           "Editor Mode",
+                                                           "Enable features useful to editors",
                                                            FALSE,
                                                            G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
                                                            G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));

@@ -169,8 +169,8 @@ yelp_search_entry_class_init (YelpSearchEntryClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_VIEW,
                                      g_param_spec_object ("view",
-							  _("View"),
-							  _("A YelpView instance to control"),
+							  "View",
+							  "A YelpView instance to control",
                                                           YELP_TYPE_VIEW,
                                                           G_PARAM_CONSTRUCT_ONLY |
 							  G_PARAM_READWRITE |
@@ -185,8 +185,8 @@ yelp_search_entry_class_init (YelpSearchEntryClass *klass)
     g_object_class_install_property (object_class,
                                      PROP_BOOKMARKS,
                                      g_param_spec_object ("bookmarks",
-							  _("Bookmarks"),
-							  _("A YelpBookmarks implementation instance"),
+							  "Bookmarks",
+							  "A YelpBookmarks implementation instance",
                                                           YELP_TYPE_BOOKMARKS,
                                                           G_PARAM_CONSTRUCT_ONLY |
 							  G_PARAM_READWRITE |
