@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-10-27 14:58+0000\n"
-"PO-Revision-Date: 2015-10-29 08:54+0000\n"
+"POT-Creation-Date: 2015-11-02 02:54+0000\n"
+"PO-Revision-Date: 2015-11-02 14:47+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
@@ -147,7 +147,7 @@ msgstr "Skoða"
 
 #: ../libyelp/yelp-search-entry.c:173
 msgid "A YelpView instance to control"
-msgstr ""
+msgstr "Tilvik YelpView sem á að stýra"
 
 #: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
 msgid "Bookmarks"
@@ -155,7 +155,7 @@ msgstr "Bókamerki"
 
 #: ../libyelp/yelp-search-entry.c:189
 msgid "A YelpBookmarks implementation instance"
-msgstr ""
+msgstr "Tilvik YelpBookmarks útfærslu"
 
 #: ../libyelp/yelp-search-entry.c:433
 #, c-format
@@ -168,7 +168,7 @@ msgstr "GtkSettings"
 
 #: ../libyelp/yelp-settings.c:149
 msgid "A GtkSettings object to get settings from"
-msgstr ""
+msgstr "GtkSettings hlutur sem á að ná í stillingar frá"
 
 #: ../libyelp/yelp-settings.c:157
 msgid "GtkIconTheme"
@@ -176,7 +176,7 @@ msgstr "GtkIconTheme"
 
 #: ../libyelp/yelp-settings.c:158
 msgid "A GtkIconTheme object to get icons from"
-msgstr ""
+msgstr "GtkIconTheme hlutur sem á að ná í táknmyndir frá"
 
 #: ../libyelp/yelp-settings.c:166
 msgid "Font Adjustment"
@@ -284,7 +284,6 @@ msgid "The ID of the root page of the page being viewed"
 msgstr "Auðkenni grunnsíðu (root page) síðunnar sem verið er að skoða"
 
 #: ../libyelp/yelp-view.c:553
-#| msgid "Title"
 msgid "Root Title"
 msgstr "Titill grunnsíðu"
 
@@ -333,7 +332,6 @@ msgstr "Ekki var hægt að þátta URI-slóðina '%s'."
 
 #: ../libyelp/yelp-view.c:842
 #, c-format
-#| msgid "Unknown Error"
 msgid "Unknown Error."
 msgstr "Óþekkt villa."
 
@@ -429,7 +427,7 @@ msgstr "Forrit"
 
 #: ../src/yelp-window.c:212
 msgid "A YelpApplication instance that controls this window"
-msgstr ""
+msgstr "Tilvik af YelpApplication sem stýrir þessum glugga"
 
 #: ../src/yelp-window.c:343
 msgid "Back"
