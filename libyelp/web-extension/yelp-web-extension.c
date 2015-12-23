@@ -79,6 +79,10 @@ web_page_send_request (WebKitWebPage     *web_page,
     if (!current_uri)
         return FALSE;
 
+    /* Main resource */
+    if (strcmp (resource_uri, webkit_web_page_get_uri (web_page)) == 0)
+        return FALSE;
+
     yelp_uri = build_yelp_uri (resource_uri);
     file_path = get_resource_path (yelp_uri, current_uri);
     if (file_path) {
