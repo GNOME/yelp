@@ -66,6 +66,7 @@ struct _YelpApplicationLoad {
     YelpApplication *app;
     guint32 timestamp;
     gboolean new;
+    gboolean fallback_help_list;
 };
 
 static void          yelp_application_iface_init       (YelpBookmarksInterface *iface);
@@ -383,13 +384,15 @@ yelp_application_new (void)
 static void
 open_uri (YelpApplication *app,
           YelpUri         *uri,
-          gboolean         new_window)
+          gboolean         new_window,
+          gboolean         fallback_help_list)
 {
     YelpApplicationLoad *data;
     data = g_new (YelpApplicationLoad, 1);
     data->app = app;
     data->timestamp = gtk_get_current_event_time ();
     data->new = new_window;
+    data->fallback_help_list = fallback_help_list;
 
     g_signal_connect (uri, "resolved",
                       G_CALLBACK (application_uri_resolved),
@@ -415,10 +418,10 @@ yelp_application_command_line (GApplication            *application,
     argv = g_application_command_line_get_arguments (cmdline, NULL);
 
     if (argv[1] == NULL)
-        open_uri (app, yelp_uri_new (DEFAULT_URI), FALSE);
+        open_uri (app, yelp_uri_new (DEFAULT_URI), FALSE, TRUE);
 
     for (i = 1; argv[i]; i++)
-        open_uri (app, yelp_uri_new (argv[i]), FALSE);
+        open_uri (app, yelp_uri_new (argv[i]), FALSE, FALSE);
 
     g_strfreev (argv);
 
@@ -429,18 +432,17 @@ void
 yelp_application_new_window (YelpApplication  *app,
                              const gchar      *uri)
 {
-    YelpUri *yuri;
-
-    yuri = yelp_uri_new (uri ? uri : DEFAULT_URI);
-
-    yelp_application_new_window_uri (app, yuri);
+    if (uri)
+        open_uri (app, yelp_uri_new (uri), TRUE, FALSE);
+    else
+        open_uri (app, yelp_uri_new (DEFAULT_URI), TRUE, TRUE);
 }
 
 void
 yelp_application_new_window_uri (YelpApplication  *app,
                                  YelpUri          *uri)
 {
-    open_uri (app, g_object_ref (uri), TRUE);
+    open_uri (app, g_object_ref (uri), TRUE, FALSE);
 }
 
 static void
@@ -451,9 +453,22 @@ application_uri_resolved (YelpUri             *uri,
     gchar *doc_uri;
     GdkWindow *gdk_window;
     YelpApplicationPrivate *priv = GET_PRIV (data->app);
+    GFile *gfile;
 
     /* We held the application while resolving the URI, so unhold now. */
     g_application_release (G_APPLICATION (data->app));
+
+    /* Get the GFile associated with the URI, or NULL if not available */
+    gfile = yelp_uri_get_file (uri);
+    if (gfile == NULL && data->fallback_help_list) {
+        /* There is no file associated to the default uri, so we'll fallback
+         * to help-list: if we're told to do so. */
+        open_uri (data->app, yelp_uri_new ("help-list:"), data->new, FALSE);
+        g_object_unref (uri);
+        g_free (data);
+        return;
+    }
+    g_clear_object (&gfile);
 
     doc_uri = yelp_uri_get_document_uri (uri);
 
