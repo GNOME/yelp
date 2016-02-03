@@ -315,6 +315,7 @@ data/domains/yelp.pot: data/domains/yelp.xml.in
 
 data/domains/yelp.xml: data/domains/yelp.xml.in
 	$(AM_V_GEN) ( \
+	$(MKDIR_P) data/domains; \
 	for lang in $(ALL_LINGUAS); do \
 	  msgfmt -o "$$lang.mo" "$(top_srcdir)/po/$$lang.po" || exit 1; \
 	done; \
