@@ -1437,8 +1437,9 @@ resolve_gfile (YelpUri *uri, const gchar *query, const gchar *hash)
                 g_object_unref (old);
             }
             else if (g_str_equal (mime_type, "text/xml") ||
-                g_str_equal (mime_type, "application/docbook+xml") ||
-                g_str_equal (mime_type, "application/xml")) {
+                     g_str_equal (mime_type, "application/docbook+xml") ||
+                     g_str_equal (mime_type, "application/xml") ||
+                     g_str_has_suffix (basename, ".docbook")) {
                 char *path;
 
                 priv->tmptype = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
