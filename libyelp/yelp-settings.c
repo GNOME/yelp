@@ -1015,14 +1015,16 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
     gtk_container_add (GTK_CONTAINER (tmpbox), tmpview);
     gtk_container_add (GTK_CONTAINER (tmpbox), tmplink);
     gtk_widget_show_all (tmpwin);
+
     context = gtk_widget_get_style_context (tmpview);
-    /* I have to do this for some reason. Don't ask me why. Ain't in the docs. */
+    gtk_style_context_save (context);
+
+    gtk_style_context_set_state (context, GTK_STATE_FLAG_NORMAL);
     gtk_style_context_add_class (context, GTK_STYLE_CLASS_VIEW);
-
-    linkcontext = gtk_widget_get_style_context (tmplink);
-
     gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &text);
     gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL, &base);
+
+    gtk_style_context_restore (context);
 
     rgb_to_hsv (text, &text_h, &text_s, &text_v);
     rgb_to_hsv (base, &base_h, &base_s, &base_v);
@@ -1035,15 +1037,23 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
     g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_TEXT], 8, "#%02X%02X%02X",
                 (guint) (text.red * 255), (guint) (text.green * 255), (guint) (text.blue * 255));
 
+    linkcontext = gtk_widget_get_style_context (tmplink);
+    gtk_style_context_save (linkcontext);
+
     /* YELP_SETTINGS_COLOR_LINK */
+    gtk_style_context_set_state (linkcontext, GTK_STATE_FLAG_LINK);
     gtk_style_context_get_color (linkcontext, GTK_STATE_FLAG_LINK, &link);
     g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_LINK], 8, "#%02X%02X%02X",
                 (guint) (link.red * 255), (guint) (link.green * 255), (guint) (link.blue * 255));
 
     /* YELP_SETTINGS_COLOR_LINK_VISITED */
+    gtk_style_context_set_state (linkcontext, GTK_STATE_FLAG_VISITED);
     gtk_style_context_get_color (linkcontext, GTK_STATE_FLAG_VISITED, &link);
     g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_LINK_VISITED], 8, "#%02X%02X%02X",
                 (guint) (link.red * 255), (guint) (link.green * 255), (guint) (link.blue * 255));
+
+
+    gtk_style_context_restore (linkcontext);
 
     /* YELP_SETTINGS_COLOR_TEXT_LIGHT */
     hsv_to_hex (text_h, text_s, text_v - ((text_v - base_v) * 0.25),
