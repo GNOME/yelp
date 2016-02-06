@@ -114,7 +114,7 @@ static gboolean       document_request_page     (YelpDocument         *document,
                                                  GCancellable         *cancellable,
                                                  YelpDocumentCallback  callback,
                                                  gpointer              user_data);
-static void           document_indexed          (YelpDocument         *document);
+static gboolean       document_indexed          (YelpDocument         *document);
 static const gchar *  document_read_contents    (YelpDocument         *document,
                                                  const gchar          *page_id);
 static void           document_finish_read      (YelpDocument         *document,
@@ -786,7 +786,7 @@ yelp_document_set_page_icon (YelpDocument *document,
     g_mutex_unlock (&document->priv->mutex);
 }
 
-static void
+static gboolean
 document_indexed (YelpDocument *document)
 {
     g_mutex_lock (&document->priv->mutex);
@@ -799,6 +799,8 @@ document_indexed (YelpDocument *document)
                                                            document->priv->reqs_search);
     }
     g_mutex_unlock (&document->priv->mutex);
+
+    return FALSE;
 }
 
 /******************************************************************************/
