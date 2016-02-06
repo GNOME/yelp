@@ -1,8 +1,8 @@
 # Bulgarian translation of yelp po-file
 # Copyright (C) 2002, 2004, 2005, 2006 Free Software Foundation, Inc.
 # Copyright (C) 2007, 2008, 2009, 2011 Free Software Foundation, Inc.
-# Copyright (C) 2012, 2014 Free Software Foundation, Inc.
-# Alexander Shopov <ash@kambanaria.org>, 2002, 2006, 2007, 2008, 2009.
+# Copyright (C) 2012, 2014, 2016 Free Software Foundation, Inc.
+# Alexander Shopov <ash@kambanaria.org>, 2002, 2006, 2007, 2008, 2009, 2016.
 # Yanko Kaneti <yaneti@declera.com>, 2002.
 # Vladimir Petkov <vpetkov@i-space.org>, 2004, 2005, 2006.
 # Rostislav Raykov <zbrox@i-space.org>, 2006.
@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-08 05:45+0300\n"
-"PO-Revision-Date: 2014-10-08 05:45+0300\n"
-"Last-Translator: Ivaylo Valkov <ivaylo@e-valkov.org>\n"
+"POT-Creation-Date: 2016-02-06 22:35+0200\n"
+"PO-Revision-Date: 2016-02-06 10:54+0200\n"
+"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -36,90 +36,89 @@ msgstr ""
 msgid "Install <string/>"
 msgstr "Инсталиране на <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:144
-#: ../libyelp/yelp-lzma-decompressor.c:153
+#: ../libyelp/yelp-bz2-decompressor.c:143
+#: ../libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
 msgstr "Неправилни компресирани данни"
 
-#: ../libyelp/yelp-bz2-decompressor.c:150
-#: ../libyelp/yelp-lzma-decompressor.c:159
+#: ../libyelp/yelp-bz2-decompressor.c:149
+#: ../libyelp/yelp-lzma-decompressor.c:158
 msgid "Not enough memory"
 msgstr "Няма достатъчно памет"
 
-#: ../libyelp/yelp-docbook-document.c:297 ../libyelp/yelp-info-document.c:237
-#: ../libyelp/yelp-mallard-document.c:305
-#: ../libyelp/yelp-mallard-document.c:456 ../libyelp/yelp-man-document.c:281
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
+#: ../libyelp/yelp-mallard-document.c:298
+#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Страницата „%s“ не е открита в документа „%s“."
 
-#: ../libyelp/yelp-docbook-document.c:332 ../libyelp/yelp-info-document.c:371
-#: ../libyelp/yelp-man-document.c:416
+#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
+#: ../libyelp/yelp-man-document.c:390
 #, c-format
 msgid "The file does not exist."
 msgstr "Файлът не съществува."
 
-#: ../libyelp/yelp-docbook-document.c:342 ../libyelp/yelp-info-document.c:381
-#: ../libyelp/yelp-man-document.c:426
+#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
+#: ../libyelp/yelp-man-document.c:400
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Файлът „%s“ не съществува."
 
-#: ../libyelp/yelp-docbook-document.c:357
+#: ../libyelp/yelp-docbook-document.c:345
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
-"Файлът „%s“ не може да бъде анализиран, защото е лошо формиран като документ "
-"на XML."
+"Файлът „%s“ не може да бъде анализиран, защото не е правилен документ на XML."
 
-#: ../libyelp/yelp-docbook-document.c:370
+#: ../libyelp/yelp-docbook-document.c:358
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
 "Файлът „%s“ не може да бъде анализиран, защото поне един от файловете "
-"включени в него е лошо формиран като документ на XML."
+"включени в него не е правилен XML."
 
-#: ../libyelp/yelp-docbook-document.c:803
+#: ../libyelp/yelp-docbook-document.c:788
 msgid "Unknown"
 msgstr "Без заглавие"
 
-#: ../libyelp/yelp-docbook-document.c:864 ../libyelp/yelp-info-document.c:314
-#: ../libyelp/yelp-man-document.c:358
+#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
+#: ../libyelp/yelp-man-document.c:332
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Поисканата страница не е открита в документа „%s“."
 
-#: ../libyelp/yelp-document.c:266
+#: ../libyelp/yelp-document.c:278
 msgid "Indexed"
 msgstr "Индексиран"
 
-#: ../libyelp/yelp-document.c:267
+#: ../libyelp/yelp-document.c:279
 msgid "Whether the document content has been indexed"
 msgstr "Дали съдържанието на документа е индексирано"
 
-#: ../libyelp/yelp-document.c:275
+#: ../libyelp/yelp-document.c:287
 msgid "Document URI"
 msgstr "Адрес на документа"
 
-#: ../libyelp/yelp-document.c:276
+#: ../libyelp/yelp-document.c:288
 msgid "The URI which identifies the document"
 msgstr "Адресът, който идентифицира този документ"
 
-#: ../libyelp/yelp-document.c:994
+#: ../libyelp/yelp-document.c:1022
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Резултати от търсенето на „%s“"
 
-#: ../libyelp/yelp-document.c:1006
+#: ../libyelp/yelp-document.c:1034
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Няма съвпадащи страници в „%s“."
 
-#: ../libyelp/yelp-document.c:1012
+#: ../libyelp/yelp-document.c:1040
 msgid "No matching help pages found."
 msgstr "Няма съвпадащи страници в помощта."
 
@@ -128,356 +127,355 @@ msgstr "Няма съвпадащи страници в помощта."
 msgid "An unknown error occurred."
 msgstr "Възникна неизвестна грешка"
 
-#: ../libyelp/yelp-help-list.c:546 ../libyelp/yelp-help-list.c:555
+#: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
 msgid "All Help Documents"
 msgstr "Всички документи от помощта"
 
-#: ../libyelp/yelp-info-document.c:396
+#: ../libyelp/yelp-info-document.c:380
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Файлът „%s“ не може да бъде анализиран, защото е лошо формиран като страница "
-"от info."
+"Файлът „%s“ не може да бъде анализиран, защото е неправилна страница от info."
 
-#: ../libyelp/yelp-mallard-document.c:344
+#: ../libyelp/yelp-mallard-document.c:340
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Папката „%s“ не съществува."
 
-#: ../libyelp/yelp-search-entry.c:173
+#: ../libyelp/yelp-search-entry.c:172
 msgid "View"
 msgstr "Изглед"
 
-#: ../libyelp/yelp-search-entry.c:174
+#: ../libyelp/yelp-search-entry.c:173
 msgid "A YelpView instance to control"
 msgstr "Обект от вида „YelpView“, който да бъде управляван"
 
-#: ../libyelp/yelp-search-entry.c:189 ../src/yelp-window.c:399
+#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
 msgid "Bookmarks"
 msgstr "Отметки"
 
-#: ../libyelp/yelp-search-entry.c:190
+#: ../libyelp/yelp-search-entry.c:189
 msgid "A YelpBookmarks implementation instance"
 msgstr "Обект от вид реализация на „YelpBookmarks“"
 
-#: ../libyelp/yelp-search-entry.c:440
+#: ../libyelp/yelp-search-entry.c:433
 #, c-format
 msgid "Search for “%s”"
 msgstr "Търсене на „%s“"
 
-#: ../libyelp/yelp-settings.c:152
+#: ../libyelp/yelp-settings.c:148
 msgid "GtkSettings"
 msgstr "Обект GtkSettings"
 
-#: ../libyelp/yelp-settings.c:153
+#: ../libyelp/yelp-settings.c:149
 msgid "A GtkSettings object to get settings from"
 msgstr "Обект от вида „GtkSettings“, от който да се взимат настройки"
 
-#: ../libyelp/yelp-settings.c:161
+#: ../libyelp/yelp-settings.c:157
 msgid "GtkIconTheme"
 msgstr "Обект GtkIconTheme"
 
-#: ../libyelp/yelp-settings.c:162
+#: ../libyelp/yelp-settings.c:158
 msgid "A GtkIconTheme object to get icons from"
 msgstr "Обект от вида „GtkIconTheme“, от който да се взимат икони"
 
-#: ../libyelp/yelp-settings.c:170
+#: ../libyelp/yelp-settings.c:166
 msgid "Font Adjustment"
 msgstr "Увеличаване на шрифта"
 
-#: ../libyelp/yelp-settings.c:171
+#: ../libyelp/yelp-settings.c:167
 msgid "A size adjustment to add to font sizes"
 msgstr ""
 "Увеличаване на размера, което да се добавя към големината на шрифтовете"
 
-#: ../libyelp/yelp-settings.c:179
+#: ../libyelp/yelp-settings.c:175
 msgid "Show Text Cursor"
 msgstr "Показване на курсор в текста"
 
-#: ../libyelp/yelp-settings.c:180
+#: ../libyelp/yelp-settings.c:176
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Показване на курсор за достъпност и навигация в текста"
 
-#: ../libyelp/yelp-settings.c:188
+#: ../libyelp/yelp-settings.c:184
 msgid "Editor Mode"
 msgstr "Режим на редактиране"
 
-#: ../libyelp/yelp-settings.c:189
+#: ../libyelp/yelp-settings.c:185
 msgid "Enable features useful to editors"
 msgstr "Включване на функции полезни за редактори"
 
-#: ../libyelp/yelp-sqlite-storage.c:147
+#: ../libyelp/yelp-sqlite-storage.c:145
 msgid "Database filename"
 msgstr "Името на файла с базата от данни"
 
-#: ../libyelp/yelp-sqlite-storage.c:148
+#: ../libyelp/yelp-sqlite-storage.c:146
 msgid "The filename of the sqlite database"
 msgstr "Името на файла с базата от данни sqlite"
 
-#: ../libyelp/yelp-transform.c:169
+#: ../libyelp/yelp-transform.c:164
 msgid "XSLT Stylesheet"
 msgstr "Набор от стилове (XSLT)"
 
-#: ../libyelp/yelp-transform.c:170
+#: ../libyelp/yelp-transform.c:165
 msgid "The location of the XSLT stylesheet"
 msgstr "Местоположението на файла със стилове (XSLT)"
 
-#: ../libyelp/yelp-transform.c:378 ../libyelp/yelp-transform.c:393
+#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Файлът със стилове (XSLT) „%s“ липсва или не е валиден."
 
-#: ../libyelp/yelp-transform.c:527
+#: ../libyelp/yelp-transform.c:518
 msgid "No href attribute found on yelp:document\n"
 msgstr "Атрибутът href не е открит в yelp:document\n"
 
-#: ../libyelp/yelp-transform.c:542
+#: ../libyelp/yelp-transform.c:533
 msgid "Out of memory"
 msgstr "Няма достатъчно памет"
 
-#: ../libyelp/yelp-view.c:446
-msgid "Yelp URI"
-msgstr "Адрес на Yelp"
-
-#: ../libyelp/yelp-view.c:447
-msgid "A YelpUri with the current location"
-msgstr "Обект от вида „YelpUri“ с текущото местоположение"
-
-#: ../libyelp/yelp-view.c:455
-msgid "Loading State"
-msgstr "Зареждащо състояние"
-
-#: ../libyelp/yelp-view.c:456
-msgid "The loading state of the view"
-msgstr "Състоянието на зареждане на изгледа"
-
-#: ../libyelp/yelp-view.c:465
-msgid "Page ID"
-msgstr "Идентификатор на страницата"
-
-#: ../libyelp/yelp-view.c:466
-msgid "The ID of the root page of the page being viewed"
-msgstr "Идентификаторът на кореновата страница за разглежданата страница"
-
-#: ../libyelp/yelp-view.c:474
-msgid "Root Title"
-msgstr "Заглавие на корена"
-
-#: ../libyelp/yelp-view.c:475
-msgid "The title of the root page of the page being viewed"
-msgstr "Заглавие на кореновата страница за разглежданата страница"
-
-#: ../libyelp/yelp-view.c:483
-msgid "Page Title"
-msgstr "Заглавие на страницата"
-
-#: ../libyelp/yelp-view.c:484
-msgid "The title of the page being viewed"
-msgstr "Заглавието на разглежданата страница"
-
-#: ../libyelp/yelp-view.c:492
-msgid "Page Description"
-msgstr "Описание на страницата"
-
-#: ../libyelp/yelp-view.c:493
-msgid "The description of the page being viewed"
-msgstr "Описанието на разглежданата страница"
-
-#: ../libyelp/yelp-view.c:501
-msgid "Page Icon"
-msgstr "Икона на страницата"
-
-#: ../libyelp/yelp-view.c:502
-msgid "The icon of the page being viewed"
-msgstr "Иконата на разглежданата страница"
-
-#: ../libyelp/yelp-view.c:744
-msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr ""
-"Пакетът „PackageKit“ не е инсталиран, а връзките за инсталиране го изискват."
-
-#: ../libyelp/yelp-view.c:1040
-msgid "Save Image"
-msgstr "Запазване на изображението"
-
-#: ../libyelp/yelp-view.c:1135
-msgid "Save Code"
-msgstr "Запазване на изходния код"
-
-#: ../libyelp/yelp-view.c:1298
-#, c-format
-msgid "Send email to %s"
-msgstr "Изпращане на е-поща до %s"
-
-#: ../libyelp/yelp-view.c:1313
-msgid "_Install Packages"
-msgstr "_Инсталиране на пакетите"
-
-#: ../libyelp/yelp-view.c:1321
-msgid "_Open Link"
-msgstr "_Отваряне на връзка"
-
-#: ../libyelp/yelp-view.c:1328
-msgid "_Copy Link Location"
-msgstr "Копиране на мес_тоположението на връзката"
-
-#: ../libyelp/yelp-view.c:1334
-msgid "Open Link in New _Window"
-msgstr "Отваряне на връзката в нов _прозорец"
-
-#: ../libyelp/yelp-view.c:1388
-msgid "_Save Image As…"
-msgstr "_Запазване на изображението като…"
-
-#: ../libyelp/yelp-view.c:1390
-msgid "_Save Video As…"
-msgstr "_Запазване на видео клипа като…"
-
-#: ../libyelp/yelp-view.c:1397
-msgid "S_end Image To…"
-msgstr "Изпращан_e на изображението до…"
-
-#: ../libyelp/yelp-view.c:1399
-msgid "S_end Video To…"
-msgstr "Изпращан_e на видео клипа до…"
-
-#: ../libyelp/yelp-view.c:1410
-msgid "_Copy Text"
-msgstr "_Копиране на текста"
-
-#: ../libyelp/yelp-view.c:1423
+#: ../libyelp/yelp-view.c:253
 msgid "C_opy Code Block"
 msgstr "К_опиране на блок с код"
 
-#: ../libyelp/yelp-view.c:1428
+#: ../libyelp/yelp-view.c:258
+msgid "_Copy Link Location"
+msgstr "Копиране на мес_тоположението на връзката"
+
+#: ../libyelp/yelp-view.c:263
+msgid "_Open Link"
+msgstr "_Отваряне на връзка"
+
+#: ../libyelp/yelp-view.c:268
+msgid "Open Link in New _Window"
+msgstr "Отваряне на връзката в нов _прозорец"
+
+#: ../libyelp/yelp-view.c:278
+msgid "_Install Packages"
+msgstr "_Инсталиране на пакетите"
+
+#: ../libyelp/yelp-view.c:283
 msgid "Save Code _Block As…"
 msgstr "Запазване на _блока с код като…"
 
-#: ../libyelp/yelp-view.c:1535
-#, c-format
-msgid "See all search results for “%s”"
-msgstr "Преглед на всички резултати от търсенето на „%s“"
+#: ../libyelp/yelp-view.c:298
+msgid "_Copy Text"
+msgstr "_Копиране на текста"
 
-#: ../libyelp/yelp-view.c:1656
-#, c-format
-msgid "Could not load a document for ‘%s’"
-msgstr "Неуспешно зареждане на документ за „%s“"
+#: ../libyelp/yelp-view.c:525
+msgid "Yelp URI"
+msgstr "Адрес на Yelp"
 
-#: ../libyelp/yelp-view.c:1662
-#, c-format
-msgid "Could not load a document"
-msgstr "Неуспешно зареждане на документ"
+#: ../libyelp/yelp-view.c:526
+msgid "A YelpUri with the current location"
+msgstr "Обект от вида „YelpUri“ с текущото местоположение"
 
-#: ../libyelp/yelp-view.c:1737
-msgid "Document Not Found"
-msgstr "Документът не беше открит"
+#: ../libyelp/yelp-view.c:534
+msgid "Loading State"
+msgstr "Зареждащо състояние"
 
-#: ../libyelp/yelp-view.c:1739
-msgid "Page Not Found"
-msgstr "Страницата не е открита"
+#: ../libyelp/yelp-view.c:535
+msgid "The loading state of the view"
+msgstr "Състоянието на зареждане на изгледа"
 
-#: ../libyelp/yelp-view.c:1742
-msgid "Cannot Read"
-msgstr "Неуспешно четене"
+#: ../libyelp/yelp-view.c:544
+msgid "Page ID"
+msgstr "Идентификатор на страницата"
 
-#: ../libyelp/yelp-view.c:1748
-msgid "Unknown Error"
-msgstr "Непозната грешка"
+#: ../libyelp/yelp-view.c:545
+msgid "The ID of the root page of the page being viewed"
+msgstr "Идентификаторът на кореновата страница за разглежданата страница"
 
-#: ../libyelp/yelp-view.c:1768
-msgid "Search for packages containing this document."
-msgstr "Търсене за пакети съдържащи този документ."
+#: ../libyelp/yelp-view.c:553
+msgid "Root Title"
+msgstr "Заглавие на корена"
 
-#: ../libyelp/yelp-view.c:1918
+#: ../libyelp/yelp-view.c:554
+msgid "The title of the root page of the page being viewed"
+msgstr "Заглавие на кореновата страница за разглежданата страница"
+
+#: ../libyelp/yelp-view.c:562
+msgid "Page Title"
+msgstr "Заглавие на страницата"
+
+#: ../libyelp/yelp-view.c:563
+msgid "The title of the page being viewed"
+msgstr "Заглавието на разглежданата страница"
+
+#: ../libyelp/yelp-view.c:571
+msgid "Page Description"
+msgstr "Описание на страницата"
+
+#: ../libyelp/yelp-view.c:572
+msgid "The description of the page being viewed"
+msgstr "Описанието на разглежданата страница"
+
+#: ../libyelp/yelp-view.c:580
+msgid "Page Icon"
+msgstr "Икона на страницата"
+
+#: ../libyelp/yelp-view.c:581
+msgid "The icon of the page being viewed"
+msgstr "Иконата на разглежданата страница"
+
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Адресът „%s“ сочи към неправилна страница."
 
-#: ../libyelp/yelp-view.c:1924
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "Адресът не сочи към правилна страница."
 
-#: ../libyelp/yelp-view.c:1930
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Адресът „%s“ не може да бъде обработен."
+
+#: ../libyelp/yelp-view.c:842
+#, c-format
+msgid "Unknown Error."
+msgstr "Непозната грешка."
+
+#: ../libyelp/yelp-view.c:996
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr ""
+"Пакетът „PackageKit“ не е инсталиран, а връзките за инсталиране го изискват."
+
+#: ../libyelp/yelp-view.c:1243
+msgid "Save Image"
+msgstr "Запазване на изображението"
+
+#: ../libyelp/yelp-view.c:1342
+msgid "Save Code"
+msgstr "Запазване на изходния код"
+
+#: ../libyelp/yelp-view.c:1438
+#, c-format
+msgid "Send email to %s"
+msgstr "Изпращане на е-поща до %s"
+
+#: ../libyelp/yelp-view.c:1542
+msgid "_Save Image As…"
+msgstr "_Запазване на изображението като…"
+
+#: ../libyelp/yelp-view.c:1543
+msgid "_Save Video As…"
+msgstr "_Запазване на видео клипа като…"
+
+#: ../libyelp/yelp-view.c:1551
+msgid "S_end Image To…"
+msgstr "Изпращан_e на изображението до…"
+
+#: ../libyelp/yelp-view.c:1552
+msgid "S_end Video To…"
+msgstr "Изпращан_e на видео клипа до…"
+
+#: ../libyelp/yelp-view.c:1894
+#, c-format
+msgid "Could not load a document for ‘%s’"
+msgstr "Неуспешно зареждане на документ за „%s“"
+
+#: ../libyelp/yelp-view.c:1900
+#, c-format
+msgid "Could not load a document"
+msgstr "Неуспешно зареждане на документ"
+
+#: ../libyelp/yelp-view.c:1984
+msgid "Document Not Found"
+msgstr "Документът не беше открит"
+
+#: ../libyelp/yelp-view.c:1986
+msgid "Page Not Found"
+msgstr "Страницата не е открита"
+
+#: ../libyelp/yelp-view.c:1989
+msgid "Cannot Read"
+msgstr "Неуспешно четене"
+
+#: ../libyelp/yelp-view.c:1995
+msgid "Unknown Error"
+msgstr "Непозната грешка"
+
+#: ../libyelp/yelp-view.c:2015
+msgid "Search for packages containing this document."
+msgstr "Търсене за пакети съдържащи този документ."
 
 #: ../src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "Включване на режим за редактиране"
 
-#: ../src/yelp-application.c:272 ../src/yelp-window.c:1165
-#: ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Потребителско ръководство"
 
-#: ../src/yelp-application.c:322
+#: ../src/yelp-application.c:320
 msgid "New Window"
 msgstr "Нов прозорец"
 
-#: ../src/yelp-application.c:326
+#: ../src/yelp-application.c:324
 msgid "Larger Text"
 msgstr "По-голям текст"
 
-#: ../src/yelp-application.c:327
+#: ../src/yelp-application.c:325
 msgid "Smaller Text"
 msgstr "По-малък текст"
 
-#: ../src/yelp-window.c:206
+#: ../src/yelp-window.c:211
 msgid "Application"
 msgstr "Програми"
 
-#: ../src/yelp-window.c:207
+#: ../src/yelp-window.c:212
 msgid "A YelpApplication instance that controls this window"
 msgstr "Обект от вида „YelpApplication“, който управлява този прозорец"
 
-#: ../src/yelp-window.c:325
+#: ../src/yelp-window.c:343
 msgid "Back"
 msgstr "Назад"
 
-#: ../src/yelp-window.c:332
+#: ../src/yelp-window.c:350
 msgid "Forward"
 msgstr "Напред"
 
-#: ../src/yelp-window.c:343
+#: ../src/yelp-window.c:361
 msgid "Menu"
 msgstr "Меню"
 
-#: ../src/yelp-window.c:348
+#: ../src/yelp-window.c:366
 msgid "Find…"
 msgstr "Търсене…"
 
-#: ../src/yelp-window.c:349
+#: ../src/yelp-window.c:367
 msgid "Print…"
 msgstr "Печат…"
 
-#: ../src/yelp-window.c:354
+#: ../src/yelp-window.c:372
 msgid "Previous Page"
 msgstr "Предишнa страница"
 
-#: ../src/yelp-window.c:355
+#: ../src/yelp-window.c:373
 msgid "Next Page"
 msgstr "Следваща страница"
 
-#: ../src/yelp-window.c:360
+#: ../src/yelp-window.c:378
 msgid "All Help"
 msgstr "Цялото потребителско ръководство"
 
-#: ../src/yelp-window.c:382
+#: ../src/yelp-window.c:400
 msgid "Search (Ctrl+S)"
 msgstr "Търсене (Ctrl+S)"
 
-#: ../src/yelp-window.c:416
+#: ../src/yelp-window.c:434
 msgid "No bookmarks"
 msgstr "Липсват отметки"
 
-#: ../src/yelp-window.c:424
+#: ../src/yelp-window.c:442
 msgid "Add Bookmark"
 msgstr "Добавяне на отметка"
 
-#: ../src/yelp-window.c:430
+#: ../src/yelp-window.c:448
 msgid "Remove Bookmark"
 msgstr "Премахване на отметката"
 
