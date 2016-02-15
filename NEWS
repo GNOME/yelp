@@ -1,3 +1,16 @@
+3.19.90
+=======
+* Partial fix for handling documents using local paths, #753443 (Carlos Garcia Campos)
+* Allow .docbook files as file path, #699995 (Shaun McCance)
+* Fix return type of document_indexed, #761647 (Michael Catanzaro)
+* Fix build issue with separate builddir, #757139 (Shaun McCance)
+* Updated translations:
+  an    (Daniel Martinez)
+  bg    (Alexander Shopov)
+  gd
+  is    (Sveinn í Felli)
+  zh_CN (YunQiang Su, Jeff Bai)
+
 3.19.1
 ======
 * Simplify build system and avoid private yelpcommon library, #756654 (David
