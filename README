@@ -1,46 +1,22 @@
-About:
-------
+Yelp is the default help viewer for the GNOME desktop.  Yelp provides
+a simple graphical interface for viewing Mallard, DocBook, HTML, man,
+and info formatted documentation.  The name Yelp was suggested by Daniel
+Lundin. Yelp is pronounced the same as the swedish word for 'help'.
 
-Yelp is the default help browser for the GNOME desktop.  Yelp provides
-a simple graphical interface for viewing DocBook, HTML, man, and info
-formatted documentation.  The name Yelp was suggested by Daniel Lundin.
-Yelp is pronounced the same as the swedish word for 'help'.
+The Yelp help viewer builds on yelp-xsl and yelp-tools. You can use
+these to build and manage your documentation. For more information:
 
+  http://yelp.io/
 
-Requirments:
-------------
+Yelp is developed in GNOME git, and mirrored to GitHub. Please do all
+development in GNOME:
 
-* GNOME 2.0 ( >= 2.21.1 )
-* A working Rarian installation (0.7.x/0.8.x series)
-* GNOME Documentation Utilities (gnome-doc-utils > 0.5.2)
-* Version 4.1.2 of the DocBook XML DTD
+  http://git.gnome.org/browse/yelp/
 
-Note that Yelp requires gnome-doc-utils for the DocBook XSLT stylesheets.  
-These stylesheets are optimized for speed and allow better integration 
-with Yelp.
+Bugs are tracking in GNOME Bugzilla, product yelp:
 
+  https://bugzilla.gnome.org/page.cgi?id=browse.html&product=yelp
+  https://bugzilla.gnome.org/enter_bug.cgi?product=yelp
 
-Reporting bugs:
----------------
-
-Bugs should be reported to the GNOME bug tracking system
-(http://bugzilla.gnome.org, product Yelp.) You will need to create an
-account for yourself.
-
-
-Sending patches:
-----------------
-
-Please submit your patches to bugzilla.gnome.org. If the patch
-fixes an existing bug, add the patch as an attachment to that bug
-report.
-
-Otherwise, enter a new bug report that describes the patch, and attach
-the patch to that bug report.
-
-Bug reports containing patches should include the PATCH keyword in their
-keyword fields. If the patch adds to or changes the GTK programming
-interface, the API keyword should also be included.
-  
-Patches should be in unified diff form. (The -u option to GNU diff.)
-
+Yelp is distributed under the GNU General Public License, version 2
+or later. See the COPYING file for details.
