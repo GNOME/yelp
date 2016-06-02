@@ -4,10 +4,14 @@
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
+olddir=`pwd`
+
 (test -f $srcdir/configure.ac) || {
         echo "**Error**: Directory "\`$srcdir\'" does not look like the top-level project directory"
         exit 1
 }
+
+cd "$srcdir"
 
 PKG_NAME=`autoconf --trace "AC_INIT:$1" "$srcdir/configure.ac"`
 
@@ -31,6 +35,8 @@ set -x
 gtkdocize --copy || exit 1
 intltoolize --force --copy --automake || exit 1
 autoreconf --verbose --force --install -Wno-portability || exit 1
+
+cd "$olddir"
 
 if [ "$NOCONFIGURE" = "" ]; then
         $srcdir/configure "$@" || exit 1
