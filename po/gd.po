@@ -2,14 +2,14 @@
 # Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
 # This file is distributed under the same license as the yelp package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
-# GunChleoc <fios@foramnagaidhlig.net>, 2014, 2015.
+# GunChleoc <fios@foramnagaidhlig.net>, 2014, 2015, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&k"
 "eywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-11-16 15:09+0000\n"
-"PO-Revision-Date: 2015-11-16 17:37+0100\n"
+"POT-Creation-Date: 2016-05-05 15:22+0000\n"
+"PO-Revision-Date: 2016-06-11 10:05+0100\n"
 "Last-Translator: GunChleoc <fios@foramnagaidhlig.net>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "Language: gd\n"
@@ -110,19 +110,19 @@ msgstr "URI na sgrìobhainne"
 msgid "The URI which identifies the document"
 msgstr "An URI tha air an aithnichear an sgrìobhainn"
 
-#: ../libyelp/yelp-document.c:1022
+#: ../libyelp/yelp-document.c:1024
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Toraidhean luirg airson \"%s\""
 
-#: ../libyelp/yelp-document.c:1034
+#: ../libyelp/yelp-document.c:1036
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr ""
 "Cha deach duilleag cobharach a lorg ann an \"%s\" a fhreagair ris na lorg "
 "thu."
 
-#: ../libyelp/yelp-document.c:1040
+#: ../libyelp/yelp-document.c:1042
 msgid "No matching help pages found."
 msgstr "Cha deach duilleag cobharach a lorg a fhreagair ris na lorg thu."
 
@@ -208,7 +208,7 @@ msgstr "Modh an deasaiche"
 
 #: ../libyelp/yelp-settings.c:185
 msgid "Enable features useful to editors"
-msgstr "Cuir an comas feartan a tha feumail do dheasaichean"
+msgstr "Cuir an comas gleusan a tha feumail do dheasaichean"
 
 #: ../libyelp/yelp-sqlite-storage.c:145
 msgid "Database filename"
@@ -340,7 +340,6 @@ msgstr "Cha b' urrainn an URI \"%s\" a pharsadh."
 
 #: ../libyelp/yelp-view.c:842
 #, c-format
-#| msgid "Unknown Error"
 msgid "Unknown Error."
 msgstr "Mearachd nach aithne dhuinn."
 
@@ -413,20 +412,20 @@ msgstr "Lorg airson pacaidean sa bheil an sgrìobhainn seo."
 msgid "Turn on editor mode"
 msgstr "Cuir air modh an deasaiche"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
 #: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Cobhair"
 
-#: ../src/yelp-application.c:320
+#: ../src/yelp-application.c:321
 msgid "New Window"
 msgstr "Uinneag ùr"
 
-#: ../src/yelp-application.c:324
+#: ../src/yelp-application.c:325
 msgid "Larger Text"
 msgstr "Teacsa nas motha"
 
-#: ../src/yelp-application.c:325
+#: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Teacsa nas lugha"
 
