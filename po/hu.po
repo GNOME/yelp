@@ -1,5 +1,5 @@
 # Hungarian translation of yelp.
-# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2011, 2012 Free Software Foundation, Inc.
+# Copyright (C) 2002-2016 Free Software Foundation, Inc.
 # This file is distributed under the same license as the yelp package.
 #
 # Szabolcs Ban <shooby at gnome dot hu>, 2002.
@@ -8,14 +8,14 @@
 # Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2004, 2005, 2006, 2007, 2008, 2011, 2012.
 # Mate ORY <orymate at gmail d0t com>, 2006.
-# Balázs Úr <urbalazs at gmail dot com>, 2013, 2014, 2015.
+# Balázs Úr <urbalazs at gmail dot com>, 2013, 2014, 2015, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-06-23 08:57+0000\n"
-"PO-Revision-Date: 2015-06-23 13:09+0200\n"
+"POT-Creation-Date: 2016-08-19 16:59+0000\n"
+"PO-Revision-Date: 2016-08-19 20:27+0200\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -112,17 +112,17 @@ msgstr "Dokumentum URI"
 msgid "The URI which identifies the document"
 msgstr "A dokumentumot azonosító URI-cím"
 
-#: ../libyelp/yelp-document.c:1022
+#: ../libyelp/yelp-document.c:1024
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Keresési találatok erre: „%s”"
 
-#: ../libyelp/yelp-document.c:1034
+#: ../libyelp/yelp-document.c:1036
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Nem találhatók illeszkedő súgóoldalak itt: „%s”"
 
-#: ../libyelp/yelp-document.c:1040
+#: ../libyelp/yelp-document.c:1042
 msgid "No matching help pages found."
 msgstr "Nem találhatók illeszkedő súgóoldalak."
 
@@ -238,173 +238,172 @@ msgstr "Nem található href attribútum a yelp:dokumentumon\n"
 msgid "Out of memory"
 msgstr "Nincs több memória"
 
-#: ../libyelp/yelp-view.c:241
+#: ../libyelp/yelp-view.c:253
 msgid "C_opy Code Block"
 msgstr "Kód_blokk másolása"
 
-#: ../libyelp/yelp-view.c:246
+#: ../libyelp/yelp-view.c:258
 msgid "_Copy Link Location"
 msgstr "Hivatkozás _címének másolása"
 
-#: ../libyelp/yelp-view.c:251
+#: ../libyelp/yelp-view.c:263
 msgid "_Open Link"
 msgstr "_Hivatkozás megnyitása"
 
-#: ../libyelp/yelp-view.c:256
+#: ../libyelp/yelp-view.c:268
 msgid "Open Link in New _Window"
 msgstr "Hivatkozás megnyitása új _ablakban"
 
-#: ../libyelp/yelp-view.c:266
+#: ../libyelp/yelp-view.c:278
 msgid "_Install Packages"
 msgstr "_Csomagok telepítése"
 
-#: ../libyelp/yelp-view.c:271
+#: ../libyelp/yelp-view.c:283
 msgid "Save Code _Block As…"
 msgstr "Kódbl_okk mentése másként…"
 
-#: ../libyelp/yelp-view.c:286
+#: ../libyelp/yelp-view.c:298
 msgid "_Copy Text"
 msgstr "Szöveg _másolása"
 
-#: ../libyelp/yelp-view.c:517
+#: ../libyelp/yelp-view.c:525
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:518
+#: ../libyelp/yelp-view.c:526
 msgid "A YelpUri with the current location"
 msgstr "YelpUri a jelenlegi hellyel"
 
-#: ../libyelp/yelp-view.c:526
+#: ../libyelp/yelp-view.c:534
 msgid "Loading State"
 msgstr "Betöltés állapota"
 
-#: ../libyelp/yelp-view.c:527
+#: ../libyelp/yelp-view.c:535
 msgid "The loading state of the view"
 msgstr "A nézet betöltési állapota"
 
-#: ../libyelp/yelp-view.c:536
+#: ../libyelp/yelp-view.c:544
 msgid "Page ID"
 msgstr "Oldalazonosító"
 
-#: ../libyelp/yelp-view.c:537
+#: ../libyelp/yelp-view.c:545
 msgid "The ID of the root page of the page being viewed"
 msgstr "A megjelenített oldal gyökéroldalának azonosítója"
 
-#: ../libyelp/yelp-view.c:545
+#: ../libyelp/yelp-view.c:553
 msgid "Root Title"
 msgstr "Gyökér címe"
 
-#: ../libyelp/yelp-view.c:546
+#: ../libyelp/yelp-view.c:554
 msgid "The title of the root page of the page being viewed"
 msgstr "A megjelenített oldal gyökéroldalának címe"
 
-#: ../libyelp/yelp-view.c:554
+#: ../libyelp/yelp-view.c:562
 msgid "Page Title"
 msgstr "Oldal címe"
 
-#: ../libyelp/yelp-view.c:555
+#: ../libyelp/yelp-view.c:563
 msgid "The title of the page being viewed"
 msgstr "A megjelenített oldal címe"
 
-#: ../libyelp/yelp-view.c:563
+#: ../libyelp/yelp-view.c:571
 msgid "Page Description"
 msgstr "Oldal leírása"
 
-#: ../libyelp/yelp-view.c:564
+#: ../libyelp/yelp-view.c:572
 msgid "The description of the page being viewed"
 msgstr "A megjelenített oldal leírása"
 
-#: ../libyelp/yelp-view.c:572
+#: ../libyelp/yelp-view.c:580
 msgid "Page Icon"
 msgstr "Oldal ikonja"
 
-#: ../libyelp/yelp-view.c:573
+#: ../libyelp/yelp-view.c:581
 msgid "The icon of the page being viewed"
 msgstr "A megjelenített oldal ikonja"
 
-#: ../libyelp/yelp-view.c:808 ../libyelp/yelp-view.c:2176
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "A(z) „%s” URI nem mutat érvényes oldalra."
 
-#: ../libyelp/yelp-view.c:814 ../libyelp/yelp-view.c:2182
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "Az URI nem mutat érvényes oldalra."
 
-#: ../libyelp/yelp-view.c:819 ../libyelp/yelp-view.c:2188
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "A(z) „%s” URI nem dolgozható fel."
 
-#: ../libyelp/yelp-view.c:824
+#: ../libyelp/yelp-view.c:842
 #, c-format
-#| msgid "Unknown Error"
 msgid "Unknown Error."
 msgstr "Ismeretlen hiba."
 
-#: ../libyelp/yelp-view.c:978
+#: ../libyelp/yelp-view.c:996
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "Nincs telepítve a PackageKit. A csomagtelepítő hivatkozásokhoz a PackageKit "
 "szükséges."
 
-#: ../libyelp/yelp-view.c:1225
+#: ../libyelp/yelp-view.c:1243
 msgid "Save Image"
 msgstr "Kép mentése"
 
-#: ../libyelp/yelp-view.c:1324
+#: ../libyelp/yelp-view.c:1342
 msgid "Save Code"
 msgstr "Kód mentése"
 
-#: ../libyelp/yelp-view.c:1420
+#: ../libyelp/yelp-view.c:1438
 #, c-format
 msgid "Send email to %s"
 msgstr "E-mail küldése ide: %s"
 
-#: ../libyelp/yelp-view.c:1524
+#: ../libyelp/yelp-view.c:1542
 msgid "_Save Image As…"
 msgstr "_Kép mentése másként…"
 
-#: ../libyelp/yelp-view.c:1525
+#: ../libyelp/yelp-view.c:1543
 msgid "_Save Video As…"
 msgstr "_Videó mentése másként…"
 
-#: ../libyelp/yelp-view.c:1533
+#: ../libyelp/yelp-view.c:1551
 msgid "S_end Image To…"
 msgstr "Kép kül_dése…"
 
-#: ../libyelp/yelp-view.c:1534
+#: ../libyelp/yelp-view.c:1552
 msgid "S_end Video To…"
 msgstr "Vid_eó küldése…"
 
-#: ../libyelp/yelp-view.c:1870
+#: ../libyelp/yelp-view.c:1894
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Nem tölthető be dokumentum ehhez: „%s”"
 
-#: ../libyelp/yelp-view.c:1876
+#: ../libyelp/yelp-view.c:1900
 #, c-format
 msgid "Could not load a document"
 msgstr "Nem tölthető be dokumentum"
 
-#: ../libyelp/yelp-view.c:1960
+#: ../libyelp/yelp-view.c:1984
 msgid "Document Not Found"
 msgstr "A dokumentum nem található"
 
-#: ../libyelp/yelp-view.c:1962
+#: ../libyelp/yelp-view.c:1986
 msgid "Page Not Found"
 msgstr "Az oldal nem található"
 
-#: ../libyelp/yelp-view.c:1965
+#: ../libyelp/yelp-view.c:1989
 msgid "Cannot Read"
 msgstr "Nem olvasható"
 
-#: ../libyelp/yelp-view.c:1971
+#: ../libyelp/yelp-view.c:1995
 msgid "Unknown Error"
 msgstr "Ismeretlen hiba"
 
-#: ../libyelp/yelp-view.c:1991
+#: ../libyelp/yelp-view.c:2015
 msgid "Search for packages containing this document."
 msgstr "A dokumentumot tartalmazó csomagok keresése."
 
@@ -412,20 +411,20 @@ msgstr "A dokumentumot tartalmazó csomagok keresése."
 msgid "Turn on editor mode"
 msgstr "Szerkesztői mód bekapcsolása"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
 #: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Súgó"
 
-#: ../src/yelp-application.c:320
+#: ../src/yelp-application.c:321
 msgid "New Window"
 msgstr "Új ablak"
 
-#: ../src/yelp-application.c:324
+#: ../src/yelp-application.c:325
 msgid "Larger Text"
 msgstr "Nagyobb szöveg"
 
-#: ../src/yelp-application.c:325
+#: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Kisebb szöveg"
 
@@ -490,8 +489,9 @@ msgid "Get help with GNOME"
 msgstr "A GNOME súgója"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "dokumentáció;információ;kézikönyv;"
+#| msgid "documentation;information;manual;"
+msgid "documentation;information;manual;help;"
+msgstr "dokumentáció;információ;kézikönyv;súgó;"
 
 #~ msgid "See all search results for “%s”"
 #~ msgstr "Minden találat megjelenítése erre: „%s”"
