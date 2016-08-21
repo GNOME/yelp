@@ -15,23 +15,23 @@
 # Tommi Vainikainen <thv@iki.fi>, 2009-2011.
 # Timo Jyrinki <timo.jyrinki@iki.fi>, 2011.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2014.
-# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013, 2014, 2015.
+# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013, 2014, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-09-05 00:18+0000\n"
-"PO-Revision-Date: 2015-09-05 12:18+0300\n"
+"POT-Creation-Date: 2016-08-19 16:59+0000\n"
+"PO-Revision-Date: 2016-08-21 13:31+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
-"Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 "X-POT-Import-Date: 2012-03-05 14:44:08+0000\n"
 
 #. (itstool) path: msg/msgstr
@@ -121,17 +121,17 @@ msgstr "Asiakirjan URI"
 msgid "The URI which identifies the document"
 msgstr "Asiakirjan tunnisteena toimiva URI"
 
-#: ../libyelp/yelp-document.c:1022
+#: ../libyelp/yelp-document.c:1024
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Tulokset hakusanalle ”%s”"
 
-#: ../libyelp/yelp-document.c:1034
+#: ../libyelp/yelp-document.c:1036
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Hakusanalla ”%s” ei löytynyt yhtään ohjesivua."
 
-#: ../libyelp/yelp-document.c:1040
+#: ../libyelp/yelp-document.c:1042
 msgid "No matching help pages found."
 msgstr "Vastaavia ohjesivuja ei löytynyt."
 
@@ -247,171 +247,170 @@ msgstr "href-määrettä ei löytynyt kohteesta yelp:document\n"
 msgid "Out of memory"
 msgstr "Muisti lopussa"
 
-#: ../libyelp/yelp-view.c:244
+#: ../libyelp/yelp-view.c:253
 msgid "C_opy Code Block"
 msgstr "K_opioi koodilohko"
 
-#: ../libyelp/yelp-view.c:249
+#: ../libyelp/yelp-view.c:258
 msgid "_Copy Link Location"
 msgstr "_Kopioi linkin sijainti"
 
-#: ../libyelp/yelp-view.c:254
+#: ../libyelp/yelp-view.c:263
 msgid "_Open Link"
 msgstr "_Avaa linkki"
 
-#: ../libyelp/yelp-view.c:259
+#: ../libyelp/yelp-view.c:268
 msgid "Open Link in New _Window"
 msgstr "Avaa linkki uudessa _ikkunassa"
 
-#: ../libyelp/yelp-view.c:269
+#: ../libyelp/yelp-view.c:278
 msgid "_Install Packages"
 msgstr "_Asenna paketit"
 
-#: ../libyelp/yelp-view.c:274
+#: ../libyelp/yelp-view.c:283
 msgid "Save Code _Block As…"
 msgstr "Tallenna koodi_lohko nimellä…"
 
-#: ../libyelp/yelp-view.c:289
+#: ../libyelp/yelp-view.c:298
 msgid "_Copy Text"
 msgstr "_Kopioi teksti"
 
-#: ../libyelp/yelp-view.c:520
+#: ../libyelp/yelp-view.c:525
 msgid "Yelp URI"
 msgstr "Yelp-URI"
 
-#: ../libyelp/yelp-view.c:521
+#: ../libyelp/yelp-view.c:526
 msgid "A YelpUri with the current location"
 msgstr "YelpUri nykyiseen sijaintiin"
 
-#: ../libyelp/yelp-view.c:529
+#: ../libyelp/yelp-view.c:534
 msgid "Loading State"
 msgstr "Ladataan tilaa"
 
-#: ../libyelp/yelp-view.c:530
+#: ../libyelp/yelp-view.c:535
 msgid "The loading state of the view"
 msgstr "Näkymän lataustila"
 
-#: ../libyelp/yelp-view.c:539
+#: ../libyelp/yelp-view.c:544
 msgid "Page ID"
 msgstr "Sivun tunniste"
 
-#: ../libyelp/yelp-view.c:540
+#: ../libyelp/yelp-view.c:545
 msgid "The ID of the root page of the page being viewed"
 msgstr "Katseltavan pääsivun tunniste"
 
-#: ../libyelp/yelp-view.c:548
+#: ../libyelp/yelp-view.c:553
 msgid "Root Title"
 msgstr "Pääotsikko"
 
-#: ../libyelp/yelp-view.c:549
+#: ../libyelp/yelp-view.c:554
 msgid "The title of the root page of the page being viewed"
 msgstr "Katseltavan pääsivun otsikko"
 
-#: ../libyelp/yelp-view.c:557
+#: ../libyelp/yelp-view.c:562
 msgid "Page Title"
 msgstr "Sivun otsikko"
 
-#: ../libyelp/yelp-view.c:558
+#: ../libyelp/yelp-view.c:563
 msgid "The title of the page being viewed"
 msgstr "Katseltavan sivun otsikko"
 
-#: ../libyelp/yelp-view.c:566
+#: ../libyelp/yelp-view.c:571
 msgid "Page Description"
 msgstr "Sivun kuvaus"
 
-#: ../libyelp/yelp-view.c:567
+#: ../libyelp/yelp-view.c:572
 msgid "The description of the page being viewed"
 msgstr "Katseltavana olevan sivun kuvaus"
 
-#: ../libyelp/yelp-view.c:575
+#: ../libyelp/yelp-view.c:580
 msgid "Page Icon"
 msgstr "Sivun kuvake"
 
-#: ../libyelp/yelp-view.c:576
+#: ../libyelp/yelp-view.c:581
 msgid "The icon of the page being viewed"
 msgstr "Katseltavan sivun kuvake"
 
-#: ../libyelp/yelp-view.c:821 ../libyelp/yelp-view.c:2195
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Sijainti ”%s” ei ohjaa oikealle sivulle."
 
-#: ../libyelp/yelp-view.c:827 ../libyelp/yelp-view.c:2201
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "Sijainti ei ohjaa oikealle sivulle."
 
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2207
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI ”%s” ei jäsenny."
 
-#: ../libyelp/yelp-view.c:837
+#: ../libyelp/yelp-view.c:842
 #, c-format
-#| msgid "Unknown Error"
 msgid "Unknown Error."
 msgstr "Tuntematon virhe."
 
-#: ../libyelp/yelp-view.c:991
+#: ../libyelp/yelp-view.c:996
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "Sinulla ei ole PackageKitiä. Pakettien asennus vaatii PackageKitin."
 
-#: ../libyelp/yelp-view.c:1238
+#: ../libyelp/yelp-view.c:1243
 msgid "Save Image"
 msgstr "Tallenna kuva"
 
-#: ../libyelp/yelp-view.c:1337
+#: ../libyelp/yelp-view.c:1342
 msgid "Save Code"
 msgstr "Tallenna koodi"
 
-#: ../libyelp/yelp-view.c:1433
+#: ../libyelp/yelp-view.c:1438
 #, c-format
 msgid "Send email to %s"
 msgstr "Lähetä sähköpostia osoitteeseen %s"
 
-#: ../libyelp/yelp-view.c:1537
+#: ../libyelp/yelp-view.c:1542
 msgid "_Save Image As…"
 msgstr "_Tallenna kuva nimellä…"
 
-#: ../libyelp/yelp-view.c:1538
+#: ../libyelp/yelp-view.c:1543
 msgid "_Save Video As…"
 msgstr "_Tallenna video nimellä…"
 
-#: ../libyelp/yelp-view.c:1546
+#: ../libyelp/yelp-view.c:1551
 msgid "S_end Image To…"
 msgstr "Läh_etä kuva…"
 
-#: ../libyelp/yelp-view.c:1547
+#: ../libyelp/yelp-view.c:1552
 msgid "S_end Video To…"
 msgstr "Läh_etä video…"
 
-#: ../libyelp/yelp-view.c:1889
+#: ../libyelp/yelp-view.c:1894
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Ei voitu ladata asiakirjaa ”%s”"
 
-#: ../libyelp/yelp-view.c:1895
+#: ../libyelp/yelp-view.c:1900
 #, c-format
 msgid "Could not load a document"
 msgstr "Ei voitu ladata asiakirjaa"
 
-#: ../libyelp/yelp-view.c:1979
+#: ../libyelp/yelp-view.c:1984
 msgid "Document Not Found"
 msgstr "Asiakirjaa ei löydy"
 
-#: ../libyelp/yelp-view.c:1981
+#: ../libyelp/yelp-view.c:1986
 msgid "Page Not Found"
 msgstr "Sivua ei löytynyt"
 
-#: ../libyelp/yelp-view.c:1984
+#: ../libyelp/yelp-view.c:1989
 msgid "Cannot Read"
 msgstr "Luku ei onnistu"
 
-#: ../libyelp/yelp-view.c:1990
+#: ../libyelp/yelp-view.c:1995
 msgid "Unknown Error"
 msgstr "Tuntematon virhe"
 
-#: ../libyelp/yelp-view.c:2010
+#: ../libyelp/yelp-view.c:2015
 msgid "Search for packages containing this document."
 msgstr "Etsi paketteja, jotka sisältävät tämän asiakirjan."
 
@@ -419,20 +418,20 @@ msgstr "Etsi paketteja, jotka sisältävät tämän asiakirjan."
 msgid "Turn on editor mode"
 msgstr "Vaihda editoritilaan"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
 #: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Ohje"
 
-#: ../src/yelp-application.c:320
+#: ../src/yelp-application.c:321
 msgid "New Window"
 msgstr "Uusi ikkuna"
 
-#: ../src/yelp-application.c:324
+#: ../src/yelp-application.c:325
 msgid "Larger Text"
 msgstr "Suurenna tekstiä"
 
-#: ../src/yelp-application.c:325
+#: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Pienennä tekstiä"
 
@@ -497,8 +496,9 @@ msgid "Get help with GNOME"
 msgstr "Apua Gnomen käyttöön"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "documentation;information;manual;dokumentaatio;manuaali;ohje;"
+#| msgid "documentation;information;manual;"
+msgid "documentation;information;manual;help;"
+msgstr "documentation;information;manual;help;dokumentaatio;manuaali;ohje;"
 
 #~ msgid "See all search results for “%s”"
 #~ msgstr "Näytä kaikki tulokset hakusanalle ”%s”"
