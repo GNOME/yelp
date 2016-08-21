@@ -10,10 +10,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&keywords=I18N"
-"+L10N&component=General\n"
-"POT-Creation-Date: 2015-06-30 12:12+0000\n"
-"PO-Revision-Date: 2015-06-30 17:47+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-08-19 16:59+0000\n"
+"PO-Revision-Date: 2016-08-21 18:23+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -37,17 +37,19 @@ msgstr ""
 msgid "Install <string/>"
 msgstr "Nainštalovať <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:143 ../libyelp/yelp-lzma-decompressor.c:152
+#: ../libyelp/yelp-bz2-decompressor.c:143
+#: ../libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
 msgstr "Neplatné komprimované údaje"
 
-#: ../libyelp/yelp-bz2-decompressor.c:149 ../libyelp/yelp-lzma-decompressor.c:158
+#: ../libyelp/yelp-bz2-decompressor.c:149
+#: ../libyelp/yelp-lzma-decompressor.c:158
 msgid "Not enough memory"
 msgstr "Nedostatok pamäte"
 
 #: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
-#: ../libyelp/yelp-mallard-document.c:298 ../libyelp/yelp-mallard-document.c:452
-#: ../libyelp/yelp-man-document.c:252
+#: ../libyelp/yelp-mallard-document.c:298
+#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Strana „%s“ sa nenašla v dokumente „%s“."
@@ -66,19 +68,21 @@ msgstr "Súbor „%s“ neexistuje."
 
 #: ../libyelp/yelp-docbook-document.c:345
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
 msgstr ""
-"Nebolo možné vykonať syntaktickú analýzu súboru „%s“, lebo nie je správne naformátovaným XML "
-"dokumentom."
+"Nebolo možné vykonať syntaktickú analýzu súboru „%s“, lebo nie je správne "
+"naformátovaným XML dokumentom."
 
 #: ../libyelp/yelp-docbook-document.c:358
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML "
-"document."
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
 msgstr ""
-"Nebolo možné vykonať syntaktickú analýzu súboru „%s“, pretože jeden alebo viac jeho priložených "
-"súborov nie je správne naformátovaným XML dokumentom."
+"Nebolo možné vykonať syntaktickú analýzu súboru „%s“, pretože jeden alebo "
+"viac jeho priložených súborov nie je správne naformátovaným XML dokumentom."
 
 #: ../libyelp/yelp-docbook-document.c:788
 msgid "Unknown"
@@ -106,17 +110,17 @@ msgstr "URI dokumentu"
 msgid "The URI which identifies the document"
 msgstr "URI, ktorý identifikuje dokument"
 
-#: ../libyelp/yelp-document.c:1022
+#: ../libyelp/yelp-document.c:1024
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Výsledky vyhľadávania výrazu „%s“"
 
-#: ../libyelp/yelp-document.c:1034
+#: ../libyelp/yelp-document.c:1036
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Neboli nájdené žiadne zodpovedajúce stránky pomocníka v „%s“."
 
-#: ../libyelp/yelp-document.c:1040
+#: ../libyelp/yelp-document.c:1042
 msgid "No matching help pages found."
 msgstr "Neboli nájdené žiadne zodpovedajúce stránky pomocníka."
 
@@ -132,10 +136,11 @@ msgstr "Všetky dokumenty pomocníka"
 # info je názov programu/typ dokumentu
 #: ../libyelp/yelp-info-document.c:380
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Nebolo možné vykonať syntaktickú analýzu súboru „%s“, lebo to nie je správne naformátovaná informačná "
-"stránka."
+"Nebolo možné vykonať syntaktickú analýzu súboru „%s“, lebo to nie je správne "
+"naformátovaná informačná stránka."
 
 #: ../libyelp/yelp-mallard-document.c:340
 #, c-format
@@ -196,7 +201,8 @@ msgstr "Zobraziť textový kurzor"
 # PK: v ubuntu je to kde? nahlas chybu ked tak, v yelp nemozem najst nastavenia, takze nemozem overit :/
 #: ../libyelp/yelp-settings.c:176
 msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Zobraziť textový kurzor alebo vsuvku pre navigáciu bezbariérového prístupu"
+msgstr ""
+"Zobraziť textový kurzor alebo vsuvku pre navigáciu bezbariérového prístupu"
 
 #: ../libyelp/yelp-settings.c:184
 msgid "Editor Mode"
@@ -235,172 +241,172 @@ msgstr "V značke yelp:document chýba atribút href\n"
 msgid "Out of memory"
 msgstr "Nedostatok pamäte"
 
-#: ../libyelp/yelp-view.c:241
+#: ../libyelp/yelp-view.c:253
 msgid "C_opy Code Block"
 msgstr "K_opírovať blok kódu"
 
-#: ../libyelp/yelp-view.c:246
+#: ../libyelp/yelp-view.c:258
 msgid "_Copy Link Location"
 msgstr "_Kopírovať umiestnenie odkazu"
 
-#: ../libyelp/yelp-view.c:251
+#: ../libyelp/yelp-view.c:263
 msgid "_Open Link"
 msgstr "_Otvoriť odkaz"
 
-#: ../libyelp/yelp-view.c:256
+#: ../libyelp/yelp-view.c:268
 msgid "Open Link in New _Window"
 msgstr "Otvoriť odkaz v _novom okne"
 
-#: ../libyelp/yelp-view.c:266
+#: ../libyelp/yelp-view.c:278
 msgid "_Install Packages"
 msgstr "Na_inštalovať balíky"
 
-#: ../libyelp/yelp-view.c:271
+#: ../libyelp/yelp-view.c:283
 msgid "Save Code _Block As…"
 msgstr "Uložiť _blok kódu ako…"
 
-#: ../libyelp/yelp-view.c:286
+#: ../libyelp/yelp-view.c:298
 msgid "_Copy Text"
 msgstr "_Kopírovať text"
 
-#: ../libyelp/yelp-view.c:517
+#: ../libyelp/yelp-view.c:525
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:518
+#: ../libyelp/yelp-view.c:526
 msgid "A YelpUri with the current location"
 msgstr "YelpUri s aktuálnym umiestnením"
 
-#: ../libyelp/yelp-view.c:526
+#: ../libyelp/yelp-view.c:534
 msgid "Loading State"
 msgstr "Stav načítania"
 
-#: ../libyelp/yelp-view.c:527
+#: ../libyelp/yelp-view.c:535
 msgid "The loading state of the view"
 msgstr "Stav načítania zobrazenia"
 
-#: ../libyelp/yelp-view.c:536
+#: ../libyelp/yelp-view.c:544
 msgid "Page ID"
 msgstr "Identifikátor stránky"
 
-#: ../libyelp/yelp-view.c:537
+#: ../libyelp/yelp-view.c:545
 msgid "The ID of the root page of the page being viewed"
 msgstr "Identifikátor koreňovej stránky práve prezeranej stránky"
 
-#: ../libyelp/yelp-view.c:545
+#: ../libyelp/yelp-view.c:553
 msgid "Root Title"
 msgstr "Názov koreňovej stránky"
 
-#: ../libyelp/yelp-view.c:546
+#: ../libyelp/yelp-view.c:554
 msgid "The title of the root page of the page being viewed"
 msgstr "Názov koreňovej stránky práve prezeranej stránky"
 
-#: ../libyelp/yelp-view.c:554
+#: ../libyelp/yelp-view.c:562
 msgid "Page Title"
 msgstr "Názov stránky"
 
-#: ../libyelp/yelp-view.c:555
+#: ../libyelp/yelp-view.c:563
 msgid "The title of the page being viewed"
 msgstr "Názov prezeranej stránky"
 
-#: ../libyelp/yelp-view.c:563
+#: ../libyelp/yelp-view.c:571
 msgid "Page Description"
 msgstr "Popis stránky"
 
-#: ../libyelp/yelp-view.c:564
+#: ../libyelp/yelp-view.c:572
 msgid "The description of the page being viewed"
 msgstr "Popis prezeranej stránky"
 
-#: ../libyelp/yelp-view.c:572
+#: ../libyelp/yelp-view.c:580
 msgid "Page Icon"
 msgstr "Ikona stránky"
 
-#: ../libyelp/yelp-view.c:573
+#: ../libyelp/yelp-view.c:581
 msgid "The icon of the page being viewed"
 msgstr "Ikona prezeranej stránky"
 
-#: ../libyelp/yelp-view.c:808 ../libyelp/yelp-view.c:2176
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI „%s“ neukazuje na platnú stránku."
 
-#: ../libyelp/yelp-view.c:814 ../libyelp/yelp-view.c:2182
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI neukazuje na platnú stránku."
 
-#: ../libyelp/yelp-view.c:819 ../libyelp/yelp-view.c:2188
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI „%s“ sa nepodarilo analyzovať."
 
-#: ../libyelp/yelp-view.c:824
+#: ../libyelp/yelp-view.c:842
 #, c-format
 msgid "Unknown Error."
 msgstr "Neznáma chyba."
 
-#: ../libyelp/yelp-view.c:978
+#: ../libyelp/yelp-view.c:996
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "Nemáte PackageKit. Inštalácia balíkov cez odkazy vyžaduje PackageKit."
 
-#: ../libyelp/yelp-view.c:1225
+#: ../libyelp/yelp-view.c:1243
 msgid "Save Image"
 msgstr "Uložiť obrázok"
 
-#: ../libyelp/yelp-view.c:1324
+#: ../libyelp/yelp-view.c:1342
 msgid "Save Code"
 msgstr "Uložiť kód"
 
-#: ../libyelp/yelp-view.c:1420
+#: ../libyelp/yelp-view.c:1438
 #, c-format
 msgid "Send email to %s"
 msgstr "Odoslať email na adresu %s"
 
-#: ../libyelp/yelp-view.c:1524
+#: ../libyelp/yelp-view.c:1542
 msgid "_Save Image As…"
 msgstr "_Uložiť obrázok ako…"
 
-#: ../libyelp/yelp-view.c:1525
+#: ../libyelp/yelp-view.c:1543
 msgid "_Save Video As…"
 msgstr "_Uložiť video ako…"
 
 # tu to moze byt kontakt, adresa, zariadenie, atd. (nautilus-sendto)
-#: ../libyelp/yelp-view.c:1533
+#: ../libyelp/yelp-view.c:1551
 msgid "S_end Image To…"
 msgstr "_Odoslať obrázok do…"
 
 # tu to moze byt kontakt, adresa, zariadenie, atd. (nautilus-sendto)
-#: ../libyelp/yelp-view.c:1534
+#: ../libyelp/yelp-view.c:1552
 msgid "S_end Video To…"
 msgstr "_Odoslať video do…"
 
-#: ../libyelp/yelp-view.c:1870
+#: ../libyelp/yelp-view.c:1894
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Nepodarilo sa načítať dokument pre „%s“"
 
-#: ../libyelp/yelp-view.c:1876
+#: ../libyelp/yelp-view.c:1900
 #, c-format
 msgid "Could not load a document"
 msgstr "Nepodarilo sa načítať dokument"
 
-#: ../libyelp/yelp-view.c:1960
+#: ../libyelp/yelp-view.c:1984
 msgid "Document Not Found"
 msgstr "Dokument sa nenašiel"
 
-#: ../libyelp/yelp-view.c:1962
+#: ../libyelp/yelp-view.c:1986
 msgid "Page Not Found"
 msgstr "Strana sa nenašla"
 
-#: ../libyelp/yelp-view.c:1965
+#: ../libyelp/yelp-view.c:1989
 msgid "Cannot Read"
 msgstr "Nedá sa prečítať"
 
-#: ../libyelp/yelp-view.c:1971
+#: ../libyelp/yelp-view.c:1995
 msgid "Unknown Error"
 msgstr "Neznáma chyba"
 
-#: ../libyelp/yelp-view.c:1991
+#: ../libyelp/yelp-view.c:2015
 msgid "Search for packages containing this document."
 msgstr "Vyhľadať balíky, ktoré obsahujú tento dokument."
 
@@ -408,20 +414,20 @@ msgstr "Vyhľadať balíky, ktoré obsahujú tento dokument."
 msgid "Turn on editor mode"
 msgstr "Zapnúť režim upravovania"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180 ../src/yelp-window.c:1188
-#: ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
+#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Pomocník"
 
-#: ../src/yelp-application.c:320
+#: ../src/yelp-application.c:321
 msgid "New Window"
 msgstr "Nové okno"
 
-#: ../src/yelp-application.c:324
+#: ../src/yelp-application.c:325
 msgid "Larger Text"
 msgstr "Väčší text"
 
-#: ../src/yelp-application.c:325
+#: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Menší text"
 
@@ -487,8 +493,8 @@ msgid "Get help with GNOME"
 msgstr "Zobraziť pomocníka pre GNOME"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "dokumentácia;informácie;návod;"
+msgid "documentation;information;manual;help;"
+msgstr "dokumentácia;informácie;návod;manuál;pomoc;pomocník;"
 
 #~ msgid "See all search results for “%s”"
 #~ msgstr "Zobraziť všetky výsledky vyhľadávania pre „%s“"
