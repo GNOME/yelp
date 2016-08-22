@@ -25,8 +25,8 @@ msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-08-15 00:18+0000\n"
-"PO-Revision-Date: 2015-08-15 13:41+0200\n"
+"POT-Creation-Date: 2016-08-19 16:59+0000\n"
+"PO-Revision-Date: 2016-08-22 10:42+0200\n"
 "Last-Translator: Alain Lojewski <allomervan@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -122,17 +122,17 @@ msgstr "URI du document"
 msgid "The URI which identifies the document"
 msgstr "L'URI qui identifie le document"
 
-#: ../libyelp/yelp-document.c:1022
+#: ../libyelp/yelp-document.c:1024
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Résultats de la recherche pour « %s »"
 
-#: ../libyelp/yelp-document.c:1034
+#: ../libyelp/yelp-document.c:1036
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Aucune page d'aide correspondante trouvée dans « %s »."
 
-#: ../libyelp/yelp-document.c:1040
+#: ../libyelp/yelp-document.c:1042
 msgid "No matching help pages found."
 msgstr "Aucune page d'aide correspondante trouvée."
 
@@ -249,172 +249,172 @@ msgstr "Aucun attribut href trouvé dans yelp:document\n"
 msgid "Out of memory"
 msgstr "Mémoire insuffisante"
 
-#: ../libyelp/yelp-view.c:241
+#: ../libyelp/yelp-view.c:253
 msgid "C_opy Code Block"
 msgstr "C_opier le bloc de code"
 
-#: ../libyelp/yelp-view.c:246
+#: ../libyelp/yelp-view.c:258
 msgid "_Copy Link Location"
 msgstr "_Copier l'emplacement du lien"
 
-#: ../libyelp/yelp-view.c:251
+#: ../libyelp/yelp-view.c:263
 msgid "_Open Link"
 msgstr "_Ouvrir le lien"
 
-#: ../libyelp/yelp-view.c:256
+#: ../libyelp/yelp-view.c:268
 msgid "Open Link in New _Window"
 msgstr "Ouvrir le lien dans une _nouvelle fenêtre"
 
-#: ../libyelp/yelp-view.c:266
+#: ../libyelp/yelp-view.c:278
 msgid "_Install Packages"
 msgstr "_Installer les paquets"
 
-#: ../libyelp/yelp-view.c:271
+#: ../libyelp/yelp-view.c:283
 msgid "Save Code _Block As…"
 msgstr "Enregistrer le _bloc de code sous…"
 
-#: ../libyelp/yelp-view.c:286
+#: ../libyelp/yelp-view.c:298
 msgid "_Copy Text"
 msgstr "_Copier le texte"
 
-#: ../libyelp/yelp-view.c:517
+#: ../libyelp/yelp-view.c:525
 msgid "Yelp URI"
 msgstr "URI de Yelp"
 
-#: ../libyelp/yelp-view.c:518
+#: ../libyelp/yelp-view.c:526
 msgid "A YelpUri with the current location"
 msgstr "Une YelpUri contenant l'emplacement actuel"
 
-#: ../libyelp/yelp-view.c:526
+#: ../libyelp/yelp-view.c:534
 msgid "Loading State"
 msgstr "État du chargement"
 
-#: ../libyelp/yelp-view.c:527
+#: ../libyelp/yelp-view.c:535
 msgid "The loading state of the view"
 msgstr "L'état du chargement de l'affichage"
 
-#: ../libyelp/yelp-view.c:536
+#: ../libyelp/yelp-view.c:544
 msgid "Page ID"
 msgstr "ID de page"
 
-#: ../libyelp/yelp-view.c:537
+#: ../libyelp/yelp-view.c:545
 msgid "The ID of the root page of the page being viewed"
 msgstr "L'ID de la page racine de la page actuellement affichée"
 
-#: ../libyelp/yelp-view.c:545
+#: ../libyelp/yelp-view.c:553
 msgid "Root Title"
 msgstr "Titre racine"
 
-#: ../libyelp/yelp-view.c:546
+#: ../libyelp/yelp-view.c:554
 msgid "The title of the root page of the page being viewed"
 msgstr "Le titre de la page racine de la page actuellement affichée"
 
-#: ../libyelp/yelp-view.c:554
+#: ../libyelp/yelp-view.c:562
 msgid "Page Title"
 msgstr "Titre de la page"
 
-#: ../libyelp/yelp-view.c:555
+#: ../libyelp/yelp-view.c:563
 msgid "The title of the page being viewed"
 msgstr "Le titre de la page actuellement affichée"
 
-#: ../libyelp/yelp-view.c:563
+#: ../libyelp/yelp-view.c:571
 msgid "Page Description"
 msgstr "Description de la page"
 
-#: ../libyelp/yelp-view.c:564
+#: ../libyelp/yelp-view.c:572
 msgid "The description of the page being viewed"
 msgstr "La description de la page actuellement affichée"
 
-#: ../libyelp/yelp-view.c:572
+#: ../libyelp/yelp-view.c:580
 msgid "Page Icon"
 msgstr "Icône de la page"
 
-#: ../libyelp/yelp-view.c:573
+#: ../libyelp/yelp-view.c:581
 msgid "The icon of the page being viewed"
 msgstr "L'icône de la page actuellement affichée"
 
-#: ../libyelp/yelp-view.c:808 ../libyelp/yelp-view.c:2176
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "L'URI « %s » ne se réfère pas à une page valide."
 
-#: ../libyelp/yelp-view.c:814 ../libyelp/yelp-view.c:2182
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "L'URI ne se réfère pas à une page valide."
 
-#: ../libyelp/yelp-view.c:819 ../libyelp/yelp-view.c:2188
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Impossible d'analyser l'URI « %s »."
 
-#: ../libyelp/yelp-view.c:824
+#: ../libyelp/yelp-view.c:842
 #, c-format
 msgid "Unknown Error."
 msgstr "Erreur inconnue."
 
-#: ../libyelp/yelp-view.c:978
+#: ../libyelp/yelp-view.c:996
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "PackageKit n'est pas installé. Les liens d'installation de paquets "
 "nécessitent PackageKit."
 
-#: ../libyelp/yelp-view.c:1225
+#: ../libyelp/yelp-view.c:1243
 msgid "Save Image"
 msgstr "Enregistrer l'image"
 
-#: ../libyelp/yelp-view.c:1324
+#: ../libyelp/yelp-view.c:1342
 msgid "Save Code"
 msgstr "Enregistrer le code"
 
-#: ../libyelp/yelp-view.c:1420
+#: ../libyelp/yelp-view.c:1438
 #, c-format
 msgid "Send email to %s"
 msgstr "Envoyer un courriel à %s"
 
-#: ../libyelp/yelp-view.c:1524
+#: ../libyelp/yelp-view.c:1542
 msgid "_Save Image As…"
 msgstr "_Enregistrer l'image sous…"
 
-#: ../libyelp/yelp-view.c:1525
+#: ../libyelp/yelp-view.c:1543
 msgid "_Save Video As…"
 msgstr "_Enregistrer la vidéo sous…"
 
-#: ../libyelp/yelp-view.c:1533
+#: ../libyelp/yelp-view.c:1551
 msgid "S_end Image To…"
 msgstr "En_voyer l'image à…"
 
-#: ../libyelp/yelp-view.c:1534
+#: ../libyelp/yelp-view.c:1552
 msgid "S_end Video To…"
 msgstr "En_voyer la vidéo à…"
 
-#: ../libyelp/yelp-view.c:1870
+#: ../libyelp/yelp-view.c:1894
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Impossible de charger un document pour « %s »"
 
-#: ../libyelp/yelp-view.c:1876
+#: ../libyelp/yelp-view.c:1900
 #, c-format
 msgid "Could not load a document"
 msgstr "Impossible de charger un document"
 
-#: ../libyelp/yelp-view.c:1960
+#: ../libyelp/yelp-view.c:1984
 msgid "Document Not Found"
 msgstr "Document non trouvé"
 
-#: ../libyelp/yelp-view.c:1962
+#: ../libyelp/yelp-view.c:1986
 msgid "Page Not Found"
 msgstr "Page non trouvée"
 
-#: ../libyelp/yelp-view.c:1965
+#: ../libyelp/yelp-view.c:1989
 msgid "Cannot Read"
 msgstr "Lecture impossible"
 
-#: ../libyelp/yelp-view.c:1971
+#: ../libyelp/yelp-view.c:1995
 msgid "Unknown Error"
 msgstr "Erreur inconnue"
 
-#: ../libyelp/yelp-view.c:1991
+#: ../libyelp/yelp-view.c:2015
 msgid "Search for packages containing this document."
 msgstr "Recherche de paquets contenant ce document."
 
@@ -422,20 +422,20 @@ msgstr "Recherche de paquets contenant ce document."
 msgid "Turn on editor mode"
 msgstr "Basculer en mode édition"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
 #: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Aide"
 
-#: ../src/yelp-application.c:320
+#: ../src/yelp-application.c:321
 msgid "New Window"
 msgstr "Nouvelle fenêtre"
 
-#: ../src/yelp-application.c:324
+#: ../src/yelp-application.c:325
 msgid "Larger Text"
 msgstr "Agrandir le texte"
 
-#: ../src/yelp-application.c:325
+#: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Réduire le texte"
 
@@ -500,82 +500,6 @@ msgid "Get help with GNOME"
 msgstr "Obtenir de l'aide avec GNOME"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "documentation;information;manuel;"
+msgid "documentation;information;manual;help;"
+msgstr "documentation;information;manuel;aide;"
 
-#~ msgid "See all search results for “%s”"
-#~ msgstr "Voir tous les résultats de recherche pour « %s »"
-
-#~ msgid "Enable Search"
-#~ msgstr "Activer la recherche"
-
-#~ msgid "Whether the location entry can be used as a search field"
-#~ msgstr ""
-#~ "Indique si la zone de saisie d'emplacement peut être utilisée comme champ "
-#~ "de recherche"
-
-#~ msgid "Search..."
-#~ msgstr "Rechercher..."
-
-#~ msgid "Clear the search text"
-#~ msgstr "Effacer le texte de la recherche"
-
-#~ msgid "Bookmark this page"
-#~ msgstr "Mettre en signet cette page"
-
-#~ msgid "Remove bookmark"
-#~ msgstr "Supprimer le signet"
-
-#~ msgid "Loading"
-#~ msgstr "Chargement"
-
-#~ msgid "_Print..."
-#~ msgstr "_Imprimer..."
-
-#~ msgid "Increase the size of the text"
-#~ msgstr "Augmente la taille du texte"
-
-# note typo in source
-#~ msgid "Decrease the size of the text"
-#~ msgstr "Diminue la taille du texte"
-
-#~ msgid "Show Text _Cursor"
-#~ msgstr "Afficher le _curseur de texte"
-
-#~ msgid "_Page"
-#~ msgstr "_Page"
-
-#~ msgid "_View"
-#~ msgstr "_Affichage"
-
-#~ msgid "_Go"
-#~ msgstr "A_ller à"
-
-#~ msgid "_Bookmarks"
-#~ msgstr "_Signets"
-
-#~ msgid "_Close"
-#~ msgstr "_Fermer"
-
-#~ msgid "_All Documents"
-#~ msgstr "_Tous les documents"
-
-#~ msgid "Find in Page..."
-#~ msgstr "Rechercher dans la page..."
-
-#~ msgid "Open Location"
-#~ msgstr "Ouvrir un emplacement"
-
-#~ msgid "Read Link _Later"
-#~ msgstr "Lire le _lien plus tard"
-
-#~ msgid "Read Later"
-#~ msgstr "Lire plus tard"
-
-#~ msgid "%i match"
-#~ msgid_plural "%i matches"
-#~ msgstr[0] "%i correspondance"
-#~ msgstr[1] "%i correspondances"
-
-#~ msgid "No matches"
-#~ msgstr "Aucun résultat"
