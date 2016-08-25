@@ -3,25 +3,25 @@
 # This file is distributed under the same license as the program package.
 #
 # Andraž Tori <andraz.tori1@guest.arnes.si>, 2002.
-# Matej Urbančič <mateju@svn.gnome.org>, 2006-2015.
+# Matej Urbančič <mateju@svn.gnome.org>, 2006-2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-07-08 12:14+0000\n"
-"PO-Revision-Date: 2015-07-08 20:49+0100\n"
+"POT-Creation-Date: 2016-08-21 21:27+0200\n"
+"PO-Revision-Date: 2016-08-21 21:29+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: sl\n"
+"Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -106,17 +106,17 @@ msgstr "Naslov URI dokumenta"
 msgid "The URI which identifies the document"
 msgstr "Naslov URI, ki določa dokument"
 
-#: ../libyelp/yelp-document.c:1022
+#: ../libyelp/yelp-document.c:1024
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Zadetki iskanja za “%s”"
 
-#: ../libyelp/yelp-document.c:1034
+#: ../libyelp/yelp-document.c:1036
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Ni mogoče najti ustreznih strani pomoči v “%s”."
 
-#: ../libyelp/yelp-document.c:1040
+#: ../libyelp/yelp-document.c:1042
 msgid "No matching help pages found."
 msgstr "Ni mogoče najti ustreznih strani pomoči."
 
@@ -233,171 +233,171 @@ msgstr "Ni mogoče najti atributa href v yelp:dokument\n"
 msgid "Out of memory"
 msgstr "Primanjkuje pomnilnika"
 
-#: ../libyelp/yelp-view.c:241
+#: ../libyelp/yelp-view.c:253
 msgid "C_opy Code Block"
 msgstr "_Kopiraj blok kode"
 
-#: ../libyelp/yelp-view.c:246
+#: ../libyelp/yelp-view.c:258
 msgid "_Copy Link Location"
 msgstr "_Kopiraj mesto povezave"
 
-#: ../libyelp/yelp-view.c:251
+#: ../libyelp/yelp-view.c:263
 msgid "_Open Link"
 msgstr "_Odpri povezavo"
 
-#: ../libyelp/yelp-view.c:256
+#: ../libyelp/yelp-view.c:268
 msgid "Open Link in New _Window"
 msgstr "Odpri povezavo v _novem oknu"
 
-#: ../libyelp/yelp-view.c:266
+#: ../libyelp/yelp-view.c:278
 msgid "_Install Packages"
 msgstr "_Namesti pakete"
 
-#: ../libyelp/yelp-view.c:271
+#: ../libyelp/yelp-view.c:283
 msgid "Save Code _Block As…"
 msgstr "Shrani _blok kode kot ..."
 
-#: ../libyelp/yelp-view.c:286
+#: ../libyelp/yelp-view.c:298
 msgid "_Copy Text"
 msgstr "_Kopiraj besedilo"
 
-#: ../libyelp/yelp-view.c:517
+#: ../libyelp/yelp-view.c:525
 msgid "Yelp URI"
 msgstr "Naslov URI Yelp"
 
-#: ../libyelp/yelp-view.c:518
+#: ../libyelp/yelp-view.c:526
 msgid "A YelpUri with the current location"
 msgstr "Yelp naslov URI s trenutnim mestom"
 
-#: ../libyelp/yelp-view.c:526
+#: ../libyelp/yelp-view.c:534
 msgid "Loading State"
 msgstr "Stanje nalaganja"
 
-#: ../libyelp/yelp-view.c:527
+#: ../libyelp/yelp-view.c:535
 msgid "The loading state of the view"
 msgstr "Stanje nalaganja pogleda"
 
-#: ../libyelp/yelp-view.c:536
+#: ../libyelp/yelp-view.c:544
 msgid "Page ID"
 msgstr "ID strani"
 
-#: ../libyelp/yelp-view.c:537
+#: ../libyelp/yelp-view.c:545
 msgid "The ID of the root page of the page being viewed"
 msgstr "ID korenske strani prikazane strani"
 
-#: ../libyelp/yelp-view.c:545
+#: ../libyelp/yelp-view.c:553
 msgid "Root Title"
 msgstr "Naslov korena"
 
-#: ../libyelp/yelp-view.c:546
+#: ../libyelp/yelp-view.c:554
 msgid "The title of the root page of the page being viewed"
 msgstr "Naslov korenske strani prikazane strani"
 
-#: ../libyelp/yelp-view.c:554
+#: ../libyelp/yelp-view.c:562
 msgid "Page Title"
 msgstr "Naslov strani"
 
-#: ../libyelp/yelp-view.c:555
+#: ../libyelp/yelp-view.c:563
 msgid "The title of the page being viewed"
 msgstr "Naslov prikazane strani"
 
-#: ../libyelp/yelp-view.c:563
+#: ../libyelp/yelp-view.c:571
 msgid "Page Description"
 msgstr "Opis strani"
 
-#: ../libyelp/yelp-view.c:564
+#: ../libyelp/yelp-view.c:572
 msgid "The description of the page being viewed"
 msgstr "Opis prikazane strani"
 
-#: ../libyelp/yelp-view.c:572
+#: ../libyelp/yelp-view.c:580
 msgid "Page Icon"
 msgstr "Ikona strani"
 
-#: ../libyelp/yelp-view.c:573
+#: ../libyelp/yelp-view.c:581
 msgid "The icon of the page being viewed"
 msgstr "Ikona trenutne  strani"
 
-#: ../libyelp/yelp-view.c:808 ../libyelp/yelp-view.c:2176
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Naslov URI ‘%s’ ni povezan z veljavno stranjo."
 
-#: ../libyelp/yelp-view.c:814 ../libyelp/yelp-view.c:2182
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "Naslov URI ni povezan z veljavno stranjo."
 
-#: ../libyelp/yelp-view.c:819 ../libyelp/yelp-view.c:2188
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Naslova URI ‘%s’ ni mogoče razčleniti"
 
-#: ../libyelp/yelp-view.c:824
+#: ../libyelp/yelp-view.c:842
 #, c-format
 msgid "Unknown Error."
 msgstr "Neznana napaka"
 
-#: ../libyelp/yelp-view.c:978
+#: ../libyelp/yelp-view.c:996
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "PackageKit ni nameščen. Povezave za nameščanje zahtevajo paket PackageKit."
 
-#: ../libyelp/yelp-view.c:1225
+#: ../libyelp/yelp-view.c:1243
 msgid "Save Image"
 msgstr "Shrani sliko"
 
-#: ../libyelp/yelp-view.c:1324
+#: ../libyelp/yelp-view.c:1342
 msgid "Save Code"
 msgstr "Shrani kodo"
 
-#: ../libyelp/yelp-view.c:1420
+#: ../libyelp/yelp-view.c:1438
 #, c-format
 msgid "Send email to %s"
 msgstr "Pošlji elektronsko pošto za %s"
 
-#: ../libyelp/yelp-view.c:1524
+#: ../libyelp/yelp-view.c:1542
 msgid "_Save Image As…"
 msgstr "S_hrani sliko kot ..."
 
-#: ../libyelp/yelp-view.c:1525
+#: ../libyelp/yelp-view.c:1543
 msgid "_Save Video As…"
 msgstr "Shrani _video kot ..."
 
-#: ../libyelp/yelp-view.c:1533
+#: ../libyelp/yelp-view.c:1551
 msgid "S_end Image To…"
 msgstr "Poš_lji sliko na ..."
 
-#: ../libyelp/yelp-view.c:1534
+#: ../libyelp/yelp-view.c:1552
 msgid "S_end Video To…"
 msgstr "Poš_lji video na ..."
 
-#: ../libyelp/yelp-view.c:1870
+#: ../libyelp/yelp-view.c:1894
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Ni mogoče naložiti dokumenta za ‘%s’"
 
-#: ../libyelp/yelp-view.c:1876
+#: ../libyelp/yelp-view.c:1900
 #, c-format
 msgid "Could not load a document"
 msgstr "Ni mogoče naložiti dokumenta"
 
-#: ../libyelp/yelp-view.c:1960
+#: ../libyelp/yelp-view.c:1984
 msgid "Document Not Found"
 msgstr "Dokumenta ni mogoče najti"
 
-#: ../libyelp/yelp-view.c:1962
+#: ../libyelp/yelp-view.c:1986
 msgid "Page Not Found"
 msgstr "Strani ni mogoče najti"
 
-#: ../libyelp/yelp-view.c:1965
+#: ../libyelp/yelp-view.c:1989
 msgid "Cannot Read"
 msgstr "Ni mogoče brati"
 
-#: ../libyelp/yelp-view.c:1971
+#: ../libyelp/yelp-view.c:1995
 msgid "Unknown Error"
 msgstr "Neznana napaka"
 
-#: ../libyelp/yelp-view.c:1991
+#: ../libyelp/yelp-view.c:2015
 msgid "Search for packages containing this document."
 msgstr "Iskanje paketov, ki vsebujejo ta dokument"
 
@@ -405,20 +405,20 @@ msgstr "Iskanje paketov, ki vsebujejo ta dokument"
 msgid "Turn on editor mode"
 msgstr "Omogoči urejevalni način"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
 #: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Pomoč"
 
-#: ../src/yelp-application.c:320
+#: ../src/yelp-application.c:321
 msgid "New Window"
 msgstr "Novo okno"
 
-#: ../src/yelp-application.c:324
+#: ../src/yelp-application.c:325
 msgid "Larger Text"
 msgstr "Večje besedilo"
 
-#: ../src/yelp-application.c:325
+#: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Manjše besedilo"
 
@@ -483,8 +483,11 @@ msgid "Get help with GNOME"
 msgstr "Iskanje pomoči namizja GNOME"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "dokumentacija;podrobnosti;informacije;priročnik;vodnik;"
+msgid "documentation;information;manual;help;"
+msgstr "dokumentacija;podrobnosti;priročnik;pomoč;"
+
+#~ msgid "documentation;information;manual;"
+#~ msgstr "dokumentacija;podrobnosti;informacije;priročnik;vodnik;"
 
 #~ msgid "Enable Search"
 #~ msgstr "Omogoči iskanje"
