@@ -1,18 +1,18 @@
 # Vietnamese translation for Yelp.
 # Bản dịch tiếng Việt dành cho Trợ giúp của GNOME.
-# Copyright © 2015 GNOME i18n Project for Vietnamese.
+# Copyright © 2016 GNOME i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@vnlinux.org>, 2002-2004, 2005, 2012.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
 # Lê Trường An <xinemdungkhoc1@gmail.com>, 2011.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2014, 2015.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2014, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-09-26 13:33+0000\n"
-"PO-Revision-Date: 2015-09-27 08:48+0700\n"
+"POT-Creation-Date: 2016-09-04 13:17+0000\n"
+"PO-Revision-Date: 2016-09-06 07:25+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -108,17 +108,17 @@ msgstr "URI tài liệu"
 msgid "The URI which identifies the document"
 msgstr "Địa chỉ xác định tài liệu"
 
-#: ../libyelp/yelp-document.c:1022
+#: ../libyelp/yelp-document.c:1024
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Kết quả tìm kiếm “%s”"
 
-#: ../libyelp/yelp-document.c:1034
+#: ../libyelp/yelp-document.c:1036
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Không tìm thấy trang trợ giúp trùng khớp trong \"%s\"."
 
-#: ../libyelp/yelp-document.c:1040
+#: ../libyelp/yelp-document.c:1042
 msgid "No matching help pages found."
 msgstr "Không tìm thấy trang trợ giúp nào khớp."
 
@@ -277,7 +277,7 @@ msgstr "Trạng thái nạp"
 
 #: ../libyelp/yelp-view.c:535
 msgid "The loading state of the view"
-msgstr "Trạng thái nạp của quan sát"
+msgstr "Trạng thái nạp của phần trình bày"
 
 #: ../libyelp/yelp-view.c:544
 msgid "Page ID"
@@ -408,20 +408,20 @@ msgstr "Tìm kiếm các gói có chứa tài liệu này."
 msgid "Turn on editor mode"
 msgstr "Bật chế độ soạn thảo"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
 #: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Trợ giúp"
 
-#: ../src/yelp-application.c:320
+#: ../src/yelp-application.c:321
 msgid "New Window"
 msgstr "Cửa sổ mới"
 
-#: ../src/yelp-application.c:324
+#: ../src/yelp-application.c:325
 msgid "Larger Text"
 msgstr "Chữ lớn hơn"
 
-#: ../src/yelp-application.c:325
+#: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Chữ nhỏ đi"
 
@@ -486,10 +486,10 @@ msgid "Get help with GNOME"
 msgstr "Nhận trợ giúp từ GNOME"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
+msgid "documentation;information;manual;help;"
 msgstr ""
-"documentation;information;manual;tài;liệu;tai;lieu;thông;tin;hướng;dẫn;huong;"
-"dan;trợ;tro;giúp;giup;help;"
+"documentation;information;manual;help;tài liệu;tai lieu;thông tin;thong tin;"
+"hướng dẫn;huong dan;trợ giúp;tro giup;"
 
 #~ msgid "See all search results for “%s”"
 #~ msgstr "Xem mọi kết quả tìm kiếm “%s”"
