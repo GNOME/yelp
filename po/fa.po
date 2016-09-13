@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: yelp 2.10.0\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-09-12 12:49+0000\n"
-"PO-Revision-Date: 2015-09-13 12:18+0430\n"
+"POT-Creation-Date: 2016-08-19 16:59+0000\n"
+"PO-Revision-Date: 2016-09-13 13:14+0430\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.9\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -67,17 +67,19 @@ msgstr "پرونده‌ی «%s» وجود ندارد."
 
 #: ../libyelp/yelp-docbook-document.c:345
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
-msgstr "تجزیه‌ی پرونده‌ی «%s» به دلیل اینکه سند XML خوش ترکیبی نیست، امکان‌پذیر نیست."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgstr ""
+"تجزیه‌ی پرونده‌ی «%s» به دلیل اینکه سند XML خوش ترکیبی نیست، امکان‌پذیر نیست."
 
 #: ../libyelp/yelp-docbook-document.c:358
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files is not a "
-"well-formed XML document."
+"The file ‘%s’ could not be parsed because one or more of its included files is "
+"not a well-formed XML document."
 msgstr ""
-"تجزیه‌ی پرونده‌ی «%s» به دلیل اینکه یک یا تعدادی از پرونده‌های مشمول آن یک XML خوش ترکیب "
-"نیست، امکان‌پذیر نیست."
+"تجزیه‌ی پرونده‌ی «%s» به دلیل اینکه یک یا تعدادی از پرونده‌های مشمول آن یک XML خوش "
+"ترکیب نیست، امکان‌پذیر نیست."
 
 #: ../libyelp/yelp-docbook-document.c:788
 msgid "Unknown"
@@ -105,17 +107,17 @@ msgstr "URI سند"
 msgid "The URI which identifies the document"
 msgstr "نشانی‌ای که سند را مشخص می‌کند"
 
-#: ../libyelp/yelp-document.c:1022
+#: ../libyelp/yelp-document.c:1024
 #, c-format
 msgid "Search results for “%s”"
 msgstr "نتایج جستجو برای «%s»"
 
-#: ../libyelp/yelp-document.c:1034
+#: ../libyelp/yelp-document.c:1036
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "هیچ صفحه‌ی راهنمای منطبقی در «%s» پیدا نشد."
 
-#: ../libyelp/yelp-document.c:1040
+#: ../libyelp/yelp-document.c:1042
 msgid "No matching help pages found."
 msgstr "هیچ صفحه‌ی راهنمای منطبقی پیدا نشد."
 
@@ -130,8 +132,10 @@ msgstr "تمام سندهای راهنما"
 
 #: ../libyelp/yelp-info-document.c:380
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "تجزیه‌ی پرونده‌ی «%s» بدلیل اینکه صفحه‌ی info خوش ترکیبی نیست، امکان‌پذیر نیست."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"تجزیه‌ی پرونده‌ی «%s» بدلیل اینکه صفحه‌ی info خوش ترکیبی نیست، امکان‌پذیر نیست."
 
 #: ../libyelp/yelp-mallard-document.c:340
 #, c-format
@@ -228,170 +232,170 @@ msgstr "مشخصه‌ی href در yelp:document پیدا نشد\n"
 msgid "Out of memory"
 msgstr "حافظه تمام شد"
 
-#: ../libyelp/yelp-view.c:244
+#: ../libyelp/yelp-view.c:253
 msgid "C_opy Code Block"
 msgstr "_رونوشت قالب کد"
 
-#: ../libyelp/yelp-view.c:249
+#: ../libyelp/yelp-view.c:258
 msgid "_Copy Link Location"
 msgstr "_رونوشت از محل پیوند"
 
-#: ../libyelp/yelp-view.c:254
+#: ../libyelp/yelp-view.c:263
 msgid "_Open Link"
 msgstr "_باز کردن پیوند"
 
-#: ../libyelp/yelp-view.c:259
+#: ../libyelp/yelp-view.c:268
 msgid "Open Link in New _Window"
 msgstr "بازکردن پیوند در _پنجره‌ی جدید"
 
-#: ../libyelp/yelp-view.c:269
+#: ../libyelp/yelp-view.c:278
 msgid "_Install Packages"
 msgstr "_نصب بسته‌ها"
 
-#: ../libyelp/yelp-view.c:274
+#: ../libyelp/yelp-view.c:283
 msgid "Save Code _Block As…"
 msgstr "ذخیره به نام _قالب کد..."
 
-#: ../libyelp/yelp-view.c:289
+#: ../libyelp/yelp-view.c:298
 msgid "_Copy Text"
 msgstr "_رونوشت از متن"
 
-#: ../libyelp/yelp-view.c:520
+#: ../libyelp/yelp-view.c:525
 msgid "Yelp URI"
 msgstr "نشانی یلِپ"
 
-#: ../libyelp/yelp-view.c:521
+#: ../libyelp/yelp-view.c:526
 msgid "A YelpUri with the current location"
 msgstr "یک YelpUri همراه با محل فعلی"
 
-#: ../libyelp/yelp-view.c:529
+#: ../libyelp/yelp-view.c:534
 msgid "Loading State"
 msgstr "وضعیت بارگیری"
 
-#: ../libyelp/yelp-view.c:530
+#: ../libyelp/yelp-view.c:535
 msgid "The loading state of the view"
 msgstr "وضعیت بارگذاری نما"
 
-#: ../libyelp/yelp-view.c:539
+#: ../libyelp/yelp-view.c:544
 msgid "Page ID"
 msgstr "شناسه صفحه"
 
-#: ../libyelp/yelp-view.c:540
+#: ../libyelp/yelp-view.c:545
 msgid "The ID of the root page of the page being viewed"
 msgstr "شناسه‌ی صفحه‌ی ریشه‌ای که دیده می‌شود"
 
-#: ../libyelp/yelp-view.c:548
+#: ../libyelp/yelp-view.c:553
 msgid "Root Title"
 msgstr "تیتر ریشه"
 
-#: ../libyelp/yelp-view.c:549
+#: ../libyelp/yelp-view.c:554
 msgid "The title of the root page of the page being viewed"
 msgstr "تیتر صفحه‌ی ریشه‌ای که دیده می‌شود"
 
-#: ../libyelp/yelp-view.c:557
+#: ../libyelp/yelp-view.c:562
 msgid "Page Title"
 msgstr "تیتر صفحه"
 
-#: ../libyelp/yelp-view.c:558
+#: ../libyelp/yelp-view.c:563
 msgid "The title of the page being viewed"
 msgstr "تیتر صفحه‌ای که دیده می‌شود"
 
-#: ../libyelp/yelp-view.c:566
+#: ../libyelp/yelp-view.c:571
 msgid "Page Description"
 msgstr "توضیحات صفحه"
 
-#: ../libyelp/yelp-view.c:567
+#: ../libyelp/yelp-view.c:572
 msgid "The description of the page being viewed"
 msgstr "توضیح صفحه‌ای که دیده می‌شود"
 
-#: ../libyelp/yelp-view.c:575
+#: ../libyelp/yelp-view.c:580
 msgid "Page Icon"
 msgstr "شمایل صفحه"
 
-#: ../libyelp/yelp-view.c:576
+#: ../libyelp/yelp-view.c:581
 msgid "The icon of the page being viewed"
 msgstr "شمایل صفحه‌ای که دیده می‌شود"
 
-#: ../libyelp/yelp-view.c:821 ../libyelp/yelp-view.c:2195
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "نشانی «‎%s» به یک پرونده‌ی واقعی اشاره نمی‌کند."
 
-#: ../libyelp/yelp-view.c:827 ../libyelp/yelp-view.c:2201
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "آدرس به یک صفحه‌ی معتبر اشاره نمی‌کند."
 
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2207
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "تجزیه‌ی نشانی «%s» امکان‌پذیر نیست"
 
-#: ../libyelp/yelp-view.c:837
+#: ../libyelp/yelp-view.c:842
 #, c-format
 msgid "Unknown Error."
 msgstr "خطای نامعلوم."
 
-#: ../libyelp/yelp-view.c:991
+#: ../libyelp/yelp-view.c:996
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "شما PackageKit ندارید. نصب بسته نیاز به PackageKit دارد."
 
-#: ../libyelp/yelp-view.c:1238
+#: ../libyelp/yelp-view.c:1243
 msgid "Save Image"
 msgstr "ذخیره تصویر"
 
-#: ../libyelp/yelp-view.c:1337
+#: ../libyelp/yelp-view.c:1342
 msgid "Save Code"
 msgstr "دخیره کد"
 
-#: ../libyelp/yelp-view.c:1433
+#: ../libyelp/yelp-view.c:1438
 #, c-format
 msgid "Send email to %s"
 msgstr "ارسال پست الکترونیکی به %s"
 
-#: ../libyelp/yelp-view.c:1537
+#: ../libyelp/yelp-view.c:1542
 msgid "_Save Image As…"
 msgstr "_ذخیره تصویر به نام..."
 
-#: ../libyelp/yelp-view.c:1538
+#: ../libyelp/yelp-view.c:1543
 msgid "_Save Video As…"
 msgstr "_ذخیره ویدیو به نام..."
 
-#: ../libyelp/yelp-view.c:1546
+#: ../libyelp/yelp-view.c:1551
 msgid "S_end Image To…"
 msgstr "_ارسال تصویر به..."
 
-#: ../libyelp/yelp-view.c:1547
+#: ../libyelp/yelp-view.c:1552
 msgid "S_end Video To…"
 msgstr "_ارسال ویدیو به..."
 
-#: ../libyelp/yelp-view.c:1889
+#: ../libyelp/yelp-view.c:1894
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "برای «%s» نمی‌توان سندی پیدا کرد"
 
-#: ../libyelp/yelp-view.c:1895
+#: ../libyelp/yelp-view.c:1900
 #, c-format
 msgid "Could not load a document"
 msgstr "ناتوان در بارکردن یک سند"
 
-#: ../libyelp/yelp-view.c:1979
+#: ../libyelp/yelp-view.c:1984
 msgid "Document Not Found"
 msgstr "سند پیدا نشد"
 
-#: ../libyelp/yelp-view.c:1981
+#: ../libyelp/yelp-view.c:1986
 msgid "Page Not Found"
 msgstr "صفحه پیدا نشد"
 
-#: ../libyelp/yelp-view.c:1984
+#: ../libyelp/yelp-view.c:1989
 msgid "Cannot Read"
 msgstr "نمی‌توان خواند"
 
-#: ../libyelp/yelp-view.c:1990
+#: ../libyelp/yelp-view.c:1995
 msgid "Unknown Error"
 msgstr "خطای نامعلوم"
 
-#: ../libyelp/yelp-view.c:2010
+#: ../libyelp/yelp-view.c:2015
 msgid "Search for packages containing this document."
 msgstr "جستجو برای بسته‌های حاوی این سند."
 
@@ -399,20 +403,20 @@ msgstr "جستجو برای بسته‌های حاوی این سند."
 msgid "Turn on editor mode"
 msgstr "روشن کردن حالت ویرایش"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180 ../src/yelp-window.c:1188
-#: ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
+#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "راهنما"
 
-#: ../src/yelp-application.c:320
+#: ../src/yelp-application.c:321
 msgid "New Window"
 msgstr "پنجره‌ی جدید"
 
-#: ../src/yelp-application.c:324
+#: ../src/yelp-application.c:325
 msgid "Larger Text"
 msgstr "متن بزرگتر"
 
-#: ../src/yelp-application.c:325
+#: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "متن کوچکتر"
 
@@ -477,8 +481,8 @@ msgid "Get help with GNOME"
 msgstr "راهنمایی گرفتن در مورد گنوم"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "مستندات;اطلاعات;راهنما;"
+msgid "documentation;information;manual;help;"
+msgstr "documentation;information;manual;help;مستندات;اطلاعات;راهنما;کمک;"
 
 #~ msgid "See all search results for “%s”"
 #~ msgstr "نمایش تمام نتایج جستجو برای «%s»"
@@ -1005,9 +1009,11 @@ msgstr "مستندات;اطلاعات;راهنما;"
 #~ msgstr "بازی‌های کودکان"
 
 #~ msgid ""
-#~ "Learn more about making your system more accessible for a range of disabilities"
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
 #~ msgstr ""
-#~ "درباره اینکه سیستم خود را برای افراد ناتوان قابل استفاده کنید بیشتر یاد بگیرید "
+#~ "درباره اینکه سیستم خود را برای افراد ناتوان قابل استفاده کنید بیشتر یاد "
+#~ "بگیرید "
 
 #~ msgid "Licenses"
 #~ msgstr "گواهینامه‌ها"
@@ -1364,11 +1370,11 @@ msgstr "مستندات;اطلاعات;راهنما;"
 #~ msgstr "اطلاعاتی درباره‌ی خطا موجود نیست."
 
 #~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed in an "
-#~ "unsupported format."
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed in "
+#~ "an unsupported format."
 #~ msgstr ""
-#~ "خواندن و رمزگشایی پرونده‌ی «%s» ممکن نیست. ممکن است این پرونده تحت یک قالب پشتیبانی "
-#~ "نشده فشرده شده باشد."
+#~ "خواندن و رمزگشایی پرونده‌ی «%s» ممکن نیست. ممکن است این پرونده تحت یک قالب "
+#~ "پشتیبانی نشده فشرده شده باشد."
 
 #~ msgid "Use a private session"
 #~ msgstr "از نشست خصوصی استفاده شود"
@@ -1383,7 +1389,8 @@ msgstr "مستندات;اطلاعات;راهنما;"
 #~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is "
 #~ "formatted incorrectly."
 #~ msgstr ""
-#~ "تجزیه پرونده‌ی «%s» ممکن نیست. این پرونده یا وجود ندارد، یا اشتباه قالب‌بندی شده است."
+#~ "تجزیه پرونده‌ی «%s» ممکن نیست. این پرونده یا وجود ندارد، یا اشتباه قالب‌بندی "
+#~ "شده است."
 
 #~ msgid "The YelpDocInfo struct of the document"
 #~ msgstr "ساختار YelpDocInfo نوشتار"
@@ -1409,15 +1416,17 @@ msgstr "مستندات;اطلاعات;راهنما;"
 #~ msgid "It was not possible to print your document: %s"
 #~ msgstr "چاپ نوشتار شما ممکن نبود:  %s"
 
-#~ msgid "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
-#~ msgstr "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+#~ msgid ""
+#~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+#~ msgstr ""
+#~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
 
 #~ msgid "the GNOME Support Forums"
 #~ msgstr "انجمن‌های پشتیبانی گنوم"
 
 #~ msgid ""
-#~ "Your search could not be processed. The file ‘%s’ is either missing or is not a "
-#~ "valid XSLT stylesheet."
+#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
+#~ "not a valid XSLT stylesheet."
 #~ msgstr ""
 #~ "تجزیه‌ی عبارت جستجو ممکن نیست. پرونده‌ی «‌%s» یا وجود ندارد و یا صفحه‌ی سبک XSLT "
 #~ "معتبری نیست."
@@ -1426,11 +1435,11 @@ msgstr "مستندات;اطلاعات;راهنما;"
 #~ msgstr "هیچ نتیجه‌ای برای «%s» پیدا نشد"
 
 #~ msgid ""
-#~ "Try using different words to describe the problem you're having or the topic you "
-#~ "want help with."
+#~ "Try using different words to describe the problem you're having or the topic "
+#~ "you want help with."
 #~ msgstr ""
-#~ "سعی کنید برای شرح مشکلی که دارید یا موضوعی که در مورد آن راهنمایی می‌خواهید از "
-#~ "کلمات دیگری استفاده کنید."
+#~ "سعی کنید برای شرح مشکلی که دارید یا موضوعی که در مورد آن راهنمایی می‌خواهید "
+#~ "از کلمات دیگری استفاده کنید."
 
 #~ msgid "Help Contents"
 #~ msgstr "محتویات راهنما"
@@ -1445,11 +1454,11 @@ msgstr "مستندات;اطلاعات;راهنما;"
 #~ msgstr "YelpTocPager:شمارش مکث منفی است."
 
 #~ msgid ""
-#~ "The table of contents could not be processed. The file ‘%s’ is either missing or "
-#~ "is not a valid XSLT stylesheet."
+#~ "The table of contents could not be processed. The file ‘%s’ is either "
+#~ "missing or is not a valid XSLT stylesheet."
 #~ msgstr ""
-#~ "پردازش فهرست مندرجات ممکن نیست. پرونده‌ی «‌%s» یا وجود ندارد و یا صفحه‌ی سبک XSLT "
-#~ "معتبری نیست."
+#~ "پردازش فهرست مندرجات ممکن نیست. پرونده‌ی «‌%s» یا وجود ندارد و یا صفحه‌ی سبک "
+#~ "XSLT معتبری نیست."
 
 #~ msgid "Read man page for %s"
 #~ msgstr "خواندن صفحه‌ی راهنمای man برای %s"
@@ -1548,11 +1557,11 @@ msgstr "مستندات;اطلاعات;راهنما;"
 #~ msgstr "جستجو در این نسخه پشتیبانی نمی‌شود."
 
 #~ msgid ""
-#~ "SGML documents are no longer supported. Please ask the author of the document to "
-#~ "convert to XML."
+#~ "SGML documents are no longer supported. Please ask the author of the "
+#~ "document to convert to XML."
 #~ msgstr ""
-#~ "نوشتارهای SGML دیگر پشتیبانی نمی‌شوند. لطفاً از مؤلف نوشتار بخواهید که آن را به XML "
-#~ "تبدیل کند."
+#~ "نوشتارهای SGML دیگر پشتیبانی نمی‌شوند. لطفاً از مؤلف نوشتار بخواهید که آن را "
+#~ "به XML تبدیل کند."
 
 #~ msgid "Fin_d:"
 #~ msgstr "_پیدا کردن:"
@@ -1564,23 +1573,24 @@ msgstr "مستندات;اطلاعات;راهنما;"
 #~ msgstr "پیدا کردن _قبلی"
 
 #~ msgid ""
-#~ "A transformation context could not be created for the file ‘%s’. The format may "
-#~ "not be supported."
+#~ "A transformation context could not be created for the file ‘%s’. The format "
+#~ "may not be supported."
 #~ msgstr ""
-#~ "برای پرونده‌ی «‎%s» نمی‌توان یک transformation context ایجاد کرد. ممکن است این قالب "
-#~ "پشتیبانی نشده باشد."
+#~ "برای پرونده‌ی «‎%s» نمی‌توان یک transformation context ایجاد کرد. ممکن است این "
+#~ "قالب پشتیبانی نشده باشد."
 
 #~ msgid ""
-#~ "The section ‘%s’ does not exist in this document. If you were directed to this "
-#~ "section from a Help button in an application, please report this to the "
+#~ "The section ‘%s’ does not exist in this document. If you were directed to "
+#~ "this section from a Help button in an application, please report this to the "
 #~ "maintainers of that application."
 #~ msgstr ""
-#~ "بخش «%s» در این نوشتار وجود ندارد. اگر شما از طریق دکمه‌ی راهنمای یک برنامه به این "
-#~ "بخش ارجاع داده شده‌اید، لطفاً این موضوع را به مسئول نگهداری آن برنامه اطلاع دهید."
+#~ "بخش «%s» در این نوشتار وجود ندارد. اگر شما از طریق دکمه‌ی راهنمای یک برنامه "
+#~ "به این بخش ارجاع داده شده‌اید، لطفاً این موضوع را به مسئول نگهداری آن برنامه "
+#~ "اطلاع دهید."
 
 #~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you might not "
-#~ "have permissions to read it."
+#~ "The file ‘%s’ could not be read.  This file might be missing, or you might "
+#~ "not have permissions to read it."
 #~ msgstr ""
 #~ "خواندن پرونده‌ی «‎%s» ممکن نیست .امکان دارد این پرونده مفقود شده باشد و یا شما "
 #~ "اجازه‌ی خواندن آن را نداشته باشید."
@@ -1599,14 +1609,15 @@ msgstr "مستندات;اطلاعات;راهنما;"
 #~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it is "
 #~ "improperly formatted."
 #~ msgstr ""
-#~ "تجزیه پرونده‌ی «‎%s» ممکن نیست. پرونده یا وجود ندارد و یا قالب‌بندی‌اش نامناسب است."
+#~ "تجزیه پرونده‌ی «‎%s» ممکن نیست. پرونده یا وجود ندارد و یا قالب‌بندی‌اش نامناسب "
+#~ "است."
 
 #~ msgid ""
-#~ "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, or it "
-#~ "is not a valid XSLT stylesheet."
+#~ "The document ‘%s’ could not be processed. The file ‘%s’ is either missing, "
+#~ "or it is not a valid XSLT stylesheet."
 #~ msgstr ""
-#~ "پردازش نوشتار «‎%s» ممکن نیست. پرونده‌ی «‎%s» یا وجود ندارد و یا یک صفحه‌ی سبک XSLT "
-#~ "معتبر نیست."
+#~ "پردازش نوشتار «‎%s» ممکن نیست. پرونده‌ی «‎%s» یا وجود ندارد و یا یک صفحه‌ی سبک "
+#~ "XSLT معتبر نیست."
 
 #~ msgid "Library Functions"
 #~ msgstr "توابع کتاب‌خانه‌ای"
