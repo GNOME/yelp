@@ -5,15 +5,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp 0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-20 18:03+0000\n"
-"PO-Revision-Date: 2016-09-20 20:24+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
+"POT-Creation-Date: 2016-05-03 23:01+0200\n"
+"PO-Revision-Date: 2016-10-16 18:43+0200\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-09-22 19:52+0000\n"
-"X-Generator: Launchpad (build 18204)\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Launchpad-Export-Date: 2016-05-03 20:56+0000\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -22,43 +25,43 @@ msgstr ""
 #. tooltip may also be used as the link text, if there's no link text in the
 #. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#. 
+#.
 #. <string/> - The package to install
-#. 
+#.
 #: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Instaliraj <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:143
-#: ../libyelp/yelp-lzma-decompressor.c:152
+#: ../libyelp/yelp-bz2-decompressor.c:146
+#: ../libyelp/yelp-lzma-decompressor.c:155
 msgid "Invalid compressed data"
 msgstr "Neispravno zapakirani podaci"
 
-#: ../libyelp/yelp-bz2-decompressor.c:149
-#: ../libyelp/yelp-lzma-decompressor.c:158
+#: ../libyelp/yelp-bz2-decompressor.c:152
+#: ../libyelp/yelp-lzma-decompressor.c:161
 msgid "Not enough memory"
 msgstr "Nema dovoljno memorije"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
-#: ../libyelp/yelp-mallard-document.c:298
-#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
+#: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:239
+#: ../libyelp/yelp-mallard-document.c:307
+#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:283
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Stranica ‘%s’  nije pronađena u dokumentu ‘%s’."
 
-#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
-#: ../libyelp/yelp-man-document.c:390
+#: ../libyelp/yelp-docbook-document.c:299 ../libyelp/yelp-info-document.c:373
+#: ../libyelp/yelp-man-document.c:418
 #, c-format
 msgid "The file does not exist."
 msgstr "Datoteka ne postoji."
 
-#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
-#: ../libyelp/yelp-man-document.c:400
+#: ../libyelp/yelp-docbook-document.c:309 ../libyelp/yelp-info-document.c:383
+#: ../libyelp/yelp-man-document.c:428
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Datoteka ‘%s’ ne postoji."
 
-#: ../libyelp/yelp-docbook-document.c:345
+#: ../libyelp/yelp-docbook-document.c:324
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -66,7 +69,7 @@ msgid ""
 msgstr ""
 "Datoteku '%s' nije moguće obraditi jer nije ispravno oblikovan XML dokument."
 
-#: ../libyelp/yelp-docbook-document.c:358
+#: ../libyelp/yelp-docbook-document.c:337
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -75,56 +78,56 @@ msgstr ""
 "Datoteku '%s' nije moguće obraditi jer jedna ili više uključenih datoteka "
 "nije ispravno oblikovan XML dokument."
 
-#: ../libyelp/yelp-docbook-document.c:788
+#: ../libyelp/yelp-docbook-document.c:725
 msgid "Unknown"
 msgstr "Napoznato"
 
-#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
-#: ../libyelp/yelp-man-document.c:332
+#: ../libyelp/yelp-docbook-document.c:786 ../libyelp/yelp-info-document.c:316
+#: ../libyelp/yelp-man-document.c:360
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Tražena stranica nije pronađena u dokumentu  ‘%s’."
 
-#: ../libyelp/yelp-document.c:278
+#: ../libyelp/yelp-document.c:268
 msgid "Indexed"
-msgstr "Indeksirano"
+msgstr "Popisano"
 
-#: ../libyelp/yelp-document.c:279
+#: ../libyelp/yelp-document.c:269
 msgid "Whether the document content has been indexed"
-msgstr "Označava je li sadržaj dokumenta indeksiran"
+msgstr "Treba li sadržaj dokumenta biti popisan"
 
-#: ../libyelp/yelp-document.c:287
+#: ../libyelp/yelp-document.c:277
 msgid "Document URI"
 msgstr "URI dokumenta"
 
-#: ../libyelp/yelp-document.c:288
+#: ../libyelp/yelp-document.c:278
 msgid "The URI which identifies the document"
 msgstr "URI koji identificira dokument"
 
-#: ../libyelp/yelp-document.c:1024
+#: ../libyelp/yelp-document.c:994
 #, c-format
 msgid "Search results for “%s”"
-msgstr "Rezultati pretraživanja za “%s”"
+msgstr "Rezultati pretrage za “%s”"
 
-#: ../libyelp/yelp-document.c:1036
+#: ../libyelp/yelp-document.c:1006
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Nisu pronađene odgovarajuće stranice pomoći u \"%s\"."
 
-#: ../libyelp/yelp-document.c:1042
+#: ../libyelp/yelp-document.c:1012
 msgid "No matching help pages found."
 msgstr "Nisu pronađene odgovarajuće stranice pomoći."
 
-#: ../libyelp/yelp-error.c:35
+#: ../libyelp/yelp-error.c:37
 #, c-format
 msgid "An unknown error occurred."
 msgstr "Pojavila se nepoznata greška."
 
-#: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
+#: ../libyelp/yelp-help-list.c:544 ../libyelp/yelp-help-list.c:553
 msgid "All Help Documents"
 msgstr "Svi dokumenti pomoći"
 
-#: ../libyelp/yelp-info-document.c:380
+#: ../libyelp/yelp-info-document.c:398
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -132,348 +135,419 @@ msgstr ""
 "Datoteku '%s' nije moguće obraditi jer nije ispravno oblikovana stranica "
 "informacija."
 
-#: ../libyelp/yelp-mallard-document.c:340
-#, c-format
-msgid "The directory ‘%s’ does not exist."
-msgstr "Direktorij ‘%s’ ne postoji."
-
-#: ../libyelp/yelp-search-entry.c:172
+#: ../libyelp/yelp-location-entry.c:336
 msgid "View"
 msgstr "Pogled"
 
-#: ../libyelp/yelp-search-entry.c:173
+#: ../libyelp/yelp-location-entry.c:337
 msgid "A YelpView instance to control"
-msgstr "YelpView primjerak upravljanj"
+msgstr "Primjerak upravljanja Yelp pogleda"
 
-#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
+#: ../libyelp/yelp-location-entry.c:352
 msgid "Bookmarks"
 msgstr "Zabilješke"
 
-#: ../libyelp/yelp-search-entry.c:189
+#: ../libyelp/yelp-location-entry.c:353
 msgid "A YelpBookmarks implementation instance"
 msgstr "Primjerak implementacije Yelp zabilješka"
 
-#: ../libyelp/yelp-search-entry.c:433
+#: ../libyelp/yelp-location-entry.c:369
+msgid "Enable Search"
+msgstr "Omogući pretragu"
+
+#: ../libyelp/yelp-location-entry.c:370
+msgid "Whether the location entry can be used as a search field"
+msgstr "Treba li se lokacija upisa koristiti kao polje za pretragu"
+
+#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
+msgid "Search..."
+msgstr "Pretraga..."
+
+#: ../libyelp/yelp-location-entry.c:783
+msgid "Clear the search text"
+msgstr "Ukloni traženi tekst"
+
+#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
+msgid "Bookmark this page"
+msgstr "Zabilježi ovu stranicu"
+
+#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
+msgid "Remove bookmark"
+msgstr "Ukloni zabilješku"
+
+#: ../libyelp/yelp-location-entry.c:1154
 #, c-format
 msgid "Search for “%s”"
 msgstr "Pretraži \"%s\""
 
-#: ../libyelp/yelp-settings.c:148
+#: ../libyelp/yelp-location-entry.c:1458
+msgid "Loading"
+msgstr "Učitavanje"
+
+#: ../libyelp/yelp-mallard-document.c:346
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Direktorij ‘%s’ ne postoji."
+
+#: ../libyelp/yelp-settings.c:156
 msgid "GtkSettings"
 msgstr "GtkPostavke"
 
-#: ../libyelp/yelp-settings.c:149
-msgid "A GtkSettings object to get settings from"
-msgstr "Objekt GtkSettings iz kojeg se dobivaju postavke"
-
 #: ../libyelp/yelp-settings.c:157
-msgid "GtkIconTheme"
-msgstr "GtkIcon tema"
+msgid "A GtkSettings object to get settings from"
+msgstr "Objekt GtkPostavke iz kojeg se dobivaju postavke"
 
-#: ../libyelp/yelp-settings.c:158
-msgid "A GtkIconTheme object to get icons from"
-msgstr "Objekt GtkIcon tema iz kojeg se dobivaju ikone"
+#: ../libyelp/yelp-settings.c:165
+msgid "GtkIconTheme"
+msgstr "GtkIkon tema"
 
 #: ../libyelp/yelp-settings.c:166
+msgid "A GtkIconTheme object to get icons from"
+msgstr "Objekt GtkIkon tema iz kojeg se dobivaju ikone"
+
+#: ../libyelp/yelp-settings.c:174
 msgid "Font Adjustment"
 msgstr "Prilagodba slova"
 
-#: ../libyelp/yelp-settings.c:167
+#: ../libyelp/yelp-settings.c:175
 msgid "A size adjustment to add to font sizes"
 msgstr "Prilagodba veličine koja se dodaje veličinama slova"
 
-#: ../libyelp/yelp-settings.c:175
+#: ../libyelp/yelp-settings.c:183
 msgid "Show Text Cursor"
 msgstr "Prikaži pokazivač teksta"
 
-#: ../libyelp/yelp-settings.c:176
+#: ../libyelp/yelp-settings.c:184
 msgid "Show the text cursor or caret for accessible navigation"
 msgstr "Prikaži pokazivač teksta ili \"^\" za prilagođenu navigaciju"
 
-#: ../libyelp/yelp-settings.c:184
+#: ../libyelp/yelp-settings.c:192
 msgid "Editor Mode"
 msgstr "Način uređivanja"
 
-#: ../libyelp/yelp-settings.c:185
+#: ../libyelp/yelp-settings.c:193
 msgid "Enable features useful to editors"
-msgstr "Omogućuje značajke korisne uređivačima"
+msgstr "Omogućuje značajke korisne urediteljima"
 
-#: ../libyelp/yelp-sqlite-storage.c:145
+#: ../libyelp/yelp-sqlite-storage.c:149
 msgid "Database filename"
 msgstr "Naziv datoteke baze podataka"
 
-#: ../libyelp/yelp-sqlite-storage.c:146
+#: ../libyelp/yelp-sqlite-storage.c:150
 msgid "The filename of the sqlite database"
 msgstr "Naziv sqlite baze podataka"
 
-#: ../libyelp/yelp-transform.c:164
+#: ../libyelp/yelp-transform.c:171
 msgid "XSLT Stylesheet"
 msgstr "XSLT stilski predložak"
 
-#: ../libyelp/yelp-transform.c:165
+#: ../libyelp/yelp-transform.c:172
 msgid "The location of the XSLT stylesheet"
 msgstr "Lokacija XSLT stilskog predloška"
 
-#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
+#: ../libyelp/yelp-transform.c:380 ../libyelp/yelp-transform.c:395
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "XSLT stilski predložak '%s' nije pronađen ili je neispravan."
 
-#: ../libyelp/yelp-transform.c:518
+#: ../libyelp/yelp-transform.c:529
 msgid "No href attribute found on yelp:document\n"
 msgstr "Nije pronađeno href svojstvo u yelp:document\n"
 
-#: ../libyelp/yelp-transform.c:533
+#: ../libyelp/yelp-transform.c:544
 msgid "Out of memory"
 msgstr "Nedovoljno memorije"
 
-#: ../libyelp/yelp-view.c:253
-msgid "C_opy Code Block"
-msgstr "K_opiraj blok kôda"
+#: ../libyelp/yelp-view.c:131
+msgid "_Print..."
+msgstr "_Ispiši..."
 
-#: ../libyelp/yelp-view.c:258
-msgid "_Copy Link Location"
-msgstr "_Kopiraj lokaciju poveznice"
+#: ../libyelp/yelp-view.c:136
+msgid "_Back"
+msgstr "_Natrag"
 
-#: ../libyelp/yelp-view.c:263
-msgid "_Open Link"
-msgstr "_Otvori poveznicu"
+#: ../libyelp/yelp-view.c:141
+msgid "_Forward"
+msgstr "_Naprijed"
 
-#: ../libyelp/yelp-view.c:268
-msgid "Open Link in New _Window"
-msgstr "Otvori poveznicu u novom _prozoru"
+#: ../libyelp/yelp-view.c:146
+msgid "_Previous Page"
+msgstr "_Prijašnja stranica"
 
-#: ../libyelp/yelp-view.c:278
-msgid "_Install Packages"
-msgstr "_Instaliraj pakete"
+#: ../libyelp/yelp-view.c:151
+msgid "_Next Page"
+msgstr "_Sljedeća stranica"
 
-#: ../libyelp/yelp-view.c:283
-msgid "Save Code _Block As…"
-msgstr "Spremi blok _kôda kao"
-
-#: ../libyelp/yelp-view.c:298
-msgid "_Copy Text"
-msgstr "_Kopiraj tekst"
-
-#: ../libyelp/yelp-view.c:525
+#: ../libyelp/yelp-view.c:423
 msgid "Yelp URI"
 msgstr "Yelp URI"
 
-#: ../libyelp/yelp-view.c:526
+#: ../libyelp/yelp-view.c:424
 msgid "A YelpUri with the current location"
 msgstr "Yelp Uri s trenutnom lokacijom"
 
-#: ../libyelp/yelp-view.c:534
+#: ../libyelp/yelp-view.c:432
 msgid "Loading State"
 msgstr "Stanje učitavanja"
 
-#: ../libyelp/yelp-view.c:535
+#: ../libyelp/yelp-view.c:433
 msgid "The loading state of the view"
 msgstr "Stanje učitavanja novog pogleda"
 
-#: ../libyelp/yelp-view.c:544
+#: ../libyelp/yelp-view.c:442
 msgid "Page ID"
 msgstr "ID stranice"
 
-#: ../libyelp/yelp-view.c:545
+#: ../libyelp/yelp-view.c:443
 msgid "The ID of the root page of the page being viewed"
 msgstr "ID korijenske stranice od trenutno gledane stranice"
 
-#: ../libyelp/yelp-view.c:553
+#: ../libyelp/yelp-view.c:451
 msgid "Root Title"
 msgstr "Korijenski naslov"
 
-#: ../libyelp/yelp-view.c:554
+#: ../libyelp/yelp-view.c:452
 msgid "The title of the root page of the page being viewed"
 msgstr "Naslov korijenske stranice od trenutno gledane stranice"
 
-#: ../libyelp/yelp-view.c:562
+#: ../libyelp/yelp-view.c:460
 msgid "Page Title"
 msgstr "Naslov stranice"
 
-#: ../libyelp/yelp-view.c:563
+#: ../libyelp/yelp-view.c:461
 msgid "The title of the page being viewed"
 msgstr "Naslov stranice koja se pregledava"
 
-#: ../libyelp/yelp-view.c:571
+#: ../libyelp/yelp-view.c:469
 msgid "Page Description"
 msgstr "Opis stranice"
 
-#: ../libyelp/yelp-view.c:572
+#: ../libyelp/yelp-view.c:470
 msgid "The description of the page being viewed"
 msgstr "Opis trenutno gledane stranice"
 
-#: ../libyelp/yelp-view.c:580
+#: ../libyelp/yelp-view.c:478
 msgid "Page Icon"
 msgstr "Ikona stranice"
 
-#: ../libyelp/yelp-view.c:581
+#: ../libyelp/yelp-view.c:479
 msgid "The icon of the page being viewed"
 msgstr "Ikona stranice koja se pregledava"
 
-#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2194
-#, c-format
-msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "URI '%s' ne usmjerava na ispravnu stranicu."
-
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2200
-#, c-format
-msgid "The URI does not point to a valid page."
-msgstr "URI ne usmjerava na ispravnu stranicu."
-
-#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2206
-#, c-format
-msgid "The URI ‘%s’ could not be parsed."
-msgstr "URI '%s' se ne može obraditi."
-
-#: ../libyelp/yelp-view.c:842
-#, c-format
-msgid "Unknown Error."
-msgstr "Nepoznata greška."
-
-#: ../libyelp/yelp-view.c:996
+#: ../libyelp/yelp-view.c:720
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "Nemate PackageKit. Paket instalira poveznicu potrebnu za PackageKit."
 
-#: ../libyelp/yelp-view.c:1243
+#: ../libyelp/yelp-view.c:1014
 msgid "Save Image"
 msgstr "Spremi sliku"
 
-#: ../libyelp/yelp-view.c:1342
+#: ../libyelp/yelp-view.c:1109
 msgid "Save Code"
 msgstr "Spremi kôd"
 
-#: ../libyelp/yelp-view.c:1438
+#: ../libyelp/yelp-view.c:1272
 #, c-format
 msgid "Send email to %s"
 msgstr "Pošalji e-poštu na %s"
 
-#: ../libyelp/yelp-view.c:1542
-msgid "_Save Image As…"
-msgstr "_Spremi sliku kao…"
+#: ../libyelp/yelp-view.c:1287
+msgid "_Install Packages"
+msgstr "_Instaliraj pakete"
 
-#: ../libyelp/yelp-view.c:1543
-msgid "_Save Video As…"
-msgstr "_Spremi snimku kao…"
+#: ../libyelp/yelp-view.c:1295
+msgid "_Open Link"
+msgstr "_Otvori poveznicu"
 
-#: ../libyelp/yelp-view.c:1551
-msgid "S_end Image To…"
-msgstr "P_ošalji sliku u..."
+#: ../libyelp/yelp-view.c:1302
+msgid "_Copy Link Location"
+msgstr "_Kopiraj lokaciju poveznice"
 
-#: ../libyelp/yelp-view.c:1552
-msgid "S_end Video To…"
-msgstr "P_ošalji snimku u..."
+#: ../libyelp/yelp-view.c:1308
+msgid "Open Link in New _Window"
+msgstr "Otvori poveznicu u novom _prozoru"
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1360
+msgid "_Save Image As..."
+msgstr "_Spremi sliku kao..."
+
+#: ../libyelp/yelp-view.c:1362
+msgid "_Save Video As..."
+msgstr "_Spremi snimku kao..."
+
+#: ../libyelp/yelp-view.c:1369
+msgid "S_end Image To..."
+msgstr "P_ošalji sliku na..."
+
+#: ../libyelp/yelp-view.c:1371
+msgid "S_end Video To..."
+msgstr "P_ošalji snimku na..."
+
+#: ../libyelp/yelp-view.c:1382
+msgid "_Copy Text"
+msgstr "_Kopiraj tekst"
+
+#: ../libyelp/yelp-view.c:1395
+msgid "C_opy Code Block"
+msgstr "K_opiraj blok kôda"
+
+#: ../libyelp/yelp-view.c:1400
+msgid "Save Code _Block As..."
+msgstr "Spremi _blok kôda kao..."
+
+#: ../libyelp/yelp-view.c:1507
+#, c-format
+msgid "See all search results for “%s”"
+msgstr "Pregledajte sve rezultate pretrage za \"%s\""
+
+#: ../libyelp/yelp-view.c:1628
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Nemoguće učitatavanje dokumenta za ‘%s’"
 
-#: ../libyelp/yelp-view.c:1900
+#: ../libyelp/yelp-view.c:1634
 #, c-format
 msgid "Could not load a document"
-msgstr "Nemoguće učitaavanje dokumenta"
+msgstr "Nemoguće učitavanje dokumenta"
 
-#: ../libyelp/yelp-view.c:1984
+#: ../libyelp/yelp-view.c:1709
 msgid "Document Not Found"
 msgstr "Dokument nije pronađen"
 
-#: ../libyelp/yelp-view.c:1986
+#: ../libyelp/yelp-view.c:1711
 msgid "Page Not Found"
 msgstr "Stranica nije pronađena"
 
-#: ../libyelp/yelp-view.c:1989
+#: ../libyelp/yelp-view.c:1714
 msgid "Cannot Read"
 msgstr "Nemoguće čitatanje"
 
-#: ../libyelp/yelp-view.c:1995
+#: ../libyelp/yelp-view.c:1720
 msgid "Unknown Error"
 msgstr "Nepoznata greška"
 
-#: ../src/yelp-application.c:60
+#: ../libyelp/yelp-view.c:1888
+#, c-format
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "URI '%s' se ne usmjerava na ispravnu stranicu."
+
+#: ../libyelp/yelp-view.c:1894
+#, c-format
+msgid "The URI does not point to a valid page."
+msgstr "URI se ne usmjerava na ispravnu stranicu."
+
+#: ../libyelp/yelp-view.c:1900
+#, c-format
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "URI '%s' se ne može obraditi."
+
+#: ../src/yelp-application.c:65
 msgid "Turn on editor mode"
 msgstr "Uključi način uređivanja"
 
-#: ../src/yelp-application.c:272 ../src/yelp-window.c:1180
-#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:128
+msgid "_Larger Text"
+msgstr "_Veći tekst"
+
+#: ../src/yelp-application.c:130
+msgid "Increase the size of the text"
+msgstr "Povećaj veličinu teksta"
+
+#: ../src/yelp-application.c:133
+msgid "_Smaller Text"
+msgstr "_Manji tekst"
+
+#: ../src/yelp-application.c:135
+msgid "Decrease the size of the text"
+msgstr "Smanji veličinu teksta"
+
+#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
 msgid "Help"
 msgstr "Pomoć"
 
-#: ../src/yelp-application.c:322
-msgid "New Window"
-msgstr "Novi prozor"
+#: ../src/yelp-application.c:288
+msgid "Show Text _Cursor"
+msgstr "Prikaži _pokazivača teksta"
 
-#: ../src/yelp-application.c:326
-msgid "Larger Text"
-msgstr "Veći tekst"
+#: ../src/yelp-window.c:236
+msgid "_Page"
+msgstr "_Stranica"
 
-#: ../src/yelp-application.c:327
-msgid "Smaller Text"
-msgstr "Manji tekst"
+#: ../src/yelp-window.c:237
+msgid "_View"
+msgstr "_Pogled"
 
-#: ../src/yelp-window.c:211
+#: ../src/yelp-window.c:238
+msgid "_Go"
+msgstr "_Idi"
+
+#: ../src/yelp-window.c:239
+msgid "_Bookmarks"
+msgstr "_Zabilješke"
+
+#: ../src/yelp-window.c:242
+msgid "_New Window"
+msgstr "_Novi prozor"
+
+#: ../src/yelp-window.c:247
+msgid "_Close"
+msgstr "_Zatvori"
+
+#: ../src/yelp-window.c:252
+msgid "_All Documents"
+msgstr "_Svi dokumenti"
+
+#: ../src/yelp-window.c:256
+msgid "_Add Bookmark"
+msgstr "_Dodaj zabilješku"
+
+#: ../src/yelp-window.c:261
+msgid "_Remove Bookmark"
+msgstr "_Ukloni zabilješku"
+
+#: ../src/yelp-window.c:265
+msgid "Find in Page..."
+msgstr "Pretraži na stranici..."
+
+#: ../src/yelp-window.c:275
+msgid "Open Location"
+msgstr "Otvori lokaciju"
+
+#: ../src/yelp-window.c:301
 msgid "Application"
 msgstr "Aplikacija"
 
-#: ../src/yelp-window.c:212
+#: ../src/yelp-window.c:302
 msgid "A YelpApplication instance that controls this window"
-msgstr "Primjerak Yelp aplikacije koji kontrolira ovaj prozor"
+msgstr "Primjerak Yelp aplikacije koji upravlja ovim prozorom"
 
-#: ../src/yelp-window.c:343
-msgid "Back"
-msgstr "Natrag"
+#: ../src/yelp-window.c:429
+msgid "Read Link _Later"
+msgstr "Pročitaj poveznicu _kasnije"
 
-#: ../src/yelp-window.c:350
-msgid "Forward"
-msgstr "Naprijed"
+#: ../src/yelp-window.c:526
+msgid "Find:"
+msgstr "Pretraži:"
 
-#: ../src/yelp-window.c:361
-msgid "Menu"
-msgstr "Izbornik"
+#: ../src/yelp-window.c:548
+msgid "Read Later"
+msgstr "Pročitaj kasnije"
 
-#: ../src/yelp-window.c:366
-msgid "Find…"
-msgstr "Pretraži..."
+#: ../src/yelp-window.c:1180
+#, c-format
+msgid "%i match"
+msgid_plural "%i matches"
+msgstr[0] "%i pronađen"
+msgstr[1] "%i pronađena"
+msgstr[2] "%i pronađenih"
 
-#: ../src/yelp-window.c:367
-msgid "Print…"
-msgstr "Ispis..."
+#: ../src/yelp-window.c:1189
+msgid "No matches"
+msgstr "Bez rezultata"
 
-#: ../src/yelp-window.c:372
-msgid "Previous Page"
-msgstr "Prijašnja stranica"
+#: ../yelp.desktop.in.in.h:1
+msgid "documentation;information;manual;"
+msgstr "dokumentacija;informacija;priručnik;"
 
-#: ../src/yelp-window.c:373
-msgid "Next Page"
-msgstr "Sljedeća stranica"
-
-#: ../src/yelp-window.c:378
-msgid "All Help"
-msgstr "Sva pomoć"
-
-#: ../src/yelp-window.c:400
-msgid "Search (Ctrl+S)"
-msgstr "Pretraživanje (Ctrl+S)"
-
-#: ../src/yelp-window.c:434
-msgid "No bookmarks"
-msgstr "Nema zabilješka"
-
-#: ../src/yelp-window.c:442
-msgid "Add Bookmark"
-msgstr "Dodaj zabilješku"
-
-#: ../src/yelp-window.c:448
-msgid "Remove Bookmark"
-msgstr "Ukloni zabilješku"
-
-#: ../yelp.desktop.in.in.h:2
-msgid "Get help with Unity"
-msgstr "Nabavite pomoći za Unity"
-
-#: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;help;"
-msgstr "dokumentacija;informacija;priručnik;pomoć;"
-
-#~ msgid "documentation;information;manual;"
-#~ msgstr "dokumentacija;informacija;priručnik;"
+#~ msgid "Get help with Unity"
+#~ msgstr "Nabavite pomoći za Unity"
