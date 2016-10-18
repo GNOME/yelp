@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-11-08 15:03+0000\n"
-"PO-Revision-Date: 2015-11-08 14:19-0700\n"
+"POT-Creation-Date: 2016-08-19 16:59+0000\n"
+"PO-Revision-Date: 2016-10-18 17:07+0800\n"
 "Last-Translator: Jeff Bai <jeffbai@aosc.xyz>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.9\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -112,17 +112,17 @@ msgstr "文档 URI"
 msgid "The URI which identifies the document"
 msgstr "用以识别文档的 URI"
 
-#: ../libyelp/yelp-document.c:1022
+#: ../libyelp/yelp-document.c:1024
 #, c-format
 msgid "Search results for “%s”"
 msgstr "“%s”的搜索结果"
 
-#: ../libyelp/yelp-document.c:1034
+#: ../libyelp/yelp-document.c:1036
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "未在 %s 中找到帮助页面。"
 
-#: ../libyelp/yelp-document.c:1040
+#: ../libyelp/yelp-document.c:1042
 msgid "No matching help pages found."
 msgstr "未找到帮助页面。"
 
@@ -407,20 +407,20 @@ msgstr "搜索包含此文档的软件包。"
 msgid "Turn on editor mode"
 msgstr "打开编辑器模式"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
 #: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "帮助"
 
-#: ../src/yelp-application.c:320
+#: ../src/yelp-application.c:321
 msgid "New Window"
 msgstr "新建窗口"
 
-#: ../src/yelp-application.c:324
+#: ../src/yelp-application.c:325
 msgid "Larger Text"
 msgstr "更大字体"
 
-#: ../src/yelp-application.c:325
+#: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "更小字体"
 
@@ -485,8 +485,8 @@ msgid "Get help with GNOME"
 msgstr "获得 GNOME 的帮助"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "documentation;information;manual;文档;信息;手册;"
+msgid "documentation;information;manual;help;"
+msgstr "documentation;information;manual;help;文档;信息;手册;帮助;"
 
 #~ msgid "See all search results for “%s”"
 #~ msgstr "查看“%s”的全部搜索结果"
