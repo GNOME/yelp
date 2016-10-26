@@ -33,7 +33,7 @@ PKG_CHECK_MODULES(YELP,
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
 	sqlite3
-	webkit2gtk-4.0 >= 2.7.1
+	webkit2gtk-4.0 >= 2.15.1
 	yelp-xsl >= 3.12.0
 ])
 AC_SUBST([YELP_CFLAGS])
