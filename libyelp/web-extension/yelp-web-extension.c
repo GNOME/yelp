@@ -19,13 +19,11 @@
  */
 
 #include <webkit2/webkit-web-extension.h>
+#include <webkitdom/webkitdom.h>
 #include <string.h>
 #include <stdlib.h>
 #include "yelp-uri.h"
 #include "yelp-uri-builder.h"
-
-#define WEBKIT_DOM_USE_UNSTABLE_API
-#include <webkitdom/WebKitDOMElementUnstable.h>
 
 static YelpUri *current_uri;
 
