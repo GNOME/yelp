@@ -166,6 +166,8 @@ yelp_magic_decompressor_convert (GConverter *converter,
     *bytes_read = txfer_size;
     *bytes_written = txfer_size;
     
+    if (flags & G_CONVERTER_INPUT_AT_END)
+        return G_CONVERTER_FINISHED;
     return G_CONVERTER_CONVERTED;
 }
 
