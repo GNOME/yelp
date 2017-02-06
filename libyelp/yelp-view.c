@@ -1758,8 +1758,7 @@ view_print_action (GAction *action, GVariant *parameter, YelpView *view)
     gtk_print_settings_set (settings,
                             GTK_PRINT_SETTINGS_OUTPUT_BASENAME,
                             priv->page_title);
-    gtk_print_operation_set_print_settings (GTK_PRINT_OPERATION (print_operation),
-                                            settings);
+    webkit_print_operation_set_print_settings (print_operation, settings);
 
     webkit_print_operation_run_dialog (print_operation, GTK_WINDOW (window));
     g_object_unref (print_operation);
