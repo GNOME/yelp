@@ -185,7 +185,7 @@ request_async_data_new (WebKitURISchemeRequest *request, gchar *page_id)
 {
     RequestAsyncData *data;
 
-    data = g_slice_new (RequestAsyncData);
+    data = g_slice_new0 (RequestAsyncData);
     data->request = g_object_ref (request);
     data->page_id = g_strdup (page_id);
     return data;
