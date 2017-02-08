@@ -787,7 +787,6 @@ document_callback (YelpDocument       *document,
                                       stream,
                                       content_length,
                                       mime_type);
-    request_async_data_free (data);
     g_free (mime_type);
     g_object_unref (stream);
 }
@@ -810,7 +809,8 @@ help_cb_uri_resolved (YelpUri                *uri,
                                     data->page_id,
                                     NULL,
                                     (YelpDocumentCallback) document_callback,
-                                    data);
+                                    data,
+                                    (GDestroyNotify) request_async_data_free);
         g_object_unref (document);
 
     } else {

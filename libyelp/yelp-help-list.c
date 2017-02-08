@@ -43,7 +43,8 @@ static gboolean       help_list_request_page         (YelpDocument          *doc
                                                       const gchar           *page_id,
                                                       GCancellable          *cancellable,
                                                       YelpDocumentCallback   callback,
-                                                      gpointer               user_data);
+                                                      gpointer               user_data,
+                                                      GDestroyNotify         notify);
 static void           help_list_think                (YelpHelpList          *list);
 static void           help_list_handle_page          (YelpHelpList          *list,
                                                       const gchar           *page_id);
@@ -179,7 +180,8 @@ help_list_request_page (YelpDocument          *document,
                         const gchar           *page_id,
                         GCancellable          *cancellable,
                         YelpDocumentCallback   callback,
-                        gpointer               user_data)
+                        gpointer               user_data,
+                        GDestroyNotify         notify)
 {
     gboolean handled;
     YelpHelpListPrivate *priv = GET_PRIV (document);
@@ -192,7 +194,8 @@ help_list_request_page (YelpDocument          *document,
                                                                          page_id,
                                                                          cancellable,
                                                                          callback,
-                                                                         user_data);
+                                                                         user_data,
+                                                                         notify);
     if (handled) {
         return TRUE;
     }

@@ -63,7 +63,8 @@ struct _YelpDocumentClass {
                                                      const gchar          *page_id,
                                                      GCancellable         *cancellable,
                                                      YelpDocumentCallback  callback,
-                                                     gpointer              user_data);
+                                                     gpointer              user_data,
+                                                     GDestroyNotify        notify);
     const gchar * (*read_contents)                  (YelpDocument         *document,
                                                      const gchar          *page_id);
     void          (*finish_read)                    (YelpDocument         *document,
@@ -85,7 +86,8 @@ gboolean          yelp_document_request_page        (YelpDocument         *docum
                                                      const gchar          *page_id,
                                                      GCancellable         *cancellable,
                                                      YelpDocumentCallback  callback,
-                                                     gpointer              user_data);
+                                                     gpointer              user_data,
+                                                     GDestroyNotify        notify);
 void              yelp_document_clear_contents      (YelpDocument         *document);
 gchar **          yelp_document_get_requests        (YelpDocument         *document);
 

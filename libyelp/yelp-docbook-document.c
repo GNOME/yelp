@@ -60,7 +60,8 @@ static gboolean       docbook_request_page      (YelpDocument         *document,
                                                  const gchar          *page_id,
                                                  GCancellable         *cancellable,
                                                  YelpDocumentCallback  callback,
-                                                 gpointer              user_data);
+                                                 gpointer              user_data,
+                                                 GDestroyNotify        notify);
 
 static void           docbook_process           (YelpDocbookDocument  *docbook);
 static void           docbook_disconnect        (YelpDocbookDocument  *docbook);
@@ -239,7 +240,8 @@ docbook_request_page (YelpDocument         *document,
                       const gchar          *page_id,
                       GCancellable         *cancellable,
                       YelpDocumentCallback  callback,
-                      gpointer              user_data)
+                      gpointer              user_data,
+                      GDestroyNotify        notify)
 {
     YelpDocbookDocumentPrivate *priv = GET_PRIV (document);
     gchar *docuri;
@@ -257,7 +259,8 @@ docbook_request_page (YelpDocument         *document,
                                                                                 page_id,
                                                                                 cancellable,
                                                                                 callback,
-                                                                                user_data);
+                                                                                user_data,
+                                                                                notify);
     if (handled) {
         return handled;
     }

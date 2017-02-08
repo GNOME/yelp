@@ -66,7 +66,8 @@ static gboolean       document_request_page            (YelpDocument            
 							const gchar             *page_id,
 							GCancellable            *cancellable,
 							YelpDocumentCallback     callback,
-							gpointer                 user_data);
+							gpointer                 user_data,
+							GDestroyNotify           notify);
 static const gchar *  document_read_contents           (YelpDocument            *document,
 							const gchar             *page_id);
 static void           document_finish_read             (YelpDocument            *document,
@@ -181,7 +182,8 @@ document_request_page (YelpDocument         *document,
 		       const gchar          *page_id,
 		       GCancellable         *cancellable,
 		       YelpDocumentCallback  callback,
-		       gpointer              user_data)
+		       gpointer              user_data,
+		       GDestroyNotify        notify)
 {
     YelpSimpleDocument *simple = YELP_SIMPLE_DOCUMENT (document);
     Request *request;

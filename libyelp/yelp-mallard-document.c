@@ -79,7 +79,8 @@ static gboolean       mallard_request_page      (YelpDocument         *document,
                                                  const gchar          *page_id,
                                                  GCancellable         *cancellable,
                                                  YelpDocumentCallback  callback,
-                                                 gpointer              user_data);
+                                                 gpointer              user_data,
+                                                 GDestroyNotify        notify);
 
 static void           transform_chunk_ready     (YelpTransform        *transform,
                                                  gchar                *chunk_id,
@@ -250,7 +251,8 @@ mallard_request_page (YelpDocument         *document,
                       const gchar          *page_id,
                       GCancellable         *cancellable,
                       YelpDocumentCallback  callback,
-                      gpointer              user_data)
+                      gpointer              user_data,
+                      GDestroyNotify        notify)
 {
     YelpMallardDocumentPrivate *priv = GET_PRIV (document);
     gchar *docuri;
@@ -268,7 +270,8 @@ mallard_request_page (YelpDocument         *document,
                                                                                 page_id,
                                                                                 cancellable,
                                                                                 callback,
-                                                                                user_data);
+                                                                                user_data,
+                                                                                notify);
     if (handled) {
         return TRUE;
     }
