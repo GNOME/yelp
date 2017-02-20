@@ -2,15 +2,16 @@
 #
 # Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>, 2005.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2006, 2007, 2008, 2009, 2011.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013, 2014, 2015.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013, 2014, 2015, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 13:46+0200\n"
-"PO-Revision-Date: 2015-10-09 22:53+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-08-19 16:59+0000\n"
+"PO-Revision-Date: 2017-02-19 19:44+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
-"Language-Team: Basque <Basque <librezale@librezale.org>>\n"
+"Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,17 +105,17 @@ msgstr "Dokumentuaren URIa"
 msgid "The URI which identifies the document"
 msgstr "Dokumentua identifikatzen duen URIa."
 
-#: ../libyelp/yelp-document.c:1022
+#: ../libyelp/yelp-document.c:1024
 #, c-format
 msgid "Search results for “%s”"
 msgstr "'%s' bilaketaren emaitzak"
 
-#: ../libyelp/yelp-document.c:1034
+#: ../libyelp/yelp-document.c:1036
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Ez da bat datorren laguntzako orrialderik aurkitu \"%s\"(e)n."
 
-#: ../libyelp/yelp-document.c:1040
+#: ../libyelp/yelp-document.c:1042
 msgid "No matching help pages found."
 msgstr "Ez da bat datorren laguntzako orrialderik aurkitu."
 
@@ -401,20 +402,20 @@ msgstr "Bilatu dokumentu hau daukaten paketeak."
 msgid "Turn on editor mode"
 msgstr "Aktibatu editorearen modua"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
 #: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Laguntza"
 
-#: ../src/yelp-application.c:320
+#: ../src/yelp-application.c:321
 msgid "New Window"
 msgstr "Leiho berria"
 
-#: ../src/yelp-application.c:324
+#: ../src/yelp-application.c:325
 msgid "Larger Text"
 msgstr "Handitu testua"
 
-#: ../src/yelp-application.c:325
+#: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Txikiagotu testua"
 
@@ -479,8 +480,9 @@ msgid "Get help with GNOME"
 msgstr "Eskuratu GNOMEri buruzko laguntza"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "dokumentazioa;informazioa;eskuliburua;"
+#| msgid "documentation;information;manual;"
+msgid "documentation;information;manual;help;"
+msgstr "dokumentazioa;informazioa;eskuliburua;laguntza;"
 
 #~ msgid "See all search results for “%s”"
 #~ msgstr "Ikusi '%s' bilaketaren emaitza guztiak"
