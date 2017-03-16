@@ -357,12 +357,30 @@ YelpApplication *
 yelp_application_new (void)
 {
     YelpApplication *app;
+    char *app_id = NULL;
+    char *yelp = NULL;
+
+    if (g_file_test ("/.flatpak-info", G_FILE_TEST_EXISTS)) {
+        GKeyFile *kf = g_key_file_new ();
+        g_key_file_load_from_file (kf, "/.flatpak-info", G_KEY_FILE_NONE, NULL);
+        if (g_key_file_has_group (kf, "Application"))
+          app_id = g_key_file_get_string (kf, "Application", "name", NULL);
+        else
+          app_id = g_key_file_get_string (kf, "Runtime", "name", NULL);
+        yelp = g_strconcat (app_id, ".Help", NULL);
+        g_key_file_unref (kf);
+    }
+    else {
+        yelp = g_strdup ("org.gnome.Yelp");
+    }
 
     app = g_object_new (YELP_TYPE_APPLICATION,
-                        "application-id", "org.gnome.Yelp",
+                        "application-id", yelp,
                         "flags", G_APPLICATION_HANDLES_COMMAND_LINE,
                         "inactivity-timeout", 5000,
                         NULL);
+    g_free (app_id);
+    g_free (yelp);
 
     return app;
 }
