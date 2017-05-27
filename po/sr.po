@@ -9,19 +9,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&ke"
-"ywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-08-19 16:59+0000\n"
-"PO-Revision-Date: 2016-08-28 11:40+0200\n"
-"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=yelp&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-04-08 17:07+0000\n"
+"PO-Revision-Date: 2017-05-20 17:13+0200\n"
+"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
-"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
+"X-Generator: Poedit 2.0.2\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -47,26 +48,26 @@ msgstr "Неисправни сажети подаци"
 msgid "Not enough memory"
 msgstr "Нема довољно меморије"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
-#: ../libyelp/yelp-mallard-document.c:298
-#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
+#: ../libyelp/yelp-docbook-document.c:285 ../libyelp/yelp-info-document.c:221
+#: ../libyelp/yelp-mallard-document.c:301
+#: ../libyelp/yelp-mallard-document.c:455 ../libyelp/yelp-man-document.c:255
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Страница „%s“ није нађена у документу „%s“."
 
-#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
-#: ../libyelp/yelp-man-document.c:390
+#: ../libyelp/yelp-docbook-document.c:323 ../libyelp/yelp-info-document.c:358
+#: ../libyelp/yelp-man-document.c:393
 #, c-format
 msgid "The file does not exist."
 msgstr "Датотека не постоји."
 
-#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
-#: ../libyelp/yelp-man-document.c:400
+#: ../libyelp/yelp-docbook-document.c:333 ../libyelp/yelp-info-document.c:368
+#: ../libyelp/yelp-man-document.c:403
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Датотека „%s“ не постоји."
 
-#: ../libyelp/yelp-docbook-document.c:345
+#: ../libyelp/yelp-docbook-document.c:348
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -75,7 +76,7 @@ msgstr ""
 "Не могу да рашчланим датотеку „%s“ зато што не представља исправно обликован "
 "ХМЛ документ."
 
-#: ../libyelp/yelp-docbook-document.c:358
+#: ../libyelp/yelp-docbook-document.c:361
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -84,58 +85,58 @@ msgstr ""
 "Не могу да рашчланим датотеку „%s“ зато што једна или више њених укључених "
 "датотека не представља исправно обликован ХМЛ документ."
 
-#: ../libyelp/yelp-docbook-document.c:788
+#: ../libyelp/yelp-docbook-document.c:791
 msgid "Unknown"
 msgstr "Непознато"
 
-#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
-#: ../libyelp/yelp-man-document.c:332
+#: ../libyelp/yelp-docbook-document.c:853 ../libyelp/yelp-info-document.c:301
+#: ../libyelp/yelp-man-document.c:335
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Није нађена тражена страница у документу „%s“."
 
-#: ../libyelp/yelp-document.c:278
+#: ../libyelp/yelp-document.c:280
 msgid "Indexed"
 msgstr "Индекс"
 
-#: ../libyelp/yelp-document.c:279
+#: ../libyelp/yelp-document.c:281
 msgid "Whether the document content has been indexed"
 msgstr "Да ли је садржај документа индексиран или није"
 
-#: ../libyelp/yelp-document.c:287
+#: ../libyelp/yelp-document.c:289
 msgid "Document URI"
 msgstr "Адреса документа"
 
-#: ../libyelp/yelp-document.c:288
+#: ../libyelp/yelp-document.c:290
 msgid "The URI which identifies the document"
 msgstr "Адреса која одређује документ"
 
-#: ../libyelp/yelp-document.c:1024
+#: ../libyelp/yelp-document.c:1030
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Резултати претраге за „%s“"
 
-#: ../libyelp/yelp-document.c:1036
+#: ../libyelp/yelp-document.c:1042
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Нисам пронашао одговарајућу страницу помоћи у „%s“."
 
-#: ../libyelp/yelp-document.c:1042
+#: ../libyelp/yelp-document.c:1048
 msgid "No matching help pages found."
 msgstr "Нисам пронашао одговарајућу страницу помоћи."
 
-# note(slobo): одличан превод (догодила се (нека) грешка);прегледај друге 
+# note(slobo): одличан превод (догодила се (нека) грешка);прегледај друге
 # преводе и уклони све преводе типа: догодила се непозната грешка и слично
 #: ../libyelp/yelp-error.c:35
 #, c-format
 msgid "An unknown error occurred."
 msgstr "Дошло је до непознате грешке."
 
-#: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
+#: ../libyelp/yelp-help-list.c:548 ../libyelp/yelp-help-list.c:557
 msgid "All Help Documents"
 msgstr "Све документе помоћи"
 
-#: ../libyelp/yelp-info-document.c:380
+#: ../libyelp/yelp-info-document.c:383
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -143,7 +144,7 @@ msgstr ""
 "Не могу да рашчланим датотеку „%s“ зато што не представља исправно "
 "обликовану инфо страну."
 
-#: ../libyelp/yelp-mallard-document.c:340
+#: ../libyelp/yelp-mallard-document.c:343
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Директоријум „%s“ не постоји."
@@ -324,17 +325,17 @@ msgstr "Икона странице"
 msgid "The icon of the page being viewed"
 msgstr "Икона прегледане странице"
 
-#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2197
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Адреса „%s“ не указује на исправну страницу."
 
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2203
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "Адреса не указује на исправну страницу."
 
-#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2209
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Адреса „%s“ не може бити анализирана."
@@ -379,33 +380,33 @@ msgstr "Пошаљи _слику до…"
 msgid "S_end Video To…"
 msgstr "Пошаљи _видео до…"
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1893
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Не могу да учитам документ за „%s“"
 
-#: ../libyelp/yelp-view.c:1900
+#: ../libyelp/yelp-view.c:1899
 #, c-format
 msgid "Could not load a document"
 msgstr "Не могу да учитам документ"
 
-#: ../libyelp/yelp-view.c:1984
+#: ../libyelp/yelp-view.c:1983
 msgid "Document Not Found"
 msgstr "Одељци документа"
 
-#: ../libyelp/yelp-view.c:1986
+#: ../libyelp/yelp-view.c:1985
 msgid "Page Not Found"
 msgstr "Страница није нађена"
 
-#: ../libyelp/yelp-view.c:1989
+#: ../libyelp/yelp-view.c:1988
 msgid "Cannot Read"
 msgstr "Не могу да читам"
 
-#: ../libyelp/yelp-view.c:1995
+#: ../libyelp/yelp-view.c:1994
 msgid "Unknown Error"
 msgstr "Непозната грешка"
 
-#: ../libyelp/yelp-view.c:2015
+#: ../libyelp/yelp-view.c:2014
 msgid "Search for packages containing this document."
 msgstr "Тражи у осталој документацији."
 
@@ -472,7 +473,7 @@ msgstr "Сва помоћ"
 
 #: ../src/yelp-window.c:400
 msgid "Search (Ctrl+S)"
-msgstr "Тражи (Ктрл+С)"
+msgstr "Тражи (Ctrl+S)"
 
 #: ../src/yelp-window.c:434
 msgid "No bookmarks"
@@ -492,7 +493,6 @@ msgid "Get help with GNOME"
 msgstr "Потражите Гномову помоћ"
 
 #: ../yelp.desktop.in.in.h:3
-#| msgid "documentation;information;manual;"
 msgid "documentation;information;manual;help;"
 msgstr "документација;подаци;упутство;помоћ;"
 
@@ -538,7 +538,7 @@ msgstr "документација;подаци;упутство;помоћ;"
 #~ msgid "_View"
 #~ msgstr "_Преглед"
 
-# note(slobo): Ради се о кретању кроз књигу,упутство,чланак (стране); напред, 
+# note(slobo): Ради се о кретању кроз књигу,упутство,чланак (стране); напред,
 # назад, садржај и слично
 #~ msgid "_Go"
 #~ msgstr "_Страна"
