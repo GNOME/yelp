@@ -123,6 +123,41 @@ open_uri (YelpApplication *app,
           gboolean         fallback_help_list);
 
 static void
+activate_show_page (GSimpleAction *action,
+                    GVariant      *parameter,
+                    gpointer       user_data)
+{
+    YelpApplication *app = YELP_APPLICATION (user_data);
+    YelpUri *uri = yelp_uri_new (YELP_GNOME_HELP_URI);
+    gchar *xref = g_strconcat ("xref:", g_variant_get_string (parameter, NULL), NULL);
+    YelpUri *page_uri = yelp_uri_new_relative (uri, xref);
+
+    open_uri (app, page_uri, TRUE, FALSE);
+
+    g_object_unref (uri);
+    g_free (xref);
+}
+
+static void
+activate_show_search (GSimpleAction *action,
+                      GVariant      *parameter,
+                      gpointer       user_data)
+{
+    YelpApplication *app = YELP_APPLICATION (user_data);
+    YelpUri *uri = yelp_uri_new (YELP_GNOME_HELP_URI);
+    YelpUri *page_uri = yelp_uri_new_search (uri, g_variant_get_string (parameter, NULL));
+
+    open_uri (app, page_uri, TRUE, FALSE);
+
+    g_object_unref (uri);
+}
+
+static GActionEntry app_entries[] = {
+    { "show-page", activate_show_page, "s", NULL, NULL },
+    { "show-search", activate_show_search, "s", NULL, NULL },
+};
+
+static void
 yelp_application_init (YelpApplication *app)
 {
     YelpApplicationPrivate *priv = GET_PRIV (app);
@@ -287,6 +322,8 @@ yelp_application_startup (GApplication *application)
 
     /* chain up */
     G_APPLICATION_CLASS (yelp_application_parent_class)->startup (application);
+
+    g_action_map_add_action_entries (G_ACTION_MAP (app), app_entries, G_N_ELEMENTS (app_entries), app);
 
     settings = yelp_settings_get_default ();
     if (editor_mode)
