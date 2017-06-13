@@ -1,0 +1,26 @@
+<node name="/" xmlns:doc="http://www.freedesktop.org/dbus/1.0/doc.dtd">
+  <interface name='org.gnome.Shell.SearchProvider2'>
+    <method name='GetInitialResultSet'>
+      <arg type='as' name='Terms' direction='in' />
+      <arg type='as' name='Results' direction='out' />
+    </method>
+    <method name = 'GetSubsearchResultSet'>
+      <arg type='as' name='PreviousResults' direction='in' />
+      <arg type='as' name='Terms' direction='in' />
+      <arg type='as' name='Results' direction='out' />
+    </method>
+    <method name = 'GetResultMetas'>
+      <arg type='as' name='Results' direction='in' />
+      <arg type='aa{sv}' name='Metas' direction='out' />
+    </method>
+    <method name = 'ActivateResult'>
+      <arg type='s' name='Result' direction='in' />
+      <arg type='as' name='Terms' direction='in' />
+      <arg type='u' name='Timestamp' direction='in' />
+    </method>
+    <method name = 'LaunchSearch'>
+      <arg type='as' name='Terms' direction='in' />
+      <arg type='u' name='Timestamp' direction='in' />
+    </method>
+  </interface>
+</node>

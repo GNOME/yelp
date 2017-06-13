@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = po
+SUBDIRS = . search-provider po
 
 BUILT_SOURCES = \
 	$(nodist_libyelp_libyelp_la_SOURCES)
