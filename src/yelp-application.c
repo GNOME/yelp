@@ -240,7 +240,8 @@ yelp_application_cmdline (GApplication     *app,
     g_option_context_parse (context, &argc, arguments, NULL);
 
     for (i = 1; i < argc; i++) {
-        if (!strchr ((*arguments)[i], ':') && !((*arguments)[i][0] == '/')) {
+        if (!strchr ((*arguments)[i], ':') && !((*arguments)[i][0] == '/') &&
+            !g_str_equal ((*arguments)[i], "--gapplication-service")) {
             GFile *base, *new;
             gchar *cur, *newuri;
             cur = g_get_current_dir ();
