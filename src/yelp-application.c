@@ -117,6 +117,12 @@ struct _YelpApplicationPrivate {
 };
 
 static void
+open_uri (YelpApplication *app,
+          YelpUri         *uri,
+          gboolean         new_window,
+          gboolean         fallback_help_list);
+
+static void
 yelp_application_init (YelpApplication *app)
 {
     YelpApplicationPrivate *priv = GET_PRIV (app);
@@ -162,6 +168,13 @@ yelp_application_init (YelpApplication *app)
 }
 
 static void
+yelp_application_activate (GApplication *application)
+{
+    YelpApplication *app = YELP_APPLICATION (application);
+    open_uri (app, yelp_uri_new (YELP_GNOME_HELP_URI), FALSE, TRUE);
+}
+
+static void
 yelp_application_class_init (YelpApplicationClass *klass)
 {
     GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
@@ -170,6 +183,7 @@ yelp_application_class_init (YelpApplicationClass *klass)
     application_class->local_command_line = yelp_application_cmdline;
     application_class->startup = yelp_application_startup;
     application_class->command_line = yelp_application_command_line;
+    application_class->activate = yelp_application_activate;
 
     object_class->dispose = yelp_application_dispose;
     object_class->finalize = yelp_application_finalize;
@@ -419,7 +433,7 @@ yelp_application_command_line (GApplication            *application,
     argv = g_application_command_line_get_arguments (cmdline, NULL);
 
     if (argv[1] == NULL)
-        open_uri (app, yelp_uri_new (YELP_GNOME_HELP_URI), FALSE, TRUE);
+        g_application_activate (application);
 
     for (i = 1; argv[i]; i++)
         open_uri (app, yelp_uri_new (argv[i]), FALSE, FALSE);
