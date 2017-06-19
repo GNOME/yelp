@@ -605,6 +605,8 @@ resolve_file_path (YelpUri *uri)
         else {
             priv->gfile = g_file_resolve_relative_path (base_priv->gfile, path);
         }
+
+        g_object_unref (info);
     }
     else {
         gchar *cur;
