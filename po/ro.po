@@ -6,15 +6,16 @@
 # Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2010, 2011.
 # Alexandru Florescu <show_some_originality@yahoo.com>, 2011.
 # Răpițeanu Viorel-Cătălin <rapiteanu.catalin@gmail.com>, 2013.
+# Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ro\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2013-09-23 18:19+0000\n"
-"PO-Revision-Date: 2013-09-25 00:19+0300\n"
-"Last-Translator: Răpițeanu Viorel-Cătălin <rapiteanu.catalin@gmail.com>\n"
-"Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=yelp&k"
+"eywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-06-20 10:43+0000\n"
+"PO-Revision-Date: 2017-08-30 18:33+0200\n"
+"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
+"Language-Team: Gnome Romanian Translation Team\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,36 +40,36 @@ msgstr ""
 msgid "Install <string/>"
 msgstr "Instalează <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:146
-#: ../libyelp/yelp-lzma-decompressor.c:155
+#: ../libyelp/yelp-bz2-decompressor.c:143
+#: ../libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
 msgstr "Date comprimate nevalide"
 
-#: ../libyelp/yelp-bz2-decompressor.c:152
-#: ../libyelp/yelp-lzma-decompressor.c:161
+#: ../libyelp/yelp-bz2-decompressor.c:149
+#: ../libyelp/yelp-lzma-decompressor.c:158
 msgid "Not enough memory"
 msgstr "Memorie insuficientă"
 
-#: ../libyelp/yelp-docbook-document.c:264 ../libyelp/yelp-info-document.c:239
-#: ../libyelp/yelp-mallard-document.c:307
-#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:283
+#: ../libyelp/yelp-docbook-document.c:285 ../libyelp/yelp-info-document.c:221
+#: ../libyelp/yelp-mallard-document.c:301
+#: ../libyelp/yelp-mallard-document.c:455 ../libyelp/yelp-man-document.c:255
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Nu s-a găsit pagina „%s” în documentul „%s”."
 
-#: ../libyelp/yelp-docbook-document.c:299 ../libyelp/yelp-info-document.c:373
-#: ../libyelp/yelp-man-document.c:418
+#: ../libyelp/yelp-docbook-document.c:323 ../libyelp/yelp-info-document.c:358
+#: ../libyelp/yelp-man-document.c:393
 #, c-format
 msgid "The file does not exist."
 msgstr "Fișierul nu există."
 
-#: ../libyelp/yelp-docbook-document.c:309 ../libyelp/yelp-info-document.c:383
-#: ../libyelp/yelp-man-document.c:428
+#: ../libyelp/yelp-docbook-document.c:333 ../libyelp/yelp-info-document.c:368
+#: ../libyelp/yelp-man-document.c:403
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Fișierul „%s” nu există."
 
-#: ../libyelp/yelp-docbook-document.c:324
+#: ../libyelp/yelp-docbook-document.c:348
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -77,7 +78,7 @@ msgstr ""
 "Fișierul „%s” nu a putut fi analizat deoarece nu este un document XML bine "
 "formatat."
 
-#: ../libyelp/yelp-docbook-document.c:337
+#: ../libyelp/yelp-docbook-document.c:361
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -86,56 +87,40 @@ msgstr ""
 "Fișierul „%s” nu a putut fi analizat deoarece unul sau mai multe dintre "
 "fișierele pe care le include nu sunt documente XML bine formatate."
 
-#: ../libyelp/yelp-docbook-document.c:724
+#: ../libyelp/yelp-docbook-document.c:791
 msgid "Unknown"
 msgstr "Necunoscută"
 
-#: ../libyelp/yelp-docbook-document.c:785 ../libyelp/yelp-info-document.c:316
-#: ../libyelp/yelp-man-document.c:360
+#: ../libyelp/yelp-docbook-document.c:853 ../libyelp/yelp-info-document.c:301
+#: ../libyelp/yelp-man-document.c:335
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Pagina cerută nu a fost găsită în documentul „%s”."
 
-#: ../libyelp/yelp-document.c:268
-msgid "Indexed"
-msgstr "Indexat"
-
-#: ../libyelp/yelp-document.c:269
-msgid "Whether the document content has been indexed"
-msgstr "Dacă conținutul documentului a fost indexat"
-
-#: ../libyelp/yelp-document.c:277
-msgid "Document URI"
-msgstr "URI document"
-
-#: ../libyelp/yelp-document.c:278
-msgid "The URI which identifies the document"
-msgstr "URI-ul care identifică documentul"
-
-#: ../libyelp/yelp-document.c:994
+#: ../libyelp/yelp-document.c:1030
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Rezultatele căutării pentru „%s”"
 
-#: ../libyelp/yelp-document.c:1006
+#: ../libyelp/yelp-document.c:1042
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Nu s-a găsit nicio pagină de ajutor potrivită în „%s”."
 
-#: ../libyelp/yelp-document.c:1012
+#: ../libyelp/yelp-document.c:1048
 msgid "No matching help pages found."
 msgstr "Nu s-a găsit nicio pagină de ajutor potrivită."
 
-#: ../libyelp/yelp-error.c:37
+#: ../libyelp/yelp-error.c:35
 #, c-format
 msgid "An unknown error occurred."
 msgstr "A apărut o eroare necunoscută."
 
-#: ../libyelp/yelp-help-list.c:550 ../libyelp/yelp-help-list.c:559
+#: ../libyelp/yelp-help-list.c:548 ../libyelp/yelp-help-list.c:557
 msgid "All Help Documents"
 msgstr "Toate documentele de ajutor"
 
-#: ../libyelp/yelp-info-document.c:398
+#: ../libyelp/yelp-info-document.c:383
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -143,429 +128,430 @@ msgstr ""
 "Nu s-a putut analiza fișierul „%s” deoarece nu este un document „info” bine "
 "formatat."
 
-#: ../libyelp/yelp-location-entry.c:336
-msgid "View"
-msgstr "Vizualizare"
-
-#: ../libyelp/yelp-location-entry.c:337
-msgid "A YelpView instance to control"
-msgstr "Un exemplu de control YelpView"
-
-#: ../libyelp/yelp-location-entry.c:352
-msgid "Bookmarks"
-msgstr "Semne de carte"
-
-#: ../libyelp/yelp-location-entry.c:353
-msgid "A YelpBookmarks implementation instance"
-msgstr "Un exemplu de implementare YelpBookmarks"
-
-#: ../libyelp/yelp-location-entry.c:369
-msgid "Enable Search"
-msgstr "Activează căutarea"
-
-#: ../libyelp/yelp-location-entry.c:370
-msgid "Whether the location entry can be used as a search field"
-msgstr "Dacă intrarea „locație” poate fi folosită ca un câmp de căutare"
-
-#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
-msgid "Search..."
-msgstr "Caută..."
-
-#: ../libyelp/yelp-location-entry.c:783
-msgid "Clear the search text"
-msgstr "Curăță textul de căutare"
-
-#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
-msgid "Bookmark this page"
-msgstr "Pune un semn de carte acestei pagini"
-
-#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
-msgid "Remove bookmark"
-msgstr "Elimină semnul de carte"
-
-#: ../libyelp/yelp-location-entry.c:1154
-#, c-format
-msgid "Search for “%s”"
-msgstr "Caută după „%s”"
-
-#: ../libyelp/yelp-location-entry.c:1458
-msgid "Loading"
-msgstr "Se încarcă"
-
-#: ../libyelp/yelp-mallard-document.c:346
+#: ../libyelp/yelp-mallard-document.c:343
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Dosarul „%s” nu există."
 
-#: ../libyelp/yelp-settings.c:156
-msgid "GtkSettings"
-msgstr "GtkSettings"
+#: ../libyelp/yelp-search-entry.c:433
+#, c-format
+msgid "Search for “%s”"
+msgstr "Caută după „%s”"
 
-#: ../libyelp/yelp-settings.c:157
-msgid "A GtkSettings object to get settings from"
-msgstr "Un obiect GtkSettings de la care să se obțină configurările"
-
-#: ../libyelp/yelp-settings.c:165
-msgid "GtkIconTheme"
-msgstr "GtkIconTheme"
-
-#: ../libyelp/yelp-settings.c:166
-msgid "A GtkIconTheme object to get icons from"
-msgstr "Un obiect GtkIconTheme de la care să se obțină iconițele"
-
-#: ../libyelp/yelp-settings.c:174
-msgid "Font Adjustment"
-msgstr "Ajustare font"
-
-#: ../libyelp/yelp-settings.c:175
-msgid "A size adjustment to add to font sizes"
-msgstr "O ajustare de dimensiune de adăugat la dimensiunile fonturilor"
-
-#: ../libyelp/yelp-settings.c:183
-msgid "Show Text Cursor"
-msgstr "Afișează un cursor în text"
-
-#: ../libyelp/yelp-settings.c:184
-msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Afișează un cursor în text pentru navigare accesibilă"
-
-#: ../libyelp/yelp-settings.c:192
-msgid "Editor Mode"
-msgstr "Mod editor"
-
-#: ../libyelp/yelp-settings.c:193
-msgid "Enable features useful to editors"
-msgstr "Activează funcționalități utile pentru editori"
-
-#: ../libyelp/yelp-sqlite-storage.c:149
-msgid "Database filename"
-msgstr "Numele fișierului bază de date"
-
-#: ../libyelp/yelp-sqlite-storage.c:150
-msgid "The filename of the sqlite database"
-msgstr "Numele fișierului bazei de date SQLite"
-
-#: ../libyelp/yelp-transform.c:171
-msgid "XSLT Stylesheet"
-msgstr "Foaie de stiluri XSLT"
-
-#: ../libyelp/yelp-transform.c:172
-msgid "The location of the XSLT stylesheet"
-msgstr "Locația foii de stiluri XSLT"
-
-#: ../libyelp/yelp-transform.c:380 ../libyelp/yelp-transform.c:395
+#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Foaia de stiluri XSLT „%s” lipsește sau nu este validă."
 
-#: ../libyelp/yelp-transform.c:529
+#: ../libyelp/yelp-transform.c:518
 msgid "No href attribute found on yelp:document\n"
 msgstr "Nici un atribut „href” nu a fost găsit în yelp:document\n"
 
-#: ../libyelp/yelp-transform.c:544
+#: ../libyelp/yelp-transform.c:533
 msgid "Out of memory"
 msgstr "Memorie insuficientă"
 
-#: ../libyelp/yelp-view.c:131
-msgid "_Print..."
-msgstr "_Tipărește..."
-
-#: ../libyelp/yelp-view.c:136
-msgid "_Back"
-msgstr "Îna_poi"
-
-#: ../libyelp/yelp-view.c:141
-msgid "_Forward"
-msgstr "Îna_inte"
-
-#: ../libyelp/yelp-view.c:146
-msgid "_Previous Page"
-msgstr "_Pagina precedentă"
-
-#: ../libyelp/yelp-view.c:151
-msgid "_Next Page"
-msgstr "Pagi_na următoare"
-
-#: ../libyelp/yelp-view.c:423
-msgid "Yelp URI"
-msgstr "URI Yelp"
-
-#: ../libyelp/yelp-view.c:424
-msgid "A YelpUri with the current location"
-msgstr "Un YelpUri cu locația curentă"
-
-#: ../libyelp/yelp-view.c:432
-msgid "Loading State"
-msgstr "Stare de încărcare"
-
-#: ../libyelp/yelp-view.c:433
-msgid "The loading state of the view"
-msgstr "Starea de încărcare a vizualizării"
-
-#: ../libyelp/yelp-view.c:442
-msgid "Page ID"
-msgstr "ID Pagină"
-
-#: ../libyelp/yelp-view.c:443
-msgid "The ID of the root page of the page being viewed"
-msgstr "ID-ul paginii rădăcină a paginii care este vizualizată"
-
-#: ../libyelp/yelp-view.c:451
-msgid "Root Title"
-msgstr "Titlu rădăcină"
-
-#: ../libyelp/yelp-view.c:452
-msgid "The title of the root page of the page being viewed"
-msgstr "Titlul paginii rădăcină a paginii care este vizualizată"
-
-#: ../libyelp/yelp-view.c:460
-msgid "Page Title"
-msgstr "Titlul paginii"
-
-#: ../libyelp/yelp-view.c:461
-msgid "The title of the page being viewed"
-msgstr "Titlul paginii care este vizualizată"
-
-#: ../libyelp/yelp-view.c:469
-msgid "Page Description"
-msgstr "Descrierea paginii"
-
-#: ../libyelp/yelp-view.c:470
-msgid "The description of the page being viewed"
-msgstr "Descrierea paginii care este vizualizată"
-
-#: ../libyelp/yelp-view.c:478
-msgid "Page Icon"
-msgstr "Iconița paginii"
-
-#: ../libyelp/yelp-view.c:479
-msgid "The icon of the page being viewed"
-msgstr "Iconița paginii care este vizualizată"
-
-#: ../libyelp/yelp-view.c:720
-msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr ""
-"PackageKit nu este instalat. Instalarea pachetelor necesită PackageKit."
-
-#: ../libyelp/yelp-view.c:1014
-msgid "Save Image"
-msgstr "Salvează imaginea"
-
-#: ../libyelp/yelp-view.c:1109
-msgid "Save Code"
-msgstr "Salvează codul"
-
-#: ../libyelp/yelp-view.c:1272
-#, c-format
-msgid "Send email to %s"
-msgstr "Trimite email la %s"
-
-#: ../libyelp/yelp-view.c:1287
-msgid "_Install Packages"
-msgstr "_Instalează pachete"
-
-#: ../libyelp/yelp-view.c:1295
-msgid "_Open Link"
-msgstr "_Deschide legătura"
-
-#: ../libyelp/yelp-view.c:1302
-msgid "_Copy Link Location"
-msgstr "_Copiază locația legăturii"
-
-#: ../libyelp/yelp-view.c:1308
-msgid "Open Link in New _Window"
-msgstr "Deschide legătura într-o nouă _fereastră"
-
-#: ../libyelp/yelp-view.c:1360
-msgid "_Save Image As..."
-msgstr "_Salvează imaginea ca..."
-
-#: ../libyelp/yelp-view.c:1362
-msgid "_Save Video As..."
-msgstr "_Salvează videoul ca..."
-
-#: ../libyelp/yelp-view.c:1369
-msgid "S_end Image To..."
-msgstr "Trimit_e imaginea la..."
-
-#: ../libyelp/yelp-view.c:1371
-msgid "S_end Video To..."
-msgstr "Trimit_e videoul la..."
-
-#: ../libyelp/yelp-view.c:1382
-msgid "_Copy Text"
-msgstr "_Copiază textul"
-
-#: ../libyelp/yelp-view.c:1395
+#: ../libyelp/yelp-view.c:253
 msgid "C_opy Code Block"
 msgstr "C_opiază blocul de cod"
 
-#: ../libyelp/yelp-view.c:1400
-msgid "Save Code _Block As..."
-msgstr "Salvează _blocul de cod ca..."
+#: ../libyelp/yelp-view.c:258
+msgid "_Copy Link Location"
+msgstr "_Copiază locația legăturii"
 
-#: ../libyelp/yelp-view.c:1507
-#, c-format
-msgid "See all search results for “%s”"
-msgstr "Arată toate rezultatele căutării pentru „%s”"
+#: ../libyelp/yelp-view.c:263
+msgid "_Open Link"
+msgstr "_Deschide legătura"
 
-#: ../libyelp/yelp-view.c:1628
-#, c-format
-msgid "Could not load a document for ‘%s’"
-msgstr "Nu s-a putut încărca documentul pentru „%s”"
+#: ../libyelp/yelp-view.c:268
+msgid "Open Link in New _Window"
+msgstr "Deschide legătura într-o nouă _fereastră"
 
-#: ../libyelp/yelp-view.c:1634
-#, c-format
-msgid "Could not load a document"
-msgstr "Nu s-a putut încărca documentul"
+#: ../libyelp/yelp-view.c:278
+msgid "_Install Packages"
+msgstr "_Instalează pachete"
 
-#: ../libyelp/yelp-view.c:1709
-msgid "Document Not Found"
-msgstr "Documentul nu a fost găsit"
+#: ../libyelp/yelp-view.c:283
+#| msgid "Save Code _Block As..."
+msgid "Save Code _Block As…"
+msgstr "Salvează _blocul de cod ca…"
 
-#: ../libyelp/yelp-view.c:1711
-msgid "Page Not Found"
-msgstr "Pagina nu a fost găsită"
+#: ../libyelp/yelp-view.c:298
+msgid "_Copy Text"
+msgstr "_Copiază textul"
 
-#: ../libyelp/yelp-view.c:1714
-msgid "Cannot Read"
-msgstr "Nu se poate citi"
-
-#: ../libyelp/yelp-view.c:1720
-msgid "Unknown Error"
-msgstr "Eroare necunoscută"
-
-#: ../libyelp/yelp-view.c:1740
-msgid "Search for packages containing this document."
-msgstr "Caută pachete care conțin acest document."
-
-#: ../libyelp/yelp-view.c:1892
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2197
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI-ul „%s” nu indică spre o pagină validă."
 
-#: ../libyelp/yelp-view.c:1898
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2203
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI-ul nu indică spre o pagină validă."
 
-#: ../libyelp/yelp-view.c:1904
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2209
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI-ul „%s” nu a putut fi analizat."
 
-#: ../src/yelp-application.c:65
+#: ../libyelp/yelp-view.c:842
+#, c-format
+#| msgid "Unknown Error"
+msgid "Unknown Error."
+msgstr "Eroare necunoscută."
+
+#: ../libyelp/yelp-view.c:996
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr ""
+"PackageKit nu este instalat. Instalarea pachetelor necesită PackageKit."
+
+#: ../libyelp/yelp-view.c:1243
+msgid "Save Image"
+msgstr "Salvează imaginea"
+
+#: ../libyelp/yelp-view.c:1342
+msgid "Save Code"
+msgstr "Salvează codul"
+
+#: ../libyelp/yelp-view.c:1438
+#, c-format
+msgid "Send email to %s"
+msgstr "Trimite email la %s"
+
+#: ../libyelp/yelp-view.c:1542
+#| msgid "_Save Image As..."
+msgid "_Save Image As…"
+msgstr "_Salvează imaginea ca…"
+
+#: ../libyelp/yelp-view.c:1543
+#| msgid "_Save Video As..."
+msgid "_Save Video As…"
+msgstr "_Salvează videoul ca…"
+
+#: ../libyelp/yelp-view.c:1551
+#| msgid "S_end Image To..."
+msgid "S_end Image To…"
+msgstr "Trimit_e imaginea la…"
+
+#: ../libyelp/yelp-view.c:1552
+#| msgid "S_end Video To..."
+msgid "S_end Video To…"
+msgstr "Trimit_e videoul la…"
+
+#: ../libyelp/yelp-view.c:1893
+#, c-format
+msgid "Could not load a document for ‘%s’"
+msgstr "Nu s-a putut încărca documentul pentru „%s”"
+
+#: ../libyelp/yelp-view.c:1899
+#, c-format
+msgid "Could not load a document"
+msgstr "Nu s-a putut încărca documentul"
+
+#: ../libyelp/yelp-view.c:1983
+msgid "Document Not Found"
+msgstr "Documentul nu a fost găsit"
+
+#: ../libyelp/yelp-view.c:1985
+msgid "Page Not Found"
+msgstr "Pagina nu a fost găsită"
+
+#: ../libyelp/yelp-view.c:1988
+msgid "Cannot Read"
+msgstr "Nu se poate citi"
+
+#: ../libyelp/yelp-view.c:1994
+msgid "Unknown Error"
+msgstr "Eroare necunoscută"
+
+#: ../libyelp/yelp-view.c:2014
+msgid "Search for packages containing this document."
+msgstr "Caută pachete care conțin acest document."
+
+#: ../src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "Activează modul editor"
 
-#: ../src/yelp-application.c:128
-msgid "_Larger Text"
-msgstr "Text mai _mare"
-
-#: ../src/yelp-application.c:130
-msgid "Increase the size of the text"
-msgstr "Mărește dimensiunea textului"
-
-#: ../src/yelp-application.c:133
-msgid "_Smaller Text"
-msgstr "Text mai mi_c"
-
-#: ../src/yelp-application.c:135
-msgid "Decrease the size of the text"
-msgstr "Micșorează dimensiunea textului"
-
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
-#: ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1181
+#: ../src/yelp-window.c:1189 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Ajutor"
 
-#: ../src/yelp-application.c:288
-msgid "Show Text _Cursor"
-msgstr "Afișează un _cursor în text"
+#: ../src/yelp-application.c:321
+#| msgid "_New Window"
+msgid "New Window"
+msgstr "Fereastră nouă"
 
-#: ../src/yelp-window.c:236
-msgid "_Page"
-msgstr "_Pagină"
+#: ../src/yelp-application.c:325
+#| msgid "_Larger Text"
+msgid "Larger Text"
+msgstr "Text mai mare"
 
-#: ../src/yelp-window.c:237
-msgid "_View"
-msgstr "_Vizualizare"
+#: ../src/yelp-application.c:326
+#| msgid "_Smaller Text"
+msgid "Smaller Text"
+msgstr "Text mai mic"
 
-#: ../src/yelp-window.c:238
-msgid "_Go"
-msgstr "_Navigare"
+#: ../src/yelp-window.c:343
+#| msgid "_Back"
+msgid "Back"
+msgstr "Înapoi"
 
-#: ../src/yelp-window.c:239
-msgid "_Bookmarks"
-msgstr "_Semne de carte"
+#: ../src/yelp-window.c:350
+#| msgid "_Forward"
+msgid "Forward"
+msgstr "Înainte"
 
-#: ../src/yelp-window.c:242
-msgid "_New Window"
-msgstr "Fereastră _nouă"
+#: ../src/yelp-window.c:361
+msgid "Menu"
+msgstr "Meniu"
 
-#: ../src/yelp-window.c:247
-msgid "_Close"
-msgstr "În_chide"
+#: ../src/yelp-window.c:366
+#| msgid "Find"
+msgid "Find…"
+msgstr "Caută…"
 
-#: ../src/yelp-window.c:252
-msgid "_All Documents"
-msgstr "To_ate documentele"
+#: ../src/yelp-window.c:367
+#| msgid "Printing"
+msgid "Print…"
+msgstr "Tipărește…"
 
-#: ../src/yelp-window.c:256
-msgid "_Add Bookmark"
-msgstr "_Adaugă un semn de carte"
+#: ../src/yelp-window.c:372
+#| msgid "_Previous Page"
+msgid "Previous Page"
+msgstr "Pagina precedentă"
 
-#: ../src/yelp-window.c:261
-msgid "_Remove Bookmark"
-msgstr "Elimină semnul de ca_rte"
+#: ../src/yelp-window.c:373
+#| msgid "_Next Page"
+msgid "Next Page"
+msgstr "Pagina următoare"
 
-#: ../src/yelp-window.c:265
-msgid "Find in Page..."
-msgstr "Caută în pagină..."
+#: ../src/yelp-window.c:378
+#| msgid "Help"
+msgid "All Help"
+msgstr "Tot ajutorul"
 
-#: ../src/yelp-window.c:275
-msgid "Open Location"
-msgstr "Deschide locația"
+#: ../src/yelp-window.c:400
+msgid "Search (Ctrl+S)"
+msgstr "Caută (Ctrl+S)"
 
-#: ../src/yelp-window.c:301
-msgid "Application"
-msgstr "Aplicație"
+#: ../src/yelp-window.c:417
+msgid "Bookmarks"
+msgstr "Semne de carte"
 
-#: ../src/yelp-window.c:302
-msgid "A YelpApplication instance that controls this window"
-msgstr "Un exemplu YelpApplication care controlează această fereastră"
+#: ../src/yelp-window.c:434
+#| msgid "Bookmarks"
+msgid "No bookmarks"
+msgstr "Nu sunt semne de carte"
 
-#: ../src/yelp-window.c:429
-msgid "Read Link _Later"
-msgstr "Citiți _legătura mai târziu"
+#: ../src/yelp-window.c:442
+#| msgid "_Add Bookmark"
+msgid "Add Bookmark"
+msgstr "Adaugă un semn de carte"
 
-#: ../src/yelp-window.c:526
-msgid "Find:"
-msgstr "Caută:"
-
-#: ../src/yelp-window.c:548
-msgid "Read Later"
-msgstr "Citiți mai târziu"
-
-#: ../src/yelp-window.c:1180
-#, c-format
-msgid "%i match"
-msgid_plural "%i matches"
-msgstr[0] "o potrivire"
-msgstr[1] "%i potriviri"
-msgstr[2] "%i de potriviri"
-
-#: ../src/yelp-window.c:1189
-msgid "No matches"
-msgstr "Nicio potrivire"
+#: ../src/yelp-window.c:448
+#| msgid "_Remove Bookmark"
+msgid "Remove Bookmark"
+msgstr "Elimină semnul de carte"
 
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Ajutor pentru GNOME"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "documentation;intormation;manual;documentație;informație;"
+#| msgid "documentation;information;manual;"
+msgid "documentation;information;manual;help;"
+msgstr "documentation;intormation;manual;documentație;informație;ajutor"
+
+#~ msgid "Indexed"
+#~ msgstr "Indexat"
+
+#~ msgid "Whether the document content has been indexed"
+#~ msgstr "Dacă conținutul documentului a fost indexat"
+
+#~ msgid "Document URI"
+#~ msgstr "URI document"
+
+#~ msgid "The URI which identifies the document"
+#~ msgstr "URI-ul care identifică documentul"
+
+#~ msgid "View"
+#~ msgstr "Vizualizare"
+
+#~ msgid "A YelpView instance to control"
+#~ msgstr "Un exemplu de control YelpView"
+
+#~ msgid "A YelpBookmarks implementation instance"
+#~ msgstr "Un exemplu de implementare YelpBookmarks"
+
+#~ msgid "Enable Search"
+#~ msgstr "Activează căutarea"
+
+#~ msgid "Whether the location entry can be used as a search field"
+#~ msgstr "Dacă intrarea „locație” poate fi folosită ca un câmp de căutare"
+
+#~ msgid "Search..."
+#~ msgstr "Caută..."
+
+#~ msgid "Clear the search text"
+#~ msgstr "Curăță textul de căutare"
+
+#~ msgid "Bookmark this page"
+#~ msgstr "Pune un semn de carte acestei pagini"
+
+#~ msgid "Remove bookmark"
+#~ msgstr "Elimină semnul de carte"
+
+#~ msgid "Loading"
+#~ msgstr "Se încarcă"
+
+#~ msgid "GtkSettings"
+#~ msgstr "GtkSettings"
+
+#~ msgid "A GtkSettings object to get settings from"
+#~ msgstr "Un obiect GtkSettings de la care să se obțină configurările"
+
+#~ msgid "GtkIconTheme"
+#~ msgstr "GtkIconTheme"
+
+#~ msgid "A GtkIconTheme object to get icons from"
+#~ msgstr "Un obiect GtkIconTheme de la care să se obțină iconițele"
+
+#~ msgid "Font Adjustment"
+#~ msgstr "Ajustare font"
+
+#~ msgid "A size adjustment to add to font sizes"
+#~ msgstr "O ajustare de dimensiune de adăugat la dimensiunile fonturilor"
+
+#~ msgid "Show Text Cursor"
+#~ msgstr "Afișează un cursor în text"
+
+#~ msgid "Show the text cursor or caret for accessible navigation"
+#~ msgstr "Afișează un cursor în text pentru navigare accesibilă"
+
+#~ msgid "Editor Mode"
+#~ msgstr "Mod editor"
+
+#~ msgid "Enable features useful to editors"
+#~ msgstr "Activează funcționalități utile pentru editori"
+
+#~ msgid "Database filename"
+#~ msgstr "Numele fișierului bază de date"
+
+#~ msgid "The filename of the sqlite database"
+#~ msgstr "Numele fișierului bazei de date SQLite"
+
+#~ msgid "XSLT Stylesheet"
+#~ msgstr "Foaie de stiluri XSLT"
+
+#~ msgid "The location of the XSLT stylesheet"
+#~ msgstr "Locația foii de stiluri XSLT"
+
+#~ msgid "_Print..."
+#~ msgstr "_Tipărește..."
+
+#~ msgid "Yelp URI"
+#~ msgstr "URI Yelp"
+
+#~ msgid "A YelpUri with the current location"
+#~ msgstr "Un YelpUri cu locația curentă"
+
+#~ msgid "Loading State"
+#~ msgstr "Stare de încărcare"
+
+#~ msgid "The loading state of the view"
+#~ msgstr "Starea de încărcare a vizualizării"
+
+#~ msgid "Page ID"
+#~ msgstr "ID Pagină"
+
+#~ msgid "The ID of the root page of the page being viewed"
+#~ msgstr "ID-ul paginii rădăcină a paginii care este vizualizată"
+
+#~ msgid "Root Title"
+#~ msgstr "Titlu rădăcină"
+
+#~ msgid "The title of the root page of the page being viewed"
+#~ msgstr "Titlul paginii rădăcină a paginii care este vizualizată"
+
+#~ msgid "Page Title"
+#~ msgstr "Titlul paginii"
+
+#~ msgid "The title of the page being viewed"
+#~ msgstr "Titlul paginii care este vizualizată"
+
+#~ msgid "Page Description"
+#~ msgstr "Descrierea paginii"
+
+#~ msgid "The description of the page being viewed"
+#~ msgstr "Descrierea paginii care este vizualizată"
+
+#~ msgid "Page Icon"
+#~ msgstr "Iconița paginii"
+
+#~ msgid "The icon of the page being viewed"
+#~ msgstr "Iconița paginii care este vizualizată"
+
+#~ msgid "See all search results for “%s”"
+#~ msgstr "Arată toate rezultatele căutării pentru „%s”"
+
+#~ msgid "Increase the size of the text"
+#~ msgstr "Mărește dimensiunea textului"
+
+#~ msgid "Decrease the size of the text"
+#~ msgstr "Micșorează dimensiunea textului"
+
+#~ msgid "Show Text _Cursor"
+#~ msgstr "Afișează un _cursor în text"
+
+#~ msgid "_Page"
+#~ msgstr "_Pagină"
+
+#~ msgid "_View"
+#~ msgstr "_Vizualizare"
+
+#~ msgid "_Go"
+#~ msgstr "_Navigare"
+
+#~ msgid "_Bookmarks"
+#~ msgstr "_Semne de carte"
+
+#~ msgid "_Close"
+#~ msgstr "În_chide"
+
+#~ msgid "_All Documents"
+#~ msgstr "To_ate documentele"
+
+#~ msgid "Find in Page..."
+#~ msgstr "Caută în pagină..."
+
+#~ msgid "Open Location"
+#~ msgstr "Deschide locația"
+
+#~ msgid "Application"
+#~ msgstr "Aplicație"
+
+#~ msgid "A YelpApplication instance that controls this window"
+#~ msgstr "Un exemplu YelpApplication care controlează această fereastră"
+
+#~ msgid "Read Link _Later"
+#~ msgstr "Citiți _legătura mai târziu"
+
+#~ msgid "Find:"
+#~ msgstr "Caută:"
+
+#~ msgid "Read Later"
+#~ msgstr "Citiți mai târziu"
+
+#~ msgid "%i match"
+#~ msgid_plural "%i matches"
+#~ msgstr[0] "o potrivire"
+#~ msgstr[1] "%i potriviri"
+#~ msgstr[2] "%i de potriviri"
+
+#~ msgid "No matches"
+#~ msgstr "Nicio potrivire"
 
 #~ msgid "GNU Info Pages"
 #~ msgstr "Pagini GNU Info"
@@ -1064,9 +1050,6 @@ msgstr "documentation;intormation;manual;documentație;informație;"
 #~ msgid "Presentation Tools"
 #~ msgstr "Aplicații de prezentare"
 
-#~ msgid "Printing"
-#~ msgstr "Tipărire"
-
 #~ msgid "Profiling Tools"
 #~ msgstr "Utilitare pentru analizarea performanțelor"
 
@@ -1209,9 +1192,6 @@ msgstr "documentation;intormation;manual;documentație;informație;"
 
 #~ msgid "C_ase sensitive"
 #~ msgstr "Cu m_ajuscule semnificative"
-
-#~ msgid "Find"
-#~ msgstr "Căutare"
 
 #~ msgid "Preferences"
 #~ msgstr "Preferințe"
