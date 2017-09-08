@@ -1,14 +1,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Samúel Jón Gunnarsson  <sammi@techattack.nu>
-# Sveinn í Felli <sv1@fellsnet.is>, 2015.
+# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2015-11-02 02:54+0000\n"
-"PO-Revision-Date: 2015-11-02 14:47+0000\n"
+"POT-Creation-Date: 2017-08-11 12:00+0000\n"
+"PO-Revision-Date: 2017-09-08 08:30+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
@@ -105,17 +105,17 @@ msgstr "Slóð á skjal"
 msgid "The URI which identifies the document"
 msgstr "URI-slóðin sem auðkennir skjalið"
 
-#: ../libyelp/yelp-document.c:1022
+#: ../libyelp/yelp-document.c:1024
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Leitarniðurstöður fyrir “%s”"
 
-#: ../libyelp/yelp-document.c:1034
+#: ../libyelp/yelp-document.c:1036
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Engar samsvarandi hjálparsíður fundust í \"%s\"."
 
-#: ../libyelp/yelp-document.c:1040
+#: ../libyelp/yelp-document.c:1042
 msgid "No matching help pages found."
 msgstr "Engar samsvarandi hjálparsíður fundust."
 
@@ -404,20 +404,20 @@ msgstr "Leita að pökkum sem innihalda þetta skjal."
 msgid "Turn on editor mode"
 msgstr "Kveikja á ritilham"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
 #: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Hjálp"
 
-#: ../src/yelp-application.c:320
+#: ../src/yelp-application.c:321
 msgid "New Window"
 msgstr "Nýr gluggi"
 
-#: ../src/yelp-application.c:324
+#: ../src/yelp-application.c:325
 msgid "Larger Text"
 msgstr "Stærri texti"
 
-#: ../src/yelp-application.c:325
+#: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Minni texti"
 
@@ -482,8 +482,9 @@ msgid "Get help with GNOME"
 msgstr "Fá hjálp með GNOME"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "Handbækur;Handbók;Hjálparskjöl;Skjölun;Upplýsingar;Leiðbeiningar;"
+#| msgid "documentation;information;manual;"
+msgid "documentation;information;manual;help;"
+msgstr "handbækur;handbók;hjálparskjöl;skjölun;upplýsingar;leiðbeiningar;"
 
 #~ msgid "See all search results for “%s”"
 #~ msgstr "Skoða allar leitarniðurstöður fyrir “%s”"
