@@ -39,6 +39,7 @@
 
 #define STYLESHEET DATADIR"/yelp/xslt/mal2html.xsl"
 #define MALLARD_NS BAD_CAST "http://projectmallard.org/1.0/"
+#define CACHE_NS BAD_CAST "http://projectmallard.org/cache/1.0/"
 
 typedef enum {
     MALLARD_STATE_BLANK,
@@ -128,6 +129,7 @@ struct _YelpMallardDocumentPrivate {
     GSList        *pending;
 
     xmlDocPtr      cache;
+    xmlNsPtr       mallard_ns;
     xmlNsPtr       cache_ns;
     GHashTable    *pages_hash;
 
@@ -165,10 +167,12 @@ yelp_mallard_document_init (YelpMallardDocument *mallard)
     priv->index_running = FALSE;
 
     priv->cache = xmlNewDoc (BAD_CAST "1.0");
-    priv->cache_ns = xmlNewNs (NULL, MALLARD_NS, BAD_CAST "mal");
+    priv->mallard_ns = xmlNewNs (NULL, MALLARD_NS, BAD_CAST "mal");
+    priv->cache_ns = xmlNewNs (NULL, CACHE_NS, BAD_CAST "cache");
     cur = xmlNewDocNode (priv->cache, priv->cache_ns, BAD_CAST "cache", NULL);
     xmlDocSetRootElement (priv->cache, cur);
-    priv->cache_ns->next = cur->nsDef;
+    priv->cache_ns->next = priv->mallard_ns;
+    priv->mallard_ns->next = cur->nsDef;
     cur->nsDef = priv->cache_ns;
     priv->pages_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
                                               NULL,
@@ -519,6 +523,7 @@ mallard_page_data_walk (MallardPageData *page_data)
         page_data->cache = xmlDocGetRootElement (priv->cache);
         page_data->xpath = xmlXPathNewContext (page_data->xmldoc);
         mallard_page_data_walk (page_data);
+        xmlSaveFile ("/home/shaunm/tmp.cache", priv->cache);
     } else {
         gboolean ispage;
         xmlNodePtr child, oldcur, oldcache, info;
@@ -532,7 +537,7 @@ mallard_page_data_walk (MallardPageData *page_data)
             goto done;
 
         page_data->cache = xmlNewChild (page_data->cache,
-                                        priv->cache_ns,
+                                        priv->mallard_ns,
                                         page_data->cur->name,
                                         NULL);
 
@@ -552,7 +557,7 @@ mallard_page_data_walk (MallardPageData *page_data)
         }
 
         info = xmlNewChild (page_data->cache,
-                            priv->cache_ns,
+                            priv->mallard_ns,
                             BAD_CAST "info", NULL);
         page_data->link_title = FALSE;
         page_data->sort_title = FALSE;
@@ -565,14 +570,14 @@ mallard_page_data_walk (MallardPageData *page_data)
             else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "title")) {
                 xmlNodePtr node;
                 xmlNodePtr title_node = xmlNewChild (page_data->cache,
-                                                     priv->cache_ns,
+                                                     priv->mallard_ns,
                                                      BAD_CAST "title", NULL);
                 for (node = child->children; node; node = node->next) {
                     xmlAddChild (title_node, xmlCopyNode (node, 1));
                 }
                 if (!page_data->link_title) {
                     xmlNodePtr title_node2 = xmlNewChild (info,
-                                                          priv->cache_ns,
+                                                          priv->mallard_ns,
                                                           BAD_CAST "title", NULL);
                     xmlSetProp (title_node2, BAD_CAST "type", BAD_CAST "link");
                     for (node = child->children; node; node = node->next) {
@@ -581,7 +586,7 @@ mallard_page_data_walk (MallardPageData *page_data)
                 }
                 if (!page_data->sort_title) {
                     xmlNodePtr title_node2 = xmlNewChild (info,
-                                                          priv->cache_ns,
+                                                          priv->mallard_ns,
                                                           BAD_CAST "title", NULL);
                     xmlSetProp (title_node2, BAD_CAST "type", BAD_CAST "sort");
                     for (node = child->children; node; node = node->next) {
@@ -1134,12 +1139,12 @@ mallard_monitor_changed (GFileMonitor         *monitor,
 
     xmlFreeDoc (priv->cache);
     priv->cache = xmlNewDoc (BAD_CAST "1.0");
-    priv->cache_ns = xmlNewNs (NULL, MALLARD_NS, BAD_CAST "mal");
+    priv->cache_ns = xmlNewNs (NULL, CACHE_NS, BAD_CAST "cache");
     cur = xmlNewDocNode (priv->cache, priv->cache_ns, BAD_CAST "cache", NULL);
     xmlDocSetRootElement (priv->cache, cur);
-    priv->cache_ns->next = cur->nsDef;
+    priv->cache_ns->next = priv->mallard_ns;
+    priv->mallard_ns->next = cur->nsDef;
     cur->nsDef = priv->cache_ns;
-
     priv->state = MALLARD_STATE_THINKING;
     priv->thread_running = TRUE;
     g_object_ref (mallard);
