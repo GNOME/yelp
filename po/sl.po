@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the program package.
 #
 # Andraž Tori <andraz.tori1@guest.arnes.si>, 2002.
-# Matej Urbančič <mateju@svn.gnome.org>, 2006-2016.
+# Matej Urbančič <mateju@svn.gnome.org>, 2006–2017.
 #
 msgid ""
 msgstr ""
@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2016-08-21 21:27+0200\n"
-"PO-Revision-Date: 2016-08-21 21:29+0200\n"
+"PO-Revision-Date: 2017-10-08 21:00+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.4\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -52,7 +52,7 @@ msgstr "Ni dovolj pomnilnika"
 #: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "Strani ‘%s’ ni mogoče najti v dokumentu %s."
+msgstr "Strani »%s« ni mogoče najti v dokumentu %s."
 
 #: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
 #: ../libyelp/yelp-man-document.c:390
@@ -64,21 +64,21 @@ msgstr "Datoteka ne obstaja."
 #: ../libyelp/yelp-man-document.c:400
 #, c-format
 msgid "The file ‘%s’ does not exist."
-msgstr "Datoteka ‘%s’ ne obstaja."
+msgstr "Datoteka »%s« ne obstaja."
 
 #: ../libyelp/yelp-docbook-document.c:345
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni pravilnem XML zapisu."
+msgstr "Datoteke »%s« ni mogoče razčleniti, ker ni pravilnem zapisu XML."
 
 #: ../libyelp/yelp-docbook-document.c:358
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
-msgstr "Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilnem XML zapisu."
+msgstr "Datoteke »%s« ni mogoče razčleniti, ker ni v pravilnem zapisu XML."
 
 #: ../libyelp/yelp-docbook-document.c:788
 msgid "Unknown"
@@ -88,7 +88,7 @@ msgstr "Neznano"
 #: ../libyelp/yelp-man-document.c:332
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr "Zahtevane strani ni mogoče najti v dokumentu ‘%s’."
+msgstr "Zahtevane strani ni mogoče najti v dokumentu »%s«."
 
 #: ../libyelp/yelp-document.c:278
 msgid "Indexed"
@@ -134,13 +134,13 @@ msgstr "Vsi dokumenti pomoči"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Datoteke ‘%s’ ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu "
+"Datoteke »%s« ni mogoče razčleniti, ker ni v pravilno oblikovanem zapisu "
 "info."
 
 #: ../libyelp/yelp-mallard-document.c:340
 #, c-format
 msgid "The directory ‘%s’ does not exist."
-msgstr "Mapa ‘%s’ ne obstaja."
+msgstr "Mapa »%s« ne obstaja."
 
 #: ../libyelp/yelp-search-entry.c:172
 msgid "View"
@@ -223,7 +223,7 @@ msgstr "Mesto XSLT slogovne predloge"
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr ""
-"Slogovna predloga XSLT ‘%s’ ne obstaja ali pa ni zapisana v veljavnem zapisu."
+"Slogovna predloga XSLT »%s« ne obstaja ali pa ni zapisana v veljavnem zapisu."
 
 #: ../libyelp/yelp-transform.c:518
 msgid "No href attribute found on yelp:document\n"
@@ -320,7 +320,7 @@ msgstr "Ikona trenutne  strani"
 #: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "Naslov URI ‘%s’ ni povezan z veljavno stranjo."
+msgstr "Naslov URI »%s« ni povezan z veljavno stranjo."
 
 #: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
 #, c-format
@@ -330,7 +330,7 @@ msgstr "Naslov URI ni povezan z veljavno stranjo."
 #: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "Naslova URI ‘%s’ ni mogoče razčleniti"
+msgstr "Naslova URI »%s« ni mogoče razčleniti"
 
 #: ../libyelp/yelp-view.c:842
 #, c-format
@@ -374,7 +374,7 @@ msgstr "Poš_lji video na ..."
 #: ../libyelp/yelp-view.c:1894
 #, c-format
 msgid "Could not load a document for ‘%s’"
-msgstr "Ni mogoče naložiti dokumenta za ‘%s’"
+msgstr "Ni mogoče naložiti dokumenta za »%s«"
 
 #: ../libyelp/yelp-view.c:1900
 #, c-format
