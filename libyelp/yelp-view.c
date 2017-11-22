@@ -118,9 +118,6 @@ static void        view_load_failed                  (WebKitWebView            *
 static void        view_load_status_changed          (WebKitWebView            *view,
                                                       WebKitLoadEvent           load_event,
                                                       gpointer                  user_data);
-static void        gtk_xft_dpi_changed               (GtkSettings        *gtk_settings,
-                                                      GParamSpec         *pspec,
-                                                      gpointer            user_data);
 static void        yelp_view_register_extensions     (void);
 
 static gchar *nautilus_sendto = NULL;
@@ -205,8 +202,6 @@ struct _YelpViewPrivate {
     YelpUri       *resolve_uri;
     gulong         uri_resolved;
     YelpDocument  *document;
-    GtkSettings   *gtk_settings;
-    gulong         gtk_xft_dpi_changed;
     GCancellable  *cancellable;
     gulong         fonts_changed;
 
@@ -306,17 +301,6 @@ yelp_view_init (YelpView *view)
 
     priv->prevstate = priv->state = YELP_VIEW_STATE_BLANK;
 
-    /* FIXME: We should use the GtkSettings from the right GdkScreen instead
-     * of the the detault one, but we can't get it from here since the view
-     * has not been added to any top level GtkWidget yet.
-     */
-    priv->gtk_settings = gtk_settings_get_default ();
-    if (priv->gtk_settings) {
-        priv->gtk_xft_dpi_changed =
-            g_signal_connect (priv->gtk_settings, "notify::gtk-xft-dpi",
-                              G_CALLBACK (gtk_xft_dpi_changed), view);
-    }
-
     priv->resolve_uri_on_policy_decision = TRUE;
     g_signal_connect (view, "decide-policy",
                       G_CALLBACK (view_policy_decision_requested), NULL);
@@ -395,11 +379,6 @@ yelp_view_dispose (GObject *object)
     YelpViewPrivate *priv = GET_PRIV (object);
 
     view_clear_load (YELP_VIEW (object));
-
-    if (priv->gtk_xft_dpi_changed > 0) {
-        g_signal_handler_disconnect (priv->gtk_settings, priv->gtk_xft_dpi_changed);
-        priv->gtk_xft_dpi_changed = 0;
-    }
 
     if (priv->fonts_changed > 0) {
         g_signal_handler_disconnect (yelp_settings_get_default (),
@@ -2077,44 +2056,6 @@ view_show_error_page (YelpView *view,
         g_free (content_end);
 }
 
-static gdouble
-get_screen_dpi (GdkScreen *screen)
-{
-    GtkSettings *settings = NULL;
-    gdouble dpi = -1;
-    gdouble dp, di;
-
-    settings = gtk_settings_get_for_screen (screen);
-    if (settings != NULL) {
-        gint gtk_xft_dpi = -1;
-        g_object_get (settings, "gtk-xft-dpi", &gtk_xft_dpi, NULL);
-        dpi = (gtk_xft_dpi != -1) ? gtk_xft_dpi / 1024.0 : -1;
-    }
-
-    if (dpi != -1)
-        return dpi;
-
-    dp = hypot (gdk_screen_get_width (screen), gdk_screen_get_height (screen));
-    di = hypot (gdk_screen_get_width_mm (screen), gdk_screen_get_height_mm (screen)) / 25.4;
-
-    return dp / di;
-}
-
-static guint
-convert_font_size_to_pixels (GtkWidget *widget,
-                             gdouble    font_size)
-{
-    GdkScreen *screen;
-    gdouble    dpi;
-
-    /* WebKit2 uses font sizes in pixels */
-    screen = gtk_widget_has_screen (widget) ?
-             gtk_widget_get_screen (widget) : gdk_screen_get_default ();
-    dpi = screen ? get_screen_dpi (screen) : 96;
-
-    return font_size / 72.0 * dpi;
-}
-
 static void
 settings_set_fonts (YelpSettings *settings,
                     gpointer      user_data)
@@ -2132,7 +2073,7 @@ settings_set_fonts (YelpSettings *settings,
     g_object_set (webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view)),
                   "default-font-family", family,
                   "sans-serif-font-family", family,
-                  "default-font-size", convert_font_size_to_pixels (GTK_WIDGET (view), size),
+                  "default-font-size", webkit_settings_font_size_to_pixels (size),
                   NULL);
     g_free (family);
 
@@ -2142,7 +2083,7 @@ settings_set_fonts (YelpSettings *settings,
                                         YELP_SETTINGS_FONT_FIXED);
     g_object_set (webkit_web_view_get_settings (WEBKIT_WEB_VIEW (view)),
                   "monospace-font-family", family,
-                  "default-monospace-font-size", convert_font_size_to_pixels (GTK_WIDGET (view), size),
+                  "default-monospace-font-size", webkit_settings_font_size_to_pixels (size),
                   NULL);
     g_free (family);
 }
@@ -2264,13 +2205,4 @@ uri_resolved (YelpUri  *uri,
         view_show_error_page (view, error);
         g_error_free (error);
     }
-}
-
-static void
-gtk_xft_dpi_changed (GtkSettings *gtk_settings,
-                     GParamSpec  *pspec,
-                     gpointer     user_data)
-{
-    YelpSettings *settings = yelp_settings_get_default ();
-    settings_set_fonts (settings, user_data);
 }
