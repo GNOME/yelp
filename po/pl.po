@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-24 17:53+0200\n"
-"PO-Revision-Date: 2017-08-24 17:54+0200\n"
+"POT-Creation-Date: 2017-12-11 02:53+0100\n"
+"PO-Revision-Date: 2017-12-11 02:54+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -51,8 +51,8 @@ msgid "Not enough memory"
 msgstr "Brak pamięci"
 
 #: ../libyelp/yelp-docbook-document.c:285 ../libyelp/yelp-info-document.c:221
-#: ../libyelp/yelp-mallard-document.c:301
-#: ../libyelp/yelp-mallard-document.c:455 ../libyelp/yelp-man-document.c:255
+#: ../libyelp/yelp-mallard-document.c:305
+#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:255
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Nie odnaleziono strony „%s” w dokumencie „%s”."
@@ -128,7 +128,7 @@ msgstr ""
 "Nie można przetworzyć pliku „%s”, ponieważ nie jest to prawidłowo "
 "sformatowana strona informacyjna."
 
-#: ../libyelp/yelp-mallard-document.c:343
+#: ../libyelp/yelp-mallard-document.c:347
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Katalog „%s” nie istnieje."
@@ -136,7 +136,7 @@ msgstr "Katalog „%s” nie istnieje."
 #: ../libyelp/yelp-search-entry.c:433
 #, c-format
 msgid "Search for “%s”"
-msgstr "Wyszukiwanie „%s”"
+msgstr "Wyszukaj „%s”"
 
 #: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
 #, c-format
@@ -151,116 +151,116 @@ msgstr "Nie odnaleziono atrybutu href w yelp:document\n"
 msgid "Out of memory"
 msgstr "Brak pamięci"
 
-#: ../libyelp/yelp-view.c:253
+#: ../libyelp/yelp-view.c:248
 msgid "C_opy Code Block"
 msgstr "Skopi_uj blok kodu"
 
-#: ../libyelp/yelp-view.c:258
+#: ../libyelp/yelp-view.c:253
 msgid "_Copy Link Location"
 msgstr "S_kopiuj położenie odnośnika"
 
-#: ../libyelp/yelp-view.c:263
+#: ../libyelp/yelp-view.c:258
 msgid "_Open Link"
 msgstr "_Otwórz odnośnik"
 
-#: ../libyelp/yelp-view.c:268
+#: ../libyelp/yelp-view.c:263
 msgid "Open Link in New _Window"
 msgstr "Otwórz odnośnik w _nowym oknie"
 
-#: ../libyelp/yelp-view.c:278
+#: ../libyelp/yelp-view.c:273
 msgid "_Install Packages"
 msgstr "_Zainstaluj pakiety"
 
-#: ../libyelp/yelp-view.c:283
+#: ../libyelp/yelp-view.c:278
 msgid "Save Code _Block As…"
 msgstr "Zapisz _blok kodu jako…"
 
-#: ../libyelp/yelp-view.c:298
+#: ../libyelp/yelp-view.c:293
 msgid "_Copy Text"
 msgstr "_Skopiuj tekst"
 
-#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2197
+#: ../libyelp/yelp-view.c:805 ../libyelp/yelp-view.c:2138
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Adres URI „%s” nie wskazuje na prawidłową stronę."
 
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2203
+#: ../libyelp/yelp-view.c:811 ../libyelp/yelp-view.c:2144
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "Adres URI nie wskazuje na prawidłową stronę."
 
-#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2209
+#: ../libyelp/yelp-view.c:816 ../libyelp/yelp-view.c:2150
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Nie można przetworzyć adresu URI „%s”."
 
-#: ../libyelp/yelp-view.c:842
+#: ../libyelp/yelp-view.c:821
 #, c-format
 msgid "Unknown Error."
 msgstr "Nieznany błąd."
 
-#: ../libyelp/yelp-view.c:996
+#: ../libyelp/yelp-view.c:975
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "Brak usługi PackageKit. Odnośniki instalacji pakietów wymagają usługi "
 "PackageKit."
 
-#: ../libyelp/yelp-view.c:1243
+#: ../libyelp/yelp-view.c:1222
 msgid "Save Image"
 msgstr "Zapis obrazu"
 
-#: ../libyelp/yelp-view.c:1342
+#: ../libyelp/yelp-view.c:1321
 msgid "Save Code"
 msgstr "Zapis kodu"
 
-#: ../libyelp/yelp-view.c:1438
+#: ../libyelp/yelp-view.c:1417
 #, c-format
 msgid "Send email to %s"
 msgstr "Wyślij wiadomość e-mail do %s"
 
-#: ../libyelp/yelp-view.c:1542
+#: ../libyelp/yelp-view.c:1521
 msgid "_Save Image As…"
 msgstr "Zapisz o_braz jako…"
 
-#: ../libyelp/yelp-view.c:1543
+#: ../libyelp/yelp-view.c:1522
 msgid "_Save Video As…"
 msgstr "Zapisz nagranie _wideo jako…"
 
-#: ../libyelp/yelp-view.c:1551
+#: ../libyelp/yelp-view.c:1530
 msgid "S_end Image To…"
 msgstr "Wyślij obraz _do…"
 
-#: ../libyelp/yelp-view.c:1552
+#: ../libyelp/yelp-view.c:1531
 msgid "S_end Video To…"
 msgstr "Wyślij nagranie wid_eo do…"
 
-#: ../libyelp/yelp-view.c:1893
+#: ../libyelp/yelp-view.c:1872
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Nie można wczytać dokumentu dla „%s”"
 
-#: ../libyelp/yelp-view.c:1899
+#: ../libyelp/yelp-view.c:1878
 #, c-format
 msgid "Could not load a document"
 msgstr "Nie można wczytać dokumentu"
 
-#: ../libyelp/yelp-view.c:1983
+#: ../libyelp/yelp-view.c:1962
 msgid "Document Not Found"
 msgstr "Nie odnaleziono dokumentu"
 
-#: ../libyelp/yelp-view.c:1985
+#: ../libyelp/yelp-view.c:1964
 msgid "Page Not Found"
 msgstr "Nie odnaleziono strony"
 
-#: ../libyelp/yelp-view.c:1988
+#: ../libyelp/yelp-view.c:1967
 msgid "Cannot Read"
 msgstr "Nie można odczytać"
 
-#: ../libyelp/yelp-view.c:1994
+#: ../libyelp/yelp-view.c:1973
 msgid "Unknown Error"
 msgstr "Nieznany błąd"
 
-#: ../libyelp/yelp-view.c:2014
+#: ../libyelp/yelp-view.c:1993
 msgid "Search for packages containing this document."
 msgstr "Wyszukaj pakiety zawierające ten dokument."
 
