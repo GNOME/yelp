@@ -1215,7 +1215,7 @@ popup_save_image (GtkAction   *action,
     data = g_new0 (YelpSaveData, 1);
     data->orig = g_file_new_for_uri (priv->popup_image_uri);
     data->view = g_object_ref (view);
-    data->window = g_object_ref (window);
+    data->window = g_object_ref (GTK_WINDOW (window));
     g_free (priv->popup_image_uri);
     priv->popup_image_uri = NULL;
 
