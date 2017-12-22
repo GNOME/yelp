@@ -10,1703 +10,356 @@
 # Michael MORONI, <haikara90@gmail.com>, 2009.
 # Kim RIBEIRO <ribekim@gmail.com>, 2009.
 # Patrick (Petriko) OUDEJANS < >, 2011.
-# Tiffany Antopolski <tiffany.antopolski@gmail.com>, 2011.
-# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2010, 2011, 2012.
-#
+# Tiffany ANTOPOLSKI <tiffany.antopolski@gmail.com>, 2011.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2010, 2011, 2012, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.3.6\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2012-03-07 10:35+0000\n"
-"PO-Revision-Date: 2012-03-09 18:48+0100\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=yelp&k"
+"eywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-06-20 10:43+0000\n"
+"PO-Revision-Date: 2017-12-23 00:01+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
-"Language-Team: Esperanto <gnome-l10n-eo@lists.launchpad.net>\n"
+"Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Launchpad-Export-Date: 2012-03-09 17:24+0000\n"
-"X-Generator: Launchpad (build 14914)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
 
+#. (itstool) path: msg/msgstr
 #. ID: install.tooltip
 #. This is a format message used to format tooltips on install: links. These
 #. links allow users to install packages by clicking a link in the help. The
 #. tooltip may also be used as the link text, if there's no link text in the
 #. document. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
-#. 
+#.
 #. <string/> - The package to install
-#. 
-#: yelp.xml.in:29(msg/msgstr)
+#.
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Instali na <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:146
-#: ../libyelp/yelp-lzma-decompressor.c:155
+#: ../libyelp/yelp-bz2-decompressor.c:143
+#: ../libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
 msgstr "Nevalidaj densigitaj datumoj"
 
-#: ../libyelp/yelp-bz2-decompressor.c:152
-#: ../libyelp/yelp-lzma-decompressor.c:161
+#: ../libyelp/yelp-bz2-decompressor.c:149
+#: ../libyelp/yelp-lzma-decompressor.c:158
 msgid "Not enough memory"
 msgstr "Memoro ne sufiĉas"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:238
-#: ../libyelp/yelp-mallard-document.c:306
-#: ../libyelp/yelp-mallard-document.c:458 ../libyelp/yelp-man-document.c:282
+#: ../libyelp/yelp-docbook-document.c:285 ../libyelp/yelp-info-document.c:221
+#: ../libyelp/yelp-mallard-document.c:301
+#: ../libyelp/yelp-mallard-document.c:455 ../libyelp/yelp-man-document.c:255
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "La paĝo '%s' ne estis trovita en dokumento '%s'."
+msgstr "La paĝo ‘%s’ ne estis trovita en dokumento ‘%s’."
 
-#: ../libyelp/yelp-docbook-document.c:317 ../libyelp/yelp-info-document.c:372
-#: ../libyelp/yelp-man-document.c:417
+#: ../libyelp/yelp-docbook-document.c:323 ../libyelp/yelp-info-document.c:358
+#: ../libyelp/yelp-man-document.c:393
 #, c-format
 msgid "The file does not exist."
 msgstr "La dosiero ne ekzistas."
 
-#: ../libyelp/yelp-docbook-document.c:327 ../libyelp/yelp-info-document.c:382
-#: ../libyelp/yelp-man-document.c:427
+#: ../libyelp/yelp-docbook-document.c:333 ../libyelp/yelp-info-document.c:368
+#: ../libyelp/yelp-man-document.c:403
 #, c-format
 msgid "The file ‘%s’ does not exist."
-msgstr "La dosiero \"%s\" ne ekzistas."
+msgstr "La dosiero ‘%s’ ne ekzistas."
 
-#: ../libyelp/yelp-docbook-document.c:342
+#: ../libyelp/yelp-docbook-document.c:348
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
-"La dosiero \"%s\" ne estis komprenebla, ĉar ĝi ne enhavas bonforman XML-"
+"La dosiero ‘%s’ ne estis komprenebla, ĉar ĝi ne enhavas bonforman XML-"
 "dokumenton."
 
-#: ../libyelp/yelp-docbook-document.c:355
+#: ../libyelp/yelp-docbook-document.c:361
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"La dosiero \"%s\" ne estis komprenebla, ĉar unu aŭ pluraj importitaj "
-"dosieroj ne enhavas bonformajn XML-dokumentojn."
+"La dosiero ‘%s’ ne estis komprenebla, ĉar unu aŭ pluraj importitaj dosieroj "
+"ne enhavas bonformajn XML-dokumentojn."
 
-#: ../libyelp/yelp-docbook-document.c:765
+#: ../libyelp/yelp-docbook-document.c:791
 msgid "Unknown"
 msgstr "Nekonate"
 
-#: ../libyelp/yelp-docbook-document.c:826 ../libyelp/yelp-info-document.c:315
-#: ../libyelp/yelp-man-document.c:359
+#: ../libyelp/yelp-docbook-document.c:853 ../libyelp/yelp-info-document.c:301
+#: ../libyelp/yelp-man-document.c:335
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr "La petita paĝo ne estis trovita en dokumento '%s'."
+msgstr "La petita paĝo ne estis trovita en dokumento ‘%s’."
 
-#: ../libyelp/yelp-document.c:268
-msgid "Indexed"
-msgstr "Indeksite"
-
-#: ../libyelp/yelp-document.c:269
-msgid "Whether the document content has been indexed"
-msgstr "Ĉu la enhavo de la dokumento estas indeksita?"
-
-#: ../libyelp/yelp-document.c:277
-msgid "Document URI"
-msgstr "URI de dokumento"
-
-#: ../libyelp/yelp-document.c:278
-msgid "The URI which identifies the document"
-msgstr "La URI kiu identigas la dokumenton"
-
-#: ../libyelp/yelp-document.c:994
+#: ../libyelp/yelp-document.c:1030
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Serĉrezultoj por “%s”"
 
-#: ../libyelp/yelp-document.c:1006
+#: ../libyelp/yelp-document.c:1042
 #, c-format
 msgid "No matching help pages found in “%s”."
-msgstr "Neniuj kongruaj helppaĝoj trovataj en \"%s\"."
+msgstr "Neniuj kongruaj helppaĝoj trovataj en “%s”."
 
-#: ../libyelp/yelp-document.c:1012
+#: ../libyelp/yelp-document.c:1048
 msgid "No matching help pages found."
 msgstr "Neniuj kongruaj helppaĝoj trovataj."
 
-#: ../libyelp/yelp-error.c:37
+#: ../libyelp/yelp-error.c:35
 #, c-format
 msgid "An unknown error occurred."
 msgstr "Okazis nekonata eraro."
 
-#: ../libyelp/yelp-help-list.c:478 ../libyelp/yelp-help-list.c:487
+#: ../libyelp/yelp-help-list.c:548 ../libyelp/yelp-help-list.c:557
 msgid "All Help Documents"
 msgstr "Ĉiuj helpdokumentoj"
 
-#: ../libyelp/yelp-info-document.c:397
+#: ../libyelp/yelp-info-document.c:383
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Dosiero \"%s\" ne estis komprenebla, ĉar ĝi ne enhavas bonforman info-paĝon."
+"La dosiero ‘%s’ ne estis komprenebla, ĉar ĝi ne enhavas bonforman info-paĝon."
 
-#: ../libyelp/yelp-location-entry.c:336
-msgid "View"
-msgstr "Vido"
-
-#: ../libyelp/yelp-location-entry.c:337
-msgid "A YelpView instance to control"
-msgstr "YelpView-apero por stiri"
-
-#: ../libyelp/yelp-location-entry.c:352
-msgid "Bookmarks"
-msgstr "Legosignoj"
-
-#: ../libyelp/yelp-location-entry.c:353
-msgid "A YelpBookmarks implementation instance"
-msgstr "Apero de realigo de YelpBookmarks"
-
-#: ../libyelp/yelp-location-entry.c:369
-msgid "Enable Search"
-msgstr "Aktivigi serĉon"
-
-#: ../libyelp/yelp-location-entry.c:370
-msgid "Whether the location entry can be used as a search field"
-msgstr "Ĉu uzi la adresenigon kiel serĉkampo?"
-
-#: ../libyelp/yelp-location-entry.c:440 ../src/yelp-window.c:270
-msgid "Search..."
-msgstr "Serĉi..."
-
-#: ../libyelp/yelp-location-entry.c:783
-msgid "Clear the search text"
-msgstr "Vakigi la serĉendan tekston"
-
-#: ../libyelp/yelp-location-entry.c:831 ../libyelp/yelp-location-entry.c:1593
-msgid "Bookmark this page"
-msgstr "Aldoni legosignon por ĉi tiu paĝo"
-
-#: ../libyelp/yelp-location-entry.c:839 ../libyelp/yelp-location-entry.c:1601
-msgid "Remove bookmark"
-msgstr "Forigi legosignon"
-
-#: ../libyelp/yelp-location-entry.c:1154
-#, c-format
-msgid "Search for “%s”"
-msgstr "Serĉi por “%s”"
-
-#: ../libyelp/yelp-location-entry.c:1458
-msgid "Loading"
-msgstr "Ŝargante"
-
-#: ../libyelp/yelp-mallard-document.c:346
+#: ../libyelp/yelp-mallard-document.c:343
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "La dosierujo ‘%s’ ne ekzistas."
 
-#: ../libyelp/yelp-settings.c:154
-msgid "GtkSettings"
-msgstr "Gtk-Agordoj"
+#: ../libyelp/yelp-search-entry.c:433
+#, c-format
+msgid "Search for “%s”"
+msgstr "Serĉi por “%s”"
 
-#: ../libyelp/yelp-settings.c:155
-msgid "A GtkSettings object to get settings from"
-msgstr "GtkSettings-objekto de kie obteni agordojn"
-
-#: ../libyelp/yelp-settings.c:163
-msgid "GtkIconTheme"
-msgstr "GtkIconTheme"
-
-#: ../libyelp/yelp-settings.c:164
-msgid "A GtkIconTheme object to get icons from"
-msgstr "GtkIconTheme-objekto de kie obteni piktogramojn"
-
-#: ../libyelp/yelp-settings.c:172
-msgid "Font Adjustment"
-msgstr "Tipara ĝustigo"
-
-#: ../libyelp/yelp-settings.c:173
-msgid "A size adjustment to add to font sizes"
-msgstr "Ĝustigo de grando aldonenda al tipargrando"
-
-#: ../libyelp/yelp-settings.c:181
-msgid "Show Text Cursor"
-msgstr "Montri tekstkursoron"
-
-#: ../libyelp/yelp-settings.c:182
-msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Montri tajpkursoron por alirebla navigado"
-
-#: ../libyelp/yelp-settings.c:190
-msgid "Editor Mode"
-msgstr "Redakta reĝimo"
-
-#: ../libyelp/yelp-settings.c:191
-msgid "Enable features useful to editors"
-msgstr "Enŝalti utilajn trajtojn por redaktoroj"
-
-#: ../libyelp/yelp-sqlite-storage.c:150
-msgid "Database filename"
-msgstr "Datumbaza dosiernomo"
-
-#: ../libyelp/yelp-sqlite-storage.c:151
-msgid "The filename of the sqlite database"
-msgstr "La dosiernomo de la sqlite-datumbazo"
-
-#: ../libyelp/yelp-transform.c:171
-msgid "XSLT Stylesheet"
-msgstr "XSLT-stilfolio"
-
-#: ../libyelp/yelp-transform.c:172
-msgid "The location of the XSLT stylesheet"
-msgstr "La loko de XSLT-stilfolio"
-
-#: ../libyelp/yelp-transform.c:379 ../libyelp/yelp-transform.c:394
+#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr "La XSLT-stilfolio '%s' ne ekzistas aŭ ne estas valida."
+msgstr "La XSLT-stilfolio ‘%s’ ne ekzistas aŭ ne estas valida."
 
-#: ../libyelp/yelp-transform.c:528
+#: ../libyelp/yelp-transform.c:518
 msgid "No href attribute found on yelp:document\n"
-msgstr "\"yelp:document\" ne posedas atributon href.\n"
+msgstr "yelp:document ne posedas atributon href\n"
 
-#: ../libyelp/yelp-transform.c:543
+#: ../libyelp/yelp-transform.c:533
 msgid "Out of memory"
 msgstr "Memoro ne sufiĉas"
 
-#: ../libyelp/yelp-view.c:131
-msgid "_Print..."
-msgstr "_Presi..."
-
-#: ../libyelp/yelp-view.c:136
-msgid "_Back"
-msgstr "_Reen"
-
-#: ../libyelp/yelp-view.c:141
-msgid "_Forward"
-msgstr "_Antaŭen"
-
-#: ../libyelp/yelp-view.c:146
-msgid "_Previous Page"
-msgstr "_Antaŭa paĝo"
-
-#: ../libyelp/yelp-view.c:151
-msgid "_Next Page"
-msgstr "_Sekva paĝo"
-
-#: ../libyelp/yelp-view.c:423
-msgid "Yelp URI"
-msgstr "Yelp-URI"
-
-#: ../libyelp/yelp-view.c:424
-msgid "A YelpUri with the current location"
-msgstr "YelpUri kun la aktuala loko"
-
-#: ../libyelp/yelp-view.c:432
-msgid "Loading State"
-msgstr "Ŝargante staton"
-
-#: ../libyelp/yelp-view.c:433
-msgid "The loading state of the view"
-msgstr "La ŝargstato de la vido"
-
-#: ../libyelp/yelp-view.c:442
-msgid "Page ID"
-msgstr "Paĝ-ID"
-
-#: ../libyelp/yelp-view.c:443
-msgid "The ID of the root page of the page being viewed"
-msgstr "La identigilo de la bazpaĝo de la nun montrata paĝo"
-
-#: ../libyelp/yelp-view.c:451
-msgid "Root Title"
-msgstr "Titolo de bazpaĝo"
-
-#: ../libyelp/yelp-view.c:452
-msgid "The title of the root page of the page being viewed"
-msgstr "La titolo de la bazpaĝo de la nun montrata paĝo"
-
-#: ../libyelp/yelp-view.c:460
-msgid "Page Title"
-msgstr "Paĝ-titolo"
-
-#: ../libyelp/yelp-view.c:461
-msgid "The title of the page being viewed"
-msgstr "La titolo de la nun montrata paĝo"
-
-#: ../libyelp/yelp-view.c:469
-msgid "Page Description"
-msgstr "Paĝ-prispkribo"
-
-#: ../libyelp/yelp-view.c:470
-msgid "The description of the page being viewed"
-msgstr "La priskribo de la nun montrata paĝo"
-
-#: ../libyelp/yelp-view.c:478
-msgid "Page Icon"
-msgstr "Paĝ-piktogramo"
-
-#: ../libyelp/yelp-view.c:479
-msgid "The icon of the page being viewed"
-msgstr "La piktogramo de la nun montrata paĝo"
-
-#: ../libyelp/yelp-view.c:720
-msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr "Vi ne havas PackageKit. Pakaĵ-instalil-ligiloj postulas na PackageKit."
-
-#: ../libyelp/yelp-view.c:1013
-msgid "Save Image"
-msgstr "Konservi bildon"
-
-#: ../libyelp/yelp-view.c:1108
-msgid "Save Code"
-msgstr "Konservi kodon"
-
-#: ../libyelp/yelp-view.c:1271
-#, c-format
-msgid "Send email to %s"
-msgstr "Sendi retmesaĝon al %s"
-
-#: ../libyelp/yelp-view.c:1286
-msgid "_Install Packages"
-msgstr "_Instali pakaĵojn"
-
-#: ../libyelp/yelp-view.c:1294
-msgid "_Open Link"
-msgstr "_Malfermi ligilon"
-
-#: ../libyelp/yelp-view.c:1301
-msgid "_Copy Link Location"
-msgstr "_Kopii ligilan lokon"
-
-#: ../libyelp/yelp-view.c:1307
-msgid "Open Link in New _Window"
-msgstr "Malfermi ligilon en nova _fenestro"
-
-#: ../libyelp/yelp-view.c:1359
-msgid "_Save Image As..."
-msgstr "Kon_servi bildon kiel..."
-
-#: ../libyelp/yelp-view.c:1361
-msgid "_Save Video As..."
-msgstr "Kon_servi videon kiel..."
-
-#: ../libyelp/yelp-view.c:1368
-msgid "S_end Image To..."
-msgstr "S_endi bildon al..."
-
-#: ../libyelp/yelp-view.c:1370
-msgid "S_end Video To..."
-msgstr "S_endi videon al..."
-
-#: ../libyelp/yelp-view.c:1381
-msgid "_Copy Text"
-msgstr "_Kopii tekston"
-
-#: ../libyelp/yelp-view.c:1394
+#: ../libyelp/yelp-view.c:253
 msgid "C_opy Code Block"
 msgstr "K_opii kodgrupon"
 
-#: ../libyelp/yelp-view.c:1399
-msgid "Save Code _Block As..."
-msgstr "Konservi kodo_grupon kiel..."
+#: ../libyelp/yelp-view.c:258
+msgid "_Copy Link Location"
+msgstr "_Kopii ligilan lokon"
 
-#: ../libyelp/yelp-view.c:1505
-#, c-format
-msgid "See all search results for “%s”"
-msgstr "Montri ĉiujn serĉrezultoj por “%s”"
+#: ../libyelp/yelp-view.c:263
+msgid "_Open Link"
+msgstr "_Malfermi ligilon"
 
-#: ../libyelp/yelp-view.c:1626
-#, c-format
-msgid "Could not load a document for ‘%s’"
-msgstr "Ne eblis ŝargi dokumenton por \"%s\""
+#: ../libyelp/yelp-view.c:268
+msgid "Open Link in New _Window"
+msgstr "Malfermi ligilon en nova _fenestro"
 
-#: ../libyelp/yelp-view.c:1632
-#, c-format
-msgid "Could not load a document"
-msgstr "Ne eblis ŝargi dokumenton"
+#: ../libyelp/yelp-view.c:278
+msgid "_Install Packages"
+msgstr "_Instali pakaĵojn"
 
-#: ../libyelp/yelp-view.c:1706
-msgid "Document Not Found"
-msgstr "Ne trovis la dokumenton"
+#: ../libyelp/yelp-view.c:283
+#| msgid "Save Code _Block As..."
+msgid "Save Code _Block As…"
+msgstr "Konservi kodo_grupon kiel…"
 
-#: ../libyelp/yelp-view.c:1708
-msgid "Page Not Found"
-msgstr "Ne trovis la paĝon"
+#: ../libyelp/yelp-view.c:298
+msgid "_Copy Text"
+msgstr "_Kopii tekston"
 
-#: ../libyelp/yelp-view.c:1711
-msgid "Cannot Read"
-msgstr "Ne eblis legi"
-
-#: ../libyelp/yelp-view.c:1717
-msgid "Unknown Error"
-msgstr "Nekonata eraro"
-
-#: ../libyelp/yelp-view.c:1737
-msgid "Search for packages containing this document."
-msgstr "Serĉi pakaĵojn kiuj entenas tiun dokumenton."
-
-#: ../libyelp/yelp-view.c:1890
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2197
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "La URI ‘%s’ ne indikas al valida paĝo."
 
-#: ../libyelp/yelp-view.c:1896
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2203
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "La URI ne indikas al valida paĝo."
 
-#: ../libyelp/yelp-view.c:1902
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2209
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "La URI ‘%s’ ne povus esti sintakte analizita."
 
-#: ../src/yelp-application.c:65
+#: ../libyelp/yelp-view.c:842
+#, c-format
+#| msgid "Unknown Error"
+msgid "Unknown Error."
+msgstr "Nekonata eraro."
+
+#: ../libyelp/yelp-view.c:996
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr "Vi ne havas PackageKit. Pakaĵ-instalil-ligiloj postulas na PackageKit."
+
+#: ../libyelp/yelp-view.c:1243
+msgid "Save Image"
+msgstr "Konservi bildon"
+
+#: ../libyelp/yelp-view.c:1342
+msgid "Save Code"
+msgstr "Konservi kodon"
+
+#: ../libyelp/yelp-view.c:1438
+#, c-format
+msgid "Send email to %s"
+msgstr "Sendi retmesaĝon al %s"
+
+#: ../libyelp/yelp-view.c:1542
+#| msgid "_Save Image As..."
+msgid "_Save Image As…"
+msgstr "Kon_servi bildon kiel…"
+
+#: ../libyelp/yelp-view.c:1543
+#| msgid "_Save Video As..."
+msgid "_Save Video As…"
+msgstr "Kon_servi videon kiel…"
+
+#: ../libyelp/yelp-view.c:1551
+#| msgid "S_end Image To..."
+msgid "S_end Image To…"
+msgstr "S_endi bildon al…"
+
+#: ../libyelp/yelp-view.c:1552
+#| msgid "S_end Video To..."
+msgid "S_end Video To…"
+msgstr "S_endi videon al…"
+
+#: ../libyelp/yelp-view.c:1893
+#, c-format
+msgid "Could not load a document for ‘%s’"
+msgstr "Ne eblis ŝargi dokumenton por ‘%s’"
+
+#: ../libyelp/yelp-view.c:1899
+#, c-format
+msgid "Could not load a document"
+msgstr "Ne eblis ŝargi dokumenton"
+
+#: ../libyelp/yelp-view.c:1983
+msgid "Document Not Found"
+msgstr "Ne trovis la dokumenton"
+
+#: ../libyelp/yelp-view.c:1985
+msgid "Page Not Found"
+msgstr "Ne trovis la paĝon"
+
+#: ../libyelp/yelp-view.c:1988
+msgid "Cannot Read"
+msgstr "Ne eblis legi"
+
+#: ../libyelp/yelp-view.c:1994
+msgid "Unknown Error"
+msgstr "Nekonata eraro"
+
+#: ../libyelp/yelp-view.c:2014
+msgid "Search for packages containing this document."
+msgstr "Serĉi pakaĵojn kiuj entenas tiun dokumenton."
+
+#: ../src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "Enŝalti redaktilan reĝimon"
 
-#: ../src/yelp-application.c:128
-msgid "_Larger Text"
-msgstr "Pli _granda teksto"
-
-#: ../src/yelp-application.c:130
-msgid "Increase the size of the text"
-msgstr "Pligrandigi la tekston"
-
-#: ../src/yelp-application.c:133
-msgid "_Smaller Text"
-msgstr "Pli _malgranda teksto"
-
-#: ../src/yelp-application.c:135
-msgid "Decrease the size of the text"
-msgstr "Malpligrandigi la tekston"
-
-#: ../src/yelp-application.c:253 ../src/yelp-window.c:1360
-#: ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1181
+#: ../src/yelp-window.c:1189 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Helpo"
 
-#: ../src/yelp-application.c:288
-msgid "Show Text _Cursor"
-msgstr "Montri tekst_kursoron"
+#: ../src/yelp-application.c:321
+#| msgid "_New Window"
+msgid "New Window"
+msgstr "Nova fenestro"
 
-#: ../src/yelp-window.c:236
-msgid "_Page"
-msgstr "_Paĝo"
+#: ../src/yelp-application.c:325
+#| msgid "_Larger Text"
+msgid "Larger Text"
+msgstr "Pli granda teksto"
 
-#: ../src/yelp-window.c:237
-msgid "_View"
-msgstr "_Vido"
+#: ../src/yelp-application.c:326
+#| msgid "_Smaller Text"
+msgid "Smaller Text"
+msgstr "Pli malgranda teksto"
 
-#: ../src/yelp-window.c:238
-msgid "_Go"
-msgstr "_Iri"
+#: ../src/yelp-window.c:343
+#| msgid "_Back"
+msgid "Back"
+msgstr "Reen"
 
-#: ../src/yelp-window.c:239
-msgid "_Bookmarks"
-msgstr "L_egosignoj"
+#: ../src/yelp-window.c:350
+#| msgid "_Forward"
+msgid "Forward"
+msgstr "Antaŭen"
 
-#: ../src/yelp-window.c:242
-msgid "_New Window"
-msgstr "_Nova fenestro"
+#: ../src/yelp-window.c:361
+msgid "Menu"
+msgstr "Menuo"
 
-#: ../src/yelp-window.c:247
-msgid "_Close"
-msgstr "_Fermi"
+#: ../src/yelp-window.c:366
+#| msgid "Find:"
+msgid "Find…"
+msgstr "Serĉi…"
 
-#: ../src/yelp-window.c:252
-msgid "_All Documents"
-msgstr "Ĉiuj dokumentoj"
+#: ../src/yelp-window.c:367
+#| msgid "Print"
+msgid "Print…"
+msgstr "Presi…"
 
-#: ../src/yelp-window.c:256
-msgid "_Add Bookmark"
-msgstr "_Aldoni legosignon"
+#: ../src/yelp-window.c:372
+#| msgid "_Previous Page"
+msgid "Previous Page"
+msgstr "Antaŭa paĝo"
 
-#: ../src/yelp-window.c:261
-msgid "_Remove Bookmark"
-msgstr "_Forigi legosignon"
+#: ../src/yelp-window.c:373
+#| msgid "_Next Page"
+msgid "Next Page"
+msgstr "Sekva paĝo"
 
-#: ../src/yelp-window.c:265
-msgid "Find in Page..."
-msgstr "Trovi en paĝo..."
+#: ../src/yelp-window.c:378
+#| msgid "Help"
+msgid "All Help"
+msgstr "Tuta helpo"
 
-#: ../src/yelp-window.c:275
-msgid "Open Location"
-msgstr "Malfermi lokon"
+#: ../src/yelp-window.c:400
+msgid "Search (Ctrl+S)"
+msgstr "Serĉo (Ktrl+S)"
 
-#: ../src/yelp-window.c:301
-msgid "Application"
-msgstr "Aplikaĵo"
+#: ../src/yelp-window.c:417
+msgid "Bookmarks"
+msgstr "Legosignoj"
 
-#: ../src/yelp-window.c:302
-msgid "A YelpApplication instance that controls this window"
-msgstr "\"YelpApplication\"-instanco kiu regas ĉi tiun fenestron"
+#: ../src/yelp-window.c:434
+#| msgid "Bookmarks"
+msgid "No bookmarks"
+msgstr "Neniuj legosignoj"
 
-#: ../src/yelp-window.c:429
-msgid "Read Link _Later"
-msgstr "Legi ligon _poste"
+#: ../src/yelp-window.c:442
+msgid "Add Bookmark"
+msgstr "Aldoni legosignon"
 
-#: ../src/yelp-window.c:526
-msgid "Find:"
-msgstr "Serĉi:"
-
-#: ../src/yelp-window.c:548
-msgid "Read Later"
-msgstr "Legi poste"
-
-#: ../src/yelp-window.c:1180
-#, c-format
-msgid "%i match"
-msgid_plural "%i matches"
-msgstr[0] "%i kongruo"
-msgstr[1] "%i kongruoj"
-
-#: ../src/yelp-window.c:1189
-msgid "No matches"
-msgstr "Neniu kongruo"
+#: ../src/yelp-window.c:448
+msgid "Remove Bookmark"
+msgstr "Forigi legosignon"
 
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
 msgstr "Ricevi helpon pri GNOME"
 
 #: ../yelp.desktop.in.in.h:3
-msgid "documentation;information;manual;"
-msgstr "dokumentado;informo;manlibro;gvidilo;"
+#| msgid "documentation;information;manual;"
+msgid "documentation;information;manual;help;"
+msgstr "dokumentado;informo;manlibro;helpo;"
 
-#~ msgid "_Share..."
-#~ msgstr "_Komunigi..."
-
-#~ msgid "Share"
-#~ msgstr "Komunigi"
-
-#~ msgid "Close"
-#~ msgstr "Fermi"
-
-#~ msgid "Chat"
-#~ msgstr "Babilado"
-
-#~ msgid "Send a help link to a chat contact:"
-#~ msgstr "Sendi help-ligilon al babilejan kontakton:"
-
-#~ msgid "Email"
-#~ msgstr "Retpoŝtadreso"
-
-#~ msgid "Send a help link to an email contact:"
-#~ msgstr "Sendi help-ligilon al retpoŝtan kontakton:"
-
-#~ msgid "Compose new email"
-#~ msgstr "Krei novan retpoŝtmesaĝon"
-
-#~ msgid "Copy"
-#~ msgstr "Kopii"
-
-#~ msgid "Copy the help location to the clipboard:"
-#~ msgstr "Sendi la help-lokon tondujen:"
-
-#~ msgid "Copy location to clipboard"
-#~ msgstr "Kopii la lokon todujen"
-
-#~ msgid "GNU Info Pages"
-#~ msgstr "Informpaĝoj de GNU"
-
-#~ msgid "Traditional command line help (info)"
-#~ msgstr "Tradicia komandlinia helpo (info)"
-
-#~ msgid "Applications"
-#~ msgstr "Aplikaĵoj"
-
-#~ msgid "BLT Functions"
-#~ msgstr "BLT-Funkcioj"
-
-#~ msgid "Configuration Files"
-#~ msgstr "Agordodosieroj"
-
-#~ msgid "Curses Functions"
-#~ msgstr "Curses-Funkcioj"
-
-#~ msgid "Development"
-#~ msgstr "Programado"
-
-#~ msgid "FORTRAN Functions"
-#~ msgstr "FORTRAN-funkcioj"
-
-#~ msgid "Games"
-#~ msgstr "Ludoj"
-
-#~ msgid "Hardware Devices"
-#~ msgstr "Aparatoj"
-
-#~ msgid "Kernel Routines"
-#~ msgstr "Kernfunkcioj"
-
-#~ msgid "Network Audio Sound Functions"
-#~ msgstr "Retaj aŭdsonaj funkcioj"
-
-#~ msgid "OpenSSL Applications"
-#~ msgstr "Aplikaĵoj OpenSSL"
-
-#~ msgid "OpenSSL Configuration"
-#~ msgstr "Konfiguro de OpenSSL"
-
-#~ msgid "OpenSSL Functions"
-#~ msgstr "OpenSSL-funkcioj"
-
-#~ msgid "OpenSSL Overviews"
-#~ msgstr "Resumoj de OpenSSL"
-
-#~ msgid "Overviews"
-#~ msgstr "Superrigardo"
-
-#~ msgid "POSIX Functions"
-#~ msgstr "Funkcioj POSIX"
-
-#~ msgid "POSIX Headers"
-#~ msgstr "POSIX-titoloj"
-
-#~ msgid "Perl Functions"
-#~ msgstr "Funkcioj Perl"
-
-#~ msgid "Qt Functions"
-#~ msgstr "Funkcioj Qt"
-
-#~ msgid "Readline Functions"
-#~ msgstr "Readline funkcioj"
-
-#~ msgid "Section 0p"
-#~ msgstr "Sekcio 0p"
-
-#~ msgid "Section 1m"
-#~ msgstr "Sekcio 1m"
-
-#~ msgid "Section 1ssl"
-#~ msgstr "Sekcio 1ssl"
-
-#~ msgid "Section 1x"
-#~ msgstr "Sekcio 1x"
-
-#~ msgid "Section 2"
-#~ msgstr "Sekcio 2"
-
-#~ msgid "Section 3blt"
-#~ msgstr "Sekcio 3blt"
-
-#~ msgid "Section 3f"
-#~ msgstr "Sekcio 3f"
-
-#~ msgid "Section 3nas"
-#~ msgstr "Sekcio 3nas"
-
-#~ msgid "Section 3p"
-#~ msgstr "Sekcio 3p"
-
-#~ msgid "Section 3qt"
-#~ msgstr "Sekcio 3qt"
-
-#~ msgid "Section 3readline"
-#~ msgstr "Sekcio 3readline"
-
-#~ msgid "Section 3ssl"
-#~ msgstr "Sekcio 3ssl"
-
-#~ msgid "Section 3tiff"
-#~ msgstr "Sekcio 3tiff"
-
-#~ msgid "Section 4"
-#~ msgstr "Sekcio 4"
-
-#~ msgid "Section 4x"
-#~ msgstr "Sekcio 4x"
-
-#~ msgid "Section 5"
-#~ msgstr "Sekcio 5"
-
-#~ msgid "Section 5ssl"
-#~ msgstr "Sekcio 5ssl"
-
-#~ msgid "Section 5x"
-#~ msgstr "Sekcio 5x"
-
-#~ msgid "Section 6"
-#~ msgstr "Sekcio 6"
-
-#~ msgid "Section 6x"
-#~ msgstr "Sekcio 6x"
-
-#~ msgid "Section 7ssl"
-#~ msgstr "Sekcio 7ssl"
-
-#~ msgid "Section 7x"
-#~ msgstr "Sekcio 7x"
-
-#~ msgid "Section 9"
-#~ msgstr "Sekcio 9"
-
-#~ msgid "Sections 1, 1p, 1g and 1t"
-#~ msgstr "Sekcioj 1, 1p, 1g kaj 1t"
-
-#~ msgid "Sections 3, 3o, and 3t"
-#~ msgstr "Sekcioj 3, 3o, kaj 3t"
-
-#~ msgid "Sections 3form and 3menu"
-#~ msgstr "Sekcioj 3form kaj 3menu"
-
-#~ msgid "Sections 3ncurses and 3curses"
-#~ msgstr "Sekcioj 3ncurses kaj 3curses"
-
-#~ msgid "Sections 3pm and 3perl"
-#~ msgstr "Sekcioj 3pm kaj 3perl"
-
-#~ msgid "Sections 3x and 3X11"
-#~ msgstr "Sekcioj 3x kaj 3X11"
-
-#~ msgid "Sections 7 and 7gcc"
-#~ msgstr "Sekcioj 7 kaj 7gcc"
-
-#~ msgid "Sections 8 and 8l"
-#~ msgstr "Sekcioj 8 kaj 8l"
-
-#~ msgid "System Administration"
-#~ msgstr "Sistemadministrado"
-
-#~ msgid "System Calls"
-#~ msgstr "Sistemvokoj"
-
-#~ msgid "System V Form/Menu Functions"
-#~ msgstr "Sistemo V formularaj/menuaj funkcioj"
-
-#~ msgid "TIFF Functions"
-#~ msgstr "TIFF-funkcioj"
-
-#~ msgid "Termcap Applications"
-#~ msgstr "Aplikaĵoj Termcap"
-
-#~ msgid "Traditional command line help (man)"
-#~ msgstr "Tradicia komandlinia helpo (man)"
-
-#~ msgid "X11 Applications"
-#~ msgstr "Aplikaĵoj X11"
-
-#~ msgid "X11 Configuration"
-#~ msgstr "Konfiguro X11"
-
-#~ msgid "X11 Devices"
-#~ msgstr "X11-aparatoj"
-
-#~ msgid "X11 Functions"
-#~ msgstr "Funkcioj X11"
-
-#~ msgid "X11 Games"
-#~ msgstr "Ludoj X11"
-
-#~ msgid "X11 Overviews"
-#~ msgstr "Resumoj X11"
-
-#~ msgid "2D Graphics"
-#~ msgstr "2-dimensiaj bildoj"
-
-#~ msgid "3D Graphics"
-#~ msgstr "3-dimensiaj bildoj"
-
-#~ msgid "Accessibility"
-#~ msgstr "Alirebleco"
-
-#~ msgid "Action Games"
-#~ msgstr "Agludoj"
-
-#~ msgid "Adventure Games"
-#~ msgstr "Aventuraj ludoj"
-
-#~ msgid "Amusement"
-#~ msgstr "Amuzo"
-
-#~ msgid "Applications for viewing and manipulating graphics"
-#~ msgstr "Aplikaĵoj por vidi kaj prilabori bildojn"
-
-#~ msgid "Applications related to audio and video"
-#~ msgstr "Aplikaĵoj rilataj al son- kaj film-prezento"
-
-#~ msgid "Applications that teach or aid in learning"
-#~ msgstr "Aplikaĵoj, kiuj instruas aŭ helpas lerni"
-
-#~ msgid "Arcade Games"
-#~ msgstr "Ludoj de Arcade"
-
-#~ msgid "Archiving Tools"
-#~ msgstr "Arkivaj iloj"
-
-#~ msgid "Art"
-#~ msgstr "Arto"
-
-#~ msgid "Artificial Intelligence"
-#~ msgstr "Artefarita intelekto"
-
-#~ msgid "Astronomy"
-#~ msgstr "Astronomio"
-
-#~ msgid "Biology"
-#~ msgstr "Biologio"
-
-#~ msgid "Blocks Games"
-#~ msgstr "Ludoj pri blokoj"
-
-#~ msgid "Board Games"
-#~ msgstr "Tabulludoj"
-
-#~ msgid "Building"
-#~ msgstr "Konstruado"
-
-#~ msgid "Calculator"
-#~ msgstr "Kalkulilo"
-
-#~ msgid "Calendar"
-#~ msgstr "Kalendaro"
-
-#~ msgid "Card Games"
-#~ msgstr "Kartludoj"
-
-#~ msgid "Charting Tools"
-#~ msgstr "Diagramaj iloj"
-
-#~ msgid "Chemistry"
-#~ msgstr "Kemio"
-
-#~ msgid "Clocks"
-#~ msgstr "Horloĝoj"
-
-#~ msgid "Compression Tools"
-#~ msgstr "Densigiloj"
-
-#~ msgid "Computer Science"
-#~ msgstr "Informadiko"
-
-#~ msgid "Construction"
-#~ msgstr "Konstruado"
-
-#~ msgid "Contact Management"
-#~ msgstr "Organizado de kontaktoj"
-
-#~ msgid "Data Visualization"
-#~ msgstr "Bildigo de datenoj"
-
-#~ msgid "Databases"
-#~ msgstr "Datumbazoj"
-
-#~ msgid "Debuggers"
-#~ msgstr "Sencimigiloj"
-
-#~ msgid "Desktop"
-#~ msgstr "Labortablo"
-
-#~ msgid "Desktop Settings"
-#~ msgstr "Labortablaj agordoj"
-
-#~ msgid "Dialup"
-#~ msgstr "Telefona retkontakto"
-
-#~ msgid "Dictionaries"
-#~ msgstr "Vortaroj"
-
-#~ msgid "Disc Burning"
-#~ msgstr "Skribi lumdiskojn"
-
-#~ msgid "Economy"
-#~ msgstr "Ekonomio"
-
-#~ msgid "Education"
-#~ msgstr "Edukado"
-
-#~ msgid "Electricity"
-#~ msgstr "Elektro"
-
-#~ msgid "Electronics"
-#~ msgstr "Elektroniko"
-
-#~ msgid "Emulator"
-#~ msgstr "Imitilo"
-
-#~ msgid "Engineering"
-#~ msgstr "Inĝenieriko"
-
-#~ msgid "File Manager"
-#~ msgstr "Dosiera Mastrumilo"
-
-#~ msgid "File Tools"
-#~ msgstr "Dosieraj iloj"
-
-#~ msgid "File Transfer"
-#~ msgstr "Transsendo de dosieroj"
-
-#~ msgid "Filesystem"
-#~ msgstr "Dosiersistemo"
-
-#~ msgid "Financial Tools"
-#~ msgstr "Financaj iloj"
-
-#~ msgid "Flow Charting Tools"
-#~ msgstr "Fluskemaj iloj"
-
-#~ msgid "GNOME Applications"
-#~ msgstr "GNOMaj Aplikaĵoj"
-
-#~ msgid "GTK"
-#~ msgstr "GTK"
-
-#~ msgid "GUI Designers"
-#~ msgstr "Grafikaj Interfacaj Dizajniloj"
-
-#~ msgid "Generic applications for the GNOME environment"
-#~ msgstr "Komunaj aplikaĵoj por la GNOMa ĉirkaŭaĵo"
-
-#~ msgid "Generic applications for the KDE environment"
-#~ msgstr "Aŭtentikaj aplikaĵoj por la medio KDE"
-
-#~ msgid "Geography"
-#~ msgstr "Geografio"
-
-#~ msgid "Geology"
-#~ msgstr "Geologio"
-
-#~ msgid "Geoscience"
-#~ msgstr "Terscienco"
-
-#~ msgid "Graphics"
-#~ msgstr "Grafikoj"
-
-#~ msgid ""
-#~ "Guides and manuals for applications that connect to the outside world"
-#~ msgstr ""
-#~ "Gvidlibroj kaj manlibroj por aplikaĵoj, kiuj komunikas al la ekstera mondo"
-
-#~ msgid "Guides for getting involved in development"
-#~ msgstr "Manlibro pri engaĝigi en programado"
-
-#~ msgid "Ham Radio"
-#~ msgstr "Amatora radio"
-
-#~ msgid "Hardware Settings"
-#~ msgstr "Aparataj agordoj"
-
-#~ msgid "Have some fun"
-#~ msgstr "Iom da amuŭo"
-
-#~ msgid "History"
-#~ msgstr "Historio"
-
-#~ msgid "IDEs"
-#~ msgstr "Evoluigaj ilaroj"
-
-#~ msgid "IRC Clients"
-#~ msgstr "Retbabilaj klientoj"
-
-#~ msgid "Image Processing"
-#~ msgstr "Bild-prilaborado"
-
-#~ msgid "Instant Messaging"
-#~ msgstr "Tujmesaĝilo"
-
-#~ msgid "Internet"
-#~ msgstr "Interreto"
-
-#~ msgid "Java"
-#~ msgstr "Ĝavo"
-
-#~ msgid "KDE Applications"
-#~ msgstr "KDE/aplikaĵoj"
-
-#~ msgid "Kids Games"
-#~ msgstr "Infanaj Ludoj"
-
-#~ msgid ""
-#~ "Learn more about making your system more accessible for a range of "
-#~ "disabilities"
-#~ msgstr ""
-#~ "Eksciu, kiel plibonigi aliron al via sistemo malgraŭ iuj handikapoj."
-
-#~ msgid "Licenses"
-#~ msgstr "Permesiloj"
-
-#~ msgid "Literature"
-#~ msgstr "Literaturo"
-
-#~ msgid "Logic Games"
-#~ msgstr "Ludoj pri logiko"
-
-#~ msgid "Math"
-#~ msgstr "Matematiko"
-
-#~ msgid "Medical Software"
-#~ msgstr "Medicinaj programoj"
-
-#~ msgid "Midi"
-#~ msgstr "Midi"
-
-#~ msgid "Miscellaneous Documentation"
-#~ msgstr "Diversspecaj dokumentoj"
-
-#~ msgid "Mixers"
-#~ msgstr "Miksiloj"
-
-#~ msgid "Monitor"
-#~ msgstr "Monitoro"
-
-#~ msgid "Motif"
-#~ msgstr "Motif"
-
-#~ msgid "Music"
-#~ msgstr "Muziko"
-
-#~ msgid "News"
-#~ msgstr "Novaĵoj"
-
-#~ msgid "Numerical Analysis"
-#~ msgstr "Nombra analitiko"
-
-#~ msgid "OCR"
-#~ msgstr "Signo-rekono"
-
-#~ msgid "Office Applications"
-#~ msgstr "Oficejaj aplikaĵoj"
-
-#~ msgid "Office applications"
-#~ msgstr "Oficejaj aplikaĵoj"
-
-#~ msgid "Other Documentation"
-#~ msgstr "Alia Dokumentaro"
-
-#~ msgid "P2P"
-#~ msgstr "Samtavola komunikado"
-
-#~ msgid "PDA Communication"
-#~ msgstr "Man/komputila komunikado"
-
-#~ msgid "Package Manager"
-#~ msgstr "Pakaĵadministrilo"
-
-#~ msgid "Parallel Computing"
-#~ msgstr "Paralela komputado"
-
-#~ msgid "Photography"
-#~ msgstr "Fotado"
-
-#~ msgid "Physics"
-#~ msgstr "Fiziko"
-
-#~ msgid "Players"
-#~ msgstr "Ludantoj"
-
-#~ msgid "Presentation Tools"
-#~ msgstr "Prezentadaj iloj"
-
-#~ msgid "Printing"
-#~ msgstr "Presado"
-
-#~ msgid "Profiling Tools"
-#~ msgstr "Profililoj"
-
-#~ msgid "Project Management Tools"
-#~ msgstr "Projekt-organizaj iloj"
-
-#~ msgid "Publishing"
-#~ msgstr "Publikigo"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "Raster Graphics"
-#~ msgstr "Rastrumaj bildoj"
-
-#~ msgid "Recorders"
-#~ msgstr "Registriloj"
-
-#~ msgid "Remote Access"
-#~ msgstr "Defora aliro"
-
-#~ msgid "Revision Control"
-#~ msgstr "Versio-administrado"
-
-#~ msgid "Robotics"
-#~ msgstr "Robotiko"
-
-#~ msgid "Role Playing Games"
-#~ msgstr "Rolaj ludoj"
-
-#~ msgid "Scanning"
-#~ msgstr "Skanado de bildoj"
-
-#~ msgid "Science"
-#~ msgstr "Scienco"
-
-#~ msgid "Security"
-#~ msgstr "Sekureco"
-
-#~ msgid "Sequencers"
-#~ msgstr "Sekvenciloj"
-
-#~ msgid "Settings"
-#~ msgstr "Agordaro"
-
-#~ msgid ""
-#~ "Settings users can manipulate to make their environment more pleasant"
-#~ msgstr "Agordoj, per kiuj uzantoj povas igi sian medion pli plaĉa"
-
-#~ msgid "Simulation Games"
-#~ msgstr "Simulaj ludoj"
-
-#~ msgid "Sound"
-#~ msgstr "Sono"
-
-#~ msgid "Sound &amp; Video"
-#~ msgstr "Sono &amp; video"
-
-#~ msgid "Sound &amp; Video Editing"
-#~ msgstr "Redaktado de son- kaj film-registraĵoj"
-
-#~ msgid "Sports"
-#~ msgstr "Sporto"
-
-#~ msgid "Sports Games"
-#~ msgstr "Sportaj ludoj"
-
-#~ msgid "Spreadsheet Tools"
-#~ msgstr "Tabel-kalkulaj iloj"
-
-#~ msgid "Strategy Games"
-#~ msgstr "Strategiaj ludoj"
-
-#~ msgid "System"
-#~ msgstr "Sistemo"
-
-#~ msgid "TV"
-#~ msgstr "Televido"
-
-#~ msgid "Telephony"
-#~ msgstr "Telefonado"
-
-#~ msgid "Telephony Tools"
-#~ msgstr "Telefonaj iloj"
-
-#~ msgid "Terminal Emulator"
-#~ msgstr "Fenestra terminalo"
-
-#~ msgid "Text Editors"
-#~ msgstr "Tekst-redaktiloj"
-
-#~ msgid "Text Tools"
-#~ msgstr "Tekstaj iloj"
-
-#~ msgid "Tools to help you manage your computer"
-#~ msgstr "Iloj, kiuj helpas administri vian komputilon"
-
-#~ msgid "Translation Tools"
-#~ msgstr "Tradukiloj"
-
-#~ msgid "Tuners"
-#~ msgstr "Radioriceviloj"
-
-#~ msgid "Utilities"
-#~ msgstr "Utilaĵoj"
-
-#~ msgid "Utilities to help you get work done"
-#~ msgstr "Utilaĵoj, kiuj helpas en via laboro"
-
-#~ msgid "Vector Graphics"
-#~ msgstr "Vektoraj bildoj"
-
-#~ msgid "Video"
-#~ msgstr "Filmo"
-
-#~ msgid "Video Conference"
-#~ msgstr "Televida konferenco"
-
-#~ msgid "Viewer"
-#~ msgstr "Rigardilo"
-
-#~ msgid "Web Browser"
-#~ msgstr "Ret-krozilo"
-
-#~ msgid "Web Development"
-#~ msgstr "Retprogramado"
-
-#~ msgid "Welcome to the GNOME Help Browser"
-#~ msgstr "Bonvenon al la GNOMa Helpfoliumilo"
-
-#~ msgid "Word Processors"
-#~ msgstr "Dokumentoredaktiloj"
-
-#~ msgid "Yelp"
-#~ msgstr "Yelp"
-
-#~ msgid "Phrase not found"
-#~ msgstr "Frazo ne trovita"
-
-#~ msgid "Cannot create search component"
-#~ msgstr "No povis krei serĉa komponanton"
-
-#~ msgid "Cannot create window"
-#~ msgstr "Ne eblas krei fenestron."
-
-#~ msgid "Search for other documentation"
-#~ msgstr "Serĉi alian dokumentaron"
-
-#~ msgid "_Search:"
-#~ msgstr "_Serĉi:"
-
-#~ msgid "Unable to load page"
-#~ msgstr "Ne eblis ŝargi paĝon"
-
-#~ msgid "The requested URI \"%s\" is invalid"
-#~ msgstr "La petita URI-adreso \"%s\" estas nevalida."
-
-#~ msgid "Unknown Page"
-#~ msgstr "Nekonata paĝo"
-
-#~ msgid "Loading..."
-#~ msgstr "Ŝargante..."
-
-#~ msgid "Help Browser"
-#~ msgstr "Helprigardilo"
-
-#~ msgid "_About"
-#~ msgstr "_Pri"
-
-#~ msgid "Help On this application"
-#~ msgstr "Helpi pri ĉi tiu aplikaĵo"
-
-#~ msgid "_Previous Section"
-#~ msgstr "_Antaŭa sekcio"
-
-#~ msgid "Show next page in history"
-#~ msgstr "Montru antaŭan paĝon en la historio"
-
-#~ msgid "Show previous page in history"
-#~ msgstr "Montru malantaŭan paĝon en la historio"
-
-#~ msgid "_Reload"
-#~ msgstr "_Reŝargi"
-
-#~ msgid "Find next occurrence of the word or phrase"
-#~ msgstr "Trovi sekvan aperon de la vorto aŭ frazo"
-
-#~ msgid "Find Ne_xt"
-#~ msgstr "Serĉi se_kvan"
-
-#~ msgid "Find previous occurrence of the word or phrase"
-#~ msgstr "Trovu antaŭan aperon de la vorto aŭ frazo"
-
-#~ msgid "Find Pre_vious"
-#~ msgstr "Serĉi _antaŭan"
-
-#~ msgid "_Find..."
-#~ msgstr "_Serĉi..."
-
-#~ msgid "_Close Window"
-#~ msgstr "_Fermi fenestron"
-
-#~ msgid "Open _Location"
-#~ msgstr "Malfermi _lokon"
-
-#~ msgid "About This Document"
-#~ msgstr "Pri ĉi tiu dokumento"
-
-#~ msgid "Print This Page ..."
-#~ msgstr "Presu tiun ĉi paĝon..."
-
-#~ msgid "Print This Document ..."
-#~ msgstr "Presu tiun ĉi dokumenton..."
-
-#~ msgid "_Help"
-#~ msgstr "_Helpo"
-
-#~ msgid "_Edit"
-#~ msgstr "R_edakti"
-
-#~ msgid "_File"
-#~ msgstr "_Dosiero"
-
-#~ msgid ""
-#~ "An unknown error occurred while attempting to transform the document."
-#~ msgstr "Nekonata eraro okazis dum la provo transformi la dokumenton."
-
-#~ msgid "Broken Transformation"
-#~ msgstr "Malsukcesa transformado."
-
-#~ msgid "The XSLT stylesheet ‘%s’ is either missing, or it is not valid."
-#~ msgstr "La XSLT/a stila folio \"%s\" ne ekzistas aŭ ne estas valida."
-
-#~ msgid "Invalid Stylesheet"
-#~ msgstr "Nevalida stila folio"
-
-#~ msgid ""
-#~ "The TOC file could not be parsed because it is not a well-formed XML "
-#~ "document."
-#~ msgstr ""
-#~ "La enhavo-listo (TOC) ne estis komprenebla, ĉar ĝi ne estas bonforma XML-"
-#~ "dokumento."
-
-#~ msgid "The requested page was not found in the TOC."
-#~ msgstr "La petita paĝo ne estis trovita en la enhavo-listo."
-
-#~ msgid "The page %s was not found in the TOC."
-#~ msgstr "Paĝo %s ne estis trovita en la enhavo-listo."
-
-#~ msgid "The search processor returned invalid results"
-#~ msgstr "La serĉilo donis nevalidan rezulton."
-
-#~ msgid "Cannot process the search"
-#~ msgstr "Ne eblas plenumi la serĉon."
-
-#~ msgid "The requested search could not be processed."
-#~ msgstr "Ne eblis plenumi la petitan serĉadon."
-
-#~ msgid "Search could not be processed"
-#~ msgstr "Serĉado ne estis plenumebla."
-
-#~ msgid "No Comment"
-#~ msgstr "Sen komento."
-
-#~ msgid "ers:er:ing:es:s:'s"
-#~ msgstr "a:ado:aj:ajn:an:ante:as:i:is:ita:itaj:itajn:itan:o:oj:ojn:on:os:u"
-
-#~ msgid "re"
-#~ msgstr "mal:re:sub"
-
-#~ msgid ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-#~ msgstr ""
-#~ "al:aŭ:ĉi:ĉio:ĉiuj:de:dialog:eksplik:el:en:est:far:funkci:ĝi:hav:help:iuj:"
-#~ "iujn:iun:kaj:kial:kiam:kiel:kio:kiu:kiuj:kiujn:kiun:la:mi:min:ne:neniu:"
-#~ "neniuj:per:por:pov:pri:tiam:tiel:tio:tiu:tiun"
-
-#~ msgid "Repeat the search online at %s"
-#~ msgstr "Ripetu la serĉon enretan je %s"
-
-#~ msgid ""
-#~ "Try using different words to describe the problem you're having or the "
-#~ "topic you want help with."
-#~ msgstr ""
-#~ "Provu uzi aliaj vortoj por priskribi la problemon kiun vi havas, aŭ la "
-#~ "temon pri kiu vi deziras helpon."
-
-#~ msgid "No results for \"%s\""
-#~ msgstr "Neniuj rezultoj por \"%s\""
-
-#~ msgid "the Ubuntu Help Pages"
-#~ msgstr "la Ubuntu Helppaĝoj"
-
-#~ msgid "It was not possible to print your document: %s"
-#~ msgstr "Ne eblis presi vian dokumenton: %s"
-
-#~ msgid "An error occurred while printing"
-#~ msgstr "Eraro okazis dum presado"
-
-#~ msgid "Waiting to print"
-#~ msgstr "Atendado por presi"
-
-#~ msgid "Printer %s does not support postscript printing."
-#~ msgstr "Presilo %s ne subtenas postskriptan presadon."
-
-#~ msgid "Printing is not supported on this printer"
-#~ msgstr "Presado ne estas subtenata en tiu ĉi presilo"
-
-#~ msgid "Preparing to print"
-#~ msgstr "Preparado por presi"
-
-#~ msgid "Print"
-#~ msgstr "Presi"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
-#~ "page."
-#~ msgstr ""
-#~ "Dosiero \"%s\" ne estis komprenebla, ĉar ĝi ne enhavas bonforman man-"
-#~ "libran paĝon."
-
-#~ msgid " GNOME Help Browser"
-#~ msgstr " GNOMa Helpfoliumilo"
-
-#~ msgid "Define which cache directory to use"
-#~ msgstr "Difinu la tenejan dosierujon ke vi devas uzi"
-
-#~ msgid "Use a private session"
-#~ msgstr "Uzu privatan seancon"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
-#~ "in an unsupported format."
-#~ msgstr ""
-#~ "La dosiero ‘%s’ ne povis esti legata kaj malkodata. Eble la dosiero estas "
-#~ "kunpremita en nesubtenata formato."
-
-#~ msgid "No information is available about this error."
-#~ msgstr "Ne haveblas informo pri tiu ĉi eraro."
-
-#~ msgid "Could Not Read File"
-#~ msgstr "Dosiero ne legebla."
-
-#~ msgid "File not found"
-#~ msgstr "Dosiero ne trovita."
-
-#~ msgid "The requested page was not found in the document %s."
-#~ msgstr "La petita paĝo ne estis trovita en dokumento %s."
-
-#~ msgid "The page %s was not found in the document %s."
-#~ msgstr "La paĝo %s ne estis trovita en dokumento %s."
-
-#~ msgid "Page not found"
-#~ msgstr "Paĝo ne trovita"
-
-#~ msgid "Document Sections"
-#~ msgstr "Sekcioj de Dokumento"
-
-#~ msgid "Help Topics"
-#~ msgstr "Helpaj Temoj"
-
-#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
-#~ msgstr "Legosigno titolita <b>%s</b> jam ekzistas por ĉi tiu paĝo."
-
-#~ msgid "A bookmark titled %s already exists for this page."
-#~ msgstr "Legosigno titolita %s jam ekzistas por ĉi tiu paĝo."
-
-#~ msgid "Remove Bookmark"
-#~ msgstr "Forigi legosignon"
-
-#~ msgid "Rename Bookmark"
-#~ msgstr "Alinomi legosignon"
-
-#~ msgid "Open Bookmark in New Window"
-#~ msgstr "Malfermi legosignon en nova fenestro"
-
-#~ msgid "Use the default fonts set for the system."
-#~ msgstr "Uzi la defaŭltajn tiparojn agorditajn por la sistemo."
-
-#~ msgid "Use system fonts"
-#~ msgstr "Uzi sistemajn tiparojn"
-
-#~ msgid "Use caret"
-#~ msgstr "Uzi kursoron"
-
-#~ msgid "Use a keyboard-controllable caret when viewing pages."
-#~ msgstr "Uzi klavar-kontroleblan kursoron dum vidado de paĝoj."
-
-#~ msgid "Font for text with variable width."
-#~ msgstr "Tiparo por teksto kun varia larĝo."
-
-#~ msgid "Font for text with fixed width."
-#~ msgstr "Tiparo por teksto kun fiksita larĝo."
-
-#~ msgid "Font for text"
-#~ msgstr "Tiparo por teksto"
-
-#~ msgid "Font for fixed text"
-#~ msgstr "Tiparo por fiksita teksto"
-
-#~ msgid "_Variable width:"
-#~ msgstr "_Varia larĝo"
-
-#~ msgid "_Location:"
-#~ msgstr "_Loko:"
-
-#~ msgid "_Bookmarks:"
-#~ msgstr "Legosignoj:"
-
-#~ msgid "http://www.ubuntu.com/support/paid"
-#~ msgstr "http://www.ubuntu.com/support/paid"
-
-#~ msgid "http://www.ubuntu.com/support/free"
-#~ msgstr "http://www.ubuntu.com/support/free"
-
-#~ msgid "http://www.ubuntu.com/community/participate"
-#~ msgstr "http://www.ubuntu.com/community/participate"
-
-#~ msgid "how to contribute"
-#~ msgstr "kiel kontribui"
-
-#~ msgid "free support"
-#~ msgstr "liberan subtenon"
-
-#~ msgid "commercial technical support"
-#~ msgstr "komerca teknika subteno"
-
-#~ msgid "Welcome to the Ubuntu Help Center"
-#~ msgstr "Bonvenon al la Ubuntu/helpcentro"
-
-#~ msgid "Ubuntu has an open and vibrant community of contributors. Find out"
-#~ msgstr ""
-#~ "Ubuntu posedas malferma kaj vigla komunumo el kontribuantoj. Eltrovu"
-
-#~ msgid "Ubuntu Help Center"
-#~ msgstr "Ubuntu-helpcentro"
-
-#~ msgid "Topics"
-#~ msgstr "Temoj"
-
-#~ msgid "To find help, insert a keyword in the search bar"
-#~ msgstr "Por trovi helpon, enmetu ŝlosilvorton en la serĉbreto"
-
-#~ msgid ""
-#~ "These guides used to be on the front page. Put here for safe keeping in "
-#~ "their own new section."
-#~ msgstr ""
-#~ "Ĉi tiuj gvidiloj ordinare troviĝis sur la unua paĝo. Metite ĉi tien por "
-#~ "sekure teni ilin en ilia propra sekcio."
-
-#~ msgid "The Ubuntu community provides extensive"
-#~ msgstr "La Ubuntu-komunumo amplekse provizas"
-
-#~ msgid "Playing music"
-#~ msgstr "Ludi muzikon"
-
-#~ msgid "Keeping your computer updated"
-#~ msgstr "Teni vian komputilon ĝisdata"
-
-#~ msgid "Importing photos"
-#~ msgstr "Importi fotojn"
-
-#~ msgid "How to Contribute"
-#~ msgstr "Kiel kontribui"
-
-#~ msgid "General Guides"
-#~ msgstr "Ĝeneralaj gvidiloj"
-
-#~ msgid "Connecting to the internet"
-#~ msgstr "Konekti al la Interreto"
-
-#~ msgid "Common Questions"
-#~ msgstr "Oftaj demandoj"
-
-#~ msgid "Canonical, its partners and approved companies provide"
-#~ msgstr "Canonical, ties partneroj kaj aprobitaj kompanioj provizas"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
-#~ "might not have permissions to read it."
-#~ msgstr ""
-#~ "La dosiero ‘%s’ ne estas legebla. Eble ĉi tiu dosiero malaperis, aŭ eble "
-#~ "vi ne havas permeson por legi ĝin."
-
-#~ msgid "_Next Section"
-#~ msgstr "Sekvanta Sekcio"
-
-#~ msgid "Enabling visual effects"
-#~ msgstr "Taŭgigi ekranajn efektojn"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "Aldoni legosignon"
-
-#~ msgid "Preferences"
-#~ msgstr "Agordoj"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Uzi sistemajn tiparojn"
-
-#~ msgid "_Fixed width:"
-#~ msgstr "_Fiksita larĝo:"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Agordoj"
-
-#~ msgid "_Select All"
-#~ msgstr "_Elekti ĉion"
-
-#~ msgid "_Help Topics"
-#~ msgstr "_Helpotemoj"
-
-#~ msgid "Go to the listing of help topics"
-#~ msgstr "Iri al listado de helpotemoj"
-
-#~ msgid "_Edit Bookmarks..."
-#~ msgstr "_Redakti legosignojn..."
-
-#~ msgid "_Copy Link Address"
-#~ msgstr "_Kopii ligiladreson"
-
-#~ msgid "Open Link in _New Window"
-#~ msgstr "Malfermi ligilon en _nova fenestro"
-
-#~ msgid "Can't find the answer?"
-#~ msgstr "Ĉu la respondo ne troveblas?"
-
-#~ msgid "_Browse with caret"
-#~ msgstr "_Foliumi per kursoro"
-
-#~ msgid "Fonts"
-#~ msgstr "Tiparoj"
-
-#~ msgid "Specify file containing saved configuration"
-#~ msgstr "Specifi dosieron, enhavanta konservitajn agordojn"
-
-#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr ""
-#~ "Ne eblas transdoni URI-ojn de dokumentoj al labortabla elemento "
-#~ "'Type=Link'"
-
-#~ msgid "Not a launchable item"
-#~ msgstr "Nelanĉebla ero"
-
-#~ msgid "Disable connection to session manager"
-#~ msgstr "Elŝalti konekton al seanco-administrilo"
-
-#~ msgid "Unrecognized desktop file Version '%s'"
-#~ msgstr "Nerekonata versio '%s' de labortabla dosiero"
-
-#~ msgid "File is not a valid .desktop file"
-#~ msgstr "Dosiero ne estas valida .desktop-dosiero"
-
-#~ msgid "Starting %s"
-#~ msgstr "Komencanta %s"
-
-#~ msgid "FILE"
-#~ msgstr "DOSIERO"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Specifi seancoadministran identigilon"
-
-#~ msgid "ID"
-#~ msgstr "Identigilo"
-
-#~ msgid "Session management options:"
-#~ msgstr "Opcioj de seancoadministrilo:"
-
-#~ msgid "Show session management options"
-#~ msgstr "Montri seancoadministrilajn opciojn"
-
-#~ msgid "Directory not found"
-#~ msgstr "Dosierujo ne trovita"
-
-#~ msgid "Re_name"
-#~ msgstr "Ali_nomi"
-
-#~ msgid "A documentation browser and viewer for the Gnome Desktop."
-#~ msgstr "Dokumenta foliumilo kaj legilo por la labortablo de GNOME."
-
-#~ msgid "Copy _Email Address"
-#~ msgstr "Kopii r_etpoŝtadreson"
-
-#~ msgid "Application does not accept documents on command line"
-#~ msgstr "Aplikaĵo ne akceptas dokumentojn per komandlinio"
-
-#~ msgid "Unrecognized launch option: %d"
-#~ msgstr "Nerekonata rulparametro: %d"
-
-#~ msgid "_Title:"
-#~ msgstr "_Titolo:"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Serĉi _antaŭan"
-
-#~ msgid "Find _Next"
-#~ msgstr "Serĉi _sekvan"
-
-#~ msgid "_Edit Bookmarks"
-#~ msgstr "R_edakti legosignojn"
-
-#~ msgid "Bookmarks for %s"
-#~ msgstr "Legosignoj por %s"
-
-#~ msgid "_Open Bookmark"
-#~ msgstr "_Malfermi legosignon"
-
-#~ msgid "Open Bookmark in New _Window"
-#~ msgstr "Malfermi legosignon en nova _fenestro"
-
-#~ msgid "_Contents"
-#~ msgstr "_Enhavoj"
