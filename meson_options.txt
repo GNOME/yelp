@@ -1,0 +1,14 @@
+option('lzma',
+       type : 'feature',
+       value : 'auto',
+       description : 'build with liblzma decoder support')
+
+option('bzip2',
+       type : 'feature',
+       value : 'auto',
+       description : 'build with bzip2 decoder support')
+
+option('webkit2gtk-4-0',
+       type : 'boolean',
+       value : false,
+       description : 'build against webkit2gtk-4.0 instead of webkit2gtk-4.1')
