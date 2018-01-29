@@ -1,0 +1,14 @@
+option('lzma',
+       type : 'boolean',
+       value : true,
+       description : 'build with liblzma decoder support')
+
+option('bzip2',
+       type : 'boolean',
+       value : true,
+       description : 'build with bzip2 decoder support')
+
+option('gtk_doc',
+       type : 'boolean',
+       value : false,
+       description : 'use gtk-doc to build documentation')
