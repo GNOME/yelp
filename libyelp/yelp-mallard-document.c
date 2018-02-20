@@ -523,7 +523,6 @@ mallard_page_data_walk (MallardPageData *page_data)
         page_data->cache = xmlDocGetRootElement (priv->cache);
         page_data->xpath = xmlXPathNewContext (page_data->xmldoc);
         mallard_page_data_walk (page_data);
-        xmlSaveFile ("/home/shaunm/tmp.cache", priv->cache);
     } else {
         gboolean ispage;
         xmlNodePtr child, oldcur, oldcache, info;
