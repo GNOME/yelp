@@ -2,14 +2,14 @@
 # Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
 # This file is distributed under the same license as the yelp package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
-# GunChleoc <fios@foramnagaidhlig.net>, 2014, 2015, 2016.
+# GunChleoc <fios@foramnagaidhlig.net>, 2014, 2015, 2016, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&k"
-"eywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-08-19 16:59+0000\n"
-"PO-Revision-Date: 2016-09-12 12:14+0100\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=yelp&"
+"keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-10-16 16:15+0000\n"
+"PO-Revision-Date: 2018-03-02 11:27+0100\n"
 "Last-Translator: GunChleoc <fios@foramnagaidhlig.net>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "Language: gd\n"
@@ -46,83 +46,66 @@ msgstr "Dàta dùmhlaichte mì-dhligheach"
 msgid "Not enough memory"
 msgstr "Chan eil cuimhne gu leòr ann"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
-#: ../libyelp/yelp-mallard-document.c:298
-#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
+#: ../libyelp/yelp-docbook-document.c:285 ../libyelp/yelp-info-document.c:221
+#: ../libyelp/yelp-mallard-document.c:301
+#: ../libyelp/yelp-mallard-document.c:455 ../libyelp/yelp-man-document.c:255
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "Cha deach an duilleag \"%s\" a lorg san sgrìobhainn \"%s\"."
+msgstr "Cha deach an duilleag “%s” a lorg san sgrìobhainn “%s”."
 
-#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
-#: ../libyelp/yelp-man-document.c:390
+#: ../libyelp/yelp-docbook-document.c:323 ../libyelp/yelp-info-document.c:358
+#: ../libyelp/yelp-man-document.c:393
 #, c-format
 msgid "The file does not exist."
 msgstr "Chan eil am faidhle ann."
 
-#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
-#: ../libyelp/yelp-man-document.c:400
+#: ../libyelp/yelp-docbook-document.c:333 ../libyelp/yelp-info-document.c:368
+#: ../libyelp/yelp-man-document.c:403
 #, c-format
 msgid "The file ‘%s’ does not exist."
-msgstr "Chan eil am faidhle \"%s\" ann."
+msgstr "Chan eil am faidhle “%s” ann."
 
-#: ../libyelp/yelp-docbook-document.c:345
+#: ../libyelp/yelp-docbook-document.c:348
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
-"Cha b' urrainn dhuinn am am faidhle \"%s\" a pharsadh a chionn 's nach e "
+"Cha b’ urrainn dhuinn am am faidhle “%s” a pharsadh a chionn ’s nach e "
 "sgrìobhainn XML dheagh-chumta a tha ann."
 
-#: ../libyelp/yelp-docbook-document.c:358
+#: ../libyelp/yelp-docbook-document.c:361
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"Cha b' urrainn dhuinn am am faidhle \"%s\" a pharsadh a chionn 's gu bheil "
-"co-dhiù aon fhaidhle 'na bhroinn nach eil 'na sgrìobhainn XML dheagh-chumta "
-"a tha ann."
+"Cha b’ urrainn dhuinn am am faidhle “%s” a pharsadh a chionn ’s gu bheil co-"
+"dhiù aon fhaidhle ’na bhroinn nach eil ’na sgrìobhainn XML dheagh-chumta a "
+"tha ann."
 
-#: ../libyelp/yelp-docbook-document.c:788
+#: ../libyelp/yelp-docbook-document.c:791
 msgid "Unknown"
 msgstr "Neo-aithnichte"
 
-#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
-#: ../libyelp/yelp-man-document.c:332
+#: ../libyelp/yelp-docbook-document.c:853 ../libyelp/yelp-info-document.c:301
+#: ../libyelp/yelp-man-document.c:335
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr "Cha deach an duilleag a dh'iarr thu a lorg san sgrìobhainn \"%s\"."
+msgstr "Cha deach an duilleag a dh’iarr thu a lorg san sgrìobhainn “%s”."
 
-#: ../libyelp/yelp-document.c:278
-msgid "Indexed"
-msgstr "Air inneacsadh"
-
-#: ../libyelp/yelp-document.c:279
-msgid "Whether the document content has been indexed"
-msgstr "Co-dhiù an deach susbaint na sgrìobhainn inneacsadh"
-
-#: ../libyelp/yelp-document.c:287
-msgid "Document URI"
-msgstr "URI na sgrìobhainne"
-
-#: ../libyelp/yelp-document.c:288
-msgid "The URI which identifies the document"
-msgstr "An URI tha air an aithnichear an sgrìobhainn"
-
-#: ../libyelp/yelp-document.c:1024
+#: ../libyelp/yelp-document.c:1030
 #, c-format
 msgid "Search results for “%s”"
-msgstr "Toraidhean luirg airson \"%s\""
+msgstr "Toraidhean luirg airson “%s”"
 
-#: ../libyelp/yelp-document.c:1036
+#: ../libyelp/yelp-document.c:1042
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr ""
-"Cha deach duilleag cobharach a lorg ann an \"%s\" a fhreagair ris na lorg "
-"thu."
+"Cha deach duilleag cobharach a lorg ann an “%s” a fhreagair ris na lorg thu."
 
-#: ../libyelp/yelp-document.c:1042
+#: ../libyelp/yelp-document.c:1048
 msgid "No matching help pages found."
 msgstr "Cha deach duilleag cobharach a lorg a fhreagair ris na lorg thu."
 
@@ -131,105 +114,32 @@ msgstr "Cha deach duilleag cobharach a lorg a fhreagair ris na lorg thu."
 msgid "An unknown error occurred."
 msgstr "Thachair mearachd neo-aithnichte"
 
-#: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
+#: ../libyelp/yelp-help-list.c:548 ../libyelp/yelp-help-list.c:557
 msgid "All Help Documents"
 msgstr "Gach sgrìobhainn na cobharach"
 
-#: ../libyelp/yelp-info-document.c:380
+#: ../libyelp/yelp-info-document.c:383
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Cha b' urrainn dhuinn am faidhle \"%s\" a pharsadh a chionn 's nach e "
-"duilleag cobharach dheagh-chumta a tha ann."
+"Cha b’ urrainn dhuinn am faidhle “%s” a pharsadh a chionn ’s nach e duilleag "
+"cobharach dheagh-chumta a tha ann."
 
-#: ../libyelp/yelp-mallard-document.c:340
+#: ../libyelp/yelp-mallard-document.c:343
 #, c-format
 msgid "The directory ‘%s’ does not exist."
-msgstr "Chan eil am pasgan \"%s\" ann"
-
-#: ../libyelp/yelp-search-entry.c:172
-msgid "View"
-msgstr "Seall"
-
-#: ../libyelp/yelp-search-entry.c:173
-msgid "A YelpView instance to control"
-msgstr "Ionstans de YelpView a tha ri smachdadh"
-
-#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
-msgid "Bookmarks"
-msgstr "Comharran-lìn"
-
-#: ../libyelp/yelp-search-entry.c:189
-msgid "A YelpBookmarks implementation instance"
-msgstr "Ionstans de gnìomhachadh YelpBookmarks"
+msgstr "Chan eil am pasgan “%s” ann"
 
 #: ../libyelp/yelp-search-entry.c:433
 #, c-format
 msgid "Search for “%s”"
-msgstr "Lorg \"%s\""
-
-#: ../libyelp/yelp-settings.c:148
-msgid "GtkSettings"
-msgstr "GtkSettings"
-
-#: ../libyelp/yelp-settings.c:149
-msgid "A GtkSettings object to get settings from"
-msgstr "Oibseact GtkSettings a gheibhear na roghainnean uaithe"
-
-#: ../libyelp/yelp-settings.c:157
-msgid "GtkIconTheme"
-msgstr "GtkIconTheme"
-
-#: ../libyelp/yelp-settings.c:158
-msgid "A GtkIconTheme object to get icons from"
-msgstr "Oibseact GtkIconTheme a gheibhear na h-ìomhaigheagan uaithe"
-
-#: ../libyelp/yelp-settings.c:166
-msgid "Font Adjustment"
-msgstr "Gleusadh nan cruthan-clò"
-
-#: ../libyelp/yelp-settings.c:167
-msgid "A size adjustment to add to font sizes"
-msgstr "Gleusadh a' mheud a chuirear ri meud nan cruthan-clò"
-
-#: ../libyelp/yelp-settings.c:175
-msgid "Show Text Cursor"
-msgstr "Seall an cùrsair teacsa"
-
-#: ../libyelp/yelp-settings.c:176
-msgid "Show the text cursor or caret for accessible navigation"
-msgstr ""
-"Seall an cùrsair teacsa no carait airson seòladaireachd sho-ruigsinneach"
-
-#: ../libyelp/yelp-settings.c:184
-msgid "Editor Mode"
-msgstr "Modh an deasaiche"
-
-#: ../libyelp/yelp-settings.c:185
-msgid "Enable features useful to editors"
-msgstr "Cuir an comas gleusan a tha feumail do dheasaichean"
-
-#: ../libyelp/yelp-sqlite-storage.c:145
-msgid "Database filename"
-msgstr "Ainm faidhle an stòir-dhàta"
-
-#: ../libyelp/yelp-sqlite-storage.c:146
-msgid "The filename of the sqlite database"
-msgstr "Ainm faidhle an stòir-dhàta sqlite"
-
-#: ../libyelp/yelp-transform.c:164
-msgid "XSLT Stylesheet"
-msgstr "Siota-stoidhle XSLT"
-
-#: ../libyelp/yelp-transform.c:165
-msgid "The location of the XSLT stylesheet"
-msgstr "Ionad an t-siota-stoidhle XSLT"
+msgstr "Lorg “%s”"
 
 #: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr "Chan eil an siota-stoidhle XSLT \"%s\" ann no chan eil e dligheach."
+msgstr "Chan eil an siota-stoidhle XSLT “%s” ann no chan eil e dligheach."
 
 #: ../libyelp/yelp-transform.c:518
 msgid "No href attribute found on yelp:document\n"
@@ -241,11 +151,11 @@ msgstr "Chan eil cuimhne air fhàgail"
 
 #: ../libyelp/yelp-view.c:253
 msgid "C_opy Code Block"
-msgstr "Dèan l_ethbhreac de bhloca a' chòd"
+msgstr "Dèan l_ethbhreac de bhloca a’ chòd"
 
 #: ../libyelp/yelp-view.c:258
 msgid "_Copy Link Location"
-msgstr "_Dèan lethbhreac de dh'ionad a' cheangail"
+msgstr "_Dèan lethbhreac de dh’ionad a’ cheangail"
 
 #: ../libyelp/yelp-view.c:263
 msgid "_Open Link"
@@ -261,82 +171,26 @@ msgstr "_Stàlaich na pacaidean"
 
 #: ../libyelp/yelp-view.c:283
 msgid "Save Code _Block As…"
-msgstr "Sàbhail _bloca a' chòd mar…"
+msgstr "Sàbhail _bloca a’ chòd mar…"
 
 #: ../libyelp/yelp-view.c:298
 msgid "_Copy Text"
 msgstr "Dèan _lethbhreac dhen teacsa"
 
-#: ../libyelp/yelp-view.c:525
-msgid "Yelp URI"
-msgstr "Yelp URI"
-
-#: ../libyelp/yelp-view.c:526
-msgid "A YelpUri with the current location"
-msgstr "YelpUri leis an ionad làithreach"
-
-#: ../libyelp/yelp-view.c:534
-msgid "Loading State"
-msgstr "An staid luchdaidh"
-
-#: ../libyelp/yelp-view.c:535
-msgid "The loading state of the view"
-msgstr "Staid luchdadh an t-seallaidh"
-
-#: ../libyelp/yelp-view.c:544
-msgid "Page ID"
-msgstr "ID na duilleige"
-
-#: ../libyelp/yelp-view.c:545
-msgid "The ID of the root page of the page being viewed"
-msgstr "ID na duilleige root aig an duilleag air a bheilear a' coimhead"
-
-#: ../libyelp/yelp-view.c:553
-msgid "Root Title"
-msgstr "Tiotal root"
-
-#: ../libyelp/yelp-view.c:554
-msgid "The title of the root page of the page being viewed"
-msgstr "Tiotal na duilleige root dhen duilleag air a bheilear a' coimhead"
-
-#: ../libyelp/yelp-view.c:562
-msgid "Page Title"
-msgstr "Tiotal na duilleige"
-
-#: ../libyelp/yelp-view.c:563
-msgid "The title of the page being viewed"
-msgstr "Tiotal na duilleige air a bheilear a' coimhead"
-
-#: ../libyelp/yelp-view.c:571
-msgid "Page Description"
-msgstr "Tuairisgeul na duilleige"
-
-#: ../libyelp/yelp-view.c:572
-msgid "The description of the page being viewed"
-msgstr "Tuairisgeul na duilleige air a bheilear a' coimhead"
-
-#: ../libyelp/yelp-view.c:580
-msgid "Page Icon"
-msgstr "Ìomhaigheag na duilleige"
-
-#: ../libyelp/yelp-view.c:581
-msgid "The icon of the page being viewed"
-msgstr "Ìomhaigheag na duilleige air a bheilear a' coimhead"
-
-#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
+#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2197
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "Chan eil an URI \"%s\" a' tomhadh ri duilleag dhligheach."
+msgstr "Chan eil an URI “%s” a’ tomhadh ri duilleag dhligheach."
 
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
+#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2203
 #, c-format
 msgid "The URI does not point to a valid page."
-msgstr "Chan eil an URI a' tomhadh ri duilleag dhligheach."
+msgstr "Chan eil an URI a’ tomhadh ri duilleag dhligheach."
 
-#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
+#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2209
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "Cha b' urrainn an URI \"%s\" a pharsadh."
+msgstr "Cha b’ urrainn an URI “%s” a pharsadh."
 
 #: ../libyelp/yelp-view.c:842
 #, c-format
@@ -368,7 +222,7 @@ msgstr "_Sàbhail an dealbh mar…"
 
 #: ../libyelp/yelp-view.c:1543
 msgid "_Save Video As…"
-msgstr "_Sàbhail a' video mar…"
+msgstr "_Sàbhail a’ video mar…"
 
 #: ../libyelp/yelp-view.c:1551
 msgid "S_end Image To…"
@@ -376,35 +230,35 @@ msgstr "Cu_ir an dealbh gu…"
 
 #: ../libyelp/yelp-view.c:1552
 msgid "S_end Video To…"
-msgstr "Cuir a' _video gu…"
+msgstr "Cuir a’ _video gu…"
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1893
 #, c-format
 msgid "Could not load a document for ‘%s’"
-msgstr "Cha b' urrainn dhuinn sgrìobhainn a luchdadh airson \"%s\""
+msgstr "Cha b’ urrainn dhuinn sgrìobhainn a luchdadh airson “%s”"
 
-#: ../libyelp/yelp-view.c:1900
+#: ../libyelp/yelp-view.c:1899
 #, c-format
 msgid "Could not load a document"
-msgstr "Tha sgrìobhainn ann nach b' urrainn a luchdadh"
+msgstr "Tha sgrìobhainn ann nach b’ urrainn a luchdadh"
 
-#: ../libyelp/yelp-view.c:1984
+#: ../libyelp/yelp-view.c:1983
 msgid "Document Not Found"
 msgstr "Cha deach an sgrìobhainn a lorg"
 
-#: ../libyelp/yelp-view.c:1986
+#: ../libyelp/yelp-view.c:1985
 msgid "Page Not Found"
 msgstr "Cha deach an duilleag a lorg"
 
-#: ../libyelp/yelp-view.c:1989
+#: ../libyelp/yelp-view.c:1988
 msgid "Cannot Read"
 msgstr "Cha ghabh a leughadh"
 
-#: ../libyelp/yelp-view.c:1995
+#: ../libyelp/yelp-view.c:1994
 msgid "Unknown Error"
 msgstr "Mearachd nach aithne dhuinn"
 
-#: ../libyelp/yelp-view.c:2015
+#: ../libyelp/yelp-view.c:2014
 msgid "Search for packages containing this document."
 msgstr "Lorg airson pacaidean sa bheil an sgrìobhainn seo."
 
@@ -412,8 +266,8 @@ msgstr "Lorg airson pacaidean sa bheil an sgrìobhainn seo."
 msgid "Turn on editor mode"
 msgstr "Cuir air modh an deasaiche"
 
-#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
-#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1181
+#: ../src/yelp-window.c:1189 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Cobhair"
 
@@ -428,14 +282,6 @@ msgstr "Teacsa nas motha"
 #: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Teacsa nas lugha"
-
-#: ../src/yelp-window.c:211
-msgid "Application"
-msgstr "Aplacaid"
-
-#: ../src/yelp-window.c:212
-msgid "A YelpApplication instance that controls this window"
-msgstr "Ionstans de YelpApplication aig a bheil smachd air an uinneag seo"
 
 #: ../src/yelp-window.c:343
 msgid "Back"
@@ -473,6 +319,10 @@ msgstr "Cobhair shlàn"
 msgid "Search (Ctrl+S)"
 msgstr "Lorg (Ctrl+S)"
 
+#: ../src/yelp-window.c:417
+msgid "Bookmarks"
+msgstr "Comharran-lìn"
+
 #: ../src/yelp-window.c:434
 msgid "No bookmarks"
 msgstr "Gun chomharra-lìn"
@@ -490,11 +340,122 @@ msgid "Get help with GNOME"
 msgstr "Faigh cobhair le GNOME"
 
 #: ../yelp.desktop.in.in.h:3
-#| msgid "documentation;information;manual;"
 msgid "documentation;information;manual;help;"
 msgstr ""
-"documentation;information;manual;help;docamaideadh;fiosrachadh;stiùireadh;tr"
-"eòir;cobhair;"
+"documentation;information;manual;help;docamaideadh;fiosrachadh;stiùireadh;"
+"treòir;cobhair;"
+
+#~ msgid "Indexed"
+#~ msgstr "Air inneacsadh"
+
+#~ msgid "Whether the document content has been indexed"
+#~ msgstr "Co-dhiù an deach susbaint na sgrìobhainn inneacsadh"
+
+#~ msgid "Document URI"
+#~ msgstr "URI na sgrìobhainne"
+
+#~ msgid "The URI which identifies the document"
+#~ msgstr "An URI tha air an aithnichear an sgrìobhainn"
+
+#~ msgid "View"
+#~ msgstr "Seall"
+
+#~ msgid "A YelpView instance to control"
+#~ msgstr "Ionstans de YelpView a tha ri smachdadh"
+
+#~ msgid "A YelpBookmarks implementation instance"
+#~ msgstr "Ionstans de gnìomhachadh YelpBookmarks"
+
+#~ msgid "GtkSettings"
+#~ msgstr "GtkSettings"
+
+#~ msgid "A GtkSettings object to get settings from"
+#~ msgstr "Oibseact GtkSettings a gheibhear na roghainnean uaithe"
+
+#~ msgid "GtkIconTheme"
+#~ msgstr "GtkIconTheme"
+
+#~ msgid "A GtkIconTheme object to get icons from"
+#~ msgstr "Oibseact GtkIconTheme a gheibhear na h-ìomhaigheagan uaithe"
+
+#~ msgid "Font Adjustment"
+#~ msgstr "Gleusadh nan cruthan-clò"
+
+#~ msgid "A size adjustment to add to font sizes"
+#~ msgstr "Gleusadh a' mheud a chuirear ri meud nan cruthan-clò"
+
+#~ msgid "Show Text Cursor"
+#~ msgstr "Seall an cùrsair teacsa"
+
+#~ msgid "Show the text cursor or caret for accessible navigation"
+#~ msgstr ""
+#~ "Seall an cùrsair teacsa no carait airson seòladaireachd sho-ruigsinneach"
+
+#~ msgid "Editor Mode"
+#~ msgstr "Modh an deasaiche"
+
+#~ msgid "Enable features useful to editors"
+#~ msgstr "Cuir an comas gleusan a tha feumail do dheasaichean"
+
+#~ msgid "Database filename"
+#~ msgstr "Ainm faidhle an stòir-dhàta"
+
+#~ msgid "The filename of the sqlite database"
+#~ msgstr "Ainm faidhle an stòir-dhàta sqlite"
+
+#~ msgid "XSLT Stylesheet"
+#~ msgstr "Siota-stoidhle XSLT"
+
+#~ msgid "The location of the XSLT stylesheet"
+#~ msgstr "Ionad an t-siota-stoidhle XSLT"
+
+#~ msgid "Yelp URI"
+#~ msgstr "Yelp URI"
+
+#~ msgid "A YelpUri with the current location"
+#~ msgstr "YelpUri leis an ionad làithreach"
+
+#~ msgid "Loading State"
+#~ msgstr "An staid luchdaidh"
+
+#~ msgid "The loading state of the view"
+#~ msgstr "Staid luchdadh an t-seallaidh"
+
+#~ msgid "Page ID"
+#~ msgstr "ID na duilleige"
+
+#~ msgid "The ID of the root page of the page being viewed"
+#~ msgstr "ID na duilleige root aig an duilleag air a bheilear a' coimhead"
+
+#~ msgid "Root Title"
+#~ msgstr "Tiotal root"
+
+#~ msgid "The title of the root page of the page being viewed"
+#~ msgstr "Tiotal na duilleige root dhen duilleag air a bheilear a' coimhead"
+
+#~ msgid "Page Title"
+#~ msgstr "Tiotal na duilleige"
+
+#~ msgid "The title of the page being viewed"
+#~ msgstr "Tiotal na duilleige air a bheilear a' coimhead"
+
+#~ msgid "Page Description"
+#~ msgstr "Tuairisgeul na duilleige"
+
+#~ msgid "The description of the page being viewed"
+#~ msgstr "Tuairisgeul na duilleige air a bheilear a' coimhead"
+
+#~ msgid "Page Icon"
+#~ msgstr "Ìomhaigheag na duilleige"
+
+#~ msgid "The icon of the page being viewed"
+#~ msgstr "Ìomhaigheag na duilleige air a bheilear a' coimhead"
+
+#~ msgid "Application"
+#~ msgstr "Aplacaid"
+
+#~ msgid "A YelpApplication instance that controls this window"
+#~ msgstr "Ionstans de YelpApplication aig a bheil smachd air an uinneag seo"
 
 #~ msgid "See all search results for “%s”"
 #~ msgstr "Faic a h-uile toradh luirg airson \"%s\""
