@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: yelp 0\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-03-01 01:11+0000\n"
-"PO-Revision-Date: 2017-04-08 19:05+0200\n"
+"POT-Creation-Date: 2017-09-11 20:40+0000\n"
+"PO-Revision-Date: 2018-03-07 14:41+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "Language: hr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Launchpad-Export-Date: 2016-05-03 20:56+0000\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -89,22 +89,6 @@ msgstr "Napoznato"
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Tražena stranica nije pronađena u dokumentu  ‘%s’."
 
-#: ../libyelp/yelp-document.c:280
-msgid "Indexed"
-msgstr "Popisano"
-
-#: ../libyelp/yelp-document.c:281
-msgid "Whether the document content has been indexed"
-msgstr "Treba li sadržaj dokumenta biti popisan"
-
-#: ../libyelp/yelp-document.c:289
-msgid "Document URI"
-msgstr "URI dokumenta"
-
-#: ../libyelp/yelp-document.c:290
-msgid "The URI which identifies the document"
-msgstr "URI koji identificira dokument"
-
 #: ../libyelp/yelp-document.c:1030
 #, c-format
 msgid "Search results for “%s”"
@@ -141,82 +125,10 @@ msgstr ""
 msgid "The directory ‘%s’ does not exist."
 msgstr "Direktorij ‘%s’ ne postoji."
 
-#: ../libyelp/yelp-search-entry.c:172
-msgid "View"
-msgstr "Pogled"
-
-#: ../libyelp/yelp-search-entry.c:173
-msgid "A YelpView instance to control"
-msgstr "Primjerak upravljanja Yelp pogleda"
-
-#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
-msgid "Bookmarks"
-msgstr "Zabilješke"
-
-#: ../libyelp/yelp-search-entry.c:189
-msgid "A YelpBookmarks implementation instance"
-msgstr "Primjerak implementacije Yelp zabilješka"
-
 #: ../libyelp/yelp-search-entry.c:433
 #, c-format
 msgid "Search for “%s”"
 msgstr "Pretraži \"%s\""
-
-#: ../libyelp/yelp-settings.c:148
-msgid "GtkSettings"
-msgstr "GtkPostavke"
-
-#: ../libyelp/yelp-settings.c:149
-msgid "A GtkSettings object to get settings from"
-msgstr "Objekt GtkPostavke iz kojeg se dobivaju postavke"
-
-#: ../libyelp/yelp-settings.c:157
-msgid "GtkIconTheme"
-msgstr "GtkIkon tema"
-
-#: ../libyelp/yelp-settings.c:158
-msgid "A GtkIconTheme object to get icons from"
-msgstr "Objekt GtkIkon tema iz kojeg se dobivaju ikone"
-
-#: ../libyelp/yelp-settings.c:166
-msgid "Font Adjustment"
-msgstr "Prilagodba slova"
-
-#: ../libyelp/yelp-settings.c:167
-msgid "A size adjustment to add to font sizes"
-msgstr "Prilagodba veličine koja se dodaje veličinama slova"
-
-#: ../libyelp/yelp-settings.c:175
-msgid "Show Text Cursor"
-msgstr "Prikaži pokazivač teksta"
-
-#: ../libyelp/yelp-settings.c:176
-msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Prikaži pokazivač teksta ili \"^\" za prilagođenu navigaciju"
-
-#: ../libyelp/yelp-settings.c:184
-msgid "Editor Mode"
-msgstr "Način uređivanja"
-
-#: ../libyelp/yelp-settings.c:185
-msgid "Enable features useful to editors"
-msgstr "Omogućuje značajke korisne urediteljima"
-
-#: ../libyelp/yelp-sqlite-storage.c:145
-msgid "Database filename"
-msgstr "Naziv datoteke baze podataka"
-
-#: ../libyelp/yelp-sqlite-storage.c:146
-msgid "The filename of the sqlite database"
-msgstr "Naziv sqlite baze podataka"
-
-#: ../libyelp/yelp-transform.c:164
-msgid "XSLT Stylesheet"
-msgstr "XSLT stilski predložak"
-
-#: ../libyelp/yelp-transform.c:165
-msgid "The location of the XSLT stylesheet"
-msgstr "Lokacija XSLT stilskog predloška"
 
 #: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
 #, c-format
@@ -253,67 +165,11 @@ msgstr "_Instaliraj pakete"
 
 #: ../libyelp/yelp-view.c:283
 msgid "Save Code _Block As…"
-msgstr "Spremi blok _kôda kao"
+msgstr "Spremi blok _kôda kao…"
 
 #: ../libyelp/yelp-view.c:298
 msgid "_Copy Text"
 msgstr "_Kopiraj tekst"
-
-#: ../libyelp/yelp-view.c:525
-msgid "Yelp URI"
-msgstr "Yelp URI"
-
-#: ../libyelp/yelp-view.c:526
-msgid "A YelpUri with the current location"
-msgstr "Yelp Uri s trenutnom lokacijom"
-
-#: ../libyelp/yelp-view.c:534
-msgid "Loading State"
-msgstr "Stanje učitavanja"
-
-#: ../libyelp/yelp-view.c:535
-msgid "The loading state of the view"
-msgstr "Stanje učitavanja novog pogleda"
-
-#: ../libyelp/yelp-view.c:544
-msgid "Page ID"
-msgstr "ID stranice"
-
-#: ../libyelp/yelp-view.c:545
-msgid "The ID of the root page of the page being viewed"
-msgstr "ID korijenske stranice od trenutno gledane stranice"
-
-#: ../libyelp/yelp-view.c:553
-msgid "Root Title"
-msgstr "Korijenski naslov"
-
-#: ../libyelp/yelp-view.c:554
-msgid "The title of the root page of the page being viewed"
-msgstr "Naslov korijenske stranice od trenutno gledane stranice"
-
-#: ../libyelp/yelp-view.c:562
-msgid "Page Title"
-msgstr "Naslov stranice"
-
-#: ../libyelp/yelp-view.c:563
-msgid "The title of the page being viewed"
-msgstr "Naslov stranice koja se pregledava"
-
-#: ../libyelp/yelp-view.c:571
-msgid "Page Description"
-msgstr "Opis stranice"
-
-#: ../libyelp/yelp-view.c:572
-msgid "The description of the page being viewed"
-msgstr "Opis trenutno gledane stranice"
-
-#: ../libyelp/yelp-view.c:580
-msgid "Page Icon"
-msgstr "Ikona stranice"
-
-#: ../libyelp/yelp-view.c:581
-msgid "The icon of the page being viewed"
-msgstr "Ikona stranice koja se pregledava"
 
 #: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2197
 #, c-format
@@ -354,19 +210,19 @@ msgstr "Pošalji e-poštu na %s"
 
 #: ../libyelp/yelp-view.c:1542
 msgid "_Save Image As…"
-msgstr "_Spremi sliku kao..."
+msgstr "_Spremi sliku kao…"
 
 #: ../libyelp/yelp-view.c:1543
 msgid "_Save Video As…"
-msgstr "_Spremi snimku kao..."
+msgstr "_Spremi snimku kao…"
 
 #: ../libyelp/yelp-view.c:1551
 msgid "S_end Image To…"
-msgstr "P_ošalji sliku na..."
+msgstr "P_ošalji sliku na…"
 
 #: ../libyelp/yelp-view.c:1552
 msgid "S_end Video To…"
-msgstr "P_ošalji snimku na..."
+msgstr "P_ošalji snimku na…"
 
 #: ../libyelp/yelp-view.c:1893
 #, c-format
@@ -402,10 +258,10 @@ msgstr "Pretraži pakete koji sadrže ovaj dokument."
 msgid "Turn on editor mode"
 msgstr "Uključi način uređivanja"
 
-#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
-#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1181
+#: ../src/yelp-window.c:1189 ../yelp.desktop.in.in.h:1
 msgid "Help"
-msgstr "Pomoć"
+msgstr "Priručnik"
 
 #: ../src/yelp-application.c:321
 msgid "New Window"
@@ -418,14 +274,6 @@ msgstr "Veći tekst"
 #: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Manji tekst"
-
-#: ../src/yelp-window.c:211
-msgid "Application"
-msgstr "Aplikacija"
-
-#: ../src/yelp-window.c:212
-msgid "A YelpApplication instance that controls this window"
-msgstr "Primjerak Yelp aplikacije koji upravlja ovim prozorom"
 
 #: ../src/yelp-window.c:343
 msgid "Back"
@@ -441,11 +289,11 @@ msgstr "Izbornik"
 
 #: ../src/yelp-window.c:366
 msgid "Find…"
-msgstr "Pretraži..."
+msgstr "Pretraži…"
 
 #: ../src/yelp-window.c:367
 msgid "Print…"
-msgstr "Ispis..."
+msgstr "Ispis…"
 
 #: ../src/yelp-window.c:372
 msgid "Previous Page"
@@ -462,6 +310,10 @@ msgstr "Sva pomoć"
 #: ../src/yelp-window.c:400
 msgid "Search (Ctrl+S)"
 msgstr "Pretraga (Ctrl+S)"
+
+#: ../src/yelp-window.c:417
+msgid "Bookmarks"
+msgstr "Zabilješke"
 
 #: ../src/yelp-window.c:434
 msgid "No bookmarks"
@@ -482,6 +334,117 @@ msgstr "Nabavite pomoći za GNOME"
 #: ../yelp.desktop.in.in.h:3
 msgid "documentation;information;manual;help;"
 msgstr "dokumentacija;informacija;priručnik;pomoć;"
+
+#~ msgid "Indexed"
+#~ msgstr "Popisano"
+
+#~ msgid "Whether the document content has been indexed"
+#~ msgstr "Treba li sadržaj dokumenta biti popisan"
+
+#~ msgid "Document URI"
+#~ msgstr "URI dokumenta"
+
+#~ msgid "The URI which identifies the document"
+#~ msgstr "URI koji identificira dokument"
+
+#~ msgid "View"
+#~ msgstr "Pogled"
+
+#~ msgid "A YelpView instance to control"
+#~ msgstr "Primjerak upravljanja Yelp pogleda"
+
+#~ msgid "A YelpBookmarks implementation instance"
+#~ msgstr "Primjerak implementacije Yelp zabilješka"
+
+#~ msgid "GtkSettings"
+#~ msgstr "GtkPostavke"
+
+#~ msgid "A GtkSettings object to get settings from"
+#~ msgstr "Objekt GtkPostavke iz kojeg se dobivaju postavke"
+
+#~ msgid "GtkIconTheme"
+#~ msgstr "GtkIkon tema"
+
+#~ msgid "A GtkIconTheme object to get icons from"
+#~ msgstr "Objekt GtkIkon tema iz kojeg se dobivaju ikone"
+
+#~ msgid "Font Adjustment"
+#~ msgstr "Prilagodba slova"
+
+#~ msgid "A size adjustment to add to font sizes"
+#~ msgstr "Prilagodba veličine koja se dodaje veličinama slova"
+
+#~ msgid "Show Text Cursor"
+#~ msgstr "Prikaži pokazivač teksta"
+
+#~ msgid "Show the text cursor or caret for accessible navigation"
+#~ msgstr "Prikaži pokazivač teksta ili \"^\" za prilagođenu navigaciju"
+
+#~ msgid "Editor Mode"
+#~ msgstr "Način uređivanja"
+
+#~ msgid "Enable features useful to editors"
+#~ msgstr "Omogućuje značajke korisne urediteljima"
+
+#~ msgid "Database filename"
+#~ msgstr "Naziv datoteke baze podataka"
+
+#~ msgid "The filename of the sqlite database"
+#~ msgstr "Naziv sqlite baze podataka"
+
+#~ msgid "XSLT Stylesheet"
+#~ msgstr "XSLT stilski predložak"
+
+#~ msgid "The location of the XSLT stylesheet"
+#~ msgstr "Lokacija XSLT stilskog predloška"
+
+#~ msgid "Yelp URI"
+#~ msgstr "Yelp URI"
+
+#~ msgid "A YelpUri with the current location"
+#~ msgstr "Yelp Uri s trenutnom lokacijom"
+
+#~ msgid "Loading State"
+#~ msgstr "Stanje učitavanja"
+
+#~ msgid "The loading state of the view"
+#~ msgstr "Stanje učitavanja novog pogleda"
+
+#~ msgid "Page ID"
+#~ msgstr "ID stranice"
+
+#~ msgid "The ID of the root page of the page being viewed"
+#~ msgstr "ID korijenske stranice od trenutno gledane stranice"
+
+#~ msgid "Root Title"
+#~ msgstr "Korijenski naslov"
+
+#~ msgid "The title of the root page of the page being viewed"
+#~ msgstr "Naslov korijenske stranice od trenutno gledane stranice"
+
+#~ msgid "Page Title"
+#~ msgstr "Naslov stranice"
+
+#~ msgid "The title of the page being viewed"
+#~ msgstr "Naslov stranice koja se pregledava"
+
+#~ msgid "Page Description"
+#~ msgstr "Opis stranice"
+
+#~ msgid "The description of the page being viewed"
+#~ msgstr "Opis trenutno gledane stranice"
+
+#~ msgid "Page Icon"
+#~ msgstr "Ikona stranice"
+
+#~ msgid "The icon of the page being viewed"
+#~ msgstr "Ikona stranice koja se pregledava"
+
+#~ msgid "Application"
+#~ msgstr "Aplikacija"
+
+#~ msgid "A YelpApplication instance that controls this window"
+#~ msgstr "Primjerak Yelp aplikacije koji upravlja ovim prozorom"
 
 #~ msgid "Enable Search"
 #~ msgstr "Omogući pretragu"
