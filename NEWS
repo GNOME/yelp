@@ -1,3 +1,15 @@
+3.28.0
+======
+* Require WebKitGTK+ 2.19.2, and rely on WebKit automatically updating font
+  size on DPI change, #790728 (Gabriel Ivașcu)
+* Fix g_object_ref() type cast warnings with GLib 2.56 (Michael Catanzaro)
+* Updated translations:
+  eo    (Kristjan SCHMIDT)
+  gd    (GNOME Translation Robot)
+  hr    (gogo)
+  ne    (Pawan Chitrakar)
+  pl    (Piotr Drąg)
+
 3.27.1
 ======
 * Updates for new yelp-xsl stylesheets
