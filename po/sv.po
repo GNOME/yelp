@@ -1,18 +1,18 @@
 # Swedish messages for Yelp.
-# Copyright © 2001-2016 Free Software Foundation, Inc.
+# Copyright © 2001-2018 Free Software Foundation, Inc.
 # Richard Hult <rhult@codefactory.se>, 2001.
 # Christian Rose <menthos@menthos.com>, 2001, 2002, 2003, 2004, 2005.
 # Daniel Nylander <po@danielnylander.se>, 2006, 2008, 2009, 2010, 2011, 2012.
 # Mattias Eriksson <snaggen@gmail.com>, 2014.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014, 2015, 2016.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014, 2015, 2016, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-08-19 16:59+0000\n"
-"PO-Revision-Date: 2016-08-20 11:50+0200\n"
+"POT-Creation-Date: 2018-03-23 15:46+0000\n"
+"PO-Revision-Date: 2018-03-23 18:13+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -36,6 +36,42 @@ msgstr ""
 msgid "Install <string/>"
 msgstr "Installera <string/>"
 
+#: ../data/yelp.appdata.xml.in.h:1
+msgid "GNOME Help"
+msgstr "GNOME Hjälp"
+
+#: ../data/yelp.appdata.xml.in.h:2
+msgid "Help viewer for GNOME"
+msgstr "Hjälpvisare för GNOME"
+
+#: ../data/yelp.appdata.xml.in.h:3
+msgid ""
+"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
+"also display DocBook, info, man, and HTML documentation."
+msgstr ""
+"Yelp är hjälpvisaren för GNOME. Den är standardvisaren för Mallard, men den "
+"kan också visa DocBook-, info-, man- och HTML-dokumentation."
+
+#: ../data/yelp.appdata.xml.in.h:4
+msgid ""
+"It makes it easy to find the documentation you need, with interactive search "
+"and bookmarks."
+msgstr ""
+"Den gör det enkelt att hitta dokumentationen du behöver, med interaktiv "
+"sökning och bokmärken."
+
+#: ../data/yelp.appdata.xml.in.h:5
+msgid ""
+"It also has an editor mode, which shows editorial comments and revision "
+"statuses when editing Mallard documents."
+msgstr ""
+"Den har också ett redigeringsläge, vilket visar redaktionella kommentarer "
+"och ändringsstatusar vid redigering av Mallard-dokument."
+
+#: ../data/yelp.appdata.xml.in.h:6
+msgid "The GNOME Project"
+msgstr "GNOME-projektet"
+
 #: ../libyelp/yelp-bz2-decompressor.c:143
 #: ../libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
@@ -46,26 +82,26 @@ msgstr "Ogiltigt komprimerat data"
 msgid "Not enough memory"
 msgstr "Inte tillräckligt med minne"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
-#: ../libyelp/yelp-mallard-document.c:298
-#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
+#: ../libyelp/yelp-docbook-document.c:285 ../libyelp/yelp-info-document.c:221
+#: ../libyelp/yelp-mallard-document.c:305
+#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:255
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Sidan ”%s” hittades inte i dokumentet ”%s”."
 
-#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
-#: ../libyelp/yelp-man-document.c:390
+#: ../libyelp/yelp-docbook-document.c:323 ../libyelp/yelp-info-document.c:358
+#: ../libyelp/yelp-man-document.c:393
 #, c-format
 msgid "The file does not exist."
 msgstr "Filen finns inte."
 
-#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
-#: ../libyelp/yelp-man-document.c:400
+#: ../libyelp/yelp-docbook-document.c:333 ../libyelp/yelp-info-document.c:368
+#: ../libyelp/yelp-man-document.c:403
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Filen ”%s” finns inte."
 
-#: ../libyelp/yelp-docbook-document.c:345
+#: ../libyelp/yelp-docbook-document.c:348
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -74,7 +110,7 @@ msgstr ""
 "Filen ”%s” kunde inte tolkas därför att den inte är ett korrekt formaterat "
 "XML-dokument."
 
-#: ../libyelp/yelp-docbook-document.c:358
+#: ../libyelp/yelp-docbook-document.c:361
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -83,43 +119,27 @@ msgstr ""
 "Filen ”%s” kunde inte tolkas därför att en eller flera av dess inkluderade "
 "filer inte är korrekt formaterade XML-dokument."
 
-#: ../libyelp/yelp-docbook-document.c:788
+#: ../libyelp/yelp-docbook-document.c:791
 msgid "Unknown"
 msgstr "Okänd"
 
-#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
-#: ../libyelp/yelp-man-document.c:332
+#: ../libyelp/yelp-docbook-document.c:853 ../libyelp/yelp-info-document.c:301
+#: ../libyelp/yelp-man-document.c:335
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Den begärda sidan hittades inte i dokumentet ”%s”."
 
-#: ../libyelp/yelp-document.c:278
-msgid "Indexed"
-msgstr "Indexerat"
-
-#: ../libyelp/yelp-document.c:279
-msgid "Whether the document content has been indexed"
-msgstr "Huruvida dokumentets innehåll har indexerats"
-
-#: ../libyelp/yelp-document.c:287
-msgid "Document URI"
-msgstr "Dokumentets URI"
-
-#: ../libyelp/yelp-document.c:288
-msgid "The URI which identifies the document"
-msgstr "URI:n som identifierar dokumentet"
-
-#: ../libyelp/yelp-document.c:1024
+#: ../libyelp/yelp-document.c:1030
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Sökresultat för ”%s”"
 
-#: ../libyelp/yelp-document.c:1036
+#: ../libyelp/yelp-document.c:1042
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Inga matchande hjälpsidor hittades i ”%s”."
 
-#: ../libyelp/yelp-document.c:1042
+#: ../libyelp/yelp-document.c:1048
 msgid "No matching help pages found."
 msgstr "Inga matchande hjälpsidor hittades."
 
@@ -128,11 +148,11 @@ msgstr "Inga matchande hjälpsidor hittades."
 msgid "An unknown error occurred."
 msgstr "Ett okänt fel har inträffat."
 
-#: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
+#: ../libyelp/yelp-help-list.c:548 ../libyelp/yelp-help-list.c:557
 msgid "All Help Documents"
 msgstr "Alla hjälpdokument"
 
-#: ../libyelp/yelp-info-document.c:380
+#: ../libyelp/yelp-info-document.c:383
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -140,87 +160,15 @@ msgstr ""
 "Filen ”%s” kunde inte tolkas därför att den inte är en korrekt formaterad "
 "infosida."
 
-#: ../libyelp/yelp-mallard-document.c:340
+#: ../libyelp/yelp-mallard-document.c:347
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Katalogen ”%s” finns inte."
-
-#: ../libyelp/yelp-search-entry.c:172
-msgid "View"
-msgstr "Visa"
-
-#: ../libyelp/yelp-search-entry.c:173
-msgid "A YelpView instance to control"
-msgstr "En YelpView-instans att kontrollera"
-
-#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
-msgid "Bookmarks"
-msgstr "Bokmärken"
-
-#: ../libyelp/yelp-search-entry.c:189
-msgid "A YelpBookmarks implementation instance"
-msgstr "En instans för YelpBookmarks-implementation"
 
 #: ../libyelp/yelp-search-entry.c:433
 #, c-format
 msgid "Search for “%s”"
 msgstr "Sök efter ”%s”"
-
-#: ../libyelp/yelp-settings.c:148
-msgid "GtkSettings"
-msgstr "GtkSettings"
-
-#: ../libyelp/yelp-settings.c:149
-msgid "A GtkSettings object to get settings from"
-msgstr "Ett GtkSettings-objekt att hämta inställningar från"
-
-#: ../libyelp/yelp-settings.c:157
-msgid "GtkIconTheme"
-msgstr "GtkIconTheme"
-
-#: ../libyelp/yelp-settings.c:158
-msgid "A GtkIconTheme object to get icons from"
-msgstr "Ett GtkIconTheme-objekt att hämta ikoner från"
-
-#: ../libyelp/yelp-settings.c:166
-msgid "Font Adjustment"
-msgstr "Typsnittsjustering"
-
-#: ../libyelp/yelp-settings.c:167
-msgid "A size adjustment to add to font sizes"
-msgstr "En storleksjustering att lägga till i typsnittsstorlekar"
-
-#: ../libyelp/yelp-settings.c:175
-msgid "Show Text Cursor"
-msgstr "Visa textmarkör"
-
-#: ../libyelp/yelp-settings.c:176
-msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Visa textmarkören för hjälpmedelsnavigering"
-
-#: ../libyelp/yelp-settings.c:184
-msgid "Editor Mode"
-msgstr "Redigeringsläge"
-
-#: ../libyelp/yelp-settings.c:185
-msgid "Enable features useful to editors"
-msgstr "Aktivera funktioner användbara för redigerare"
-
-#: ../libyelp/yelp-sqlite-storage.c:145
-msgid "Database filename"
-msgstr "Databasens filnamn"
-
-#: ../libyelp/yelp-sqlite-storage.c:146
-msgid "The filename of the sqlite database"
-msgstr "Filnamnet för sqlite-databasen"
-
-#: ../libyelp/yelp-transform.c:164
-msgid "XSLT Stylesheet"
-msgstr "XSLT-stilmall"
-
-#: ../libyelp/yelp-transform.c:165
-msgid "The location of the XSLT stylesheet"
-msgstr "Platsen för XSLT-stilmallen"
 
 #: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
 #, c-format
@@ -235,171 +183,115 @@ msgstr "Inget href-attribut hittat på yelp:document\n"
 msgid "Out of memory"
 msgstr "Slut på minne"
 
-#: ../libyelp/yelp-view.c:253
+#: ../libyelp/yelp-view.c:248
 msgid "C_opy Code Block"
 msgstr "K_opiera källkodsblock"
 
-#: ../libyelp/yelp-view.c:258
+#: ../libyelp/yelp-view.c:253
 msgid "_Copy Link Location"
 msgstr "_Kopiera länkplats"
 
-#: ../libyelp/yelp-view.c:263
+#: ../libyelp/yelp-view.c:258
 msgid "_Open Link"
 msgstr "_Öppna länk"
 
-#: ../libyelp/yelp-view.c:268
+#: ../libyelp/yelp-view.c:263
 msgid "Open Link in New _Window"
 msgstr "Öppna länk i nytt _fönster"
 
-#: ../libyelp/yelp-view.c:278
+#: ../libyelp/yelp-view.c:273
 msgid "_Install Packages"
 msgstr "_Installera paket"
 
-#: ../libyelp/yelp-view.c:283
+#: ../libyelp/yelp-view.c:278
 msgid "Save Code _Block As…"
 msgstr "Spara källkods_block som…"
 
-#: ../libyelp/yelp-view.c:298
+#: ../libyelp/yelp-view.c:293
 msgid "_Copy Text"
 msgstr "_Kopiera text"
 
-#: ../libyelp/yelp-view.c:525
-msgid "Yelp URI"
-msgstr "Yelp-URI"
-
-#: ../libyelp/yelp-view.c:526
-msgid "A YelpUri with the current location"
-msgstr "En YelpUri med den aktuella platsen"
-
-#: ../libyelp/yelp-view.c:534
-msgid "Loading State"
-msgstr "Inläsningstillstånd"
-
-#: ../libyelp/yelp-view.c:535
-msgid "The loading state of the view"
-msgstr "Inläsningstillståndet för vyn"
-
-#: ../libyelp/yelp-view.c:544
-msgid "Page ID"
-msgstr "Sidans ID"
-
-#: ../libyelp/yelp-view.c:545
-msgid "The ID of the root page of the page being viewed"
-msgstr "ID för rotsidan för sidan som visas"
-
-#: ../libyelp/yelp-view.c:553
-msgid "Root Title"
-msgstr "Rottitel"
-
-#: ../libyelp/yelp-view.c:554
-msgid "The title of the root page of the page being viewed"
-msgstr "Titeln för rotsidan för sidan som visas"
-
-#: ../libyelp/yelp-view.c:562
-msgid "Page Title"
-msgstr "Sidtitel"
-
-#: ../libyelp/yelp-view.c:563
-msgid "The title of the page being viewed"
-msgstr "Titeln för sidan som visas"
-
-#: ../libyelp/yelp-view.c:571
-msgid "Page Description"
-msgstr "Sidbeskrivning"
-
-#: ../libyelp/yelp-view.c:572
-msgid "The description of the page being viewed"
-msgstr "Beskrivningen för sidan som visas"
-
-#: ../libyelp/yelp-view.c:580
-msgid "Page Icon"
-msgstr "Sidikon"
-
-#: ../libyelp/yelp-view.c:581
-msgid "The icon of the page being viewed"
-msgstr "Ikonen för sidan som visas"
-
-#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
+#: ../libyelp/yelp-view.c:805 ../libyelp/yelp-view.c:2138
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI:n ”%s” pekar inte på en giltig sida."
 
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
+#: ../libyelp/yelp-view.c:811 ../libyelp/yelp-view.c:2144
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI:n pekar inte på en giltig sida."
 
-#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
+#: ../libyelp/yelp-view.c:816 ../libyelp/yelp-view.c:2150
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI:n ”%s” kunde inte tolkas."
 
-#: ../libyelp/yelp-view.c:842
+#: ../libyelp/yelp-view.c:821
 #, c-format
 msgid "Unknown Error."
 msgstr "Okänt fel."
 
-#: ../libyelp/yelp-view.c:996
+#: ../libyelp/yelp-view.c:975
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "Du har inte PackageKit. Länkar för paketinstallationer kräver PackageKit."
 
-#: ../libyelp/yelp-view.c:1243
+#: ../libyelp/yelp-view.c:1222
 msgid "Save Image"
 msgstr "Spara bild"
 
-#: ../libyelp/yelp-view.c:1342
+#: ../libyelp/yelp-view.c:1321
 msgid "Save Code"
 msgstr "Spara källkod"
 
-#: ../libyelp/yelp-view.c:1438
+#: ../libyelp/yelp-view.c:1417
 #, c-format
 msgid "Send email to %s"
 msgstr "Skicka e-post till %s"
 
-#: ../libyelp/yelp-view.c:1542
+#: ../libyelp/yelp-view.c:1521
 msgid "_Save Image As…"
 msgstr "_Spara bild som…"
 
-#: ../libyelp/yelp-view.c:1543
+#: ../libyelp/yelp-view.c:1522
 msgid "_Save Video As…"
 msgstr "_Spara video som…"
 
-#: ../libyelp/yelp-view.c:1551
+#: ../libyelp/yelp-view.c:1530
 msgid "S_end Image To…"
 msgstr "S_kicka bild till…"
 
-#: ../libyelp/yelp-view.c:1552
+#: ../libyelp/yelp-view.c:1531
 msgid "S_end Video To…"
 msgstr "S_kicka video till…"
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1872
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Kunde inte läsa in ett dokument för ”%s”"
 
-#: ../libyelp/yelp-view.c:1900
+#: ../libyelp/yelp-view.c:1878
 #, c-format
 msgid "Could not load a document"
 msgstr "Kunde inte läsa in ett dokument"
 
-#: ../libyelp/yelp-view.c:1984
+#: ../libyelp/yelp-view.c:1962
 msgid "Document Not Found"
 msgstr "Dokumentet hittades inte"
 
-#: ../libyelp/yelp-view.c:1986
+#: ../libyelp/yelp-view.c:1964
 msgid "Page Not Found"
 msgstr "Sidan hittades inte"
 
-#: ../libyelp/yelp-view.c:1989
+#: ../libyelp/yelp-view.c:1967
 msgid "Cannot Read"
 msgstr "Kan inte läsa"
 
-#: ../libyelp/yelp-view.c:1995
+#: ../libyelp/yelp-view.c:1973
 msgid "Unknown Error"
 msgstr "Okänt fel"
 
-#: ../libyelp/yelp-view.c:2015
+#: ../libyelp/yelp-view.c:1993
 msgid "Search for packages containing this document."
 msgstr "Sök efter paket som innehåller detta dokument."
 
@@ -407,8 +299,8 @@ msgstr "Sök efter paket som innehåller detta dokument."
 msgid "Turn on editor mode"
 msgstr "Aktivera redigeringsläge"
 
-#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
-#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1181
+#: ../src/yelp-window.c:1189 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Hjälp"
 
@@ -423,14 +315,6 @@ msgstr "Större text"
 #: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Mindre text"
-
-#: ../src/yelp-window.c:211
-msgid "Application"
-msgstr "Program"
-
-#: ../src/yelp-window.c:212
-msgid "A YelpApplication instance that controls this window"
-msgstr "En YelpApplication-instans som kontrollerar detta fönster"
 
 #: ../src/yelp-window.c:343
 msgid "Back"
@@ -468,6 +352,10 @@ msgstr "All hjälp"
 msgid "Search (Ctrl+S)"
 msgstr "Sök (Ctrl+S)"
 
+#: ../src/yelp-window.c:417
+msgid "Bookmarks"
+msgstr "Bokmärken"
+
 #: ../src/yelp-window.c:434
 msgid "No bookmarks"
 msgstr "Inga bokmärken"
@@ -487,6 +375,117 @@ msgstr "Få hjälp med GNOME"
 #: ../yelp.desktop.in.in.h:3
 msgid "documentation;information;manual;help;"
 msgstr "dokumentation;information;manual;handbok;hjälp;"
+
+#~ msgid "Indexed"
+#~ msgstr "Indexerat"
+
+#~ msgid "Whether the document content has been indexed"
+#~ msgstr "Huruvida dokumentets innehåll har indexerats"
+
+#~ msgid "Document URI"
+#~ msgstr "Dokumentets URI"
+
+#~ msgid "The URI which identifies the document"
+#~ msgstr "URI:n som identifierar dokumentet"
+
+#~ msgid "View"
+#~ msgstr "Visa"
+
+#~ msgid "A YelpView instance to control"
+#~ msgstr "En YelpView-instans att kontrollera"
+
+#~ msgid "A YelpBookmarks implementation instance"
+#~ msgstr "En instans för YelpBookmarks-implementation"
+
+#~ msgid "GtkSettings"
+#~ msgstr "GtkSettings"
+
+#~ msgid "A GtkSettings object to get settings from"
+#~ msgstr "Ett GtkSettings-objekt att hämta inställningar från"
+
+#~ msgid "GtkIconTheme"
+#~ msgstr "GtkIconTheme"
+
+#~ msgid "A GtkIconTheme object to get icons from"
+#~ msgstr "Ett GtkIconTheme-objekt att hämta ikoner från"
+
+#~ msgid "Font Adjustment"
+#~ msgstr "Typsnittsjustering"
+
+#~ msgid "A size adjustment to add to font sizes"
+#~ msgstr "En storleksjustering att lägga till i typsnittsstorlekar"
+
+#~ msgid "Show Text Cursor"
+#~ msgstr "Visa textmarkör"
+
+#~ msgid "Show the text cursor or caret for accessible navigation"
+#~ msgstr "Visa textmarkören för hjälpmedelsnavigering"
+
+#~ msgid "Editor Mode"
+#~ msgstr "Redigeringsläge"
+
+#~ msgid "Enable features useful to editors"
+#~ msgstr "Aktivera funktioner användbara för redigerare"
+
+#~ msgid "Database filename"
+#~ msgstr "Databasens filnamn"
+
+#~ msgid "The filename of the sqlite database"
+#~ msgstr "Filnamnet för sqlite-databasen"
+
+#~ msgid "XSLT Stylesheet"
+#~ msgstr "XSLT-stilmall"
+
+#~ msgid "The location of the XSLT stylesheet"
+#~ msgstr "Platsen för XSLT-stilmallen"
+
+#~ msgid "Yelp URI"
+#~ msgstr "Yelp-URI"
+
+#~ msgid "A YelpUri with the current location"
+#~ msgstr "En YelpUri med den aktuella platsen"
+
+#~ msgid "Loading State"
+#~ msgstr "Inläsningstillstånd"
+
+#~ msgid "The loading state of the view"
+#~ msgstr "Inläsningstillståndet för vyn"
+
+#~ msgid "Page ID"
+#~ msgstr "Sidans ID"
+
+#~ msgid "The ID of the root page of the page being viewed"
+#~ msgstr "ID för rotsidan för sidan som visas"
+
+#~ msgid "Root Title"
+#~ msgstr "Rottitel"
+
+#~ msgid "The title of the root page of the page being viewed"
+#~ msgstr "Titeln för rotsidan för sidan som visas"
+
+#~ msgid "Page Title"
+#~ msgstr "Sidtitel"
+
+#~ msgid "The title of the page being viewed"
+#~ msgstr "Titeln för sidan som visas"
+
+#~ msgid "Page Description"
+#~ msgstr "Sidbeskrivning"
+
+#~ msgid "The description of the page being viewed"
+#~ msgstr "Beskrivningen för sidan som visas"
+
+#~ msgid "Page Icon"
+#~ msgstr "Sidikon"
+
+#~ msgid "The icon of the page being viewed"
+#~ msgstr "Ikonen för sidan som visas"
+
+#~ msgid "Application"
+#~ msgstr "Program"
+
+#~ msgid "A YelpApplication instance that controls this window"
+#~ msgstr "En YelpApplication-instans som kontrollerar detta fönster"
 
 #~ msgid "See all search results for “%s”"
 #~ msgstr "Se alla sökresultat för ”%s”"
