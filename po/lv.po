@@ -3,14 +3,14 @@
 #
 # Peteris Krisjanis <peteris.krisjanis@ttc.lv>, 2002.
 # Raivis Dejus <orvils@gmail.com>, 2006.
-# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016.
+# Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=yelp"
 "&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-08-19 16:59+0000\n"
-"PO-Revision-Date: 2016-09-08 21:30+0200\n"
+"POT-Creation-Date: 2018-03-23 15:46+0000\n"
+"PO-Revision-Date: 2018-04-01 20:05+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -35,6 +35,42 @@ msgstr ""
 msgid "Install <string/>"
 msgstr "Instalēt <string/>"
 
+#: ../data/yelp.appdata.xml.in.h:1
+msgid "GNOME Help"
+msgstr "GNOME palīdzība"
+
+#: ../data/yelp.appdata.xml.in.h:2
+msgid "Help viewer for GNOME"
+msgstr "Palīdzības skatītājs GNOME videi"
+
+#: ../data/yelp.appdata.xml.in.h:3
+msgid ""
+"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
+"also display DocBook, info, man, and HTML documentation."
+msgstr ""
+"Yelp ir GNOME palīdzības skatītājs. Tas ir noklusējuma Mallard skatītājs, bet"
+" tas var attēlot arī DocBook, info, man un HTML dokumentāciju."
+
+#: ../data/yelp.appdata.xml.in.h:4
+msgid ""
+"It makes it easy to find the documentation you need, with interactive search "
+"and bookmarks."
+msgstr ""
+"Ar to var viegli atrast vajadzīgo dokumentāciju; tajā ir interaktīva"
+" meklēšana un grāmatzīmes."
+
+#: ../data/yelp.appdata.xml.in.h:5
+msgid ""
+"It also has an editor mode, which shows editorial comments and revision "
+"statuses when editing Mallard documents."
+msgstr ""
+"Tam ir arī redaktora režīms, kas rāda redakcionālos komentārus un pārskatu"
+" statusus, kad rediģē Mallard dokumentus."
+
+#: ../data/yelp.appdata.xml.in.h:6
+msgid "The GNOME Project"
+msgstr "GNOME projekts"
+
 #: ../libyelp/yelp-bz2-decompressor.c:143
 #: ../libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
@@ -45,26 +81,26 @@ msgstr "Nederīgi saspiestie dati"
 msgid "Not enough memory"
 msgstr "Nepietiek atmiņas"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
-#: ../libyelp/yelp-mallard-document.c:298
-#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
+#: ../libyelp/yelp-docbook-document.c:285 ../libyelp/yelp-info-document.c:221
+#: ../libyelp/yelp-mallard-document.c:305
+#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:255
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Lapa “%s” netika atrasta dokumentā “%s”."
 
-#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
-#: ../libyelp/yelp-man-document.c:390
+#: ../libyelp/yelp-docbook-document.c:323 ../libyelp/yelp-info-document.c:358
+#: ../libyelp/yelp-man-document.c:393
 #, c-format
 msgid "The file does not exist."
 msgstr "Datne neeksistē."
 
-#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
-#: ../libyelp/yelp-man-document.c:400
+#: ../libyelp/yelp-docbook-document.c:333 ../libyelp/yelp-info-document.c:368
+#: ../libyelp/yelp-man-document.c:403
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Datne “%s” neeksistē."
 
-#: ../libyelp/yelp-docbook-document.c:345
+#: ../libyelp/yelp-docbook-document.c:348
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -73,7 +109,7 @@ msgstr ""
 "Datni ar nosaukumu “%s” nevar parsēt, tāpēc ka tā nav korekti noformēts XML "
 "dokuments."
 
-#: ../libyelp/yelp-docbook-document.c:358
+#: ../libyelp/yelp-docbook-document.c:361
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -82,43 +118,27 @@ msgstr ""
 "Datni ar nosaukumu “%s” nevar parsēt, tāpēc, ka viena vai vairākas iekļautās "
 "datnes nav korekti noformēts XML dokuments."
 
-#: ../libyelp/yelp-docbook-document.c:788
+#: ../libyelp/yelp-docbook-document.c:791
 msgid "Unknown"
 msgstr "Nezināms"
 
-#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
-#: ../libyelp/yelp-man-document.c:332
+#: ../libyelp/yelp-docbook-document.c:853 ../libyelp/yelp-info-document.c:301
+#: ../libyelp/yelp-man-document.c:335
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Pieprasītā lapa netika atrasta dokumentā “%s”."
 
-#: ../libyelp/yelp-document.c:278
-msgid "Indexed"
-msgstr "Indeksēts"
-
-#: ../libyelp/yelp-document.c:279
-msgid "Whether the document content has been indexed"
-msgstr "Vai dokumenta saturs ir ticis indeksēts"
-
-#: ../libyelp/yelp-document.c:287
-msgid "Document URI"
-msgstr "Dokumenta URI"
-
-#: ../libyelp/yelp-document.c:288
-msgid "The URI which identifies the document"
-msgstr "URI, kas identificē dokumentu"
-
-#: ../libyelp/yelp-document.c:1024
+#: ../libyelp/yelp-document.c:1030
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Meklēšanas rezultāti, meklējot \"%s\""
 
-#: ../libyelp/yelp-document.c:1036
+#: ../libyelp/yelp-document.c:1042
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Netika atrastas atbilstošas palīdzības lapas iekš “%s”."
 
-#: ../libyelp/yelp-document.c:1042
+#: ../libyelp/yelp-document.c:1048
 msgid "No matching help pages found."
 msgstr "Netika atrastas atbilstošas palīdzības lapas."
 
@@ -127,11 +147,11 @@ msgstr "Netika atrastas atbilstošas palīdzības lapas."
 msgid "An unknown error occurred."
 msgstr "Gadījās nezināma kļūda."
 
-#: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
+#: ../libyelp/yelp-help-list.c:548 ../libyelp/yelp-help-list.c:557
 msgid "All Help Documents"
 msgstr "Visi palīdzības dokumenti"
 
-#: ../libyelp/yelp-info-document.c:380
+#: ../libyelp/yelp-info-document.c:383
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -139,87 +159,15 @@ msgstr ""
 "Datni ar nosaukumu “%s“ nevar parsēt, tāpēc ka tā nav pareizi noformēta info "
 "lapa."
 
-#: ../libyelp/yelp-mallard-document.c:340
+#: ../libyelp/yelp-mallard-document.c:347
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Direktorija “%s” neeksistē."
-
-#: ../libyelp/yelp-search-entry.c:172
-msgid "View"
-msgstr "Skats"
-
-#: ../libyelp/yelp-search-entry.c:173
-msgid "A YelpView instance to control"
-msgstr "YelpView instance, ko vadīt"
-
-#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
-msgid "Bookmarks"
-msgstr "Grāmatzīmes"
-
-#: ../libyelp/yelp-search-entry.c:189
-msgid "A YelpBookmarks implementation instance"
-msgstr "YelpBookmarks realizācijas instance"
 
 #: ../libyelp/yelp-search-entry.c:433
 #, c-format
 msgid "Search for “%s”"
 msgstr "Meklēt “%s”"
-
-#: ../libyelp/yelp-settings.c:148
-msgid "GtkSettings"
-msgstr "GtkSettings"
-
-#: ../libyelp/yelp-settings.c:149
-msgid "A GtkSettings object to get settings from"
-msgstr "GtkSettings objekts, no kā saņemt iestatījumus"
-
-#: ../libyelp/yelp-settings.c:157
-msgid "GtkIconTheme"
-msgstr "GtkIconTheme"
-
-#: ../libyelp/yelp-settings.c:158
-msgid "A GtkIconTheme object to get icons from"
-msgstr "GtkIconTheme objekts, no kā saņemt ikonas"
-
-#: ../libyelp/yelp-settings.c:166
-msgid "Font Adjustment"
-msgstr "Fontu pieregulēšana"
-
-#: ../libyelp/yelp-settings.c:167
-msgid "A size adjustment to add to font sizes"
-msgstr "Izmēra regulējums, ko pievienot fonta izmēram"
-
-#: ../libyelp/yelp-settings.c:175
-msgid "Show Text Cursor"
-msgstr "Radīt teksta kursoru"
-
-#: ../libyelp/yelp-settings.c:176
-msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Rādīt teksta kursoru pieejamākai navigācijai"
-
-#: ../libyelp/yelp-settings.c:184
-msgid "Editor Mode"
-msgstr "Redaktora režīms"
-
-#: ../libyelp/yelp-settings.c:185
-msgid "Enable features useful to editors"
-msgstr "Aktivēt iespējas, kas noder redaktoram"
-
-#: ../libyelp/yelp-sqlite-storage.c:145
-msgid "Database filename"
-msgstr "Datubāzes datnes nosaukums"
-
-#: ../libyelp/yelp-sqlite-storage.c:146
-msgid "The filename of the sqlite database"
-msgstr "Nosaukums sqlite datubāzes datnei"
-
-#: ../libyelp/yelp-transform.c:164
-msgid "XSLT Stylesheet"
-msgstr "XSLT stilu saraksts"
-
-#: ../libyelp/yelp-transform.c:165
-msgid "The location of the XSLT stylesheet"
-msgstr "XSLT stilu saraksta atrašanās vieta"
 
 #: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
 #, c-format
@@ -234,171 +182,115 @@ msgstr "yelp:document nesatur href atribūtu\n"
 msgid "Out of memory"
 msgstr "Nepietiek atmiņas"
 
-#: ../libyelp/yelp-view.c:253
+#: ../libyelp/yelp-view.c:248
 msgid "C_opy Code Block"
 msgstr "K_opēt koda bloku"
 
-#: ../libyelp/yelp-view.c:258
+#: ../libyelp/yelp-view.c:253
 msgid "_Copy Link Location"
 msgstr "_Kopēt saites adresi"
 
-#: ../libyelp/yelp-view.c:263
+#: ../libyelp/yelp-view.c:258
 msgid "_Open Link"
 msgstr "_Atvērt saiti"
 
-#: ../libyelp/yelp-view.c:268
+#: ../libyelp/yelp-view.c:263
 msgid "Open Link in New _Window"
 msgstr "Atvērt saiti jaunā _logā"
 
-#: ../libyelp/yelp-view.c:278
+#: ../libyelp/yelp-view.c:273
 msgid "_Install Packages"
 msgstr "_Instalēt pakotnes"
 
-#: ../libyelp/yelp-view.c:283
+#: ../libyelp/yelp-view.c:278
 msgid "Save Code _Block As…"
 msgstr "Saglabāt koda _bloku kā…"
 
-#: ../libyelp/yelp-view.c:298
+#: ../libyelp/yelp-view.c:293
 msgid "_Copy Text"
 msgstr "_Kopēt tekstu"
 
-#: ../libyelp/yelp-view.c:525
-msgid "Yelp URI"
-msgstr "Yelp URI"
-
-#: ../libyelp/yelp-view.c:526
-msgid "A YelpUri with the current location"
-msgstr "YelpUri ar pašreizējo atrašanās vietu"
-
-#: ../libyelp/yelp-view.c:534
-msgid "Loading State"
-msgstr "Ielādē stāvokli"
-
-#: ../libyelp/yelp-view.c:535
-msgid "The loading state of the view"
-msgstr "Ielādē skata stāvokli"
-
-#: ../libyelp/yelp-view.c:544
-msgid "Page ID"
-msgstr "Lapas ID"
-
-#: ../libyelp/yelp-view.c:545
-msgid "The ID of the root page of the page being viewed"
-msgstr "Saknes lapas ID lapai, kas tagad tiek skatīta"
-
-#: ../libyelp/yelp-view.c:553
-msgid "Root Title"
-msgstr "Saknes virsraksts"
-
-#: ../libyelp/yelp-view.c:554
-msgid "The title of the root page of the page being viewed"
-msgstr "Saknes lapas virsraksts lapai, kas tagad tiek skatīta"
-
-#: ../libyelp/yelp-view.c:562
-msgid "Page Title"
-msgstr "Lapas virsraksts"
-
-#: ../libyelp/yelp-view.c:563
-msgid "The title of the page being viewed"
-msgstr "Virsraksts lapai, kas tagad tiek skatīta"
-
-#: ../libyelp/yelp-view.c:571
-msgid "Page Description"
-msgstr "Lapas apraksts"
-
-#: ../libyelp/yelp-view.c:572
-msgid "The description of the page being viewed"
-msgstr "Apraksts lapai, kas tagad tiek skatīta"
-
-#: ../libyelp/yelp-view.c:580
-msgid "Page Icon"
-msgstr "Lapas ikona"
-
-#: ../libyelp/yelp-view.c:581
-msgid "The icon of the page being viewed"
-msgstr "Ikona lapai, kas tagad tiek skatīta"
-
-#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
+#: ../libyelp/yelp-view.c:805 ../libyelp/yelp-view.c:2138
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI “%s“ nenorāda uz derīgu lapu."
 
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
+#: ../libyelp/yelp-view.c:811 ../libyelp/yelp-view.c:2144
 #, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI nenorāda uz derīgu lapu."
 
-#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
+#: ../libyelp/yelp-view.c:816 ../libyelp/yelp-view.c:2150
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Nevarēja pasēt URI “%s”."
 
-#: ../libyelp/yelp-view.c:842
+#: ../libyelp/yelp-view.c:821
 #, c-format
 msgid "Unknown Error."
 msgstr "Nezināma kļūda."
 
-#: ../libyelp/yelp-view.c:996
+#: ../libyelp/yelp-view.c:975
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "Jums nav PackageKit. Pakotņu instalēšanas saitēm ir nepieciešams PackageKit."
 
-#: ../libyelp/yelp-view.c:1243
+#: ../libyelp/yelp-view.c:1222
 msgid "Save Image"
 msgstr "Saglabāt attēlu"
 
-#: ../libyelp/yelp-view.c:1342
+#: ../libyelp/yelp-view.c:1321
 msgid "Save Code"
 msgstr "Saglabāt kodu"
 
-#: ../libyelp/yelp-view.c:1438
+#: ../libyelp/yelp-view.c:1417
 #, c-format
 msgid "Send email to %s"
 msgstr "Sūtīt e-pasta vēstuli uz %s"
 
-#: ../libyelp/yelp-view.c:1542
+#: ../libyelp/yelp-view.c:1521
 msgid "_Save Image As…"
 msgstr "_Saglabāt attēlu kā..."
 
-#: ../libyelp/yelp-view.c:1543
+#: ../libyelp/yelp-view.c:1522
 msgid "_Save Video As…"
 msgstr "_Saglabāt video kā…"
 
-#: ../libyelp/yelp-view.c:1551
+#: ../libyelp/yelp-view.c:1530
 msgid "S_end Image To…"
 msgstr "Sūtīt attēlu _uz…"
 
-#: ../libyelp/yelp-view.c:1552
+#: ../libyelp/yelp-view.c:1531
 msgid "S_end Video To…"
 msgstr "Sūtīt vid_eo uz…"
 
-#: ../libyelp/yelp-view.c:1894
+#: ../libyelp/yelp-view.c:1872
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Nevarēja ielādēt “%s“ dokumentu"
 
-#: ../libyelp/yelp-view.c:1900
+#: ../libyelp/yelp-view.c:1878
 #, c-format
 msgid "Could not load a document"
 msgstr "Nevarēja ielādēt dokumentu"
 
-#: ../libyelp/yelp-view.c:1984
+#: ../libyelp/yelp-view.c:1962
 msgid "Document Not Found"
 msgstr "Dokuments nav atrasts"
 
-#: ../libyelp/yelp-view.c:1986
+#: ../libyelp/yelp-view.c:1964
 msgid "Page Not Found"
 msgstr "Lapa nav atrasta"
 
-#: ../libyelp/yelp-view.c:1989
+#: ../libyelp/yelp-view.c:1967
 msgid "Cannot Read"
 msgstr "Nevar nolasīt"
 
-#: ../libyelp/yelp-view.c:1995
+#: ../libyelp/yelp-view.c:1973
 msgid "Unknown Error"
 msgstr "Nezināma kļūda"
 
-#: ../libyelp/yelp-view.c:2015
+#: ../libyelp/yelp-view.c:1993
 msgid "Search for packages containing this document."
 msgstr "Meklēt pakotnes, kas satur šo dokumentu."
 
@@ -406,8 +298,8 @@ msgstr "Meklēt pakotnes, kas satur šo dokumentu."
 msgid "Turn on editor mode"
 msgstr "Ieslēgt redaktora režīmu"
 
-#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
-#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:271 ../src/yelp-window.c:1181
+#: ../src/yelp-window.c:1189 ../yelp.desktop.in.in.h:1
 msgid "Help"
 msgstr "Palīdzība"
 
@@ -422,14 +314,6 @@ msgstr "Lielāks teksts"
 #: ../src/yelp-application.c:326
 msgid "Smaller Text"
 msgstr "Mazāks teksts"
-
-#: ../src/yelp-window.c:211
-msgid "Application"
-msgstr "Lietotne"
-
-#: ../src/yelp-window.c:212
-msgid "A YelpApplication instance that controls this window"
-msgstr "YelpApplication instance, kas vada šo logu"
 
 #: ../src/yelp-window.c:343
 msgid "Back"
@@ -467,6 +351,10 @@ msgstr "Visa palīdzība"
 msgid "Search (Ctrl+S)"
 msgstr "Meklēt (Ctrl+S)"
 
+#: ../src/yelp-window.c:417
+msgid "Bookmarks"
+msgstr "Grāmatzīmes"
+
 #: ../src/yelp-window.c:434
 msgid "No bookmarks"
 msgstr "Nav grāmatzīmju"
@@ -484,7 +372,116 @@ msgid "Get help with GNOME"
 msgstr "Saņemt palīdzību ar GNOME"
 
 #: ../yelp.desktop.in.in.h:3
-#| msgid "documentation;information;manual;"
 msgid "documentation;information;manual;help;"
 msgstr "dokumentācija;informācija;rokasgrāmata;palīdzība;palīgā;"
 
+#~ msgid "Indexed"
+#~ msgstr "Indeksēts"
+
+#~ msgid "Whether the document content has been indexed"
+#~ msgstr "Vai dokumenta saturs ir ticis indeksēts"
+
+#~ msgid "Document URI"
+#~ msgstr "Dokumenta URI"
+
+#~ msgid "The URI which identifies the document"
+#~ msgstr "URI, kas identificē dokumentu"
+
+#~ msgid "View"
+#~ msgstr "Skats"
+
+#~ msgid "A YelpView instance to control"
+#~ msgstr "YelpView instance, ko vadīt"
+
+#~ msgid "A YelpBookmarks implementation instance"
+#~ msgstr "YelpBookmarks realizācijas instance"
+
+#~ msgid "GtkSettings"
+#~ msgstr "GtkSettings"
+
+#~ msgid "A GtkSettings object to get settings from"
+#~ msgstr "GtkSettings objekts, no kā saņemt iestatījumus"
+
+#~ msgid "GtkIconTheme"
+#~ msgstr "GtkIconTheme"
+
+#~ msgid "A GtkIconTheme object to get icons from"
+#~ msgstr "GtkIconTheme objekts, no kā saņemt ikonas"
+
+#~ msgid "Font Adjustment"
+#~ msgstr "Fontu pieregulēšana"
+
+#~ msgid "A size adjustment to add to font sizes"
+#~ msgstr "Izmēra regulējums, ko pievienot fonta izmēram"
+
+#~ msgid "Show Text Cursor"
+#~ msgstr "Radīt teksta kursoru"
+
+#~ msgid "Show the text cursor or caret for accessible navigation"
+#~ msgstr "Rādīt teksta kursoru pieejamākai navigācijai"
+
+#~ msgid "Editor Mode"
+#~ msgstr "Redaktora režīms"
+
+#~ msgid "Enable features useful to editors"
+#~ msgstr "Aktivēt iespējas, kas noder redaktoram"
+
+#~ msgid "Database filename"
+#~ msgstr "Datubāzes datnes nosaukums"
+
+#~ msgid "The filename of the sqlite database"
+#~ msgstr "Nosaukums sqlite datubāzes datnei"
+
+#~ msgid "XSLT Stylesheet"
+#~ msgstr "XSLT stilu saraksts"
+
+#~ msgid "The location of the XSLT stylesheet"
+#~ msgstr "XSLT stilu saraksta atrašanās vieta"
+
+#~ msgid "Yelp URI"
+#~ msgstr "Yelp URI"
+
+#~ msgid "A YelpUri with the current location"
+#~ msgstr "YelpUri ar pašreizējo atrašanās vietu"
+
+#~ msgid "Loading State"
+#~ msgstr "Ielādē stāvokli"
+
+#~ msgid "The loading state of the view"
+#~ msgstr "Ielādē skata stāvokli"
+
+#~ msgid "Page ID"
+#~ msgstr "Lapas ID"
+
+#~ msgid "The ID of the root page of the page being viewed"
+#~ msgstr "Saknes lapas ID lapai, kas tagad tiek skatīta"
+
+#~ msgid "Root Title"
+#~ msgstr "Saknes virsraksts"
+
+#~ msgid "The title of the root page of the page being viewed"
+#~ msgstr "Saknes lapas virsraksts lapai, kas tagad tiek skatīta"
+
+#~ msgid "Page Title"
+#~ msgstr "Lapas virsraksts"
+
+#~ msgid "The title of the page being viewed"
+#~ msgstr "Virsraksts lapai, kas tagad tiek skatīta"
+
+#~ msgid "Page Description"
+#~ msgstr "Lapas apraksts"
+
+#~ msgid "The description of the page being viewed"
+#~ msgstr "Apraksts lapai, kas tagad tiek skatīta"
+
+#~ msgid "Page Icon"
+#~ msgstr "Lapas ikona"
+
+#~ msgid "The icon of the page being viewed"
+#~ msgstr "Ikona lapai, kas tagad tiek skatīta"
+
+#~ msgid "Application"
+#~ msgstr "Lietotne"
+
+#~ msgid "A YelpApplication instance that controls this window"
+#~ msgstr "YelpApplication instance, kas vada šo logu"
