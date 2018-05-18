@@ -330,7 +330,7 @@ yelp_document_dispose (GObject *object)
 
     if (document->priv->reqs_all) {
 	g_slist_foreach (document->priv->reqs_all,
-			 (GFunc) request_try_free,
+			 (GFunc)(GCallback) request_try_free,
 			 NULL);
 	g_slist_free (document->priv->reqs_all);
 	document->priv->reqs_all = NULL;
@@ -338,7 +338,7 @@ yelp_document_dispose (GObject *object)
 
     if (document->priv->reqs_search) {
 	g_slist_foreach (document->priv->reqs_search,
-			 (GFunc) request_try_free,
+			 (GFunc)(GCallback) request_try_free,
 			 NULL);
 	g_slist_free (document->priv->reqs_search);
 	document->priv->reqs_search = NULL;

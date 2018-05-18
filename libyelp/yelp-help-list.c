@@ -210,7 +210,7 @@ help_list_request_page (YelpDocument          *document,
         priv->process_running = TRUE;
         g_object_ref (document);
         priv->thread = g_thread_new ("helplist-page",
-                                     (GThreadFunc) help_list_think,
+                                     (GThreadFunc)(GCallback) help_list_think,
                                      document);
     }
     priv->pending = g_slist_prepend (priv->pending, g_strdup (page_id));

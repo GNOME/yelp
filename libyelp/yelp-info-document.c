@@ -209,7 +209,7 @@ info_request_page (YelpDocument         *document,
 	priv->process_running = TRUE;
         g_object_ref (document);
 	priv->thread = g_thread_new ("info-page",
-                                     (GThreadFunc) info_document_process,
+                                     (GThreadFunc)(GCallback) info_document_process,
                                      document);
 	break;
     case INFO_STATE_PARSING:

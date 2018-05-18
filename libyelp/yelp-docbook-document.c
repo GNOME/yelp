@@ -273,7 +273,7 @@ docbook_request_page (YelpDocument         *document,
         priv->process_running = TRUE;
         g_object_ref (document);
         priv->thread = g_thread_new ("docbook-page",
-                                     (GThreadFunc) docbook_process,
+                                     (GThreadFunc)(GCallback) docbook_process,
                                      document);
         break;
     case DOCBOOK_STATE_PARSING:
@@ -495,7 +495,7 @@ docbook_reload (YelpDocbookDocument *docbook)
     priv->process_running = TRUE;
     g_object_ref (docbook);
     priv->thread = g_thread_new ("docbook-reload",
-                                 (GThreadFunc) docbook_process,
+                                 (GThreadFunc)(GCallback) docbook_process,
                                  docbook);
 
     g_mutex_unlock (&priv->mutex);
@@ -1077,7 +1077,7 @@ docbook_index (YelpDocument *document)
     priv = GET_PRIV (document);
     g_object_ref (document);
     priv->index = g_thread_new ("docbook-index",
-                                (GThreadFunc) docbook_index_threaded,
+                                (GThreadFunc)(GCallback) docbook_index_threaded,
                                 document);
     priv->index_running = TRUE;
 }

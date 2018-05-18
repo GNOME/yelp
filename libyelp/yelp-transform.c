@@ -298,7 +298,7 @@ yelp_transform_start (YelpTransform       *transform,
     priv->running = TRUE;
     g_object_ref (transform);
     priv->thread = g_thread_new ("transform-run",
-                                 (GThreadFunc) transform_run,
+                                 (GThreadFunc)(GCallback) transform_run,
                                  transform);
     g_mutex_unlock (&priv->mutex);
 

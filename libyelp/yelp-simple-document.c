@@ -131,7 +131,7 @@ yelp_simple_document_dispose (GObject *object)
     YelpSimpleDocument *document = YELP_SIMPLE_DOCUMENT (object);
 
     if (document->priv->reqs) {
-	g_slist_foreach (document->priv->reqs, (GFunc) request_try_free, NULL);
+	g_slist_foreach (document->priv->reqs, (GFunc)(GCallback) request_try_free, NULL);
 	g_slist_free (document->priv->reqs);
 	document->priv->reqs = NULL;
     }

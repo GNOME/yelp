@@ -287,7 +287,7 @@ mallard_request_page (YelpDocument         *document,
         priv->thread_running = TRUE;
         g_object_ref (document);
         priv->thread = g_thread_new ("mallard-page",
-                                     (GThreadFunc) mallard_think,
+                                     (GThreadFunc)(GCallback) mallard_think,
                                      document);
     }
 
@@ -1100,7 +1100,7 @@ mallard_index (YelpDocument *document)
     priv = GET_PRIV (document);
     g_object_ref (document);
     priv->index = g_thread_new ("mallard-index",
-                                (GThreadFunc) mallard_index_threaded,
+                                (GThreadFunc)(GCallback) mallard_index_threaded,
                                 document);
     priv->index_running = TRUE;
 }
@@ -1148,7 +1148,7 @@ mallard_monitor_changed (GFileMonitor         *monitor,
     priv->thread_running = TRUE;
     g_object_ref (mallard);
     priv->thread = g_thread_new ("mallard-reload",
-                                 (GThreadFunc) mallard_think,
+                                 (GThreadFunc)(GCallback) mallard_think,
                                  mallard);
 
     g_mutex_unlock (&priv->mutex);

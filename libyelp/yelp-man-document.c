@@ -243,7 +243,7 @@ man_request_page (YelpDocument         *document,
         yelp_document_set_page_id (document, priv->page_id, priv->page_id);
         yelp_document_set_root_id (document, priv->page_id, priv->page_id);
 	priv->thread = g_thread_new ("man-page",
-                                     (GThreadFunc) man_document_process,
+                                     (GThreadFunc)(GCallback) man_document_process,
                                      document);
 	break;
     case MAN_STATE_PARSING:
