@@ -1070,8 +1070,7 @@ mallard_index_threaded (YelpMallardDocument *mallard)
                 xmlXPathFreeContext (xpath);
             if (index->doc != NULL)
                 xmlFreeDoc (index->doc);
-            if (index != NULL)
-                g_free (index);
+            g_free (index);
             if (parserCtxt != NULL)
                 xmlFreeParserCtxt (parserCtxt);
             g_object_unref (pagefile);
