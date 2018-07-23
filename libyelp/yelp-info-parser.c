@@ -1171,7 +1171,7 @@ yelp_info_parse_menu (GtkTreeStore *tree, xmlNodePtr *node,
   gchar **split;
   gchar **menuitems;
   gchar *tmp = NULL;
-  xmlNodePtr newnode, menu_node, mholder = NULL;
+  xmlNodePtr newnode, menu_node = NULL, mholder = NULL;
   int i=0;
 
   split = g_strsplit (page_content, "* Menu:", 2);
