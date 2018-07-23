@@ -734,7 +734,7 @@ process_page (GtkTreeStore *tree,
 	  g_free (next);
 	  next = NULL;
 	}
-	if (g_str_equal (node, "Top") && prev != NULL) {
+	if (node && g_str_equal (node, "Top") && prev != NULL) {
 	  g_free (prev);
 	  prev = NULL;
 	}
@@ -763,7 +763,7 @@ process_page (GtkTreeStore *tree,
 	}
 	if (prev && g_ascii_strncasecmp (prev, "(dir)", 5))
 	  {
-	    if (strncmp (node, "Top", 3)) {
+	    if (node && strncmp (node, "Top", 3)) {
 	      /* Special case the Top node to always appear first */
 	    } else {
 	      page = node2page (nodes2pages, prev);
