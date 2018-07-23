@@ -78,9 +78,10 @@ build_yelp_uri (const gchar *uri_str)
   memmove (uri, uri + BOGUS_PREFIX_LEN, strlen (uri) - BOGUS_PREFIX_LEN + 1);
 
   /* Remove the leading slash */
-  resource = strstr (uri, ":");
-  resource++;
-  memmove (resource, resource + 1, strlen (resource));
+  if ((resource = strstr (uri, ":"))) {
+    resource++;
+    memmove (resource, resource + 1, strlen (resource));
+  }
 
   /* Remove the trailing slash if any */
   path_len = strlen (uri);
