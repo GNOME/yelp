@@ -442,10 +442,12 @@ void
 yelp_man_parser_free (YelpManParser *parser)
 {
     guint k;
-    if (parser) {
-        for (k=0; k<MAN_FONTS; k++)
-            g_free (parser->font_registers[k]);
-    }
+
+    if (parser == NULL)
+        return;
+
+    for (k=0; k<MAN_FONTS; k++)
+        g_free (parser->font_registers[k]);
     g_string_free (parser->accumulator, TRUE);
     g_free (parser->title_str);
     g_free (parser->section);
