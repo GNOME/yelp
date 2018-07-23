@@ -1193,7 +1193,7 @@ static gchar *
 find_contiguous_whitespace (gchar *text, guint ws_len)
 {
     guint counter = 0;
-    gchar *ws_start;
+    gchar *ws_start = NULL;
     while (*text) {
         if (g_unichar_isspace (g_utf8_get_char (text))) {
             if (!counter) ws_start = text;
