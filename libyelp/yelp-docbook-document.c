@@ -1129,12 +1129,13 @@ docbook_index_threaded (YelpDocbookDocument *docbook)
         g_object_unref (file);
     if (filename != NULL)
         g_free (filename);
-    if (index->doc != NULL)
-        xmlFreeDoc (index->doc);
-    if (index->doc_uri != NULL)
-        g_free (index->doc_uri);
-    if (index != NULL)
+    if (index != NULL) {
+        if (index->doc != NULL)
+            xmlFreeDoc (index->doc);
+        if (index->doc_uri != NULL)
+            g_free (index->doc_uri);
         g_free (index);
+    }
     if (parserCtxt != NULL)
         xmlFreeParserCtxt (parserCtxt);
 
