@@ -545,7 +545,7 @@ parse_prologue_line (YelpManParser *parser, GError **error)
 static gboolean
 parse_xf (YelpManParser *parser, GError **error)
 {
-    gchar name[10];
+    gchar name[11];
     guint k;
 
     if (SSCANF ("x f%*s %u %10s", 2, &k, name)) {
@@ -920,7 +920,7 @@ append_nbsps (YelpManParser *parser, guint k)
 static gboolean
 parse_C (YelpManParser *parser, GError **error)
 {
-    gchar name[16];
+    gchar name[17];
     gunichar code = 0;
     guint k;
     gint len;
