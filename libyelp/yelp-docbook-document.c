@@ -316,6 +316,7 @@ docbook_process (YelpDocbookDocument *docbook)
     GFile *file = NULL;
     gchar *filepath = NULL;
     xmlDocPtr xmldoc = NULL;
+    xmlNodePtr xmlcur = NULL;
     xmlChar *id = NULL;
     xmlParserCtxtPtr parserCtxt = NULL;
     GError *error;
@@ -350,7 +351,10 @@ docbook_process (YelpDocbookDocument *docbook)
                               XML_PARSE_DTDLOAD | XML_PARSE_NOCDATA |
                               XML_PARSE_NOENT   | XML_PARSE_NONET   );
 
-    if (xmldoc == NULL) {
+    if (xmldoc)
+        xmlcur = xmlDocGetRootElement (xmldoc);
+
+    if (xmldoc == NULL || xmlcur == NULL) {
         error = g_error_new (YELP_ERROR, YELP_ERROR_PROCESSING,
                              _("The file ‘%s’ could not be parsed because it is"
                                " not a well-formed XML document."),
@@ -381,7 +385,7 @@ docbook_process (YelpDocbookDocument *docbook)
         priv->max_depth = 1;
 
     priv->xmldoc = xmldoc;
-    priv->xmlcur = xmlDocGetRootElement (xmldoc);
+    priv->xmlcur = xmlcur;
 
     id = xmlGetProp (priv->xmlcur, BAD_CAST "id");
     if (!id)
