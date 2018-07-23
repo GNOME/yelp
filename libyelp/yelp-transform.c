@@ -498,10 +498,10 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
 
     debug_print (DB_FUNCTION, "entering\n");
 
-    if (ctxt->state == XSLT_STATE_STOPPED)
+    if (!ctxt || !node || !inst || !comp)
         return;
 
-    if (!ctxt || !node || !inst || !comp)
+    if (ctxt->state == XSLT_STATE_STOPPED)
         return;
 
     transform = YELP_TRANSFORM (ctxt->_private);
