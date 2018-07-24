@@ -346,7 +346,7 @@ mallard_think (YelpMallardDocument *mallard)
          */
         error = g_error_new (YELP_ERROR, YELP_ERROR_NOT_FOUND,
                              _("The directory ‘%s’ does not exist."),
-                             path[0]);
+                             path && path[0] ? path[0] : "NULL");
 	yelp_document_error_pending ((YelpDocument *) mallard, error);
         g_error_free (error);
 	goto done;
