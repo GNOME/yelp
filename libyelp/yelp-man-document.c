@@ -61,62 +61,6 @@ struct _YelpManDocumentPrivate {
     guint          error;
 };
 
-typedef struct _YelpLangEncodings YelpLangEncodings;
-struct _YelpLangEncodings {
-    const gchar *language;
-    const gchar *encoding;
-};
-/* http://www.w3.org/International/O-charset-lang.html */
-static const YelpLangEncodings langmap[] = {
-    { "C",     "ISO-8859-1" },
-    { "af",    "ISO-8859-1" },
-    { "ar",    "ISO-8859-6" },
-    { "bg",    "ISO-8859-5" },
-    { "be",    "ISO-8859-5" },
-    { "ca",    "ISO-8859-1" },
-    { "cs",    "ISO-8859-2" },
-    { "da",    "ISO-8859-1" },
-    { "de",    "ISO-8859-1" },
-    { "el",    "ISO-8859-7" },
-    { "en",    "ISO-8859-1" },
-    { "eo",    "ISO-8859-3" },
-    { "es",    "ISO-8859-1" },
-    { "et",    "ISO-8859-15" },
-    { "eu",    "ISO-8859-1" },
-    { "fi",    "ISO-8859-1" },
-    { "fo",    "ISO-8859-1" },
-    { "fr",    "ISO-8859-1" },
-    { "ga",    "ISO-8859-1" },
-    { "gd",    "ISO-8859-1" },
-    { "gl",    "ISO-8859-1" },
-    { "hu",    "ISO-8859-2" },
-    { "id",    "ISO-8859-1" }, /* is this right */
-    { "mt",    "ISO-8859-3" },
-    { "is",    "ISO-8859-1" },
-    { "it",    "ISO-8859-1" },
-    { "iw",    "ISO-8859-8" },
-    { "ja",    "EUC-JP" },
-    { "ko",    "EUC-KR" },
-    { "lt",    "ISO-8859-13" },
-    { "lv",    "ISO-8859-13" },
-    { "mk",    "ISO-8859-5" },
-    { "mt",    "ISO-8859-3" },
-    { "no",    "ISO-8859-1" },
-    { "pl",    "ISO-8859-2" },
-    { "pt_BR", "ISO-8859-1" },
-    { "ro",    "ISO-8859-2" },
-    { "ru",    "KOI8-R" },
-    { "sl",    "ISO-8859-2" },
-    { "sr",    "ISO-8859-2" }, /* Latin, not cyrillic */
-    { "sk",    "ISO-8859-2" },
-    { "sv",    "ISO-8859-1" },
-    { "tr",    "ISO-8859-9" },
-    { "uk",    "ISO-8859-5" },
-    { "zh_CN", "BIG5" },
-    { "zh_TW", "BIG5" },
-    { NULL,    NULL },
-};
-
 static void           yelp_man_document_finalize         (GObject                *object);
 
 /* YelpDocument */
@@ -385,7 +329,6 @@ man_document_process (YelpManDocument *man)
     gint  params_i = 0;
     gchar **params = NULL;
     YelpManParser *parser;
-    const gchar *language, *encoding;
 
     file = yelp_uri_get_file (yelp_document_get_uri ((YelpDocument *) man));
     if (file == NULL) {
@@ -405,24 +348,6 @@ man_document_process (YelpManDocument *man)
         yelp_document_error_pending ((YelpDocument *) man, error);
         g_error_free (error);
         goto done;
-    }
-
-    /* FIXME: get the language */
-    language = "C";
-
-    /* default encoding if the language doesn't match below */
-    encoding = g_getenv("MAN_ENCODING");
-    if (encoding == NULL)
-	encoding = "ISO-8859-1";
-
-    if (language != NULL) {
-        gint i;
-	for (i = 0; langmap[i].language != NULL; i++) {
-	    if (g_str_equal (language, langmap[i].language)) {
-		encoding = langmap[i].encoding;
-		break;
-	    }
-	}
     }
 
     parser = yelp_man_parser_new ();
