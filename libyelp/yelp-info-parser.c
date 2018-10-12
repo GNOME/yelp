@@ -956,7 +956,6 @@ GtkTreeStore
 	nodes2iters = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
 					     (GDestroyNotify) gtk_tree_iter_free);
 
-	pages = 0;
 	for (ptr = page_list; *ptr != NULL; ptr++)
 	{
 	  if (page_type (*ptr) != PAGE_NODE) continue;
