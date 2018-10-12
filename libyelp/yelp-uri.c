@@ -928,7 +928,8 @@ resolve_help_uri (YelpUri *uri)
                                  priv->frag_id ? priv->frag_id : "",
                                  NULL);
 
-    g_free (query);
+    if (query)
+        g_free (query);
     g_free (document);
     return;
 }
