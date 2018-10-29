@@ -307,7 +307,7 @@ window_construct (YelpWindow *window)
         { "yelp-window-ctrll",  action_ctrll,        NULL, NULL, NULL },
     };
 
-    gtk_window_set_icon_name (GTK_WINDOW (window), "help-browser");
+    gtk_window_set_icon_name (GTK_WINDOW (window), "org.gnome.Yelp");
 
     g_object_get (gtk_settings_get_default (),
                   "gtk-dialogs-use-header", &priv->use_header,
