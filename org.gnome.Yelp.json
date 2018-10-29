@@ -1,0 +1,43 @@
+{
+    "app-id" : "org.gnome.Yelp",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "master",
+    "sdk" : "org.gnome.Sdk",
+    "rename-desktop-file" : "yelp.desktop",
+    "command" : "yelp",
+    "tags" : [
+        "devel",
+        "development",
+        "nightly"
+    ],
+    "finish-args" : [
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--device=dri"
+    ],
+    "modules" : [
+        {
+            "name" : "gnome-user-docs",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/gnome-user-docs.git"
+                }
+            ]
+        },
+        {
+            "name" : "yelp",
+            "builddir" : true,
+            "config-opts" : [
+                "--with-webkit2gtk-4-0"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/yelp.git"
+                }
+            ]
+        }
+    ]
+}
