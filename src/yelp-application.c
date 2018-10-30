@@ -464,9 +464,7 @@ application_uri_resolved (YelpUri             *uri,
         /* There is no file associated to the default uri, so we'll fallback
          * to help-list: if we're told to do so. */
         open_uri (data->app, yelp_uri_new ("help-list:"), data->new, FALSE);
-        g_object_unref (uri);
-        g_free (data);
-        return;
+        goto out;
     }
     g_clear_object (&gfile);
 
@@ -477,7 +475,7 @@ application_uri_resolved (YelpUri             *uri,
     else
         window = g_hash_table_lookup (priv->windows_by_document, doc_uri);
 
-    if (window == NULL) {
+    if (window == NULL && doc_uri && *doc_uri) {
         gint width, height;
         GSettings *settings = application_get_doc_settings (data->app, doc_uri);
 
@@ -488,11 +486,9 @@ application_uri_resolved (YelpUri             *uri,
         priv->windows = g_slist_prepend (priv->windows, window);
 
         if (!data->new) {
-            g_hash_table_insert (priv->windows_by_document, doc_uri, window);
-            g_object_set_data (G_OBJECT (window), "doc_uri", doc_uri);
-        }
-        else {
-            g_free (doc_uri);
+            gchar *doc_uri_dup = g_strdup(doc_uri);
+            g_hash_table_insert (priv->windows_by_document, doc_uri_dup, window);
+            g_object_set_data (G_OBJECT (window), "doc_uri", doc_uri_dup);
         }
 
         g_signal_connect (window, "delete-event",
@@ -500,9 +496,9 @@ application_uri_resolved (YelpUri             *uri,
         gtk_window_set_application (GTK_WINDOW (window),
                                     GTK_APPLICATION (data->app));
     }
-    else {
-        g_free (doc_uri);
-    }
+
+    if (!window)
+        goto out;
 
     yelp_window_load_uri (window, uri);
 
@@ -530,6 +526,8 @@ application_uri_resolved (YelpUri             *uri,
 #endif
         gtk_window_present (GTK_WINDOW (window));
 
+ out:
+    g_free (doc_uri);
     g_object_unref (uri);
     g_free (data);
 }
@@ -554,7 +552,11 @@ GSettings *
 application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
 {
     YelpApplicationPrivate *priv = GET_PRIV (app);
-    GSettings *settings = g_hash_table_lookup (priv->docsettings, doc_uri);
+    GSettings *settings;
+
+    g_return_val_if_fail (doc_uri, NULL);
+
+    settings = g_hash_table_lookup (priv->docsettings, doc_uri);
     if (settings == NULL) {
         gchar *tmp, *key, *settings_path;
         tmp = g_uri_escape_string (doc_uri, "", FALSE);
@@ -732,7 +734,11 @@ GVariant *
 yelp_application_get_bookmarks (YelpApplication *app,
                                 const gchar     *doc_uri)
 {
-    GSettings *settings = application_get_doc_settings (app, doc_uri);
+    GSettings *settings;
+
+    g_return_val_if_fail (doc_uri, NULL);
+
+    settings = application_get_doc_settings (app, doc_uri);
 
     return g_settings_get_value (settings, "bookmarks");
 }
