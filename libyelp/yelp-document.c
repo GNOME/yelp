@@ -491,7 +491,7 @@ yelp_document_set_page_id (YelpDocument *document,
 
     hash_replace (document->priv->page_ids, id, g_strdup (page_id));
 
-    if (id == NULL || !g_str_equal (id, page_id)) {
+    if (id == NULL || (page_id && !g_str_equal (id, page_id))) {
 	GSList *reqs, *cur;
 	reqs = hash_lookup (document->priv->reqs_by_page_id, id);
 	for (cur = reqs; cur != NULL; cur = cur->next) {
