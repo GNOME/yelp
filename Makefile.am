@@ -295,17 +295,19 @@ appstream_XML = $(appstream_in_files:.appdata.xml.in=.appdata.xml)
 gsettings_SCHEMAS = data/org.gnome.yelp.gschema.xml
 @GSETTINGS_RULES@
 
-16icondir = $(pkgdatadir)/icons/hicolor/16x16/status
-scalableicondir = $(pkgdatadir)/icons/hicolor/scalable/status
+16statusicondir = $(pkgdatadir)/icons/hicolor/16x16/status
+scalablestatusicondir = $(pkgdatadir)/icons/hicolor/scalable/status
+scalableappsicondir = $(datadir)/icons/hicolor/scalable/apps
+symbolicappsicondir = $(datadir)/icons/hicolor/symbolic/apps
 
-dist_16icon_DATA = \
+dist_16statusicon_DATA = \
 	data/icons/hicolor/16x16/status/bookmark.png \
 	data/icons/hicolor/16x16/status/yelp-page-task.png \
 	data/icons/hicolor/16x16/status/yelp-page-tip.png \
 	data/icons/hicolor/16x16/status/yelp-page-ui.png \
 	data/icons/hicolor/16x16/status/yelp-page-video.png
 
-dist_scalableicon_DATA = \
+dist_scalablestatusicon_DATA = \
 	data/icons/hicolor/scalable/status/yelp-page-problem-symbolic.svg \
 	data/icons/hicolor/scalable/status/yelp-page-search-symbolic.svg \
 	data/icons/hicolor/scalable/status/yelp-page-task-symbolic.svg \
@@ -313,6 +315,12 @@ dist_scalableicon_DATA = \
 	data/icons/hicolor/scalable/status/yelp-page-ui-symbolic.svg \
 	data/icons/hicolor/scalable/status/yelp-page-video-symbolic.svg \
 	data/icons/hicolor/scalable/status/yelp-page-symbolic.svg
+
+dist_scalableappsicon_DATA = \
+	data/icons/hicolor/scalable/apps/org.gnome.Yelp.svg
+
+dist_symbolicappsicon_DATA = \
+	data/icons/hicolor/symbolic/apps/org.gnome.Yelp-symbolic.svg
 
 domaindir = $(datadir)/yelp-xsl/xslt/common/domains
 
