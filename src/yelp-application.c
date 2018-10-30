@@ -90,6 +90,9 @@ static void          application_adjust_font           (GAction               *a
                                                         GVariant              *parameter,
                                                         YelpApplication       *app);
 static void          application_set_font_sensitivity  (YelpApplication       *app);
+static void          application_quit                  (GAction               *action,
+                                                        GVariant              *parameter,
+                                                        YelpApplication       *app);
 
 static void          bookmarks_changed                 (GSettings             *settings,
                                                         const gchar           *key,
@@ -110,6 +113,7 @@ struct _YelpApplicationPrivate {
     GPropertyAction  *show_cursor_action;
     GSimpleAction    *larger_text_action;
     GSimpleAction    *smaller_text_action;
+    GSimpleAction    *quit_action;
 
     GSettingsBackend *backend;
     GSettings *gsettings;
@@ -200,6 +204,11 @@ yelp_application_dispose (GObject *object)
         priv->larger_text_action = NULL;
     }
 
+    if (priv->quit_action) {
+        g_object_unref (priv->quit_action);
+        priv->quit_action = NULL;
+    }
+
     if (priv->smaller_text_action) {
         g_object_unref (priv->smaller_text_action);
         priv->smaller_text_action = NULL;
@@ -267,6 +276,7 @@ yelp_application_startup (GApplication *application)
     GMenu *menu, *section;
     gchar *keyfile;
     YelpSettings *settings;
+    const gchar *quit_accels[2] = { "<Ctrl>Q", NULL };
 
     g_set_application_name (N_("Help"));
 
@@ -316,6 +326,16 @@ yelp_application_startup (GApplication *application)
 
     application_set_font_sensitivity (app);
 
+    priv->quit_action = g_simple_action_new ("yelp-application-quit", NULL);
+    g_signal_connect (priv->quit_action,
+                      "activate",
+                      G_CALLBACK (application_quit),
+                      app);
+    g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (priv->quit_action));
+
+    gtk_application_set_accels_for_action (
+        GTK_APPLICATION (app), "app.yelp-application-quit", quit_accels);
+
     menu = g_menu_new ();
     section = g_menu_new ();
     g_menu_append (section, _("New Window"), "win.yelp-window-new");
@@ -326,10 +346,22 @@ yelp_application_startup (GApplication *application)
     g_menu_append (section, _("Smaller Text"), "app.yelp-application-smaller-text");
     g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
     g_object_unref (section);
+    section = g_menu_new ();
+    g_menu_append (section, _("Quit"), "app.yelp-application-quit");
+    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
+    g_object_unref (section);
     gtk_application_set_app_menu (GTK_APPLICATION (application), G_MENU_MODEL (menu));
 }
 
 /******************************************************************************/
+
+static void
+application_quit (GAction         *action,
+                  GVariant        *parameter,
+                  YelpApplication *app)
+{
+    g_application_quit (G_APPLICATION (app));
+}
 
 static void
 application_adjust_font (GAction         *action,
