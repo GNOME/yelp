@@ -1,1542 +1,934 @@
-# Basque translation of Yelp.
+# translation of eu.po to Basque
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
 #
-# Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>, 2005.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2006, 2007, 2008, 2009, 2011.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013, 2014, 2015, 2017.
+#
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2006, 2007, 2008, 2009, 2010, 2011.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013, 2018.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-08-19 16:59+0000\n"
-"PO-Revision-Date: 2017-02-19 19:44+0100\n"
+"Project-Id-Version: eu\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp-xsl/issues\n"
+"POT-Creation-Date: 2018-09-23 14:07+0000\n"
+"PO-Revision-Date: 2018-11-17 18:01+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 2.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. (itstool) path: msg/msgstr
-#. ID: install.tooltip
-#. This is a format message used to format tooltips on install: links. These
-#. links allow users to install packages by clicking a link in the help. The
-#. tooltip may also be used as the link text, if there's no link text in the
-#. document. Special elements in the message will be replaced with the
+#. Translate to default:RTL if your language should be displayed
+#. right-to-left, otherwise translate to default:LTR.  Do *not*
+#. translate it to "predefinito:LTR", if it isn't default:LTR
+#. or default:RTL it will not work.
+#.
+#: yelp-xsl.xml.in:34
+msgid "default:LTR"
+msgstr "default:LTR"
+
+#. (itstool) path: msg/msgstr
+#. This is used a simple list item seperator in places where simple
+#. inline lists have to be constructed dynamically.  Using the default
+#. string of ", ", a list would look like this: A, B, C, D.  Using the
+#. nonsensical string " - ", a list would look like this: A - B - C - D.
+#.
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:47
+#, no-wrap
+msgid ", "
+msgstr ", "
+
+#. (itstool) path: msg/msgstr
+#. This is used as the final separator in an inline list of three or
+#. more elements.  The string ", " will be used to separate all but
+#. the last pair of elements.  Using these two strings, a list of
+#. names would be formatted as "Tom, Dick, and Harry".
+#.
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:60
+#, no-wrap
+msgid ", and "
+msgstr ", eta "
+
+#. (itstool) path: msg/msgstr
+#. This is used as a list item seperator for inline lists of exactly two
+#. elements.  A list of two names would be formatted as "Tom and Dick".
+#.
+#. Make sure to include leading or trailing spaces if you want them.
+#.
+#: yelp-xsl.xml.in:71
+#, no-wrap
+msgid " and "
+msgstr " eta "
+
+#. (itstool) path: msg/msgstr
+#. http://www.docbook.org/tdg/en/html/qandaentry.html
+#.
+#. This is used as a label before questions in a question-and-answer
+#. set.  Typically, questions are simply numbered and answers are not
+#. labelled at all.  However, DocBook allows document authors to set
+#. the labelling style for a qandaset.  If the labelling style is set
+#. to 'qanda', this string will be used to label questions.
+#.
+#: yelp-xsl.xml.in:86
+msgid "Q:"
+msgstr "G:"
+
+#. (itstool) path: msg/msgstr
+#. http://www.docbook.org/tdg/en/html/qandaentry.html
+#.
+#. This is used as a label before answers in a question-and-answer
+#. set.  Typically, answers are simply numbered and answers are not
+#. labelled at all.  However, DocBook allows document authors to set
+#. the labelling style for a qandaset.  If the labelling style is set
+#. to 'qanda', this string will be used to label answers.
+#.
+#: yelp-xsl.xml.in:99
+msgid "A:"
+msgstr "E:"
+
+#. (itstool) path: msg/msgstr
+#. Title of the footer containing copyrights, credits, license information,
+#. and other stuff about the page.
+#.
+#: yelp-xsl.xml.in:109
+msgid "About"
+msgstr "Honi buruz"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for an advanced note.
+#: yelp-xsl.xml.in:114
+msgid "Advanced"
+msgstr "Aurreratua"
+
+#. (itstool) path: msg/msgstr
+#. Default title for a bibliography.
+#: yelp-xsl.xml.in:119
+msgid "Bibliography"
+msgstr "Bibliografia"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for a note about a software bug.
+#: yelp-xsl.xml.in:124
+msgid "Bug"
+msgstr "Akatsa"
+
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. Content has been written and
+#. reviewed, and it awaiting a final approval.
+#.
+#: yelp-xsl.xml.in:132
+msgid "Candidate"
+msgstr "Hautagaia"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for a caution note.
+#: yelp-xsl.xml.in:137
+msgid "Caution"
+msgstr "Kontuz"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for an close button.
+#: yelp-xsl.xml.in:142
+msgid "Close"
+msgstr "Itxi"
+
+#. (itstool) path: msg/msgstr
+#. Default title for a colophon section.
+#: yelp-xsl.xml.in:147
+msgid "Colophon"
+msgstr "Azken oharra"
+
+#. (itstool) path: msg/msgstr
+#. Title for a table of contents for the entire document.
+#: yelp-xsl.xml.in:152
+msgid "Contents"
+msgstr "Edukia"
+
+#. (itstool) path: msg/msgstr
+#. Title for license information when it's a CC license.
+#: yelp-xsl.xml.in:157
+msgid "Creative Commons"
+msgstr "Creative Commons"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for a danger note.
+#: yelp-xsl.xml.in:162
+msgid "Danger"
+msgstr "Arriskua"
+
+#. (itstool) path: msg/msgstr
+#. Default title for a dedication section.
+#: yelp-xsl.xml.in:167
+msgid "Dedication"
+msgstr "Eskaintza"
+
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. Most content has been
+#. written, but revisions are still happening.
+#.
+#: yelp-xsl.xml.in:175
+msgid "Draft"
+msgstr "Zirriborroa"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of editors.
+#: yelp-xsl.xml.in:180
+msgid "Edited By"
+msgstr "Editoreak"
+
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. A senior member of the
+#. documentation team has reviewed and approved.
+#.
+#: yelp-xsl.xml.in:188
+msgid "Final"
+msgstr "Behin-betikoa"
+
+#. (itstool) path: msg/msgstr
+#. Default title for a glossary.
+#: yelp-xsl.xml.in:193
+msgid "Glossary"
+msgstr "Glosategia"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for an important note.
+#: yelp-xsl.xml.in:198
+msgid "Important"
+msgstr "Garrantzitsua"
+
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. Work has begun, but
+#. not all content has been written.
+#.
+#: yelp-xsl.xml.in:206
+msgid "Incomplete"
+msgstr "Osatu gabea"
+
+#. (itstool) path: msg/msgstr
+#. Default title for an index of terms in a book.
+#: yelp-xsl.xml.in:211
+msgid "Index"
+msgstr "Indizea"
+
+#. (itstool) path: msg/msgstr
+#. Default title for a DocBook legal notice.
+#: yelp-xsl.xml.in:216
+msgid "Legal"
+msgstr "Legala"
+
+#. (itstool) path: msg/msgstr
+#. Generic title for license information when it's not a known license.
+#.
+#: yelp-xsl.xml.in:223
+msgid "License"
+msgstr "Lizentzia"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of maintainers.
+#: yelp-xsl.xml.in:228
+msgid "Maintained By"
+msgstr "Mantentzaileak:"
+
+#. (itstool) path: msg/msgstr
+#. Automatic heading above a list of guide links.
+#: yelp-xsl.xml.in:233
+msgid "More Information"
+msgstr "Informazio gehiago"
+
+#. (itstool) path: msg/msgstr
+#. Link text for a link to the next page in a series.
+#: yelp-xsl.xml.in:238
+msgid "Next"
+msgstr "Hurrengoa"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for a note.
+#: yelp-xsl.xml.in:243
+msgid "Note"
+msgstr "Oharra"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of links to sections on the current page.
+#: yelp-xsl.xml.in:248
+msgid "On This Page"
+msgstr "Orri honetan"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list contributors other than authors, editors, translators,
+#. or other types we have specific lists for.
+#.
+#: yelp-xsl.xml.in:256
+msgid "Other Credits"
+msgstr "Beste kredituak"
+
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. Content was once current,
+#. but needs to be updated to reflect software updates.
+#.
+#: yelp-xsl.xml.in:264
+msgid "Outdated"
+msgstr "Eguneratu gabe"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for a package note.
+#: yelp-xsl.xml.in:269
+msgid "Package"
+msgstr "Paketea"
+
+#. (itstool) path: msg/msgstr
+#. Tooltip on play/pause buttons for audio and video objects.
+#: yelp-xsl.xml.in:274
+msgid "Pause"
+msgstr "Pausarazi"
+
+#. (itstool) path: msg/msgstr
+#. Tooltip on play/pause buttons for audio and video objects.
+#: yelp-xsl.xml.in:279
+msgid "Play"
+msgstr "Erreproduzitu"
+
+#. (itstool) path: msg/msgstr
+#. Link text for a link to the previous page in a series.
+#: yelp-xsl.xml.in:284
+msgid "Previous"
+msgstr "Aurrekoa"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of publishers.
+#: yelp-xsl.xml.in:289
+msgid "Published By"
+msgstr "Argitaratzailea"
+
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. Content has been written
+#. and should be reviewed by other team members.
+#.
+#: yelp-xsl.xml.in:297
+msgid "Ready for review"
+msgstr "Prest gainbegiratzeko"
+
+#. (itstool) path: msg/msgstr
+#. Automatic heading above a list of see-also links.
+#: yelp-xsl.xml.in:302
+msgid "See Also"
+msgstr "Ikus ere"
+
+#. (itstool) path: msg/msgstr
+#. Figures can automatically scale images down to fit the page width.
+#. This is used a tooltip on a link to shrink images back down after
+#. they've been expanded to full size.
+#.
+#: yelp-xsl.xml.in:311
+msgid "Scale images down"
+msgstr "Txikiagotu irudiak"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for a sidebar note.
+#: yelp-xsl.xml.in:316
+msgid "Sidebar"
+msgstr "Albo-barra"
+
+#. (itstool) path: msg/msgstr
+#. Revision status of a document or page. No content has been written yet.
+#.
+#: yelp-xsl.xml.in:323
+msgid "Stub"
+msgstr "Hasi berria"
+
+#. (itstool) path: msg/msgstr
+#. Default title for a refsynopsisdiv element. This is the common section
+#. title found in most UNIX man pages.
+#.
+#: yelp-xsl.xml.in:331
+msgid "Synopsis"
+msgstr "Laburpena"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for a tip.
+#: yelp-xsl.xml.in:336
+msgid "Tip"
+msgstr "Aholkua"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of translators.
+#: yelp-xsl.xml.in:341
+msgid "Translated By"
+msgstr "Itzultzaileak"
+
+#. (itstool) path: msg/msgstr
+#. Figures can automatically scale images down to fit the page width.
+#. This is used a tooltip on a link to expand images to full size.
+#.
+#: yelp-xsl.xml.in:349
+msgid "View images at normal size"
+msgstr "Ikusi irudiak tamaina normalean"
+
+#. (itstool) path: msg/msgstr
+#. Accessible title for a warning.
+#: yelp-xsl.xml.in:354
+msgid "Warning"
+msgstr "Abisua"
+
+#. (itstool) path: msg/msgstr
+#. Title for a list of authors.
+#: yelp-xsl.xml.in:359
+msgid "Written By"
+msgstr "Idazleak"
+
+#. (itstool) path: msg/msgstr
+#. ID: biblioentry.tooltip
+#. This is a format message used to format tooltips on cross references
+#. to bibliography entries.
+#.
+#. Special elements in the message will be replaced with the
 #. appropriate content, as follows:
 #.
-#. <string/> - The package to install
+#. <biblioentry.label/> - The term being defined by the glossary entry
 #.
-#: yelp.xml.in:36
-msgid "Install <string/>"
-msgstr "Instalatu <string/>"
-
-#: ../libyelp/yelp-bz2-decompressor.c:143
-#: ../libyelp/yelp-lzma-decompressor.c:152
-msgid "Invalid compressed data"
-msgstr "Komprimatutako datu baliogabeak"
-
-#: ../libyelp/yelp-bz2-decompressor.c:149
-#: ../libyelp/yelp-lzma-decompressor.c:158
-msgid "Not enough memory"
-msgstr "Memoriarik ez"
-
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
-#: ../libyelp/yelp-mallard-document.c:298
-#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
-#, c-format
-msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "'%s' orrialdea ez da aurkitu '%s' dokumentuan."
-
-#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
-#: ../libyelp/yelp-man-document.c:390
-#, c-format
-msgid "The file does not exist."
-msgstr "Fitxategia ez da existitzen."
-
-#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
-#: ../libyelp/yelp-man-document.c:400
-#, c-format
-msgid "The file ‘%s’ does not exist."
-msgstr "'%s' fitxategia ez da existitzen."
-
-#: ../libyelp/yelp-docbook-document.c:345
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"'%s' fitxategia ezin da analizatu, ez daukalako behar bezalako XML formatua."
-
-#: ../libyelp/yelp-docbook-document.c:358
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files "
-"is not a well-formed XML document."
-msgstr ""
-"'%s' fitxategia ezin da analizatu, ez duelako txertatutako fitxategi bat edo "
-"gehiago behar bezalako XML formatuan."
-
-#: ../libyelp/yelp-docbook-document.c:788
-msgid "Unknown"
-msgstr "Ezezaguna"
-
-#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
-#: ../libyelp/yelp-man-document.c:332
-#, c-format
-msgid "The requested page was not found in the document ‘%s’."
-msgstr "Eskatutako orrialdea ez da aurkitu '%s' dokumentuan."
-
-#: ../libyelp/yelp-document.c:278
-msgid "Indexed"
-msgstr "Indexatuta"
-
-#: ../libyelp/yelp-document.c:279
-msgid "Whether the document content has been indexed"
-msgstr "Dokumentuaren edukia indexatu egin den edo ez"
-
-#: ../libyelp/yelp-document.c:287
-msgid "Document URI"
-msgstr "Dokumentuaren URIa"
-
-#: ../libyelp/yelp-document.c:288
-msgid "The URI which identifies the document"
-msgstr "Dokumentua identifikatzen duen URIa."
-
-#: ../libyelp/yelp-document.c:1024
-#, c-format
-msgid "Search results for “%s”"
-msgstr "'%s' bilaketaren emaitzak"
-
-#: ../libyelp/yelp-document.c:1036
-#, c-format
-msgid "No matching help pages found in “%s”."
-msgstr "Ez da bat datorren laguntzako orrialderik aurkitu \"%s\"(e)n."
-
-#: ../libyelp/yelp-document.c:1042
-msgid "No matching help pages found."
-msgstr "Ez da bat datorren laguntzako orrialderik aurkitu."
-
-#: ../libyelp/yelp-error.c:35
-#, c-format
-msgid "An unknown error occurred."
-msgstr "Errore ezezagun bat gertatu da."
-
-#: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
-msgid "All Help Documents"
-msgstr "Laguntzako dokumentu guztiak"
-
-#: ../libyelp/yelp-info-document.c:380
-#, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"'%s' fitxategia ezin da analizatu, ez daukalako behar bezalako info formatua."
-
-#: ../libyelp/yelp-mallard-document.c:340
-#, c-format
-msgid "The directory ‘%s’ does not exist."
-msgstr "'%s' direktorioa ez da existitzen."
-
-#: ../libyelp/yelp-search-entry.c:172
-msgid "View"
-msgstr "Ikusi"
-
-#: ../libyelp/yelp-search-entry.c:173
-msgid "A YelpView instance to control"
-msgstr "YelpView instantzia kontrolatzeko"
-
-#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
-msgid "Bookmarks"
-msgstr "Laster-markak"
-
-#: ../libyelp/yelp-search-entry.c:189
-msgid "A YelpBookmarks implementation instance"
-msgstr "YelpBookmarks inplementazioaren instantzia"
-
-#: ../libyelp/yelp-search-entry.c:433
-#, c-format
-msgid "Search for “%s”"
-msgstr "Bilatu '%s'"
-
-#: ../libyelp/yelp-settings.c:148
-msgid "GtkSettings"
-msgstr "GtkSettings"
-
-#: ../libyelp/yelp-settings.c:149
-msgid "A GtkSettings object to get settings from"
-msgstr "GtkSettings objektua hortik ezarpenak lortzeko"
-
-#: ../libyelp/yelp-settings.c:157
-msgid "GtkIconTheme"
-msgstr "GtkIconTheme"
-
-#: ../libyelp/yelp-settings.c:158
-msgid "A GtkIconTheme object to get icons from"
-msgstr "GtkIconTheme objektua hortik ikonoak eskuratzeko"
-
-#: ../libyelp/yelp-settings.c:166
-msgid "Font Adjustment"
-msgstr "Letra-tipoaren doiketa"
-
-#: ../libyelp/yelp-settings.c:167
-msgid "A size adjustment to add to font sizes"
-msgstr "Tamaina doitzea letra-tamainei gehitzeko"
-
-#: ../libyelp/yelp-settings.c:175
-msgid "Show Text Cursor"
-msgstr "Erakutsi testuaren kurtsorea"
-
-#: ../libyelp/yelp-settings.c:176
-msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Erakutsi testuaren kurtsorea erabilerraztasuneki nabigatzeko"
-
-#: ../libyelp/yelp-settings.c:184
-msgid "Editor Mode"
-msgstr "Editore modua"
-
-#: ../libyelp/yelp-settings.c:185
-msgid "Enable features useful to editors"
-msgstr "Gaitu editoreentzako eginbide erabilgarriak"
-
-#: ../libyelp/yelp-sqlite-storage.c:145
-msgid "Database filename"
-msgstr "Datu-basearen fitxategi-izena"
-
-#: ../libyelp/yelp-sqlite-storage.c:146
-msgid "The filename of the sqlite database"
-msgstr "SQLite datu-basearen fitxategi-izena"
-
-#: ../libyelp/yelp-transform.c:164
-msgid "XSLT Stylesheet"
-msgstr "XSLT estilo-orria"
-
-#: ../libyelp/yelp-transform.c:165
-msgid "The location of the XSLT stylesheet"
-msgstr "XSLT estilo-orriaren kokalekua"
-
-#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
-#, c-format
-msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr "XSLT '%s' estilo-orria falta da edo ez da baliozkoa."
-
-#: ../libyelp/yelp-transform.c:518
-msgid "No href attribute found on yelp:document\n"
-msgstr "Ez da href atributurik aurkitu yelp:document-en\n"
-
-#: ../libyelp/yelp-transform.c:533
-msgid "Out of memory"
-msgstr "Memoriarik ez"
-
-#: ../libyelp/yelp-view.c:253
-msgid "C_opy Code Block"
-msgstr "_Kopiatu kodearen blokea"
-
-#: ../libyelp/yelp-view.c:258
-msgid "_Copy Link Location"
-msgstr "_Kopiatu estekaren helbidea"
-
-#: ../libyelp/yelp-view.c:263
-msgid "_Open Link"
-msgstr "_Ireki esteka"
-
-#: ../libyelp/yelp-view.c:268
-msgid "Open Link in New _Window"
-msgstr "Ireki esteka leiho _berrian"
-
-#: ../libyelp/yelp-view.c:278
-msgid "_Install Packages"
-msgstr "_Instalatu paketeak"
-
-#: ../libyelp/yelp-view.c:283
-msgid "Save Code _Block As…"
-msgstr "Gorde kodearen b_lokea honela..."
-
-#: ../libyelp/yelp-view.c:298
-msgid "_Copy Text"
-msgstr "_Kopiatu testua"
-
-#: ../libyelp/yelp-view.c:525
-msgid "Yelp URI"
-msgstr "Yelp-en URIa"
-
-#: ../libyelp/yelp-view.c:526
-msgid "A YelpUri with the current location"
-msgstr "YelpUri uneko kokalekuarekin"
-
-#: ../libyelp/yelp-view.c:534
-msgid "Loading State"
-msgstr "Egoera kargatzen"
-
-#: ../libyelp/yelp-view.c:535
-msgid "The loading state of the view"
-msgstr "Ikuspegiaren egoera kargatzen"
-
-#: ../libyelp/yelp-view.c:544
-msgid "Page ID"
-msgstr "Orrialdearen IDa"
-
-#: ../libyelp/yelp-view.c:545
-msgid "The ID of the root page of the page being viewed"
-msgstr "Ikusten ari den erroko orrialdearen IDa"
-
-#: ../libyelp/yelp-view.c:553
-msgid "Root Title"
-msgstr "Erroko titulua"
-
-#: ../libyelp/yelp-view.c:554
-msgid "The title of the root page of the page being viewed"
-msgstr "Ikusten ari den erroko orrialdearen titulua"
-
-#: ../libyelp/yelp-view.c:562
-msgid "Page Title"
-msgstr "Orrialdearen titulua"
-
-#: ../libyelp/yelp-view.c:563
-msgid "The title of the page being viewed"
-msgstr "Ikusten ari den orrialdearen titulua"
-
-#: ../libyelp/yelp-view.c:571
-msgid "Page Description"
-msgstr "Orrialdearen azalpena"
-
-#: ../libyelp/yelp-view.c:572
-msgid "The description of the page being viewed"
-msgstr "Ikusten ari den orrialdearen titulua"
-
-#: ../libyelp/yelp-view.c:580
-msgid "Page Icon"
-msgstr "Orrialdearen ikonoa"
-
-#: ../libyelp/yelp-view.c:581
-msgid "The icon of the page being viewed"
-msgstr "Ikusten ari den orrialdearen ikonoa"
-
-#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
-#, c-format
-msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "'%s' URIak ez du baliozko orrialde batera zuzentzen."
-
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
-#, c-format
-msgid "The URI does not point to a valid page."
-msgstr "URIak ez du baliozko orrialde batera zuzentzen."
-
-#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
-#, c-format
-msgid "The URI ‘%s’ could not be parsed."
-msgstr "Ezin izan da '%s' URIa analizatu."
-
-#: ../libyelp/yelp-view.c:842
-#, c-format
-msgid "Unknown Error."
-msgstr "Errore ezezaguna."
-
-#: ../libyelp/yelp-view.c:996
-msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr ""
-"PackageKit ez dago instalatuta. Estekak instalatzeko PackageKit behar da."
-
-#: ../libyelp/yelp-view.c:1243
-msgid "Save Image"
-msgstr "Gorde irudia"
-
-#: ../libyelp/yelp-view.c:1342
-msgid "Save Code"
-msgstr "Gorde kodea"
-
-#: ../libyelp/yelp-view.c:1438
-#, c-format
-msgid "Send email to %s"
-msgstr "Bidali mezua %s(r)i"
-
-#: ../libyelp/yelp-view.c:1542
-msgid "_Save Image As…"
-msgstr "Gorde irudia _honela..."
-
-#: ../libyelp/yelp-view.c:1543
-msgid "_Save Video As…"
-msgstr "Gorde bideoa _honela..."
-
-#: ../libyelp/yelp-view.c:1551
-msgid "S_end Image To…"
-msgstr "_Bidali irudia hona..."
-
-#: ../libyelp/yelp-view.c:1552
-msgid "S_end Video To…"
-msgstr "_Bidali bideoa hona..."
-
-#: ../libyelp/yelp-view.c:1894
-#, c-format
-msgid "Could not load a document for ‘%s’"
-msgstr "Ezin izan da %s(r)en dokumentua kargatu"
-
-#: ../libyelp/yelp-view.c:1900
-#, c-format
-msgid "Could not load a document"
-msgstr "Ezin izan da dokumentua kargatu"
-
-#: ../libyelp/yelp-view.c:1984
-msgid "Document Not Found"
-msgstr "Ez da dokumentua aurkitu"
-
-#: ../libyelp/yelp-view.c:1986
-msgid "Page Not Found"
-msgstr "Ez da orrialdea aurkitu"
-
-#: ../libyelp/yelp-view.c:1989
-msgid "Cannot Read"
-msgstr "Ezin da irakurri"
-
-#: ../libyelp/yelp-view.c:1995
-msgid "Unknown Error"
-msgstr "Errore ezezaguna"
-
-#: ../libyelp/yelp-view.c:2015
-msgid "Search for packages containing this document."
-msgstr "Bilatu dokumentu hau daukaten paketeak."
-
-#: ../src/yelp-application.c:59
-msgid "Turn on editor mode"
-msgstr "Aktibatu editorearen modua"
-
-#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
-#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
-msgid "Help"
-msgstr "Laguntza"
-
-#: ../src/yelp-application.c:321
-msgid "New Window"
-msgstr "Leiho berria"
-
-#: ../src/yelp-application.c:325
-msgid "Larger Text"
-msgstr "Handitu testua"
-
-#: ../src/yelp-application.c:326
-msgid "Smaller Text"
-msgstr "Txikiagotu testua"
-
-#: ../src/yelp-window.c:211
-msgid "Application"
-msgstr "Aplikazioa"
-
-#: ../src/yelp-window.c:212
-msgid "A YelpApplication instance that controls this window"
-msgstr "Leiho hau kontrolatzen duen YelpApplication instantzia"
-
-#: ../src/yelp-window.c:343
-msgid "Back"
-msgstr "Atzera"
-
-#: ../src/yelp-window.c:350
-msgid "Forward"
-msgstr "Aurrera"
-
-#: ../src/yelp-window.c:361
-msgid "Menu"
-msgstr "Menua"
-
-#: ../src/yelp-window.c:366
-msgid "Find…"
-msgstr "Bilatu…"
-
-#: ../src/yelp-window.c:367
-msgid "Print…"
-msgstr "Inprimatu…"
-
-#: ../src/yelp-window.c:372
-msgid "Previous Page"
-msgstr "Aurreko orria"
-
-#: ../src/yelp-window.c:373
-msgid "Next Page"
-msgstr "Hurrengo orria"
-
-#: ../src/yelp-window.c:378
-msgid "All Help"
-msgstr "Laguntza guztia"
-
-#: ../src/yelp-window.c:400
-msgid "Search (Ctrl+S)"
-msgstr "Bilatu (Ktrl+S) "
-
-#: ../src/yelp-window.c:434
-msgid "No bookmarks"
-msgstr "Laster-markarik ez"
-
-#: ../src/yelp-window.c:442
-msgid "Add Bookmark"
-msgstr "Gehitu laster-marka"
-
-#: ../src/yelp-window.c:448
-msgid "Remove Bookmark"
-msgstr "Kendu laster-marka"
-
-#: ../yelp.desktop.in.in.h:2
-msgid "Get help with GNOME"
-msgstr "Eskuratu GNOMEri buruzko laguntza"
-
-#: ../yelp.desktop.in.in.h:3
-#| msgid "documentation;information;manual;"
-msgid "documentation;information;manual;help;"
-msgstr "dokumentazioa;informazioa;eskuliburua;laguntza;"
-
-#~ msgid "See all search results for “%s”"
-#~ msgstr "Ikusi '%s' bilaketaren emaitza guztiak"
-
-#~ msgid "Enable Search"
-#~ msgstr "Gaitu bilaketa"
-
-#~ msgid "Whether the location entry can be used as a search field"
-#~ msgstr "Kokalekuaren sarrera erabil daitekeen bilaketako eremu gisa edo ez"
-
-#~ msgid "Search..."
-#~ msgstr "Bilatu..."
-
-#~ msgid "Clear the search text"
-#~ msgstr "Garbitu bilaketako testua"
-
-#~ msgid "Bookmark this page"
-#~ msgstr "Sortu orrialde honen laster-marka"
-
-#~ msgid "Remove bookmark"
-#~ msgstr "Kendu laster-marka"
-
-#~ msgid "Loading"
-#~ msgstr "Kargatzen"
-
-#~ msgid "_Print..."
-#~ msgstr "_Inprimatu..."
-
-#~ msgid "Increase the size of the text"
-#~ msgstr "Handitu testuaren tamaina"
-
-#~ msgid "Decrease the size of the text"
-#~ msgstr "Txikiagotu testuaren tamaina"
-
-#~ msgid "Show Text _Cursor"
-#~ msgstr "Erakutsi testuaren _kurtsorea"
-
-#~ msgid "_Page"
-#~ msgstr "_Orrialdea"
-
-#~ msgid "_View"
-#~ msgstr "_Ikusi"
-
-#~ msgid "_Go"
-#~ msgstr "_Joan"
-
-#~ msgid "_Bookmarks"
-#~ msgstr "Laster-_markak"
-
-#~ msgid "_Close"
-#~ msgstr "It_xi"
-
-#~ msgid "_All Documents"
-#~ msgstr "Dokumentu _guztiak"
-
-#~ msgid "_Add Bookmark"
-#~ msgstr "_Gehitu laster-marka"
-
-#~ msgid "Find in Page..."
-#~ msgstr "Bilatu orrialdean..."
-
-#~ msgid "Open Location"
-#~ msgstr "Ireki helbidea"
-
-#~ msgid "Read Link _Later"
-#~ msgstr "Irakurri esteka _geroago"
-
-#~ msgid "Read Later"
-#~ msgstr "Irakurri geroago"
-
-#~ msgid "%i match"
-#~ msgid_plural "%i matches"
-#~ msgstr[0] "%d bat dator"
-#~ msgstr[1] "%d bat datozte"
-
-#~ msgid "No matches"
-#~ msgstr "Ez dago bat datorrenik"
-
-#~ msgid "GNU Info Pages"
-#~ msgstr "GNU Info orriak"
-
-#~ msgid "Traditional command line help (info)"
-#~ msgstr "Komando lerroko laguntza tradizionala (info)"
-
-#~ msgid "Applications"
-#~ msgstr "Aplikazioak"
-
-#~ msgid "BLT Functions"
-#~ msgstr "BLT funtzioak"
-
-#~ msgid "Configuration Files"
-#~ msgstr "Konfigurazio-fitxategiak"
-
-#~ msgid "Curses Functions"
-#~ msgstr "Kurtsoreen funtzioak"
-
-#~ msgid "Development"
-#~ msgstr "Garapena"
-
-#~ msgid "FORTRAN Functions"
-#~ msgstr "FORTRAN funtzioak"
-
-#~ msgid "Games"
-#~ msgstr "Jokoak"
-
-#~ msgid "Hardware Devices"
-#~ msgstr "Hardwarearen gailuak"
-
-#~ msgid "Kernel Routines"
-#~ msgstr "Nukleo-errutinak"
-
-#~ msgid "Network Audio Sound Functions"
-#~ msgstr "Sareko audio-soinuen funtzioak"
-
-#~ msgid "OpenSSL Applications"
-#~ msgstr "OpenSSL aplikazioak"
-
-#~ msgid "OpenSSL Configuration"
-#~ msgstr "OpenSSL konfigurazioa"
-
-#~ msgid "OpenSSL Functions"
-#~ msgstr "OpenSSL funtzioak"
-
-#~ msgid "OpenSSL Overviews"
-#~ msgstr "OpenSSL informazio orokorrak"
-
-#~ msgid "Overviews"
-#~ msgstr "Informazio orokorrak"
-
-#~ msgid "POSIX Functions"
-#~ msgstr "POSIX funtzioak"
-
-#~ msgid "POSIX Headers"
-#~ msgstr "POSIX goiburuak"
-
-#~ msgid "Perl Functions"
-#~ msgstr "Perl funtzioak"
-
-#~ msgid "Qt Functions"
-#~ msgstr "QT funtzioak"
-
-#~ msgid "Readline Functions"
-#~ msgstr "Readline funtzioak"
-
-#~ msgid "Section 0p"
-#~ msgstr "0p atala"
-
-#~ msgid "Section 1m"
-#~ msgstr "1m atala"
-
-#~ msgid "Section 1ssl"
-#~ msgstr "1ssl atala"
-
-#~ msgid "Section 1x"
-#~ msgstr "1x atala"
-
-#~ msgid "Section 2"
-#~ msgstr "2 atala"
-
-#~ msgid "Section 3blt"
-#~ msgstr "3blt atala"
-
-#~ msgid "Section 3f"
-#~ msgstr "3f atala"
-
-#~ msgid "Section 3nas"
-#~ msgstr "3nas atala"
-
-#~ msgid "Section 3p"
-#~ msgstr "3p atala"
-
-#~ msgid "Section 3qt"
-#~ msgstr "3qt atala"
-
-#~ msgid "Section 3readline"
-#~ msgstr "3readline atala"
-
-#~ msgid "Section 3ssl"
-#~ msgstr "3ssl atala"
-
-#~ msgid "Section 3tiff"
-#~ msgstr "3tiff atala"
-
-#~ msgid "Section 4"
-#~ msgstr "4 atala"
-
-#~ msgid "Section 4x"
-#~ msgstr "4x atala"
-
-#~ msgid "Section 5"
-#~ msgstr "5 atala"
-
-#~ msgid "Section 5ssl"
-#~ msgstr "5ssl atala"
-
-#~ msgid "Section 5x"
-#~ msgstr "5x atala"
-
-#~ msgid "Section 6"
-#~ msgstr "6 atala"
-
-#~ msgid "Section 6x"
-#~ msgstr "6x atala"
-
-#~ msgid "Section 7ssl"
-#~ msgstr "7ssl atala"
-
-#~ msgid "Section 7x"
-#~ msgstr "7x atala"
-
-#~ msgid "Section 9"
-#~ msgstr "9 atala"
-
-#~ msgid "Sections 1, 1p, 1g and 1t"
-#~ msgstr "1, 1p, 1g eta 1t atalak"
-
-#~ msgid "Sections 3, 3o, and 3t"
-#~ msgstr "3, 3o eta 3t atalak"
-
-#~ msgid "Sections 3form and 3menu"
-#~ msgstr "3form eta 3menu atalak"
-
-#~ msgid "Sections 3ncurses and 3curses"
-#~ msgstr "3ncurses eta 3curses atalak"
-
-#~ msgid "Sections 3pm and 3perl"
-#~ msgstr "3pm eta 3perl atalak"
-
-#~ msgid "Sections 3x and 3X11"
-#~ msgstr "3x eta 3X11 atalak"
-
-#~ msgid "Sections 7 and 7gcc"
-#~ msgstr "7 eta 7gcc atalak"
-
-#~ msgid "Sections 8 and 8l"
-#~ msgstr "8 eta 8l atalak"
-
-#~ msgid "System Administration"
-#~ msgstr "Sistema-administrazioa"
-
-#~ msgid "System Calls"
-#~ msgstr "Sistemako deia"
-
-#~ msgid "System V Form/Menu Functions"
-#~ msgstr "System V inprimakien/menuen funtzioak"
-
-#~ msgid "TIFF Functions"
-#~ msgstr "TIFF funtzioak"
-
-#~ msgid "Termcap Applications"
-#~ msgstr "Termcap aplikazioak"
-
-#~ msgid "Traditional command line help (man)"
-#~ msgstr "komando lerroko laguntza tradizionala (man)"
-
-#~ msgid "X11 Applications"
-#~ msgstr "X11 aplikazioak"
-
-#~ msgid "X11 Configuration"
-#~ msgstr "X11 konfigurazioa"
-
-#~ msgid "X11 Devices"
-#~ msgstr "X11 gailuak"
-
-#~ msgid "X11 Functions"
-#~ msgstr "X11 funtzioak"
-
-#~ msgid "X11 Games"
-#~ msgstr "X11 jokoak"
-
-#~ msgid "X11 Overviews"
-#~ msgstr "X11 informazio orokorrak"
-
-#~ msgid "2D Graphics"
-#~ msgstr "2D grafikoak"
-
-#~ msgid "3D Graphics"
-#~ msgstr "3D grafikoak"
-
-#~ msgid "Accessibility"
-#~ msgstr "Erabilgarritasuna"
-
-#~ msgid "Action Games"
-#~ msgstr "Ekintza-jokoak"
-
-#~ msgid "Adventure Games"
-#~ msgstr "Abentura-jokoak"
-
-#~ msgid "Amusement"
-#~ msgstr "Denbora-pasa"
-
-#~ msgid "Applications for viewing and manipulating graphics"
-#~ msgstr "Grafikoak ikusteko edo eraldatzeko aplikazioak"
-
-#~ msgid "Applications related to audio and video"
-#~ msgstr "Audio eta bideo inguruko aplikazioak"
-
-#~ msgid "Applications that teach or aid in learning"
-#~ msgstr "Irakasteko edo ikasten laguntzeko aplikazioak"
-
-#~ msgid "Arcade Games"
-#~ msgstr "Arkade-jokoak"
-
-#~ msgid "Archiving Tools"
-#~ msgstr "Artxibaketa-tresnak"
-
-#~ msgid "Art"
-#~ msgstr "Artea"
-
-#~ msgid "Artificial Intelligence"
-#~ msgstr "Adimen artifiziala"
-
-#~ msgid "Astronomy"
-#~ msgstr "Astronomia"
-
-#~ msgid "Biology"
-#~ msgstr "Biologia"
-
-#~ msgid "Blocks Games"
-#~ msgstr "Bloke-jokoak"
-
-#~ msgid "Board Games"
-#~ msgstr "Mahai-jokoak"
-
-#~ msgid "Building"
-#~ msgstr "Eraikuntza"
-
-#~ msgid "Calculator"
-#~ msgstr "Kalkulagailua"
-
-#~ msgid "Calendar"
-#~ msgstr "Egutegia"
-
-#~ msgid "Card Games"
-#~ msgstr "Karta-jokoak"
-
-#~ msgid "Charting Tools"
-#~ msgstr "Diagrama-tresnak"
-
-#~ msgid "Chat"
-#~ msgstr "Berriketa"
-
-#~ msgid "Chemistry"
-#~ msgstr "Kimika"
-
-#~ msgid "Clocks"
-#~ msgstr "Ordulariak"
-
-#~ msgid "Compression Tools"
-#~ msgstr "Konpresio-tresnak"
-
-#~ msgid "Computer Science"
-#~ msgstr "Konputazio zientifikoa"
-
-#~ msgid "Construction"
-#~ msgstr "Eraikuntza"
-
-#~ msgid "Contact Management"
-#~ msgstr "Kontaktu-kudeaketa"
-
-#~ msgid "Data Visualization"
-#~ msgstr "Datuen bisualizazioa"
-
-#~ msgid "Databases"
-#~ msgstr "Datu-baseak"
-
-#~ msgid "Debuggers"
-#~ msgstr "Araztaileak"
-
-#~ msgid "Desktop"
-#~ msgstr "Mahaigaina"
-
-#~ msgid "Desktop Settings"
-#~ msgstr "Mahaigaineko konfigurazioa"
-
-#~ msgid "Dialup"
-#~ msgstr "Modema"
-
-#~ msgid "Dictionaries"
-#~ msgstr "Hiztegiak"
-
-#~ msgid "Disc Burning"
-#~ msgstr "Disko grabazioa"
-
-#~ msgid "Economy"
-#~ msgstr "Ekonomia"
-
-#~ msgid "Education"
-#~ msgstr "Hezkuntza"
-
-#~ msgid "Electricity"
-#~ msgstr "Elektrizitatea"
-
-#~ msgid "Electronics"
-#~ msgstr "Elektronika"
-
-#~ msgid "Email Tools"
-#~ msgstr "Posta-tresnak"
-
-#~ msgid "Emulator"
-#~ msgstr "Emulatzailea"
-
-#~ msgid "Engineering"
-#~ msgstr "Ingeniaritza"
-
-#~ msgid "File Manager"
-#~ msgstr "Fitxategi-kudeatzailea"
-
-#~ msgid "File Tools"
-#~ msgstr "Fitxategi-tresnak"
-
-#~ msgid "File Transfer"
-#~ msgstr "Fitxategi-transferentzia"
-
-#~ msgid "Filesystem"
-#~ msgstr "Fitxategi-sistema"
-
-#~ msgid "Financial Tools"
-#~ msgstr "Finantza-tresnak"
-
-#~ msgid "Flow Charting Tools"
-#~ msgstr "Fluxu-diagramen tresnak"
-
-#~ msgid "GNOME Applications"
-#~ msgstr "GNOMEren aplikazioak"
-
-#~ msgid "GTK"
-#~ msgstr "GTK"
-
-#~ msgid "GUI Designers"
-#~ msgstr "GUI diseinatzaileak"
-
-#~ msgid "Generic applications for the GNOME environment"
-#~ msgstr "GNOME mahaigaineko aplikazio orokorrak"
-
-#~ msgid "Generic applications for the KDE environment"
-#~ msgstr "KDE mahaigaineko aplikazio orokorrak"
-
-#~ msgid "Geography"
-#~ msgstr "Geografia"
-
-#~ msgid "Geology"
-#~ msgstr "Geologia"
-
-#~ msgid "Geoscience"
-#~ msgstr "Lurraren zientziak"
-
-#~ msgid "Graphics"
-#~ msgstr "Grafikoak"
+#: yelp-xsl.xml.in:375
+msgid "View the bibliography entry <biblioentry.label/>."
+msgstr "Ikus <biblioentry.label/> sarrera bibliografikoa."
+
+#. (itstool) path: msg/msgstr
+#. ID: biblioentry.label
+#. This is a format message used to format the labels for entries in
+#. a bibliography.  The content of the label is often an abbreviation
+#. of the authors' names and the year of publication.  In English,
+#. these are generally formatted with [square brackets] surrounding
+#. them.
+#.
+#. This string is similar to citation.label, but they are used in
+#. different places.  The citation formatter is used when referencing
+#. a bibliography entry in running prose.  This formatter is used for
+#. the actual bibliography entry.  You may use the same formatting for
+#. both, but you don't have to.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <biblioentry.label/> - The text content of the bibliography label
+#.
+#: yelp-xsl.xml.in:398
+msgid "[<biblioentry.label/>]"
+msgstr "[<biblioentry.label/>]"
+
+#. (itstool) path: msg/msgstr
+#. ID: citation.label
+#. This is a format message used to format inline citations to other
+#. published works.  The content is typically an abbreviation of the
+#. authors' last names.  In English, this abbreviation is usually
+#. written inside [square brackets].
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <citation.label/> - The text content of the citation element, possibly
+#.                     as a link to an entry in the bibliography
+#.
+#: yelp-xsl.xml.in:415
+msgid "[<citation.label/>]"
+msgstr "[<citation.label/>]"
+
+#. (itstool) path: msg/msgstr
+#. ID: comment.name-date
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#.
+#. This string is used when both the name and the date are supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#.
+#.   Some Comment Title
+#.   from Shaun McCance on 2010-06-03
+#.
+#.   Here is the text of the comment.
+#.
+#. If only a name is supplied, and no date, then comment.name is used
+#. instead of this string.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <comment.name/> - The name of the person making the comment
+#. <comment.date/> - The date the comment was made
+#.
+#: yelp-xsl.xml.in:444
+msgid "from <comment.name/> on <comment.date/>"
+msgstr "Egilea: <comment.name/> Data:<comment.date/>"
+
+#. (itstool) path: msg/msgstr
+#. ID: comment.name
+#. This is a format message used to format the citation of a comment
+#. made by an editor of a document. This appears on a new line after
+#. the title of the comment, if a title is present, or as the first
+#. line if a title is not present.
+#.
+#. This string is used when only the name of the commenter is supplied.
+#. In English, a title together with this format string might produce
+#. something like this:
+#.
+#.   Some Comment Title
+#.   from Shaun McCance
+#.
+#.   Here is the text of the comment.
+#.
+#. If a date is also supplied, then comment.name-date is used instead
+#. of this string.
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <comment.name/> - The name of the person making the comment
+#.
+#: yelp-xsl.xml.in:472
+msgid "from <comment.name/>"
+msgstr "Egilea: <comment.name/>"
+
+#. (itstool) path: msg/msgstr
+#. ID: copyright.format
+#. This is a format message used to format copyright notices. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <copyright.years/> - The years the copyrightable material was made
+#. <copyright.name/>  - The person or entity that holds the copyright
+#.
+#: yelp-xsl.xml.in:485
+msgid "© <copyright.years/> <copyright.name/>"
+msgstr "© <copyright.years/> <copyright.name/>"
+
+#. (itstool) path: msg/msgstr
+#. ID: email.tooltip
+#. This is a format message used to format tooltips on mailto: links.
+#. Special elements in the message will be replaced with the appropriate
+#. content, as follows:
+#.
+#. <string/> - The linked-to email address
+#.
+#: yelp-xsl.xml.in:497
+msgid "Send email to ‘<string/>’."
+msgstr "Bidali mezua ‘<string/>’(r)i."
+
+#. (itstool) path: msg/msgstr
+#. ID: glossentry.tooltip
+#. This is a format message used to format tooltips on cross references
+#. to glossary entries. Special elements in the message will be replaced
+#. with the appropriate content, as follows:
+#.
+#. <glossterm/> - The term being defined by the glossary entry
+#.
+#: yelp-xsl.xml.in:509
+msgid "Read the definition for ‘<glossterm/>’."
+msgstr "Irakurri ‘<glossterm/>’ terminoaren definizioa."
+
+#. (itstool) path: msg/msgstr
+#. ID: glosssee.format
+#. This is a format message used to format glossary cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.  For the formatting of the actual
+#. link, see the message glossentry.xref.
+#.
+#. One or more glosssee elements are presented as a links to the user
+#. in the glossary, formatted as a single prose sentence.  For example,
+#. if the user is being directed to the entry "foo", the glosssee may
+#. be formatted as "See foo."
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <glosssee/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:530
+msgid "See <glosssee/>."
+msgstr "Ikus <glosssee/>."
+
+#. (itstool) path: msg/msgstr
+#. ID: glossseealso.format
+#. This is a format message used to format glossary cross references.
+#. This format message controls the sentence used to present the cross
+#. reference, not the link itself.  For the formatting of the actual
+#. link, see the message glossentry.xref.
+#.
+#. One or more glossseealso elements are presented as a links to the
+#. user in the glossary, formatted as a single prose sentence.  For
+#. example, if the user is being directed to the entries "foo", "bar",
+#. and "baz", the glossseealso may be formatted as "See also foo, bar,
+#. baz."
+#.
+#. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <glosssee/> - The actual link or links of the cross reference
+#.
+#: yelp-xsl.xml.in:552
+msgid "See also <glosssee/>."
+msgstr "Ikus halaber <glosssee/>."
+
+#. (itstool) path: msg/msgstr
+#. ID: quote.format
+#. This is a format message used to format inline quotations. Special
+#. elements in the message will be replaced with the appropriate content,
+#. as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:564
+msgid "“<node/>”"
+msgstr "“<node/>”"
+
+#. (itstool) path: msg/msgstr
+#. ID: quote.format
+#. This is a format message used to format inline quotations inside
+#. other inline quotations. Special elements in the message will be
+#. replaced with the appropriate content, as follows:
+#.
+#. <node/> - The text content of the quote element
+#.
+#: yelp-xsl.xml.in:576
+msgid "‘<node/>’"
+msgstr "‘<node/>’"
+
+#~ msgid "See <seeie/>."
+#~ msgstr "Ikus <seeie/>."
+
+#~ msgid "See also <seeie/>."
+#~ msgstr "Ikus halaber <seeie/>."
+
+#~ msgid "yelp-quote-201C.png"
+#~ msgstr "yelp-quote-201C.png"
+
+#~ msgid "Further Reading"
+#~ msgstr "Irakurketa gehiago"
+
+#~ msgid "Name"
+#~ msgstr "Izena"
+
+#~ msgid "Preface"
+#~ msgstr "Hitzaurrea"
+
+#~ msgid " — "
+#~ msgstr " — "
+
+#~ msgid "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
+#~ msgstr "<msgid>appendix.digit</msgid> <msgstr>A</msgstr>"
 
 #~ msgid ""
-#~ "Guides and manuals for applications that connect to the outside world"
+#~ "<msgid>appendix.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Appendix "
+#~ "<number/></msgstr>"
 #~ msgstr ""
-#~ "Munduko beste lekuekin konektatzeko aplikazioen gidak eta eskuliburuak"
+#~ "<msgid>appendix.label</msgid> <msgstr role='header'> <number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr><msgstr><number/>. "
+#~ "eranskina</msgstr>"
 
-#~ msgid "Guides for getting involved in development"
-#~ msgstr "Garapenean parte hartzeko gidak"
-
-#~ msgid "Ham Radio"
-#~ msgstr "Ham irratia"
-
-#~ msgid "Hardware Settings"
-#~ msgstr "Hardwarearen konfigurazioa"
-
-#~ msgid "Have some fun"
-#~ msgstr "Dibertigarria"
-
-#~ msgid "History"
-#~ msgstr "Historia"
-
-#~ msgid "IDEs"
-#~ msgstr "IDEak"
-
-#~ msgid "IRC Clients"
-#~ msgstr "IRC bezeroak"
-
-#~ msgid "Image Processing"
-#~ msgstr "Irudi prozesamendua"
-
-#~ msgid "Instant Messaging"
-#~ msgstr "Berehalako mezularitza"
-
-#~ msgid "Internet"
-#~ msgstr "Internet"
-
-#~ msgid "Java"
-#~ msgstr "Java"
-
-#~ msgid "KDE Applications"
-#~ msgstr "KDEren aplikazioak"
-
-#~ msgid "Kids Games"
-#~ msgstr "Umeentzako jokoak"
+#~ msgid "<msgid>appendix.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgid>appendix.number</msgid><msgstr><parent/>.<digit/></msgstr>"
 
 #~ msgid ""
-#~ "Learn more about making your system more accessible for a range of "
-#~ "disabilities"
+#~ "<msgid>appendix.xref</msgid> <msgstr>Appendix <number/> ― <title/></"
+#~ "msgstr>"
 #~ msgstr ""
-#~ "Ikasi urritasun barruti baten aurrean zure sistema erabilgarriagoa nola "
-#~ "egin"
-
-#~ msgid "Licenses"
-#~ msgstr "Lizentziak"
-
-#~ msgid "Literature"
-#~ msgstr "Literatura"
-
-#~ msgid "Logic Games"
-#~ msgstr "Logika-jokoak"
-
-#~ msgid "Math"
-#~ msgstr "Matematikak"
-
-#~ msgid "Medical Software"
-#~ msgstr "Medikuntzako softwarea"
-
-#~ msgid "Midi"
-#~ msgstr "Midi"
-
-#~ msgid "Miscellaneous Documentation"
-#~ msgstr "Hainbat dokumentazio"
-
-#~ msgid "Mixers"
-#~ msgstr "Nahastaileak"
-
-#~ msgid "Monitor"
-#~ msgstr "Monitorea"
-
-#~ msgid "Motif"
-#~ msgstr "Motif"
-
-#~ msgid "Music"
-#~ msgstr "Musika"
-
-#~ msgid "News"
-#~ msgstr "Berriak"
-
-#~ msgid "Numerical Analysis"
-#~ msgstr "Analisi numerikoak"
-
-#~ msgid "OCR"
-#~ msgstr "Karaktere-ezagutze optikoa"
-
-#~ msgid "Office Applications"
-#~ msgstr "Bulegoko aplikazioak"
-
-#~ msgid "Office applications"
-#~ msgstr "Bulegoko aplikazioak"
-
-#~ msgid "Other Documentation"
-#~ msgstr "Bestelako dokumentazioa"
-
-#~ msgid "P2P"
-#~ msgstr "P2P"
-
-#~ msgid "PDA Communication"
-#~ msgstr "PDA komunikazioa"
-
-#~ msgid "Package Manager"
-#~ msgstr "Pakete-kudeatzailea"
-
-#~ msgid "Parallel Computing"
-#~ msgstr "Kalkulu paraleloa"
-
-#~ msgid "Photography"
-#~ msgstr "Argazkigintza"
-
-#~ msgid "Physics"
-#~ msgstr "Fisika"
-
-#~ msgid "Players"
-#~ msgstr "Erreproduzitzaileak"
-
-#~ msgid "Presentation Tools"
-#~ msgstr "Aurkezpen-tresnak"
-
-#~ msgid "Profiling Tools"
-#~ msgstr "Profil-tresnak"
-
-#~ msgid "Project Management Tools"
-#~ msgstr "Proiektu-kudeaketen tresnak"
-
-#~ msgid "Publishing"
-#~ msgstr "Argitalpena"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "Raster Graphics"
-#~ msgstr "Grafiko gordinak"
-
-#~ msgid "Recorders"
-#~ msgstr "Grabagailuak"
-
-#~ msgid "Remote Access"
-#~ msgstr "Urruneko atzipena"
-
-#~ msgid "Revision Control"
-#~ msgstr "Berrikuspen kontrola"
-
-#~ msgid "Robotics"
-#~ msgstr "Robotika"
-
-#~ msgid "Role Playing Games"
-#~ msgstr "Rol-jokoak"
-
-#~ msgid "Scanning"
-#~ msgstr "Eskaneatzea"
-
-#~ msgid "Science"
-#~ msgstr "Zientzia"
-
-#~ msgid "Security"
-#~ msgstr "Segurtasuna"
-
-#~ msgid "Sequencers"
-#~ msgstr "Sekuentziadoreak"
-
-#~ msgid "Settings"
-#~ msgstr "Konfigurazioak"
+#~ "<msgid>appendix.xref</msgid><msgstr><number/>. eranskina:  <title/></"
+#~ "msgstr>"
 
 #~ msgid ""
-#~ "Settings users can manipulate to make their environment more pleasant"
+#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>View the bibliography entry "
+#~ "<label/>.</msgstr>"
 #~ msgstr ""
-#~ "Erabiltzaileek kudeatu ditzaketen ezarpenak beraien mahaigaina erosoagoa "
-#~ "izateko"
+#~ "<msgid>biblioentry.tooltip</msgid> <msgstr>Ikus <label/> sarrera "
+#~ "bibliografikoa.</msgstr>"
 
-#~ msgid "Simulation Games"
-#~ msgstr "Simulazio-jokoak"
+#~ msgid "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgid>bibliography.xref</msgid> <msgstr><title/></msgstr>"
 
-#~ msgid "Sound"
-#~ msgstr "Soinua"
+#~ msgid "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
+#~ msgstr "<msgid>bibliolabel.format</msgid> <msgstr>[<bibliolabel/>]</msgstr>"
 
-#~ msgid "Sound &amp; Video"
-#~ msgstr "Soinua eta bideoa"
+#~ msgid "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>book.digit</msgid> <msgstr>1</msgstr>"
 
-#~ msgid "Sound &amp; Video Editing"
-#~ msgstr "Soinu eta bideoaren edizioa"
+#~ msgid "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgid>book.xref</msgid> <msgstr><title/></msgstr>"
 
-#~ msgid "Sports"
-#~ msgstr "Kirolak"
-
-#~ msgid "Sports Games"
-#~ msgstr "Kirol-jokoak"
-
-#~ msgid "Spreadsheet Tools"
-#~ msgstr "Kalkulu-orrien tresnak"
-
-#~ msgid "Strategy Games"
-#~ msgstr "Estrategia jokoak"
-
-#~ msgid "System"
-#~ msgstr "Sistema"
-
-#~ msgid "TV"
-#~ msgstr "TB"
-
-#~ msgid "Telephony"
-#~ msgstr "Telefonia"
-
-#~ msgid "Telephony Tools"
-#~ msgstr "Telefonia-tresnak"
-
-#~ msgid "Terminal Emulator"
-#~ msgstr "Terminal-emulatzailea"
-
-#~ msgid "Text Editors"
-#~ msgstr "Testu-editoreak"
-
-#~ msgid "Text Tools"
-#~ msgstr "Testu-tresnak"
-
-#~ msgid "Tools to help you manage your computer"
-#~ msgstr "Ordenagailua kudeatzen laguntzeko tresnak"
-
-#~ msgid "Translation Tools"
-#~ msgstr "Itzulpen-tresnak"
-
-#~ msgid "Tuners"
-#~ msgstr "Sintonizadoreak"
-
-#~ msgid "Utilities"
-#~ msgstr "Utilitateak"
-
-#~ msgid "Utilities to help you get work done"
-#~ msgstr "Zure lanak egiten laguntzeko tresnak"
-
-#~ msgid "Vector Graphics"
-#~ msgstr "Bektore grafikoak"
-
-#~ msgid "Video"
-#~ msgstr "Bideoa"
-
-#~ msgid "Video Conference"
-#~ msgstr "Bideo-konferentzia"
-
-#~ msgid "Viewer"
-#~ msgstr "Ikustailea"
-
-#~ msgid "Web Browser"
-#~ msgstr "Web arakatzailea"
-
-#~ msgid "Web Development"
-#~ msgstr "Web garapena"
-
-#~ msgid "Welcome to the GNOME Help Browser"
-#~ msgstr "Ongi etorri GNOMEren Laguntza-arakatzailera"
-
-#~ msgid "Word Processors"
-#~ msgstr "Testu-prozesadorea"
-
-#~ msgid "Re_name"
-#~ msgstr "Al_datu izena"
-
-#~ msgid "_Bookmarks:"
-#~ msgstr "_Laster-markak:"
-
-#~ msgid "_Title:"
-#~ msgstr "_Titulua:"
-
-#~ msgid "_Location:"
-#~ msgstr "_Kokalekua:"
-
-#~ msgid "Fonts"
-#~ msgstr "Letra-tipoak"
-
-#~ msgid "Preferences"
-#~ msgstr "Hobespenak"
-
-#~ msgid "_Browse with caret"
-#~ msgstr "_Arakatu kurtsorearekin"
-
-#~ msgid "_Fixed width:"
-#~ msgstr "_Zabalera finkoa:"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Erabili sistemako letra-tipoak"
-
-#~ msgid "_Variable width:"
-#~ msgstr "_Zabalera aldakorra:"
-
-#~ msgid "Font for fixed text"
-#~ msgstr "Testu finkoaren letra-tipoa"
-
-#~ msgid "Font for text"
-#~ msgstr "Testuaren letra-tipoa"
-
-#~ msgid "Font for text with fixed width."
-#~ msgstr "Zabalera finkoko testuaren letra-tipoa"
-
-#~ msgid "Font for text with variable width."
-#~ msgstr "Zabalera aldakorreko testuaren letra-tipoa"
-
-#~ msgid "Use a keyboard-controllable caret when viewing pages."
-#~ msgstr ""
-#~ "Erabili teklatuarekin kontrola daitekeen kurtsorea orrialdeak ikusteko."
-
-#~ msgid "Use caret"
-#~ msgstr "Erabili kurtsorea"
-
-#~ msgid "Use system fonts"
-#~ msgstr "Erabili sistemako letra-tipoak"
-
-#~ msgid "Use the default fonts set for the system."
-#~ msgstr "Erabili sistemako letra-tipo lehenetsiak."
-
-#~ msgid "File is not a valid .desktop file"
-#~ msgstr "Fitxategia ez da baliozko '.desktop' fitxategi bat"
-
-#~ msgid "Unrecognized desktop file Version '%s'"
-#~ msgstr "Mahaigaineko (.desktop) fitxategiaren '%s' bertsioa ezezaguna"
-
-#~ msgid "Starting %s"
-#~ msgstr "%s hasieratzen"
-
-#~ msgid "Application does not accept documents on command line"
-#~ msgstr "Aplikazioak ez ditu dokumenturik onartzen komando-lerroan"
-
-#~ msgid "Unrecognized launch option: %d"
-#~ msgstr "Abiarazteko aukera ezezaguna: %d"
-
-#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr ""
-#~ "Ezin zaio dokumentuaren URIrik eman mahaigaineko 'Type=Link' sarrerari"
-
-#~ msgid "Not a launchable item"
-#~ msgstr "Ez da elementu abiarazgarria"
-
-#~ msgid "Disable connection to session manager"
-#~ msgstr "Desgaitu konexioa saio-kudeatzailearekin"
-
-#~ msgid "Specify file containing saved configuration"
-#~ msgstr "Zehaztu gordetako konfigurazioa duen fitxategia"
-
-#~ msgid "FILE"
-#~ msgstr "FITXATEGIA"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Zehaztu saio-kudeatzailearen IDa"
-
-#~ msgid "ID"
-#~ msgstr "IDa"
-
-#~ msgid "Session management options:"
-#~ msgstr "Saio-kudeatzailearen aukerak:"
-
-#~ msgid "Show session management options"
-#~ msgstr "Erakutsi saio-kudeatzailearen aukerak"
-
-#~ msgid "Open Bookmark in New Window"
-#~ msgstr "Ireki laster-marka leiho berrian"
-
-#~ msgid "Rename Bookmark"
-#~ msgstr "Aldatu laster-markaren izena"
-
-#~ msgid "A bookmark titled %s already exists for this page."
-#~ msgstr "%s izeneko laster-marka badago lehendik ere orrialde honetan."
-
-#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
-#~ msgstr ""
-#~ "<b>%s</b> izeneko laster-marka jadanik existitzen da orrialde honetan."
-
-#~ msgid "Help Topics"
-#~ msgstr "Laguntzako gaiak"
-
-#~ msgid "File not found"
-#~ msgstr "Ez da fitxategia aurkitu"
-
-#~ msgid "Could not parse file"
-#~ msgstr "Ezin izan da fitxategia analizatu"
-
-#~ msgid "Could Not Read File"
-#~ msgstr "Ezin izan da fitxategia irakurri"
-
-#~ msgid "No information is available about this error."
-#~ msgstr "Ez dago erroreari buruzko informaziorik eskuragarri."
+#~ msgid "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>chapter.digit</msgid> <msgstr>1</msgstr>"
 
 #~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
-#~ "in an unsupported format."
+#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Chapter "
+#~ "<number/></msgstr>"
 #~ msgstr ""
-#~ "Ezin izan da '%s' fitxategia irakurri eta dekodetu. Baliteke fitxategia "
-#~ "onartu gabeko formatu batean konprimituta egotea."
+#~ "<msgid>chapter.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr><msgstr><number/>. "
+#~ "kapitulua</msgstr>"
 
-#~ msgid "Use a private session"
-#~ msgstr "Erabili saio pribatua"
-
-#~ msgid "Define which cache directory to use"
-#~ msgstr "Zehaztu zein cache-direktorio erabili behar den"
-
-#~ msgid " GNOME Help Browser"
-#~ msgstr "GNOMEren Laguntza-arakatzailea"
-
-#~ msgid "Directory not found"
-#~ msgstr "Ez da direktorioa aurkitu"
+#~ msgid "<msgid>chapter.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgid>chapter.number</msgid><msgstr><parent/>.<digit/></msgstr>"
 
 #~ msgid ""
-#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
-#~ "page."
+#~ "<msgid>chapter.xref</msgid> <msgstr>Chapter <number/> ― <title/></msgstr>"
 #~ msgstr ""
-#~ "'%s' fitxategia ezin da analizatu, ez daukalako behar bezalako man "
-#~ "formatua."
+#~ "<msgid>chapter.xref</msgid><msgstr><number/>. kapitulua: <title/></msgstr>"
 
-#~ msgid "Preparing to print"
-#~ msgstr "Inprimatzeko prestatzen"
-
-#~ msgid "Printing is not supported on this printer"
-#~ msgstr "Inprimatzea ez dago onartuta inprimagailu honetan"
-
-#~ msgid "Printer %s does not support postscript printing."
-#~ msgstr "%s inprimagailuak ez du PostScript moduan inprimatzea onartzen."
-
-#~ msgid "Waiting to print"
-#~ msgstr "Inprimatzeko zai"
-
-#~ msgid "An error occurred while printing"
-#~ msgstr "Errorea gertatu da inprimatzean"
-
-#~ msgid "It was not possible to print your document: %s"
-#~ msgstr "Ezin da zure dokumentua inprimatu: %s"
-
-#~ msgid "the GNOME Support Forums"
-#~ msgstr "GNOMEko laguntzako foruak"
-
-#~ msgid "No results for \"%s\""
-#~ msgstr "Ez da \"%s\" aurkitu"
+#~ msgid "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
+#~ msgstr "<msgid>citation.format</msgid> <msgstr>[<citation/>]</msgstr>"
 
 #~ msgid ""
-#~ "Try using different words to describe the problem you're having or the "
-#~ "topic you want help with."
+#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
+#~ "<msgstr><i><node/></i></msgstr>"
 #~ msgstr ""
-#~ "Erabili beste hitz batzuk zein arazo duzun edo laguntza behar duzun gaia "
-#~ "azaltzeko."
+#~ "<msgid>citetitle.format</msgid> <msgstr role='article'>“<node/>”</msgstr> "
+#~ "<msgstr><i><node/></i></msgstr>"
 
 #~ msgid ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ "<msgid>email.tooltip</msgid> <msgstr>Send email to ‘<string/>’.</msgstr>"
 #~ msgstr ""
-#~ "bat:honi:honen:honek:izan:dauka:egon:bai:ez:non:nondik:nora:esan: nork:"
-#~ "nori:nor:gauza:da:du:nere:ni:gisa:bezala:dezake:baliteke:egin:noiz: "
-#~ "lagundu:nola:dago:edo:zer:zergatik:honekin:funtzionatu"
+#~ "<msgid>email.tooltip</msgid> <msgstr>Bidali mezua hona: <string/>.</"
+#~ "msgstr>"
 
-#~ msgid "re"
-#~ msgstr "berr:"
-
-#~ msgid "ers:er:ing:es:s:'s"
-#~ msgstr ""
-#~ "tu:kor:tzaile:gaitz:kuntza:ezin:tze:ren:en:i:ri:tzea:tzen:tzeko:ko:eko:"
-#~ "etik:tik:erako:rako:era:ra:kizun:go:era:ari:garri:ki:tegi:tze"
-
-#~ msgid "No Comment"
-#~ msgstr "Iruzkinik ez"
-
-#~ msgid "Search could not be processed"
-#~ msgstr "Ezin izan da bilaketa prozesatu"
-
-#~ msgid "The requested search could not be processed."
-#~ msgstr "Eskatutako bilaketa ezin izan da prozesatu."
-
-#~ msgid "Cannot process the search"
-#~ msgstr "Ezin da bilaketa prozesatu"
-
-#~ msgid "The search processor returned invalid results"
-#~ msgstr "Bilaketako prozesuak emaitz baliogabeak itzuli ditu"
-
-#~ msgid "The page %s was not found in the TOC."
-#~ msgstr "Ezin da %s orrialdea aurkitu aurkibidean."
-
-#~ msgid "The requested page was not found in the TOC."
-#~ msgstr "Eskatutako orrialdea ez da aurkibidean aurkitu."
+#~ msgid "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>example.digit</msgid> <msgstr>1</msgstr>"
 
 #~ msgid ""
-#~ "The TOC file could not be parsed because it is not a well-formed XML "
-#~ "document."
+#~ "<msgid>example.label</msgid> <msgstr role='header'><i>Example <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>Example <number/>&#x2002;</msgstr> "
+#~ "<msgstr>Example <number/></msgstr>"
 #~ msgstr ""
-#~ "Aurkibidearen fitxategia ezin da analizatu, ez delako behar bezalako XML "
-#~ "dokumentua."
+#~ "<msgid>example.label</msgid> <msgstr role='header'><i><number/>. "
+#~ "adibidea</i>&#x2003;</msgstr> <msgstr role='li'><number/>. adibidea "
+#~ "&#x2002;</msgstr> <msgstr><number/>. adibidea</msgstr>"
 
-#~ msgid "Broken Transformation"
-#~ msgstr "Eraldaketa hautsita"
+#~ msgid "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+#~ msgstr "<msgid>example.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+
+#~ msgid "<msgid>example.xref</msgid> <msgstr>Example <number/></msgstr>"
+#~ msgstr "<msgid>example.xref</msgid> <msgstr><number/>. adibidea</msgstr>"
+
+#~ msgid "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>figure.digit</msgid> <msgstr>1</msgstr>"
 
 #~ msgid ""
-#~ "An unknown error occurred while attempting to transform the document."
-#~ msgstr "Errore ezezaguna gertatu da dokumentua eraldatzean."
+#~ "<msgid>figure.label</msgid> <msgstr role='header'><i>Figure <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>Figure <number/>&#x2002;</msgstr> "
+#~ "<msgstr>Figure <number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>figure.label</msgid> <msgstr role='header'><i><number/>. irudia</"
+#~ "i>&#x2003;</msgstr> <sgstr role='li'><number/> irudia &#x2002;</msgstr> "
+#~ "<msgstr><number/>. irudia</msgstr>"
 
-#~ msgid "_File"
-#~ msgstr "_Fitxategia"
+#~ msgid "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+#~ msgstr "<msgid>figure.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
 
-#~ msgid "_Edit"
-#~ msgstr "_Editatu"
+#~ msgid "<msgid>figure.xref</msgid> <msgstr>Figure <number/></msgstr>"
+#~ msgstr "<msgid>figure.xref</msgid> <msgstr><number/>. irudia</msgstr>"
 
-#~ msgid "_Help"
-#~ msgstr "_Laguntza"
+#~ msgid "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgid>glossary.xref</msgid> <msgstr><title/></msgstr>"
 
-#~ msgid "Print This Document ..."
-#~ msgstr "Inprimatu dokumentu hau..."
-
-#~ msgid "Open _Location"
-#~ msgstr "Ireki _helbidea"
-
-#~ msgid "_Close Window"
-#~ msgstr "_Itxi leihoa"
-
-#~ msgid "_Select All"
-#~ msgstr "_Hautatu denak"
-
-#~ msgid "_Find..."
-#~ msgstr "_Bilatu..."
-
-#~ msgid "Find Pre_vious"
-#~ msgstr "Bilatu _aurrekoa"
-
-#~ msgid "Find previous occurrence of the word or phrase"
-#~ msgstr "Hitzaren edo esaldiaren aurreko gertaera bilatzen du"
-
-#~ msgid "Find Ne_xt"
-#~ msgstr "Bilatu _hurrengoa"
-
-#~ msgid "Find next occurrence of the word or phrase"
-#~ msgstr "Hitzaren edo esaldiaren hurrengo gertaera bilatzen du"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Hobespenak"
-
-#~ msgid "_Reload"
-#~ msgstr "_Berritu"
-
-#~ msgid "Show previous page in history"
-#~ msgstr "Erakutsi historiako aurreko orrialdea"
-
-#~ msgid "Show next page in history"
-#~ msgstr "Erakutsi historiako hurrengo orrialdea"
-
-#~ msgid "_Help Topics"
-#~ msgstr "_Laguntzako gaiak"
-
-#~ msgid "Go to the listing of help topics"
-#~ msgstr "Joan lagunako gaien zerrendara"
-
-#~ msgid "_Contents"
-#~ msgstr "_Edukia"
-
-#~ msgid "_Edit Bookmarks..."
-#~ msgstr "_Editatu laster-markak..."
-
-#~ msgid "_Copy Link Address"
-#~ msgstr "_Kopiatu estekaren helbidea"
-
-#~ msgid "Help On this application"
-#~ msgstr "Aplikazio honi buruzko laguntza"
-
-#~ msgid "_About"
-#~ msgstr "Honi _buruz"
-
-#~ msgid "Copy _Email Address"
-#~ msgstr "_Kopiatu postaren helbidea"
-
-#~ msgid "Help Browser"
-#~ msgstr "Laguntza-arakatzailea"
-
-#~ msgid "Unknown Page"
-#~ msgstr "Orrialde ezezaguna"
-
-#~ msgid "The requested URI \"%s\" is invalid"
-#~ msgstr "Eskatutako \"%s\" URIa baliogabea da"
-
-#~ msgid "Unable to load page"
-#~ msgstr "Ezin da orrialdea kargatu"
-
-#~ msgid "Cannot create search component"
-#~ msgstr "Ezin da bilaketako osagaia sortu"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Bilatu _aurrekoa"
-
-#~ msgid "Find _Next"
-#~ msgstr "Bilatu _hurrengoa"
-
-#~ msgid "Phrase not found"
-#~ msgstr "Ez da esaldia aurkitu"
+#~ msgid "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
+#~ msgstr "<msgid>glossentry.abbrev.format</msgid> <msgstr>(<node/>)</msgstr>"
 
 #~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
-#~ "might not have permissions to read it."
+#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
+#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
 #~ msgstr ""
-#~ "Ezin izan da '%s' fitxategia irakurri. Fitxategia falta da, edo ez "
-#~ "daukazu nahikoa baimen hau irakurtzeko."
+#~ "<msgid>glossentry.xref</msgid> <msgstr role='glosssee'><glossterm/></"
+#~ "msgstr> <msgstr>‘<glossterm/>’</msgstr>"
 
-#~ msgid "translator-credits"
+#~ msgid "<msgid>glosssee.format</msgid> <msgstr>See <glosssee/>.</msgstr>"
+#~ msgstr "<msgid>glosssee.format</msgid> <msgstr>Ikusi <glosssee/>.</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>glossseealso.format</msgid> <msgstr>See also <glosssee/>.</msgstr>"
 #~ msgstr ""
-#~ "Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>\n"
-#~ "Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>"
+#~ "<msgid>glossseealso.format</msgid> <msgstr>Ikus <glosssee/> ere.</msgstr>"
 
-#~ msgid "A documentation browser and viewer for the Gnome Desktop."
-#~ msgstr "GNOME mahaigainaren dokumentazio-arakatzaile eta -ikustaile bat."
+#~ msgid "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
+#~ msgstr "<msgid>manvolnum.format</msgid> <msgstr>(<node/>)</msgstr>"
+
+#~ msgid "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
+#~ msgstr "<msgid>part.digit</msgid> <msgstr>I</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Part "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>part.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr><msgstr><number/>. "
+#~ "zatia</msgstr>"
+
+#~ msgid "<msgid>part.xref</msgid> <msgstr>Part <number/> ― <title/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>part.xref</msgid><msgstr><number/>. zatia ― <title/></msgstr>"
+
+#~ msgid "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgid>preface.xref</msgid> <msgstr><title/></msgstr>"
+
+#~ msgid "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>question.digit</msgid> <msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Question "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>question.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr><msgstr><number/>. "
+#~ "galdera</msgstr>"
+
+#~ msgid "<msgid>question.xref</msgid> <msgstr>Question <number/></msgstr>"
+#~ msgstr "<msgid>question.xref</msgid><msgstr><number/>. galdera</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
+#~ "<msgstr>“<node/>”</msgstr>"
+#~ msgstr ""
+#~ "<msgid>quote.format</msgid> <msgstr role='inner'>‘<node/>’</msgstr> "
+#~ "<msgstr>“<node/>”</msgstr>"
+
+#~ msgid "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
+#~ msgstr "<msgid>refentry.xref</msgid> <msgstr><title/></msgstr>"
+
+#~ msgid "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>refsection.digit</msgid> <msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>refsection.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'> <number/>.&#x2002;</msgstr><msgstr><number/>. "
+#~ "atala</msgstr>"
+
+#~ msgid "<msgid>refsection.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgid>refsection.number</msgid><msgstr><parent/>.<digit/></msgstr>"
+
+#~ msgid ""
+#~ "<msgid>refsection.xref</msgid> <msgstr>Section <number/> ― <title/></"
+#~ "msgstr>"
+#~ msgstr ""
+#~ "<msgid>refsection.xref</msgid><msgstr><number/>. atala ― <title/></msgstr>"
+
+#~ msgid "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>section.digit</msgid> <msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>section.label</msgid> <msgstr role='header'><number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr> <msgstr>Section "
+#~ "<number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>section.label</msgid> <msgstr role='header'> <number/>.&#x2003;</"
+#~ "msgstr> <msgstr role='li'><number/>.&#x2002;</msgstr><msgstr><number/>. "
+#~ "atala</msgstr>"
+
+#~ msgid "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+#~ msgstr "<msgid>section.number</msgid> <msgstr><parent/>.<digit/></msgstr>"
+
+#~ msgid ""
+#~ "<msgid>section.xref</msgid> <msgstr>Section <number/> ― <title/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>section.xref</msgid> <msgstr><number/>. atala ― <title/></msgstr>"
+
+#~ msgid "<msgid>seealsoie.format</msgid> <msgstr>See also <seeie/>.</msgstr>"
+#~ msgstr "<msgid>seealsoie.format</msgid> <msgstr>Ikus <seeie/> ere.</msgstr>"
+
+#~ msgid "<msgid>seeie.format</msgid> <msgstr>See <seeie/>.</msgstr>"
+#~ msgstr "<msgid>seeie.format</msgid> <msgstr>Ikusi <seeie/>.</msgstr>"
+
+#~ msgid "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>synopfragment.digit</msgid> <msgstr>1</msgstr>"
+
+#~ msgid "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
+#~ msgstr "<msgid>synopfragment.label</msgid> <msgstr>(<number/>)</msgstr>"
+
+#~ msgid "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
+#~ msgstr "<msgid>table.digit</msgid> <msgstr>1</msgstr>"
+
+#~ msgid ""
+#~ "<msgid>table.label</msgid> <msgstr role='header'><i>Table <number/></"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'>Table <number/>&#x2002;</msgstr> "
+#~ "<msgstr>Table <number/></msgstr>"
+#~ msgstr ""
+#~ "<msgid>table.label</msgid> <msgstr role='header'><i><number/>. taula</"
+#~ "i>&#x2003;</msgstr> <msgstr role='li'><number/>. taula &#x2002;</msgstr> "
+#~ "<msgstr><number/>. taula</msgstr>"
+
+#~ msgid "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+#~ msgstr "<msgid>table.number</msgid> <msgstr><parent/>-<digit/></msgstr>"
+
+#~ msgid "<msgid>table.xref</msgid> <msgstr>Table <number/></msgstr>"
+#~ msgstr "<msgid>table.xref</msgid> <msgstr><number/>. taula</msgstr>"
+
+#~ msgid "<msgstr form='0'>Author</msgstr> <msgstr form='1'>Authors</msgstr>"
+#~ msgstr "<msgstr form='0'>Egilea</msgstr> <msgstr form='1'>Egileak</msgstr>"
+
+#~ msgid ""
+#~ "<msgstr form='0'>Collaborator</msgstr> <msgstr form='1'>Collaborators</"
+#~ "msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Laguntzailea</msgstr> <msgstr form='1'>Laguntzaileak</"
+#~ "msgstr>"
+
+#~ msgid ""
+#~ "<msgstr form='0'>Copyright</msgstr> <msgstr form='1'>Copyrights</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Copyright-a</msgstr> <msgstr form='1'>Copyright-ak</"
+#~ "msgstr>"
+
+#~ msgid "<msgstr form='0'>Editor</msgstr> <msgstr form='1'>Editors</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Editorea</msgstr> <msgstr form='1'>Editoreak</msgstr>"
+
+#~ msgid ""
+#~ "<msgstr form='0'>Other Contributor</msgstr> <msgstr form='1'>Other "
+#~ "Contributors</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Beste laguntzailea</msgstr> <msgstr form='1'>Beste "
+#~ "laguntzaileak</msgstr>"
+
+#~ msgid ""
+#~ "<msgstr form='0'>Publisher</msgstr> <msgstr form='1'>Publishers</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Argitaratzailea</msgstr> <msgstr "
+#~ "form='1'>Argitaratzaileak</msgstr>"
+
+#~ msgid ""
+#~ "<msgstr form='0'>Translator</msgstr> <msgstr form='1'>Translators</msgstr>"
+#~ msgstr ""
+#~ "<msgstr form='0'>Itzultzailea</msgstr> <msgstr form='1'>Itzultzaileak</"
+#~ "msgstr>"
+
+#~ msgid "A:&#x2003;"
+#~ msgstr "E:&#x2003;"
+
+#~ msgid "About This Document"
+#~ msgstr "Dokumentu honi buruz"
+
+#~ msgid "Affiliation"
+#~ msgstr "Afiliazioa"
+
+#~ msgid "Email"
+#~ msgstr "Helb. el."
+
+#~ msgid "Legal Notice"
+#~ msgstr "Lege oharra"
+
+#~ msgid "Q:&#x2003;"
+#~ msgstr "G:&#x2003;"
+
+#~ msgid "Revision History"
+#~ msgstr "Berrikuste-zenbakia"
+
+#~ msgid "See"
+#~ msgstr "Ikus"
