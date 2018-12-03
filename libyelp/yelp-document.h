@@ -151,6 +151,12 @@ void              yelp_document_set_page_desc       (YelpDocument         *docum
                                                      const gchar          *page_id,
                                                      const gchar          *desc);
 
+gchar *           yelp_document_get_page_keywords   (YelpDocument         *document,
+                                                     const gchar          *page_id);
+void              yelp_document_set_page_keywords   (YelpDocument         *document,
+                                                     const gchar          *page_id,
+                                                     const gchar          *keywords);
+
 gchar *           yelp_document_get_page_icon       (YelpDocument         *document,
                                                      const gchar          *page_id);
 void              yelp_document_set_page_icon       (YelpDocument         *document,

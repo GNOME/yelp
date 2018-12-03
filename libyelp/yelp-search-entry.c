@@ -100,7 +100,8 @@ enum {
     COMPLETION_COL_DESC,
     COMPLETION_COL_ICON,
     COMPLETION_COL_PAGE,
-    COMPLETION_COL_FLAGS
+    COMPLETION_COL_FLAGS,
+    COMPLETION_COL_KEYWORDS
 };
 
 enum {
@@ -451,7 +452,7 @@ entry_match_func (GtkEntryCompletion *completion,
                   YelpSearchEntry  *entry)
 {
     gint stri;
-    gchar *title, *desc, *titlecase = NULL, *desccase = NULL;
+    gchar *title, *desc, *keywords, *titlecase = NULL, *desccase = NULL, *keywordscase = NULL;
     gboolean ret = FALSE;
     gchar **strs;
     gint flags;
@@ -470,6 +471,7 @@ entry_match_func (GtkEntryCompletion *completion,
     gtk_tree_model_get (model, iter,
                         COMPLETION_COL_TITLE, &title,
                         COMPLETION_COL_DESC, &desc,
+                        COMPLETION_COL_KEYWORDS, &keywords,
                         -1);
     if (title) {
         titlecase = g_utf8_casefold (title, -1);
@@ -479,14 +481,20 @@ entry_match_func (GtkEntryCompletion *completion,
         desccase = g_utf8_casefold (desc, -1);
         g_free (desc);
     }
+    if (keywords) {
+        keywordscase = g_utf8_casefold (keywords, -1);
+        g_free (keywords);
+    }
 
     strs = g_regex_split (nonword, key, 0);
     ret = TRUE;
     for (stri = 0; strs[stri]; stri++) {
         if (!titlecase || !strstr (titlecase, strs[stri])) {
             if (!desccase || !strstr (desccase, strs[stri])) {
-                ret = FALSE;
-                break;
+                if (!keywordscase || !strstr (keywordscase, strs[stri])) {
+                    ret = FALSE;
+                    break;
+                }
             }
         }
     }
@@ -592,12 +600,13 @@ view_loaded (YelpView          *view,
         !g_str_equal (doc_uri, priv->completion_uri)) {
         completion = (GtkTreeModel *) g_hash_table_lookup (completions, doc_uri);
         if (completion == NULL) {
-            GtkListStore *base = gtk_list_store_new (5,
+            GtkListStore *base = gtk_list_store_new (6,
                                                      G_TYPE_STRING,  /* title */
                                                      G_TYPE_STRING,  /* desc */
                                                      G_TYPE_STRING,  /* icon */
                                                      G_TYPE_STRING,  /* uri */
-                                                     G_TYPE_INT      /* flags */
+                                                     G_TYPE_INT,     /* flags */
+                                                     G_TYPE_STRING   /* keywords */
                                                      );
             completion = gtk_tree_model_sort_new_with_model (GTK_TREE_MODEL (base));
             gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (completion),
@@ -607,15 +616,17 @@ view_loaded (YelpView          *view,
             if (document != NULL) {
                 ids = yelp_document_list_page_ids (document);
                 for (i = 0; ids[i]; i++) {
-                    gchar *title, *desc, *icon;
+                    gchar *title, *desc, *icon, *keywords;
                     gtk_list_store_insert (GTK_LIST_STORE (base), &iter, 0);
                     title = yelp_document_get_page_title (document, ids[i]);
                     desc = yelp_document_get_page_desc (document, ids[i]);
                     icon = yelp_document_get_page_icon (document, ids[i]);
+                    keywords = yelp_document_get_page_keywords (document, ids[i]);
                     gtk_list_store_set (base, &iter,
                                         COMPLETION_COL_TITLE, title,
                                         COMPLETION_COL_DESC, desc,
                                         COMPLETION_COL_ICON, icon,
+                                        COMPLETION_COL_KEYWORDS, keywords,
                                         COMPLETION_COL_PAGE, ids[i],
                                         -1);
                     g_free (icon);

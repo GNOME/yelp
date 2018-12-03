@@ -69,6 +69,7 @@ typedef struct {
 
     gchar         *page_title;
     gchar         *page_desc;
+    gchar         *page_keywords;
     gchar         *next_page;
 } MallardPageData;
 
@@ -393,6 +394,10 @@ mallard_think (YelpMallardDocument *mallard)
                 yelp_document_set_page_desc ((YelpDocument *) mallard,
                                              page_data->page_id,
                                              page_data->page_desc);
+                yelp_document_set_page_keywords ((YelpDocument *) mallard,
+                                                 page_data->page_id,
+                                                 page_data->page_keywords);
+
                 if (page_data->next_page != NULL) {
                     yelp_document_set_next_id ((YelpDocument *) mallard,
                                                page_data->page_id,
@@ -662,7 +667,21 @@ mallard_page_data_info (MallardPageData *page_data,
             xmlXPathObjectPtr obj;
             page_data->xpath->node = child;
             obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
+            g_free(page_data->page_desc);
             page_data->page_desc = g_strdup ((const gchar *) obj->stringval);
+            xmlXPathFreeObject (obj);
+
+            xmlAddChild (cache_node, xmlCopyNode (child, 1));
+        }
+        else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "keywords")) {
+            /* FIXME: multiple keywords? same for desc/title */
+
+            YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
+            xmlXPathObjectPtr obj;
+            page_data->xpath->node = child;
+            obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
+            g_free(page_data->page_keywords);
+            page_data->page_keywords = g_strdup ((const gchar *) obj->stringval);
             xmlXPathFreeObject (obj);
 
             xmlAddChild (cache_node, xmlCopyNode (child, 1));
@@ -749,6 +768,7 @@ mallard_page_data_free (MallardPageData *page_data)
         xmlXPathFreeContext (page_data->xpath);
     g_free (page_data->page_title);
     g_free (page_data->page_desc);
+    g_free (page_data->page_keywords);
     g_free (page_data->next_page);
     g_free (page_data);
 }
@@ -896,16 +916,18 @@ typedef struct {
     xmlNodePtr cur;
     GString *str;
     gboolean is_inline;
+    gboolean in_info;
 } MallardIndexData;
 
 static void
 mallard_index_node (MallardIndexData *index)
 {
     xmlNodePtr orig, child;
-    gboolean was_inline;
+    gboolean was_inline, was_info;
 
     orig = index->cur;
     was_inline = index->is_inline;
+    was_info = index->in_info;
 
     for (child = index->cur->children; child; child = child->next) {
         if (index->is_inline) {
@@ -921,17 +943,23 @@ mallard_index_node (MallardIndexData *index)
         }
 
         if (child->type != XML_ELEMENT_NODE ||
-            xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "info") ||
             xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "comment"))
             continue;
 
-        if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "p") ||
+        if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "info")) {
+            index->in_info = TRUE;
+        }
+        else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "p") ||
             xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "code") ||
             xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "screen") ||
             xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "title") ||
             xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "desc") ||
+            xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "keywords") ||
             xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "cite")) {
             index->is_inline = TRUE;
+        }
+        else if (index->in_info && !index->is_inline) {
+            continue;
         }
 
         index->cur = child;
@@ -943,6 +971,7 @@ mallard_index_node (MallardIndexData *index)
 
         index->cur = orig;
         index->is_inline = was_inline;
+        index->in_info = was_info;
     }
 }
 

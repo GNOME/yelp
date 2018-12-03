@@ -81,6 +81,8 @@ static gboolean       docbook_walk_divisionQ    (YelpDocbookDocument  *docbook,
                                                  xmlNodePtr            cur);
 static gchar *        docbook_walk_get_title    (YelpDocbookDocument  *docbook,
                                                  xmlNodePtr            cur);
+static gchar *        docbook_walk_get_keywords (YelpDocbookDocument  *docbook,
+                                                 xmlNodePtr            cur);
 
 static void           transform_chunk_ready     (YelpTransform        *transform,
                                                  gchar                *chunk_id,
@@ -123,6 +125,8 @@ struct _YelpDocbookDocumentPrivate {
 
     GFileMonitor **monitors;
     gint64         reload_time;
+
+    GHashTable   *autoids;
 };
 
 /******************************************************************************/
@@ -161,6 +165,7 @@ yelp_docbook_document_init (YelpDocbookDocument *docbook)
     YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
 
     priv->state = DOCBOOK_STATE_BLANK;
+    priv->autoids = NULL;
 
     g_mutex_init (&priv->mutex);
 }
@@ -193,6 +198,8 @@ yelp_docbook_document_finalize (GObject *object)
     g_free (priv->cur_page_id);
     g_free (priv->cur_prev_id);
     g_free (priv->root_id);
+
+    g_hash_table_destroy (priv->autoids);
 
     g_mutex_clear (&priv->mutex);
 
@@ -532,6 +539,7 @@ docbook_walk (YelpDocbookDocument *docbook)
     gchar        autoidstr[20];
     xmlChar     *id = NULL;
     xmlChar     *title = NULL;
+    xmlChar     *keywords = NULL;
     xmlNodePtr   cur, old_cur;
     gboolean chunkQ;
     YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
@@ -558,7 +566,7 @@ docbook_walk (YelpDocbookDocument *docbook)
     if (docbook_walk_divisionQ (docbook, priv->xmlcur) && !id) {
         /* If id attribute is not present, autogenerate a
          * unique value, and insert it into the in-memory tree */
-        g_snprintf (autoidstr, 20, "//autoid-%d", ++autoid);
+        g_snprintf (autoidstr, 20, "//yelp-autoid-%d", ++autoid);
         if (priv->xmlcur->ns) {
             xmlNewNsProp (priv->xmlcur,
                           xmlNewNs (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "xml"),
@@ -569,15 +577,20 @@ docbook_walk (YelpDocbookDocument *docbook)
             xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST autoidstr);
             id = xmlGetProp (priv->xmlcur, BAD_CAST "id");
         }
+        if (!priv->autoids)
+            priv->autoids = g_hash_table_new_full (g_str_hash, g_str_equal, xmlFree, xmlFree);
+        g_hash_table_insert (priv->autoids, xmlGetNodePath(priv->xmlcur), xmlStrdup (id));
     }
 
     if (docbook_walk_chunkQ (docbook, priv->xmlcur, priv->cur_depth, priv->max_depth)) {
         title = BAD_CAST docbook_walk_get_title (docbook, priv->xmlcur);
+        keywords = BAD_CAST docbook_walk_get_keywords (docbook, priv->xmlcur);
 
         debug_print (DB_DEBUG, "  id: \"%s\"\n", id);
         debug_print (DB_DEBUG, "  title: \"%s\"\n", title);
 
         yelp_document_set_page_title (document, (gchar *) id, (gchar *) title);
+        yelp_document_set_page_keywords (document, (gchar *) id, (gchar *) keywords);
 
         if (priv->cur_prev_id) {
             yelp_document_set_prev_id (document, (gchar *) id, priv->cur_prev_id);
@@ -626,6 +639,8 @@ docbook_walk (YelpDocbookDocument *docbook)
         xmlFree (id);
     if (title != NULL)
         xmlFree (title);
+    if (keywords != NULL)
+        xmlFree (keywords);
 }
 
 static gboolean
@@ -791,6 +806,42 @@ docbook_walk_get_title (YelpDocbookDocument *docbook,
         return g_strdup (_("Unknown"));
 }
 
+static gchar *
+docbook_walk_get_keywords (YelpDocbookDocument *docbook,
+                           xmlNodePtr           cur)
+{
+    xmlNodePtr info, keywordset, keyword;
+    GString *ret = NULL;
+
+    for (info = cur->children; info; info = info->next) {
+        if (g_str_has_suffix ((const gchar *) info->name, "info")) {
+            for (keywordset = info->children; keywordset; keywordset = keywordset->next) {
+                if (!xmlStrcmp (keywordset->name, BAD_CAST "keywordset")) {
+                    for (keyword = keywordset->children; keyword; keyword = keyword->next) {
+                        if (!xmlStrcmp (keyword->name, BAD_CAST "keyword")) {
+                            xmlChar *content;
+                            if (ret)
+                                g_string_append(ret, ", ");
+                            else
+                                ret = g_string_new ("");
+                            /* FIXME: try this with just ->children->text */
+                            content = xmlNodeGetContent (keyword);
+                            g_string_append (ret, (gchar *) content);
+                            xmlFree (content);
+                        }
+                    }
+                }
+            }
+            break;
+        }
+    }
+
+    if (ret)
+        return g_string_free (ret, FALSE);
+    else
+        return NULL;
+}
+
 /******************************************************************************/
 
 static void
@@ -910,6 +961,7 @@ typedef struct {
     GString *str;
     gint depth;
     gint max_depth;
+    gboolean in_info;
 } DocbookIndexData;
 
 static void
@@ -926,10 +978,15 @@ docbook_index_node (DocbookIndexData *index)
         g_string_append (index->str, (const gchar *) index->cur->content);
         return;
     }
-    if (index->cur->type != XML_ELEMENT_NODE ||
-        g_str_has_suffix ((const gchar *) index->cur->name, "info") ||
-        g_str_equal (index->cur->name, "remark"))
+    if (index->cur->type != XML_ELEMENT_NODE) {
         return;
+    }
+    if (g_str_equal (index->cur->name, "remark")) {
+        return;
+    }
+    if (g_str_has_suffix ((const gchar *) index->cur->name, "info")) {
+        return;
+    }
     oldcur = index->cur;
     for (child = index->cur->children; child; child = child->next) {
         index->cur = child;
@@ -944,15 +1001,32 @@ docbook_index_chunk (DocbookIndexData *index)
     xmlChar *id;
     xmlNodePtr child;
     gchar *title = NULL;
+    gchar *keywords;
     GSList *chunks = NULL;
+    YelpDocbookDocumentPrivate *priv = GET_PRIV (index->docbook);
 
     id = xmlGetProp (index->cur, BAD_CAST "id");
+    if (!id)
+        id = xmlGetNsProp (index->cur, XML_XML_NAMESPACE, BAD_CAST "id");
+    if (!id) {
+        xmlChar *path = xmlGetNodePath (index->cur);
+        id = g_hash_table_lookup (priv->autoids, path);
+        if (id)
+            id = xmlStrdup (id);
+        xmlFree (path);
+    }
+
     if (id != NULL) {
         title = docbook_walk_get_title (index->docbook, index->cur);
         if (index->cur->parent->parent == NULL)
             yelp_storage_set_root_title (yelp_storage_get_default (),
                                          index->doc_uri, title);
         index->str = g_string_new ("");
+        keywords = docbook_walk_get_keywords (index->docbook, index->cur);
+        if (keywords) {
+            g_string_append (index->str, keywords);
+            g_free (keywords);
+        }
     }
 
     for (child = index->cur->children; child; child = child->next) {
