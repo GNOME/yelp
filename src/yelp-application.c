@@ -264,7 +264,6 @@ yelp_application_startup (GApplication *application)
 {
     YelpApplication *app = YELP_APPLICATION (application);
     YelpApplicationPrivate *priv = GET_PRIV (app);
-    GMenu *menu, *section;
     gchar *keyfile;
     YelpSettings *settings;
 
@@ -315,18 +314,6 @@ yelp_application_startup (GApplication *application)
     g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (priv->smaller_text_action));
 
     application_set_font_sensitivity (app);
-
-    menu = g_menu_new ();
-    section = g_menu_new ();
-    g_menu_append (section, _("New Window"), "win.yelp-window-new");
-    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
-    g_object_unref (section);
-    section = g_menu_new ();
-    g_menu_append (section, _("Larger Text"), "app.yelp-application-larger-text");
-    g_menu_append (section, _("Smaller Text"), "app.yelp-application-smaller-text");
-    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
-    g_object_unref (section);
-    gtk_application_set_app_menu (GTK_APPLICATION (application), G_MENU_MODEL (menu));
 }
 
 /******************************************************************************/
