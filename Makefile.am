@@ -281,18 +281,18 @@ install-exec-hook:
 @INTLTOOL_DESKTOP_RULE@
 
 desktopdir = $(datadir)/applications
-desktop_in_files=yelp.desktop.in.in
+desktop_in_files=data/org.gnome.Yelp.desktop.in.in
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
 @INTLTOOL_XML_RULE@
 
-appstream_in_files = data/yelp.appdata.xml.in
+appstream_in_files = data/org.gnome.Yelp.appdata.xml.in
 appstream_XML = $(appstream_in_files:.appdata.xml.in=.appdata.xml)
 @APPSTREAM_XML_RULES@
 
 @INTLTOOL_SCHEMAS_RULE@
 
-gsettings_SCHEMAS = data/org.gnome.yelp.gschema.xml
+gsettings_SCHEMAS = data/org.gnome.Yelp.gschema.xml
 @GSETTINGS_RULES@
 
 16statusicondir = $(pkgdatadir)/icons/hicolor/16x16/status
