@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
-  <id type="desktop">yelp.desktop</id>
+<component type="desktop-application">
+  <id>org.gnome.Yelp</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <_name>GNOME Help</_name>
@@ -20,12 +20,20 @@
     </_p>
   </description>
   <screenshots>
-    <screenshot type="default">https://wiki.gnome.org/Apps/Yelp?action=AttachFile&amp;do=get&amp;target=yelp_screenshot.png</screenshot>
+    <screenshot type="default">
+      <image>https://wiki.gnome.org/Apps/Yelp?action=AttachFile&amp;do=get&amp;target=yelp_screenshot.png</image>
+      <_caption><!-- Describe this screenshot in less than ~10 words --></_caption>
+    </screenshot>
   </screenshots>
   <url type="homepage">https://wiki.gnome.org/Apps/Yelp</url>
-  <updatecontact>gnome-doc-devel-list@gnome.org</updatecontact>
+  <url type="bugtracker">https://gitlab.gnome.org/GNOME/yelp</url>
+  <url type="donation">http://www.gnome.org/friends/</url>
+  <url type="help">https://help.gnome.org/users/gnome-help/stable/</url>
+  <url type="translate">https://wiki.gnome.org/TranslationProject</url>
+  <launchable type="desktop-id">org.gnome.Yelp.desktop</launchable>
+  <update_contact>gnome-doc-devel-list@gnome.org</update_contact>
   <project_group>GNOME</project_group>
   <compulsory_for_desktop>GNOME</compulsory_for_desktop>
   <translation type="gettext">yelp</translation>
   <_developer_name>The GNOME Project</_developer_name>
-</application>
+</component>

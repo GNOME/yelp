@@ -283,11 +283,11 @@ yelp_application_startup (GApplication *application)
     /* Use a config file for per-document settings, because
        Ryan asked me to. */
     keyfile = g_build_filename (g_get_user_config_dir (), "yelp", "yelp.cfg", NULL);
-    priv->backend = g_keyfile_settings_backend_new (keyfile, "/org/gnome/yelp/", "yelp");
+    priv->backend = g_keyfile_settings_backend_new (keyfile, "/org/gnome/Yelp/", "yelp");
     g_free (keyfile);
 
     /* But the main settings are in dconf */
-    priv->gsettings = g_settings_new ("org.gnome.yelp");
+    priv->gsettings = g_settings_new ("org.gnome.Yelp");
 
     g_settings_bind (priv->gsettings, "show-cursor",
                      settings, "show-text-cursor",
@@ -558,14 +558,14 @@ application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
     if (settings == NULL) {
         gchar *tmp, *key, *settings_path;
         tmp = g_uri_escape_string (doc_uri, "", FALSE);
-        settings_path = g_strconcat ("/org/gnome/yelp/documents/", tmp, "/", NULL);
+        settings_path = g_strconcat ("/org/gnome/Yelp/documents/", tmp, "/", NULL);
         g_free (tmp);
         if (priv->backend)
-            settings = g_settings_new_with_backend_and_path ("org.gnome.yelp.documents",
+            settings = g_settings_new_with_backend_and_path ("org.gnome.Yelp.documents",
                                                              priv->backend,
                                                              settings_path);
         else
-            settings = g_settings_new_with_path ("org.gnome.yelp.documents",
+            settings = g_settings_new_with_path ("org.gnome.Yelp.documents",
                                                  settings_path);
         key = g_strdup (doc_uri);
         g_hash_table_insert (priv->docsettings, key, settings);
