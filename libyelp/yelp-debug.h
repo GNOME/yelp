@@ -68,7 +68,8 @@ typedef enum {
 
 G_GNUC_INTERNAL
 void yelp_debug (const gchar *file, guint line, 
-                 const gchar *function, guint flags, const gchar *format, ...);
+                 const gchar *function, guint flags,
+                 const gchar *format, ...) G_GNUC_PRINTF (5, 6);
 
 G_END_DECLS
 
