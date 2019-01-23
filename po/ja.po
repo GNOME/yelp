@@ -7,14 +7,15 @@
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2009-2010.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2011-2015.
 # Hideki Yamane <henrich@debian.org>, 2011, 2012.
+# sicklylife <translation@sicklylife.jp>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
 "POT-Creation-Date: 2018-06-10 18:56+0000\n"
-"PO-Revision-Date: 2019-01-23 23:45+0900\n"
-"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"PO-Revision-Date: 2019-01-23 23:47+0900\n"
+"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -38,23 +39,24 @@ msgstr "<string/> をインストールします"
 
 #: ../data/yelp.appdata.xml.in.h:1
 msgid "GNOME Help"
-msgstr ""
+msgstr "GNOME ヘルプ"
 
 #: ../data/yelp.appdata.xml.in.h:2
 msgid "Help viewer for GNOME"
-msgstr ""
+msgstr "GNOME 向けヘルプビューアー"
 
 #: ../data/yelp.appdata.xml.in.h:3
 msgid ""
 "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
 "also display DocBook, info, man, and HTML documentation."
-msgstr ""
+msgstr "Yelp は GNOME のヘルプビューアーです。Mallard ビューアーではありますが、"
+"DocBook、info、man、HTML ドキュメントも表示できます。"
 
 #: ../data/yelp.appdata.xml.in.h:4
 msgid ""
 "It makes it easy to find the documentation you need, with interactive search "
 "and bookmarks."
-msgstr ""
+msgstr "インタラクティブ検索とブックマークで、必要なドキュメントを簡単に見つけられます。"
 
 #: ../data/yelp.appdata.xml.in.h:5
 msgid ""
@@ -64,7 +66,7 @@ msgstr ""
 
 #: ../data/yelp.appdata.xml.in.h:6
 msgid "The GNOME Project"
-msgstr ""
+msgstr "The GNOME Project"
 
 #: ../libyelp/yelp-bz2-decompressor.c:143
 #: ../libyelp/yelp-lzma-decompressor.c:152
@@ -81,7 +83,7 @@ msgstr "メモリが足りません"
 #: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:255
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "ページ '%s' がドキュメント '%s' の中に見つかりません。"
+msgstr "ページ ‘%s’ がドキュメント ‘%s’ の中に見つかりません。"
 
 #: ../libyelp/yelp-docbook-document.c:323 ../libyelp/yelp-info-document.c:358
 #: ../libyelp/yelp-man-document.c:393
@@ -93,14 +95,14 @@ msgstr "ファイルがありません。"
 #: ../libyelp/yelp-man-document.c:403
 #, c-format
 msgid "The file ‘%s’ does not exist."
-msgstr "ファイル '%s' はありません。"
+msgstr "ファイル ‘%s’ はありません。"
 
 #: ../libyelp/yelp-docbook-document.c:348
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
-msgstr "ファイル '%s' が整形式の XML 文書ではないため解析できません。"
+msgstr "ファイル ‘%s’ が整形式の XML 文書ではないため解析できません。"
 
 #: ../libyelp/yelp-docbook-document.c:361
 #, c-format
@@ -108,7 +110,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"ファイル '%s' を解析できません。このファイルがインクルードする1つ以上のファイ"
+"ファイル ‘%s’ を解析できません。このファイルがインクルードする1つ以上のファイ"
 "ルが整形式の XML 文書ではありません。"
 
 #: ../libyelp/yelp-docbook-document.c:791
@@ -119,17 +121,17 @@ msgstr "原因不明"
 #: ../libyelp/yelp-man-document.c:335
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr "要求されたページがドキュメント '%s' の中に見つかりません。"
+msgstr "要求されたページがドキュメント ‘%s’ の中に見つかりません。"
 
 #: ../libyelp/yelp-document.c:1030
 #, c-format
 msgid "Search results for “%s”"
-msgstr "“%s” の検索結果"
+msgstr "“%s”の検索結果"
 
 #: ../libyelp/yelp-document.c:1042
 #, c-format
 msgid "No matching help pages found in “%s”."
-msgstr "“%s” の中に一致するヘルプページが見つかりません。"
+msgstr "“%s”の中に一致するヘルプページが見つかりません。"
 
 #: ../libyelp/yelp-document.c:1048
 msgid "No matching help pages found."
@@ -148,23 +150,23 @@ msgstr "すべてのヘルプドキュメント"
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "ファイル '%s' が整形式の info ページではないため解析できません。"
+msgstr "ファイル ‘%s’ が整形式の info ページではないため解析できません。"
 
 #: ../libyelp/yelp-mallard-document.c:347
 #, c-format
 msgid "The directory ‘%s’ does not exist."
-msgstr "ディレクトリ '%s' がありません。"
+msgstr "ディレクトリ ‘%s’ がありません。"
 
 #: ../libyelp/yelp-search-entry.c:433
 #, c-format
 msgid "Search for “%s”"
-msgstr "“%s” を検索します"
+msgstr "“%s”を検索します"
 
 #: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr ""
-"XSLT スタイルシート '%s' が存在しないか、または妥当な文書ではありません。"
+"XSLT スタイルシート ‘%s’ が存在しないか、または妥当な文書ではありません。"
 
 #: ../libyelp/yelp-transform.c:518
 msgid "No href attribute found on yelp:document\n"
@@ -205,7 +207,7 @@ msgstr "テキストをコピー(_C)"
 #: ../libyelp/yelp-view.c:805 ../libyelp/yelp-view.c:2138
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "URI '%s' は有効なページを示していません。"
+msgstr "URI ‘%s’ は有効なページを示していません。"
 
 #: ../libyelp/yelp-view.c:811 ../libyelp/yelp-view.c:2144
 #, c-format
@@ -215,7 +217,7 @@ msgstr "URI は 有効なページを示していません。"
 #: ../libyelp/yelp-view.c:816 ../libyelp/yelp-view.c:2150
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "URI '%s' を解析できません。"
+msgstr "URI ‘%s’ を解析できません。"
 
 #: ../libyelp/yelp-view.c:821
 #, c-format
@@ -364,12 +366,9 @@ msgid "Get help with GNOME"
 msgstr "GNOME のヘルプを表示します"
 
 #: ../yelp.desktop.in.in.h:3
-#, fuzzy
-#| msgid "documentation;information;manual;"
 msgid "documentation;information;manual;help;"
 msgstr ""
-"documentation;information;manual;ドキュメンテーション;ドキュメント;情報;マ"
-"ニュアル;help;ヘルプ;"
+"documentation;information;manual;help;ドキュメンテーション;ドキュメント;情報;インフォメーション;マニュアル;ヘルプ;"
 
 #~ msgid "Indexed"
 #~ msgstr "索引付け"
