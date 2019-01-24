@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
-  <id type="desktop">yelp.desktop</id>
+<component type="desktop">
+  <id>yelp.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
-  <_name>GNOME Help</_name>
-  <_summary>Help viewer for GNOME</_summary>
+  <name>GNOME Help</name>
+  <summary>Help viewer for GNOME</summary>
   <description>
-    <_p>
+    <p>
       Yelp is the GNOME help viewer. It is the default Mallard viewer, but it
       can also display DocBook, info, man, and HTML documentation.
-    </_p>
-    <_p>
+    </p>
+    <p>
       It makes it easy to find the documentation you need, with interactive
       search and bookmarks.
-    </_p>
-    <_p>
+    </p>
+    <p>
       It also has an editor mode, which shows editorial comments and revision
       statuses when editing Mallard documents.
-    </_p>
+    </p>
   </description>
   <screenshots>
     <screenshot type="default">https://wiki.gnome.org/Apps/Yelp?action=AttachFile&amp;do=get&amp;target=yelp_screenshot.png</screenshot>
@@ -27,5 +27,5 @@
   <project_group>GNOME</project_group>
   <compulsory_for_desktop>GNOME</compulsory_for_desktop>
   <translation type="gettext">yelp</translation>
-  <_developer_name>The GNOME Project</_developer_name>
-</application>
+  <developer_name>The GNOME Project</developer_name>
+</component>
