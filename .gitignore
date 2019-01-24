@@ -16,6 +16,7 @@ Makefile
 Makefile.in
 yelp
 
+/ABOUT-NLS
 /INSTALL
 /aclocal.m4
 /autom4te.cache/
@@ -35,9 +36,6 @@ yelp
 /mkinstalldirs
 /gtk-doc.make
 /install-sh
-/intltool-extract.in
-/intltool-merge.in
-/intltool-update.in
 /libtool
 /stamp-h1
 /yelp
@@ -51,6 +49,7 @@ yelp
 /data/xslt/mal2html.xsl
 /data/xslt/man2html.xsl
 /data/xslt/yelp-common.xsl
+/data/yelp.appdata.xml
 
 /docs/libyelp/html-build.stamp
 /docs/libyelp/html.stamp
@@ -69,6 +68,7 @@ yelp
 /docs/libyelp/libyelp.signals
 /docs/libyelp/libyelp.types
 /docs/libyelp/scan-build.stamp
+/docs/libyelp/setup-build.stamp
 /docs/libyelp/sgml-build.stamp
 /docs/libyelp/sgml.stamp
 /docs/libyelp/tmpl-build.stamp
@@ -84,11 +84,20 @@ yelp
 /libyelp/yelp-types.h
 
 /po/*.gmo
-/po/.intltool-merge-cache
+/po/boldquot.sed
+/po/en@boldquot.header
+/po/en@quot.header
+/po/insert-header.sin
 /po/Makefile.in.in
+/po/Makevars.template
 /po/missing
 /po/POTFILES
+/po/quot.sed
+/po/remove-potcdate.sed
+/po/remove-potcdate.sin
+/po/Rules-quot
 /po/stamp-it
+/po/stamp-po
 /po/yelp.pot
 
 /tests/test-bz2

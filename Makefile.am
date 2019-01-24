@@ -278,19 +278,16 @@ install-exec-hook:
 	rm -f $(DESTDIR)$(bindir)/gnome-help && \
 	$(LN_S) yelp $(DESTDIR)$(bindir)/gnome-help
 
-@INTLTOOL_DESKTOP_RULE@
-
 desktopdir = $(datadir)/applications
-desktop_in_files=yelp.desktop.in
-desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+desktop_DATA = yelp.desktop
+yelp.desktop: ${srcdir}/yelp.desktop.in
+	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
-@INTLTOOL_XML_RULE@
+data/yelp.appdata.xml: ${srcdir}/data/yelp.appdata.xml.in
+	$(AM_V_GEN)$(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
 
-appstream_in_files = data/yelp.appdata.xml.in
-appstream_XML = $(appstream_in_files:.appdata.xml.in=.appdata.xml)
+appstream_XML = data/yelp.appdata.xml
 @APPSTREAM_XML_RULES@
-
-@INTLTOOL_SCHEMAS_RULE@
 
 gsettings_SCHEMAS = data/org.gnome.yelp.gschema.xml
 @GSETTINGS_RULES@
@@ -697,12 +694,12 @@ xsl_DATA = \
 	data/xslt/yelp-common.xsl
 
 dist_noinst_DATA = \
-	$(appstream_in_files) \
-	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \
 	$(libyelp_libyelp_la_headers) \
 	$(noinst_libyelp_libyelp_la_headers) \
 	$(yelp_headers) \
+	yelp.desktop.in \
+	data/yelp.appdata.xml.in \
 	data/domains/yelp.pot \
 	data/domains/yelp.xml.in \
 	data/domains/yelp.xml \
