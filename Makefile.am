@@ -61,6 +61,7 @@ libyelp_libyelp_la_CPPFLAGS = \
 	-DDATADIR=\""$(datadir)"\" \
 	-DYELP_ICON_PATH=\"$(YELP_ICON_PATH)\" \
 	-DYELP_WEB_EXTENSIONS_DIR=\""$(pkglibdir)/"web-extensions\" \
+	-I$(top_srcdir)/libyelp \
 	-I$(top_builddir)/libyelp
 
 libyelp_libyelp_la_LIBADD = \
@@ -105,33 +106,17 @@ enum_data = \
 	libyelp/yelp-types.c \
 	libyelp/yelp-types.h
 
-libyelp/yelp-types.h: $(libyelp_libyelp_la_headers)
+libyelp/yelp-types.h: $(libyelp_libyelp_la_headers) ${srcdir}/libyelp/yelp-types.h.template
 	$(AM_V_GEN) glib-mkenums \
-	--fhead "#ifndef __LIBYELP_TYPES_H__\n" \
-	--fhead "#define __LIBYELP_TYPES_H__\n\n" \
-	--fhead "#include <glib-object.h>\n\n" \
-	--fhead "G_BEGIN_DECLS\n\n" \
-	--ftail "G_END_DECLS\n\n" \
-	--ftail "#endif /* __LIBYELP_TYPES_H__ */\n" \
-	--fprod "#include \"@filename@\"\n" \
-	--eprod "#define YELP_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
-	--eprod "GType @enum_name@_get_type (void);\n" \
-	$(libyelp_libyelp_la_headers) > $@
+	--template ${srcdir}/libyelp/yelp-types.h.template \
+	--output $@ \
+	$(libyelp_libyelp_la_headers)
 
-libyelp/yelp-types.c: $(libyelp_libyelp_la_headers) libyelp/yelp-types.h
+libyelp/yelp-types.c: $(libyelp_libyelp_la_headers) ${srcdir}/libyelp/yelp-types.c.template libyelp/yelp-types.h
 	$(AM_V_GEN) glib-mkenums \
-	--fhead "#include <glib-object.h>\n" \
-	--fhead "#include \"yelp-types.h\"\n\n" \
-	--fprod "\n/* enumerations from \"@filename@\" */" \
-	--vhead "static const G@Type@Value _@enum_name@_values[] = {" \
-	--vprod "  { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
-	--vtail "  { 0, NULL, NULL }\n};\n\n" \
-	--vtail "GType\n@enum_name@_get_type (void)\n{\n" \
-	--vtail "  static GType type = 0;\n\n" \
-	--vtail "  if (!type)\n" \
-	--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
-	--vtail "  return type;\n}\n\n" \
-	$(libyelp_libyelp_la_headers) > $@
+	--template ${srcdir}/libyelp/yelp-types.c.template \
+	--output $@ \
+	$(libyelp_libyelp_la_headers)
 
 webextension_LTLIBRARIES = libyelp/web-extension/libyelpwebextension.la
 webextensiondir = $(pkglibdir)/web-extensions
@@ -837,6 +822,8 @@ dist_noinst_DATA = \
 	data/mathjax/unpacked/jax/output/NativeMML/jax.js \
 	data/mathjax/LICENSE \
 	data/mathjax/README \
+	libyelp/yelp-types.c.template \
+	libyelp/yelp-types.h.template \
 	libyelp/yelp-marshal.list
 
 dist_noinst_SCRIPTS = \

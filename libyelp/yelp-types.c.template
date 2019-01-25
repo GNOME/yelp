@@ -1,0 +1,31 @@
+/*** BEGIN file-header ***/
+#include <glib-object.h>
+#include "yelp-types.h"
+
+/*** END file-header ***/
+/*** BEGIN file-production ***/
+
+/* enumerations from "@basename@" */
+/*** END file-production ***/
+/*** BEGIN value-header ***/
+static const G@Type@Value _@enum_name@_values[] = {
+/*** END value-header ***/
+/*** BEGIN value-production ***/
+  { @VALUENAME@, "@VALUENAME@", "@valuenick@" },
+/*** END value-production ***/
+/*** BEGIN value-tail ***/
+  { 0, NULL, NULL }
+};
+
+GType
+@enum_name@_get_type (void)
+{
+  static GType type = 0;
+
+  if (!type)
+    type = g_@type@_register_static ("@EnumName@", _@enum_name@_values);
+
+  return type;
+}
+
+/*** END value-tail ***/
