@@ -283,20 +283,20 @@ scalableappsicondir = $(datadir)/icons/hicolor/scalable/apps
 symbolicappsicondir = $(datadir)/icons/hicolor/symbolic/apps
 
 dist_16statusicon_DATA = \
-	data/icons/hicolor/16x16/status/bookmark.png \
-	data/icons/hicolor/16x16/status/yelp-page-task.png \
-	data/icons/hicolor/16x16/status/yelp-page-tip.png \
-	data/icons/hicolor/16x16/status/yelp-page-ui.png \
-	data/icons/hicolor/16x16/status/yelp-page-video.png
+	data/yelp-icons/hicolor/16x16/status/bookmark.png \
+	data/yelp-icons/hicolor/16x16/status/yelp-page-task.png \
+	data/yelp-icons/hicolor/16x16/status/yelp-page-tip.png \
+	data/yelp-icons/hicolor/16x16/status/yelp-page-ui.png \
+	data/yelp-icons/hicolor/16x16/status/yelp-page-video.png
 
 dist_scalablestatusicon_DATA = \
-	data/icons/hicolor/scalable/status/yelp-page-problem-symbolic.svg \
-	data/icons/hicolor/scalable/status/yelp-page-search-symbolic.svg \
-	data/icons/hicolor/scalable/status/yelp-page-task-symbolic.svg \
-	data/icons/hicolor/scalable/status/yelp-page-tip-symbolic.svg \
-	data/icons/hicolor/scalable/status/yelp-page-ui-symbolic.svg \
-	data/icons/hicolor/scalable/status/yelp-page-video-symbolic.svg \
-	data/icons/hicolor/scalable/status/yelp-page-symbolic.svg
+	data/yelp-icons/hicolor/scalable/status/yelp-page-problem-symbolic.svg \
+	data/yelp-icons/hicolor/scalable/status/yelp-page-search-symbolic.svg \
+	data/yelp-icons/hicolor/scalable/status/yelp-page-task-symbolic.svg \
+	data/yelp-icons/hicolor/scalable/status/yelp-page-tip-symbolic.svg \
+	data/yelp-icons/hicolor/scalable/status/yelp-page-ui-symbolic.svg \
+	data/yelp-icons/hicolor/scalable/status/yelp-page-video-symbolic.svg \
+	data/yelp-icons/hicolor/scalable/status/yelp-page-symbolic.svg
 
 dist_scalableappsicon_DATA = \
 	data/icons/hicolor/scalable/apps/org.gnome.Yelp.svg
