@@ -679,6 +679,18 @@ xsl_DATA = \
 	data/xslt/yelp-common.xsl
 
 dist_noinst_DATA = \
+	data/domains/meson.build \
+	data/dtd/meson.build \
+	data/meson.build \
+	data/xslt/meson.build \
+	docs/libyelp/meson.build \
+	libyelp/meson.build \
+	libyelp/web-extension/meson.build \
+	meson.build \
+	meson_options.txt \
+	po/meson.build \
+	src/meson.build \
+	\
 	$(gsettings_SCHEMAS) \
 	$(libyelp_libyelp_la_headers) \
 	$(noinst_libyelp_libyelp_la_headers) \
@@ -855,6 +867,9 @@ dist_noinst_DATA = \
 	gtk-doc.make
 
 dist_noinst_SCRIPTS = \
+	data/domains/gen_yelp_pot.sh \
+	data/domains/gen_yelp_xml.sh \
+	src/link-gnome-help.sh \
 	autogen.sh
 
 CLEANFILES = \
