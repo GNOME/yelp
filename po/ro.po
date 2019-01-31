@@ -10,11 +10,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp.HEAD.ro\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/"
-"enter_bug.cgi?product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2018-03-23 15:46+0000\n"
-"PO-Revision-Date: 2018-03-24 23:58+0200\n"
-"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
+"POT-Creation-Date: 2019-01-25 11:28+0000\n"
+"PO-Revision-Date: 2019-01-27 01:23+0200\n"
+"Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
+"com>\n"
 "Language-Team: Gnome Romanian Translation Team\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Launchpad-Export-Date: 2008-09-16 21:12+0000\n"
 "X-Project-Style: gnome\n"
 
@@ -36,20 +36,19 @@ msgstr ""
 #.
 #. <string/> - The package to install
 #.
-#: yelp.xml.in:36
+#: data/domains/yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Instalează <string/>"
 
-#: ../data/yelp.appdata.xml.in.h:1
-#| msgid " GNOME Help Browser"
+#: data/yelp.appdata.xml.in:6
 msgid "GNOME Help"
 msgstr "Ajutorul GNOME"
 
-#: ../data/yelp.appdata.xml.in.h:2
+#: data/yelp.appdata.xml.in:7
 msgid "Help viewer for GNOME"
 msgstr "Vizualizator de documentație pentru GNOME"
 
-#: ../data/yelp.appdata.xml.in.h:3
+#: data/yelp.appdata.xml.in:9
 msgid ""
 "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
 "also display DocBook, info, man, and HTML documentation."
@@ -58,7 +57,7 @@ msgstr ""
 "implicit Mallard, dar poate afișa și documentație în formatele DocBook, "
 "info, man și HTML."
 
-#: ../data/yelp.appdata.xml.in.h:4
+#: data/yelp.appdata.xml.in:13
 msgid ""
 "It makes it easy to find the documentation you need, with interactive search "
 "and bookmarks."
@@ -66,7 +65,7 @@ msgstr ""
 "Facilitează găsirea documentației de care aveți nevoie, cu marcaje și o "
 "căutare interactivă."
 
-#: ../data/yelp.appdata.xml.in.h:5
+#: data/yelp.appdata.xml.in:17
 msgid ""
 "It also has an editor mode, which shows editorial comments and revision "
 "statuses when editing Mallard documents."
@@ -74,40 +73,37 @@ msgstr ""
 "Are de asemenea și un mod de editare, care arată comentarii editoriale și "
 "stări de revizie când editați documente Mallard."
 
-#: ../data/yelp.appdata.xml.in.h:6
+#: data/yelp.appdata.xml.in:30
 msgid "The GNOME Project"
 msgstr "Proiectul GNOME"
 
-#: ../libyelp/yelp-bz2-decompressor.c:143
-#: ../libyelp/yelp-lzma-decompressor.c:152
+#: libyelp/yelp-bz2-decompressor.c:143 libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
 msgstr "Date comprimate nevalide"
 
-#: ../libyelp/yelp-bz2-decompressor.c:149
-#: ../libyelp/yelp-lzma-decompressor.c:158
+#: libyelp/yelp-bz2-decompressor.c:149 libyelp/yelp-lzma-decompressor.c:158
 msgid "Not enough memory"
 msgstr "Memorie insuficientă"
 
-#: ../libyelp/yelp-docbook-document.c:285 ../libyelp/yelp-info-document.c:221
-#: ../libyelp/yelp-mallard-document.c:305
-#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:255
+#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:221
+#: libyelp/yelp-mallard-document.c:306 libyelp/yelp-mallard-document.c:464
+#: libyelp/yelp-man-document.c:199
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Nu s-a găsit pagina „%s” în documentul „%s”."
 
-#: ../libyelp/yelp-docbook-document.c:323 ../libyelp/yelp-info-document.c:358
-#: ../libyelp/yelp-man-document.c:393
-#, c-format
+#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:358
+#: libyelp/yelp-man-document.c:336
 msgid "The file does not exist."
 msgstr "Fișierul nu există."
 
-#: ../libyelp/yelp-docbook-document.c:333 ../libyelp/yelp-info-document.c:368
-#: ../libyelp/yelp-man-document.c:403
+#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:368
+#: libyelp/yelp-man-document.c:346
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Fișierul „%s” nu există."
 
-#: ../libyelp/yelp-docbook-document.c:348
+#: libyelp/yelp-docbook-document.c:359
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -116,7 +112,7 @@ msgstr ""
 "Fișierul „%s” nu a putut fi analizat deoarece nu este un document XML bine "
 "formatat."
 
-#: ../libyelp/yelp-docbook-document.c:361
+#: libyelp/yelp-docbook-document.c:372
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -125,40 +121,39 @@ msgstr ""
 "Fișierul „%s” nu a putut fi analizat deoarece unul sau mai multe dintre "
 "fișierele pe care le include nu sunt documente XML bine formatate."
 
-#: ../libyelp/yelp-docbook-document.c:791
+#: libyelp/yelp-docbook-document.c:810
 msgid "Unknown"
 msgstr "Necunoscută"
 
-#: ../libyelp/yelp-docbook-document.c:853 ../libyelp/yelp-info-document.c:301
-#: ../libyelp/yelp-man-document.c:335
+#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:301
+#: libyelp/yelp-man-document.c:279
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Pagina cerută nu a fost găsită în documentul „%s”."
 
-#: ../libyelp/yelp-document.c:1030
+#: libyelp/yelp-document.c:1068
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Rezultatele căutării pentru „%s”"
 
-#: ../libyelp/yelp-document.c:1042
+#: libyelp/yelp-document.c:1080
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Nu s-a găsit nicio pagină de ajutor potrivită în „%s”."
 
-#: ../libyelp/yelp-document.c:1048
+#: libyelp/yelp-document.c:1086
 msgid "No matching help pages found."
 msgstr "Nu s-a găsit nicio pagină de ajutor potrivită."
 
-#: ../libyelp/yelp-error.c:35
-#, c-format
+#: libyelp/yelp-error.c:35
 msgid "An unknown error occurred."
 msgstr "A apărut o eroare necunoscută."
 
-#: ../libyelp/yelp-help-list.c:548 ../libyelp/yelp-help-list.c:557
+#: libyelp/yelp-help-list.c:548 libyelp/yelp-help-list.c:557
 msgid "All Help Documents"
 msgstr "Toate documentele de ajutor"
 
-#: ../libyelp/yelp-info-document.c:383
+#: libyelp/yelp-info-document.c:383
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -166,221 +161,222 @@ msgstr ""
 "Nu s-a putut analiza fișierul „%s” deoarece nu este un document „info” bine "
 "formatat."
 
-#: ../libyelp/yelp-mallard-document.c:347
+#: libyelp/yelp-mallard-document.c:348
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Dosarul „%s” nu există."
 
-#: ../libyelp/yelp-search-entry.c:433
+#: libyelp/yelp-search-entry.c:434
 #, c-format
 msgid "Search for “%s”"
 msgstr "Caută după „%s”"
 
-#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
+#: libyelp/yelp-transform.c:369 libyelp/yelp-transform.c:384
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Foaia de stiluri XSLT „%s” lipsește sau nu este validă."
 
-#: ../libyelp/yelp-transform.c:518
+#: libyelp/yelp-transform.c:518
 msgid "No href attribute found on yelp:document\n"
 msgstr "Nici un atribut „href” nu a fost găsit în yelp:document\n"
 
-#: ../libyelp/yelp-transform.c:533
+#: libyelp/yelp-transform.c:533
 msgid "Out of memory"
 msgstr "Memorie insuficientă"
 
-#: ../libyelp/yelp-view.c:248
+#: libyelp/yelp-view.c:248
 msgid "C_opy Code Block"
 msgstr "C_opiază blocul de cod"
 
-#: ../libyelp/yelp-view.c:253
+#: libyelp/yelp-view.c:253
 msgid "_Copy Link Location"
 msgstr "_Copiază locația legăturii"
 
-#: ../libyelp/yelp-view.c:258
+#: libyelp/yelp-view.c:258
 msgid "_Open Link"
 msgstr "_Deschide legătura"
 
-#: ../libyelp/yelp-view.c:263
+#: libyelp/yelp-view.c:263
 msgid "Open Link in New _Window"
 msgstr "Deschide legătura într-o nouă _fereastră"
 
-#: ../libyelp/yelp-view.c:273
+#: libyelp/yelp-view.c:273
 msgid "_Install Packages"
 msgstr "_Instalează pachete"
 
-#: ../libyelp/yelp-view.c:278
+#: libyelp/yelp-view.c:278
 msgid "Save Code _Block As…"
 msgstr "Salvează _blocul de cod ca…"
 
-#: ../libyelp/yelp-view.c:293
+#: libyelp/yelp-view.c:293
 msgid "_Copy Text"
 msgstr "_Copiază textul"
 
-#: ../libyelp/yelp-view.c:805 ../libyelp/yelp-view.c:2138
+#: libyelp/yelp-view.c:805 libyelp/yelp-view.c:2138
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI-ul „%s” nu indică spre o pagină validă."
 
-#: ../libyelp/yelp-view.c:811 ../libyelp/yelp-view.c:2144
-#, c-format
+#: libyelp/yelp-view.c:811 libyelp/yelp-view.c:2144
 msgid "The URI does not point to a valid page."
 msgstr "URI-ul nu indică spre o pagină validă."
 
-#: ../libyelp/yelp-view.c:816 ../libyelp/yelp-view.c:2150
+#: libyelp/yelp-view.c:816 libyelp/yelp-view.c:2150
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI-ul „%s” nu a putut fi analizat."
 
-#: ../libyelp/yelp-view.c:821
-#, c-format
+#: libyelp/yelp-view.c:821
 msgid "Unknown Error."
 msgstr "Eroare necunoscută."
 
-#: ../libyelp/yelp-view.c:975
+#: libyelp/yelp-view.c:975
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "PackageKit nu este instalat. Instalarea pachetelor necesită PackageKit."
 
-#: ../libyelp/yelp-view.c:1222
+#: libyelp/yelp-view.c:1222
 msgid "Save Image"
 msgstr "Salvează imaginea"
 
-#: ../libyelp/yelp-view.c:1321
+#: libyelp/yelp-view.c:1321
 msgid "Save Code"
 msgstr "Salvează codul"
 
-#: ../libyelp/yelp-view.c:1417
+#: libyelp/yelp-view.c:1417
 #, c-format
 msgid "Send email to %s"
 msgstr "Trimite email la %s"
 
-#: ../libyelp/yelp-view.c:1521
+#: libyelp/yelp-view.c:1521
 msgid "_Save Image As…"
 msgstr "_Salvează imaginea ca…"
 
-#: ../libyelp/yelp-view.c:1522
+#: libyelp/yelp-view.c:1522
 msgid "_Save Video As…"
 msgstr "_Salvează videoul ca…"
 
-#: ../libyelp/yelp-view.c:1530
+#: libyelp/yelp-view.c:1530
 msgid "S_end Image To…"
 msgstr "Trimit_e imaginea la…"
 
-#: ../libyelp/yelp-view.c:1531
+#: libyelp/yelp-view.c:1531
 msgid "S_end Video To…"
 msgstr "Trimit_e videoul la…"
 
-#: ../libyelp/yelp-view.c:1872
+#: libyelp/yelp-view.c:1872
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Nu s-a putut încărca documentul pentru „%s”"
 
-#: ../libyelp/yelp-view.c:1878
-#, c-format
+#: libyelp/yelp-view.c:1878
 msgid "Could not load a document"
 msgstr "Nu s-a putut încărca documentul"
 
-#: ../libyelp/yelp-view.c:1962
+#: libyelp/yelp-view.c:1962
 msgid "Document Not Found"
 msgstr "Documentul nu a fost găsit"
 
-#: ../libyelp/yelp-view.c:1964
+#: libyelp/yelp-view.c:1964
 msgid "Page Not Found"
 msgstr "Pagina nu a fost găsită"
 
-#: ../libyelp/yelp-view.c:1967
+#: libyelp/yelp-view.c:1967
 msgid "Cannot Read"
 msgstr "Nu se poate citi"
 
-#: ../libyelp/yelp-view.c:1973
+#: libyelp/yelp-view.c:1973
 msgid "Unknown Error"
 msgstr "Eroare necunoscută"
 
-#: ../libyelp/yelp-view.c:1993
+#: libyelp/yelp-view.c:1993
 msgid "Search for packages containing this document."
 msgstr "Caută pachete care conțin acest document."
 
-#: ../src/yelp-application.c:59
+#: src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "Activează modul editor"
 
-#: ../src/yelp-application.c:271 ../src/yelp-window.c:1181
-#: ../src/yelp-window.c:1189 ../yelp.desktop.in.in.h:1
+#: src/yelp-application.c:270 src/yelp-window.c:1188 src/yelp-window.c:1196
+#: yelp.desktop.in:3
 msgid "Help"
 msgstr "Ajutor"
 
-#: ../src/yelp-application.c:321
-msgid "New Window"
-msgstr "Fereastră nouă"
-
-#: ../src/yelp-application.c:325
-msgid "Larger Text"
-msgstr "Text mai mare"
-
-#: ../src/yelp-application.c:326
-msgid "Smaller Text"
-msgstr "Text mai mic"
-
-#: ../src/yelp-window.c:343
+#: src/yelp-window.c:343
 msgid "Back"
 msgstr "Înapoi"
 
-#: ../src/yelp-window.c:350
+#: src/yelp-window.c:350
 msgid "Forward"
 msgstr "Înainte"
 
-#: ../src/yelp-window.c:361
+#: src/yelp-window.c:361
 msgid "Menu"
 msgstr "Meniu"
 
-#: ../src/yelp-window.c:366
+#: src/yelp-window.c:366
+msgid "New Window"
+msgstr "Fereastră nouă"
+
+#: src/yelp-window.c:367
 msgid "Find…"
 msgstr "Caută…"
 
-#: ../src/yelp-window.c:367
+#: src/yelp-window.c:368
 msgid "Print…"
 msgstr "Tipărește…"
 
-#: ../src/yelp-window.c:372
+#: src/yelp-window.c:373
 msgid "Previous Page"
 msgstr "Pagina precedentă"
 
-#: ../src/yelp-window.c:373
+#: src/yelp-window.c:374
 msgid "Next Page"
 msgstr "Pagina următoare"
 
-#: ../src/yelp-window.c:378
+#: src/yelp-window.c:379
+msgid "Larger Text"
+msgstr "Text mai mare"
+
+#: src/yelp-window.c:380
+msgid "Smaller Text"
+msgstr "Text mai mic"
+
+#: src/yelp-window.c:385
 msgid "All Help"
 msgstr "Tot ajutorul"
 
-#: ../src/yelp-window.c:400
+#: src/yelp-window.c:407
 msgid "Search (Ctrl+S)"
 msgstr "Caută (Ctrl+S)"
 
-#: ../src/yelp-window.c:417
+#: src/yelp-window.c:424
 msgid "Bookmarks"
 msgstr "Semne de carte"
 
-#: ../src/yelp-window.c:434
+#: src/yelp-window.c:441
 msgid "No bookmarks"
 msgstr "Nu sunt semne de carte"
 
-#: ../src/yelp-window.c:442
+#: src/yelp-window.c:449
 msgid "Add Bookmark"
 msgstr "Adaugă un semn de carte"
 
-#: ../src/yelp-window.c:448
+#: src/yelp-window.c:455
 msgid "Remove Bookmark"
 msgstr "Elimină semnul de carte"
 
-#: ../yelp.desktop.in.in.h:2
+#: yelp.desktop.in:4
 msgid "Get help with GNOME"
 msgstr "Ajutor pentru GNOME"
 
-#: ../yelp.desktop.in.in.h:3
+#: yelp.desktop.in:5
 msgid "documentation;information;manual;help;"
-msgstr "documentation;intormation;manual;documentație;informație;ajutor"
+msgstr "documentation;intormation;manual;documentație;informație;ajutor;"
+
+#: yelp.desktop.in:8
+msgid "org.gnome.Yelp"
+msgstr "org.gnome.Yelp"
 
 #~ msgid "Indexed"
 #~ msgstr "Indexat"
