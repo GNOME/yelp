@@ -150,7 +150,11 @@ yelp_view_get_global_settings (void)
     static WebKitSettings *websettings = NULL;
 
     if (!websettings)
-        websettings = webkit_settings_new_with_settings ("default-charset", "utf-8", NULL);
+        websettings = webkit_settings_new_with_settings ("default-charset", "utf-8",
+#if WEBKIT_CHECK_VERSION(2, 23, 4)
+                                                         "enable-back-forward-navigation-gestures", TRUE,
+#endif
+                                                         NULL);
 
     return websettings;
 }
