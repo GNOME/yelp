@@ -3,14 +3,14 @@
 #
 # Young-Ho, Cha <ganadist@chollian.net>, 2002, 2005, 2007.
 # Changwoo Ryu <cwryu@debian.org>, 2004-2015.
-# Seong-ho Cho <shcho@gnome.org>, 2016, 2018.
+# Seong-ho Cho <shcho@gnome.org>, 2016-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
-"POT-Creation-Date: 2018-06-10 18:56+0000\n"
-"PO-Revision-Date: 2018-08-21 22:04+0900\n"
+"POT-Creation-Date: 2019-02-24 17:11+0000\n"
+"PO-Revision-Date: 2019-02-27 22:29+0900\n"
 "Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -30,19 +30,19 @@ msgstr ""
 #.
 #. <string/> - The package to install
 #.
-#: yelp.xml.in:36
+#: data/domains/yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "<string/> 설치"
 
-#: ../data/yelp.appdata.xml.in.h:1
+#: data/yelp.appdata.xml.in:6
 msgid "GNOME Help"
 msgstr "그놈 도움말"
 
-#: ../data/yelp.appdata.xml.in.h:2
+#: data/yelp.appdata.xml.in:7
 msgid "Help viewer for GNOME"
 msgstr "그놈 도움말 보기 프로그램"
 
-#: ../data/yelp.appdata.xml.in.h:3
+#: data/yelp.appdata.xml.in:9
 msgid ""
 "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
 "also display DocBook, info, man, and HTML documentation."
@@ -50,14 +50,14 @@ msgstr ""
 "옐프는 그놈 도움말 보기 프로그램입니다. 맬러드를 기본으로 보여주는 프로그램이"
 "지만 닥북, info, man, HTML 문서도 볼 수 있습니다."
 
-#: ../data/yelp.appdata.xml.in.h:4
+#: data/yelp.appdata.xml.in:13
 msgid ""
 "It makes it easy to find the documentation you need, with interactive search "
 "and bookmarks."
 msgstr ""
 "대화식 검색, 즐겨찾기 기능을 통해 필요한 문서를 쉽게 찾아볼 수 있습니다."
 
-#: ../data/yelp.appdata.xml.in.h:5
+#: data/yelp.appdata.xml.in:17
 msgid ""
 "It also has an editor mode, which shows editorial comments and revision "
 "statuses when editing Mallard documents."
@@ -65,47 +65,44 @@ msgstr ""
 "맬러드 문서를 편집할 때, 편집자 모드로 편집자 의견과 개정 상태를 볼 수 있습니"
 "다."
 
-#: ../data/yelp.appdata.xml.in.h:6
+#: data/yelp.appdata.xml.in:30
 msgid "The GNOME Project"
 msgstr "그놈 프로젝트"
 
-#: ../libyelp/yelp-bz2-decompressor.c:143
-#: ../libyelp/yelp-lzma-decompressor.c:152
+#: libyelp/yelp-bz2-decompressor.c:143 libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
 msgstr "압축 데이터가 잘못되었습니다"
 
-#: ../libyelp/yelp-bz2-decompressor.c:149
-#: ../libyelp/yelp-lzma-decompressor.c:158
+#: libyelp/yelp-bz2-decompressor.c:149 libyelp/yelp-lzma-decompressor.c:158
 msgid "Not enough memory"
 msgstr "메모리가 부족합니다"
 
-#: ../libyelp/yelp-docbook-document.c:285 ../libyelp/yelp-info-document.c:221
-#: ../libyelp/yelp-mallard-document.c:305
-#: ../libyelp/yelp-mallard-document.c:459 ../libyelp/yelp-man-document.c:255
+#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:221
+#: libyelp/yelp-mallard-document.c:306 libyelp/yelp-mallard-document.c:464
+#: libyelp/yelp-man-document.c:199
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "‘%s’ 페이지를 ‘%s’ 문서에서 찾을 수 없습니다."
 
-#: ../libyelp/yelp-docbook-document.c:323 ../libyelp/yelp-info-document.c:358
-#: ../libyelp/yelp-man-document.c:393
-#, c-format
+#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:358
+#: libyelp/yelp-man-document.c:336
 msgid "The file does not exist."
 msgstr "파일이 없습니다."
 
-#: ../libyelp/yelp-docbook-document.c:333 ../libyelp/yelp-info-document.c:368
-#: ../libyelp/yelp-man-document.c:403
+#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:368
+#: libyelp/yelp-man-document.c:346
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "파일 ‘%s’ d(이)가 없습니다."
 
-#: ../libyelp/yelp-docbook-document.c:348
+#: libyelp/yelp-docbook-document.c:359
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr "'%s' 파일을 분석할 수 없습니다. 올바른 형식의 XML문서가 아닙니다."
 
-#: ../libyelp/yelp-docbook-document.c:361
+#: libyelp/yelp-docbook-document.c:372
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -114,370 +111,258 @@ msgstr ""
 "'%s' 파일을 분석할 수 없습니다. 포함된 하나이상의 파일이 올바른 형식의 XML문"
 "서가 아닙니다."
 
-#: ../libyelp/yelp-docbook-document.c:791
+#: libyelp/yelp-docbook-document.c:810
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: ../libyelp/yelp-docbook-document.c:853 ../libyelp/yelp-info-document.c:301
-#: ../libyelp/yelp-man-document.c:335
+#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:301
+#: libyelp/yelp-man-document.c:279
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "요청한 페이지를 ‘%s’ 문서에서 찾을 수 없습니다."
 
-#: ../libyelp/yelp-document.c:1030
+#: libyelp/yelp-document.c:1068
 #, c-format
 msgid "Search results for “%s”"
 msgstr "“%s”에 대한 검색 결과"
 
-#: ../libyelp/yelp-document.c:1042
+#: libyelp/yelp-document.c:1080
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "해당되는 도움말 페이지가 “%s” 안에 없습니다."
 
-#: ../libyelp/yelp-document.c:1048
+#: libyelp/yelp-document.c:1086
 msgid "No matching help pages found."
 msgstr "해당되는 도움말 페이지가 없습니다."
 
-#: ../libyelp/yelp-error.c:35
-#, c-format
+#: libyelp/yelp-error.c:35
 msgid "An unknown error occurred."
 msgstr "알 수 없는 오류가 발생했습니다."
 
-#: ../libyelp/yelp-help-list.c:548 ../libyelp/yelp-help-list.c:557
+#: libyelp/yelp-help-list.c:548 libyelp/yelp-help-list.c:557
 msgid "All Help Documents"
 msgstr "모든 도움말 문서"
 
-#: ../libyelp/yelp-info-document.c:383
+#: libyelp/yelp-info-document.c:383
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "‘%s’ 파일을 분석할 수 없습니다.  올바른 형식의 인포 페이지가 아닙니다."
 
-#: ../libyelp/yelp-mallard-document.c:347
+#: libyelp/yelp-mallard-document.c:348
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "‘%s’ 디렉터리가 없습니다."
 
-#: ../libyelp/yelp-search-entry.c:433
+#: libyelp/yelp-search-entry.c:434
 #, c-format
 msgid "Search for “%s”"
 msgstr "“%s”에 대한 검색"
 
-#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
+#: libyelp/yelp-transform.c:369 libyelp/yelp-transform.c:384
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "XSLT 스타일시트 '%s' 파일이 없거나, 올바르지 않습니다."
 
-#: ../libyelp/yelp-transform.c:518
+#: libyelp/yelp-transform.c:518
 msgid "No href attribute found on yelp:document\n"
 msgstr "yelp:document에 href 속성이 없습니다\n"
 
-#: ../libyelp/yelp-transform.c:533
+#: libyelp/yelp-transform.c:533
 msgid "Out of memory"
 msgstr "메모리가 부족합니다"
 
-#: ../libyelp/yelp-view.c:248
+#: libyelp/yelp-view.c:248
 msgid "C_opy Code Block"
 msgstr "코드 블럭 복사(_O)"
 
-#: ../libyelp/yelp-view.c:253
+#: libyelp/yelp-view.c:253
 msgid "_Copy Link Location"
 msgstr "링크 위치 복사(_C)"
 
-#: ../libyelp/yelp-view.c:258
+#: libyelp/yelp-view.c:258
 msgid "_Open Link"
 msgstr "링크 열기(_O)"
 
-#: ../libyelp/yelp-view.c:263
+#: libyelp/yelp-view.c:263
 msgid "Open Link in New _Window"
 msgstr "링크 새 창에서 열기(_W)"
 
-#: ../libyelp/yelp-view.c:273
+#: libyelp/yelp-view.c:273
 msgid "_Install Packages"
 msgstr "패키지 설치(_I)"
 
-#: ../libyelp/yelp-view.c:278
+#: libyelp/yelp-view.c:278
 msgid "Save Code _Block As…"
 msgstr "코드 블럭 다른 이름으로 저장(_B)…"
 
-#: ../libyelp/yelp-view.c:293
+#: libyelp/yelp-view.c:293
 msgid "_Copy Text"
 msgstr "텍스트 복사(_C)"
 
-#: ../libyelp/yelp-view.c:805 ../libyelp/yelp-view.c:2138
+#: libyelp/yelp-view.c:805 libyelp/yelp-view.c:2138
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "‘%s’ URI가 올바른 페이지를 가리키지 않습니다."
 
-#: ../libyelp/yelp-view.c:811 ../libyelp/yelp-view.c:2144
-#, c-format
+#: libyelp/yelp-view.c:811 libyelp/yelp-view.c:2144
 msgid "The URI does not point to a valid page."
 msgstr "URI가 올바른 페이지를 가리키지 않습니다."
 
-#: ../libyelp/yelp-view.c:816 ../libyelp/yelp-view.c:2150
+#: libyelp/yelp-view.c:816 libyelp/yelp-view.c:2150
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "‘%s’ URI를 파싱할 수 없습니다."
 
-#: ../libyelp/yelp-view.c:821
-#, c-format
+#: libyelp/yelp-view.c:821
 msgid "Unknown Error."
 msgstr "알 수 없는 오류."
 
-#: ../libyelp/yelp-view.c:975
+#: libyelp/yelp-view.c:975
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "패키지키트가 없습니다. 패키지 설치 링크는 패키지키트가 필요합니다."
 
-#: ../libyelp/yelp-view.c:1222
+#: libyelp/yelp-view.c:1222
 msgid "Save Image"
 msgstr "그림 저장"
 
-#: ../libyelp/yelp-view.c:1321
+#: libyelp/yelp-view.c:1321
 msgid "Save Code"
 msgstr "코드 저장"
 
-#: ../libyelp/yelp-view.c:1417
+#: libyelp/yelp-view.c:1417
 #, c-format
 msgid "Send email to %s"
 msgstr "전자메일 %s 주소에 보내기"
 
-#: ../libyelp/yelp-view.c:1521
+#: libyelp/yelp-view.c:1521
 msgid "_Save Image As…"
 msgstr "그림 다른 이름으로 저장(_S)…"
 
-#: ../libyelp/yelp-view.c:1522
+#: libyelp/yelp-view.c:1522
 msgid "_Save Video As…"
 msgstr "동영상 다른 이름으로 저장(_S)…"
 
-#: ../libyelp/yelp-view.c:1530
+#: libyelp/yelp-view.c:1530
 msgid "S_end Image To…"
 msgstr "그림 다른 사람에게 보내기(_E)…"
 
-#: ../libyelp/yelp-view.c:1531
+#: libyelp/yelp-view.c:1531
 msgid "S_end Video To…"
 msgstr "동영상 다른 사람에게 보내기(_E)…"
 
-#: ../libyelp/yelp-view.c:1872
+#: libyelp/yelp-view.c:1872
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "'%s'에 대한 문서를 읽어들일 수 없습니다"
 
-#: ../libyelp/yelp-view.c:1878
-#, c-format
+#: libyelp/yelp-view.c:1878
 msgid "Could not load a document"
 msgstr "문서를 읽어들일 수 없습니다"
 
-#: ../libyelp/yelp-view.c:1962
+#: libyelp/yelp-view.c:1962
 msgid "Document Not Found"
 msgstr "문서가 없습니다"
 
-#: ../libyelp/yelp-view.c:1964
+#: libyelp/yelp-view.c:1964
 msgid "Page Not Found"
 msgstr "페이지가 없습니다"
 
-#: ../libyelp/yelp-view.c:1967
+#: libyelp/yelp-view.c:1967
 msgid "Cannot Read"
 msgstr "읽을 수 없습니다"
 
-#: ../libyelp/yelp-view.c:1973
+#: libyelp/yelp-view.c:1973
 msgid "Unknown Error"
 msgstr "알 수 없는 오류"
 
-#: ../libyelp/yelp-view.c:1993
+#: libyelp/yelp-view.c:1993
 msgid "Search for packages containing this document."
 msgstr "이 문서가 들어 있는 패키지를 검색합니다."
 
-#: ../src/yelp-application.c:59
+#: src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "편집기 모드를 켭니다"
 
-#: ../src/yelp-application.c:271 ../src/yelp-window.c:1181
-#: ../src/yelp-window.c:1189 ../yelp.desktop.in.in.h:1
+#: src/yelp-application.c:270 src/yelp-window.c:1188 src/yelp-window.c:1196
+#: yelp.desktop.in:3
 msgid "Help"
 msgstr "도움말"
 
-#: ../src/yelp-application.c:321
-msgid "New Window"
-msgstr "새 창"
-
-#: ../src/yelp-application.c:325
-msgid "Larger Text"
-msgstr "글자 크게"
-
-#: ../src/yelp-application.c:326
-msgid "Smaller Text"
-msgstr "글자 작게"
-
-#: ../src/yelp-window.c:343
+#: src/yelp-window.c:343
 msgid "Back"
 msgstr "뒤로"
 
-#: ../src/yelp-window.c:350
+#: src/yelp-window.c:350
 msgid "Forward"
 msgstr "앞으로"
 
-#: ../src/yelp-window.c:361
+#: src/yelp-window.c:361
 msgid "Menu"
 msgstr "메뉴"
 
-#: ../src/yelp-window.c:366
+#: src/yelp-window.c:366
+msgid "New Window"
+msgstr "새 창"
+
+#: src/yelp-window.c:367
 msgid "Find…"
 msgstr "찾기…"
 
-#: ../src/yelp-window.c:367
+#: src/yelp-window.c:368
 msgid "Print…"
 msgstr "인쇄…"
 
-#: ../src/yelp-window.c:372
+#: src/yelp-window.c:373
 msgid "Previous Page"
 msgstr "이전 페이지"
 
-#: ../src/yelp-window.c:373
+#: src/yelp-window.c:374
 msgid "Next Page"
 msgstr "다음 페이지"
 
-#: ../src/yelp-window.c:378
+#: src/yelp-window.c:379
+msgid "Larger Text"
+msgstr "글자 크게"
+
+#: src/yelp-window.c:380
+msgid "Smaller Text"
+msgstr "글자 작게"
+
+#: src/yelp-window.c:385
 msgid "All Help"
 msgstr "전체 도움말"
 
 # 주의: 단축키이므로 괄호 앞에 붙여 쓰지 않는다
-#: ../src/yelp-window.c:400
+#: src/yelp-window.c:407
 msgid "Search (Ctrl+S)"
-msgstr "검색(Ctrl-S)"
+msgstr "검색 (Ctrl-S)"
 
-#: ../src/yelp-window.c:417
+#: src/yelp-window.c:424
 msgid "Bookmarks"
 msgstr "책갈피"
 
-#: ../src/yelp-window.c:434
+#: src/yelp-window.c:441
 msgid "No bookmarks"
 msgstr "책갈피 없음"
 
-#: ../src/yelp-window.c:442
+#: src/yelp-window.c:449
 msgid "Add Bookmark"
 msgstr "책갈피 추가"
 
-#: ../src/yelp-window.c:448
+#: src/yelp-window.c:455
 msgid "Remove Bookmark"
 msgstr "책갈피 제거"
 
-#: ../yelp.desktop.in.in.h:2
+#: yelp.desktop.in:4
 msgid "Get help with GNOME"
 msgstr "그놈에서 도움말을 봅니다"
 
-#: ../yelp.desktop.in.in.h:3
+#: yelp.desktop.in:5
 msgid "documentation;information;manual;help;"
 msgstr "documentation;문서;information;정보;manual;설명서;매뉴얼;help;도움말;"
 
-#~ msgid "Indexed"
-#~ msgstr "색인"
+#: yelp.desktop.in:8
+msgid "org.gnome.Yelp"
+msgstr "org.gnome.Yelp"
 
-#~ msgid "Whether the document content has been indexed"
-#~ msgstr "문서 차례에 색인이 있는지 여부"
-
-#~ msgid "Document URI"
-#~ msgstr "문서 URI"
-
-#~ msgid "The URI which identifies the document"
-#~ msgstr "문서를 가리키는 URI"
-
-#~ msgid "View"
-#~ msgstr "보기"
-
-#~ msgid "A YelpView instance to control"
-#~ msgstr "컨트롤하는 YelpView 인스턴스"
-
-#~ msgid "A YelpBookmarks implementation instance"
-#~ msgstr "YelpBookmarks 구현 인스턴스"
-
-#~ msgid "GtkSettings"
-#~ msgstr "GtkSettings"
-
-#~ msgid "A GtkSettings object to get settings from"
-#~ msgstr "설정을 읽어들일 GtkSettings 오브젝트"
-
-#~ msgid "GtkIconTheme"
-#~ msgstr "GtkIconTheme"
-
-#~ msgid "A GtkIconTheme object to get icons from"
-#~ msgstr "아이콘을 가져올 GtkIconTheme 오브젝트"
-
-#~ msgid "Font Adjustment"
-#~ msgstr "글꼴 조정"
-
-#~ msgid "A size adjustment to add to font sizes"
-#~ msgstr "글꼴 크기에 추가할 크기 조정"
-
-#~ msgid "Show Text Cursor"
-#~ msgstr "텍스트 커서 표시"
-
-#~ msgid "Show the text cursor or caret for accessible navigation"
-#~ msgstr "문서 이동에 사용할 수 있는 텍스트 커서(캐럿)를 표시합니다"
-
-#~ msgid "Editor Mode"
-#~ msgstr "편집기 모드"
-
-#~ msgid "Enable features useful to editors"
-#~ msgstr "편집기에 유용한 기능을 사용합니다"
-
-#~ msgid "Database filename"
-#~ msgstr "데이터베이스 파일 이름"
-
-#~ msgid "The filename of the sqlite database"
-#~ msgstr "sqlite 데이터베이스의 파일 이름"
-
-#~ msgid "XSLT Stylesheet"
-#~ msgstr "XSLT 스타일시트"
-
-#~ msgid "The location of the XSLT stylesheet"
-#~ msgstr "XSLT 스타일시트의 위치"
-
-#~ msgid "Yelp URI"
-#~ msgstr "Yelp URI"
-
-#~ msgid "A YelpUri with the current location"
-#~ msgstr "현재 위치의 YelpUri"
-
-# 주의: "... 읽어들이는 중" 아님
-#~ msgid "Loading State"
-#~ msgstr "읽어들이기 상태"
-
-#~ msgid "The loading state of the view"
-#~ msgstr "뷰의 읽어들이기 상태"
-
-#~ msgid "Page ID"
-#~ msgstr "페이지 ID"
-
-#~ msgid "The ID of the root page of the page being viewed"
-#~ msgstr "보고 있는 페이지의 최상위 페이지의 ID"
-
-#~ msgid "Root Title"
-#~ msgstr "최상위 제목"
-
-#~ msgid "The title of the root page of the page being viewed"
-#~ msgstr "보고 있는 페이지의 최상위 페이지의 제목"
-
-#~ msgid "Page Title"
-#~ msgstr "페이지 제목"
-
-#~ msgid "The title of the page being viewed"
-#~ msgstr "보고 있는 페이지의 제목"
-
-#~ msgid "Page Description"
-#~ msgstr "페이지 설명"
-
-#~ msgid "The description of the page being viewed"
-#~ msgstr "보고 있는 페이지의 설명"
-
-#~ msgid "Page Icon"
-#~ msgstr "페이지 아이콘"
-
-#~ msgid "The icon of the page being viewed"
-#~ msgstr "보고 있는 페이지의 아이콘"
-
-# property 요약, YelpApplication 인스턴스
-#~ msgid "Application"
-#~ msgstr "Application"
-
-#~ msgid "A YelpApplication instance that controls this window"
-#~ msgstr "이 창을 컨트롤하는 YelpApplication 인스턴스"
