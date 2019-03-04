@@ -4,15 +4,14 @@
 # Nguyễn Thái Ngọc Duy <pclouds@vnlinux.org>, 2002-2004, 2005, 2012.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
 # Lê Trường An <xinemdungkhoc1@gmail.com>, 2011.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2014, 2015, 2016.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2014, 2015, 2016, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-09-04 13:17+0000\n"
-"PO-Revision-Date: 2016-09-06 07:25+0700\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
+"POT-Creation-Date: 2019-03-03 10:53+0000\n"
+"PO-Revision-Date: 2019-03-04 07:51+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -32,40 +31,73 @@ msgstr ""
 #.
 #. <string/> - The package to install
 #.
-#: yelp.xml.in:36
+#: data/domains/yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Cài đặt <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:143
-#: ../libyelp/yelp-lzma-decompressor.c:152
+#: data/yelp.appdata.xml.in:6
+msgid "GNOME Help"
+msgstr "Trợ giúp GNOME"
+
+#: data/yelp.appdata.xml.in:7
+msgid "Help viewer for GNOME"
+msgstr "Trình xem trợ giúp dành cho GNOME"
+
+#: data/yelp.appdata.xml.in:9
+msgid ""
+"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
+"also display DocBook, info, man, and HTML documentation."
+msgstr ""
+"Yelp là ứng dụng xem trợ giúp dành cho GNOME. Nó là bộ xem Mallard mặc định, "
+"nhưng nó còn có thể hiển thị tài liệu dạngDocBook, info, man, và HTML."
+
+#: data/yelp.appdata.xml.in:13
+msgid ""
+"It makes it easy to find the documentation you need, with interactive search "
+"and bookmarks."
+msgstr ""
+"Nó làm cho việc tìm tài liệu bạn muốn dễ dàng hơn, với các tìm kiếm tương "
+"tác và đánh dấu."
+
+#: data/yelp.appdata.xml.in:17
+msgid ""
+"It also has an editor mode, which shows editorial comments and revision "
+"statuses when editing Mallard documents."
+msgstr ""
+"Nó còn có một chế độ soạn thảo, thứ mà hiển thị các ghi chú phiên bản và "
+"tình trạng xem xét khi sửa các tài liệu Mallard."
+
+#: data/yelp.appdata.xml.in:30
+msgid "The GNOME Project"
+msgstr "Dự án GNOME"
+
+#: libyelp/yelp-bz2-decompressor.c:143 libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
 msgstr "Dữ liệu nén không hợp lệ"
 
-#: ../libyelp/yelp-bz2-decompressor.c:149
-#: ../libyelp/yelp-lzma-decompressor.c:158
+#: libyelp/yelp-bz2-decompressor.c:149 libyelp/yelp-lzma-decompressor.c:158
 msgid "Not enough memory"
 msgstr "Không đủ bộ nhớ"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
-#: ../libyelp/yelp-mallard-document.c:298
-#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
+#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:221
+#: libyelp/yelp-mallard-document.c:306 libyelp/yelp-mallard-document.c:464
+#: libyelp/yelp-man-document.c:199
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Không tìm thấy trang “%s” trong tài liệu “%s”."
 
-#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
-#: ../libyelp/yelp-man-document.c:390
-#, c-format
+#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:358
+#: libyelp/yelp-man-document.c:336
 msgid "The file does not exist."
 msgstr "Tập tin không tồn tại."
 
-#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
-#: ../libyelp/yelp-man-document.c:400
+#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:368
+#: libyelp/yelp-man-document.c:346
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Tập tin “%s” không tồn tại."
 
-#: ../libyelp/yelp-docbook-document.c:345
+#: libyelp/yelp-docbook-document.c:359
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -73,7 +105,7 @@ msgid ""
 msgstr ""
 "Không thể phân tích tập tin “%s” vì nó không phải là tài liệu XML hợp chuẩn."
 
-#: ../libyelp/yelp-docbook-document.c:358
+#: libyelp/yelp-docbook-document.c:372
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -82,56 +114,39 @@ msgstr ""
 "Không thể phân tích tập tin “%s” vì nó bao gồm thêm một hay nhiều tài liệu "
 "XML không hợp chuẩn."
 
-#: ../libyelp/yelp-docbook-document.c:788
+#: libyelp/yelp-docbook-document.c:810
 msgid "Unknown"
 msgstr "Không rõ"
 
-#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
-#: ../libyelp/yelp-man-document.c:332
+#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:301
+#: libyelp/yelp-man-document.c:279
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Không tìm thấy trang đã yêu cầu trong tài liệu “%s”."
 
-#: ../libyelp/yelp-document.c:278
-msgid "Indexed"
-msgstr "Đánh mục lục"
-
-#: ../libyelp/yelp-document.c:279
-msgid "Whether the document content has been indexed"
-msgstr "Nội dung tài liệu đã được lập chỉ mục"
-
-#: ../libyelp/yelp-document.c:287
-msgid "Document URI"
-msgstr "URI tài liệu"
-
-#: ../libyelp/yelp-document.c:288
-msgid "The URI which identifies the document"
-msgstr "Địa chỉ xác định tài liệu"
-
-#: ../libyelp/yelp-document.c:1024
+#: libyelp/yelp-document.c:1068
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Kết quả tìm kiếm “%s”"
 
-#: ../libyelp/yelp-document.c:1036
+#: libyelp/yelp-document.c:1080
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Không tìm thấy trang trợ giúp trùng khớp trong \"%s\"."
 
-#: ../libyelp/yelp-document.c:1042
+#: libyelp/yelp-document.c:1086
 msgid "No matching help pages found."
 msgstr "Không tìm thấy trang trợ giúp nào khớp."
 
-#: ../libyelp/yelp-error.c:35
-#, c-format
+#: libyelp/yelp-error.c:35
 msgid "An unknown error occurred."
 msgstr "Có một lỗi không xác định được."
 
-#: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
+#: libyelp/yelp-help-list.c:548 libyelp/yelp-help-list.c:557
 msgid "All Help Documents"
 msgstr "Tất cả tài liệu trợ giúp"
 
-#: ../libyelp/yelp-info-document.c:380
+#: libyelp/yelp-info-document.c:383
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -139,357 +154,337 @@ msgstr ""
 "Không thể phân tích tập tin “%s” vì nó không phải trang thông tin đúng định "
 "dạng."
 
-#: ../libyelp/yelp-mallard-document.c:340
+#: libyelp/yelp-mallard-document.c:348
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Thư mục “%s” không tồn tại."
 
-#: ../libyelp/yelp-search-entry.c:172
-msgid "View"
-msgstr "Xem"
-
-#: ../libyelp/yelp-search-entry.c:173
-msgid "A YelpView instance to control"
-msgstr "Thực thể YelpView để điều khiển"
-
-#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
-msgid "Bookmarks"
-msgstr "Đánh dấu"
-
-#: ../libyelp/yelp-search-entry.c:189
-msgid "A YelpBookmarks implementation instance"
-msgstr "Thực thể thực thi YelpBookmarks"
-
-#: ../libyelp/yelp-search-entry.c:433
+#: libyelp/yelp-search-entry.c:434
 #, c-format
 msgid "Search for “%s”"
 msgstr "Tìm “%s”"
 
-#: ../libyelp/yelp-settings.c:148
-msgid "GtkSettings"
-msgstr "Cài đặt Gtk"
-
-#: ../libyelp/yelp-settings.c:149
-msgid "A GtkSettings object to get settings from"
-msgstr "Đối tượng GtkSettings để lấy cài đặt"
-
-#: ../libyelp/yelp-settings.c:157
-msgid "GtkIconTheme"
-msgstr "GtkIconTheme"
-
-#: ../libyelp/yelp-settings.c:158
-msgid "A GtkIconTheme object to get icons from"
-msgstr "Đối tượng GtkIconTheme để lấy biểu tượng"
-
-#: ../libyelp/yelp-settings.c:166
-msgid "Font Adjustment"
-msgstr "Chỉnh phông chữ"
-
-#: ../libyelp/yelp-settings.c:167
-msgid "A size adjustment to add to font sizes"
-msgstr "Điều chỉnh kích thước để thêm vào phông chữ"
-
-#: ../libyelp/yelp-settings.c:175
-msgid "Show Text Cursor"
-msgstr "Hiện con trỏ văn bản"
-
-#: ../libyelp/yelp-settings.c:176
-msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Hiện con trỏ văn bản hoặc dấu nháy để định hướng truy cập"
-
-#: ../libyelp/yelp-settings.c:184
-msgid "Editor Mode"
-msgstr "Chế độ soạn thảo"
-
-#: ../libyelp/yelp-settings.c:185
-msgid "Enable features useful to editors"
-msgstr "Bật các tính năng hữu ích cho trình soạn thảo"
-
-#: ../libyelp/yelp-sqlite-storage.c:145
-msgid "Database filename"
-msgstr "Tên tập tin cơ sở dữ liệu"
-
-#: ../libyelp/yelp-sqlite-storage.c:146
-msgid "The filename of the sqlite database"
-msgstr "Tên tập tin của cơ sở dữ liệu sqlite"
-
-#: ../libyelp/yelp-transform.c:164
-msgid "XSLT Stylesheet"
-msgstr "Tờ kiểu dáng XSLT"
-
-#: ../libyelp/yelp-transform.c:165
-msgid "The location of the XSLT stylesheet"
-msgstr "Vị trí của tờ kiểu dáng XSLT"
-
-#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
+#: libyelp/yelp-transform.c:369 libyelp/yelp-transform.c:384
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Bảng kiểu dáng XSLT “%s” bị thiếu hoặc không hợp lệ."
 
-#: ../libyelp/yelp-transform.c:518
+#: libyelp/yelp-transform.c:518
 msgid "No href attribute found on yelp:document\n"
 msgstr "Không tìm thấy thuộc tính href trên yelp:document\n"
 
-#: ../libyelp/yelp-transform.c:533
+#: libyelp/yelp-transform.c:533
 msgid "Out of memory"
 msgstr "Không đủ bộ nhớ"
 
-#: ../libyelp/yelp-view.c:253
+#: libyelp/yelp-view.c:248
 msgid "C_opy Code Block"
 msgstr "Sa_o chép khối mã"
 
-#: ../libyelp/yelp-view.c:258
+#: libyelp/yelp-view.c:253
 msgid "_Copy Link Location"
 msgstr "_Chép địa chỉ liên kết"
 
-#: ../libyelp/yelp-view.c:263
+#: libyelp/yelp-view.c:258
 msgid "_Open Link"
 msgstr "Mở _liên kết"
 
-#: ../libyelp/yelp-view.c:268
+#: libyelp/yelp-view.c:263
 msgid "Open Link in New _Window"
 msgstr "Mở liê_n kết trong cửa sổ mới"
 
-#: ../libyelp/yelp-view.c:278
+#: libyelp/yelp-view.c:273
 msgid "_Install Packages"
 msgstr "Gói _cài đặt"
 
-#: ../libyelp/yelp-view.c:283
+#: libyelp/yelp-view.c:278
 msgid "Save Code _Block As…"
 msgstr "Lưu _khối mã vào…"
 
-#: ../libyelp/yelp-view.c:298
+#: libyelp/yelp-view.c:293
 msgid "_Copy Text"
 msgstr "_Chép văn bản"
 
-# Name: don't translate / Tên: đừng dịch
-#: ../libyelp/yelp-view.c:525
-msgid "Yelp URI"
-msgstr "Yelp URI"
-
-#: ../libyelp/yelp-view.c:526
-msgid "A YelpUri with the current location"
-msgstr "YelpUri với vị trí hiện tại"
-
-#: ../libyelp/yelp-view.c:534
-msgid "Loading State"
-msgstr "Trạng thái nạp"
-
-#: ../libyelp/yelp-view.c:535
-msgid "The loading state of the view"
-msgstr "Trạng thái nạp của phần trình bày"
-
-#: ../libyelp/yelp-view.c:544
-msgid "Page ID"
-msgstr "Mã số trang"
-
-#: ../libyelp/yelp-view.c:545
-msgid "The ID of the root page of the page being viewed"
-msgstr "Mã số trang gốc của trang được xem"
-
-#: ../libyelp/yelp-view.c:553
-msgid "Root Title"
-msgstr "Tên gốc"
-
-#: ../libyelp/yelp-view.c:554
-msgid "The title of the root page of the page being viewed"
-msgstr "Tên trang gốc của trang đang được xem"
-
-#: ../libyelp/yelp-view.c:562
-msgid "Page Title"
-msgstr "Tên trang"
-
-#: ../libyelp/yelp-view.c:563
-msgid "The title of the page being viewed"
-msgstr "Tiêu đề của trang đang được xem"
-
-#: ../libyelp/yelp-view.c:571
-msgid "Page Description"
-msgstr "Mô tả trang"
-
-#: ../libyelp/yelp-view.c:572
-msgid "The description of the page being viewed"
-msgstr "Mô tả của trang được xem"
-
-#: ../libyelp/yelp-view.c:580
-msgid "Page Icon"
-msgstr "Biểu tượng trang"
-
-#: ../libyelp/yelp-view.c:581
-msgid "The icon of the page being viewed"
-msgstr "Biểu tượng của trang được xem"
-
-#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
+#: libyelp/yelp-view.c:805 libyelp/yelp-view.c:2138
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Đường dẫn URI “%s” không trỏ đến một trang hợp lệ."
 
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
-#, c-format
+#: libyelp/yelp-view.c:811 libyelp/yelp-view.c:2144
 msgid "The URI does not point to a valid page."
 msgstr "URI không trỏ đến một trang hợp lệ."
 
-#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
+#: libyelp/yelp-view.c:816 libyelp/yelp-view.c:2150
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Không thể phân tích đường dẫn URI “%s”."
 
-#: ../libyelp/yelp-view.c:842
-#, c-format
+#: libyelp/yelp-view.c:821
 msgid "Unknown Error."
 msgstr "Lỗi không rõ."
 
-#: ../libyelp/yelp-view.c:996
+#: libyelp/yelp-view.c:975
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "Bạn chưa cài ứng dụng PackageKit. Các liên kết cài đặt gói yêu cầu phải có "
 "PackageKit."
 
-#: ../libyelp/yelp-view.c:1243
+#: libyelp/yelp-view.c:1222
 msgid "Save Image"
 msgstr "Lưu hình ảnh"
 
-#: ../libyelp/yelp-view.c:1342
+#: libyelp/yelp-view.c:1321
 msgid "Save Code"
 msgstr "Lưu mã"
 
-#: ../libyelp/yelp-view.c:1438
+#: libyelp/yelp-view.c:1417
 #, c-format
 msgid "Send email to %s"
 msgstr "Gửi thư điện tử đến %s"
 
-#: ../libyelp/yelp-view.c:1542
+#: libyelp/yelp-view.c:1521
 msgid "_Save Image As…"
 msgstr "_Lưu ảnh vào…"
 
-#: ../libyelp/yelp-view.c:1543
+#: libyelp/yelp-view.c:1522
 msgid "_Save Video As…"
 msgstr "_Lưu video vào…"
 
-#: ../libyelp/yelp-view.c:1551
+#: libyelp/yelp-view.c:1530
 msgid "S_end Image To…"
 msgstr "_Gửi ảnh đến…"
 
-#: ../libyelp/yelp-view.c:1552
+#: libyelp/yelp-view.c:1531
 msgid "S_end Video To…"
 msgstr "_Gửi video đến…"
 
-#: ../libyelp/yelp-view.c:1894
+#: libyelp/yelp-view.c:1872
 #, c-format
 msgid "Could not load a document for ‘%s’"
-msgstr "Không thể nạp một tài liệu “%s”"
+msgstr "Không thể tải một tài liệu “%s”"
 
-#: ../libyelp/yelp-view.c:1900
-#, c-format
+#: libyelp/yelp-view.c:1878
 msgid "Could not load a document"
-msgstr "Không thể nạp một tài liệu"
+msgstr "Không thể tải một tài liệu"
 
-#: ../libyelp/yelp-view.c:1984
+#: libyelp/yelp-view.c:1962
 msgid "Document Not Found"
 msgstr "Không tìm thấy tài liệu"
 
-#: ../libyelp/yelp-view.c:1986
+#: libyelp/yelp-view.c:1964
 msgid "Page Not Found"
 msgstr "Không tìm thấy trang"
 
-#: ../libyelp/yelp-view.c:1989
+#: libyelp/yelp-view.c:1967
 msgid "Cannot Read"
 msgstr "Không thể đọc"
 
-#: ../libyelp/yelp-view.c:1995
+#: libyelp/yelp-view.c:1973
 msgid "Unknown Error"
 msgstr "Lỗi không rõ"
 
-#: ../libyelp/yelp-view.c:2015
+#: libyelp/yelp-view.c:1993
 msgid "Search for packages containing this document."
 msgstr "Tìm kiếm các gói có chứa tài liệu này."
 
-#: ../src/yelp-application.c:59
+#: src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "Bật chế độ soạn thảo"
 
-#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
-#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
+#: src/yelp-application.c:270 src/yelp-window.c:1188 src/yelp-window.c:1196
+#: yelp.desktop.in:3
 msgid "Help"
 msgstr "Trợ giúp"
 
-#: ../src/yelp-application.c:321
-msgid "New Window"
-msgstr "Cửa sổ mới"
-
-#: ../src/yelp-application.c:325
-msgid "Larger Text"
-msgstr "Chữ lớn hơn"
-
-#: ../src/yelp-application.c:326
-msgid "Smaller Text"
-msgstr "Chữ nhỏ đi"
-
-#: ../src/yelp-window.c:211
-msgid "Application"
-msgstr "Ứng dụng"
-
-#: ../src/yelp-window.c:212
-msgid "A YelpApplication instance that controls this window"
-msgstr "Thực thể YelpApplication điều khiển cửa sổ này"
-
-#: ../src/yelp-window.c:343
+#: src/yelp-window.c:343
 msgid "Back"
 msgstr "Trước"
 
-#: ../src/yelp-window.c:350
+#: src/yelp-window.c:350
 msgid "Forward"
 msgstr "Tiếp"
 
-#: ../src/yelp-window.c:361
+#: src/yelp-window.c:361
 msgid "Menu"
 msgstr "Trình đơn"
 
-#: ../src/yelp-window.c:366
+#: src/yelp-window.c:366
+msgid "New Window"
+msgstr "Cửa sổ mới"
+
+#: src/yelp-window.c:367
 msgid "Find…"
 msgstr "Tìm…"
 
-#: ../src/yelp-window.c:367
+#: src/yelp-window.c:368
 msgid "Print…"
 msgstr "In…"
 
-#: ../src/yelp-window.c:372
+#: src/yelp-window.c:373
 msgid "Previous Page"
 msgstr "Trang trước"
 
-#: ../src/yelp-window.c:373
+#: src/yelp-window.c:374
 msgid "Next Page"
 msgstr "Trang kế"
 
-#: ../src/yelp-window.c:378
+#: src/yelp-window.c:379
+msgid "Larger Text"
+msgstr "Chữ lớn hơn"
+
+#: src/yelp-window.c:380
+msgid "Smaller Text"
+msgstr "Chữ nhỏ đi"
+
+#: src/yelp-window.c:385
 msgid "All Help"
 msgstr "Mọi trợ giúp"
 
-#: ../src/yelp-window.c:400
+#: src/yelp-window.c:407
 msgid "Search (Ctrl+S)"
 msgstr "Tìm kiếm (Ctrl+S)"
 
-#: ../src/yelp-window.c:434
+#: src/yelp-window.c:424
+msgid "Bookmarks"
+msgstr "Đánh dấu"
+
+#: src/yelp-window.c:441
 msgid "No bookmarks"
 msgstr "Không có đánh dấu"
 
-#: ../src/yelp-window.c:442
+#: src/yelp-window.c:449
 msgid "Add Bookmark"
 msgstr "Thêm đánh dấu"
 
-#: ../src/yelp-window.c:448
+#: src/yelp-window.c:455
 msgid "Remove Bookmark"
 msgstr "Gỡ bỏ đánh dấu"
 
-#: ../yelp.desktop.in.in.h:2
+#: yelp.desktop.in:4
 msgid "Get help with GNOME"
 msgstr "Nhận trợ giúp từ GNOME"
 
-#: ../yelp.desktop.in.in.h:3
+#: yelp.desktop.in:5
 msgid "documentation;information;manual;help;"
 msgstr ""
 "documentation;information;manual;help;tài liệu;tai lieu;thông tin;thong tin;"
 "hướng dẫn;huong dan;trợ giúp;tro giup;"
+
+#: yelp.desktop.in:8
+msgid "org.gnome.Yelp"
+msgstr "org.gnome.Yelp"
+
+#~ msgid "Indexed"
+#~ msgstr "Đánh mục lục"
+
+#~ msgid "Whether the document content has been indexed"
+#~ msgstr "Nội dung tài liệu đã được lập chỉ mục"
+
+#~ msgid "Document URI"
+#~ msgstr "URI tài liệu"
+
+#~ msgid "The URI which identifies the document"
+#~ msgstr "Địa chỉ xác định tài liệu"
+
+#~ msgid "View"
+#~ msgstr "Xem"
+
+#~ msgid "A YelpView instance to control"
+#~ msgstr "Thực thể YelpView để điều khiển"
+
+#~ msgid "A YelpBookmarks implementation instance"
+#~ msgstr "Thực thể thực thi YelpBookmarks"
+
+#~ msgid "GtkSettings"
+#~ msgstr "Cài đặt Gtk"
+
+#~ msgid "A GtkSettings object to get settings from"
+#~ msgstr "Đối tượng GtkSettings để lấy cài đặt"
+
+#~ msgid "GtkIconTheme"
+#~ msgstr "GtkIconTheme"
+
+#~ msgid "A GtkIconTheme object to get icons from"
+#~ msgstr "Đối tượng GtkIconTheme để lấy biểu tượng"
+
+#~ msgid "Font Adjustment"
+#~ msgstr "Chỉnh phông chữ"
+
+#~ msgid "A size adjustment to add to font sizes"
+#~ msgstr "Điều chỉnh kích thước để thêm vào phông chữ"
+
+#~ msgid "Show Text Cursor"
+#~ msgstr "Hiện con trỏ văn bản"
+
+#~ msgid "Show the text cursor or caret for accessible navigation"
+#~ msgstr "Hiện con trỏ văn bản hoặc dấu nháy để định hướng truy cập"
+
+#~ msgid "Editor Mode"
+#~ msgstr "Chế độ soạn thảo"
+
+#~ msgid "Enable features useful to editors"
+#~ msgstr "Bật các tính năng hữu ích cho trình soạn thảo"
+
+#~ msgid "Database filename"
+#~ msgstr "Tên tập tin cơ sở dữ liệu"
+
+#~ msgid "The filename of the sqlite database"
+#~ msgstr "Tên tập tin của cơ sở dữ liệu sqlite"
+
+#~ msgid "XSLT Stylesheet"
+#~ msgstr "Tờ kiểu dáng XSLT"
+
+#~ msgid "The location of the XSLT stylesheet"
+#~ msgstr "Vị trí của tờ kiểu dáng XSLT"
+
+# Name: don't translate / Tên: đừng dịch
+#~ msgid "Yelp URI"
+#~ msgstr "Yelp URI"
+
+#~ msgid "A YelpUri with the current location"
+#~ msgstr "YelpUri với vị trí hiện tại"
+
+#~ msgid "Loading State"
+#~ msgstr "Trạng thái nạp"
+
+#~ msgid "The loading state of the view"
+#~ msgstr "Trạng thái nạp của phần trình bày"
+
+#~ msgid "Page ID"
+#~ msgstr "Mã số trang"
+
+#~ msgid "The ID of the root page of the page being viewed"
+#~ msgstr "Mã số trang gốc của trang được xem"
+
+#~ msgid "Root Title"
+#~ msgstr "Tên gốc"
+
+#~ msgid "The title of the root page of the page being viewed"
+#~ msgstr "Tên trang gốc của trang đang được xem"
+
+#~ msgid "Page Title"
+#~ msgstr "Tên trang"
+
+#~ msgid "The title of the page being viewed"
+#~ msgstr "Tiêu đề của trang đang được xem"
+
+#~ msgid "Page Description"
+#~ msgstr "Mô tả trang"
+
+#~ msgid "The description of the page being viewed"
+#~ msgstr "Mô tả của trang được xem"
+
+#~ msgid "Page Icon"
+#~ msgstr "Biểu tượng trang"
+
+#~ msgid "The icon of the page being viewed"
+#~ msgstr "Biểu tượng của trang được xem"
+
+#~ msgid "Application"
+#~ msgstr "Ứng dụng"
+
+#~ msgid "A YelpApplication instance that controls this window"
+#~ msgstr "Thực thể YelpApplication điều khiển cửa sổ này"
 
 #~ msgid "See all search results for “%s”"
 #~ msgstr "Xem mọi kết quả tìm kiếm “%s”"
