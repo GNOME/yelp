@@ -720,6 +720,7 @@ resolve_data_dirs (YelpUri      *ret,
     else {
         priv->gfile = g_file_new_for_path (filename);
         priv->search_path = searchpath;
+        g_free (filename);
     }
 }
 

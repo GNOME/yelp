@@ -206,6 +206,7 @@ yelp_transform_dispose (GObject *object)
         xmlFreeDoc (priv->output);
         priv->output = NULL;
     }
+    g_clear_pointer (&priv->stylesheet_file, g_free);
 
     G_OBJECT_CLASS (yelp_transform_parent_class)->dispose (object);
 }
