@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
-"POT-Creation-Date: 2019-02-05 15:02+0000\n"
+"POT-Creation-Date: 2019-02-20 07:46+0000\n"
 "PO-Revision-Date: 2019-02-13 11:54+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -876,7 +876,7 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Economy"
 #~ msgstr "Økonomi"
 
-# ...eller uddannelse. Men undervisning lyder bedre her
+#~ # ...eller uddannelse. Men undervisning lyder bedre her
 #~ msgid "Education"
 #~ msgstr "Undervisning"
 
@@ -925,7 +925,7 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Generic applications for the GNOME environment"
 #~ msgstr "Generiske programmer til GNOME-miljøet"
 
-# Egentlig er KDE Desktop Environment jo navnet i sig selv, men lad os bare oversætte det alligevel
+#~ # Egentlig er KDE Desktop Environment jo navnet i sig selv, men lad os bare oversætte det alligevel
 #~ msgid "Generic applications for the KDE environment"
 #~ msgstr "Specifikke programmer til KDE-miljøet"
 
@@ -941,10 +941,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Graphics"
 #~ msgstr "Grafik"
 
-#~ msgid ""
-#~ "Guides and manuals for applications that connect to the outside world"
-#~ msgstr ""
-#~ "Guider og manualer til programmer der forbinder til resten af verden"
+#~ msgid "Guides and manuals for applications that connect to the outside world"
+#~ msgstr "Guider og manualer til programmer der forbinder til resten af verden"
 
 #~ msgid "Guides for getting involved in development"
 #~ msgstr "Guider til at komme i gang med udvikling"
@@ -1014,7 +1012,7 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Mixers"
 #~ msgstr "Miksere"
 
-# Vi ved ikke helt om monitor betegner måling af noget, og i så fald hvad, eller om det har noget med computerskærme at gøre, men det er næppe kriminelt at bruge ordet på dansk
+#~ # Vi ved ikke helt om monitor betegner måling af noget, og i så fald hvad, eller om det har noget med computerskærme at gøre, men det er næppe kriminelt at bruge ordet på dansk
 #~ msgid "Monitor"
 #~ msgstr "Monitor"
 
@@ -1078,7 +1076,7 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Qt"
 #~ msgstr "Qt"
 
-# Bitmap er velsagtens et lidt mere genkendt ord på dansk
+#~ # Bitmap er velsagtens et lidt mere genkendt ord på dansk
 #~ msgid "Raster Graphics"
 #~ msgstr "Bitmap-grafik"
 
@@ -1106,18 +1104,16 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Security"
 #~ msgstr "Sikkerhed"
 
-# ??? http://en.wikipedia.org/wiki/Music_sequencer
+#~ # ??? http://en.wikipedia.org/wiki/Music_sequencer
 #~ msgid "Sequencers"
 #~ msgstr "Musik-sequencere"
 
 #~ msgid "Settings"
 #~ msgstr "Indstillinger"
 
-#~ msgid ""
-#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgid "Settings users can manipulate to make their environment more pleasant"
 #~ msgstr ""
-#~ "Indstillinger, brugere kan manipulere for at gøre deres miljø mere "
-#~ "behageligt"
+#~ "Indstillinger, brugere kan manipulere for at gøre deres miljø mere behageligt"
 
 #~ msgid "Simulation Games"
 #~ msgstr "Simulationsspil"
@@ -1268,8 +1264,8 @@ msgstr "org.gnome.Yelp"
 #~ "dokumentet om at konvertere det til XML."
 
 #~ msgid ""
-#~ "A transformation context could not be created for the file ‘%s’. The "
-#~ "format may not be supported."
+#~ "A transformation context could not be created for the file ‘%s’. The format "
+#~ "may not be supported."
 #~ msgstr ""
 #~ "En transformationskontekst kunne ikke oprettes for filen “%s”. Formatet "
 #~ "understøttes muligvis ikke."
@@ -1290,8 +1286,8 @@ msgstr "org.gnome.Yelp"
 #~ msgstr "Udskrivning til PDF-format understøttes ikke på nuværende tidspunkt"
 
 #~ msgid ""
-#~ "You were trying to print to a printer using the \"%s\" driver.  This "
-#~ "program requires a PostScript printer driver."
+#~ "You were trying to print to a printer using the \"%s\" driver.  This program "
+#~ "requires a PostScript printer driver."
 #~ msgstr ""
 #~ "Du forsøgte at udskrive til en printer med driveren “%s”. Dette program "
 #~ "kræver en PostScript-printerdriver."
@@ -1306,8 +1302,8 @@ msgstr "org.gnome.Yelp"
 #~ "Your search could not be processed. There is no connection to the beagle "
 #~ "daemon."
 #~ msgstr ""
-#~ "Din søgning kunne ikke gennemføres. Der er ingen forbindelse til Beagle-"
-#~ "dæmonen."
+#~ "Din søgning kunne ikke gennemføres. Der er ingen forbindelse til "
+#~ "Beagle-dæmonen."
 
 #~ msgid "Colophon"
 #~ msgstr "Kolofon"
@@ -1460,8 +1456,8 @@ msgstr "org.gnome.Yelp"
 #~ msgstr "Ingen oplysninger tilgængelige om fejlen."
 
 #~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
-#~ "in an unsupported format."
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed in "
+#~ "an unsupported format."
 #~ msgstr ""
 #~ "Filen “%s” kunne ikke læses og afkodes. Filen kan være komprimeret i et "
 #~ "ikke-understøttet format."
@@ -1494,23 +1490,19 @@ msgstr "org.gnome.Yelp"
 #~ msgstr "Ingen resultater for “%s”"
 
 #~ msgid ""
-#~ "Try using different words to describe the problem you're having or the "
-#~ "topic you want help with."
+#~ "Try using different words to describe the problem you're having or the topic "
+#~ "you want help with."
 #~ msgstr ""
-#~ "Prøv at bruge forskellige ord til at beskrive det problem du har eller "
-#~ "emnet du ønsker hjælp til."
+#~ "Prøv at bruge forskellige ord til at beskrive det problem du har eller emnet "
+#~ "du ønsker hjælp til."
 
-# Man kunne oversætte disse, men da GNOME dokumentationen ikke bliver oversat til dansk foreløbig, vil søgningerne alligevel foregå på engelsk. Derfor lader jeg denne streng stå i dens engelske form
+#~ # Man kunne oversætte disse, men da GNOME dokumentationen ikke bliver oversat til dansk foreløbig, vil søgningerne alligevel foregå på engelsk. Derfor lader jeg denne streng stå i dens engelske form
 #~ msgid ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
 #~ msgstr ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
 
 #~ msgid "re"
 #~ msgstr "re"
@@ -1542,8 +1534,7 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Broken Transformation"
 #~ msgstr "Forfejlet transformation"
 
-#~ msgid ""
-#~ "An unknown error occurred while attempting to transform the document."
+#~ msgid "An unknown error occurred while attempting to transform the document."
 #~ msgstr "En ukendt fejl opstod under forsøget på at transformere dokumentet."
 
 #~ msgid "_File"
@@ -1655,8 +1646,8 @@ msgstr "org.gnome.Yelp"
 #~ msgstr "Udtrykket blev ikke fundet"
 
 #~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
-#~ "might not have permissions to read it."
+#~ "The file ‘%s’ could not be read.  This file might be missing, or you might "
+#~ "not have permissions to read it."
 #~ msgstr ""
 #~ "Filen “%s” kunne ikke læses. Filen kan mangle, eller du har måske ikke "
 #~ "rettigheder til at læse den."
@@ -1668,8 +1659,9 @@ msgstr "org.gnome.Yelp"
 #~ "Lasse Bang Mikkelsen\n"
 #~ "Ask Hjorth Larsen\n"
 #~ "\n"
-#~ "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
-#~ "Mere info: http://www.dansk-gruppen.dk\n"
+#~ "Dansk-gruppen\n"
+#~ "Websted <http://dansk-gruppen.dk>\n"
+#~ "E-mail <dansk@dansk-gruppen.dk>\n"
 #~ "\n"
 #~ "Launchpad Contributions:\n"
 #~ "  AJenbo https://launchpad.net/~ajenbo\n"
@@ -1684,7 +1676,7 @@ msgstr "org.gnome.Yelp"
 #~ "  Pillum https://launchpad.net/~pillum\n"
 #~ "  eZtaR https://launchpad.net/~eztar-dk"
 
-# skidt med "browser"-delen
+#~ # skidt med "browser"-delen
 #~ msgid "A documentation browser and viewer for the Gnome Desktop."
 #~ msgstr "En dokumentationsfremviser til Gnome."
 
@@ -1708,3 +1700,4 @@ msgstr "org.gnome.Yelp"
 
 #~ msgid "Print This Page ..."
 #~ msgstr "Udskriv denne side …"
+
