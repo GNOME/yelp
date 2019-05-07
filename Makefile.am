@@ -174,7 +174,9 @@ YELP_DEFINES =								\
 
 yelp_CFLAGS =					\
 	$(YELP_CFLAGS)				\
-	$(WARN_CFLAGS)
+	$(WARN_CFLAGS) \
+	-Wno-deprecated-declarations
+
 
 yelp_CPPFLAGS = \
 	-I$(top_srcdir)/libyelp \
