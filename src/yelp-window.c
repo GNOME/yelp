@@ -28,6 +28,7 @@
 #include <glib/gi18n.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#include <handy.h>
 
 #include "yelp-search-entry.h"
 #include "yelp-settings.h"
@@ -287,7 +288,7 @@ yelp_window_set_property (GObject     *object,
 static void
 window_construct (YelpWindow *window)
 {
-    GtkWidget *box, *button;
+    GtkWidget *box, *button, *clamp;
     GtkWidget *frame;
     GtkCssProvider *css;
     GtkSizeGroup *size_group;
@@ -389,12 +390,15 @@ window_construct (YelpWindow *window)
     priv->vbox_view = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_box_pack_start (GTK_BOX (priv->vbox_full), priv->vbox_view, TRUE, TRUE, 0);
 
-    priv->search_bar = gtk_search_bar_new ();
+    priv->search_bar = hdy_search_bar_new ();
     gtk_box_pack_start (GTK_BOX (priv->vbox_view), priv->search_bar, FALSE, FALSE, 0);
+    clamp= hdy_clamp_new ();
+    hdy_clamp_set_maximum_size (HDY_CLAMP (clamp), 400);
+    hdy_clamp_set_tightening_threshold (HDY_CLAMP (clamp), 300);
+    gtk_container_add (GTK_CONTAINER (priv->search_bar), clamp);
     priv->search_entry = yelp_search_entry_new (priv->view,
                                                 YELP_BOOKMARKS (priv->application));
-    gtk_entry_set_width_chars (GTK_ENTRY (priv->search_entry), 50);
-    gtk_container_add (GTK_CONTAINER (priv->search_bar), priv->search_entry);
+    gtk_container_add (GTK_CONTAINER (clamp), priv->search_entry);
     button = gtk_toggle_button_new ();
     gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
@@ -622,7 +626,7 @@ action_search (GSimpleAction *action,
     YelpWindowPrivate *priv = yelp_window_get_instance_private (userdata);
 
     gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
-    gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), TRUE);
+    hdy_search_bar_set_search_mode (HDY_SEARCH_BAR (priv->search_bar), TRUE);
     gtk_widget_grab_focus (priv->search_entry);
 }
 
@@ -633,7 +637,7 @@ action_find (GSimpleAction *action,
 {
     YelpWindowPrivate *priv = yelp_window_get_instance_private (userdata);
 
-    gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), FALSE);
+    hdy_search_bar_set_search_mode (HDY_SEARCH_BAR (priv->search_bar), FALSE);
     gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), TRUE);
     gtk_widget_grab_focus (priv->find_entry);
 }
@@ -778,7 +782,7 @@ window_key_press (YelpWindow  *window,
     if (gtk_header_bar_get_custom_title (GTK_HEADER_BAR (priv->header)))
         return FALSE;
 
-    return gtk_search_bar_handle_event (GTK_SEARCH_BAR (priv->search_bar),
+    return hdy_search_bar_handle_event (HDY_SEARCH_BAR (priv->search_bar),
                                         (GdkEvent *) event);
 }
 
@@ -1004,7 +1008,7 @@ window_search_mode (GtkSearchBar  *search_bar,
 {
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
-    if (gtk_search_bar_get_search_mode (GTK_SEARCH_BAR (search_bar)))
+    if (hdy_search_bar_get_search_mode (HDY_SEARCH_BAR (search_bar)))
         gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
 }
 
@@ -1107,7 +1111,7 @@ view_loaded (YelpView   *view,
                       "page-title", &title,
                       NULL);
         if (!g_str_has_prefix (page_id, "search=")) {
-            gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), FALSE);
+            hdy_search_bar_set_search_mode (HDY_SEARCH_BAR (priv->search_bar), FALSE);
         }
         yelp_application_update_bookmarks (priv->application,
                                            doc_uri,
