@@ -487,19 +487,23 @@ window_construct (YelpWindow *window)
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     g_object_set (priv->find_bar,
                   "halign", GTK_ALIGN_END,
-                  "margin-end", 6,
                   "valign", GTK_ALIGN_START,
                   NULL);
     gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
     gtk_container_add (GTK_CONTAINER (frame), box);
-    gtk_container_add (GTK_CONTAINER (priv->find_bar), frame);
+    clamp = hdy_clamp_new ();
+    gtk_widget_set_hexpand (clamp, TRUE);
+    hdy_clamp_set_maximum_size (HDY_CLAMP (clamp), 400);
+    hdy_clamp_set_tightening_threshold (HDY_CLAMP (clamp), 300);
+    gtk_container_add (GTK_CONTAINER (clamp), frame);
+    gtk_container_add (GTK_CONTAINER (priv->find_bar), clamp);
 
     g_object_unref (css);
 
     size_group = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
 
     priv->find_entry = gtk_search_entry_new ();
-    gtk_entry_set_width_chars (GTK_ENTRY (priv->find_entry), 30);
+    gtk_entry_set_max_width_chars (GTK_ENTRY (priv->find_entry), 30);
     gtk_size_group_add_widget (size_group, priv->find_entry);
     gtk_box_pack_start (GTK_BOX (box), priv->find_entry, TRUE, TRUE, 0);
     g_signal_connect (priv->find_entry, "changed",
@@ -756,7 +760,6 @@ window_configure_event (YelpWindow         *window,
     priv->resize_signal = g_timeout_add (200,
                                          (GSourceFunc) window_resize_signal,
                                          window);
-    g_object_set (priv->find_entry, "width-request", 2 * priv->width / 3, NULL);
     return FALSE;
 }
 
