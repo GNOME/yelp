@@ -267,7 +267,7 @@ yelp_application_startup (GApplication *application)
     gchar *keyfile;
     YelpSettings *settings;
 
-    g_set_application_name (N_("Help"));
+    g_set_application_name (_("Help"));
 
     /* chain up */
     G_APPLICATION_CLASS (yelp_application_parent_class)->startup (application);
