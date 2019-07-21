@@ -6,20 +6,20 @@
 # 2004, KCT1, NGO
 # Roger Kovacs <rkovacs@khujand.org>, 2003
 # Dilshod Marupov <dma165@hotmail.com>, 2003, 2004
-# Victor Ibragimov <victor.ibragimov@gmail.com>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015
+# Victor Ibragimov <victor.ibragimov@gmail.com>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp[1].gnome-2-6\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2015-06-25 00:10+0000\n"
-"PO-Revision-Date: 2015-06-25 10:34+0500\n"
+"PO-Revision-Date: 2019-07-21 18:16+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: Tajik\n"
 "Language: tg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=2; plural=1;\n"
 
 #. (itstool) path: msg/msgstr
@@ -36,26 +36,31 @@ msgstr ""
 msgid "Install <string/>"
 msgstr "Насб кардани <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:143 ../libyelp/yelp-lzma-decompressor.c:152
+#: ../libyelp/yelp-bz2-decompressor.c:143
+#: ../libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
 msgstr "Иттилооти фишурдашудаи нодуруст"
 
-#: ../libyelp/yelp-bz2-decompressor.c:149 ../libyelp/yelp-lzma-decompressor.c:158
+#: ../libyelp/yelp-bz2-decompressor.c:149
+#: ../libyelp/yelp-lzma-decompressor.c:158
 msgid "Not enough memory"
-msgstr "Берун аз ҳофиза"
+msgstr "Ҳофиза кифоя нест"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218 ../libyelp/yelp-mallard-document.c:298
+#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
+#: ../libyelp/yelp-mallard-document.c:298
 #: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Саҳифаи ‘%s’ дар ин ҳуҷҷати ‘%s’ ёфт нашудааст."
 
-#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355 ../libyelp/yelp-man-document.c:390
+#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
+#: ../libyelp/yelp-man-document.c:390
 #, c-format
 msgid "The file does not exist."
 msgstr "Файл вуҷуд надорад."
 
-#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365 ../libyelp/yelp-man-document.c:400
+#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
+#: ../libyelp/yelp-man-document.c:400
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Файли ‘%s’ вуҷуд надорад."
@@ -68,14 +73,14 @@ msgstr "Файли ‘%s’ таҷзия карда намешавад, зеро
 #: ../libyelp/yelp-docbook-document.c:358
 #, c-format
 msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
-msgstr ""
-"Файли ‘%s’ таҷзия карда намешавад, зеро ки як ё якчанд файлҳои даруни он дорои ҳуҷҷати XML-и шакли дуруст намебошанд."
+msgstr "Файли ‘%s’ таҷзия карда намешавад, зеро ки як ё якчанд файлҳои даруни он дорои ҳуҷҷати XML-и шакли дуруст намебошанд."
 
 #: ../libyelp/yelp-docbook-document.c:788
 msgid "Unknown"
 msgstr "Номаълум"
 
-#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298 ../libyelp/yelp-man-document.c:332
+#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
+#: ../libyelp/yelp-man-document.c:332
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Саҳифаи дархостшуда дар ҳуҷҷати ‘%s’ ёфт нашудааст."
@@ -104,11 +109,11 @@ msgstr "Натиҷаҳои ҷустуҷӯи “%s”"
 #: ../libyelp/yelp-document.c:1034
 #, c-format
 msgid "No matching help pages found in “%s”."
-msgstr "Ягон саҳифаи кӯмаки мувофиқ дар “%s” ёфт нашуд."
+msgstr "Ягон саҳифаи кумаки мувофиқ дар “%s” ёфт нашуд."
 
 #: ../libyelp/yelp-document.c:1040
 msgid "No matching help pages found."
-msgstr "Ягон саҳифаи кӯмаки мувофиқ ёфт нашуд."
+msgstr "Ягон саҳифаи кумаки мувофиқ ёфт нашуд."
 
 #: ../libyelp/yelp-error.c:35
 #, c-format
@@ -117,7 +122,7 @@ msgstr "Хатои номаълум ба вуҷуд омад."
 
 #: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
 msgid "All Help Documents"
-msgstr "Ҳамаи ҳуҷҷатҳои Кӯмак"
+msgstr "Ҳамаи ҳуҷҷатҳои кумак"
 
 #: ../libyelp/yelp-info-document.c:380
 #, c-format
@@ -184,7 +189,7 @@ msgstr "Намоиш додани курсори матнӣ ё аломати ^ 
 
 #: ../libyelp/yelp-settings.c:184
 msgid "Editor Mode"
-msgstr "Намуди муҳаррир"
+msgstr "Реҷаи муҳаррир"
 
 #: ../libyelp/yelp-settings.c:185
 msgid "Enable features useful to editors"
@@ -241,7 +246,7 @@ msgstr "_Насб кардани бастаҳо"
 
 #: ../libyelp/yelp-view.c:271
 msgid "Save Code _Block As…"
-msgstr "_Захира кардани блоки рамз ҳамчун..."
+msgstr "_Захира кардани блоки рамз ҳамчун…"
 
 #: ../libyelp/yelp-view.c:286
 msgid "_Copy Text"
@@ -342,19 +347,19 @@ msgstr "Фиристодани почтаи электронӣ ба %s"
 
 #: ../libyelp/yelp-view.c:1524
 msgid "_Save Image As…"
-msgstr "_Захира кардани тасвир ҳамчун..."
+msgstr "_Захира кардани тасвир ҳамчун…"
 
 #: ../libyelp/yelp-view.c:1525
 msgid "_Save Video As…"
-msgstr "_Захира кардани видео ҳамчун..."
+msgstr "_Захира кардани видео ҳамчун…"
 
 #: ../libyelp/yelp-view.c:1533
 msgid "S_end Image To…"
-msgstr "_Фиристодани тасвир ба..."
+msgstr "_Фиристодани тасвир ба…"
 
 #: ../libyelp/yelp-view.c:1534
 msgid "S_end Video To…"
-msgstr "_Фиристодани видео ба..."
+msgstr "_Фиристодани видео ба…"
 
 #: ../libyelp/yelp-view.c:1870
 #, c-format
@@ -390,9 +395,10 @@ msgstr "Бастаҳои дорои ин ҳуҷҷатро ҷустуҷӯ кун�
 msgid "Turn on editor mode"
 msgstr "Фаъол кардани ҳолати муҳаррир"
 
-#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180 ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
+#: ../src/yelp-application.c:270 ../src/yelp-window.c:1180
+#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
 msgid "Help"
-msgstr "Кӯмак"
+msgstr "Кумак"
 
 #: ../src/yelp-application.c:320
 msgid "New Window"
@@ -444,7 +450,7 @@ msgstr "Саҳифаи навбатӣ"
 
 #: ../src/yelp-window.c:378
 msgid "All Help"
-msgstr "Кӯмаки пурра"
+msgstr "Кумаки пурра"
 
 #: ../src/yelp-window.c:400
 msgid "Search (Ctrl+S)"
@@ -464,7 +470,7 @@ msgstr "Тоза кардани хатбарак"
 
 #: ../yelp.desktop.in.in.h:2
 msgid "Get help with GNOME"
-msgstr "Гирофтани мадад бо GNOME"
+msgstr "Гирифтани кумак аз GNOME"
 
 #: ../yelp.desktop.in.in.h:3
 msgid "documentation;information;manual;"
