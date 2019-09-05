@@ -1844,7 +1844,7 @@ fix_docbook_uri (YelpUri *docbook_uri, YelpDocument* document)
         gchar *page_id = yelp_uri_get_page_id (docbook_uri);
         gchar *real_id = yelp_document_get_page_id (document, page_id);
 
-        if (g_str_equal (real_id, soup_uri->fragment))
+        if (real_id && g_str_equal (real_id, soup_uri->fragment))
             soup_uri_set_fragment (soup_uri, NULL);
 
         g_free (real_id);
