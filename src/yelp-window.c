@@ -768,12 +768,31 @@ window_resize_signal (YelpWindow *window)
     return FALSE;
 }
 
+/* <Control>+<Shift>+I */
+#define WEBKIT_INSPECTOR_MOD  (GDK_CONTROL_MASK | GDK_SHIFT_MASK)
+#define WEBKIT_INSPECTOR_KEY  (GDK_KEY_I)
+
+#define WEBKIT_INSPECTOR_SHORTCUT_SHOW(event) \
+ ((((event)->state & WEBKIT_INSPECTOR_MOD) == WEBKIT_INSPECTOR_MOD) && \
+ ((event)->keyval == WEBKIT_INSPECTOR_KEY))
+
 static gboolean
 window_key_press (YelpWindow  *window,
                   GdkEventKey *event,
                   gpointer     userdata)
 {
     YelpWindowPrivate *priv = GET_PRIV (window);
+
+    if (WEBKIT_INSPECTOR_SHORTCUT_SHOW (event)) {
+        WebKitSettings *settings =
+            webkit_web_view_get_settings (WEBKIT_WEB_VIEW (priv->view));
+
+        if (!webkit_settings_get_enable_developer_extras (settings))
+            webkit_settings_set_enable_developer_extras (settings, TRUE);
+        webkit_web_inspector_show (
+            webkit_web_view_get_inspector (WEBKIT_WEB_VIEW (priv->view)));
+        return TRUE;
+    }
 
     if (gtk_revealer_get_reveal_child (GTK_REVEALER (priv->find_bar)))
         return FALSE;
