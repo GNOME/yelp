@@ -31,6 +31,7 @@ G_BEGIN_DECLS
 #define YELP_IS_URI(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), YELP_TYPE_URI))
 #define YELP_IS_URI_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), YELP_TYPE_URI))
 #define YELP_URI_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_URI, YelpUriClass))
+#define YELP_GNOME_HELP_URI   "help:gnome-help"
 
 typedef struct _YelpUri      YelpUri;
 typedef struct _YelpUriClass YelpUriClass;

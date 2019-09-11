@@ -40,7 +40,7 @@
 #include "yelp-application.h"
 #include "yelp-window.h"
 
-#define DEFAULT_URI "help:gnome-help"
+#include "yelp-uri.h"
 
 static gboolean editor_mode = FALSE;
 
@@ -117,6 +117,47 @@ struct _YelpApplicationPrivate {
 };
 
 static void
+open_uri (YelpApplication *app,
+          YelpUri         *uri,
+          gboolean         new_window,
+          gboolean         fallback_help_list);
+
+static void
+activate_show_page (GSimpleAction *action,
+                    GVariant      *parameter,
+                    gpointer       user_data)
+{
+    YelpApplication *app = YELP_APPLICATION (user_data);
+    YelpUri *uri = yelp_uri_new (YELP_GNOME_HELP_URI);
+    gchar *xref = g_strconcat ("xref:", g_variant_get_string (parameter, NULL), NULL);
+    YelpUri *page_uri = yelp_uri_new_relative (uri, xref);
+
+    open_uri (app, page_uri, TRUE, FALSE);
+
+    g_object_unref (uri);
+    g_free (xref);
+}
+
+static void
+activate_show_search (GSimpleAction *action,
+                      GVariant      *parameter,
+                      gpointer       user_data)
+{
+    YelpApplication *app = YELP_APPLICATION (user_data);
+    YelpUri *uri = yelp_uri_new (YELP_GNOME_HELP_URI);
+    YelpUri *page_uri = yelp_uri_new_search (uri, g_variant_get_string (parameter, NULL));
+
+    open_uri (app, page_uri, TRUE, FALSE);
+
+    g_object_unref (uri);
+}
+
+static GActionEntry app_entries[] = {
+    { "show-page", activate_show_page, "s", NULL, NULL },
+    { "show-search", activate_show_search, "s", NULL, NULL },
+};
+
+static void
 yelp_application_init (YelpApplication *app)
 {
     YelpApplicationPrivate *priv = GET_PRIV (app);
@@ -162,6 +203,13 @@ yelp_application_init (YelpApplication *app)
 }
 
 static void
+yelp_application_activate (GApplication *application)
+{
+    YelpApplication *app = YELP_APPLICATION (application);
+    open_uri (app, yelp_uri_new (YELP_GNOME_HELP_URI), FALSE, TRUE);
+}
+
+static void
 yelp_application_class_init (YelpApplicationClass *klass)
 {
     GApplicationClass *application_class = G_APPLICATION_CLASS (klass);
@@ -170,6 +218,7 @@ yelp_application_class_init (YelpApplicationClass *klass)
     application_class->local_command_line = yelp_application_cmdline;
     application_class->startup = yelp_application_startup;
     application_class->command_line = yelp_application_command_line;
+    application_class->activate = yelp_application_activate;
 
     object_class->dispose = yelp_application_dispose;
     object_class->finalize = yelp_application_finalize;
@@ -240,7 +289,8 @@ yelp_application_cmdline (GApplication     *app,
     g_option_context_parse (context, &argc, arguments, NULL);
 
     for (i = 1; i < argc; i++) {
-        if (!strchr ((*arguments)[i], ':') && !((*arguments)[i][0] == '/')) {
+        if (!strchr ((*arguments)[i], ':') && !((*arguments)[i][0] == '/') &&
+            !g_str_equal ((*arguments)[i], "--gapplication-service")) {
             GFile *base, *new;
             gchar *cur, *newuri;
             cur = g_get_current_dir ();
@@ -271,6 +321,8 @@ yelp_application_startup (GApplication *application)
 
     /* chain up */
     G_APPLICATION_CLASS (yelp_application_parent_class)->startup (application);
+
+    g_action_map_add_action_entries (G_ACTION_MAP (app), app_entries, G_N_ELEMENTS (app_entries), app);
 
     settings = yelp_settings_get_default ();
     if (editor_mode)
@@ -423,7 +475,7 @@ yelp_application_command_line (GApplication            *application,
     argv = g_application_command_line_get_arguments (cmdline, NULL);
 
     if (argv[1] == NULL)
-        open_uri (app, yelp_uri_new (DEFAULT_URI), FALSE, TRUE);
+        g_application_activate (application);
 
     for (i = 1; argv[i]; i++)
         open_uri (app, yelp_uri_new (argv[i]), FALSE, FALSE);
@@ -440,7 +492,7 @@ yelp_application_new_window (YelpApplication  *app,
     if (uri)
         open_uri (app, yelp_uri_new (uri), TRUE, FALSE);
     else
-        open_uri (app, yelp_uri_new (DEFAULT_URI), TRUE, TRUE);
+        open_uri (app, yelp_uri_new (YELP_GNOME_HELP_URI), TRUE, TRUE);
 }
 
 void

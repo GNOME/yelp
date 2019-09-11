@@ -34,6 +34,7 @@
 static void           yelp_uri_dispose           (GObject        *object);
 static void           yelp_uri_finalize          (GObject        *object);
 
+static void           resolve_parent_uri         (YelpUri        *uri);
 static void           resolve_start              (YelpUri        *uri);
 static void           resolve_sync               (YelpUri        *uri);
 static void           resolve_async              (YelpUri        *uri);
@@ -242,8 +243,9 @@ yelp_uri_resolve (YelpUri *uri)
 
     if (priv->res_base && !yelp_uri_is_resolved (priv->res_base)) {
         g_signal_connect_swapped (priv->res_base, "resolved",
-                                  G_CALLBACK (resolve_start),
+                                  G_CALLBACK (resolve_parent_uri),
                                   uri);
+        g_object_ref (uri);
         yelp_uri_resolve (priv->res_base);
     }
     else {
@@ -290,6 +292,14 @@ yelp_uri_resolve_sync (YelpUri *uri)
  *
  * 4) Once a URI is resolved, it is immutable.
  */
+static void
+resolve_parent_uri (YelpUri *uri)
+{
+    resolve_start (uri);
+
+    g_object_unref (uri);
+}
+
 static void
 resolve_start (YelpUri *uri)
 {
