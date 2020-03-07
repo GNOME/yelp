@@ -1,5 +1,5 @@
 AC_PREREQ([2.63])
-AC_INIT([Yelp],[3.34.0],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp],[yelp])
+AC_INIT([Yelp],[3.36.0],[http://bugzilla.gnome.org/enter_bug.cgi?product=yelp],[yelp])
 
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_SRCDIR([src/yelp.c])
