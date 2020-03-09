@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003-2009 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2003-2020 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -94,9 +94,6 @@ static void           transform_error           (YelpTransform        *transform
 static void           transform_finalized       (YelpDocbookDocument  *docbook,
                                                  gpointer              transform);
 
-G_DEFINE_TYPE (YelpDocbookDocument, yelp_docbook_document, YELP_TYPE_DOCUMENT)
-#define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_DOCBOOK_DOCUMENT, YelpDocbookDocumentPrivate))
-
 typedef struct _YelpDocbookDocumentPrivate  YelpDocbookDocumentPrivate;
 struct _YelpDocbookDocumentPrivate {
     DocbookState   state;
@@ -129,6 +126,8 @@ struct _YelpDocbookDocumentPrivate {
     GHashTable   *autoids;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE (YelpDocbookDocument, yelp_docbook_document, YELP_TYPE_DOCUMENT)
+
 /******************************************************************************/
 
 static void
@@ -155,14 +154,12 @@ yelp_docbook_document_class_init (YelpDocbookDocumentClass *klass)
 
     document_class->index = docbook_index;
     document_class->request_page = docbook_request_page;
-
-    g_type_class_add_private (klass, sizeof (YelpDocbookDocumentPrivate));
 }
 
 static void
 yelp_docbook_document_init (YelpDocbookDocument *docbook)
 {
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (docbook);
 
     priv->state = DOCBOOK_STATE_BLANK;
     priv->autoids = NULL;
@@ -174,7 +171,8 @@ static void
 yelp_docbook_document_dispose (GObject *object)
 {
     gint i;
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (object);
+    YelpDocbookDocumentPrivate *priv =
+        yelp_docbook_document_get_instance_private (YELP_DOCBOOK_DOCUMENT (object));
 
     if (priv->monitors != NULL) {
         for (i = 0; priv->monitors[i]; i++) {
@@ -190,7 +188,8 @@ yelp_docbook_document_dispose (GObject *object)
 static void
 yelp_docbook_document_finalize (GObject *object)
 {
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (object);
+    YelpDocbookDocumentPrivate *priv =
+        yelp_docbook_document_get_instance_private (YELP_DOCBOOK_DOCUMENT (object));
 
     if (priv->xmldoc)
         xmlFreeDoc (priv->xmldoc);
@@ -221,7 +220,7 @@ yelp_docbook_document_new (YelpUri *uri)
     docbook = (YelpDocbookDocument *) g_object_new (YELP_TYPE_DOCBOOK_DOCUMENT,
                                                     "document-uri", uri,
                                                     NULL);
-    priv = GET_PRIV (docbook);
+    priv = yelp_docbook_document_get_instance_private (docbook);
 
     path = yelp_uri_get_search_path (uri);
     priv->monitors = g_new0 (GFileMonitor*, g_strv_length (path) + 1);
@@ -250,7 +249,8 @@ docbook_request_page (YelpDocument         *document,
                       gpointer              user_data,
                       GDestroyNotify        notify)
 {
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (document);
+    YelpDocbookDocumentPrivate *priv =
+        yelp_docbook_document_get_instance_private (YELP_DOCBOOK_DOCUMENT (document));
     gchar *docuri;
     GError *error;
     gboolean handled;
@@ -311,7 +311,7 @@ docbook_request_page (YelpDocument         *document,
 static void
 docbook_process (YelpDocbookDocument *docbook)
 {
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (docbook);
     YelpDocument *document = YELP_DOCUMENT (docbook);
     GFile *file = NULL;
     gchar *filepath = NULL;
@@ -469,7 +469,7 @@ docbook_process (YelpDocbookDocument *docbook)
 static void
 docbook_disconnect (YelpDocbookDocument *docbook)
 {
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (docbook);
     if (priv->chunk_ready) {
         g_signal_handler_disconnect (priv->transform, priv->chunk_ready);
         priv->chunk_ready = 0;
@@ -491,7 +491,7 @@ docbook_disconnect (YelpDocbookDocument *docbook)
 static gboolean
 docbook_reload (YelpDocbookDocument *docbook)
 {
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (docbook);
 
     if (priv->index_running || priv->process_running || priv->transform_running)
         return TRUE;
@@ -521,7 +521,7 @@ docbook_monitor_changed   (GFileMonitor         *monitor,
                            GFileMonitorEvent     event_type,
                            YelpDocbookDocument  *docbook)
 {
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (docbook);
 
     if (g_get_monotonic_time() - priv->reload_time < 1000)
         return;
@@ -546,7 +546,7 @@ docbook_walk (YelpDocbookDocument *docbook)
     xmlChar     *keywords = NULL;
     xmlNodePtr   cur, old_cur;
     gboolean chunkQ;
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (docbook);
     YelpDocument *document = YELP_DOCUMENT (docbook);
 
     debug_print (DB_FUNCTION, "entering\n");
@@ -853,7 +853,7 @@ transform_chunk_ready (YelpTransform       *transform,
                        gchar               *chunk_id,
                        YelpDocbookDocument *docbook)
 {
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (docbook);
     gchar *content;
 
     debug_print (DB_FUNCTION, "entering\n");
@@ -880,7 +880,7 @@ static void
 transform_finished (YelpTransform       *transform,
                     YelpDocbookDocument *docbook)
 {
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (docbook);
     YelpDocument *document = YELP_DOCUMENT (docbook);
     gchar *docuri;
     GError *error;
@@ -916,7 +916,7 @@ static void
 transform_error (YelpTransform       *transform,
                  YelpDocbookDocument *docbook)
 {
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (docbook);
     GError *error;
 
     debug_print (DB_FUNCTION, "entering\n");
@@ -938,7 +938,7 @@ static void
 transform_finalized (YelpDocbookDocument *docbook,
                      gpointer             transform)
 {
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (docbook);
 
     debug_print (DB_FUNCTION, "entering\n");
 
@@ -1007,7 +1007,7 @@ docbook_index_chunk (DocbookIndexData *index)
     gchar *title = NULL;
     gchar *keywords;
     GSList *chunks = NULL;
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (index->docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (index->docbook);
 
     id = xmlGetProp (index->cur, BAD_CAST "id");
     if (!id)
@@ -1092,7 +1092,7 @@ docbook_index_threaded (YelpDocbookDocument *docbook)
     GFile *file = NULL;
     gchar *filename = NULL;
     YelpUri *uri;
-    YelpDocbookDocumentPrivate *priv = GET_PRIV (docbook);
+    YelpDocbookDocumentPrivate *priv = yelp_docbook_document_get_instance_private (docbook);
 
     uri = yelp_document_get_uri (YELP_DOCUMENT (docbook));
     file = yelp_uri_get_file (uri);
@@ -1153,7 +1153,7 @@ docbook_index (YelpDocument *document)
     if (done)
         return;
 
-    priv = GET_PRIV (document);
+    priv = yelp_docbook_document_get_instance_private (YELP_DOCBOOK_DOCUMENT (document));
     g_object_ref (document);
     priv->index = g_thread_new ("docbook-index",
                                 (GThreadFunc)(GCallback) docbook_index_threaded,

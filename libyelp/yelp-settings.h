@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2004-2009 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2004-2020 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -32,13 +32,13 @@ G_BEGIN_DECLS
 #define YELP_IS_SETTINGS_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), YELP_TYPE_SETTINGS))
 #define YELP_SETTINGS_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_SETTINGS, YelpSettingsClass))
 
-typedef struct _YelpSettings      YelpSettings;
-typedef struct _YelpSettingsClass YelpSettingsClass;
-typedef struct _YelpSettingsPriv  YelpSettingsPriv;
+typedef struct _YelpSettings        YelpSettings;
+typedef struct _YelpSettingsClass   YelpSettingsClass;
+typedef struct _YelpSettingsPrivate YelpSettingsPrivate;
 
 struct _YelpSettings {
-    GObject           parent;
-    YelpSettingsPriv *priv;
+    GObject              parent;
+    YelpSettingsPrivate *priv;
 };
 
 struct _YelpSettingsClass {

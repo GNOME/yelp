@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2009 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2009-2020 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -115,9 +115,6 @@ static gboolean       xml_node_is_ns_name       (xmlNodePtr            node,
                                                  const xmlChar        *name);
 
 
-G_DEFINE_TYPE (YelpMallardDocument, yelp_mallard_document, YELP_TYPE_DOCUMENT)
-#define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_MALLARD_DOCUMENT, YelpMallardDocumentPrivate))
-
 typedef struct _YelpMallardDocumentPrivate  YelpMallardDocumentPrivate;
 struct _YelpMallardDocumentPrivate {
     MallardState   state;
@@ -139,6 +136,8 @@ struct _YelpMallardDocumentPrivate {
     xmlXPathCompExprPtr  normalize;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE (YelpMallardDocument, yelp_mallard_document, YELP_TYPE_DOCUMENT)
+
 /******************************************************************************/
 
 static void
@@ -152,14 +151,12 @@ yelp_mallard_document_class_init (YelpMallardDocumentClass *klass)
 
     document_class->request_page = mallard_request_page;
     document_class->index = mallard_index;
-
-    g_type_class_add_private (klass, sizeof (YelpMallardDocumentPrivate));
 }
 
 static void
 yelp_mallard_document_init (YelpMallardDocument *mallard)
 {
-    YelpMallardDocumentPrivate *priv = GET_PRIV (mallard);
+    YelpMallardDocumentPrivate *priv = yelp_mallard_document_get_instance_private (mallard);
     xmlNodePtr cur;
 
     g_mutex_init (&priv->mutex);
@@ -185,7 +182,8 @@ static void
 yelp_mallard_document_dispose (GObject *object)
 {
     gint i;
-    YelpMallardDocumentPrivate *priv = GET_PRIV (object);
+    YelpMallardDocumentPrivate *priv =
+        yelp_mallard_document_get_instance_private (YELP_MALLARD_DOCUMENT (object));
 
     if (priv->monitors != NULL) {
         for (i = 0; priv->monitors[i]; i++) {
@@ -201,7 +199,8 @@ yelp_mallard_document_dispose (GObject *object)
 static void
 yelp_mallard_document_finalize (GObject *object)
 {
-    YelpMallardDocumentPrivate *priv = GET_PRIV (object);
+    YelpMallardDocumentPrivate *priv =
+        yelp_mallard_document_get_instance_private (YELP_MALLARD_DOCUMENT (object));
 
     g_mutex_clear (&priv->mutex);
     g_hash_table_destroy (priv->pages_hash);
@@ -228,7 +227,7 @@ yelp_mallard_document_new (YelpUri *uri)
     mallard = (YelpMallardDocument *) g_object_new (YELP_TYPE_MALLARD_DOCUMENT,
                                                     "document-uri", uri,
                                                     NULL);
-    priv = GET_PRIV (mallard);
+    priv = yelp_mallard_document_get_instance_private (mallard);
 
     yelp_document_set_page_id ((YelpDocument *) mallard, NULL, "index");
     yelp_document_set_page_id ((YelpDocument *) mallard, "index", "index");
@@ -259,7 +258,8 @@ mallard_request_page (YelpDocument         *document,
                       gpointer              user_data,
                       GDestroyNotify        notify)
 {
-    YelpMallardDocumentPrivate *priv = GET_PRIV (document);
+    YelpMallardDocumentPrivate *priv =
+        yelp_mallard_document_get_instance_private (YELP_MALLARD_DOCUMENT (document));
     gchar *docuri;
     GError *error;
     gboolean handled;
@@ -326,7 +326,7 @@ mallard_request_page (YelpDocument         *document,
 static void
 mallard_think (YelpMallardDocument *mallard)
 {
-    YelpMallardDocumentPrivate *priv = GET_PRIV (mallard);
+    YelpMallardDocumentPrivate *priv = yelp_mallard_document_get_instance_private (mallard);
     GError *error = NULL;
     gboolean editor_mode;
 
@@ -442,7 +442,7 @@ mallard_try_run (YelpMallardDocument *mallard,
                  const gchar         *page_id)
 {
     /* We expect to be in a locked mutex when this function is called. */
-    YelpMallardDocumentPrivate *priv = GET_PRIV (mallard);
+    YelpMallardDocumentPrivate *priv = yelp_mallard_document_get_instance_private (mallard);
     MallardPageData *page_data = NULL;
     gchar *real_id = NULL;
     GError *error;
@@ -507,7 +507,7 @@ mallard_page_data_cancel (MallardPageData *page_data)
 static void
 mallard_page_data_walk (MallardPageData *page_data)
 {
-    YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
+    YelpMallardDocumentPrivate *priv = yelp_mallard_document_get_instance_private (page_data->mallard);
     xmlParserCtxtPtr parserCtxt = NULL;
     xmlChar *id = NULL;
 
@@ -649,7 +649,8 @@ mallard_page_data_info (MallardPageData *page_data,
                 if (xmlStrEqual (type, BAD_CAST "sort"))
                     page_data->sort_title = TRUE;
                 if (xmlStrEqual (type, BAD_CAST "text")) {
-                    YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
+                    YelpMallardDocumentPrivate *priv =
+                        yelp_mallard_document_get_instance_private (page_data->mallard);
                     xmlXPathObjectPtr obj;
                     page_data->xpath->node = child;
                     obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
@@ -663,7 +664,7 @@ mallard_page_data_info (MallardPageData *page_data,
             }
         }
         else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "desc")) {
-            YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
+            YelpMallardDocumentPrivate *priv = yelp_mallard_document_get_instance_private (page_data->mallard);
             xmlXPathObjectPtr obj;
             page_data->xpath->node = child;
             obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
@@ -676,7 +677,7 @@ mallard_page_data_info (MallardPageData *page_data,
         else if (xml_node_is_ns_name (child, MALLARD_NS, BAD_CAST "keywords")) {
             /* FIXME: multiple keywords? same for desc/title */
 
-            YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
+            YelpMallardDocumentPrivate *priv = yelp_mallard_document_get_instance_private (page_data->mallard);
             xmlXPathObjectPtr obj;
             page_data->xpath->node = child;
             obj = xmlXPathCompiledEval (priv->normalize, page_data->xpath);
@@ -721,7 +722,7 @@ static void
 mallard_page_data_run (MallardPageData *page_data)
 {
     YelpSettings *settings = yelp_settings_get_default ();
-    YelpMallardDocumentPrivate *priv = GET_PRIV (page_data->mallard);
+    YelpMallardDocumentPrivate *priv = yelp_mallard_document_get_instance_private (page_data->mallard);
     gchar **params = NULL;
 
     mallard_page_data_cancel (page_data);
@@ -790,7 +791,7 @@ transform_chunk_ready (YelpTransform   *transform,
               YELP_IS_MALLARD_DOCUMENT (page_data->mallard));
     g_assert (transform == page_data->transform);
 
-    priv = GET_PRIV (page_data->mallard);
+    priv = yelp_mallard_document_get_instance_private (page_data->mallard);
 
     if (priv->state == MALLARD_STATE_STOP) {
         mallard_page_data_cancel (page_data);
@@ -819,7 +820,7 @@ transform_finished (YelpTransform   *transform,
               YELP_IS_MALLARD_DOCUMENT (page_data->mallard));
     g_assert (transform == page_data->transform);
 
-    priv = GET_PRIV (page_data->mallard);
+    priv = yelp_mallard_document_get_instance_private (page_data->mallard);
 
     if (priv->state == MALLARD_STATE_STOP) {
         mallard_page_data_cancel (page_data);
@@ -844,7 +845,7 @@ transform_error (YelpTransform   *transform,
               YELP_IS_MALLARD_DOCUMENT (page_data->mallard));
     g_assert (transform == page_data->transform);
 
-    priv = GET_PRIV (page_data->mallard);
+    priv = yelp_mallard_document_get_instance_private (page_data->mallard);
 
     if (priv->state == MALLARD_STATE_STOP) {
         mallard_page_data_cancel (page_data);
@@ -990,7 +991,7 @@ mallard_index_threaded (YelpMallardDocument *mallard)
     GHashTable *ids;
     gchar *doc_uri;
     YelpUri *document_uri;
-    YelpMallardDocumentPrivate *priv = GET_PRIV (mallard);
+    YelpMallardDocumentPrivate *priv = yelp_mallard_document_get_instance_private (mallard);
 
     document_uri = yelp_document_get_uri (YELP_DOCUMENT (mallard));
     doc_uri = yelp_uri_get_document_uri (document_uri);
@@ -1125,7 +1126,7 @@ mallard_index (YelpDocument *document)
     if (done)
         return;
 
-    priv = GET_PRIV (document);
+    priv = yelp_mallard_document_get_instance_private (YELP_MALLARD_DOCUMENT (document));
     g_object_ref (document);
     priv->index = g_thread_new ("mallard-index",
                                 (GThreadFunc)(GCallback) mallard_index_threaded,
@@ -1143,7 +1144,7 @@ mallard_monitor_changed (GFileMonitor         *monitor,
     gchar **ids;
     gint i;
     xmlNodePtr cur;
-    YelpMallardDocumentPrivate *priv = GET_PRIV (mallard);
+    YelpMallardDocumentPrivate *priv = yelp_mallard_document_get_instance_private (mallard);
 
     /* Exiting the thinking thread would require a fair amount of retooling.
        For now, we'll just fail to auto-reload if that's still happening.

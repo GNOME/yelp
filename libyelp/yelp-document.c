@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003-2009 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2003-2020 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -64,7 +64,7 @@ struct _Hash {
     GDestroyNotify  destroy;
 };
 
-struct _YelpDocumentPriv {
+struct _YelpDocumentPrivate {
     GMutex  mutex;
 
     GSList *reqs_all;         /* Holds canonical refs, only free from here */
@@ -97,9 +97,7 @@ struct _YelpDocumentPriv {
     GError *idle_error;
 };
 
-G_DEFINE_TYPE (YelpDocument, yelp_document, G_TYPE_OBJECT)
-
-#define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_DOCUMENT, YelpDocumentPriv))
+G_DEFINE_TYPE_WITH_PRIVATE (YelpDocument, yelp_document, G_TYPE_OBJECT)
 
 static void           yelp_document_dispose     (GObject              *object);
 static void           yelp_document_finalize    (GObject              *object);
@@ -292,16 +290,14 @@ yelp_document_class_init (YelpDocumentClass *klass)
                                                           YELP_TYPE_URI,
                                                           G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE |
                                                           G_PARAM_STATIC_STRINGS));
-
-    g_type_class_add_private (klass, sizeof (YelpDocumentPriv));
 }
 
 static void
 yelp_document_init (YelpDocument *document)
 {
-    YelpDocumentPriv *priv;
+    YelpDocumentPrivate *priv;
 
-    document->priv = priv = GET_PRIV (document);
+    document->priv = priv = yelp_document_get_instance_private (document);
 
     g_mutex_init (&priv->mutex);
 
@@ -1263,7 +1259,7 @@ yelp_document_signal (YelpDocument       *document,
 static gboolean
 yelp_document_error_pending_idle (YelpDocument *document)
 {
-    YelpDocumentPriv *priv = GET_PRIV (document);
+    YelpDocumentPrivate *priv = yelp_document_get_instance_private (document);
     GSList *cur;
     Request *request;
 
@@ -1291,7 +1287,7 @@ void
 yelp_document_error_pending (YelpDocument *document,
 			     const GError *error)
 {
-    YelpDocumentPriv *priv = GET_PRIV (document);
+    YelpDocumentPrivate *priv = yelp_document_get_instance_private (document);
 
     g_assert (document != NULL && YELP_IS_DOCUMENT (document));
 
@@ -1433,7 +1429,7 @@ static gboolean
 request_idle_contents (Request *request)
 {
     YelpDocument *document;
-    YelpDocumentPriv *priv;
+    YelpDocumentPrivate *priv;
     YelpDocumentCallback callback = NULL;
     gpointer user_data;
 
@@ -1445,7 +1441,7 @@ request_idle_contents (Request *request)
     }
 
     document = g_object_ref (request->document);
-    priv = GET_PRIV (document);
+    priv = yelp_document_get_instance_private (document);
 
     g_mutex_lock (&document->priv->mutex);
 
@@ -1499,7 +1495,7 @@ static gboolean
 request_idle_error (Request *request)
 {
     YelpDocument *document;
-    YelpDocumentPriv *priv;
+    YelpDocumentPrivate *priv;
     YelpDocumentCallback callback = NULL;
     GError *error = NULL;
     gpointer user_data;
@@ -1512,7 +1508,7 @@ request_idle_error (Request *request)
     }
 
     document = g_object_ref (request->document);
-    priv = GET_PRIV (document);
+    priv = yelp_document_get_instance_private (document);
 
     g_mutex_lock (&priv->mutex);
 

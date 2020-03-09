@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2011 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2011-2020 Shaun McCance <shaunm@gnome.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -66,13 +66,14 @@ enum {
 
 G_DEFINE_TYPE_WITH_CODE (YelpSqliteStorage, yelp_sqlite_storage, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (YELP_TYPE_STORAGE,
-                                                yelp_sqlite_storage_iface_init))
-#define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SQLITE_STORAGE, YelpSqliteStoragePrivate))
+                                                yelp_sqlite_storage_iface_init)
+                         G_ADD_PRIVATE (YelpSqliteStorage) )
 
 static void
 yelp_sqlite_storage_finalize (GObject *object)
 {
-    YelpSqliteStoragePrivate *priv = GET_PRIV (object);
+    YelpSqliteStoragePrivate *priv =
+        yelp_sqlite_storage_get_instance_private (YELP_SQLITE_STORAGE (object));
 
     if (priv->filename)
         g_free (priv->filename);
@@ -88,7 +89,7 @@ yelp_sqlite_storage_finalize (GObject *object)
 static void
 yelp_sqlite_storage_init (YelpSqliteStorage *storage)
 {
-    YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
+    YelpSqliteStoragePrivate *priv = yelp_sqlite_storage_get_instance_private (storage);
     g_mutex_init (&priv->mutex);
 }
 
@@ -97,7 +98,8 @@ yelp_sqlite_storage_constructed (GObject *object)
 {
     int status;
     sqlite3_stmt *stmt = NULL;
-    YelpSqliteStoragePrivate *priv = GET_PRIV (object);
+    YelpSqliteStoragePrivate *priv =
+        yelp_sqlite_storage_get_instance_private (YELP_SQLITE_STORAGE (object));
 
     if (priv->filename != NULL)
         status = sqlite3_open (priv->filename, &(priv->db));
@@ -137,8 +139,6 @@ yelp_sqlite_storage_class_init (YelpSqliteStorageClass *klass)
     object_class->get_property = yelp_sqlite_storage_get_property;
     object_class->set_property = yelp_sqlite_storage_set_property;
 
-    g_type_class_add_private (klass, sizeof (YelpSqliteStoragePrivate));
-
     g_object_class_install_property (object_class,
                                      PROP_FILENAME,
                                      g_param_spec_string ("filename",
@@ -176,7 +176,8 @@ yelp_sqlite_storage_get_property (GObject    *object,
                                   GValue     *value,
                                   GParamSpec *pspec)
 {
-    YelpSqliteStoragePrivate *priv = GET_PRIV (object);
+    YelpSqliteStoragePrivate *priv =
+        yelp_sqlite_storage_get_instance_private (YELP_SQLITE_STORAGE (object));
 
     switch (prop_id) {
     case PROP_FILENAME:
@@ -194,7 +195,8 @@ yelp_sqlite_storage_set_property (GObject      *object,
                                   const GValue *value,
                                   GParamSpec   *pspec)
 {
-    YelpSqliteStoragePrivate *priv = GET_PRIV (object);
+    YelpSqliteStoragePrivate *priv =
+        yelp_sqlite_storage_get_instance_private (YELP_SQLITE_STORAGE (object));
 
     switch (prop_id) {
     case PROP_FILENAME:
@@ -218,7 +220,8 @@ yelp_sqlite_storage_update (YelpStorage   *storage,
                             const gchar   *text)
 {
     sqlite3_stmt *stmt = NULL;
-    YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
+    YelpSqliteStoragePrivate *priv =
+        yelp_sqlite_storage_get_instance_private (YELP_SQLITE_STORAGE (storage));
 
     g_mutex_lock (&priv->mutex);
 
@@ -256,7 +259,9 @@ yelp_sqlite_storage_search (YelpStorage   *storage,
     sqlite3_stmt *stmt = NULL;
     GVariantBuilder builder;
     GVariant *ret;
-    YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
+    YelpSqliteStoragePrivate *priv =
+        yelp_sqlite_storage_get_instance_private (YELP_SQLITE_STORAGE (storage));
+
 
     g_mutex_lock (&priv->mutex);
 
@@ -290,7 +295,8 @@ yelp_sqlite_storage_get_root_title (YelpStorage *storage,
 {
     gchar *ret = NULL;
     sqlite3_stmt *stmt = NULL;
-    YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
+    YelpSqliteStoragePrivate *priv =
+        yelp_sqlite_storage_get_instance_private (YELP_SQLITE_STORAGE (storage));
 
     g_mutex_lock (&priv->mutex);
 
@@ -313,7 +319,8 @@ yelp_sqlite_storage_set_root_title (YelpStorage *storage,
                                     const gchar *title)
 {
     sqlite3_stmt *stmt = NULL;
-    YelpSqliteStoragePrivate *priv = GET_PRIV (storage);
+    YelpSqliteStoragePrivate *priv =
+        yelp_sqlite_storage_get_instance_private (YELP_SQLITE_STORAGE (storage));
 
     g_mutex_lock (&priv->mutex);
 

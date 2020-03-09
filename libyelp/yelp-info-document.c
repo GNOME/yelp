@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
  * Copyright (C) 2007 Don Scorgie <dscorgie@svn.gnome.org>
- * Copyright (C) 2010 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2010-2020 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -66,6 +66,7 @@ struct _YelpInfoDocumentPrivate {
     gchar   *visit_prev_id;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE (YelpInfoDocument, yelp_info_document, YELP_TYPE_DOCUMENT)
 
 static void           yelp_info_document_dispose          (GObject                *object);
 static void           yelp_info_document_finalize         (GObject                *object);
@@ -97,9 +98,6 @@ static gboolean       info_sections_visit       (GtkTreeModel         *model,
 static void           info_document_disconnect  (YelpInfoDocument     *info);
 
 
-G_DEFINE_TYPE (YelpInfoDocument, yelp_info_document, YELP_TYPE_DOCUMENT)
-#define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_INFO_DOCUMENT, YelpInfoDocumentPrivate))
-
 static void
 yelp_info_document_class_init (YelpInfoDocumentClass *klass)
 {
@@ -110,14 +108,12 @@ yelp_info_document_class_init (YelpInfoDocumentClass *klass)
     object_class->finalize = yelp_info_document_finalize;
 
     document_class->request_page = info_request_page;
-
-    g_type_class_add_private (klass, sizeof (YelpInfoDocumentPrivate));
 }
 
 static void
 yelp_info_document_init (YelpInfoDocument *info)
 {
-    YelpInfoDocumentPrivate *priv = GET_PRIV (info);
+    YelpInfoDocumentPrivate *priv = yelp_info_document_get_instance_private (info);
 
     priv->state = INFO_STATE_BLANK;
     priv->xmldoc = NULL;
@@ -127,7 +123,8 @@ yelp_info_document_init (YelpInfoDocument *info)
 static void
 yelp_info_document_dispose (GObject *object)
 {
-    YelpInfoDocumentPrivate *priv = GET_PRIV (object);
+    YelpInfoDocumentPrivate *priv =
+        yelp_info_document_get_instance_private (YELP_INFO_DOCUMENT (object));
 
     if (priv->sections) {
         g_object_unref (priv->sections);
@@ -145,7 +142,8 @@ yelp_info_document_dispose (GObject *object)
 static void
 yelp_info_document_finalize (GObject *object)
 {
-    YelpInfoDocumentPrivate *priv = GET_PRIV (object);
+    YelpInfoDocumentPrivate *priv =
+        yelp_info_document_get_instance_private (YELP_INFO_DOCUMENT (object));
 
     if (priv->xmldoc)
         xmlFreeDoc (priv->xmldoc);
@@ -182,7 +180,8 @@ info_request_page (YelpDocument         *document,
                    gpointer              user_data,
                    GDestroyNotify        notify)
 {
-    YelpInfoDocumentPrivate *priv = GET_PRIV (document);
+    YelpInfoDocumentPrivate *priv =
+        yelp_info_document_get_instance_private (YELP_INFO_DOCUMENT (document));
     gchar *docuri;
     GError *error;
     gboolean handled;
@@ -244,7 +243,7 @@ transform_chunk_ready (YelpTransform    *transform,
                        gchar            *chunk_id,
                        YelpInfoDocument *info)
 {
-    YelpInfoDocumentPrivate *priv = GET_PRIV (info);
+    YelpInfoDocumentPrivate *priv = yelp_info_document_get_instance_private (info);
     gchar *content;
 
     g_assert (transform == priv->transform);
@@ -274,7 +273,7 @@ static void
 transform_finished (YelpTransform    *transform,
                     YelpInfoDocument *info)
 {
-    YelpInfoDocumentPrivate *priv = GET_PRIV (info);
+    YelpInfoDocumentPrivate *priv = yelp_info_document_get_instance_private (info);
     gchar *docuri;
     GError *error;
 
@@ -309,7 +308,7 @@ static void
 transform_error (YelpTransform    *transform,
                  YelpInfoDocument *info)
 {
-    YelpInfoDocumentPrivate *priv = GET_PRIV (info);
+    YelpInfoDocumentPrivate *priv = yelp_info_document_get_instance_private (info);
     GError *error;
 
     g_assert (transform == priv->transform);
@@ -330,7 +329,7 @@ static void
 transform_finalized (YelpInfoDocument *info,
                      gpointer          transform)
 {
-    YelpInfoDocumentPrivate *priv = GET_PRIV (info);
+    YelpInfoDocumentPrivate *priv = yelp_info_document_get_instance_private (info);
  
     if (priv->xmldoc)
 	xmlFreeDoc (priv->xmldoc);
@@ -345,7 +344,7 @@ transform_finalized (YelpInfoDocument *info,
 static void
 info_document_process (YelpInfoDocument *info)
 {
-    YelpInfoDocumentPrivate *priv = GET_PRIV (info);
+    YelpInfoDocumentPrivate *priv = yelp_info_document_get_instance_private (info);
     GFile *file = NULL;
     gchar *filepath = NULL;
     GError *error;
@@ -429,7 +428,7 @@ info_sections_visit (GtkTreeModel     *model,
                      GtkTreeIter      *iter,
                      YelpInfoDocument *info)
 {
-    YelpInfoDocumentPrivate *priv = GET_PRIV (info);
+    YelpInfoDocumentPrivate *priv = yelp_info_document_get_instance_private (info);
     gchar *page_id, *title;
 
     gtk_tree_model_get (model, iter,
@@ -458,7 +457,7 @@ info_sections_visit (GtkTreeModel     *model,
 static void
 info_document_disconnect (YelpInfoDocument *info)
 {
-    YelpInfoDocumentPrivate *priv = GET_PRIV (info);
+    YelpInfoDocumentPrivate *priv = yelp_info_document_get_instance_private (info);
     if (priv->chunk_ready) {
         g_signal_handler_disconnect (priv->transform, priv->chunk_ready);
         priv->chunk_ready = 0;

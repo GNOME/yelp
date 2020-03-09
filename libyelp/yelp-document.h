@@ -35,9 +35,9 @@ G_BEGIN_DECLS
 #define YELP_IS_DOCUMENT_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), YELP_TYPE_DOCUMENT))
 #define YELP_DOCUMENT_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_DOCUMENT, YelpDocumentClass))
 
-typedef struct _YelpDocument      YelpDocument;
-typedef struct _YelpDocumentClass YelpDocumentClass;
-typedef struct _YelpDocumentPriv  YelpDocumentPriv;
+typedef struct _YelpDocument         YelpDocument;
+typedef struct _YelpDocumentClass    YelpDocumentClass;
+typedef struct _YelpDocumentPrivate  YelpDocumentPrivate;
 
 typedef enum {
     YELP_DOCUMENT_SIGNAL_CONTENTS,
@@ -51,8 +51,8 @@ typedef void      (*YelpDocumentCallback)      (YelpDocument         *document,
                                                 GError               *error);
 
 struct _YelpDocument {
-    GObject           parent;
-    YelpDocumentPriv *priv;
+    GObject              parent;
+    YelpDocumentPrivate *priv;
 };
 
 struct _YelpDocumentClass {

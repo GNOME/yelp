@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2010 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2010-2020 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -97,11 +97,6 @@ static void          bookmarks_changed                 (GSettings             *s
 static gboolean      window_resized                    (YelpWindow            *window,
                                                         YelpApplication       *app);
 
-G_DEFINE_TYPE_WITH_CODE (YelpApplication, yelp_application, GTK_TYPE_APPLICATION,
-                         G_IMPLEMENT_INTERFACE (YELP_TYPE_BOOKMARKS,
-                                                yelp_application_iface_init))
-#define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_APPLICATION, YelpApplicationPrivate))
-
 typedef struct _YelpApplicationPrivate YelpApplicationPrivate;
 struct _YelpApplicationPrivate {
     GSList *windows;
@@ -116,10 +111,15 @@ struct _YelpApplicationPrivate {
     GHashTable *docsettings;
 };
 
+G_DEFINE_TYPE_WITH_CODE (YelpApplication, yelp_application, GTK_TYPE_APPLICATION,
+                         G_IMPLEMENT_INTERFACE (YELP_TYPE_BOOKMARKS,
+                                                yelp_application_iface_init)
+                         G_ADD_PRIVATE (YelpApplication) )
+
 static void
 yelp_application_init (YelpApplication *app)
 {
-    YelpApplicationPrivate *priv = GET_PRIV (app);
+    YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
     priv->docsettings = g_hash_table_new_full (g_str_hash, g_str_equal,
                                                (GDestroyNotify) g_free,
                                                (GDestroyNotify) g_object_unref);
@@ -173,8 +173,6 @@ yelp_application_class_init (YelpApplicationClass *klass)
 
     object_class->dispose = yelp_application_dispose;
     object_class->finalize = yelp_application_finalize;
-
-    g_type_class_add_private (klass, sizeof (YelpApplicationPrivate));
 }
 
 static void
@@ -188,7 +186,7 @@ yelp_application_iface_init (YelpBookmarksInterface *iface)
 static void
 yelp_application_dispose (GObject *object)
 {
-    YelpApplicationPrivate *priv = GET_PRIV (object);
+    YelpApplicationPrivate *priv = yelp_application_get_instance_private (YELP_APPLICATION (object));
 
     if (priv->show_cursor_action) {
         g_object_unref (priv->show_cursor_action);
@@ -216,7 +214,7 @@ yelp_application_dispose (GObject *object)
 static void
 yelp_application_finalize (GObject *object)
 {
-    YelpApplicationPrivate *priv = GET_PRIV (object);
+    YelpApplicationPrivate *priv = yelp_application_get_instance_private (YELP_APPLICATION (object));
 
     g_hash_table_destroy (priv->windows_by_document);
     g_hash_table_destroy (priv->docsettings);
@@ -263,7 +261,7 @@ static void
 yelp_application_startup (GApplication *application)
 {
     YelpApplication *app = YELP_APPLICATION (application);
-    YelpApplicationPrivate *priv = GET_PRIV (app);
+    YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
     gchar *keyfile;
     YelpSettings *settings;
 
@@ -323,7 +321,7 @@ application_adjust_font (GAction         *action,
                          GVariant        *parameter,
                          YelpApplication *app)
 {
-    YelpApplicationPrivate *priv = GET_PRIV (app);
+    YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
     gint adjustment = g_settings_get_int (priv->gsettings, "font-adjustment");
     gint adjust = g_str_equal (g_action_get_name (action), "yelp-application-larger-text") ? 1 : -1;
 
@@ -336,7 +334,7 @@ application_adjust_font (GAction         *action,
 static void
 application_set_font_sensitivity (YelpApplication *app)
 {
-    YelpApplicationPrivate *priv = GET_PRIV (app);
+    YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
     YelpSettings *settings = yelp_settings_get_default ();
     GParamSpec *spec = g_object_class_find_property ((GObjectClass *) YELP_SETTINGS_GET_CLASS (settings),
                                                      "font-adjustment");
@@ -457,7 +455,7 @@ application_uri_resolved (YelpUri             *uri,
     YelpWindow *window;
     gchar *doc_uri;
     GdkWindow *gdk_window;
-    YelpApplicationPrivate *priv = GET_PRIV (data->app);
+    YelpApplicationPrivate *priv = yelp_application_get_instance_private (data->app);
     GFile *gfile;
 
     /* We held the application while resolving the URI, so unhold now. */
@@ -545,7 +543,7 @@ application_window_deleted (YelpWindow      *window,
                             YelpApplication *app)
 {
     gchar *doc_uri; /* owned by windows_by_document */
-    YelpApplicationPrivate *priv = GET_PRIV (app);
+    YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
 
     priv->windows = g_slist_remove (priv->windows, window);
     doc_uri = g_object_get_data (G_OBJECT (window), "doc_uri");
@@ -558,7 +556,7 @@ application_window_deleted (YelpWindow      *window,
 GSettings *
 application_get_doc_settings (YelpApplication *app, const gchar *doc_uri)
 {
-    YelpApplicationPrivate *priv = GET_PRIV (app);
+    YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
     GSettings *settings = g_hash_table_lookup (priv->docsettings, doc_uri);
     if (settings == NULL) {
         gchar *tmp, *key, *settings_path;
@@ -756,7 +754,7 @@ static gboolean
 window_resized (YelpWindow        *window,
                 YelpApplication   *app)
 {
-    YelpApplicationPrivate *priv = GET_PRIV (app);
+    YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
     YelpUri *uri;
     gchar *doc_uri;
     GSettings *settings;

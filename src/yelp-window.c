@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2010 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2010-2020 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -151,9 +151,6 @@ enum {
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (YelpWindow, yelp_window, GTK_TYPE_APPLICATION_WINDOW)
-#define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_WINDOW, YelpWindowPrivate))
-
 typedef struct _YelpWindowPrivate YelpWindowPrivate;
 struct _YelpWindowPrivate {
     YelpApplication *application;
@@ -187,6 +184,8 @@ struct _YelpWindowPrivate {
 
     gboolean use_header;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE (YelpWindow, yelp_window, GTK_TYPE_APPLICATION_WINDOW)
 
 static void
 yelp_window_init (YelpWindow *window)
@@ -222,14 +221,12 @@ yelp_window_class_init (YelpWindowClass *klass)
                       0, NULL, NULL,
                       g_cclosure_marshal_VOID__VOID,
                       G_TYPE_NONE, 0);
-
-    g_type_class_add_private (klass, sizeof (YelpWindowPrivate));
 }
 
 static void
 yelp_window_dispose (GObject *object)
 {
-    YelpWindowPrivate *priv = GET_PRIV (object);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (YELP_WINDOW (object));
 
     if (priv->bookmarks_changed) {
         g_signal_handler_disconnect (priv->application, priv->bookmarks_changed);
@@ -247,7 +244,7 @@ yelp_window_dispose (GObject *object)
 static void
 yelp_window_finalize (GObject *object)
 {
-    YelpWindowPrivate *priv = GET_PRIV (object);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (YELP_WINDOW (object));
     g_free (priv->doc_uri);
     G_OBJECT_CLASS (yelp_window_parent_class)->finalize (object);
 }
@@ -258,7 +255,7 @@ yelp_window_get_property (GObject    *object,
                           GValue     *value,
                           GParamSpec *pspec)
 {
-    YelpWindowPrivate *priv = GET_PRIV (object);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (YELP_WINDOW (object));
     switch (prop_id) {
     case PROP_APPLICATION:
         g_value_set_object (value, priv->application);
@@ -275,7 +272,7 @@ yelp_window_set_property (GObject     *object,
                           const GValue *value,
                           GParamSpec   *pspec)
 {
-    YelpWindowPrivate *priv = GET_PRIV (object);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (YELP_WINDOW (object));
     switch (prop_id) {
     case PROP_APPLICATION:
         priv->application = g_value_get_object (value);
@@ -295,7 +292,7 @@ window_construct (YelpWindow *window)
     GtkCssProvider *css;
     GtkSizeGroup *size_group;
     GMenu *menu, *section;
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     GtkStyleContext *headerbar_context;
 
     const GActionEntry entries[] = {
@@ -564,7 +561,7 @@ void
 yelp_window_load_uri (YelpWindow  *window,
                       YelpUri     *uri)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     yelp_view_load_uri (priv->view, uri);
 }
@@ -573,7 +570,7 @@ YelpUri *
 yelp_window_get_uri (YelpWindow *window)
 {
     YelpUri *uri;
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     g_object_get (G_OBJECT (priv->view), "yelp-uri", &uri, NULL);
     return uri;
 }
@@ -583,7 +580,7 @@ yelp_window_get_geometry (YelpWindow  *window,
                           gint        *width,
                           gint        *height)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     *width = priv->width;
     *height = priv->height;
 }
@@ -598,7 +595,7 @@ action_new_window (GSimpleAction *action,
     YelpUri *yuri;
     gchar *uri = NULL;
     YelpWindow *window = YELP_WINDOW (userdata);
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     g_object_get (priv->view, "yelp-uri", &yuri, NULL);
     uri = yelp_uri_get_document_uri (yuri);
@@ -622,7 +619,7 @@ action_search (GSimpleAction *action,
                GVariant      *parameter,
                gpointer       userdata)
 {
-    YelpWindowPrivate *priv = GET_PRIV (userdata);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (userdata);
 
     gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
     gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), TRUE);
@@ -634,7 +631,7 @@ action_find (GSimpleAction *action,
              GVariant      *parameter,
              gpointer       userdata)
 {
-    YelpWindowPrivate *priv = GET_PRIV (userdata);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (userdata);
 
     gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), FALSE);
     gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), TRUE);
@@ -646,7 +643,7 @@ action_go_all (GSimpleAction *action,
                GVariant      *parameter,
                gpointer       userdata)
 {
-    YelpWindowPrivate *priv = GET_PRIV (userdata);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (userdata);
     yelp_view_load (priv->view, "help-list:");
 }
 
@@ -655,7 +652,7 @@ action_ctrll (GSimpleAction *action,
               GVariant      *parameter,
               gpointer       userdata)
 {
-    YelpWindowPrivate *priv = GET_PRIV (userdata);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (userdata);
     YelpUri *yuri;
     gchar *uri = NULL;
 
@@ -723,7 +720,7 @@ window_map_event (YelpWindow  *window,
                   GdkEvent    *event,
                   gpointer     user_data)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     priv->configured = TRUE;
     return FALSE;
 }
@@ -733,7 +730,7 @@ window_configure_event (YelpWindow         *window,
                         GdkEventConfigure  *event,
                         gpointer            user_data)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     gboolean skip = TRUE;
     if (priv->width != event->width) {
         skip = FALSE;
@@ -762,7 +759,7 @@ window_configure_event (YelpWindow         *window,
 static gboolean
 window_resize_signal (YelpWindow *window)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     g_signal_emit (window, signals[RESIZE_EVENT], 0);
     priv->resize_signal = 0;
     return FALSE;
@@ -773,7 +770,7 @@ window_key_press (YelpWindow  *window,
                   GdkEventKey *event,
                   gpointer     userdata)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     if (gtk_revealer_get_reveal_child (GTK_REVEALER (priv->find_bar)))
         return FALSE;
@@ -792,7 +789,7 @@ bookmark_activated (GtkListBox    *box,
 {
     YelpUri *base, *uri;
     gchar *xref;
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     gtk_widget_hide (priv->bookmark_menu);
 
@@ -816,7 +813,7 @@ bookmark_removed (GtkButton  *button,
     YelpUri *uri;
     gchar *doc_uri;
     gchar *page_id = NULL;
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     g_object_get (priv->view, "yelp-uri", &uri, NULL);
     doc_uri = yelp_uri_get_document_uri (uri);
@@ -845,7 +842,7 @@ bookmark_added (GtkButton  *button,
 {
     YelpUri *uri;
     gchar *doc_uri, *page_id, *icon, *title;
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     g_object_get (priv->view,
                   "yelp-uri", &uri,
@@ -870,7 +867,7 @@ app_bookmarks_changed (YelpApplication *app,
 {
     YelpUri *uri;
     gchar *this_doc_uri;
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     g_object_get (priv->view, "yelp-uri", &uri, NULL);
     this_doc_uri = yelp_uri_get_document_uri (uri);
@@ -914,7 +911,7 @@ window_set_bookmarks (YelpWindow  *window,
     GVariant *value;
     GVariantIter *iter;
     gchar *page_id, *icon, *title;
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     GList *children, *cur;
     GSList *entries = NULL;
 
@@ -974,7 +971,7 @@ window_set_bookmark_buttons (YelpWindow *window)
     YelpUri *uri = NULL;
     gchar *doc_uri = NULL, *page_id = NULL;
     gboolean bookmarked;
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
 
     g_object_get (priv->view,
@@ -1005,7 +1002,7 @@ window_search_mode (GtkSearchBar  *search_bar,
                     GParamSpec    *pspec,
                     YelpWindow    *window)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     if (gtk_search_bar_get_search_mode (GTK_SEARCH_BAR (search_bar)))
         gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
@@ -1016,7 +1013,7 @@ find_entry_key_press (GtkEntry    *entry,
                       GdkEventKey *event,
                       YelpWindow  *window)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     WebKitFindController *find_controller;
 
     find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (priv->view));
@@ -1041,7 +1038,7 @@ find_entry_changed (GtkEntry   *entry,
                     YelpWindow *window)
 {
     gchar *text;
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     WebKitFindController *find_controller;
 
     find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (priv->view));
@@ -1059,7 +1056,7 @@ static void
 find_prev_clicked (GtkButton  *button,
                    YelpWindow *window)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     WebKitFindController *find_controller;
 
     find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (priv->view));
@@ -1070,7 +1067,7 @@ static void
 find_next_clicked (GtkButton  *button,
                    YelpWindow *window)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     WebKitFindController *find_controller;
 
     find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (priv->view));
@@ -1082,7 +1079,7 @@ view_new_window (YelpView   *view,
                  YelpUri    *uri,
                  YelpWindow *window)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     yelp_application_new_window_uri (priv->application, uri);
 }
 
@@ -1094,7 +1091,7 @@ view_loaded (YelpView   *view,
     YelpUri *uri;
     gchar *doc_uri;
     YelpViewState state;
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     g_object_get (view,
                   "yelp-uri", &uri,
@@ -1153,7 +1150,7 @@ view_uri_selected (YelpView     *view,
 {
     YelpUri *uri;
     gchar *doc_uri;
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     g_object_get (G_OBJECT (view), "yelp-uri", &uri, NULL);
     if (uri == NULL)
@@ -1177,7 +1174,7 @@ view_root_title (YelpView    *view,
                  GParamSpec  *pspec,
                  YelpWindow  *window)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     gchar *root_title, *page_title;
     g_object_get (view, "root-title", &root_title, "page-title", &page_title, NULL);
 
@@ -1209,7 +1206,7 @@ static void
 ctrll_entry_activate (GtkEntry    *entry,
                       YelpWindow  *window)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     YelpUri *uri = yelp_uri_new (gtk_entry_get_text (entry));
 
     yelp_window_load_uri (window, uri);
@@ -1223,7 +1220,7 @@ ctrll_entry_key_press (GtkWidget    *widget,
                        GdkEventKey  *event,
                        YelpWindow   *window)
 {
-    YelpWindowPrivate *priv = GET_PRIV (window);
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     if (event->keyval == GDK_KEY_Escape) {
         gtk_header_bar_set_custom_title (GTK_HEADER_BAR (priv->header), NULL);

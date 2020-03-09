@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2009 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2009-2020 Shaun McCance <shaunm@gnome.org>
  * Copyright (C) 2014 Igalia S.L.
  *
  * This program is free software; you can redistribute it and/or
@@ -141,9 +141,6 @@ enum {
 };
 static gint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (YelpView, yelp_view, WEBKIT_TYPE_WEB_VIEW)
-#define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_VIEW, YelpViewPrivate))
-
 static WebKitSettings *
 yelp_view_get_global_settings (void)
 {
@@ -243,6 +240,8 @@ enum {
     TARGET_URI_LIST
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE (YelpView, yelp_view, WEBKIT_TYPE_WEB_VIEW)
+
 static void
 yelp_view_init (YelpView *view)
 {
@@ -299,7 +298,7 @@ yelp_view_init (YelpView *view)
       }
     };
 
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
     priv->cancellable = NULL;
 
@@ -360,7 +359,7 @@ static void
 yelp_view_constructed (GObject *object)
 {
     YelpView *view = YELP_VIEW (object);
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     YelpSettings *settings = yelp_settings_get_default ();
 
     G_OBJECT_CLASS (yelp_view_parent_class)->constructed (object);
@@ -380,7 +379,7 @@ yelp_view_constructed (GObject *object)
 static void
 yelp_view_dispose (GObject *object)
 {
-    YelpViewPrivate *priv = GET_PRIV (object);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (YELP_VIEW (object));
 
     view_clear_load (YELP_VIEW (object));
 
@@ -431,7 +430,7 @@ yelp_view_dispose (GObject *object)
 static void
 yelp_view_finalize (GObject *object)
 {
-    YelpViewPrivate *priv = GET_PRIV (object);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (YELP_VIEW (object));
 
     g_free (priv->popup_link_uri);
     g_free (priv->popup_link_text);
@@ -499,8 +498,6 @@ yelp_view_class_init (YelpViewClass *klass)
                       0, NULL, NULL,
                       g_cclosure_marshal_VOID__VOID,
                       G_TYPE_NONE, 0);
-
-    g_type_class_add_private (klass, sizeof (YelpViewPrivate));
 
     g_object_class_install_property (object_class,
                                      PROP_URI,
@@ -573,7 +570,7 @@ yelp_view_get_property (GObject    *object,
                         GValue     *value,
                         GParamSpec *pspec)
 {
-    YelpViewPrivate *priv = GET_PRIV (object);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (YELP_VIEW (object));
 
     switch (prop_id)
         {
@@ -614,7 +611,7 @@ yelp_view_set_property (GObject      *object,
                         GParamSpec   *pspec)
 {
     YelpUri *uri;
-    YelpViewPrivate *priv = GET_PRIV (object);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (YELP_VIEW (object));
 
     switch (prop_id)
         {
@@ -655,7 +652,7 @@ void
 yelp_view_load_uri (YelpView *view,
                     YelpUri  *uri)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
     g_object_set (view, "state", YELP_VIEW_STATE_LOADING, NULL);
 
@@ -672,7 +669,7 @@ yelp_view_load_document (YelpView     *view,
                          YelpDocument *document)
 {
     GParamSpec *spec;
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
     g_return_if_fail (yelp_uri_is_resolved (uri));
 
@@ -695,7 +692,7 @@ yelp_view_load_document (YelpView     *view,
 YelpDocument *
 yelp_view_get_document (YelpView *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     return priv->document;
 }
 
@@ -703,7 +700,7 @@ void
 yelp_view_register_actions (YelpView   *view,
                             GActionMap *map)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     g_action_map_add_action (map, G_ACTION (priv->print_action));
     g_action_map_add_action (map, G_ACTION (priv->back_action));
     g_action_map_add_action (map, G_ACTION (priv->forward_action));
@@ -717,7 +714,7 @@ static void
 yelp_view_resolve_uri (YelpView *view,
                        YelpUri  *uri)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
     if (yelp_uri_is_resolved (uri)) {
         uri_resolved (uri, view);
@@ -880,7 +877,7 @@ yelp_view_add_link_action (YelpView                *view,
                            gpointer                 data)
 {
     YelpActionEntry *entry;
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
     entry = g_new0 (YelpActionEntry, 1);
     entry->action = g_object_ref (action);
@@ -893,7 +890,7 @@ yelp_view_add_link_action (YelpView                *view,
 YelpUri *
 yelp_view_get_active_link_uri (YelpView *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     YelpUri *uri;
 
     uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
@@ -904,7 +901,7 @@ yelp_view_get_active_link_uri (YelpView *view)
 gchar *
 yelp_view_get_active_link_text (YelpView *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     return g_strdup (priv->popup_link_text);
 }
 
@@ -992,7 +989,7 @@ view_install_installed (GDBusConnection *connection,
     }
     else if (info->uri) {
         gchar *struri, *docuri;
-        YelpViewPrivate *priv = GET_PRIV (info->view);
+        YelpViewPrivate *priv = yelp_view_get_instance_private (info->view);
         docuri = yelp_uri_get_document_uri (priv->uri);
         if (g_str_equal (docuri, info->uri)) {
             struri = yelp_uri_get_canonical_uri (priv->uri);
@@ -1015,7 +1012,7 @@ view_install_uri (YelpView    *view,
     GVariantBuilder *strv;
     YelpInstallInfo *info;
     guint32 xid = 0;
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     GtkWidget *gtkwin;
     GdkWindow *gdkwin;
     /* do not free */
@@ -1129,7 +1126,7 @@ static void
 popup_open_link (GtkAction   *action,
                  YelpView    *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     YelpUri *uri;
 
     uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
@@ -1148,7 +1145,7 @@ static void
 popup_open_link_new (GtkAction   *action,
                      YelpView    *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     YelpUri *uri;
 
     uri = yelp_uri_new_relative (priv->uri, priv->popup_link_uri);
@@ -1167,7 +1164,7 @@ static void
 popup_copy_link (GtkAction   *action,
                  YelpView    *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     gtk_clipboard_set_text (gtk_widget_get_clipboard (GTK_WIDGET (view), GDK_SELECTION_CLIPBOARD),
                             priv->popup_link_uri,
                             -1);
@@ -1210,7 +1207,7 @@ popup_save_image (GtkAction   *action,
     GtkWidget *dialog, *window;
     gchar *basename;
     gint res;
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
     for (window = gtk_widget_get_parent (GTK_WIDGET (view));
          window && !GTK_IS_WINDOW (window);
@@ -1265,7 +1262,7 @@ popup_send_image (GtkAction   *action,
     GAppInfo *app;
     GAppLaunchContext *context;
     GError *error = NULL;
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
     command = g_strdup_printf ("%s %s", nautilus_sendto, priv->popup_image_uri);
     context = (GAppLaunchContext *) gdk_display_get_app_launch_context (gtk_widget_get_display (GTK_WIDGET (view)));
@@ -1291,7 +1288,7 @@ static void
 popup_copy_code (GtkAction   *action,
                  YelpView    *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     GtkClipboard *clipboard;
 
     if (!priv->popup_code_text)
@@ -1305,7 +1302,7 @@ static void
 popup_save_code (GtkAction   *action,
                  YelpView    *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     GtkWidget *dialog, *window;
     gint res;
 
@@ -1390,7 +1387,7 @@ view_populate_context_menu (YelpView            *view,
                             WebKitHitTestResult *hit_test_result,
                             gpointer             user_data)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     WebKitContextMenuItem *item;
     GtkAction *action;
     GVariant *dom_info_variant;
@@ -1597,7 +1594,7 @@ view_policy_decision_requested (YelpView                *view,
                                 WebKitPolicyDecisionType type,
                                 gpointer                 user_data)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     WebKitNavigationAction *action;
     WebKitURIRequest *request;
     gchar *fixed_uri;
@@ -1639,7 +1636,7 @@ view_load_status_changed (WebKitWebView   *view,
                           WebKitLoadEvent  load_event,
                           gpointer         user_data)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (YELP_VIEW (view));
 
     if (priv->state == YELP_VIEW_STATE_ERROR)
         return;
@@ -1731,7 +1728,7 @@ view_print_action (GAction *action, GVariant *parameter, YelpView *view)
     GtkWidget *window;
     WebKitPrintOperation *print_operation;
     GtkPrintSettings *settings;
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
     window = gtk_widget_get_toplevel (GTK_WIDGET (view));
 
@@ -1762,7 +1759,7 @@ view_history_action (GAction   *action,
 static void
 view_history_changed (YelpView *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     WebKitWebView *web_view = WEBKIT_WEB_VIEW (view);
 
     g_simple_action_set_enabled (priv->back_action, webkit_web_view_can_go_back (web_view));
@@ -1774,7 +1771,7 @@ view_navigation_action (GAction  *action,
                         GVariant *parameter,
                         YelpView *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     gchar *page_id, *new_id, *xref;
     YelpUri *new_uri;
 
@@ -1803,7 +1800,7 @@ view_navigation_action (GAction  *action,
 static void
 view_clear_load (YelpView *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
     if (priv->resolve_uri != NULL) {
         if (priv->uri_resolved != 0) {
@@ -1860,7 +1857,7 @@ fix_docbook_uri (YelpUri *docbook_uri, YelpDocument* document)
 static void
 view_load_page (YelpView *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     gchar *uri_str, *tmp_uri;
 
     g_return_if_fail (priv->cancellable == NULL);
@@ -1948,7 +1945,7 @@ static void
 view_show_error_page (YelpView *view,
                       GError   *error)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     YelpSettings *settings = yelp_settings_get_default ();
     gchar *page, *title = NULL, *title_m, *content_beg, *content_end;
     gchar *textcolor, *bgcolor, *noteborder, *notebg, *titlecolor, *noteicon, *linkcolor;
@@ -2105,7 +2102,7 @@ static void
 uri_resolved (YelpUri  *uri,
               YelpView *view)
 {
-    YelpViewPrivate *priv = GET_PRIV (view);
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     YelpUriDocumentType doctype;
     YelpDocument *document;
     GError *error = NULL;

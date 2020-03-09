@@ -1266,7 +1266,7 @@ unicode_strstrip (gchar *str)
     }
     start = skip_whitespace (str);
 
-    g_memmove (str, start, end - start);
+    memmove (str, start, end - start);
     *(str + (end - start)) = '\0';
 }
 

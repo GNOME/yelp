@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2009-2014 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2009-2020 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -123,8 +123,7 @@ static GHashTable *completions;
 
 static guint search_entry_signals[LAST_SIGNAL] = {0,};
 
-G_DEFINE_TYPE (YelpSearchEntry, yelp_search_entry, GTK_TYPE_SEARCH_ENTRY)
-#define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE((object), YELP_TYPE_SEARCH_ENTRY, YelpSearchEntryPrivate))
+G_DEFINE_TYPE_WITH_PRIVATE (YelpSearchEntry, yelp_search_entry, GTK_TYPE_SEARCH_ENTRY)
 
 static void
 yelp_search_entry_class_init (YelpSearchEntryClass *klass)
@@ -193,9 +192,6 @@ yelp_search_entry_class_init (YelpSearchEntryClass *klass)
 							  G_PARAM_READWRITE |
                                                           G_PARAM_STATIC_STRINGS));
 
-    g_type_class_add_private ((GObjectClass *) klass,
-                              sizeof (YelpSearchEntryPrivate));
-
     completions = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
 }
 
@@ -207,7 +203,8 @@ yelp_search_entry_init (YelpSearchEntry *entry)
 static void
 search_entry_constructed (GObject *object)
 {
-    YelpSearchEntryPrivate *priv = GET_PRIV (object);
+    YelpSearchEntryPrivate *priv =
+        yelp_search_entry_get_instance_private (YELP_SEARCH_ENTRY (object));
 
     g_signal_connect (object, "activate",
                       G_CALLBACK (entry_activate_cb), object);
@@ -218,7 +215,8 @@ search_entry_constructed (GObject *object)
 static void
 search_entry_dispose (GObject *object)
 {
-    YelpSearchEntryPrivate *priv = GET_PRIV (object);
+    YelpSearchEntryPrivate *priv =
+        yelp_search_entry_get_instance_private (YELP_SEARCH_ENTRY (object));
 
     if (priv->view) {
         g_object_unref (priv->view);
@@ -236,7 +234,8 @@ search_entry_dispose (GObject *object)
 static void
 search_entry_finalize (GObject *object)
 {
-    YelpSearchEntryPrivate *priv = GET_PRIV (object);
+    YelpSearchEntryPrivate *priv =
+        yelp_search_entry_get_instance_private (YELP_SEARCH_ENTRY (object));
 
     g_free (priv->completion_uri);
 
@@ -249,7 +248,8 @@ search_entry_get_property   (GObject      *object,
                                GValue       *value,
                                GParamSpec   *pspec)
 {
-    YelpSearchEntryPrivate *priv = GET_PRIV (object);
+    YelpSearchEntryPrivate *priv =
+        yelp_search_entry_get_instance_private (YELP_SEARCH_ENTRY (object));
 
     switch (prop_id) {
     case PROP_VIEW:
@@ -270,7 +270,8 @@ search_entry_set_property   (GObject      *object,
                                const GValue *value,
                                GParamSpec   *pspec)
 {
-    YelpSearchEntryPrivate *priv = GET_PRIV (object);
+    YelpSearchEntryPrivate *priv =
+        yelp_search_entry_get_instance_private (YELP_SEARCH_ENTRY (object));
 
     switch (prop_id) {
     case PROP_VIEW:
@@ -289,7 +290,7 @@ static void
 search_entry_search_activated  (YelpSearchEntry *entry)
 {
     YelpUri *base, *uri;
-    YelpSearchEntryPrivate *priv = GET_PRIV (entry);
+    YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
 
     g_object_get (priv->view, "yelp-uri", &base, NULL);
     if (base == NULL)
@@ -306,7 +307,7 @@ search_entry_bookmark_clicked  (YelpSearchEntry *entry)
 {
     YelpUri *uri;
     gchar *doc_uri, *page_id;
-    YelpSearchEntryPrivate *priv = GET_PRIV (entry);
+    YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
 
     g_object_get (priv->view,
                   "yelp-uri", &uri,
@@ -337,7 +338,7 @@ static void
 search_entry_set_completion (YelpSearchEntry *entry,
 			     GtkTreeModel    *model)
 {
-    YelpSearchEntryPrivate *priv = GET_PRIV (entry);
+    YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
     GList *cells;
     GtkCellRenderer *icon_cell, *bookmark_cell;
 
@@ -401,7 +402,7 @@ cell_set_completion_bookmark_icon (GtkCellLayout     *layout,
                                    GtkTreeIter       *iter,
                                    YelpSearchEntry *entry)
 {
-    YelpSearchEntryPrivate *priv = GET_PRIV (entry);
+    YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
 
     if (priv->completion_uri) {
         gchar *page_id = NULL;
@@ -555,7 +556,7 @@ entry_match_selected (GtkEntryCompletion *completion,
     YelpUri *base, *uri;
     gchar *page, *xref;
     gint flags;
-    YelpSearchEntryPrivate *priv = GET_PRIV (entry);
+    YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
 
     gtk_tree_model_get (model, iter, COMPLETION_COL_FLAGS, &flags, -1);
     if (flags & COMPLETION_FLAG_ACTIVATE_SEARCH) {
@@ -590,7 +591,7 @@ view_loaded (YelpView          *view,
     YelpUri *uri;
     gchar *doc_uri;
     GtkTreeModel *completion;
-    YelpSearchEntryPrivate *priv = GET_PRIV (entry);
+    YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
     YelpDocument *document = yelp_view_get_document (view);
 
     g_object_get (view, "yelp-uri", &uri, NULL);

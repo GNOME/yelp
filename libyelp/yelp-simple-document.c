@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003-2009 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2003-2020 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -39,7 +39,7 @@ struct _Request {
     gint                  idle_funcs;
 };
 
-struct _YelpSimpleDocumentPriv {
+struct _YelpSimpleDocumentPrivate {
     GFile        *file;
     GInputStream *stream;
     gchar        *page_id;
@@ -56,8 +56,7 @@ struct _YelpSimpleDocumentPriv {
 
 #define BUFFER_SIZE 4096
 
-G_DEFINE_TYPE (YelpSimpleDocument, yelp_simple_document, YELP_TYPE_DOCUMENT)
-#define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SIMPLE_DOCUMENT, YelpSimpleDocumentPriv))
+G_DEFINE_TYPE_WITH_PRIVATE (YelpSimpleDocument, yelp_simple_document, YELP_TYPE_DOCUMENT)
 
 static void           yelp_simple_document_dispose     (GObject                 *object);
 static void           yelp_simple_document_finalize    (GObject                 *object);
@@ -107,14 +106,12 @@ yelp_simple_document_class_init (YelpSimpleDocumentClass *klass)
     document_class->read_contents = document_read_contents;
     document_class->finish_read = document_finish_read;
     document_class->get_mime_type = document_get_mime_type;
-
-    g_type_class_add_private (klass, sizeof (YelpSimpleDocumentPriv));
 }
 
 static void
 yelp_simple_document_init (YelpSimpleDocument *document)
 {
-    document->priv = GET_PRIV (document);
+    document->priv = yelp_simple_document_get_instance_private (document);
 
     document->priv->file = NULL;
     document->priv->stream = NULL;

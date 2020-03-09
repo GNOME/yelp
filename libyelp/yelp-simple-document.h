@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003-2009 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2003-2020 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -36,13 +36,13 @@ G_BEGIN_DECLS
 #define YELP_IS_SIMPLE_DOCUMENT_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), YELP_TYPE_SIMPLE_DOCUMENT))
 #define YELP_SIMPLE_DOCUMENT_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), YELP_TYPE_SIMPLE_DOCUMENT, YelpSimpleDocumentClass))
 
-typedef struct _YelpSimpleDocument      YelpSimpleDocument;
-typedef struct _YelpSimpleDocumentClass YelpSimpleDocumentClass;
-typedef struct _YelpSimpleDocumentPriv  YelpSimpleDocumentPriv;
+typedef struct _YelpSimpleDocument        YelpSimpleDocument;
+typedef struct _YelpSimpleDocumentClass   YelpSimpleDocumentClass;
+typedef struct _YelpSimpleDocumentPrivate YelpSimpleDocumentPrivate;
 
 struct _YelpSimpleDocument {
     YelpDocument parent;
-    YelpSimpleDocumentPriv *priv;
+    YelpSimpleDocumentPrivate *priv;
 };
 
 struct _YelpSimpleDocumentClass {

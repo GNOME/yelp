@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2003-2009 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2003-2020 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -85,9 +85,6 @@ enum {
 };
 static gint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (YelpTransform, yelp_transform, G_TYPE_OBJECT)
-#define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_TRANSFORM, YelpTransformPrivate))
-
 typedef struct _YelpTransformPrivate YelpTransformPrivate;
 struct _YelpTransformPrivate {
     xmlDocPtr                input;
@@ -112,12 +109,14 @@ struct _YelpTransformPrivate {
     GError                 *error;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE (YelpTransform, yelp_transform, G_TYPE_OBJECT)
+
 /******************************************************************************/
 
 static void
 yelp_transform_init (YelpTransform *transform)
 {
-    YelpTransformPrivate *priv = GET_PRIV (transform);
+    YelpTransformPrivate *priv = yelp_transform_get_instance_private (transform);
     priv->queue = g_async_queue_new_full (g_free);
     priv->chunks = g_hash_table_new_full (g_str_hash,
                                           g_str_equal,
@@ -156,8 +155,6 @@ yelp_transform_class_init (YelpTransformClass *klass)
                                    g_cclosure_marshal_VOID__VOID,
                                    G_TYPE_NONE, 0);
 
-    g_type_class_add_private (klass, sizeof (YelpTransformPrivate));
-
     g_object_class_install_property (object_class,
                                      PROP_STYLESHEET,
                                      g_param_spec_string ("stylesheet",
@@ -172,7 +169,8 @@ yelp_transform_class_init (YelpTransformClass *klass)
 static void
 yelp_transform_dispose (GObject *object)
 {
-    YelpTransformPrivate *priv = GET_PRIV (object);
+    YelpTransformPrivate *priv =
+        yelp_transform_get_instance_private (YELP_TRANSFORM (object));
 
     debug_print (DB_FUNCTION, "entering\n");
 
@@ -214,7 +212,8 @@ yelp_transform_dispose (GObject *object)
 static void
 yelp_transform_finalize (GObject *object)
 {
-    YelpTransformPrivate *priv = GET_PRIV (object);
+    YelpTransformPrivate *priv =
+        yelp_transform_get_instance_private (YELP_TRANSFORM (object));
     GHashTableIter iter;
     gpointer chunk;
 
@@ -240,7 +239,8 @@ yelp_transform_get_property (GObject    *object,
                              GValue     *value,
                              GParamSpec *pspec)
 {
-    YelpTransformPrivate *priv = GET_PRIV (object);
+    YelpTransformPrivate *priv =
+        yelp_transform_get_instance_private (YELP_TRANSFORM (object));
 
     switch (prop_id)
         {
@@ -259,7 +259,8 @@ yelp_transform_set_property (GObject      *object,
                              const GValue *value,
                              GParamSpec   *pspec)
 {
-    YelpTransformPrivate *priv = GET_PRIV (object);
+    YelpTransformPrivate *priv =
+        yelp_transform_get_instance_private (YELP_TRANSFORM (object));
 
     switch (prop_id)
         {
@@ -288,7 +289,7 @@ yelp_transform_start (YelpTransform       *transform,
                       xmlDocPtr            auxiliary,
                       const gchar * const *params)
 {
-    YelpTransformPrivate *priv = GET_PRIV (transform);
+    YelpTransformPrivate *priv = yelp_transform_get_instance_private (transform);
 
     priv->input = document;
     priv->aux = auxiliary;
@@ -310,7 +311,7 @@ gchar *
 yelp_transform_take_chunk (YelpTransform *transform,
                            const gchar   *chunk_id)
 {
-    YelpTransformPrivate *priv = GET_PRIV (transform);
+    YelpTransformPrivate *priv = yelp_transform_get_instance_private (transform);
     gchar *buf;
 
     g_mutex_lock (&priv->mutex);
@@ -328,7 +329,7 @@ yelp_transform_take_chunk (YelpTransform *transform,
 void
 yelp_transform_cancel (YelpTransform *transform)
 {
-    YelpTransformPrivate *priv = GET_PRIV (transform);
+    YelpTransformPrivate *priv = yelp_transform_get_instance_private (transform);
     g_mutex_lock (&priv->mutex);
     if (priv->running) {
         priv->cancelled = TRUE;
@@ -341,7 +342,7 @@ yelp_transform_cancel (YelpTransform *transform)
 GError *
 yelp_transform_get_error (YelpTransform *transform)
 {
-    YelpTransformPrivate *priv = GET_PRIV (transform);
+    YelpTransformPrivate *priv = yelp_transform_get_instance_private (transform);
     GError *ret = NULL;
 
     g_mutex_lock (&priv->mutex);
@@ -357,7 +358,7 @@ yelp_transform_get_error (YelpTransform *transform)
 static void
 transform_run (YelpTransform *transform)
 {
-    YelpTransformPrivate *priv = GET_PRIV (transform);
+    YelpTransformPrivate *priv = yelp_transform_get_instance_private (transform);
 
     debug_print (DB_FUNCTION, "entering\n");
 
@@ -424,7 +425,7 @@ transform_run (YelpTransform *transform)
 static gboolean
 transform_chunk (YelpTransform *transform)
 {
-    YelpTransformPrivate *priv = GET_PRIV (transform);
+    YelpTransformPrivate *priv = yelp_transform_get_instance_private (transform);
     gchar *chunk_id;
 
     debug_print (DB_FUNCTION, "entering\n");
@@ -446,7 +447,7 @@ transform_chunk (YelpTransform *transform)
 static gboolean
 transform_error (YelpTransform *transform)
 {
-    YelpTransformPrivate *priv = GET_PRIV (transform);
+    YelpTransformPrivate *priv = yelp_transform_get_instance_private (transform);
 
     debug_print (DB_FUNCTION, "entering\n");
 
@@ -463,7 +464,7 @@ transform_error (YelpTransform *transform)
 static gboolean
 transform_final (YelpTransform *transform)
 {
-    YelpTransformPrivate *priv = GET_PRIV (transform);
+    YelpTransformPrivate *priv = yelp_transform_get_instance_private (transform);
 
     debug_print (DB_FUNCTION, "entering\n");
 
@@ -506,7 +507,7 @@ xslt_yelp_document (xsltTransformContextPtr ctxt,
         return;
 
     transform = YELP_TRANSFORM (ctxt->_private);
-    priv = GET_PRIV (transform);
+    priv = yelp_transform_get_instance_private (transform);
 
     page_id = xsltEvalAttrValueTemplate (ctxt, inst,
                                          (const xmlChar *) "href",
@@ -590,7 +591,7 @@ xslt_yelp_aux (xmlXPathParserContextPtr ctxt, int nargs)
 
     tctxt = xsltXPathGetTransformContext (ctxt);
     transform = YELP_TRANSFORM (tctxt->_private);
-    priv = GET_PRIV (transform);
+    priv = yelp_transform_get_instance_private (transform);
 
     priv->aux_xslt = xsltNewDocument (tctxt, priv->aux);
 

@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2009 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2009-2020 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -61,9 +61,6 @@ static void           resolve_gfile              (YelpUri        *uri,
 static gboolean       is_man_path                (const gchar    *uri,
                                                   const gchar    *encoding);
 
-G_DEFINE_TYPE (YelpUri, yelp_uri, G_TYPE_OBJECT)
-#define GET_PRIV(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_URI, YelpUriPrivate))
-
 typedef struct _YelpUriPrivate YelpUriPrivate;
 struct _YelpUriPrivate {
     GThread              *resolver;
@@ -91,6 +88,8 @@ enum {
     LAST_SIGNAL
 };
 static guint uri_signals[LAST_SIGNAL] = {0,};
+
+G_DEFINE_TYPE_WITH_PRIVATE (YelpUri, yelp_uri, G_TYPE_OBJECT)
 
 /******************************************************************************/
 
@@ -135,14 +134,12 @@ yelp_uri_class_init (YelpUriClass *klass)
                       0, NULL, NULL,
                       g_cclosure_marshal_VOID__VOID,
                       G_TYPE_NONE, 0);
-
-    g_type_class_add_private (klass, sizeof (YelpUriPrivate));
 }
 
 static void
 yelp_uri_init (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
 
     priv->query = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 
@@ -152,7 +149,7 @@ yelp_uri_init (YelpUri *uri)
 static void
 yelp_uri_dispose (GObject *object)
 {
-    YelpUriPrivate *priv = GET_PRIV (object);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (YELP_URI (object));
 
     if (priv->gfile) {
         g_object_unref (priv->gfile);
@@ -175,7 +172,7 @@ yelp_uri_dispose (GObject *object)
 static void
 yelp_uri_finalize (GObject *object)
 {
-    YelpUriPrivate *priv = GET_PRIV (object);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (YELP_URI (object));
 
     g_free (priv->docuri);
     g_free (priv->fulluri);
@@ -203,7 +200,7 @@ yelp_uri_new_relative (YelpUri *base, const gchar *arg)
 
     uri = (YelpUri *) g_object_new (YELP_TYPE_URI, NULL);
 
-    priv = GET_PRIV (uri);
+    priv = yelp_uri_get_instance_private (uri);
     priv->doctype = YELP_URI_DOCUMENT_TYPE_UNRESOLVED;
     if (base)
         priv->res_base = g_object_ref (base);
@@ -222,7 +219,7 @@ yelp_uri_new_search (YelpUri      *base,
 
     uri = (YelpUri *) g_object_new (YELP_TYPE_URI, NULL);
 
-    priv = GET_PRIV (uri);
+    priv = yelp_uri_get_instance_private (uri);
     priv->doctype = YELP_URI_DOCUMENT_TYPE_UNRESOLVED;
     if (base)
         priv->res_base = g_object_ref (base);
@@ -238,7 +235,7 @@ yelp_uri_new_search (YelpUri      *base,
 void
 yelp_uri_resolve (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
 
     if (priv->res_base && !yelp_uri_is_resolved (priv->res_base)) {
         g_signal_connect_swapped (priv->res_base, "resolved",
@@ -254,7 +251,7 @@ yelp_uri_resolve (YelpUri *uri)
 void
 yelp_uri_resolve_sync (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
 
     if (priv->doctype != YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
         return;
@@ -293,7 +290,7 @@ yelp_uri_resolve_sync (YelpUri *uri)
 static void
 resolve_start (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
 
     if (priv->resolver == NULL) {
         g_object_ref (uri);
@@ -306,7 +303,7 @@ resolve_start (YelpUri *uri)
 static void
 resolve_sync (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
 
     if (g_str_has_prefix (priv->res_arg, "ghelp:")
         || g_str_has_prefix (priv->res_arg, "gnome-help:")) {
@@ -333,7 +330,7 @@ resolve_sync (YelpUri *uri)
             priv->tmptype = YELP_URI_DOCUMENT_TYPE_ERROR;
             return;
         }
-        base_priv = GET_PRIV (priv->res_base);
+        base_priv = yelp_uri_get_instance_private (priv->res_base);
         switch (base_priv->doctype) {
         case YELP_URI_DOCUMENT_TYPE_UNRESOLVED:
             break;
@@ -391,7 +388,7 @@ resolve_async (YelpUri *uri)
 static gboolean
 resolve_final (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
 
     priv->resolver = NULL;
 
@@ -420,21 +417,21 @@ resolve_final (YelpUri *uri)
 gboolean
 yelp_uri_is_resolved (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     return priv->doctype != YELP_URI_DOCUMENT_TYPE_UNRESOLVED;
 }
 
 YelpUriDocumentType
 yelp_uri_get_document_type (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     return priv->doctype;
 }
 
 gchar *
 yelp_uri_get_document_uri (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
         return NULL;
 
@@ -452,7 +449,7 @@ yelp_uri_get_document_uri (YelpUri *uri)
 gchar *
 yelp_uri_get_canonical_uri (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
         return NULL;
     return g_strdup (priv->fulluri);
@@ -461,7 +458,7 @@ yelp_uri_get_canonical_uri (YelpUri *uri)
 GFile *
 yelp_uri_get_file (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
         return NULL;
     return priv->gfile ? g_object_ref (priv->gfile) : NULL;
@@ -470,7 +467,7 @@ yelp_uri_get_file (YelpUri *uri)
 gchar **
 yelp_uri_get_search_path (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
         return NULL;
     return g_strdupv (priv->search_path);
@@ -479,7 +476,7 @@ yelp_uri_get_search_path (YelpUri *uri)
 gchar *
 yelp_uri_get_page_id (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
         return NULL;
     return g_strdup (priv->page_id);
@@ -488,7 +485,7 @@ yelp_uri_get_page_id (YelpUri *uri)
 gchar *
 yelp_uri_get_frag_id (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     if (priv->doctype == YELP_URI_DOCUMENT_TYPE_UNRESOLVED)
         return NULL;
     return g_strdup (priv->frag_id);
@@ -498,7 +495,7 @@ gchar *
 yelp_uri_get_query (YelpUri      *uri,
                     const gchar  *key)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     const gchar *ret = g_hash_table_lookup (priv->query, key);
     if (ret)
         return g_strdup (ret);
@@ -512,7 +509,7 @@ gchar *
 yelp_uri_locate_file_uri (YelpUri     *uri,
                           const gchar *filename)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     GFile *gfile;
     gchar *fullpath;
     gchar *returi = NULL;
@@ -546,7 +543,7 @@ yelp_uri_locate_file_uri (YelpUri     *uri,
 static void
 resolve_file_uri (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     gchar *uristr;
     const gchar *hash = strchr (priv->res_arg, '#');
 
@@ -566,7 +563,7 @@ static void
 resolve_file_path (YelpUri *uri)
 {
     YelpUriPrivate *base_priv = NULL;
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     gchar *path;
     const gchar *hash;
 
@@ -578,7 +575,7 @@ resolve_file_path (YelpUri *uri)
     }
 
     if (priv->res_base)
-        base_priv = GET_PRIV (priv->res_base);
+        base_priv = yelp_uri_get_instance_private (priv->res_base);
 
     hash = strchr (priv->res_arg, '#');
     if (hash) {
@@ -632,7 +629,7 @@ resolve_data_dirs (YelpUri      *ret,
     const gchar * const *langs = g_get_language_names ();
     /* The strings are still owned by GLib; we just own the array. */
     gchar **datadirs;
-    YelpUriPrivate *priv = GET_PRIV (ret);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (ret);
     gchar *filename = NULL;
     gchar **searchpath = NULL;
     gint searchi, searchmax;
@@ -727,7 +724,7 @@ resolve_data_dirs (YelpUri      *ret,
 static void
 build_ghelp_fulluri (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
 
     g_assert (priv->tmptype != YELP_URI_DOCUMENT_TYPE_UNRESOLVED);
     g_assert (priv->docuri != NULL);
@@ -746,7 +743,7 @@ resolve_ghelp_uri (YelpUri *uri)
     /* ghelp:/path/to/file
      * ghelp:document[/file][?page][#frag]
      */
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     gchar *document, *slash, *query, *hash;
     gchar *colon, *c; /* do not free */
 
@@ -849,7 +846,7 @@ resolve_help_uri (YelpUri *uri)
 {
     /* help:document[/page][?query][#frag]
      */
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     gchar *document, *slash, *query, *hash;
     gchar *colon, *c; /* do not free */
 
@@ -937,7 +934,7 @@ resolve_help_uri (YelpUri *uri)
 static void
 resolve_help_list_uri (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     priv->docuri = g_strdup ("help-list:");
     priv->fulluri = g_strdup (priv->res_arg);
     priv->page_id = g_strdup ("index");
@@ -999,7 +996,7 @@ find_man_path (gchar* name, gchar* section)
 static void
 build_man_uris (YelpUri *uri, const char *name, const char *section)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
 
     g_assert (priv->tmptype == YELP_URI_DOCUMENT_TYPE_MAN);
     priv->docuri = g_strdup ("man:");
@@ -1016,7 +1013,7 @@ build_man_uris (YelpUri *uri, const char *name, const char *section)
 static void
 resolve_man_uri (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     /* man:/path/to/file
      * man:name(section)
      * man:name.section
@@ -1104,7 +1101,7 @@ resolve_man_uri (YelpUri *uri)
 static void
 build_info_uris (YelpUri *uri, const char *name, const char *section)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
 
     g_assert (priv->tmptype == YELP_URI_DOCUMENT_TYPE_INFO);
     priv->docuri = g_strconcat ("info:", name, NULL);
@@ -1119,7 +1116,7 @@ build_info_uris (YelpUri *uri, const char *name, const char *section)
 static void
 resolve_info_uri (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     /* info:/path/to/file
      * info:name#node
      * info:name
@@ -1252,9 +1249,9 @@ resolve_info_uri (YelpUri *uri)
 static void
 resolve_xref_uri (YelpUri *uri)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     const gchar *arg = priv->res_arg + 5;
-    YelpUriPrivate *base_priv = GET_PRIV (priv->res_base);
+    YelpUriPrivate *base_priv = yelp_uri_get_instance_private (priv->res_base);
 
     priv->tmptype = base_priv->doctype;
     priv->gfile = g_object_ref (base_priv->gfile);
@@ -1324,7 +1321,7 @@ resolve_xref_uri (YelpUri *uri)
 static void
 resolve_page_and_frag (YelpUri *uri, const gchar *arg)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     gchar *hash;
 
     if (!arg || arg[0] == '\0')
@@ -1344,7 +1341,7 @@ resolve_page_and_frag (YelpUri *uri, const gchar *arg)
 static void
 resolve_gfile (YelpUri *uri, const gchar *query, const gchar *hash)
 {
-    YelpUriPrivate *priv = GET_PRIV (uri);
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
     GFileInfo *info;
     GError *error = NULL;
 

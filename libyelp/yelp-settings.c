@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2004-2009 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2004-2020 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -29,7 +29,7 @@
 
 #include "yelp-settings.h"
 
-struct _YelpSettingsPriv {
+struct _YelpSettingsPrivate {
     GMutex        mutex;
 
     gchar         colors[YELP_SETTINGS_NUM_COLORS][8];
@@ -73,8 +73,7 @@ enum {
 
 static const gchar *icon_names[YELP_SETTINGS_NUM_ICONS];
 
-G_DEFINE_TYPE (YelpSettings, yelp_settings, G_TYPE_OBJECT)
-#define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_SETTINGS, YelpSettingsPriv))
+G_DEFINE_TYPE_WITH_PRIVATE (YelpSettings, yelp_settings, G_TYPE_OBJECT)
 
 static void           yelp_settings_constructed  (GObject              *object);
 static void           yelp_settings_finalize     (GObject              *object);
@@ -210,8 +209,6 @@ yelp_settings_class_init (YelpSettingsClass *klass)
 		      0, NULL, NULL,
 		      g_cclosure_marshal_VOID__VOID,
 		      G_TYPE_NONE, 0);
-
-    g_type_class_add_private (klass, sizeof (YelpSettingsPriv));
 }
 
 static void
@@ -219,7 +216,7 @@ yelp_settings_init (YelpSettings *settings)
 {
     gint i;
 
-    settings->priv = GET_PRIV (settings);
+    settings->priv = yelp_settings_get_instance_private (settings);
     g_mutex_init (&settings->priv->mutex);
     settings->priv->icon_size = 24;
 

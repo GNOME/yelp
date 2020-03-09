@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2007-2010 Shaun McCance <shaunm@gnome.org>
+ * Copyright (C) 2007-2020 Shaun McCance <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -61,6 +61,8 @@ struct _YelpManDocumentPrivate {
     guint          error;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE (YelpManDocument, yelp_man_document, YELP_TYPE_DOCUMENT)
+
 static void           yelp_man_document_finalize         (GObject                *object);
 
 /* YelpDocument */
@@ -88,9 +90,6 @@ static void           man_document_process               (YelpManDocument       
 static void           man_document_disconnect            (YelpManDocument        *man);
 
 
-G_DEFINE_TYPE (YelpManDocument, yelp_man_document, YELP_TYPE_DOCUMENT)
-#define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_MAN_DOCUMENT, YelpManDocumentPrivate))
-
 static void
 yelp_man_document_class_init (YelpManDocumentClass *klass)
 {
@@ -100,14 +99,12 @@ yelp_man_document_class_init (YelpManDocumentClass *klass)
     object_class->finalize = yelp_man_document_finalize;
 
     document_class->request_page = man_request_page;
-
-    g_type_class_add_private (klass, sizeof (YelpManDocumentPrivate));
 }
 
 static void
 yelp_man_document_init (YelpManDocument *man)
 {
-    YelpManDocumentPrivate *priv = GET_PRIV (man);
+    YelpManDocumentPrivate *priv = yelp_man_document_get_instance_private (man);
 
     priv->state = MAN_STATE_BLANK;
     g_mutex_init (&priv->mutex);
@@ -116,7 +113,8 @@ yelp_man_document_init (YelpManDocument *man)
 static void
 yelp_man_document_finalize (GObject *object)
 {
-    YelpManDocumentPrivate *priv = GET_PRIV (object);
+    YelpManDocumentPrivate *priv =
+        yelp_man_document_get_instance_private (YELP_MAN_DOCUMENT (object));
 
     if (priv->xmldoc)
 	xmlFreeDoc (priv->xmldoc);
@@ -151,7 +149,8 @@ man_request_page (YelpDocument         *document,
                   gpointer              user_data,
                   GDestroyNotify        notify)
 {
-    YelpManDocumentPrivate *priv = GET_PRIV (document);
+    YelpManDocumentPrivate *priv =
+        yelp_man_document_get_instance_private (YELP_MAN_DOCUMENT (document));
     gchar *docuri, *fulluri;
     GError *error;
     gboolean handled;
@@ -222,7 +221,7 @@ transform_chunk_ready (YelpTransform    *transform,
                        gchar            *chunk_id,
                        YelpManDocument  *man)
 {
-    YelpManDocumentPrivate *priv = GET_PRIV (man);
+    YelpManDocumentPrivate *priv = yelp_man_document_get_instance_private (man);
     gchar *content;
 
     g_assert (transform == priv->transform);
@@ -252,7 +251,7 @@ static void
 transform_finished (YelpTransform    *transform,
                     YelpManDocument  *man)
 {
-    YelpManDocumentPrivate *priv = GET_PRIV (man);
+    YelpManDocumentPrivate *priv = yelp_man_document_get_instance_private (man);
     gchar *docuri;
     GError *error;
 
@@ -287,7 +286,7 @@ static void
 transform_error (YelpTransform    *transform,
                  YelpManDocument  *man)
 {
-    YelpManDocumentPrivate *priv = GET_PRIV (man);
+    YelpManDocumentPrivate *priv = yelp_man_document_get_instance_private (man);
     GError *error;
 
     g_assert (transform == priv->transform);
@@ -308,7 +307,7 @@ static void
 transform_finalized (YelpManDocument  *man,
                      gpointer          transform)
 {
-    YelpManDocumentPrivate *priv = GET_PRIV (man);
+    YelpManDocumentPrivate *priv = yelp_man_document_get_instance_private (man);
  
     if (priv->xmldoc)
 	xmlFreeDoc (priv->xmldoc);
@@ -322,7 +321,7 @@ transform_finalized (YelpManDocument  *man,
 static void
 man_document_process (YelpManDocument *man)
 {
-    YelpManDocumentPrivate *priv = GET_PRIV (man);
+    YelpManDocumentPrivate *priv = yelp_man_document_get_instance_private (man);
     GFile *file = NULL;
     gchar *filepath = NULL;
     GError *error;
@@ -397,7 +396,7 @@ man_document_process (YelpManDocument *man)
 static void
 man_document_disconnect (YelpManDocument *man)
 {
-    YelpManDocumentPrivate *priv = GET_PRIV (man);
+    YelpManDocumentPrivate *priv = yelp_man_document_get_instance_private (man);
     if (priv->chunk_ready) {
         g_signal_handler_disconnect (priv->transform, priv->chunk_ready);
         priv->chunk_ready = 0;

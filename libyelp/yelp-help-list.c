@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*
- * Copyright (C) 2010 Shaun McCance  <shaunm@gnome.org>
+ * Copyright (C) 2010-2020 Shaun McCance  <shaunm@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -85,9 +85,6 @@ help_list_entry_cmp (HelpListEntry *a, HelpListEntry *b)
     return g_utf8_collate (as, bs);
 }
 
-G_DEFINE_TYPE (YelpHelpList, yelp_help_list, YELP_TYPE_DOCUMENT)
-#define GET_PRIV(object) (G_TYPE_INSTANCE_GET_PRIVATE ((object), YELP_TYPE_HELP_LIST, YelpHelpListPrivate))
-
 typedef struct _YelpHelpListPrivate  YelpHelpListPrivate;
 struct _YelpHelpListPrivate {
     GMutex         mutex;
@@ -105,6 +102,8 @@ struct _YelpHelpListPrivate {
     xmlXPathCompExprPtr  get_mallard_desc;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE (YelpHelpList, yelp_help_list, YELP_TYPE_DOCUMENT)
+
 static void
 yelp_help_list_class_init (YelpHelpListClass *klass)
 {
@@ -115,14 +114,12 @@ yelp_help_list_class_init (YelpHelpListClass *klass)
     object_class->finalize = yelp_help_list_finalize;
 
     document_class->request_page = help_list_request_page;
-
-    g_type_class_add_private (klass, sizeof (YelpHelpListPrivate));
 }
 
 static void
 yelp_help_list_init (YelpHelpList *list)
 {
-    YelpHelpListPrivate *priv = GET_PRIV (list);
+    YelpHelpListPrivate *priv = yelp_help_list_get_instance_private (list);
 
     g_mutex_init (&priv->mutex);
     priv->entries = g_hash_table_new_full (g_str_hash, g_str_equal,
@@ -152,7 +149,7 @@ yelp_help_list_dispose (GObject *object)
 static void
 yelp_help_list_finalize (GObject *object)
 {
-    YelpHelpListPrivate *priv = GET_PRIV (object);
+    YelpHelpListPrivate *priv = yelp_help_list_get_instance_private (YELP_HELP_LIST (object));
 
     g_hash_table_destroy (priv->entries);
     g_mutex_clear (&priv->mutex);
@@ -184,7 +181,7 @@ help_list_request_page (YelpDocument          *document,
                         GDestroyNotify         notify)
 {
     gboolean handled;
-    YelpHelpListPrivate *priv = GET_PRIV (document);
+    YelpHelpListPrivate *priv = yelp_help_list_get_instance_private (YELP_HELP_LIST (document));
 
     if (page_id == NULL)
         page_id = "index";
@@ -223,7 +220,7 @@ help_list_think (YelpHelpList *list)
 {
     const gchar * const *sdatadirs = g_get_system_data_dirs ();
     const gchar * const *langs = g_get_language_names ();
-    YelpHelpListPrivate *priv = GET_PRIV (list);
+    YelpHelpListPrivate *priv = yelp_help_list_get_instance_private (list);
     /* The strings are still owned by GLib; we just own the array. */
     gchar **datadirs;
     gint datadir_i, lang_i;
@@ -445,7 +442,7 @@ help_list_handle_page (YelpHelpList *list,
 {
     gchar **colors, *tmp;
     GList *cur;
-    YelpHelpListPrivate *priv = GET_PRIV (list);
+    YelpHelpListPrivate *priv = yelp_help_list_get_instance_private (list);
     GtkTextDirection direction = gtk_widget_get_default_direction ();
     GString *string = g_string_new
         ("<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><style type='text/css'>\n"
@@ -610,7 +607,7 @@ help_list_process_docbook (YelpHelpList  *list,
     xmlDocPtr xmldoc;
     xmlXPathContextPtr xpath;
     xmlXPathObjectPtr obj = NULL;
-    YelpHelpListPrivate *priv = GET_PRIV (list);
+    YelpHelpListPrivate *priv = yelp_help_list_get_instance_private (list);
 
     parserCtxt = xmlNewParserCtxt ();
     xmldoc = xmlCtxtReadFile (parserCtxt,
@@ -649,7 +646,7 @@ help_list_process_mallard (YelpHelpList  *list,
     xmlDocPtr xmldoc;
     xmlXPathContextPtr xpath;
     xmlXPathObjectPtr obj = NULL;
-    YelpHelpListPrivate *priv = GET_PRIV (list);
+    YelpHelpListPrivate *priv = yelp_help_list_get_instance_private (list);
 
     parserCtxt = xmlNewParserCtxt ();
     xmldoc = xmlCtxtReadFile (parserCtxt,
