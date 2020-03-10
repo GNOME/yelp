@@ -1,25 +1,25 @@
 # Ukrainian translation of Yelp.
 # Copyright (C) 2001 Free Software Foundation, Inc.
 # Yuriy Syrota <rasta@renome.rovno.ua>, 2001.
-# Maxim Dzumanenko <dziumanenko@gmail.com>, 2004-2008
+# Maxim Dzumanenko <dziumanenko@gmail.com>, 2004-2008.
 # wanderlust <wanderlust@ukr.net>, 2009.
 # Daniel Korostil <ted.korostiled@gmail.com>, 2013, 2014, 2016.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=yelp&ke"
-"ywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-08-19 16:59+0000\n"
-"PO-Revision-Date: 2016-09-17 16:03+0300\n"
-"Last-Translator: Daniel Korostil <ted.korostiled@gmail.com>\n"
-"Language-Team: linux.org.ua\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
+"POT-Creation-Date: 2020-01-08 17:04+0000\n"
+"PO-Revision-Date: 2020-03-08 18:26+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 20.03.70\n"
 "X-Project-Style: gnome\n"
 
 #. (itstool) path: msg/msgstr
@@ -32,40 +32,75 @@ msgstr ""
 #.
 #. <string/> - The package to install
 #.
-#: yelp.xml.in:36
+#: data/domains/yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Встановити <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:143
-#: ../libyelp/yelp-lzma-decompressor.c:152
+#: data/yelp.appdata.xml.in:6
+#| msgid " GNOME Help Browser"
+msgid "GNOME Help"
+msgstr "Довідка GNOME"
+
+#: data/yelp.appdata.xml.in:7
+msgid "Help viewer for GNOME"
+msgstr "Програма для перегляду довідки у GNOME"
+
+#: data/yelp.appdata.xml.in:9
+msgid ""
+"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
+"also display DocBook, info, man, and HTML documentation."
+msgstr ""
+"Yelp — програма GNOME для перегляду довідки. Це типова програма для перегляду"
+" документації у форматі Mallard, але нею можна скористатися для перегляду"
+" документації у форматах DocBook, info, man та HTML."
+
+#: data/yelp.appdata.xml.in:13
+msgid ""
+"It makes it easy to find the documentation you need, with interactive search "
+"and bookmarks."
+msgstr ""
+"Із цією програмою вам буде просто знайти потрібну документацію — передбачено"
+" інтерактивний пошук та закладки."
+
+#: data/yelp.appdata.xml.in:17
+msgid ""
+"It also has an editor mode, which shows editorial comments and revision "
+"statuses when editing Mallard documents."
+msgstr ""
+"Також передбачено режим редактора, у якому буде показано редакційні коментарі"
+" та стани модифікацій при редагуванні документації у форматі Mallard."
+
+#: data/yelp.appdata.xml.in:30
+msgid "The GNOME Project"
+msgstr "Проєкт GNOME"
+
+#: libyelp/yelp-bz2-decompressor.c:143 libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
 msgstr "Неправильно стиснуті дані"
 
-#: ../libyelp/yelp-bz2-decompressor.c:149
-#: ../libyelp/yelp-lzma-decompressor.c:158
+#: libyelp/yelp-bz2-decompressor.c:149 libyelp/yelp-lzma-decompressor.c:158
 msgid "Not enough memory"
 msgstr "Недостатньо пам'яті"
 
-#: ../libyelp/yelp-docbook-document.c:282 ../libyelp/yelp-info-document.c:218
-#: ../libyelp/yelp-mallard-document.c:298
-#: ../libyelp/yelp-mallard-document.c:452 ../libyelp/yelp-man-document.c:252
+#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:221
+#: libyelp/yelp-mallard-document.c:306 libyelp/yelp-mallard-document.c:464
+#: libyelp/yelp-man-document.c:199
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Сторінка «%s» не існує у документі «%s»."
 
-#: ../libyelp/yelp-docbook-document.c:320 ../libyelp/yelp-info-document.c:355
-#: ../libyelp/yelp-man-document.c:390
-#, c-format
+#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:358
+#: libyelp/yelp-man-document.c:336
 msgid "The file does not exist."
 msgstr "Такий файл не існує."
 
-#: ../libyelp/yelp-docbook-document.c:330 ../libyelp/yelp-info-document.c:365
-#: ../libyelp/yelp-man-document.c:400
+#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:368
+#: libyelp/yelp-man-document.c:346
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Файл «%s» не існує."
 
-#: ../libyelp/yelp-docbook-document.c:345
+#: libyelp/yelp-docbook-document.c:359
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -74,7 +109,7 @@ msgstr ""
 "Не вдається проаналізувати файл «%s», оскільки некоректно сформований "
 "документ XML."
 
-#: ../libyelp/yelp-docbook-document.c:358
+#: libyelp/yelp-docbook-document.c:372
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -83,56 +118,39 @@ msgstr ""
 "Не вдається проаналізувати файл «%s», оскільки один або більше файлів, які "
 "він містить, має некоректно сформовані документи XML."
 
-#: ../libyelp/yelp-docbook-document.c:788
+#: libyelp/yelp-docbook-document.c:810
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: ../libyelp/yelp-docbook-document.c:850 ../libyelp/yelp-info-document.c:298
-#: ../libyelp/yelp-man-document.c:332
+#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:301
+#: libyelp/yelp-man-document.c:279
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Потрібну сторінку не знайдено у документі «%s»."
 
-#: ../libyelp/yelp-document.c:278
-msgid "Indexed"
-msgstr "Індексовано"
-
-#: ../libyelp/yelp-document.c:279
-msgid "Whether the document content has been indexed"
-msgstr "Будь-який вміст документа буде індексовано "
-
-#: ../libyelp/yelp-document.c:287
-msgid "Document URI"
-msgstr "Посилання документа"
-
-#: ../libyelp/yelp-document.c:288
-msgid "The URI which identifies the document"
-msgstr "Посилання, яке ідентифікує документ"
-
-#: ../libyelp/yelp-document.c:1024
+#: libyelp/yelp-document.c:1068
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Результат пошуку для «%s»"
 
-#: ../libyelp/yelp-document.c:1036
+#: libyelp/yelp-document.c:1080
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Не знайдено жодного збігу сторінок довідки в «%s»."
 
-#: ../libyelp/yelp-document.c:1042
+#: libyelp/yelp-document.c:1086
 msgid "No matching help pages found."
 msgstr "Не знайдено жодної сторінки довідки."
 
-#: ../libyelp/yelp-error.c:35
-#, c-format
+#: libyelp/yelp-error.c:35
 msgid "An unknown error occurred."
 msgstr "Трапилась невідома помилка."
 
-#: ../libyelp/yelp-help-list.c:545 ../libyelp/yelp-help-list.c:554
+#: libyelp/yelp-help-list.c:548 libyelp/yelp-help-list.c:557
 msgid "All Help Documents"
 msgstr "Усі документи довідки"
 
-#: ../libyelp/yelp-info-document.c:380
+#: libyelp/yelp-info-document.c:383
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -140,1384 +158,215 @@ msgstr ""
 "Не вдається проаналізувати файл «%s», оскільки це некоректно сформована "
 "інформаційна сторінка."
 
-#: ../libyelp/yelp-mallard-document.c:340
+#: libyelp/yelp-mallard-document.c:348
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Теки «%s» не існує."
 
-#: ../libyelp/yelp-search-entry.c:172
-msgid "View"
-msgstr "Переглядач"
-
-#: ../libyelp/yelp-search-entry.c:173
-msgid "A YelpView instance to control"
-msgstr "Наприклад, YelpView для перевірки"
-
-#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
-msgid "Bookmarks"
-msgstr "Закладки"
-
-#: ../libyelp/yelp-search-entry.c:189
-msgid "A YelpBookmarks implementation instance"
-msgstr "Наприклад, YelpBookmarks для реалізації"
-
-#: ../libyelp/yelp-search-entry.c:433
+#: libyelp/yelp-search-entry.c:434
 #, c-format
 msgid "Search for “%s”"
 msgstr "Пошук «%s»"
 
-#: ../libyelp/yelp-settings.c:148
-msgid "GtkSettings"
-msgstr "Налаштування Gtk"
-
-#: ../libyelp/yelp-settings.c:149
-msgid "A GtkSettings object to get settings from"
-msgstr "Об'єкт GtkSettings для налаштування з"
-
-#: ../libyelp/yelp-settings.c:157
-msgid "GtkIconTheme"
-msgstr "Тема піктограм Gtk"
-
-#: ../libyelp/yelp-settings.c:158
-msgid "A GtkIconTheme object to get icons from"
-msgstr "Об'єкт GtkIconTheme для отримання піктограм"
-
-#: ../libyelp/yelp-settings.c:166
-msgid "Font Adjustment"
-msgstr "Коригування шрифтів"
-
-#: ../libyelp/yelp-settings.c:167
-msgid "A size adjustment to add to font sizes"
-msgstr "Регулювання розміру для долучення розмірів шрифту"
-
-#: ../libyelp/yelp-settings.c:175
-msgid "Show Text Cursor"
-msgstr "Показати текстовий курсор"
-
-#: ../libyelp/yelp-settings.c:176
-msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Показує текстовий курсор або позначку вставки для доступної навігації"
-
-#: ../libyelp/yelp-settings.c:184
-msgid "Editor Mode"
-msgstr "Режим редактора"
-
-#: ../libyelp/yelp-settings.c:185
-msgid "Enable features useful to editors"
-msgstr "Увімкнути корисні функції для редактора"
-
-#: ../libyelp/yelp-sqlite-storage.c:145
-msgid "Database filename"
-msgstr "Назва файла бази даних"
-
-#: ../libyelp/yelp-sqlite-storage.c:146
-msgid "The filename of the sqlite database"
-msgstr "Назва файла бази даних SQLite"
-
-#: ../libyelp/yelp-transform.c:164
-msgid "XSLT Stylesheet"
-msgstr "Таблиця стилів XSLT"
-
-#: ../libyelp/yelp-transform.c:165
-msgid "The location of the XSLT stylesheet"
-msgstr "Адреса таблиці стилів XSLT"
-
-#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
+#: libyelp/yelp-transform.c:370 libyelp/yelp-transform.c:385
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Таблиці стилів XSLT «%s» або нема, або вона некоректна."
 
-#: ../libyelp/yelp-transform.c:518
+#: libyelp/yelp-transform.c:519
 msgid "No href attribute found on yelp:document\n"
 msgstr "У yelp:document не знайдено атрибуту href\n"
 
-#: ../libyelp/yelp-transform.c:533
+#: libyelp/yelp-transform.c:534
 msgid "Out of memory"
 msgstr "Недостатньо пам'яті"
 
-#: ../libyelp/yelp-view.c:253
+#: libyelp/yelp-view.c:252
 msgid "C_opy Code Block"
 msgstr "К_опіювати блок коду"
 
-#: ../libyelp/yelp-view.c:258
+#: libyelp/yelp-view.c:257
 msgid "_Copy Link Location"
 msgstr "_Копіювати посилання"
 
-#: ../libyelp/yelp-view.c:263
+#: libyelp/yelp-view.c:262
 msgid "_Open Link"
 msgstr "_Відкрити посилання"
 
-#: ../libyelp/yelp-view.c:268
+#: libyelp/yelp-view.c:267
 msgid "Open Link in New _Window"
 msgstr "Відкрити посилання у _новому вікні"
 
-#: ../libyelp/yelp-view.c:278
+#: libyelp/yelp-view.c:277
 msgid "_Install Packages"
 msgstr "_Установити пакунки"
 
-#: ../libyelp/yelp-view.c:283
+#: libyelp/yelp-view.c:282
 msgid "Save Code _Block As…"
 msgstr "Зберегти _блок коду як…"
 
-#: ../libyelp/yelp-view.c:298
+#: libyelp/yelp-view.c:297
 msgid "_Copy Text"
 msgstr "_Копіювати текст"
 
-#: ../libyelp/yelp-view.c:525
-msgid "Yelp URI"
-msgstr "Yelp URI"
-
-#: ../libyelp/yelp-view.c:526
-msgid "A YelpUri with the current location"
-msgstr "YelpUri з теперішньою адресою"
-
-#: ../libyelp/yelp-view.c:534
-msgid "Loading State"
-msgstr "Стан завантаження"
-
-#: ../libyelp/yelp-view.c:535
-msgid "The loading state of the view"
-msgstr "Стан завантаження перегляду"
-
-#: ../libyelp/yelp-view.c:544
-msgid "Page ID"
-msgstr "ID сторінки"
-
-#: ../libyelp/yelp-view.c:545
-msgid "The ID of the root page of the page being viewed"
-msgstr "ID кореневої сторінки — сторінки, що переглядається "
-
-#: ../libyelp/yelp-view.c:553
-msgid "Root Title"
-msgstr "Назва кореня"
-
-#: ../libyelp/yelp-view.c:554
-msgid "The title of the root page of the page being viewed"
-msgstr "Назва кореневої сторінки — сторінки, що переглядається "
-
-#: ../libyelp/yelp-view.c:562
-msgid "Page Title"
-msgstr "Назва сторінки"
-
-#: ../libyelp/yelp-view.c:563
-msgid "The title of the page being viewed"
-msgstr "Назва сторінки, що переглядається"
-
-#: ../libyelp/yelp-view.c:571
-msgid "Page Description"
-msgstr "Опис сторінки"
-
-#: ../libyelp/yelp-view.c:572
-msgid "The description of the page being viewed"
-msgstr "Опис сторінки, що переглядається"
-
-#: ../libyelp/yelp-view.c:580
-msgid "Page Icon"
-msgstr "Піктограма сторінки"
-
-#: ../libyelp/yelp-view.c:581
-msgid "The icon of the page being viewed"
-msgstr "Піктограма сторінки, що переглядається"
-
-#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2198
+#: libyelp/yelp-view.c:809 libyelp/yelp-view.c:2142
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Посилання «%s» вказує неправильну сторінку."
 
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2204
-#, c-format
+#: libyelp/yelp-view.c:815 libyelp/yelp-view.c:2148
 msgid "The URI does not point to a valid page."
 msgstr "Посилання вказує неправильну сторінку."
 
-#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2210
+#: libyelp/yelp-view.c:820 libyelp/yelp-view.c:2154
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "Посилання «%s» неможливо розібрати."
 
-#: ../libyelp/yelp-view.c:842
-#, c-format
+#: libyelp/yelp-view.c:825
 msgid "Unknown Error."
 msgstr "Невідома помилка."
 
-#: ../libyelp/yelp-view.c:996
+#: libyelp/yelp-view.c:979
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "Нема пакунку PackageKit. Встановлення пакунку потребує PackageKit."
 
-#: ../libyelp/yelp-view.c:1243
+#: libyelp/yelp-view.c:1226
 msgid "Save Image"
 msgstr "Зберегти зображення"
 
-#: ../libyelp/yelp-view.c:1342
+#: libyelp/yelp-view.c:1325
 msgid "Save Code"
 msgstr "Зберегти код"
 
-#: ../libyelp/yelp-view.c:1438
+#: libyelp/yelp-view.c:1421
 #, c-format
 msgid "Send email to %s"
 msgstr "Відправити листа на %s"
 
-#: ../libyelp/yelp-view.c:1542
+#: libyelp/yelp-view.c:1525
 msgid "_Save Image As…"
 msgstr "З_берегти зображення як…"
 
-#: ../libyelp/yelp-view.c:1543
+#: libyelp/yelp-view.c:1526
 msgid "_Save Video As…"
 msgstr "З_берегти відеозапис як…"
 
-#: ../libyelp/yelp-view.c:1551
+#: libyelp/yelp-view.c:1534
 msgid "S_end Image To…"
 msgstr "Н_адіслати зображення на…"
 
-#: ../libyelp/yelp-view.c:1552
+#: libyelp/yelp-view.c:1535
 msgid "S_end Video To…"
 msgstr "Н_адіслати відеозапис на…"
 
-#: ../libyelp/yelp-view.c:1894
+#: libyelp/yelp-view.c:1876
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Неможливо завантажити документ для «%s»"
 
-#: ../libyelp/yelp-view.c:1900
-#, c-format
+#: libyelp/yelp-view.c:1882
 msgid "Could not load a document"
 msgstr "Неможливо завантажити документ"
 
-#: ../libyelp/yelp-view.c:1984
+#: libyelp/yelp-view.c:1966
 msgid "Document Not Found"
 msgstr "Документ не знайдено"
 
-#: ../libyelp/yelp-view.c:1986
+#: libyelp/yelp-view.c:1968
 msgid "Page Not Found"
 msgstr "Сторінку не знайдено"
 
-#: ../libyelp/yelp-view.c:1989
+#: libyelp/yelp-view.c:1971
 msgid "Cannot Read"
 msgstr "Неможливо прочитати"
 
-#: ../libyelp/yelp-view.c:1995
+#: libyelp/yelp-view.c:1977
 msgid "Unknown Error"
 msgstr "Невідома помилка"
 
-#: ../libyelp/yelp-view.c:2015
+#: libyelp/yelp-view.c:1997
 msgid "Search for packages containing this document."
 msgstr "Пошук пакунків, містить цей документ."
 
-#: ../src/yelp-application.c:59
+#: src/yelp-application.c:59
 msgid "Turn on editor mode"
 msgstr "Увімкнути режим редактора"
 
-#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
-#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
+#: src/yelp-application.c:270 src/yelp-window.c:1188 src/yelp-window.c:1196
+#: yelp.desktop.in:3
 msgid "Help"
 msgstr "Довідка"
 
-#: ../src/yelp-application.c:321
-msgid "New Window"
-msgstr "Створити вікно"
-
-#: ../src/yelp-application.c:325
-msgid "Larger Text"
-msgstr "Більший текст"
-
-#: ../src/yelp-application.c:326
-msgid "Smaller Text"
-msgstr "Менший текст"
-
-#: ../src/yelp-window.c:211
-msgid "Application"
-msgstr "Програма"
-
-#: ../src/yelp-window.c:212
-msgid "A YelpApplication instance that controls this window"
-msgstr "Наприклад, YelpApplication для керування цим вікном"
-
-#: ../src/yelp-window.c:343
+#: src/yelp-window.c:343
 msgid "Back"
 msgstr "Назад"
 
-#: ../src/yelp-window.c:350
+#: src/yelp-window.c:350
 msgid "Forward"
 msgstr "Далі"
 
-#: ../src/yelp-window.c:361
+#: src/yelp-window.c:361
 msgid "Menu"
 msgstr "Меню"
 
-#: ../src/yelp-window.c:366
+#: src/yelp-window.c:366
+msgid "New Window"
+msgstr "Створити вікно"
+
+#: src/yelp-window.c:367
 msgid "Find…"
 msgstr "Знайти…"
 
-#: ../src/yelp-window.c:367
+#: src/yelp-window.c:368
 msgid "Print…"
 msgstr "Надрукувати…"
 
-#: ../src/yelp-window.c:372
+#: src/yelp-window.c:373
 msgid "Previous Page"
 msgstr "Попередня сторінка"
 
-#: ../src/yelp-window.c:373
+#: src/yelp-window.c:374
 msgid "Next Page"
 msgstr "Наступна сторінка"
 
-#: ../src/yelp-window.c:378
+#: src/yelp-window.c:379
+msgid "Larger Text"
+msgstr "Більший текст"
+
+#: src/yelp-window.c:380
+msgid "Smaller Text"
+msgstr "Менший текст"
+
+#: src/yelp-window.c:385
 msgid "All Help"
 msgstr "Усі довідки"
 
-#: ../src/yelp-window.c:400
+#: src/yelp-window.c:407
 msgid "Search (Ctrl+S)"
 msgstr "Пошук (Ctrl+S)"
 
-#: ../src/yelp-window.c:434
+#: src/yelp-window.c:424
+msgid "Bookmarks"
+msgstr "Закладки"
+
+#: src/yelp-window.c:441
 msgid "No bookmarks"
 msgstr "Немає закладок"
 
-#: ../src/yelp-window.c:442
+#: src/yelp-window.c:449
 msgid "Add Bookmark"
 msgstr "Додати закладку"
 
-#: ../src/yelp-window.c:448
+#: src/yelp-window.c:455
 msgid "Remove Bookmark"
 msgstr "Вилучити закладку"
 
-#: ../yelp.desktop.in.in.h:2
+#: yelp.desktop.in:4
 msgid "Get help with GNOME"
 msgstr "Отримати довідку GNOME"
 
-#: ../yelp.desktop.in.in.h:3
-#| msgid "documentation;information;manual;"
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: yelp.desktop.in:6
 msgid "documentation;information;manual;help;"
 msgstr "документація;інформація;посібник;довідка;"
-
-#~ msgid "See all search results for “%s”"
-#~ msgstr "Переглянути результати пошуку «%s»"
-
-#~ msgid "Enable Search"
-#~ msgstr "Увімкнути пошук"
-
-#~ msgid "Whether the location entry can be used as a search field"
-#~ msgstr "Або поле вводу адреси можна використати для пошуку"
-
-#~ msgid "Search..."
-#~ msgstr "Пошук…"
-
-#~ msgid "Clear the search text"
-#~ msgstr "Очистити текст пошуку"
-
-#~ msgid "Bookmark this page"
-#~ msgstr "Закласти"
-
-#~ msgid "Remove bookmark"
-#~ msgstr "Вилучити закладку"
-
-#~ msgid "Loading"
-#~ msgstr "Завантаження…"
-
-#~ msgid "_Print..."
-#~ msgstr "_Друкувати…"
-
-#~ msgid "Increase the size of the text"
-#~ msgstr "Збільшити розмір тексту"
-
-#~ msgid "Decrease the size of the text"
-#~ msgstr "Зменшити розмір тексту"
-
-#~ msgid "Show Text _Cursor"
-#~ msgstr "Показати текстовий _курсор"
-
-#~ msgid "_Page"
-#~ msgstr "_Сторінка"
-
-#~ msgid "_View"
-#~ msgstr "П_ерегляд"
-
-#~ msgid "_Go"
-#~ msgstr "Пере_хід"
-
-#~ msgid "_Bookmarks"
-#~ msgstr "За_кладки"
-
-#~ msgid "_Close"
-#~ msgstr "_Закрити"
-
-#~ msgid "_All Documents"
-#~ msgstr "_Усі документи"
-
-#~ msgid "_Add Bookmark"
-#~ msgstr "Зак_ласти"
-
-#~ msgid "Find in Page..."
-#~ msgstr "Знайти на сторінці…"
-
-#~ msgid "Open Location"
-#~ msgstr "Відкрити адресу"
-
-#~ msgid "Read Link _Later"
-#~ msgstr "Прочитати посилання _згодом"
-
-#~ msgid "Find:"
-#~ msgstr "Знайти:"
-
-#~ msgid "Read Later"
-#~ msgstr "Прочитати згодом"
-
-#~ msgid "%i match"
-#~ msgid_plural "%i matches"
-#~ msgstr[0] "%i збіг"
-#~ msgstr[1] "%i збіги"
-#~ msgstr[2] "%i збігів"
-
-#~ msgid "No matches"
-#~ msgstr "Нема збігів"
-
-#~ msgid "GNU Info Pages"
-#~ msgstr "Інформаційні сторінки GNU"
-
-#~ msgid "Traditional command line help (info)"
-#~ msgstr "Традиційна довідка командного рядка (info)"
-
-#~ msgid "Applications"
-#~ msgstr "Програми"
-
-#~ msgid "BLT Functions"
-#~ msgstr "Функції BLT"
-
-#~ msgid "Configuration Files"
-#~ msgstr "Файли налаштувань"
-
-#~ msgid "Curses Functions"
-#~ msgstr "Функції Curses"
-
-#~ msgid "Development"
-#~ msgstr "Розробка"
-
-#~ msgid "FORTRAN Functions"
-#~ msgstr "Функції FORTRAN"
-
-#~ msgid "Games"
-#~ msgstr "Ігри"
-
-#~ msgid "Hardware Devices"
-#~ msgstr "Апаратні пристрої"
-
-#~ msgid "Kernel Routines"
-#~ msgstr "Робота з ядром"
-
-#~ msgid "Network Audio Sound Functions"
-#~ msgstr "Функції мережного сервера звуку (NAS)"
-
-#~ msgid "OpenSSL Applications"
-#~ msgstr "Програми OpenSSL"
-
-#~ msgid "OpenSSL Configuration"
-#~ msgstr "Налаштування OpenSSL"
-
-#~ msgid "OpenSSL Functions"
-#~ msgstr "Функції OpenSSL"
-
-#~ msgid "OpenSSL Overviews"
-#~ msgstr "Огляди OpenSSL"
-
-#~ msgid "Overviews"
-#~ msgstr "Огляди"
-
-#~ msgid "POSIX Functions"
-#~ msgstr "Функції POSIX"
-
-#~ msgid "POSIX Headers"
-#~ msgstr "Заголовки POSIX"
-
-#~ msgid "Perl Functions"
-#~ msgstr "Функції Perl"
-
-#~ msgid "Qt Functions"
-#~ msgstr "Функції Qt"
-
-#~ msgid "Readline Functions"
-#~ msgstr "Функції Readline"
-
-#~ msgid "Section 0p"
-#~ msgstr "Розділ 0p"
-
-#~ msgid "Section 1m"
-#~ msgstr "Розділ 1m"
-
-#~ msgid "Section 1ssl"
-#~ msgstr "Розділ 1ssl"
-
-#~ msgid "Section 1x"
-#~ msgstr "Розділ 1x"
-
-#~ msgid "Section 2"
-#~ msgstr "Розділ 2"
-
-#~ msgid "Section 3blt"
-#~ msgstr "Розділ 3blt"
-
-#~ msgid "Section 3f"
-#~ msgstr "Розділ 3f"
-
-#~ msgid "Section 3nas"
-#~ msgstr "Розділ 3nas"
-
-#~ msgid "Section 3p"
-#~ msgstr "Розділ 3p"
-
-#~ msgid "Section 3qt"
-#~ msgstr "Розділ 3qt"
-
-#~ msgid "Section 3readline"
-#~ msgstr "Розділ 3readline"
-
-#~ msgid "Section 3ssl"
-#~ msgstr "Розділ 3ssl"
-
-#~ msgid "Section 3tiff"
-#~ msgstr "Розділ 3tiff"
-
-#~ msgid "Section 4"
-#~ msgstr "Розділ 4"
-
-#~ msgid "Section 4x"
-#~ msgstr "Розділ 4x"
-
-#~ msgid "Section 5"
-#~ msgstr "Розділ 5"
-
-#~ msgid "Section 5ssl"
-#~ msgstr "Розділ 5ssl"
-
-#~ msgid "Section 5x"
-#~ msgstr "Розділ 5x"
-
-#~ msgid "Section 6"
-#~ msgstr "Розділ 6"
-
-#~ msgid "Section 6x"
-#~ msgstr "Розділ 6x"
-
-#~ msgid "Section 7ssl"
-#~ msgstr "Розділ 7ssl"
-
-#~ msgid "Section 7x"
-#~ msgstr "Розділ 7x"
-
-#~ msgid "Section 9"
-#~ msgstr "Розділ 9"
-
-#~ msgid "Sections 1, 1p, 1g and 1t"
-#~ msgstr "Розділи 1, 1p, 1g та 1t"
-
-#~ msgid "Sections 3, 3o, and 3t"
-#~ msgstr "Розділи 3, 3o, та 3t"
-
-#~ msgid "Sections 3form and 3menu"
-#~ msgstr "Розділи 3form та 3menu"
-
-#~ msgid "Sections 3ncurses and 3curses"
-#~ msgstr "Розділи 3ncurses та 3curses"
-
-#~ msgid "Sections 3pm and 3perl"
-#~ msgstr "Розділи 3pm та 3perl"
-
-#~ msgid "Sections 3x and 3X11"
-#~ msgstr "Розділи 3x та 3X11"
-
-#~ msgid "Sections 7 and 7gcc"
-#~ msgstr "Розділи 7 та 7gcc"
-
-#~ msgid "Sections 8 and 8l"
-#~ msgstr "Розділи 8 та 8l"
-
-#~ msgid "System Administration"
-#~ msgstr "Системне адміністрування"
-
-#~ msgid "System Calls"
-#~ msgstr "Системні виклики"
-
-#~ msgid "System V Form/Menu Functions"
-#~ msgstr "Функції System V Form/Menu"
-
-#~ msgid "TIFF Functions"
-#~ msgstr "Функції TIFF"
-
-#~ msgid "Termcap Applications"
-#~ msgstr "Програми Termcap"
-
-#~ msgid "Traditional command line help (man)"
-#~ msgstr "Традиційна довідка командного рядка (man)"
-
-#~ msgid "X11 Applications"
-#~ msgstr "Програми X11"
-
-#~ msgid "X11 Configuration"
-#~ msgstr "Налаштування X11"
-
-#~ msgid "X11 Devices"
-#~ msgstr "Пристрої X11"
-
-#~ msgid "X11 Functions"
-#~ msgstr "Функції X11"
-
-#~ msgid "X11 Games"
-#~ msgstr "Ігри X11"
-
-#~ msgid "X11 Overviews"
-#~ msgstr "Огляди X11"
-
-#~ msgid "2D Graphics"
-#~ msgstr "Двовимірна графіка"
-
-#~ msgid "3D Graphics"
-#~ msgstr "Просторова графіка"
-
-#~ msgid "Accessibility"
-#~ msgstr "Доступність"
-
-#~ msgid "Action Games"
-#~ msgstr "Дійові ігри"
-
-#~ msgid "Adventure Games"
-#~ msgstr "Пригодницькі ігри"
-
-#~ msgid "Amusement"
-#~ msgstr "Розваги"
-
-#~ msgid "Applications for viewing and manipulating graphics"
-#~ msgstr "Програми для перегляду чи зміни графіки"
-
-#~ msgid "Applications related to audio and video"
-#~ msgstr "Програми, що стосуються звуку та відео"
-
-#~ msgid "Applications that teach or aid in learning"
-#~ msgstr "Програми, що стосуються навчання і допомоги у вивчені"
-
-#~ msgid "Arcade Games"
-#~ msgstr "Аркадні ігри"
-
-#~ msgid "Archiving Tools"
-#~ msgstr "Засоби архівування"
-
-#~ msgid "Art"
-#~ msgstr "Мистецтво"
-
-#~ msgid "Artificial Intelligence"
-#~ msgstr "Штучний інтелект"
-
-#~ msgid "Astronomy"
-#~ msgstr "Астрономія"
-
-#~ msgid "Biology"
-#~ msgstr "Біологія"
-
-#~ msgid "Blocks Games"
-#~ msgstr "Блочні ігри"
-
-#~ msgid "Board Games"
-#~ msgstr "Настільні ігри"
-
-#~ msgid "Building"
-#~ msgstr "Збирання"
-
-#~ msgid "Calculator"
-#~ msgstr "Калькулятор"
-
-#~ msgid "Calendar"
-#~ msgstr "Календар"
-
-#~ msgid "Card Games"
-#~ msgstr "Картярські ігри"
-
-#~ msgid "Charting Tools"
-#~ msgstr "Засоби креслення діаграм"
-
-#~ msgid "Chat"
-#~ msgstr "Балачка"
-
-#~ msgid "Chemistry"
-#~ msgstr "Хімія"
-
-#~ msgid "Clocks"
-#~ msgstr "Годинники"
-
-#~ msgid "Compression Tools"
-#~ msgstr "Засоби стискання"
-
-#~ msgid "Computer Science"
-#~ msgstr "Комп'ютерні науки"
-
-#~ msgid "Construction"
-#~ msgstr "Будівництво"
-
-#~ msgid "Contact Management"
-#~ msgstr "Керування контактами"
-
-#~ msgid "Data Visualization"
-#~ msgstr "Візуалізація даних"
-
-#~ msgid "Databases"
-#~ msgstr "Бази даних"
-
-#~ msgid "Debuggers"
-#~ msgstr "Зневадження"
-
-#~ msgid "Desktop"
-#~ msgstr "Стільниця"
-
-#~ msgid "Desktop Settings"
-#~ msgstr "Налаштування стільниці"
-
-#~ msgid "Dialup"
-#~ msgstr "Додзвін"
-
-#~ msgid "Dictionaries"
-#~ msgstr "Словники"
-
-#~ msgid "Disc Burning"
-#~ msgstr "Запис дисків"
-
-#~ msgid "Economy"
-#~ msgstr "Економіка"
-
-#~ msgid "Education"
-#~ msgstr "Освіта"
-
-#~ msgid "Electricity"
-#~ msgstr "Електротехніка"
-
-#~ msgid "Electronics"
-#~ msgstr "Електроніка"
-
-#~ msgid "Email Tools"
-#~ msgstr "Засоби листування"
-
-#~ msgid "Emulator"
-#~ msgstr "Емулятор"
-
-#~ msgid "Engineering"
-#~ msgstr "Інженерна справа"
-
-#~ msgid "File Manager"
-#~ msgstr "Менеджер файлів"
-
-#~ msgid "File Tools"
-#~ msgstr "Засоби керування файлами"
-
-#~ msgid "File Transfer"
-#~ msgstr "Передача файлів"
-
-#~ msgid "Filesystem"
-#~ msgstr "Файлова система"
-
-#~ msgid "Financial Tools"
-#~ msgstr "Засоби аналізування фінансів"
-
-#~ msgid "Flow Charting Tools"
-#~ msgstr "Засоби креслення діаграм"
-
-#~ msgid "GNOME Applications"
-#~ msgstr "Програми GNOME"
-
-#~ msgid "GTK"
-#~ msgstr "GTK"
-
-#~ msgid "GUI Designers"
-#~ msgstr "Дизайн графічного інтерфейсу"
-
-#~ msgid "Generic applications for the GNOME environment"
-#~ msgstr "Загальні програми для середовища GNOME"
-
-#~ msgid "Generic applications for the KDE environment"
-#~ msgstr "Загальні програми для середовища KDE"
-
-#~ msgid "Geography"
-#~ msgstr "Географія"
-
-#~ msgid "Geology"
-#~ msgstr "Геологія"
-
-#~ msgid "Geoscience"
-#~ msgstr "Геофізичні науки"
-
-#~ msgid "Graphics"
-#~ msgstr "Графіка"
-
-#~ msgid ""
-#~ "Guides and manuals for applications that connect to the outside world"
-#~ msgstr "Настанови та підручники для програм зв'язку зі світом"
-
-#~ msgid "Guides for getting involved in development"
-#~ msgstr "Настанови для залучення до розробки"
-
-#~ msgid "Ham Radio"
-#~ msgstr "Аматорське радіо"
-
-#~ msgid "Hardware Settings"
-#~ msgstr "Налаштування апаратних засобів"
-
-#~ msgid "Have some fun"
-#~ msgstr "Деякі розваги"
-
-#~ msgid "History"
-#~ msgstr "Історія"
-
-#~ msgid "IDEs"
-#~ msgstr "Вбудовані середовища розробки (IDE)"
-
-#~ msgid "IRC Clients"
-#~ msgstr "Клієнти IRC"
-
-#~ msgid "Image Processing"
-#~ msgstr "Оброблення зображень"
-
-#~ msgid "Instant Messaging"
-#~ msgstr "Миттєві повідомлення"
-
-#~ msgid "Internet"
-#~ msgstr "Інтернет"
-
-#~ msgid "Java"
-#~ msgstr "Java"
-
-#~ msgid "KDE Applications"
-#~ msgstr "Програми KDE"
-
-#~ msgid "Kids Games"
-#~ msgstr "Дитячі ігри"
-
-#~ msgid ""
-#~ "Learn more about making your system more accessible for a range of "
-#~ "disabilities"
-#~ msgstr ""
-#~ "Засоби, щоб зробити систему більш доступною для людей з фізичними вадами"
-
-#~ msgid "Licenses"
-#~ msgstr "Ліцензії"
-
-#~ msgid "Literature"
-#~ msgstr "Література"
-
-#~ msgid "Logic Games"
-#~ msgstr "Логічні ігри"
-
-#~ msgid "Math"
-#~ msgstr "Математика"
-
-#~ msgid "Medical Software"
-#~ msgstr "Медичні програми"
-
-#~ msgid "Midi"
-#~ msgstr "MIDI"
-
-#~ msgid "Miscellaneous Documentation"
-#~ msgstr "Різна документація"
-
-#~ msgid "Mixers"
-#~ msgstr "Мікшери"
-
-#~ msgid "Monitor"
-#~ msgstr "Монітор"
-
-#~ msgid "Motif"
-#~ msgstr "Motif"
-
-#~ msgid "Music"
-#~ msgstr "Музика"
-
-#~ msgid "News"
-#~ msgstr "Новини"
-
-#~ msgid "Numerical Analysis"
-#~ msgstr "Чисельний аналіз"
-
-#~ msgid "OCR"
-#~ msgstr "OCR"
-
-#~ msgid "Office Applications"
-#~ msgstr "Офісні програми"
-
-#~ msgid "Office applications"
-#~ msgstr "Офісні програми"
-
-#~ msgid "Other Documentation"
-#~ msgstr "Інша документація"
-
-#~ msgid "P2P"
-#~ msgstr "P2P"
-
-#~ msgid "PDA Communication"
-#~ msgstr "Під'єднання PDA"
-
-#~ msgid "Package Manager"
-#~ msgstr "Керування пакунками"
-
-#~ msgid "Parallel Computing"
-#~ msgstr "Паралельні обчислення"
-
-#~ msgid "Photography"
-#~ msgstr "Фотографії"
-
-#~ msgid "Physics"
-#~ msgstr "Фізика"
-
-#~ msgid "Players"
-#~ msgstr "Програвачі"
-
-#~ msgid "Presentation Tools"
-#~ msgstr "Засоби презентування"
-
-#~ msgid "Profiling Tools"
-#~ msgstr "Засоби профілювання"
-
-#~ msgid "Project Management Tools"
-#~ msgstr "Засоби керування проектами"
-
-#~ msgid "Publishing"
-#~ msgstr "Публікування"
-
-#~ msgid "Qt"
-#~ msgstr "Qt"
-
-#~ msgid "Raster Graphics"
-#~ msgstr "Растрова графіка"
-
-#~ msgid "Recorders"
-#~ msgstr "Запис звуку"
-
-#~ msgid "Remote Access"
-#~ msgstr "Віддалений доступ"
-
-#~ msgid "Revision Control"
-#~ msgstr "Керування версіями"
-
-#~ msgid "Robotics"
-#~ msgstr "Робототехніка"
-
-#~ msgid "Role Playing Games"
-#~ msgstr "Рольові ігри (RPC)"
-
-#~ msgid "Scanning"
-#~ msgstr "Сканування"
-
-#~ msgid "Science"
-#~ msgstr "Наука"
-
-#~ msgid "Security"
-#~ msgstr "Безпека"
-
-#~ msgid "Sequencers"
-#~ msgstr "Синтезатори"
-
-#~ msgid "Settings"
-#~ msgstr "Налаштування"
-
-#~ msgid ""
-#~ "Settings users can manipulate to make their environment more pleasant"
-#~ msgstr ""
-#~ "Налаштування, які користувачі можуть змінювати для покращення середовища"
-
-#~ msgid "Simulation Games"
-#~ msgstr "Симуляторні ігри"
-
-#~ msgid "Sound"
-#~ msgstr "Звук"
-
-#~ msgid "Sound &amp; Video"
-#~ msgstr "Звук та відео"
-
-#~ msgid "Sound &amp; Video Editing"
-#~ msgstr "Редагування звуку та відео"
-
-#~ msgid "Sports"
-#~ msgstr "Спорт"
-
-#~ msgid "Sports Games"
-#~ msgstr "Спортивні ігри"
-
-#~ msgid "Spreadsheet Tools"
-#~ msgstr "Електронні таблиці"
-
-#~ msgid "Strategy Games"
-#~ msgstr "Стратегічні ігри"
-
-#~ msgid "System"
-#~ msgstr "Система"
-
-#~ msgid "TV"
-#~ msgstr "Телебачення"
-
-#~ msgid "Telephony"
-#~ msgstr "Телефонія"
-
-#~ msgid "Telephony Tools"
-#~ msgstr "Засоби телефонії"
-
-#~ msgid "Terminal Emulator"
-#~ msgstr "Емулятор терміналу"
-
-#~ msgid "Text Editors"
-#~ msgstr "Текстові редактори"
-
-#~ msgid "Text Tools"
-#~ msgstr "Засоби для роботи з текстами"
-
-#~ msgid "Tools to help you manage your computer"
-#~ msgstr "Засоби для керування комп'ютером"
-
-#~ msgid "Translation Tools"
-#~ msgstr "Засоби перекладу"
-
-#~ msgid "Tuners"
-#~ msgstr "Тюнери"
-
-#~ msgid "Utilities"
-#~ msgstr "Засоби"
-
-#~ msgid "Utilities to help you get work done"
-#~ msgstr "Програми керування комп'ютером"
-
-#~ msgid "Vector Graphics"
-#~ msgstr "Векторна графіка"
-
-#~ msgid "Video"
-#~ msgstr "Відео"
-
-#~ msgid "Video Conference"
-#~ msgstr "Відеоконференції"
-
-#~ msgid "Viewer"
-#~ msgstr "Переглядачі"
-
-#~ msgid "Web Browser"
-#~ msgstr "Веб-переглядач"
-
-#~ msgid "Web Development"
-#~ msgstr "Веб-розробка"
-
-#~ msgid "Welcome to the GNOME Help Browser"
-#~ msgstr "Ласкаво просимо до довідки GNOME"
-
-#~ msgid "Word Processors"
-#~ msgstr "Текстові процесори"
-
-#~ msgid "_Edit Bookmarks"
-#~ msgstr "_Редагування закладок"
-
-#~ msgid "Bookmarks for %s"
-#~ msgstr "Закладки для %s"
-
-#~ msgid "_Open Bookmark"
-#~ msgstr "_Відкрити закладку"
-
-#~ msgid "Open Bookmark in New _Window"
-#~ msgstr "Відкрити закладку в _новому вікні"
-
-#~ msgid "Re_name"
-#~ msgstr "Пере_йменувати"
-
-#~ msgid "_Bookmarks:"
-#~ msgstr "_Закладки:"
-
-#~ msgid "_Title:"
-#~ msgstr "_Заголовок:"
-
-#~ msgid "_Location:"
-#~ msgstr "_Адреса:"
-
-#~ msgid "Fonts"
-#~ msgstr "Шрифти"
-
-#~ msgid "Preferences"
-#~ msgstr "Параметри"
-
-#~ msgid "_Browse with caret"
-#~ msgstr "Відображати _курсор"
-
-#~ msgid "_Fixed width:"
-#~ msgstr "_Фіксована ширина:"
-
-#~ msgid "_Use system fonts"
-#~ msgstr "_Використовувати системні шрифти"
-
-#~ msgid "_Variable width:"
-#~ msgstr "З_мінна ширина:"
-
-#~ msgid "Font for fixed text"
-#~ msgstr "Шрифт для моноширинного тексту"
-
-#~ msgid "Font for text"
-#~ msgstr "Шрифт для тексту"
-
-#~ msgid "Font for text with fixed width."
-#~ msgstr "Шрифт для тексту постійної ширини"
-
-#~ msgid "Font for text with variable width."
-#~ msgstr "Шрифт для тексту змінної ширини."
-
-#~ msgid "Use a keyboard-controllable caret when viewing pages."
-#~ msgstr ""
-#~ "Використовувати для перегляду сторінок курсор, що керується з клавіатури."
-
-#~ msgid "Use caret"
-#~ msgstr "Використовувати курсор"
-
-#~ msgid "Use system fonts"
-#~ msgstr "Використовувати системні шрифти"
-
-#~ msgid "Use the default fonts set for the system."
-#~ msgstr "Використовувати типовий системний набір шрифтів."
-
-#~ msgid "A bookmark titled %s already exists for this page."
-#~ msgstr "На цій сторінці вже є закладка з назвою %s."
-
-#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
-#~ msgstr "На цій сторінці вже є закладка з назвою <b>%s</b>."
-
-#~ msgid "Help Topics"
-#~ msgstr "Теми довідки"
-
-#~ msgid "File not found"
-#~ msgstr "Файл не знайдений"
-
-#~ msgid "Could not parse file"
-#~ msgstr "Не вдається розібрати файл"
-
-#~ msgid "Could Not Read File"
-#~ msgstr "Не вдається прочитати документ"
-
-#~ msgid "No information is available about this error."
-#~ msgstr "Інформація про помилку недоступна."
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
-#~ "in an unsupported format."
-#~ msgstr ""
-#~ "Не вдається прочитати та розкодувати файл ‘%s’. Можливо, файл стиснений з "
-#~ "використанням невідомого алгоритму."
-
-#~ msgid "Use a private session"
-#~ msgstr "Використовувати приватний сеанс"
-
-#~ msgid "Define which cache directory to use"
-#~ msgstr "Визначити, яку категорію використовувати"
-
-#~ msgid " GNOME Help Browser"
-#~ msgstr "Програма перегляду довідки GNOME"
-
-#~ msgid "Directory not found"
-#~ msgstr "Теки не знайдено"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
-#~ "page."
-#~ msgstr ""
-#~ "Не вдається розібрати файл ‘%s’. Або файл не існує, або не є коректно "
-#~ "сформованим файлом man-сторінки."
-
-#~ msgid "Preparing to print"
-#~ msgstr "Підготовка до друку"
-
-#~ msgid "Printing is not supported on this printer"
-#~ msgstr "Друк на цьому принтері не підтримується"
-
-#~ msgid "Printer %s does not support postscript printing."
-#~ msgstr "Принтер %s не підтримує друк формату postscript."
-
-#~ msgid "Waiting to print"
-#~ msgstr "Очікування друку"
-
-#~ msgid "An error occurred while printing"
-#~ msgstr "Помилка під час друку"
-
-#~ msgid "It was not possible to print your document: %s"
-#~ msgstr "Ваш документ надрукувати неможливо: %s"
-
-#~ msgid "the GNOME Support Forums"
-#~ msgstr "команда підтримки GNOME"
-
-#~ msgid "No results for \"%s\""
-#~ msgstr "Немає результату для \"%s\""
-
-#~ msgid ""
-#~ "Try using different words to describe the problem you're having or the "
-#~ "topic you want help with."
-#~ msgstr ""
-#~ "Спробуйте використати інші слова для опису вашої проблеми або теми, з "
-#~ "якої вам потрібна допомога."
-
-#~ msgid ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-#~ msgstr ""
-#~ "та:про:але:і:на:у:в:є:або:з:буде:де:як:їх:мене:те:той:це:що:де:хто:не"
-
-#~ msgid "re"
-#~ msgstr "пере"
-
-#~ msgid "ers:er:ing:es:s:'s"
-#~ msgstr "ий:а:ому:ій:ими:их"
-
-#~ msgid "No Comment"
-#~ msgstr "Немає коментарів"
-
-#~ msgid "Search could not be processed"
-#~ msgstr "Не вдається виконати пошук"
-
-#~ msgid "The requested search could not be processed."
-#~ msgstr "Пошук не виконано."
-
-#~ msgid "Cannot process the search"
-#~ msgstr "Не вдається виконати пошук"
-
-#~ msgid "The search processor returned invalid results"
-#~ msgstr "Механізм пошуку повернув некоректний результат"
-
-#~ msgid "The page %s was not found in the TOC."
-#~ msgstr "Сторінку %s не вказано у таблиці змісту."
-
-#~ msgid "The requested page was not found in the TOC."
-#~ msgstr "Запитану сторінку не знайдено у таблиці змісту."
-
-#~ msgid ""
-#~ "The TOC file could not be parsed because it is not a well-formed XML "
-#~ "document."
-#~ msgstr ""
-#~ "Не вдається розібрати файл змісту, оскільки файл не існує, або не є "
-#~ "коректно сформованим файлом  XML."
-
-#~ msgid "Broken Transformation"
-#~ msgstr "Помилка при трансформації"
-
-#~ msgid ""
-#~ "An unknown error occurred while attempting to transform the document."
-#~ msgstr "Невідома помилка при спробі перетворення документу."
-
-#~ msgid "_File"
-#~ msgstr "_Файл"
-
-#~ msgid "_Edit"
-#~ msgstr "_Правка"
-
-#~ msgid "_Help"
-#~ msgstr "_Довідка"
-
-#~ msgid "Print This Document ..."
-#~ msgstr "Друкувати цей документ..."
-
-#~ msgid "Open _Location"
-#~ msgstr "Відкрити _адресу"
-
-#~ msgid "_Select All"
-#~ msgstr "Виді_лити все"
-
-#~ msgid "_Find..."
-#~ msgstr "З_найти..."
-
-#~ msgid "Find Pre_vious"
-#~ msgstr "Знайти п_опереднє"
-
-#~ msgid "Find previous occurrence of the word or phrase"
-#~ msgstr "Знайти попередню відповідність слову чи фразі"
-
-#~ msgid "Find Ne_xt"
-#~ msgstr "Знайти д_алі"
-
-#~ msgid "Find next occurrence of the word or phrase"
-#~ msgstr "Знайти наступну відповідність слову чи фразі"
-
-#~ msgid "_Preferences"
-#~ msgstr "П_араметри"
-
-#~ msgid "_Reload"
-#~ msgstr "_Перечитати"
-
-#~ msgid "Show previous page in history"
-#~ msgstr "Показати попередню сторінку"
-
-#~ msgid "Show next page in history"
-#~ msgstr "Показати наступну сторінку"
-
-#~ msgid "_Help Topics"
-#~ msgstr "_Теми довідки"
-
-#~ msgid "Go to the listing of help topics"
-#~ msgstr "Перейти до переліку тем довідки"
-
-#~ msgid "_Previous Section"
-#~ msgstr "_Попередня сторінка"
-
-#~ msgid "_Next Section"
-#~ msgstr "Н_аступний розділ"
-
-#~ msgid "_Contents"
-#~ msgstr "_Зміст"
-
-#~ msgid "_Copy Link Address"
-#~ msgstr "_Копіювати адресу посилання"
-
-#~ msgid "Help On this application"
-#~ msgstr "Довідка з цієї програми"
-
-#~ msgid "_About"
-#~ msgstr "_Про програму"
-
-#~ msgid "Copy _Email Address"
-#~ msgstr "_Копіювати адресу пошти"
-
-#~ msgid "Help Browser"
-#~ msgstr "Програма перегляду довідки"
-
-#~ msgid "Unknown Page"
-#~ msgstr "Невідома сторінка"
-
-#~ msgid "The requested URI \"%s\" is invalid"
-#~ msgstr "Вказаний URI \"%s\" є некоректним"
-
-#~ msgid "Unable to load page"
-#~ msgstr "Не вдається завантажити сторінку"
-
-#~ msgid "Cannot create search component"
-#~ msgstr "Не вдається створити компонент пошуку"
-
-#~ msgid "Fin_d:"
-#~ msgstr "З_найти:"
-
-#~ msgid "Find _Previous"
-#~ msgstr "Знайти п_опереднє"
-
-#~ msgid "Find _Next"
-#~ msgstr "Знайти д_алі"
-
-#~ msgid "Phrase not found"
-#~ msgstr "Фраза не існує"
-
-#~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
-#~ "might not have permissions to read it."
-#~ msgstr ""
-#~ "Не вдається прочитати файл ‘%s’. Файл або відсутній, або у вас "
-#~ "недостатньо прав для читання цього файлу."
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "Юрій Сирота <yuriy@beer.com>\n"
-#~ "Максим Дзюманенко <dziumanenko@gmail.com>"
-
-#~ msgid "A documentation browser and viewer for the Gnome Desktop."
-#~ msgstr "Програма перегляду документації для середовища GNOME."
-
-#~ msgid "<b>Accessibility</b>"
-#~ msgstr "<b>Спеціальні можливості</b>"
-
-#~ msgid "<b>Fonts</b>"
-#~ msgstr "<b>Шрифти</b>"
-
-#~ msgid "C_ase sensitive"
-#~ msgstr "Враховувати _регістр"
-
-#~ msgid "_Wrap around"
-#~ msgstr "Пере_ходити на початок"
-
-#~ msgid "Error executing \"gnome-open\""
-#~ msgstr "Помилка при виконанні \"gnome-open\""
