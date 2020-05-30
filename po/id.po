@@ -6,12 +6,13 @@
 # Ahmad Riza H Nst <ari@160c.afraid.org>, 2005.
 # Dirgita <dirgitadevina@yahoo.co.id>, 2010, 2011, 2014.
 # Andika Triwidada <andika@gmail.com>, 2011, 2012, 2013, 2014, 2018.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2019-2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
-"POT-Creation-Date: 2019-01-25 11:28+0000\n"
-"PO-Revision-Date: 2019-02-01 15:50+0700\n"
+"POT-Creation-Date: 2020-03-28 21:38+0000\n"
+"PO-Revision-Date: 2020-05-30 17:35+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural= n!=1;\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -79,20 +80,20 @@ msgstr "Data terkompresi tak valid"
 msgid "Not enough memory"
 msgstr "Tak cukup memori"
 
-#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:221
+#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:220
 #: libyelp/yelp-mallard-document.c:306 libyelp/yelp-mallard-document.c:464
-#: libyelp/yelp-man-document.c:199
+#: libyelp/yelp-man-document.c:198
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Halaman '%s' tak ditemukan di dokumen '%s'."
 
-#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:358
-#: libyelp/yelp-man-document.c:336
+#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:357
+#: libyelp/yelp-man-document.c:335
 msgid "The file does not exist."
 msgstr "Berkas tidak ada."
 
-#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:368
-#: libyelp/yelp-man-document.c:346
+#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:367
+#: libyelp/yelp-man-document.c:345
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Berkas '%s' tidak ada."
@@ -113,29 +114,29 @@ msgid ""
 "is not a well-formed XML document."
 msgstr ""
 "Berkas ‘%s’ tidak dapat diuraikan karena satu atau lebih berkas terkait "
-"bukan dokumen XLM yang baik bentuknya."
+"bukan dokumen XML yang baik bentuknya."
 
 #: libyelp/yelp-docbook-document.c:810
 msgid "Unknown"
 msgstr "Tak dikenal"
 
-#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:301
-#: libyelp/yelp-man-document.c:279
+#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:300
+#: libyelp/yelp-man-document.c:278
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Halaman yang diminta tak ditemukan di dokumen '%s'."
 
-#: libyelp/yelp-document.c:1068
+#: libyelp/yelp-document.c:1064
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Hasil pencarian \"%s\""
 
-#: libyelp/yelp-document.c:1080
+#: libyelp/yelp-document.c:1076
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "Tak ada halaman bantuan pada “%s”."
 
-#: libyelp/yelp-document.c:1086
+#: libyelp/yelp-document.c:1082
 msgid "No matching help pages found."
 msgstr "Tak ada halaman bantuan."
 
@@ -143,11 +144,11 @@ msgstr "Tak ada halaman bantuan."
 msgid "An unknown error occurred."
 msgstr "Terjadi galat yang tak dikenal."
 
-#: libyelp/yelp-help-list.c:548 libyelp/yelp-help-list.c:557
+#: libyelp/yelp-help-list.c:545 libyelp/yelp-help-list.c:554
 msgid "All Help Documents"
 msgstr "Semua Dokumen Bantuan"
 
-#: libyelp/yelp-info-document.c:383
+#: libyelp/yelp-info-document.c:382
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -160,131 +161,131 @@ msgstr ""
 msgid "The directory ‘%s’ does not exist."
 msgstr "Direktori '%s' tidak ada."
 
-#: libyelp/yelp-search-entry.c:434
+#: libyelp/yelp-search-entry.c:435
 #, c-format
 msgid "Search for “%s”"
 msgstr "Carian \"%s\""
 
-#: libyelp/yelp-transform.c:369 libyelp/yelp-transform.c:384
+#: libyelp/yelp-transform.c:371 libyelp/yelp-transform.c:386
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Stylesheet XSLT '%s' mungkin hilang atau tak valid."
 
-#: libyelp/yelp-transform.c:518
+#: libyelp/yelp-transform.c:520
 msgid "No href attribute found on yelp:document\n"
 msgstr "Tak ditemukan atribut href pada yelp:document\n"
 
-#: libyelp/yelp-transform.c:533
+#: libyelp/yelp-transform.c:535
 msgid "Out of memory"
 msgstr "Tak cukup memori"
 
-#: libyelp/yelp-view.c:248
+#: libyelp/yelp-view.c:251
 msgid "C_opy Code Block"
 msgstr "Salin Bl_ok Kode"
 
-#: libyelp/yelp-view.c:253
+#: libyelp/yelp-view.c:256
 msgid "_Copy Link Location"
 msgstr "_Salin Lokasi Taut"
 
-#: libyelp/yelp-view.c:258
+#: libyelp/yelp-view.c:261
 msgid "_Open Link"
 msgstr "_Buka Taut"
 
-#: libyelp/yelp-view.c:263
+#: libyelp/yelp-view.c:266
 msgid "Open Link in New _Window"
 msgstr "Buka Taut di _Jendela Baru"
 
-#: libyelp/yelp-view.c:273
+#: libyelp/yelp-view.c:276
 msgid "_Install Packages"
 msgstr "_Pasang Paket"
 
-#: libyelp/yelp-view.c:278
+#: libyelp/yelp-view.c:281
 msgid "Save Code _Block As…"
 msgstr "Simpan _Blok Kode Sebagai…"
 
-#: libyelp/yelp-view.c:293
+#: libyelp/yelp-view.c:296
 msgid "_Copy Text"
 msgstr "_Salin Teks"
 
-#: libyelp/yelp-view.c:805 libyelp/yelp-view.c:2138
+#: libyelp/yelp-view.c:806 libyelp/yelp-view.c:2139
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI '%s' tidak merujuk pada halaman yang sah."
 
-#: libyelp/yelp-view.c:811 libyelp/yelp-view.c:2144
+#: libyelp/yelp-view.c:812 libyelp/yelp-view.c:2145
 msgid "The URI does not point to a valid page."
 msgstr "URI tidak merujuk pada halaman yang sah."
 
-#: libyelp/yelp-view.c:816 libyelp/yelp-view.c:2150
+#: libyelp/yelp-view.c:817 libyelp/yelp-view.c:2151
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI '%s' tidak dapat diuraikan."
 
-#: libyelp/yelp-view.c:821
+#: libyelp/yelp-view.c:822
 msgid "Unknown Error."
 msgstr "Galat Tak Dikenal."
 
-#: libyelp/yelp-view.c:975
+#: libyelp/yelp-view.c:976
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "Anda tidak memiliki PackageKit. Tautan pemasangan paket memerlukan "
 "PackageKit."
 
-#: libyelp/yelp-view.c:1222
+#: libyelp/yelp-view.c:1223
 msgid "Save Image"
 msgstr "Simpan Gambar"
 
-#: libyelp/yelp-view.c:1321
+#: libyelp/yelp-view.c:1322
 msgid "Save Code"
 msgstr "Simpan Kode"
 
-#: libyelp/yelp-view.c:1417
+#: libyelp/yelp-view.c:1418
 #, c-format
 msgid "Send email to %s"
 msgstr "Kirim surel ke %s"
 
-#: libyelp/yelp-view.c:1521
+#: libyelp/yelp-view.c:1522
 msgid "_Save Image As…"
 msgstr "_Simpan Citra Sebagai…"
 
-#: libyelp/yelp-view.c:1522
+#: libyelp/yelp-view.c:1523
 msgid "_Save Video As…"
 msgstr "_Simpan Video Sebagai…"
 
-#: libyelp/yelp-view.c:1530
+#: libyelp/yelp-view.c:1531
 msgid "S_end Image To…"
 msgstr "Kirim Citra K_e…"
 
-#: libyelp/yelp-view.c:1531
+#: libyelp/yelp-view.c:1532
 msgid "S_end Video To…"
 msgstr "Kirim Vid_eo Ke…"
 
-#: libyelp/yelp-view.c:1872
+#: libyelp/yelp-view.c:1873
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Tak bisa memuat suatu dokumen bagi '%s'"
 
-#: libyelp/yelp-view.c:1878
+#: libyelp/yelp-view.c:1879
 msgid "Could not load a document"
 msgstr "Tak bisa memuat suatu dokumen"
 
-#: libyelp/yelp-view.c:1962
+#: libyelp/yelp-view.c:1963
 msgid "Document Not Found"
 msgstr "Dokumen Tak Ditemukan"
 
-#: libyelp/yelp-view.c:1964
+#: libyelp/yelp-view.c:1965
 msgid "Page Not Found"
 msgstr "Halaman Tak Ditemukan"
 
-#: libyelp/yelp-view.c:1967
+#: libyelp/yelp-view.c:1968
 msgid "Cannot Read"
 msgstr "Tak Bisa Membaca"
 
-#: libyelp/yelp-view.c:1973
+#: libyelp/yelp-view.c:1974
 msgid "Unknown Error"
 msgstr "Galat Tak Dikenal"
 
-#: libyelp/yelp-view.c:1993
+#: libyelp/yelp-view.c:1994
 msgid "Search for packages containing this document."
 msgstr "Cari paket yang memuat dokumen ini."
 
@@ -292,83 +293,83 @@ msgstr "Cari paket yang memuat dokumen ini."
 msgid "Turn on editor mode"
 msgstr "Nyalakan mode penyunting"
 
-#: src/yelp-application.c:270 src/yelp-window.c:1188 src/yelp-window.c:1196
+#: src/yelp-application.c:268 src/yelp-window.c:1185 src/yelp-window.c:1193
 #: yelp.desktop.in:3
 msgid "Help"
 msgstr "Bantuan"
 
-#: src/yelp-window.c:343
+#: src/yelp-window.c:340
 msgid "Back"
 msgstr "Mundur"
 
-#: src/yelp-window.c:350
+#: src/yelp-window.c:347
 msgid "Forward"
 msgstr "Maju"
 
-#: src/yelp-window.c:361
+#: src/yelp-window.c:358
 msgid "Menu"
 msgstr "Menu"
 
-#: src/yelp-window.c:366
+#: src/yelp-window.c:363
 msgid "New Window"
 msgstr "Jendela Baru"
 
-#: src/yelp-window.c:367
+#: src/yelp-window.c:364
 msgid "Find…"
 msgstr "Cari…"
 
-#: src/yelp-window.c:368
+#: src/yelp-window.c:365
 msgid "Print…"
 msgstr "Cetak…"
 
-#: src/yelp-window.c:373
+#: src/yelp-window.c:370
 msgid "Previous Page"
 msgstr "Halaman Sebelumnya"
 
-#: src/yelp-window.c:374
+#: src/yelp-window.c:371
 msgid "Next Page"
 msgstr "Halaman Selanjutnya"
 
-#: src/yelp-window.c:379
+#: src/yelp-window.c:376
 msgid "Larger Text"
 msgstr "Teks Lebih Besar"
 
-#: src/yelp-window.c:380
+#: src/yelp-window.c:377
 msgid "Smaller Text"
 msgstr "Teks Lebih Kecil"
 
-#: src/yelp-window.c:385
+#: src/yelp-window.c:382
 msgid "All Help"
 msgstr "Semua Bantuan"
 
-#: src/yelp-window.c:407
+#: src/yelp-window.c:404
 msgid "Search (Ctrl+S)"
 msgstr "Cari (Ctrl+S)"
 
-#: src/yelp-window.c:424
+#: src/yelp-window.c:421
 msgid "Bookmarks"
-msgstr "Penanda"
+msgstr "Markah"
 
-#: src/yelp-window.c:441
+#: src/yelp-window.c:438
 msgid "No bookmarks"
-msgstr "Tak ada penanda taut"
+msgstr "Tak ada markah"
 
-#: src/yelp-window.c:449
+#: src/yelp-window.c:446
 msgid "Add Bookmark"
-msgstr "Tambah Penanda Taut"
+msgstr "Tambah Markah"
 
-#: src/yelp-window.c:455
+#: src/yelp-window.c:452
 msgid "Remove Bookmark"
-msgstr "Hapus Penanda Taut"
+msgstr "Hapus Markah"
 
 #: yelp.desktop.in:4
 msgid "Get help with GNOME"
 msgstr "Buka bantuan GNOME"
 
-#: yelp.desktop.in:5
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: yelp.desktop.in:6
 msgid "documentation;information;manual;help;"
 msgstr "dokumentasi;informasi;manual;bantuan;"
 
-#: yelp.desktop.in:8
-msgid "org.gnome.Yelp"
-msgstr "org.gnome.Yelp"
+#~ msgid "org.gnome.Yelp"
+#~ msgstr "org.gnome.Yelp"
