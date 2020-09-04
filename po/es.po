@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
-"POT-Creation-Date: 2019-01-25 11:28+0000\n"
+"POT-Creation-Date: 2020-05-30 10:36+0000\n"
 "PO-Revision-Date: 2019-01-28 13:05+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
@@ -81,20 +81,20 @@ msgstr "Datos comprimidos no válidos"
 msgid "Not enough memory"
 msgstr "No hay suficiente memoria"
 
-#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:221
+#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:220
 #: libyelp/yelp-mallard-document.c:306 libyelp/yelp-mallard-document.c:464
-#: libyelp/yelp-man-document.c:199
+#: libyelp/yelp-man-document.c:198
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "La página «%s» no se encontró en el documento «%s»."
 
-#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:358
-#: libyelp/yelp-man-document.c:336
+#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:357
+#: libyelp/yelp-man-document.c:335
 msgid "The file does not exist."
 msgstr "El archivo no existe."
 
-#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:368
-#: libyelp/yelp-man-document.c:346
+#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:367
+#: libyelp/yelp-man-document.c:345
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "El archivo «%s» no existe."
@@ -121,23 +121,23 @@ msgstr ""
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:301
-#: libyelp/yelp-man-document.c:279
+#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:300
+#: libyelp/yelp-man-document.c:278
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "No se encontró la página solicitada en el documento «%s»."
 
-#: libyelp/yelp-document.c:1068
+#: libyelp/yelp-document.c:1064
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Resultados de la búsqueda para «%s»"
 
-#: libyelp/yelp-document.c:1080
+#: libyelp/yelp-document.c:1076
 #, c-format
 msgid "No matching help pages found in “%s”."
 msgstr "No se encontraron páginas de ayuda coincidentes en «%s»."
 
-#: libyelp/yelp-document.c:1086
+#: libyelp/yelp-document.c:1082
 msgid "No matching help pages found."
 msgstr "No se encontraron páginas de ayuda coincidentes."
 
@@ -145,11 +145,11 @@ msgstr "No se encontraron páginas de ayuda coincidentes."
 msgid "An unknown error occurred."
 msgstr "Ocurrió un error desconocido."
 
-#: libyelp/yelp-help-list.c:548 libyelp/yelp-help-list.c:557
+#: libyelp/yelp-help-list.c:545 libyelp/yelp-help-list.c:554
 msgid "All Help Documents"
 msgstr "Todos los documentos de ayuda"
 
-#: libyelp/yelp-info-document.c:383
+#: libyelp/yelp-info-document.c:382
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -162,131 +162,131 @@ msgstr ""
 msgid "The directory ‘%s’ does not exist."
 msgstr "La carpeta «%s» no existe."
 
-#: libyelp/yelp-search-entry.c:434
+#: libyelp/yelp-search-entry.c:435
 #, c-format
 msgid "Search for “%s”"
 msgstr "Buscar «%s»"
 
-#: libyelp/yelp-transform.c:369 libyelp/yelp-transform.c:384
+#: libyelp/yelp-transform.c:371 libyelp/yelp-transform.c:386
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "La hoja de estilo XSLT «%s» falta o no es válida."
 
-#: libyelp/yelp-transform.c:518
+#: libyelp/yelp-transform.c:520
 msgid "No href attribute found on yelp:document\n"
 msgstr "No se encontró atributo href en yelp:document\n"
 
-#: libyelp/yelp-transform.c:533
+#: libyelp/yelp-transform.c:535
 msgid "Out of memory"
 msgstr "Se agotó la memoria"
 
-#: libyelp/yelp-view.c:248
+#: libyelp/yelp-view.c:251
 msgid "C_opy Code Block"
 msgstr "C_opiar bloque de código"
 
-#: libyelp/yelp-view.c:253
+#: libyelp/yelp-view.c:256
 msgid "_Copy Link Location"
 msgstr "_Copiar la dirección del enlace"
 
-#: libyelp/yelp-view.c:258
+#: libyelp/yelp-view.c:261
 msgid "_Open Link"
 msgstr "_Abrir enlace"
 
-#: libyelp/yelp-view.c:263
+#: libyelp/yelp-view.c:266
 msgid "Open Link in New _Window"
 msgstr "Abrir enlace en una _ventana nueva"
 
-#: libyelp/yelp-view.c:273
+#: libyelp/yelp-view.c:276
 msgid "_Install Packages"
 msgstr "_Instalar paquetes"
 
-#: libyelp/yelp-view.c:278
+#: libyelp/yelp-view.c:281
 msgid "Save Code _Block As…"
 msgstr "Guardar _bloque de código como…"
 
-#: libyelp/yelp-view.c:293
+#: libyelp/yelp-view.c:296
 msgid "_Copy Text"
 msgstr "_Copiar texto"
 
-#: libyelp/yelp-view.c:805 libyelp/yelp-view.c:2138
+#: libyelp/yelp-view.c:806 libyelp/yelp-view.c:2139
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "El URI «%s» no apunta a una página válida."
 
-#: libyelp/yelp-view.c:811 libyelp/yelp-view.c:2144
+#: libyelp/yelp-view.c:812 libyelp/yelp-view.c:2145
 msgid "The URI does not point to a valid page."
 msgstr "El URI no apunta a una página válida."
 
-#: libyelp/yelp-view.c:816 libyelp/yelp-view.c:2150
+#: libyelp/yelp-view.c:817 libyelp/yelp-view.c:2151
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "No se pudo analizar el URI «%s»."
 
-#: libyelp/yelp-view.c:821
+#: libyelp/yelp-view.c:822
 msgid "Unknown Error."
 msgstr "Error desconocido."
 
-#: libyelp/yelp-view.c:975
+#: libyelp/yelp-view.c:976
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "No tiene PackageKit instalado. Los enlaces de instalación de paquetes "
 "requieren PackageKit."
 
-#: libyelp/yelp-view.c:1222
+#: libyelp/yelp-view.c:1223
 msgid "Save Image"
 msgstr "Guardar imagen"
 
-#: libyelp/yelp-view.c:1321
+#: libyelp/yelp-view.c:1322
 msgid "Save Code"
 msgstr "Guardar código"
 
-#: libyelp/yelp-view.c:1417
+#: libyelp/yelp-view.c:1418
 #, c-format
 msgid "Send email to %s"
 msgstr "Enviar correo-e a %s"
 
-#: libyelp/yelp-view.c:1521
+#: libyelp/yelp-view.c:1522
 msgid "_Save Image As…"
 msgstr "Guardar imagen _como…"
 
-#: libyelp/yelp-view.c:1522
+#: libyelp/yelp-view.c:1523
 msgid "_Save Video As…"
 msgstr "Guardar vídeo _como…"
 
-#: libyelp/yelp-view.c:1530
+#: libyelp/yelp-view.c:1531
 msgid "S_end Image To…"
 msgstr "_Enviar imagen a…"
 
-#: libyelp/yelp-view.c:1531
+#: libyelp/yelp-view.c:1532
 msgid "S_end Video To…"
 msgstr "_Enviar vídeo a…"
 
-#: libyelp/yelp-view.c:1872
+#: libyelp/yelp-view.c:1873
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "No se pudo cargar un documento para «%s»"
 
-#: libyelp/yelp-view.c:1878
+#: libyelp/yelp-view.c:1879
 msgid "Could not load a document"
 msgstr "No se pudo cargar un documento"
 
-#: libyelp/yelp-view.c:1962
+#: libyelp/yelp-view.c:1963
 msgid "Document Not Found"
 msgstr "No se encontró el documento"
 
-#: libyelp/yelp-view.c:1964
+#: libyelp/yelp-view.c:1965
 msgid "Page Not Found"
 msgstr "No se encontró la página"
 
-#: libyelp/yelp-view.c:1967
+#: libyelp/yelp-view.c:1968
 msgid "Cannot Read"
 msgstr "No se puede leer"
 
-#: libyelp/yelp-view.c:1973
+#: libyelp/yelp-view.c:1974
 msgid "Unknown Error"
 msgstr "Error desconocido"
 
-#: libyelp/yelp-view.c:1993
+#: libyelp/yelp-view.c:1994
 msgid "Search for packages containing this document."
 msgstr "Buscar paquetes que contengan este documento."
 
@@ -294,72 +294,72 @@ msgstr "Buscar paquetes que contengan este documento."
 msgid "Turn on editor mode"
 msgstr "Activar el modo editor"
 
-#: src/yelp-application.c:270 src/yelp-window.c:1188 src/yelp-window.c:1196
+#: src/yelp-application.c:268 src/yelp-window.c:1185 src/yelp-window.c:1193
 #: yelp.desktop.in:3
 msgid "Help"
 msgstr "Ayuda"
 
-#: src/yelp-window.c:343
+#: src/yelp-window.c:340
 msgid "Back"
 msgstr "Atrás"
 
-#: src/yelp-window.c:350
+#: src/yelp-window.c:347
 msgid "Forward"
 msgstr "Adelante"
 
-#: src/yelp-window.c:361
+#: src/yelp-window.c:358
 msgid "Menu"
 msgstr "Menú"
 
-#: src/yelp-window.c:366
+#: src/yelp-window.c:363
 msgid "New Window"
 msgstr "Ventana nueva"
 
-#: src/yelp-window.c:367
+#: src/yelp-window.c:364
 msgid "Find…"
 msgstr "Buscar…"
 
-#: src/yelp-window.c:368
+#: src/yelp-window.c:365
 msgid "Print…"
 msgstr "Imprimir…"
 
-#: src/yelp-window.c:373
+#: src/yelp-window.c:370
 msgid "Previous Page"
 msgstr "Página anterior"
 
-#: src/yelp-window.c:374
+#: src/yelp-window.c:371
 msgid "Next Page"
 msgstr "Siguiente página"
 
-#: src/yelp-window.c:379
+#: src/yelp-window.c:376
 msgid "Larger Text"
 msgstr "Texto más grande"
 
-#: src/yelp-window.c:380
+#: src/yelp-window.c:377
 msgid "Smaller Text"
 msgstr "Texto más pequeño"
 
-#: src/yelp-window.c:385
+#: src/yelp-window.c:382
 msgid "All Help"
 msgstr "Toda la ayuda"
 
-#: src/yelp-window.c:407
+#: src/yelp-window.c:404
 msgid "Search (Ctrl+S)"
 msgstr "Buscar (Ctrl+S)"
 
-#: src/yelp-window.c:424
+#: src/yelp-window.c:421
 msgid "Bookmarks"
 msgstr "Marcadores"
 
-#: src/yelp-window.c:441
+#: src/yelp-window.c:438
 msgid "No bookmarks"
 msgstr "Sin marcadores"
 
-#: src/yelp-window.c:449
+#: src/yelp-window.c:446
 msgid "Add Bookmark"
 msgstr "Añadir marcador"
 
-#: src/yelp-window.c:455
+#: src/yelp-window.c:452
 msgid "Remove Bookmark"
 msgstr "Quitar marcador"
 
@@ -367,13 +367,13 @@ msgstr "Quitar marcador"
 msgid "Get help with GNOME"
 msgstr "Obtenga ayuda acerca de GNOME"
 
-#: yelp.desktop.in:5
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: yelp.desktop.in:6
 msgid "documentation;information;manual;help;"
 msgstr "documentación;información;manual;ayuda;"
 
-#: yelp.desktop.in:8
-msgid "org.gnome.Yelp"
-msgstr "org.gnome.Yelp"
+#~ msgid "org.gnome.Yelp"
+#~ msgstr "org.gnome.Yelp"
 
 #~ msgid "Indexed"
 #~ msgstr "Indexado"
@@ -1229,7 +1229,7 @@ msgstr "org.gnome.Yelp"
 #~ msgstr "Desarrollo web"
 
 #~ msgid "Welcome to the GNOME Help Browser"
-#~ msgstr "Bienvenido al visor de ayuda de GNOME"
+#~ msgstr "Bienvenido/a al visor de ayuda de GNOME"
 
 #~ msgid "Word Processors"
 #~ msgstr "Procesador de textos"
