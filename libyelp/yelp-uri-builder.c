@@ -31,6 +31,10 @@ build_network_uri (const gchar *uri)
 
     soup_uri = soup_uri_new (uri);
 
+    /* Don't mangle URIs for local files */
+    if (g_str_equal (soup_uri->scheme, "file"))
+        return g_strdup (uri);
+
     /* Build the URI that will be passed to WebKit. Relative URIs will be
      * automatically resolved by WebKit, so we need to add a leading slash to
      * help: and ghelp: URIs to be considered as absolute by WebKit.
