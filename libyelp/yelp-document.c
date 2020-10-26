@@ -1088,8 +1088,12 @@ document_read_contents (YelpDocument *document,
             while (g_variant_iter_loop (iter, "(&s&s&s&s)", &url, &title, &desc, &icon)) {
                 gchar *xref_uri = NULL;
 
-                if (g_str_has_prefix (url, document->priv->doc_uri))
-                    xref_uri = g_strdup_printf ("xref:%s", url + strlen (document->priv->doc_uri) + 1);
+                if (g_str_has_prefix (url, document->priv->doc_uri)) {
+                    gchar *urloffset = url + strlen(document->priv->doc_uri) + 1; /* do not free */
+                    if (urloffset[0] == '?')
+                        urloffset += 1; /* handle oddity of old ghelp URIs */
+                    xref_uri = g_strdup_printf ("xref:%s", urloffset);
+                }
 
                 tmp = g_markup_printf_escaped ("<div><a class='linkdiv' href='%s'><div class='linkdiv'>"
                                                "<div class='title'>%s</div>"
