@@ -389,7 +389,7 @@ docbook_process (YelpDocbookDocument *docbook)
 
     id = xmlGetProp (priv->xmlcur, BAD_CAST "id");
     if (!id)
-        id = xmlGetNsProp (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "id");
+        id = xmlGetNsProp (priv->xmlcur, BAD_CAST "id", XML_XML_NAMESPACE);
 
     if (id) {
         priv->root_id = g_strdup ((const gchar *) id);
@@ -402,11 +402,9 @@ docbook_process (YelpDocbookDocument *docbook)
         /* add the id attribute to the root element with value "index"
          * so when we try to load the document later, it doesn't fail */
         if (priv->xmlcur->ns)
-            xmlNewNsProp (priv->xmlcur,
-                          xmlNewNs (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "xml"),
-                          BAD_CAST "id", BAD_CAST "//index");
+            xmlSetProp (priv->xmlcur, BAD_CAST "xml:id", BAD_CAST "//index");
         else
-            xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST "//index");
+            xmlSetProp (priv->xmlcur, BAD_CAST "id", BAD_CAST "//index");
     }
     yelp_document_set_root_id (document, priv->root_id, priv->root_id);
     g_mutex_unlock (&priv->mutex);
@@ -565,22 +563,21 @@ docbook_walk (YelpDocbookDocument *docbook)
 
     id = xmlGetProp (priv->xmlcur, BAD_CAST "id");
     if (!id)
-        id = xmlGetNsProp (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "id");
+        id = xmlGetNsProp (priv->xmlcur, BAD_CAST "id", XML_XML_NAMESPACE);
 
     if (docbook_walk_divisionQ (docbook, priv->xmlcur) && !id) {
         /* If id attribute is not present, autogenerate a
          * unique value, and insert it into the in-memory tree */
         g_snprintf (autoidstr, 20, "//yelp-autoid-%d", ++autoid);
         if (priv->xmlcur->ns) {
-            xmlNewNsProp (priv->xmlcur,
-                          xmlNewNs (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "xml"),
-                          BAD_CAST "id", BAD_CAST autoidstr);
-            id = xmlGetNsProp (priv->xmlcur, XML_XML_NAMESPACE, BAD_CAST "id");
+            xmlSetProp (priv->xmlcur, BAD_CAST "xml:id", BAD_CAST autoidstr);
+            id = xmlGetNsProp (priv->xmlcur, BAD_CAST "id", XML_XML_NAMESPACE);
         }
         else {
-            xmlNewProp (priv->xmlcur, BAD_CAST "id", BAD_CAST autoidstr);
+            xmlSetProp (priv->xmlcur, BAD_CAST "id", BAD_CAST autoidstr);
             id = xmlGetProp (priv->xmlcur, BAD_CAST "id");
         }
+
         if (!priv->autoids)
             priv->autoids = g_hash_table_new_full (g_str_hash, g_str_equal, xmlFree, xmlFree);
         g_hash_table_insert (priv->autoids, xmlGetNodePath(priv->xmlcur), xmlStrdup (id));
@@ -1011,7 +1008,7 @@ docbook_index_chunk (DocbookIndexData *index)
 
     id = xmlGetProp (index->cur, BAD_CAST "id");
     if (!id)
-        id = xmlGetNsProp (index->cur, XML_XML_NAMESPACE, BAD_CAST "id");
+        id = xmlGetNsProp (index->cur, BAD_CAST "id", XML_XML_NAMESPACE);
     if (!id) {
         xmlChar *path = xmlGetNodePath (index->cur);
         id = g_hash_table_lookup (priv->autoids, path);
