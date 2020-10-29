@@ -1168,6 +1168,7 @@ mallard_monitor_changed (GFileMonitor         *monitor,
     xmlFreeDoc (priv->cache);
     priv->cache = xmlNewDoc (BAD_CAST "1.0");
     priv->cache_ns = xmlNewNs (NULL, CACHE_NS, BAD_CAST "cache");
+    priv->mallard_ns = xmlNewNs (NULL, MALLARD_NS, BAD_CAST "mal");
     cur = xmlNewDocNode (priv->cache, priv->cache_ns, BAD_CAST "cache", NULL);
     xmlDocSetRootElement (priv->cache, cur);
     priv->cache_ns->next = priv->mallard_ns;
