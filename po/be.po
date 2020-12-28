@@ -1,24 +1,22 @@
-# Vital Khilko <dojlid@mova.org>, 2003.
-# Ales Nyakhaychyk <nab@mail.by>, 2003, 2004, 2006.
-# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2011.
-# Kasia Bondarava <kasia.bondarava>, 2011.
-# Yuras Shumovich <shumovichy@gmail.com>, 2017.
 msgid ""
 msgstr ""
-"Project-Id-Version: yelp.master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=yelp&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-03-01 01:11+0000\n"
-"PO-Revision-Date: 2017-04-22 15:13+0300\n"
-"Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
-"Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
-"Language: be\n"
+"Project-Id-Version: 98e6872775a91bf27122ff608b6db605\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
+"POT-Creation-Date: 2019-04-19 15:58+0000\n"
+"PO-Revision-Date: 2020-12-28 17:42\n"
+"Last-Translator: Zander Brown <zbrown@gnome.org>\n"
+"Language-Team: Belarusian\n"
+"Language: be_BY\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n%100>=11 && n%100<=14 ? 2 : 3);\n"
+"X-Generator: Gtranslator 3.32.1\n"
+"X-Crowdin-Project: 98e6872775a91bf27122ff608b6db605\n"
+"X-Crowdin-Project-ID: 2\n"
+"X-Crowdin-Language: be\n"
+"X-Crowdin-File: /master/sources/yelp/en_GB.po\n"
+"X-Crowdin-File-ID: 158\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -30,533 +28,1630 @@ msgstr ""
 #.
 #. <string/> - The package to install
 #.
-#: yelp.xml.in:36
+#: data/domains/yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Усталяваць <string/>"
 
-#: ../libyelp/yelp-bz2-decompressor.c:143
-#: ../libyelp/yelp-lzma-decompressor.c:152
+#: data/yelp.appdata.xml.in:6
+#| msgid " GNOME Help Browser"
+msgid "GNOME Help"
+msgstr "Даведнік GNOME"
+
+#: data/yelp.appdata.xml.in:7
+msgid "Help viewer for GNOME"
+msgstr "Сродак для прагляду даведкі па GNOME"
+
+#: data/yelp.appdata.xml.in:9
+msgid "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can also display DocBook, info, man, and HTML documentation."
+msgstr "Yelp - сродак для прагляду даведкі па GNOME. Асноўным фарматам для яго ёсць Mallard, але праграма таксама можа адлюстроўваць DocBook, info, man і HTML."
+
+#: data/yelp.appdata.xml.in:13
+msgid "It makes it easy to find the documentation you need, with interactive search and bookmarks."
+msgstr "Інтэрактыўны пошук і закладкі спрашчаюць навігацыю па дакументацыі."
+
+#: data/yelp.appdata.xml.in:17
+msgid "It also has an editor mode, which shows editorial comments and revision statuses when editing Mallard documents."
+msgstr "Таксама ў праграмы ёсць рэжым рэдактара, у якім паказваюцца каментары і стан рэвізіі для дакументаў Mallard."
+
+#: data/yelp.appdata.xml.in:30
+msgid "The GNOME Project"
+msgstr "Праект GNOME"
+
+#: libyelp/yelp-bz2-decompressor.c:143 libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
 msgstr "Хібныя сціснутыя даныя"
 
-#: ../libyelp/yelp-bz2-decompressor.c:149
-#: ../libyelp/yelp-lzma-decompressor.c:158
+#: libyelp/yelp-bz2-decompressor.c:149 libyelp/yelp-lzma-decompressor.c:158
 msgid "Not enough memory"
 msgstr "Не стае памяці"
 
-#: ../libyelp/yelp-docbook-document.c:285 ../libyelp/yelp-info-document.c:221
-#: ../libyelp/yelp-mallard-document.c:301
-#: ../libyelp/yelp-mallard-document.c:455 ../libyelp/yelp-man-document.c:255
+#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:221
+#: libyelp/yelp-mallard-document.c:306 libyelp/yelp-mallard-document.c:464
+#: libyelp/yelp-man-document.c:199
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
-msgstr "Старонка \"%s\" не знойдзена ў дакуменце \"%s\"."
+msgstr "Старонка \"%s\" не знойдзеная ў дакуменце \"%s\"."
 
-#: ../libyelp/yelp-docbook-document.c:323 ../libyelp/yelp-info-document.c:358
-#: ../libyelp/yelp-man-document.c:393
-#, c-format
+#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:358
+#: libyelp/yelp-man-document.c:336
 msgid "The file does not exist."
 msgstr "Файл не існуе."
 
-#: ../libyelp/yelp-docbook-document.c:333 ../libyelp/yelp-info-document.c:368
-#: ../libyelp/yelp-man-document.c:403
+#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:368
+#: libyelp/yelp-man-document.c:346
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Файл \"%s\" не існуе."
 
-#: ../libyelp/yelp-docbook-document.c:348
+#: libyelp/yelp-docbook-document.c:359
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"Не ўдалося разабраць файл \"%s\", бо ён не ўяўляе сабой карэктнага XML-"
-"дакумента."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgstr "Не атрымалася разабраць файл \"%s\", бо гэта непрыдатны дакумент XML."
 
-#: ../libyelp/yelp-docbook-document.c:361
+#: libyelp/yelp-docbook-document.c:372
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files "
-"is not a well-formed XML document."
-msgstr ""
-"Не ўдалося разабраць файл \"%s\", бо ён улучае ў сябе некарэктны XML-"
-"дакумент."
+msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
+msgstr "Не атрымалася разабраць файл \"%s\", бо ён змяшчае ў сябе некарэктны дакумент XML."
 
-#: ../libyelp/yelp-docbook-document.c:791
+#: libyelp/yelp-docbook-document.c:810
 msgid "Unknown"
 msgstr "Невядома"
 
-#: ../libyelp/yelp-docbook-document.c:853 ../libyelp/yelp-info-document.c:301
-#: ../libyelp/yelp-man-document.c:335
+#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:301
+#: libyelp/yelp-man-document.c:279
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr "Патрэбная старонка не знойдзена ў дакуменце \"%s\"."
+msgstr "Патрэбнай старонкі не знойдзена ў дакуменце \"%s\"."
 
-#: ../libyelp/yelp-document.c:280
-msgid "Indexed"
-msgstr "Індэксавана"
-
-#: ../libyelp/yelp-document.c:281
-msgid "Whether the document content has been indexed"
-msgstr "Ці было змесціва дакумента праіндэксавана"
-
-#: ../libyelp/yelp-document.c:289
-msgid "Document URI"
-msgstr "URI-адрас дакумента"
-
-#: ../libyelp/yelp-document.c:290
-msgid "The URI which identifies the document"
-msgstr "URI-адрас дакумента"
-
-#: ../libyelp/yelp-document.c:1030
+#: libyelp/yelp-document.c:1068
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Вынікі пошуку \"%s\""
 
-#: ../libyelp/yelp-document.c:1042
+#: libyelp/yelp-document.c:1080
 #, c-format
 msgid "No matching help pages found in “%s”."
-msgstr "Адпаведныя даведачныя старонкі не знойдзены ў \"%s\"."
+msgstr "Адпаведных старонак даведкі не знойдзена ў \"%s\"."
 
-#: ../libyelp/yelp-document.c:1048
+#: libyelp/yelp-document.c:1086
 msgid "No matching help pages found."
-msgstr "Адпаведныя даведачныя старонкі не знойдзены."
+msgstr "Адпаведных старонак даведкі не знойдзена."
 
-#: ../libyelp/yelp-error.c:35
-#, c-format
+#: libyelp/yelp-error.c:35
 msgid "An unknown error occurred."
 msgstr "Узнікла невядомая памылка."
 
-#: ../libyelp/yelp-help-list.c:548 ../libyelp/yelp-help-list.c:557
+#: libyelp/yelp-help-list.c:548 libyelp/yelp-help-list.c:557
 msgid "All Help Documents"
-msgstr "Усе даведачныя дакументы"
+msgstr "Усе дакументы даведкі"
 
-#: ../libyelp/yelp-info-document.c:383
+#: libyelp/yelp-info-document.c:383
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"Не ўдалося разабраць файл \"%s\", бо ён не ўяўляе сабой карэктнай info-"
-"старонкі."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr "Не атрымалася разабраць файл \"%s\", бо гэта некарэктная старонка info."
 
-#: ../libyelp/yelp-mallard-document.c:343
+#: libyelp/yelp-mallard-document.c:348
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Каталог \"%s\" не існуе."
 
-#: ../libyelp/yelp-search-entry.c:172
-msgid "View"
-msgstr "Аб'ект прагляду"
-
-#: ../libyelp/yelp-search-entry.c:173
-msgid "A YelpView instance to control"
-msgstr "Кіраваны аб'ект YelpView"
-
-#: ../libyelp/yelp-search-entry.c:188 ../src/yelp-window.c:417
-msgid "Bookmarks"
-msgstr "Закладкі"
-
-#: ../libyelp/yelp-search-entry.c:189
-msgid "A YelpBookmarks implementation instance"
-msgstr "Аб'ект рэалізацыі YelpBookmarks"
-
-#: ../libyelp/yelp-search-entry.c:433
+#: libyelp/yelp-search-entry.c:434
 #, c-format
 msgid "Search for “%s”"
 msgstr "Шукаць \"%s\""
 
-#: ../libyelp/yelp-settings.c:148
-msgid "GtkSettings"
-msgstr "GtkSettings"
-
-#: ../libyelp/yelp-settings.c:149
-msgid "A GtkSettings object to get settings from"
-msgstr "Аб'ект GtkSettings для атрымання настроек"
-
-#: ../libyelp/yelp-settings.c:157
-msgid "GtkIconTheme"
-msgstr "GtkIconTheme"
-
-#: ../libyelp/yelp-settings.c:158
-msgid "A GtkIconTheme object to get icons from"
-msgstr "Аб'ект GtkIconTheme для атрымання значкоў"
-
-#: ../libyelp/yelp-settings.c:166
-msgid "Font Adjustment"
-msgstr "Падстройка шрыфту"
-
-#: ../libyelp/yelp-settings.c:167
-msgid "A size adjustment to add to font sizes"
-msgstr "Падстройка памераў шрыфтоў"
-
-#: ../libyelp/yelp-settings.c:175
-msgid "Show Text Cursor"
-msgstr "Паказваць курсор у тэксце"
-
-#: ../libyelp/yelp-settings.c:176
-msgid "Show the text cursor or caret for accessible navigation"
-msgstr "Паказваць курсор у тэксце для зручнага аглядання"
-
-#: ../libyelp/yelp-settings.c:184
-msgid "Editor Mode"
-msgstr "Рэжым рэдактара"
-
-#: ../libyelp/yelp-settings.c:185
-msgid "Enable features useful to editors"
-msgstr "Уключыць функцыі для працы карэктара"
-
-#: ../libyelp/yelp-sqlite-storage.c:145
-msgid "Database filename"
-msgstr "Назва файла базы даных"
-
-#: ../libyelp/yelp-sqlite-storage.c:146
-msgid "The filename of the sqlite database"
-msgstr "Назва файла базы даных sqlite"
-
-#: ../libyelp/yelp-transform.c:164
-msgid "XSLT Stylesheet"
-msgstr "Аркуш стыляў XSLT"
-
-#: ../libyelp/yelp-transform.c:165
-msgid "The location of the XSLT stylesheet"
-msgstr "Месцазнаходжанне аркуша стыляў XSLT"
-
-#: ../libyelp/yelp-transform.c:369 ../libyelp/yelp-transform.c:384
+#: libyelp/yelp-transform.c:370 libyelp/yelp-transform.c:385
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Аркуш стыляў XSLT \"%s\" адсутнічае або хібны."
 
-#: ../libyelp/yelp-transform.c:518
+#: libyelp/yelp-transform.c:519
 msgid "No href attribute found on yelp:document\n"
 msgstr "Атрыбут href не знойдзены ў yelp:document\n"
 
-#: ../libyelp/yelp-transform.c:533
+#: libyelp/yelp-transform.c:534
 msgid "Out of memory"
-msgstr "Памяць вычарпана"
+msgstr "Памяць вычарпаная"
 
-#: ../libyelp/yelp-view.c:253
+#: libyelp/yelp-view.c:248
 msgid "C_opy Code Block"
-msgstr "С_капіраваць урывак коду"
+msgstr "С_капіяваць урывак коду"
 
-#: ../libyelp/yelp-view.c:258
+#: libyelp/yelp-view.c:253
 msgid "_Copy Link Location"
-msgstr "С_капіраваць адрас спасылкі"
+msgstr "С_капіяваць адрас спасылкі"
 
-#: ../libyelp/yelp-view.c:263
+#: libyelp/yelp-view.c:258
 msgid "_Open Link"
 msgstr "_Адкрыць спасылку"
 
-#: ../libyelp/yelp-view.c:268
+#: libyelp/yelp-view.c:263
 msgid "Open Link in New _Window"
 msgstr "Адкрыць спасылку ў _новым акне"
 
-#: ../libyelp/yelp-view.c:278
+#: libyelp/yelp-view.c:273
 msgid "_Install Packages"
 msgstr "_Усталяваць пакункі"
 
-#: ../libyelp/yelp-view.c:283
+#: libyelp/yelp-view.c:278
 msgid "Save Code _Block As…"
 msgstr "За_хаваць урывак коду як..."
 
-#: ../libyelp/yelp-view.c:298
+#: libyelp/yelp-view.c:293
 msgid "_Copy Text"
-msgstr "С_капіраваць тэкст"
+msgstr "С_капіяваць тэкст"
 
-#: ../libyelp/yelp-view.c:525
-msgid "Yelp URI"
-msgstr "URI-адрас Yelp"
-
-#: ../libyelp/yelp-view.c:526
-msgid "A YelpUri with the current location"
-msgstr "Аб'ект YelpUri з бягучым месцазнаходжаннем"
-
-#: ../libyelp/yelp-view.c:534
-msgid "Loading State"
-msgstr "Стан загрузкі"
-
-#: ../libyelp/yelp-view.c:535
-msgid "The loading state of the view"
-msgstr "Стан загрузкі аб'екта прагляду"
-
-#: ../libyelp/yelp-view.c:544
-msgid "Page ID"
-msgstr "Ідэнтыфікатар старонкі"
-
-#: ../libyelp/yelp-view.c:545
-msgid "The ID of the root page of the page being viewed"
-msgstr "Каранёвы ідэнтыфікатар для паказанай старонкі"
-
-#: ../libyelp/yelp-view.c:553
-msgid "Root Title"
-msgstr "Каранёвы загаловак"
-
-#: ../libyelp/yelp-view.c:554
-msgid "The title of the root page of the page being viewed"
-msgstr "Каранёвы загаловак для паказанай старонкі"
-
-#: ../libyelp/yelp-view.c:562
-msgid "Page Title"
-msgstr "Загаловак старонкі"
-
-#: ../libyelp/yelp-view.c:563
-msgid "The title of the page being viewed"
-msgstr "Загаловак паказанай старонкі"
-
-#: ../libyelp/yelp-view.c:571
-msgid "Page Description"
-msgstr "Апісанне старонкі"
-
-#: ../libyelp/yelp-view.c:572
-msgid "The description of the page being viewed"
-msgstr "Апісанне паказанай старонкі"
-
-#: ../libyelp/yelp-view.c:580
-msgid "Page Icon"
-msgstr "Значок старонкі"
-
-#: ../libyelp/yelp-view.c:581
-msgid "The icon of the page being viewed"
-msgstr "Значок паказанай старонкі"
-
-#: ../libyelp/yelp-view.c:826 ../libyelp/yelp-view.c:2197
+#: libyelp/yelp-view.c:805 libyelp/yelp-view.c:2138
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
-msgstr "URI-адрас \"%s\" не ўказвае на прыдатную старонку."
+msgstr "URI \"%s\" не вядзе на прыдатную старонку."
 
-#: ../libyelp/yelp-view.c:832 ../libyelp/yelp-view.c:2203
-#, c-format
+#: libyelp/yelp-view.c:811 libyelp/yelp-view.c:2144
 msgid "The URI does not point to a valid page."
-msgstr "URI-адрас не ўказвае на прыдатную старонку."
+msgstr "URI не вядзе на прыдатную старонку."
 
-#: ../libyelp/yelp-view.c:837 ../libyelp/yelp-view.c:2209
+#: libyelp/yelp-view.c:816 libyelp/yelp-view.c:2150
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "Не ўдалося разабраць URI-адрас \"%s\"."
+msgstr "Не атрымалася разабраць URI \"%s\"."
 
-#: ../libyelp/yelp-view.c:842
-#, c-format
+#: libyelp/yelp-view.c:821
 msgid "Unknown Error."
 msgstr "Невядомая памылка."
 
-#: ../libyelp/yelp-view.c:996
+#: libyelp/yelp-view.c:975
 msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr ""
-"Вы не маеце PackageKit. Спасылкі ўсталявання пакункаў патрабуюць PackageKit."
+msgstr "У вас няма PackageKit. Спасылкі на ўсталёўку пакункаў патрабуюць PackageKit."
 
-#: ../libyelp/yelp-view.c:1243
+#: libyelp/yelp-view.c:1222
 msgid "Save Image"
-msgstr "Захаванне выявы"
+msgstr "Захаваць выяву"
 
-#: ../libyelp/yelp-view.c:1342
+#: libyelp/yelp-view.c:1321
 msgid "Save Code"
-msgstr "Захаванне коду"
+msgstr "Захаваць код"
 
-#: ../libyelp/yelp-view.c:1438
+#: libyelp/yelp-view.c:1417
 #, c-format
 msgid "Send email to %s"
-msgstr "Паслаць электронны ліст да %s"
+msgstr "Адправіць электронны ліст %s"
 
-#: ../libyelp/yelp-view.c:1542
+#: libyelp/yelp-view.c:1521
 msgid "_Save Image As…"
 msgstr "_Захаваць выяву як..."
 
-#: ../libyelp/yelp-view.c:1543
+#: libyelp/yelp-view.c:1522
 msgid "_Save Video As…"
 msgstr "_Захаваць відэа як..."
 
-#: ../libyelp/yelp-view.c:1551
+#: libyelp/yelp-view.c:1530
 msgid "S_end Image To…"
-msgstr "Па_слаць выяву да..."
+msgstr "_Адправіць выяву..."
 
-#: ../libyelp/yelp-view.c:1552
+#: libyelp/yelp-view.c:1531
 msgid "S_end Video To…"
-msgstr "Па_слаць відэа да..."
+msgstr "_Адправіць відэа..."
 
-#: ../libyelp/yelp-view.c:1893
+#: libyelp/yelp-view.c:1872
 #, c-format
 msgid "Could not load a document for ‘%s’"
-msgstr "Не ўдалося загрузіць дакумент для \"%s\""
+msgstr "Не атрымалася загрузіць дакумент для \"%s\""
 
-#: ../libyelp/yelp-view.c:1899
-#, c-format
+#: libyelp/yelp-view.c:1878
 msgid "Could not load a document"
-msgstr "Не ўдалося загрузіць дакумент"
+msgstr "Не атрымалася загрузіць дакумент"
 
-#: ../libyelp/yelp-view.c:1983
+#: libyelp/yelp-view.c:1962
 msgid "Document Not Found"
 msgstr "Дакумент не знойдзены"
 
-#: ../libyelp/yelp-view.c:1985
+#: libyelp/yelp-view.c:1964
 msgid "Page Not Found"
-msgstr "Старонка не знойдзена"
+msgstr "Старонка не знойдзеная"
 
-#: ../libyelp/yelp-view.c:1988
+#: libyelp/yelp-view.c:1967
 msgid "Cannot Read"
-msgstr "Ня ўдалося прачытаць"
+msgstr "Не атрымалася прачытаць"
 
-#: ../libyelp/yelp-view.c:1994
+#: libyelp/yelp-view.c:1973
 msgid "Unknown Error"
 msgstr "Невядомая памылка"
 
-#: ../libyelp/yelp-view.c:2014
+#: libyelp/yelp-view.c:1993
 msgid "Search for packages containing this document."
 msgstr "Пошук пакункаў, якія змяшчаюць гэты дакумент."
 
-#: ../src/yelp-application.c:59
+#: src/yelp-application.c:59
 msgid "Turn on editor mode"
-msgstr "Уключыць рэжым карэктара"
+msgstr "Уключыць рэжым рэдактара"
 
-#: ../src/yelp-application.c:271 ../src/yelp-window.c:1180
-#: ../src/yelp-window.c:1188 ../yelp.desktop.in.in.h:1
+#: src/yelp-application.c:270 src/yelp-window.c:1188 src/yelp-window.c:1196
+#: yelp.desktop.in:3
 msgid "Help"
-msgstr "Дапамога"
+msgstr "Даведка"
 
-#: ../src/yelp-application.c:321
-msgid "New Window"
-msgstr "Новае акно"
-
-#: ../src/yelp-application.c:325
-msgid "Larger Text"
-msgstr "Павялічыць тэкст"
-
-#: ../src/yelp-application.c:326
-msgid "Smaller Text"
-msgstr "Паменшыць тэкст"
-
-#: ../src/yelp-window.c:211
-msgid "Application"
-msgstr "Праграма"
-
-#: ../src/yelp-window.c:212
-msgid "A YelpApplication instance that controls this window"
-msgstr "Аб'ект YelpApplication, які кіруе гэтым акном"
-
-#: ../src/yelp-window.c:343
+#: src/yelp-window.c:343
 msgid "Back"
 msgstr "Назад"
 
-#: ../src/yelp-window.c:350
+#: src/yelp-window.c:350
 msgid "Forward"
 msgstr "Наперад"
 
-#: ../src/yelp-window.c:361
+#: src/yelp-window.c:361
 msgid "Menu"
 msgstr "Меню"
 
-#: ../src/yelp-window.c:366
+#: src/yelp-window.c:366
+msgid "New Window"
+msgstr "Новае акно"
+
+#: src/yelp-window.c:367
 msgid "Find…"
-msgstr "Шукаць..."
+msgstr "Пошук…"
 
-#: ../src/yelp-window.c:367
+#: src/yelp-window.c:368
 msgid "Print…"
-msgstr "Друкаваць..."
+msgstr "Друк…"
 
-#: ../src/yelp-window.c:372
+#: src/yelp-window.c:373
 msgid "Previous Page"
 msgstr "Да папярэдняй старонкі"
 
-#: ../src/yelp-window.c:373
+#: src/yelp-window.c:374
 msgid "Next Page"
 msgstr "Да наступнай старонкі"
 
-#: ../src/yelp-window.c:378
+#: src/yelp-window.c:379
+msgid "Larger Text"
+msgstr "Павялічыць тэкст"
+
+#: src/yelp-window.c:380
+msgid "Smaller Text"
+msgstr "Паменшыць тэкст"
+
+#: src/yelp-window.c:385
 msgid "All Help"
 msgstr "Усе дакументы"
 
-#: ../src/yelp-window.c:400
+#: src/yelp-window.c:407
 msgid "Search (Ctrl+S)"
 msgstr "Пошук (Ctrl+S)"
 
-#: ../src/yelp-window.c:434
+#: src/yelp-window.c:424
+msgid "Bookmarks"
+msgstr "Закладкі"
+
+#: src/yelp-window.c:441
 msgid "No bookmarks"
 msgstr "Няма закладак"
 
-#: ../src/yelp-window.c:442
+#: src/yelp-window.c:449
 msgid "Add Bookmark"
 msgstr "Дадаць закладку"
 
-#: ../src/yelp-window.c:448
+#: src/yelp-window.c:455
 msgid "Remove Bookmark"
 msgstr "Выдаліць закладку"
 
-#: ../yelp.desktop.in.in.h:2
+#: yelp.desktop.in:4
 msgid "Get help with GNOME"
 msgstr "Даведка GNOME"
 
-#: ../yelp.desktop.in.in.h:3
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: yelp.desktop.in:6
 msgid "documentation;information;manual;help;"
-msgstr "дакументацыя;інфармацыя;звесткі;падручнік;дапаможнік;інструкцыя;"
+msgstr "дакументацыя;інфармацыя;звесткі;падручнік;дапаможнік;даведка;"
+
+#~ msgid "Indexed"
+#~ msgstr "Indexed"
+
+#~ msgid "Whether the document content has been indexed"
+#~ msgstr "Whether the document content has been indexed"
+
+#~ msgid "Document URI"
+#~ msgstr "Document URI"
+
+#~ msgid "The URI which identifies the document"
+#~ msgstr "The URI which identifies the document"
+
+#~ msgid "View"
+#~ msgstr "View"
+
+#~ msgid "A YelpView instance to control"
+#~ msgstr "A YelpView instance to control"
+
+#~ msgid "A YelpBookmarks implementation instance"
+#~ msgstr "A YelpBookmarks implementation instance"
+
+#~ msgid "GtkSettings"
+#~ msgstr "GtkSettings"
+
+#~ msgid "A GtkSettings object to get settings from"
+#~ msgstr "A GtkSettings object to get settings from"
+
+#~ msgid "GtkIconTheme"
+#~ msgstr "GtkIconTheme"
+
+#~ msgid "A GtkIconTheme object to get icons from"
+#~ msgstr "A GtkIconTheme object to get icons from"
+
+#~ msgid "Font Adjustment"
+#~ msgstr "Font Adjustment"
+
+#~ msgid "A size adjustment to add to font sizes"
+#~ msgstr "A size adjustment to add to font sizes"
+
+#~ msgid "Show Text Cursor"
+#~ msgstr "Show Text Cursor"
+
+#~ msgid "Show the text cursor or caret for accessible navigation"
+#~ msgstr "Show the text cursor or caret for accessible navigation"
+
+#~ msgid "Editor Mode"
+#~ msgstr "Editor Mode"
+
+#~ msgid "Enable features useful to editors"
+#~ msgstr "Enable features useful to editors"
+
+#~ msgid "Database filename"
+#~ msgstr "Database filename"
+
+#~ msgid "The filename of the sqlite database"
+#~ msgstr "The filename of the sqlite database"
+
+#~ msgid "XSLT Stylesheet"
+#~ msgstr "XSLT Stylesheet"
+
+#~ msgid "The location of the XSLT stylesheet"
+#~ msgstr "The location of the XSLT stylesheet"
+
+#~ msgid "Yelp URI"
+#~ msgstr "Yelp URI"
+
+#~ msgid "A YelpUri with the current location"
+#~ msgstr "A YelpUri with the current location"
+
+#~ msgid "Loading State"
+#~ msgstr "Loading State"
+
+#~ msgid "The loading state of the view"
+#~ msgstr "The loading state of the view"
+
+#~ msgid "Page ID"
+#~ msgstr "Page ID"
+
+#~ msgid "The ID of the root page of the page being viewed"
+#~ msgstr "The ID of the root page of the page being viewed"
+
+#~ msgid "Root Title"
+#~ msgstr "Root Title"
+
+#~ msgid "The title of the root page of the page being viewed"
+#~ msgstr "The title of the root page of the page being viewed"
+
+#~ msgid "Page Title"
+#~ msgstr "Page Title"
+
+#~ msgid "The title of the page being viewed"
+#~ msgstr "The title of the page being viewed"
+
+#~ msgid "Page Description"
+#~ msgstr "Page Description"
+
+#~ msgid "The description of the page being viewed"
+#~ msgstr "The description of the page being viewed"
+
+#~ msgid "Page Icon"
+#~ msgstr "Page Icon"
+
+#~ msgid "The icon of the page being viewed"
+#~ msgstr "The icon of the page being viewed"
+
+#~ msgid "Application"
+#~ msgstr "Application"
+
+#~ msgid "A YelpApplication instance that controls this window"
+#~ msgstr "A YelpApplication instance that controls this window"
 
 #~ msgid "Enable Search"
-#~ msgstr "Уключыць пошук"
+#~ msgstr "Enable Search"
 
 #~ msgid "Whether the location entry can be used as a search field"
-#~ msgstr "Ці можна выкарыстоўваць поле адрасу для пошуку"
+#~ msgstr "Whether the location entry can be used as a search field"
 
 #~ msgid "Search..."
-#~ msgstr "Шукаць..."
+#~ msgstr "Search…"
 
 #~ msgid "Clear the search text"
-#~ msgstr "Ачысціць поле пошуку"
+#~ msgstr "Clear the search text"
 
 #~ msgid "Bookmark this page"
-#~ msgstr "Стварыць закладку для старонкі"
+#~ msgstr "Bookmark this page"
 
 #~ msgid "Remove bookmark"
-#~ msgstr "Выдаліць закладку"
+#~ msgstr "Remove bookmark"
 
 #~ msgid "Loading"
-#~ msgstr "Загрузка"
+#~ msgstr "Loading"
 
 #~ msgid "_Print..."
-#~ msgstr "_Надрукаваць..."
+#~ msgstr "_Print…"
 
 #~ msgid "See all search results for “%s”"
-#~ msgstr "Праглядзець усе вынікі пошуку \"%s\""
+#~ msgstr "See all search results for “%s”"
 
 #~ msgid "Increase the size of the text"
-#~ msgstr "Павялічыць памер тэксту"
+#~ msgstr "Increase the size of the text"
 
 #~ msgid "Decrease the size of the text"
-#~ msgstr "Паменшыць памер тэксту"
+#~ msgstr "Decrease the size of the text"
 
 #~ msgid "Show Text _Cursor"
-#~ msgstr "Паказаць _курсор у тэксце"
+#~ msgstr "Show Text _Cursor"
 
 #~ msgid "_Page"
-#~ msgstr "_Старонка"
+#~ msgstr "_Page"
 
 #~ msgid "_View"
-#~ msgstr "_Від"
+#~ msgstr "_View"
 
 #~ msgid "_Go"
-#~ msgstr "Пера_ход"
+#~ msgstr "_Go"
 
 #~ msgid "_Bookmarks"
-#~ msgstr "_Закладкі"
+#~ msgstr "_Bookmarks"
 
 #~ msgid "_Close"
-#~ msgstr "За_крыць"
+#~ msgstr "_Close"
 
 #~ msgid "_All Documents"
-#~ msgstr "_Усе дакументы"
+#~ msgstr "_All Documents"
+
+#~ msgid "_Add Bookmark"
+#~ msgstr "_Add Bookmark"
 
 #~ msgid "Find in Page..."
-#~ msgstr "Знайсці на старонцы..."
+#~ msgstr "Find in Page…"
 
 #~ msgid "Open Location"
-#~ msgstr "Адкрыць месцазнаходжанне"
+#~ msgstr "Open Location"
 
 #~ msgid "Read Link _Later"
-#~ msgstr "Пра_чытаць спасылку пазней"
+#~ msgstr "Read Link _Later"
+
+#~ msgid "Find:"
+#~ msgstr "Find:"
 
 #~ msgid "Read Later"
-#~ msgstr "Прачытаць пазней"
+#~ msgstr "Read Later"
 
 #~ msgid "%i match"
 #~ msgid_plural "%i matches"
-#~ msgstr[0] "%i адпаведнік"
-#~ msgstr[1] "%i адпаведнікі"
-#~ msgstr[2] "%i адпаведнікаў"
+#~ msgstr[0] "%i match"
+#~ msgstr[1] "%i matches"
 
 #~ msgid "No matches"
-#~ msgstr "Няма адпаведнікаў"
+#~ msgstr "No matches"
+
+#~ msgid "GNU Info Pages"
+#~ msgstr "GNU Info Pages"
+
+#~ msgid "Traditional command line help (info)"
+#~ msgstr "Traditional command line help (info)"
+
+#~ msgid "Applications"
+#~ msgstr "Applications"
+
+#~ msgid "BLT Functions"
+#~ msgstr "BLT Functions"
+
+#~ msgid "Configuration Files"
+#~ msgstr "Configuration Files"
+
+#~ msgid "Curses Functions"
+#~ msgstr "Curses Functions"
+
+#~ msgid "Development"
+#~ msgstr "Development"
+
+#~ msgid "FORTRAN Functions"
+#~ msgstr "FORTRAN Functions"
+
+#~ msgid "Games"
+#~ msgstr "Games"
+
+#~ msgid "Hardware Devices"
+#~ msgstr "Hardware Devices"
+
+#~ msgid "Kernel Routines"
+#~ msgstr "Kernel Routines"
+
+#~ msgid "Network Audio Sound Functions"
+#~ msgstr "Network Audio Sound Functions"
+
+#~ msgid "OpenSSL Applications"
+#~ msgstr "OpenSSL Applications"
+
+#~ msgid "OpenSSL Configuration"
+#~ msgstr "OpenSSL Configuration"
+
+#~ msgid "OpenSSL Functions"
+#~ msgstr "OpenSSL Functions"
+
+#~ msgid "OpenSSL Overviews"
+#~ msgstr "OpenSSL Overviews"
+
+#~ msgid "Overviews"
+#~ msgstr "Overviews"
+
+#~ msgid "POSIX Functions"
+#~ msgstr "POSIX Functions"
+
+#~ msgid "POSIX Headers"
+#~ msgstr "POSIX Headers"
+
+#~ msgid "Perl Functions"
+#~ msgstr "Perl Functions"
+
+#~ msgid "Qt Functions"
+#~ msgstr "Qt Functions"
+
+#~ msgid "Readline Functions"
+#~ msgstr "Readline Functions"
+
+#~ msgid "Section 0p"
+#~ msgstr "Section 0p"
+
+#~ msgid "Section 1m"
+#~ msgstr "Section 1m"
+
+#~ msgid "Section 1ssl"
+#~ msgstr "Section 1ssl"
+
+#~ msgid "Section 1x"
+#~ msgstr "Section 1x"
+
+#~ msgid "Section 2"
+#~ msgstr "Section 2"
+
+#~ msgid "Section 3blt"
+#~ msgstr "Section 3blt"
+
+#~ msgid "Section 3f"
+#~ msgstr "Section 3f"
+
+#~ msgid "Section 3nas"
+#~ msgstr "Section 3nas"
+
+#~ msgid "Section 3p"
+#~ msgstr "Section 3p"
+
+#~ msgid "Section 3qt"
+#~ msgstr "Section 3qt"
+
+#~ msgid "Section 3readline"
+#~ msgstr "Section 3readline"
+
+#~ msgid "Section 3ssl"
+#~ msgstr "Section 3ssl"
+
+#~ msgid "Section 3tiff"
+#~ msgstr "Section 3tiff"
+
+#~ msgid "Section 4"
+#~ msgstr "Section 4"
+
+#~ msgid "Section 4x"
+#~ msgstr "Section 4x"
+
+#~ msgid "Section 5"
+#~ msgstr "Section 5"
+
+#~ msgid "Section 5ssl"
+#~ msgstr "Section 5ssl"
+
+#~ msgid "Section 5x"
+#~ msgstr "Section 5x"
+
+#~ msgid "Section 6"
+#~ msgstr "Section 6"
+
+#~ msgid "Section 6x"
+#~ msgstr "Section 6x"
+
+#~ msgid "Section 7ssl"
+#~ msgstr "Section 7ssl"
+
+#~ msgid "Section 7x"
+#~ msgstr "Section 7x"
+
+#~ msgid "Section 9"
+#~ msgstr "Section 9"
+
+#~ msgid "Sections 1, 1p, 1g and 1t"
+#~ msgstr "Sections 1, 1p, 1g and 1t"
+
+#~ msgid "Sections 3, 3o, and 3t"
+#~ msgstr "Sections 3, 3o, and 3t"
+
+#~ msgid "Sections 3form and 3menu"
+#~ msgstr "Sections 3form and 3menu"
+
+#~ msgid "Sections 3ncurses and 3curses"
+#~ msgstr "Sections 3ncurses and 3curses"
+
+#~ msgid "Sections 3pm and 3perl"
+#~ msgstr "Sections 3pm and 3perl"
+
+#~ msgid "Sections 3x and 3X11"
+#~ msgstr "Sections 3x and 3X11"
+
+#~ msgid "Sections 7 and 7gcc"
+#~ msgstr "Sections 7 and 7gcc"
+
+#~ msgid "Sections 8 and 8l"
+#~ msgstr "Sections 8 and 8l"
+
+#~ msgid "System Administration"
+#~ msgstr "System Administration"
+
+#~ msgid "System Calls"
+#~ msgstr "System Calls"
+
+#~ msgid "System V Form/Menu Functions"
+#~ msgstr "System V Form/Menu Functions"
+
+#~ msgid "TIFF Functions"
+#~ msgstr "TIFF Functions"
+
+#~ msgid "Termcap Applications"
+#~ msgstr "Termcap Applications"
+
+#~ msgid "Traditional command line help (man)"
+#~ msgstr "Traditional command line help (man)"
+
+#~ msgid "X11 Applications"
+#~ msgstr "X11 Applications"
+
+#~ msgid "X11 Configuration"
+#~ msgstr "X11 Configuration"
+
+#~ msgid "X11 Devices"
+#~ msgstr "X11 Devices"
+
+#~ msgid "X11 Functions"
+#~ msgstr "X11 Functions"
+
+#~ msgid "X11 Games"
+#~ msgstr "X11 Games"
+
+#~ msgid "X11 Overviews"
+#~ msgstr "X11 Overviews"
+
+#~ msgid "2D Graphics"
+#~ msgstr "2D Graphics"
+
+#~ msgid "3D Graphics"
+#~ msgstr "3D Graphics"
+
+#~ msgid "Accessibility"
+#~ msgstr "Accessibility"
+
+#~ msgid "Action Games"
+#~ msgstr "Action Games"
+
+#~ msgid "Adventure Games"
+#~ msgstr "Adventure Games"
+
+#~ msgid "Amusement"
+#~ msgstr "Amusement"
+
+#~ msgid "Applications for viewing and manipulating graphics"
+#~ msgstr "Applications for viewing and manipulating graphics"
+
+#~ msgid "Applications related to audio and video"
+#~ msgstr "Applications related to audio and video"
+
+#~ msgid "Applications that teach or aid in learning"
+#~ msgstr "Applications that teach or aid in learning"
+
+#~ msgid "Arcade Games"
+#~ msgstr "Arcade Games"
+
+#~ msgid "Archiving Tools"
+#~ msgstr "Archiving Tools"
+
+#~ msgid "Art"
+#~ msgstr "Art"
+
+#~ msgid "Artificial Intelligence"
+#~ msgstr "Artificial Intelligence"
+
+#~ msgid "Astronomy"
+#~ msgstr "Astronomy"
+
+#~ msgid "Biology"
+#~ msgstr "Biology"
+
+#~ msgid "Blocks Games"
+#~ msgstr "Blocks Games"
+
+#~ msgid "Board Games"
+#~ msgstr "Board Games"
+
+#~ msgid "Building"
+#~ msgstr "Building"
+
+#~ msgid "Calculator"
+#~ msgstr "Calculator"
+
+#~ msgid "Calendar"
+#~ msgstr "Calendar"
+
+#~ msgid "Card Games"
+#~ msgstr "Card Games"
+
+#~ msgid "Charting Tools"
+#~ msgstr "Charting Tools"
+
+#~ msgid "Chat"
+#~ msgstr "Chat"
+
+#~ msgid "Chemistry"
+#~ msgstr "Chemistry"
+
+#~ msgid "Clocks"
+#~ msgstr "Clocks"
+
+#~ msgid "Compression Tools"
+#~ msgstr "Compression Tools"
+
+#~ msgid "Computer Science"
+#~ msgstr "Computer Science"
+
+#~ msgid "Construction"
+#~ msgstr "Construction"
+
+#~ msgid "Contact Management"
+#~ msgstr "Contact Management"
+
+#~ msgid "Data Visualization"
+#~ msgstr "Data Visualisation"
+
+#~ msgid "Databases"
+#~ msgstr "Databases"
+
+#~ msgid "Debuggers"
+#~ msgstr "Debuggers"
+
+#~ msgid "Desktop"
+#~ msgstr "Desktop"
+
+#~ msgid "Desktop Settings"
+#~ msgstr "Desktop Settings"
+
+#~ msgid "Dialup"
+#~ msgstr "Dialup"
+
+#~ msgid "Dictionaries"
+#~ msgstr "Dictionaries"
+
+#~ msgid "Disc Burning"
+#~ msgstr "Disc Burning"
+
+#~ msgid "Economy"
+#~ msgstr "Economy"
+
+#~ msgid "Education"
+#~ msgstr "Education"
+
+#~ msgid "Electricity"
+#~ msgstr "Electricity"
+
+#~ msgid "Electronics"
+#~ msgstr "Electronics"
+
+#~ msgid "Email Tools"
+#~ msgstr "E-mail Tools"
+
+#~ msgid "Emulator"
+#~ msgstr "Emulator"
+
+#~ msgid "Engineering"
+#~ msgstr "Engineering"
+
+#~ msgid "File Manager"
+#~ msgstr "File Manager"
+
+#~ msgid "File Tools"
+#~ msgstr "File Tools"
+
+#~ msgid "File Transfer"
+#~ msgstr "File Transfer"
+
+#~ msgid "Filesystem"
+#~ msgstr "Filesystem"
+
+#~ msgid "Financial Tools"
+#~ msgstr "Financial Tools"
+
+#~ msgid "Flow Charting Tools"
+#~ msgstr "Flow Charting Tools"
+
+#~ msgid "GNOME Applications"
+#~ msgstr "GNOME Applications"
+
+#~ msgid "GTK"
+#~ msgstr "GTK"
+
+#~ msgid "GUI Designers"
+#~ msgstr "GUI Designers"
+
+#~ msgid "Generic applications for the GNOME environment"
+#~ msgstr "Generic applications for the GNOME environment"
+
+#~ msgid "Generic applications for the KDE environment"
+#~ msgstr "Generic applications for the KDE environment"
+
+#~ msgid "Geography"
+#~ msgstr "Geography"
+
+#~ msgid "Geology"
+#~ msgstr "Geology"
+
+#~ msgid "Geoscience"
+#~ msgstr "Geoscience"
+
+#~ msgid "Graphics"
+#~ msgstr "Graphics"
+
+#~ msgid ""
+#~ "Guides and manuals for applications that connect to the outside world"
+#~ msgstr ""
+#~ "Guides and manuals for applications that connect to the outside world"
+
+#~ msgid "Guides for getting involved in development"
+#~ msgstr "Guides for getting involved in development"
+
+#~ msgid "Ham Radio"
+#~ msgstr "Ham Radio"
+
+#~ msgid "Hardware Settings"
+#~ msgstr "Hardware Settings"
+
+#~ msgid "Have some fun"
+#~ msgstr "Have some fun"
+
+#~ msgid "History"
+#~ msgstr "History"
+
+#~ msgid "IDEs"
+#~ msgstr "IDEs"
+
+#~ msgid "IRC Clients"
+#~ msgstr "IRC Clients"
+
+#~ msgid "Image Processing"
+#~ msgstr "Image Processing"
+
+#~ msgid "Instant Messaging"
+#~ msgstr "Instant Messaging"
+
+#~ msgid "Internet"
+#~ msgstr "Internet"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~ msgid "KDE Applications"
+#~ msgstr "KDE Applications"
+
+#~ msgid "Kids Games"
+#~ msgstr "Kids' Games"
+
+#~ msgid ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+#~ msgstr ""
+#~ "Learn more about making your system more accessible for a range of "
+#~ "disabilities"
+
+#~ msgid "Licenses"
+#~ msgstr "Licenses"
+
+#~ msgid "Literature"
+#~ msgstr "Literature"
+
+#~ msgid "Logic Games"
+#~ msgstr "Logic Games"
+
+#~ msgid "Math"
+#~ msgstr "Maths"
+
+#~ msgid "Medical Software"
+#~ msgstr "Medical Software"
+
+#~ msgid "Midi"
+#~ msgstr "Midi"
+
+#~ msgid "Miscellaneous Documentation"
+#~ msgstr "Miscellaneous Documentation"
+
+#~ msgid "Mixers"
+#~ msgstr "Mixers"
+
+#~ msgid "Monitor"
+#~ msgstr "Monitor"
+
+#~ msgid "Motif"
+#~ msgstr "Motif"
+
+#~ msgid "Music"
+#~ msgstr "Music"
+
+#~ msgid "News"
+#~ msgstr "News"
+
+#~ msgid "Numerical Analysis"
+#~ msgstr "Numerical Analysis"
+
+#~ msgid "OCR"
+#~ msgstr "OCR"
+
+#~ msgid "Office Applications"
+#~ msgstr "Office Applications"
+
+#~ msgid "Office applications"
+#~ msgstr "Office applications"
+
+#~ msgid "Other Documentation"
+#~ msgstr "Other Documentation"
+
+#~ msgid "P2P"
+#~ msgstr "P2P"
+
+#~ msgid "PDA Communication"
+#~ msgstr "PDA Communication"
+
+#~ msgid "Package Manager"
+#~ msgstr "Package Manager"
+
+#~ msgid "Parallel Computing"
+#~ msgstr "Parallel Computing"
+
+#~ msgid "Photography"
+#~ msgstr "Photography"
+
+#~ msgid "Physics"
+#~ msgstr "Physics"
+
+#~ msgid "Players"
+#~ msgstr "Players"
+
+#~ msgid "Presentation Tools"
+#~ msgstr "Presentation Tools"
+
+#~ msgid "Profiling Tools"
+#~ msgstr "Profiling Tools"
+
+#~ msgid "Project Management Tools"
+#~ msgstr "Project Management Tools"
+
+#~ msgid "Publishing"
+#~ msgstr "Publishing"
+
+#~ msgid "Qt"
+#~ msgstr "Qt"
+
+#~ msgid "Raster Graphics"
+#~ msgstr "Raster Graphics"
+
+#~ msgid "Recorders"
+#~ msgstr "Recorders"
+
+#~ msgid "Remote Access"
+#~ msgstr "Remote Access"
+
+#~ msgid "Revision Control"
+#~ msgstr "Revision Control"
+
+#~ msgid "Robotics"
+#~ msgstr "Robotics"
+
+#~ msgid "Role Playing Games"
+#~ msgstr "Role-Playing Games"
+
+#~ msgid "Scanning"
+#~ msgstr "Scanning"
+
+#~ msgid "Science"
+#~ msgstr "Science"
+
+#~ msgid "Security"
+#~ msgstr "Security"
+
+#~ msgid "Sequencers"
+#~ msgstr "Sequencers"
+
+#~ msgid "Settings"
+#~ msgstr "Settings"
+
+#~ msgid ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr ""
+#~ "Settings users can manipulate to make their environment more pleasant"
+
+#~ msgid "Simulation Games"
+#~ msgstr "Simulation Games"
+
+#~ msgid "Sound"
+#~ msgstr "Sound"
+
+#~ msgid "Sound &amp; Video"
+#~ msgstr "Sound &amp; Video"
+
+#~ msgid "Sound &amp; Video Editing"
+#~ msgstr "Sound &amp; Video Editing"
+
+#~ msgid "Sports"
+#~ msgstr "Sports"
+
+#~ msgid "Sports Games"
+#~ msgstr "Sports Games"
+
+#~ msgid "Spreadsheet Tools"
+#~ msgstr "Spreadsheet Tools"
+
+#~ msgid "Strategy Games"
+#~ msgstr "Strategy Games"
+
+#~ msgid "System"
+#~ msgstr "System"
+
+#~ msgid "TV"
+#~ msgstr "TV"
+
+#~ msgid "Telephony"
+#~ msgstr "Telephony"
+
+#~ msgid "Telephony Tools"
+#~ msgstr "Telephony Tools"
+
+#~ msgid "Terminal Emulator"
+#~ msgstr "Terminal Emulator"
+
+#~ msgid "Text Editors"
+#~ msgstr "Text Editors"
+
+#~ msgid "Text Tools"
+#~ msgstr "Text Tools"
+
+#~ msgid "Tools to help you manage your computer"
+#~ msgstr "Tools to help you manage your computer"
+
+#~ msgid "Translation Tools"
+#~ msgstr "Translation Tools"
+
+#~ msgid "Tuners"
+#~ msgstr "Tuners"
+
+#~ msgid "Utilities"
+#~ msgstr "Utilities"
+
+#~ msgid "Utilities to help you get work done"
+#~ msgstr "Utilities to help you get work done"
+
+#~ msgid "Vector Graphics"
+#~ msgstr "Vector Graphics"
+
+#~ msgid "Video"
+#~ msgstr "Video"
+
+#~ msgid "Video Conference"
+#~ msgstr "Video Conference"
+
+#~ msgid "Viewer"
+#~ msgstr "Viewer"
+
+#~ msgid "Web Browser"
+#~ msgstr "Web Browser"
+
+#~ msgid "Web Development"
+#~ msgstr "Web Development"
+
+#~ msgid "Welcome to the GNOME Help Browser"
+#~ msgstr "Welcome to the GNOME Help Browser"
+
+#~ msgid "Word Processors"
+#~ msgstr "Word Processors"
+
+#~ msgid "<b>Accessibility</b>"
+#~ msgstr "<b>Accessibility</b>"
+
+#~ msgid "<b>Fonts</b>"
+#~ msgstr "<b>Fonts</b>"
+
+#~ msgid "C_ase sensitive"
+#~ msgstr "C_ase sensitive"
+
+#~ msgid "Preferences"
+#~ msgstr "Preferences"
+
+#~ msgid "Re_name"
+#~ msgstr "Re_name"
+
+#~ msgid "_Bookmarks:"
+#~ msgstr "_Bookmarks:"
+
+#~ msgid "_Browse with caret"
+#~ msgstr "_Browse with caret"
+
+#~ msgid "_Fixed width:"
+#~ msgstr "_Fixed width:"
+
+#~ msgid "_Location:"
+#~ msgstr "_Location:"
+
+#~ msgid "_Title:"
+#~ msgstr "_Title:"
+
+#~ msgid "_Use system fonts"
+#~ msgstr "_Use system fonts"
+
+#~ msgid "_Variable width:"
+#~ msgstr "_Variable width:"
+
+#~ msgid "_Wrap around"
+#~ msgstr "_Wrap around"
+
+#~ msgid "Font for fixed text"
+#~ msgstr "Font for fixed text"
+
+#~ msgid "Font for text"
+#~ msgstr "Font for text"
+
+#~ msgid "Font for text with fixed width."
+#~ msgstr "Font for text with fixed width."
+
+#~ msgid "Font for text with variable width."
+#~ msgstr "Font for text with variable width."
+
+#~ msgid "Use a keyboard-controllable caret when viewing pages."
+#~ msgstr "Use a keyboard-controllable caret when viewing pages."
+
+#~ msgid "Use caret"
+#~ msgstr "Use caret"
+
+#~ msgid "Use system fonts"
+#~ msgstr "Use system fonts"
+
+#~ msgid "Use the default fonts set for the system."
+#~ msgstr "Use the default fonts set for the system."
+
+#~ msgid "Open Bookmark in New Window"
+#~ msgstr "Open Bookmark in New Window"
+
+#~ msgid "Rename Bookmark"
+#~ msgstr "Rename Bookmark"
+
+#~ msgid "A bookmark titled %s already exists for this page."
+#~ msgstr "A bookmark titled %s already exists for this page."
+
+#~ msgid "A bookmark titled <b>%s</b> already exists for this page."
+#~ msgstr "A bookmark titled <b>%s</b> already exists for this page."
+
+#~ msgid "Help Topics"
+#~ msgstr "Help Topics"
+
+#~ msgid "File not found"
+#~ msgstr "File not found"
+
+#~ msgid "Could not parse file"
+#~ msgstr "Could not parse file"
+
+#~ msgid "Could Not Read File"
+#~ msgstr "Could Not Read File"
+
+#~ msgid "No information is available about this error."
+#~ msgstr "No information is available about this error."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
+#~ "in an unsupported format."
+#~ msgstr ""
+#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
+#~ "in an unsupported format."
+
+#~ msgid "Use a private session"
+#~ msgstr "Use a private session"
+
+#~ msgid "Define which cache directory to use"
+#~ msgstr "Define which cache directory to use"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
+#~ "page."
+#~ msgstr ""
+#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
+#~ "page."
+
+#~ msgid "Preparing to print"
+#~ msgstr "Preparing to print"
+
+#~ msgid "Printing is not supported on this printer"
+#~ msgstr "Printing is not supported on this printer"
+
+#~ msgid "Printer %s does not support postscript printing."
+#~ msgstr "Printer %s does not support postscript printing."
+
+#~ msgid "Waiting to print"
+#~ msgstr "Waiting to print"
+
+#~ msgid "An error occurred while printing"
+#~ msgstr "An error occurred while printing"
+
+#~ msgid "It was not possible to print your document: %s"
+#~ msgstr "It was not possible to print your document: %s"
+
+#~ msgid "the GNOME Support Forums"
+#~ msgstr "the GNOME Support Forums"
+
+#~ msgid "No results for \"%s\""
+#~ msgstr "No results for \"%s\""
+
+#~ msgid ""
+#~ "Try using different words to describe the problem you're having or the "
+#~ "topic you want help with."
+#~ msgstr ""
+#~ "Try using different words to describe the problem you're having or the "
+#~ "topic you want help with."
+
+#~ msgid ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ msgstr ""
+#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
+#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
+#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
+#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+
+#~ msgid "re"
+#~ msgstr "re"
+
+#~ msgid "ers:er:ing:es:s:'s"
+#~ msgstr "ers:er:ing:es:s:'s"
+
+#~ msgid "No Comment"
+#~ msgstr "No Comment"
+
+#~ msgid "Search could not be processed"
+#~ msgstr "Search could not be processed"
+
+#~ msgid "The requested search could not be processed."
+#~ msgstr "The requested search could not be processed."
+
+#~ msgid "Cannot process the search"
+#~ msgstr "Cannot process the search"
+
+#~ msgid "The search processor returned invalid results"
+#~ msgstr "The search processor returned invalid results"
+
+#~ msgid "The page %s was not found in the TOC."
+#~ msgstr "The page %s was not found in the TOC."
+
+#~ msgid "The requested page was not found in the TOC."
+#~ msgstr "The requested page was not found in the TOC."
+
+#~ msgid ""
+#~ "The TOC file could not be parsed because it is not a well-formed XML "
+#~ "document."
+#~ msgstr ""
+#~ "The TOC file could not be parsed because it is not a well-formed XML "
+#~ "document."
+
+#~ msgid "Broken Transformation"
+#~ msgstr "Broken Transformation"
+
+#~ msgid ""
+#~ "An unknown error occurred while attempting to transform the document."
+#~ msgstr ""
+#~ "An unknown error occurred while attempting to transform the document."
+
+#~ msgid "_File"
+#~ msgstr "_File"
+
+#~ msgid "_Edit"
+#~ msgstr "_Edit"
+
+#~ msgid "_Help"
+#~ msgstr "_Help"
+
+#~ msgid "Print This Document ..."
+#~ msgstr "Print This Document..."
+
+#~ msgid "Open _Location"
+#~ msgstr "Open _Location"
+
+#~ msgid "_Select All"
+#~ msgstr "_Select All"
+
+#~ msgid "_Find..."
+#~ msgstr "_Find..."
+
+#~ msgid "Find Pre_vious"
+#~ msgstr "Find Pre_vious"
+
+#~ msgid "Find previous occurrence of the word or phrase"
+#~ msgstr "Find previous occurrence of the word or phrase"
+
+#~ msgid "Find Ne_xt"
+#~ msgstr "Find Ne_xt"
+
+#~ msgid "Find next occurrence of the word or phrase"
+#~ msgstr "Find next occurrence of the word or phrase"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Preferences"
+
+#~ msgid "_Reload"
+#~ msgstr "_Reload"
+
+#~ msgid "Show previous page in history"
+#~ msgstr "Show previous page in history"
+
+#~ msgid "Show next page in history"
+#~ msgstr "Show next page in history"
+
+#~ msgid "_Help Topics"
+#~ msgstr "_Help Topics"
+
+#~ msgid "Go to the listing of help topics"
+#~ msgstr "Go to the listing of help topics"
+
+#~ msgid "_Previous Section"
+#~ msgstr "_Previous Section"
+
+#~ msgid "_Next Section"
+#~ msgstr "_Next Section"
+
+#~ msgid "_Contents"
+#~ msgstr "_Contents"
+
+#~ msgid "_Edit Bookmarks..."
+#~ msgstr "_Edit Bookmarks..."
+
+#~ msgid "_Copy Link Address"
+#~ msgstr "_Copy Link Address"
+
+#~ msgid "Help On this application"
+#~ msgstr "Help On this application"
+
+#~ msgid "_About"
+#~ msgstr "_About"
+
+#~ msgid "Copy _Email Address"
+#~ msgstr "Copy _Email Address"
+
+#~ msgid "Help Browser"
+#~ msgstr "Help Browser"
+
+#~ msgid "Unknown Page"
+#~ msgstr "Unknown Page"
+
+#~ msgid "The requested URI \"%s\" is invalid"
+#~ msgstr "The requested URI \"%s\" is invalid"
+
+#~ msgid "Unable to load page"
+#~ msgstr "Unable to load page"
+
+#~ msgid "Error executing \"gnome-open\""
+#~ msgstr "Error executing \"gnome-open\""
+
+#~ msgid "Cannot create search component"
+#~ msgstr "Cannot create search component"
+
+#~ msgid "Fin_d:"
+#~ msgstr "Fin_d:"
+
+#~ msgid "Find _Previous"
+#~ msgstr "Find _Previous"
+
+#~ msgid "Find _Next"
+#~ msgstr "Find _Next"
+
+#~ msgid "Phrase not found"
+#~ msgstr "Phrase not found"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
+#~ "might not have permissions to read it."
+#~ msgstr ""
+#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
+#~ "might not have permissions to read it."
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Abigail Brady <morwen@evilmagi_c.org>\n"
+#~ "Bastien Nocera <hadess@hadess.net>\n"
+#~ "Gareth Owen <gowen72@yahoo.com>\n"
+#~ "David Lodge <dave@cirt.net>"
+
+#~ msgid "A documentation browser and viewer for the Gnome Desktop."
+#~ msgstr "A documentation browser and viewer for the Gnome Desktop."
+
+#~ msgid "Accessories"
+#~ msgstr "Accessories"
+
+#~ msgid "Applications for fun"
+#~ msgstr "Applications for fun"
+
+#~ msgid "Applications for word processing and other office tasks"
+#~ msgstr "Applications for word processing and other office tasks"
+
+#~ msgid "Applications related to multimedia"
+#~ msgstr "Applications related to multimedia"
+
+#~ msgid "Applications related to software development"
+#~ msgstr "Applications related to software development"
+
+#~ msgid "Applications specific to the panel"
+#~ msgstr "Applications specific to the panel"
+
+#~ msgid "Applications that support assistive technologies"
+#~ msgstr "Applications that support assistive technologies"
+
+#~ msgid "KDE"
+#~ msgstr "KDE"
+
+#~ msgid "Learning applications"
+#~ msgstr "Learning applications"
+
+#~ msgid "Office"
+#~ msgstr "Office"
+
+#~ msgid "Panel Applets"
+#~ msgstr "Panel Applets"
+
+#~ msgid "Programming"
+#~ msgstr "Programming"
+
+#~ msgid "Scientific Applications."
+#~ msgstr "Scientific Applications."
+
+#~ msgid "Utility applications"
+#~ msgstr "Utility applications"
+
+#~ msgid "Variety of other applications"
+#~ msgstr "Variety of other applications"
+
+#~ msgid "Could not read the table of contents"
+#~ msgstr "Could not read the table of contents"
+
+#~ msgid "Unsupported Format"
+#~ msgstr "Unsupported Format"
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
+#~ "is formatted incorrectly."
+#~ msgstr ""
+#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
+#~ "is formatted incorrectly."
+
+#~ msgid "The YelpDocInfo struct of the document"
+#~ msgstr "The YelpDocInfo struct of the document"
+
+#~ msgid "<b>Printing</b>"
+#~ msgstr "<b>Printing</b>"
+
+#~ msgid ""
+#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
+#~ "not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
+#~ "not a valid XSLT stylesheet."
+
+#~ msgid "Could not load the OMF file '%s'."
+#~ msgstr "Could not load the OMF file '%s'."
+
+#~ msgid "yelp-watermark-blockquote-201C"
+#~ msgstr "yelp-watermark-blockquote-201C"
+
+#~ msgid "YelpTocPager: Pause count is negative."
+#~ msgstr "YelpTocPager: Pause count is negative."
+
+#~ msgid ""
+#~ "The table of contents could not be processed. The file ‘%s’ is either "
+#~ "missing or is not a valid XSLT stylesheet."
+#~ msgstr ""
+#~ "The table of contents could not be processed. The file ‘%s’ is either "
+#~ "missing or is not a valid XSLT stylesheet."
+
+#~ msgid "Read man page for %s"
+#~ msgstr "Read man page for %s"
+
+#~ msgid "Read info page for %s"
+#~ msgstr "Read info page for %s"
+
+#~ msgid ""
+#~ "The table of contents could not be loaded. The file ‘%s’ is either "
+#~ "missing or is not well-formed XML."
+#~ msgstr ""
+#~ "The table of contents could not be loaded. The file ‘%s’ is either "
+#~ "missing or is not well-formed XML."
+
+#~ msgid "Command Line Help"
+#~ msgstr "Command Line Help"
+
+#~ msgid "The Uniform Resource Identifier for the file is invalid."
+#~ msgstr "The Uniform Resource Identifier for the file is invalid."
+
+#~ msgid ""
+#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
+#~ "actual file."
+#~ msgstr ""
+#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
+#~ "actual file."
+
+#~ msgid "Man pages are not supported in this version."
+#~ msgstr "Man pages are not supported in this version."
+
+#~ msgid "GNU info pages are not supported in this version"
+#~ msgstr "GNU info pages are not supported in this version"
+
+#~ msgid "Search is not supported in this version."
+#~ msgstr "Search is not supported in this version."
+
+#~ msgid ""
+#~ "SGML documents are no longer supported. Please ask the author of the "
+#~ "document to convert to XML."
+#~ msgstr ""
+#~ "SGML documents are no longer supported. Please ask the author of the "
+#~ "document to convert to XML."
+
+#~ msgid ""
+#~ "A transformation context could not be created for the file ‘%s’. The "
+#~ "format may not be supported."
+#~ msgstr ""
+#~ "A transformation context could not be created for the file ‘%s’. The "
+#~ "format may not be supported."
+
+#~ msgid ""
+#~ "The section ‘%s’ does not exist in this document. If you were directed to "
+#~ "this section from a Help button in an application, please report this to "
+#~ "the maintainers of that application."
+#~ msgstr ""
+#~ "The section ‘%s’ does not exist in this document. If you were directed to "
+#~ "this section from a Help button in an application, please report this to "
+#~ "the maintainers of that application."
+
+#~ msgid ""
+#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is improperly formatted."
+#~ msgstr ""
+#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
+#~ "is improperly formatted."
+
+#~ msgid "Library Functions"
+#~ msgstr "Library Functions"
+
+#~ msgid "Multimedia"
+#~ msgstr "Multimedia"
+
+#~ msgid "Other"
+#~ msgstr "Other"
+
+#~ msgid "<b>_Bookmarks:</b>"
+#~ msgstr "<b>_Bookmarks:</b>"
+
+#~ msgid "<b>_Title:</b>"
+#~ msgstr "<b>_Title:</b>"
+
+#~ msgid "Yelp Factory"
+#~ msgstr "Yelp Factory"
+
+#~ msgid "Could not activate Yelp: '%s'"
+#~ msgstr "Could not activate Yelp: '%s'"
+
