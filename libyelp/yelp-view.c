@@ -449,10 +449,30 @@ yelp_view_finalize (GObject *object)
     G_OBJECT_CLASS (yelp_view_parent_class)->finalize (object);
 }
 
+static gboolean
+yelp_view_button_press_event (GtkWidget      *widget,
+                              GdkEventButton *event)
+{
+    /* Handle typical back/forward mouse buttons. */
+    if (event->button == 8) {
+        webkit_web_view_go_back (WEBKIT_WEB_VIEW (widget));
+        return TRUE;
+    }
+
+    if (event->button == 9) {
+        webkit_web_view_go_forward (WEBKIT_WEB_VIEW (widget));
+        return TRUE;
+    }
+
+     /* Let parent class handle this. */
+     return GTK_WIDGET_CLASS (yelp_view_parent_class)->button_press_event (widget, event);
+}
+
 static void
 yelp_view_class_init (YelpViewClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
     YelpSettings *settings = yelp_settings_get_default ();
 
     nautilus_sendto = g_find_program_in_path ("nautilus-sendto");
@@ -562,6 +582,8 @@ yelp_view_class_init (YelpViewClass *klass)
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
+    widget_class->button_press_event = yelp_view_button_press_event;
 }
 
 static void
