@@ -393,7 +393,7 @@ window_construct (YelpWindow *window)
     gtk_box_pack_start (GTK_BOX (priv->vbox_view), priv->search_bar, FALSE, FALSE, 0);
     priv->search_entry = yelp_search_entry_new (priv->view,
                                                 YELP_BOOKMARKS (priv->application));
-    gtk_entry_set_width_chars (GTK_ENTRY (priv->search_entry), 50);
+    gtk_entry_set_width_chars (GTK_ENTRY (priv->search_entry), 30);
     gtk_container_add (GTK_CONTAINER (priv->search_bar), priv->search_entry);
     button = gtk_toggle_button_new ();
     gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
