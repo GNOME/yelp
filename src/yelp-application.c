@@ -28,6 +28,7 @@
 #include <gio/gsettingsbackend.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <handy.h>
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
 #endif
@@ -269,6 +270,8 @@ yelp_application_startup (GApplication *application)
 
     /* chain up */
     G_APPLICATION_CLASS (yelp_application_parent_class)->startup (application);
+
+    hdy_init ();
 
     settings = yelp_settings_get_default ();
     if (editor_mode)
