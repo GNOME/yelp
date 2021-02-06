@@ -284,6 +284,27 @@ yelp_window_set_property (GObject     *object,
     }
 }
 
+static gboolean
+window_button_press (YelpWindow *window, GdkEventButton *event, gpointer userdata)
+{
+    switch (event->button) {
+        case 8:
+            g_action_activate (g_action_map_lookup_action (G_ACTION_MAP (window),
+                                                           "yelp-view-go-back"),
+                               NULL);
+            return TRUE;
+
+        case 9:
+            g_action_activate (g_action_map_lookup_action (G_ACTION_MAP (window),
+                                                           "yelp-view-go-forward"),
+                               NULL);
+            return TRUE;
+
+        default:
+            return FALSE;
+    }
+}
+
 static void
 window_construct (YelpWindow *window)
 {
@@ -543,6 +564,8 @@ window_construct (YelpWindow *window)
     gtk_drag_dest_add_uri_targets (GTK_WIDGET (window));
     g_signal_connect (window, "drag-data-received",
                       G_CALLBACK (window_drag_received), NULL);
+
+    g_signal_connect (window, "button-press-event", G_CALLBACK (window_button_press), NULL);
 }
 
 /******************************************************************************/
