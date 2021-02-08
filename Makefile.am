@@ -20,6 +20,7 @@ libyelp_libyelp_la_SOURCES = \
 	libyelp/yelp-mallard-document.c \
 	libyelp/yelp-man-document.c \
 	libyelp/yelp-man-parser.c \
+	libyelp/yelp-man-search.c \
 	libyelp/yelp-search-entry.c \
 	libyelp/yelp-settings.c \
 	libyelp/yelp-simple-document.c \
@@ -74,6 +75,7 @@ libyelp_libyelp_la_headers = \
 	$(top_srcdir)/libyelp/yelp-info-document.h \
 	$(top_srcdir)/libyelp/yelp-mallard-document.h \
 	$(top_srcdir)/libyelp/yelp-man-document.h \
+	$(top_srcdir)/libyelp/yelp-man-search.h \
 	$(top_srcdir)/libyelp/yelp-search-entry.h \
 	$(top_srcdir)/libyelp/yelp-settings.h \
 	$(top_srcdir)/libyelp/yelp-simple-document.h \

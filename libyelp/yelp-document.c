@@ -35,6 +35,7 @@
 #include "yelp-info-document.h"
 #include "yelp-mallard-document.h"
 #include "yelp-man-document.h"
+#include "yelp-man-search.h"
 #include "yelp-settings.h"
 #include "yelp-simple-document.h"
 #include "yelp-storage.h"
@@ -889,9 +890,12 @@ document_indexed (YelpDocument *document)
         xmlNewTextChild (rootnode, NULL, BAD_CAST "title", BAD_CAST text);
         g_free (text);
 
-        value = yelp_storage_search (yelp_storage_get_default (),
-                                     document->priv->doc_uri,
-                                     term);
+        value = YELP_IS_MAN_DOCUMENT (document)
+                ? yelp_man_search (term)
+                : yelp_storage_search (yelp_storage_get_default (),
+                                       document->priv->doc_uri,
+                                       term);
+
         iter = g_variant_iter_new (value);
         if (g_variant_iter_n_children (iter) == 0) {
             xmlNewTextChild (rootnode, NULL, BAD_CAST "p",

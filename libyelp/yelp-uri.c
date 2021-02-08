@@ -1011,6 +1011,15 @@ build_man_uris (YelpUri *uri, const char *name, const char *section)
 }
 
 static void
+resolve_man_search_uri (YelpUri *uri)
+{
+    YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
+    priv->docuri = g_strdup ("man");
+    priv->fulluri = g_strdup (priv->res_arg);
+    priv->page_id = g_strdup (priv->res_arg + 4);
+}
+
+static void
 resolve_man_uri (YelpUri *uri)
 {
     YelpUriPrivate *priv = yelp_uri_get_instance_private (uri);
@@ -1018,6 +1027,7 @@ resolve_man_uri (YelpUri *uri)
      * man:name(section)
      * man:name.section
      * man:name
+     * man:search=terms
      */
 
     /* Search via regular expressions for name, name(section) and
@@ -1032,6 +1042,12 @@ resolve_man_uri (YelpUri *uri)
     GMatchInfo *match_info = NULL;
     gchar *name, *section, *hash;
     gchar *path;
+
+    if (g_str_has_prefix (priv->res_arg, "man:search=")) {
+        priv->tmptype = YELP_URI_DOCUMENT_TYPE_MAN;
+        resolve_man_search_uri (uri);
+        return;
+    }
 
     if (!man_not_path) {
         /* Match group 1 should contain the name; then one of groups 3
