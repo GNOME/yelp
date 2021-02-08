@@ -495,7 +495,7 @@ static char
 			offset = (gsize) atoi (items[1]);
 			plength = strlen(pages[1]);
 			
-			debug_print (DB_DEBUG, "Need to make string %s+%i bytes = %i\n",
+			debug_print (DB_DEBUG, "Need to make string %s+%li bytes = %li\n",
 				    items[1], plength,
 				    offset + plength);
 			
