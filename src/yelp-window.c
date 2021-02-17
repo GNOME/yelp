@@ -183,7 +183,7 @@ struct _YelpWindowPrivate {
     gboolean configured;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (YelpWindow, yelp_window, GTK_TYPE_APPLICATION_WINDOW)
+G_DEFINE_TYPE_WITH_PRIVATE (YelpWindow, yelp_window, HDY_TYPE_APPLICATION_WINDOW)
 
 static void
 yelp_window_init (YelpWindow *window)
@@ -330,17 +330,17 @@ window_construct (YelpWindow *window)
                                      entries, G_N_ELEMENTS (entries), window);
     yelp_view_register_actions (priv->view, G_ACTION_MAP (window));
 
-    priv->vbox_full = gtk_box_new (GTK_ORIENTATION_VERTICAL, 3);
+    priv->vbox_full = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add (GTK_CONTAINER (window), priv->vbox_full);
 
-    priv->header = gtk_header_bar_new ();
-    gtk_header_bar_set_show_close_button (GTK_HEADER_BAR (priv->header), TRUE);
-    gtk_window_set_titlebar (GTK_WINDOW (window), priv->header);
+    priv->header = hdy_header_bar_new ();
+    hdy_header_bar_set_show_close_button (HDY_HEADER_BAR (priv->header), TRUE);
+    gtk_container_add (GTK_CONTAINER (priv->vbox_full), priv->header);
 
     /** Back/Forward **/
     box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
-    gtk_header_bar_pack_start (GTK_HEADER_BAR (priv->header), box);
+    hdy_header_bar_pack_start (HDY_HEADER_BAR (priv->header), box);
 
     button = gtk_button_new_from_icon_name ("go-previous-symbolic", GTK_ICON_SIZE_MENU);
     gtk_widget_set_tooltip_text (button, _("Back"));
@@ -362,7 +362,7 @@ window_construct (YelpWindow *window)
     gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
     gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
     gtk_widget_set_tooltip_text (button, _("Menu"));
-    gtk_header_bar_pack_end (GTK_HEADER_BAR (priv->header), button);
+    hdy_header_bar_pack_end (HDY_HEADER_BAR (priv->header), button);
 
     menu = g_menu_new ();
     section = g_menu_new ();
@@ -413,7 +413,7 @@ window_construct (YelpWindow *window)
                             G_BINDING_BIDIRECTIONAL);
     g_signal_connect (priv->search_bar, "notify::search-mode-enabled",
                       G_CALLBACK (window_search_mode), window);
-    gtk_header_bar_pack_end (GTK_HEADER_BAR (priv->header), button);
+    hdy_header_bar_pack_end (HDY_HEADER_BAR (priv->header), button);
 
     g_signal_connect (window, "key-press-event", G_CALLBACK (window_key_press), NULL);
 
@@ -425,7 +425,7 @@ window_construct (YelpWindow *window)
                           gtk_image_new_from_icon_name ("user-bookmarks-symbolic",
                                                         GTK_ICON_SIZE_MENU));
     gtk_widget_set_tooltip_text (button, _("Bookmarks"));
-    gtk_header_bar_pack_end (GTK_HEADER_BAR (priv->header), button);
+    hdy_header_bar_pack_end (HDY_HEADER_BAR (priv->header), button);
 
     priv->bookmark_menu = gtk_popover_new (button);
     g_object_set (priv->bookmark_menu, "border-width", 12, NULL);
@@ -678,7 +678,7 @@ action_ctrll (GSimpleAction *action,
 
     gtk_entry_set_text (GTK_ENTRY (priv->ctrll_entry), "");
 
-    gtk_header_bar_set_custom_title (GTK_HEADER_BAR (priv->header), priv->ctrll_entry);
+    hdy_header_bar_set_custom_title (HDY_HEADER_BAR (priv->header), priv->ctrll_entry);
     gtk_widget_show (priv->ctrll_entry);
     gtk_widget_grab_focus (priv->ctrll_entry);
 
@@ -783,7 +783,7 @@ window_key_press (YelpWindow  *window,
     if (gtk_revealer_get_reveal_child (GTK_REVEALER (priv->find_bar)))
         return FALSE;
 
-    if (gtk_header_bar_get_custom_title (GTK_HEADER_BAR (priv->header)))
+    if (hdy_header_bar_get_custom_title (HDY_HEADER_BAR (priv->header)))
         return FALSE;
 
     return gtk_search_bar_handle_event (GTK_SEARCH_BAR (priv->search_bar),
@@ -1187,14 +1187,14 @@ view_root_title (YelpView    *view,
     g_object_get (view, "root-title", &root_title, "page-title", &page_title, NULL);
 
     if (page_title)
-        gtk_header_bar_set_title (GTK_HEADER_BAR (priv->header), page_title);
+        hdy_header_bar_set_title (HDY_HEADER_BAR (priv->header), page_title);
     else
-        gtk_header_bar_set_title (GTK_HEADER_BAR (priv->header), _("Help"));
+        hdy_header_bar_set_title (HDY_HEADER_BAR (priv->header), _("Help"));
 
     if (root_title && (page_title == NULL || strcmp (root_title, page_title)))
-        gtk_header_bar_set_subtitle (GTK_HEADER_BAR (priv->header), root_title);
+        hdy_header_bar_set_subtitle (HDY_HEADER_BAR (priv->header), root_title);
     else
-        gtk_header_bar_set_subtitle (GTK_HEADER_BAR (priv->header), NULL);
+        hdy_header_bar_set_subtitle (HDY_HEADER_BAR (priv->header), NULL);
 }
 
 static void
@@ -1207,7 +1207,7 @@ ctrll_entry_activate (GtkEntry    *entry,
     yelp_window_load_uri (window, uri);
     g_object_unref (uri);
 
-    gtk_header_bar_set_custom_title (GTK_HEADER_BAR (priv->header), NULL);
+    hdy_header_bar_set_custom_title (HDY_HEADER_BAR (priv->header), NULL);
 }
 
 static gboolean
@@ -1218,7 +1218,7 @@ ctrll_entry_key_press (GtkWidget    *widget,
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     if (event->keyval == GDK_KEY_Escape) {
-        gtk_header_bar_set_custom_title (GTK_HEADER_BAR (priv->header), NULL);
+        hdy_header_bar_set_custom_title (HDY_HEADER_BAR (priv->header), NULL);
         return TRUE;
     }
     return FALSE;

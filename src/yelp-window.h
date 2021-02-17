@@ -22,6 +22,7 @@
 #define __YELP_WINDOW_H__
 
 #include <gtk/gtk.h>
+#include <libhandy-1/handy.h>
 
 #include "yelp-uri.h"
 
@@ -36,12 +37,12 @@ typedef struct _YelpWindowClass  YelpWindowClass;
 
 struct _YelpWindow
 {
-    GtkApplicationWindow       parent;
+    HdyApplicationWindow       parent;
 };
 
 struct _YelpWindowClass
 {
-    GtkApplicationWindowClass  parent_class;
+    HdyApplicationWindowClass  parent_class;
 };
 
 GType             yelp_window_get_type     (void);
