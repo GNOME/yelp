@@ -26,32 +26,18 @@
 gchar *
 build_network_uri (const gchar *uri)
 {
-    SoupURI *soup_uri;
-    gchar *bogus_scheme, *path, *retval;
+    GUri *guri, *network_uri;
+    gchar *bogus_scheme;
+    gchar *path = NULL;
+    gchar *retval;
+    const gchar *scheme;
+    const char *fragment;
 
-    soup_uri = soup_uri_new (uri);
+    scheme = g_uri_peek_scheme (uri);
 
     /* Don't mangle URIs for local files */
-    if (soup_uri->scheme == SOUP_URI_SCHEME_FILE)
+    if (g_str_equal (scheme, "file"))
         return g_strdup (uri);
-
-    /* Build the URI that will be passed to WebKit. Relative URIs will be
-     * automatically resolved by WebKit, so we need to add a leading slash to
-     * help: and ghelp: URIs to be considered as absolute by WebKit.
-     */
-    if (g_str_equal (soup_uri->scheme, "ghelp") || g_str_equal (soup_uri->scheme, "gnome-help") ||
-        g_str_equal (soup_uri->scheme, "help") || g_str_equal (soup_uri->scheme, "help-list") ||
-        g_str_equal (soup_uri->scheme, "info") || g_str_equal (soup_uri->scheme, "man")) {
-
-        if (g_str_equal (soup_uri->scheme, "info") && soup_uri->fragment) {
-            path = g_strdup_printf ("/%s/%s", soup_uri->path, soup_uri->fragment);
-            soup_uri_set_fragment (soup_uri, NULL);
-        } else {
-            path = g_strdup_printf ("/%s", soup_uri->path);
-        }
-        soup_uri_set_path (soup_uri, path);
-        g_free (path);
-    }
 
     /* We need to use a different scheme from help or ghelp to be able to deal
        with absolute uris in the HTML. Help uri schemes are help:gnome-help/...
@@ -59,12 +45,40 @@ build_network_uri (const gchar *uri)
        url when they are not. This doesn't happen if the current page URI has a different
        scheme from absolute uri scheme.
     */
-    bogus_scheme = build_network_scheme (soup_uri->scheme);
-    soup_uri_set_scheme (soup_uri, bogus_scheme);
+    bogus_scheme = build_network_scheme (scheme);
 
-    retval = soup_uri_to_string (soup_uri, FALSE);
-    soup_uri_free (soup_uri);
+    guri = g_uri_parse (uri, G_URI_FLAGS_ENCODED, NULL);
+    fragment = g_uri_get_fragment (guri);
+
+    /* Build the URI that will be passed to WebKit. Relative URIs will be
+     * automatically resolved by WebKit, so we need to add a leading slash to
+     * help: and ghelp: URIs to be considered as absolute by WebKit.
+     */
+    if (g_str_equal (scheme, "ghelp") || g_str_equal (scheme, "gnome-help") ||
+        g_str_equal (scheme, "help") || g_str_equal (scheme, "help-list") ||
+        g_str_equal (scheme, "info") || g_str_equal (scheme, "man")) {
+        if (g_str_equal (scheme, "info") && fragment) {
+            path = g_strdup_printf ("/%s/%s", g_uri_get_path (guri), fragment);
+            fragment = NULL;
+        } else {
+            path = g_strdup_printf ("/%s", g_uri_get_path (guri));
+        }
+    }
+
+    network_uri = g_uri_build (g_uri_get_flags (guri),
+                               bogus_scheme,
+                               g_uri_get_userinfo (guri),
+                               g_uri_get_host (guri),
+                               g_uri_get_port (guri),
+                               path ? path : g_uri_get_path (guri),
+                               g_uri_get_query (guri),
+                               fragment);
     g_free (bogus_scheme);
+    g_free (path);
+    g_uri_unref (guri);
+
+    retval = g_uri_to_string (network_uri);
+    g_uri_unref (network_uri);
 
     return retval;
 }

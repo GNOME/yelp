@@ -26,7 +26,7 @@ APPSTREAM_XML
 LT_LIB_M
 PKG_CHECK_MODULES(YELP,
 [
-	gio-2.0 >= 2.38.0
+	gio-2.0 >= 2.67.4
 	gio-unix-2.0
 	gtk+-unix-print-3.0
 	gtk+-3.0 >= 3.13.3

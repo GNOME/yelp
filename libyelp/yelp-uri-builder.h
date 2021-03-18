@@ -19,7 +19,6 @@
  */
 
 #include <string.h>
-#include <libsoup/soup.h>
 
 #include "yelp-uri.h"
 
