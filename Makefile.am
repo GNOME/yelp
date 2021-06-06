@@ -97,7 +97,7 @@ libyelp/yelp-marshal.h: libyelp/yelp-marshal.list
 	$(AM_V_GEN)$(GLIB_GENMARSHAL) --prefix=yelp_marshal --header --internal $< > $@
 
 libyelp/yelp-marshal.c: libyelp/yelp-marshal.list libyelp/yelp-marshal.h
-	$(AM_V_GEN)$(GLIB_GENMARSHAL) --prefix=yelp_marshal --header --body --internal $< > $@
+	$(AM_V_GEN)$(GLIB_GENMARSHAL) --prefix=yelp_marshal --body --prototypes --internal $< > $@
 
 enum_data = \
 	libyelp/yelp-types.c \
