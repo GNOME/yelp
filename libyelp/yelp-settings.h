@@ -48,6 +48,7 @@ struct _YelpSettingsClass {
 typedef enum {
     YELP_SETTINGS_COLOR_BASE,
     YELP_SETTINGS_COLOR_TEXT,
+    /* FIXME 41-settings-revamp probably drop all these */
     YELP_SETTINGS_COLOR_TEXT_LIGHT,
     YELP_SETTINGS_COLOR_LINK,
     YELP_SETTINGS_COLOR_LINK_VISITED,

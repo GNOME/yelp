@@ -665,8 +665,9 @@ const gchar*
 yelp_settings_get_color_param (YelpSettingsColor color)
 {
     static const gchar *params[YELP_SETTINGS_NUM_COLORS] = {
-	"color.background",
-	"color.text",
+        "color.bg",
+        "color.fg",
+        /* FIXME 41-settings-revamp probably drop all these */
 	"color.text_light",
 	"color.link",
 	"color.link_visted",
@@ -996,61 +997,40 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
 		   GParamSpec   *pspec,
 		   YelpSettings *settings)
 {
-    GtkStyleContext *context, *linkcontext;
-    GtkWidget *tmpwin, *tmpbox, *tmpview, *tmplink;
-    GdkRGBA base, text, link;
-    gdouble    base_h, base_s, base_v;
-    gdouble    text_h, text_s, text_v;
+    GtkStyleContext *context;
+    GdkRGBA base, text;
+    gdouble base_h, base_s, base_v;
+    gdouble text_h, text_s, text_v;
 
     g_mutex_lock (&settings->priv->mutex);
 
-    tmpwin = gtk_offscreen_window_new ();
-    tmpbox = gtk_grid_new ();
-    tmpview = gtk_text_view_new ();
-    tmplink = gtk_link_button_new ("http://projectmallard.org/");
-    gtk_container_add (GTK_CONTAINER (tmpwin), tmpbox);
-    gtk_container_add (GTK_CONTAINER (tmpbox), tmpview);
-    gtk_container_add (GTK_CONTAINER (tmpbox), tmplink);
-    gtk_widget_show_all (tmpwin);
+    context = gtk_style_context_new ();
 
-    context = gtk_widget_get_style_context (tmpview);
-    gtk_style_context_save (context);
+    if ( gtk_style_context_lookup_color(context, "theme_base_color", &base) &&
+         gtk_style_context_lookup_color(context, "theme_text_color", &text) ) {
+        g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_BASE], 8, "#%02X%02X%02X",
+                    (guint) (base.red * 255), (guint) (base.green * 255), (guint) (base.blue * 255));
+        g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_TEXT], 8, "#%02X%02X%02X",
+                    (guint) (text.red * 255), (guint) (text.green * 255), (guint) (text.blue * 255));
+    }
+    else {
+        g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_BASE], 8, "#FFFFFF");
+        g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_TEXT], 8, "#000000");
+    }
 
-    gtk_style_context_set_state (context, GTK_STATE_FLAG_NORMAL);
-    gtk_style_context_add_class (context, GTK_STYLE_CLASS_VIEW);
-    gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &text);
-    gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL, &base);
-
-    gtk_style_context_restore (context);
-
+    /* FIXME 41-settings-revamp might drop all color computations, if so drop these hsv vars */
     rgb_to_hsv (text, &text_h, &text_s, &text_v);
     rgb_to_hsv (base, &base_h, &base_s, &base_v);
 
-    /* YELP_SETTINGS_COLOR_BASE */
-    g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_BASE], 8, "#%02X%02X%02X",
-                (guint) (base.red * 255), (guint) (base.green * 255), (guint) (base.blue * 255));
-
-    /* YELP_SETTINGS_COLOR_TEXT */
-    g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_TEXT], 8, "#%02X%02X%02X",
-                (guint) (text.red * 255), (guint) (text.green * 255), (guint) (text.blue * 255));
-
-    linkcontext = gtk_widget_get_style_context (tmplink);
-    gtk_style_context_save (linkcontext);
-
     /* YELP_SETTINGS_COLOR_LINK */
-    gtk_style_context_set_state (linkcontext, GTK_STATE_FLAG_LINK);
-    gtk_style_context_get_color (linkcontext, GTK_STATE_FLAG_LINK, &link);
-    g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_LINK], 8, "#%02X%02X%02X",
-                (guint) (link.red * 255), (guint) (link.green * 255), (guint) (link.blue * 255));
-
-    /* YELP_SETTINGS_COLOR_LINK_VISITED */
-    gtk_style_context_set_state (linkcontext, GTK_STATE_FLAG_VISITED);
-    gtk_style_context_get_color (linkcontext, GTK_STATE_FLAG_VISITED, &link);
+    /*
+      FIXME 41-settings-revamp probably drop these entirely
+    if ( gtk_style_context_lookup_color(context, "theme_selected_bg_color", &text) )
+        g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_LINK], 8, "#%02X%02X%02X",
+                    (guint) (text.red * 255), (guint) (text.green * 255), (guint) (text.blue * 255));
     g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_LINK_VISITED], 8, "#%02X%02X%02X",
                 (guint) (link.red * 255), (guint) (link.green * 255), (guint) (link.blue * 255));
-
-
-    gtk_style_context_restore (linkcontext);
+    */
 
     /* YELP_SETTINGS_COLOR_TEXT_LIGHT */
     hsv_to_hex (text_h, text_s, text_v - ((text_v - base_v) * 0.25),
@@ -1091,7 +1071,7 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
                 base_v - ((base_v - text_v) * 0.07),
                 settings->priv->colors[YELP_SETTINGS_COLOR_YELLOW_BORDER]);
 
-    gtk_widget_destroy (tmpwin);
+    g_object_unref (context);
 
     g_mutex_unlock (&settings->priv->mutex);
 
