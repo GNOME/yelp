@@ -34,7 +34,7 @@ PKG_CHECK_MODULES(YELP,
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
 	sqlite3
-	webkit2gtk-4.0 >= 2.19.2
+	webkit2gtk-4.1
 	yelp-xsl >= 3.27.1
 ])
 AC_SUBST([YELP_CFLAGS])
@@ -45,7 +45,7 @@ AC_SUBST([YELP_LIBS])
 LT_PREREQ([2.2.6])
 LT_INIT
 
-PKG_CHECK_MODULES([YELP_EXTENSION], [webkit2gtk-web-extension-4.0 >= 2.7.2])
+PKG_CHECK_MODULES([YELP_EXTENSION], [webkit2gtk-web-extension-4.1])
 AC_SUBST(YELP_EXTENSION_CFLAGS)
 AC_SUBST(YELP_EXTENSION_LIBS)
 
