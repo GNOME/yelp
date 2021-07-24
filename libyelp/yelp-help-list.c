@@ -33,6 +33,9 @@
 
 #include "yelp-help-list.h"
 #include "yelp-settings.h"
+#include "yelp-transform.h"
+
+#define STYLESHEET DATADIR"/yelp/xslt/links2html.xsl"
 
 typedef struct _HelpListEntry HelpListEntry;
 
@@ -96,6 +99,9 @@ struct _YelpHelpListPrivate {
     GHashTable    *entries;
     GList         *all_entries;
     GSList        *pending;
+    xmlDocPtr      entriesdoc;
+
+    YelpTransform *transform;
 
     xmlXPathCompExprPtr  get_docbook_title;
     xmlXPathCompExprPtr  get_mallard_title;
@@ -154,12 +160,19 @@ yelp_help_list_finalize (GObject *object)
     g_hash_table_destroy (priv->entries);
     g_mutex_clear (&priv->mutex);
 
+    if (priv->entriesdoc) {
+        xmlFreeDoc (priv->entriesdoc);
+        priv->entriesdoc = NULL;
+    }
+
     if (priv->get_docbook_title)
         xmlXPathFreeCompExpr (priv->get_docbook_title);
     if (priv->get_mallard_title)
         xmlXPathFreeCompExpr (priv->get_mallard_title);
     if (priv->get_mallard_desc)
         xmlXPathFreeCompExpr (priv->get_mallard_desc);
+
+    g_clear_object (&priv->transform);
 
     G_OBJECT_CLASS (yelp_help_list_parent_class)->finalize (object);
 }
@@ -389,7 +402,12 @@ help_list_think (YelpHelpList *list)
         else if (entry->type == YELP_URI_DOCUMENT_TYPE_DOCBOOK)
             help_list_process_docbook (list, entry);
 
-        tmp = g_strconcat (entryid, ".desktop", NULL);
+        if (g_str_equal (entryid, "gnome-terminal")) {
+            tmp = g_strconcat ("org.gnome.Terminal", ".desktop", NULL);
+        }
+        else {
+            tmp = g_strconcat (entryid, ".desktop", NULL);
+        }
         app = g_desktop_app_info_new (tmp);
         g_free (tmp);
 
@@ -407,9 +425,7 @@ help_list_think (YelpHelpList *list)
         if (app != NULL) {
             GIcon *icon = g_app_info_get_icon ((GAppInfo *) app);
             if (icon != NULL) {
-                GtkIconInfo *info = gtk_icon_theme_lookup_by_gicon (theme,
-                                                                    icon, 22,
-                                                                    GTK_ICON_LOOKUP_NO_SVG);
+                GtkIconInfo *info = gtk_icon_theme_lookup_by_gicon (theme, icon, 48, 0);
                 if (info != NULL) {
                     const gchar *iconfile = gtk_icon_info_get_filename (info);
                     if (iconfile)
@@ -435,167 +451,64 @@ help_list_think (YelpHelpList *list)
     g_object_unref (list);
 }
 
+
+static void
+transform_chunk_ready (YelpTransform   *transform,
+                       gchar           *chunk_id,
+                       YelpHelpList    *list)
+{
+    gchar *content;
+    content = yelp_transform_take_chunk (transform, chunk_id);
+    yelp_document_give_contents (YELP_DOCUMENT (list),
+                                 chunk_id,
+                                 content,
+                                 "application/xhtml+xml");
+    yelp_document_signal (YELP_DOCUMENT (list),
+                          chunk_id,
+                          YELP_DOCUMENT_SIGNAL_CONTENTS,
+                          NULL);
+}
+
+
 /* This function expects to be called inside a locked mutex */
 static void
 help_list_handle_page (YelpHelpList *list,
                        const gchar  *page_id)
 {
-    gchar **colors, *tmp;
-    GList *cur;
     YelpHelpListPrivate *priv = yelp_help_list_get_instance_private (list);
-    GtkTextDirection direction = gtk_widget_get_default_direction ();
-    GString *string = g_string_new
-        ("<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><style type='text/css'>\n"
-         "html { height: 100%; }\n"
-         "body { margin: 0; padding: 0; max-width: 100%;");
-    colors = yelp_settings_get_colors (yelp_settings_get_default ());
+    xmlNodePtr rootnode;
+    GList *entrycur;
+    gchar **params = NULL;
 
-    tmp = g_markup_printf_escaped (" background-color: %s; color: %s;"
-                                   " direction: %s; }\n",
-                                   colors[YELP_SETTINGS_COLOR_BASE],
-                                   colors[YELP_SETTINGS_COLOR_TEXT],
-                                   (direction == GTK_TEXT_DIR_RTL) ? "rtl" : "ltr");
-    g_string_append (string, tmp);
-    g_free (tmp);
-
-    g_string_append (string,
-                     "div.body { margin: 0 12px 0 12px; padding: 0;"
-                     " max-width: 60em; min-height: 20em; }\n"
-                     "div.header { max-width: 100%; width: 100%;"
-                     " padding: 0; margin: 0 0 1em 0; }\n"
-                     "div.footer { max-width: 60em; }\n"
-                     "div.sect { margin-top: 1.72em; }\n"
-                     "div.trails { margin: 0; padding: 0.2em 12px 0 12px;");
-
-    tmp = g_markup_printf_escaped (" background-color: %s;"
-                                   " border-bottom: solid 1px %s; }\n",
-                                   colors[YELP_SETTINGS_COLOR_GRAY_BASE],
-                                   colors[YELP_SETTINGS_COLOR_GRAY_BORDER]);
-    g_string_append (string, tmp);
-    g_free (tmp);
-
-    g_string_append (string,
-                     "div.trail { margin: 0 1em 0.2em 1em; padding: 0; text-indent: -1em;");
-
-    tmp = g_markup_printf_escaped (" color: %s; }\n",
-                                   colors[YELP_SETTINGS_COLOR_TEXT_LIGHT]);
-    g_string_append (string, tmp);
-    g_free (tmp);
-
-    g_string_append (string,
-                     "a.trail { white-space: nowrap; }\n"
-                     "div.hgroup { margin: 0 0 0.5em 0;");
-    
-    tmp = g_markup_printf_escaped (" color: %s;"
-                                   " border-bottom: solid 1px %s; }\n",
-                                   colors[YELP_SETTINGS_COLOR_TEXT_LIGHT],
-                                   colors[YELP_SETTINGS_COLOR_GRAY_BORDER]);
-    g_string_append (string, tmp);
-    g_free (tmp);
-
-    tmp = g_markup_printf_escaped ("div.title { margin: 0 0 0.2em 0; font-weight: bold;  color: %s; }\n"
-                                   "div.desc { margin: 0 0 0.2em 0; }\n"
-                                   "div.linkdiv div.inner { padding-%s: 30px; min-height: 24px;"
-                                   " background-position: top %s; background-repeat: no-repeat;"
-                                   " -webkit-background-size: 22px 22px; }\n"
-                                   "div.linkdiv div.title {font-size: 1em; color: inherit; }\n"
-                                   "div.linkdiv div.desc { color: %s; }\n"
-                                   "div.linkdiv { margin: 0; padding: 0.5em; }\n"
-                                   "a:hover div.linkdiv {"
-                                   " text-decoration: none;"
-                                   " outline: solid 1px %s;"
-                                   " background: -webkit-gradient(linear, left top, left 80,"
-                                   " from(%s), to(%s)); }\n",
-                                   colors[YELP_SETTINGS_COLOR_TEXT_LIGHT],
-                                   ((direction == GTK_TEXT_DIR_RTL) ? "right" : "left"),
-                                   ((direction == GTK_TEXT_DIR_RTL) ? "right" : "left"),
-                                   colors[YELP_SETTINGS_COLOR_TEXT_LIGHT],
-                                   colors[YELP_SETTINGS_COLOR_BLUE_BASE],
-                                   colors[YELP_SETTINGS_COLOR_BLUE_BASE],
-                                   colors[YELP_SETTINGS_COLOR_BASE]);
-    g_string_append (string, tmp);
-    g_free (tmp);
-
-    g_string_append (string,
-                     "h1, h2, h3, h4, h5, h6, h7 { margin: 0; padding: 0; font-weight: bold; }\n"
-                     "h1 { font-size: 1.44em; }\n"
-                     "h2 { font-size: 1.2em; }"
-                     "h3.title, h4.title, h5.title, h6.title, h7.title { font-size: 1.2em; }"
-                     "h3, h4, h5, h6, h7 { font-size: 1em; }"
-                     "p { line-height: 1.72em; }"
-                     "div, pre, p { margin: 1em 0 0 0; padding: 0; }"
-                     "div:first-child, pre:first-child, p:first-child { margin-top: 0; }"
-                     "div.inner, div.contents, pre.contents { margin-top: 0; }"
-                     "p img { vertical-align: middle; }"
-                     "a {"
-                     "  text-decoration: none;");
-
-    tmp = g_markup_printf_escaped (" color: %s; } a:visited { color: %s; }",
-                                   colors[YELP_SETTINGS_COLOR_LINK],
-                                   colors[YELP_SETTINGS_COLOR_LINK_VISITED]);
-    g_string_append (string, tmp);
-    g_free (tmp);
-
-    g_string_append (string,
-                     "a:hover { text-decoration: underline; }\n"
-                     "a img { border: none; }\n"
-                     "</style>\n");
-
-    tmp = g_markup_printf_escaped ("<title>%s</title>",
-                                   _("All Help Documents"));
-    g_string_append (string, tmp);
-    g_free (tmp);
-
-    g_string_append (string,
-                     "</head><body>"
-                     "<div class='header'></div>"
-                     "<div class='body'><div class='hgroup'>");
-    tmp = g_markup_printf_escaped ("<h1>%s</h1></div>\n",
-                                   _("All Help Documents"));
-    g_string_append (string, tmp);
-    g_free (tmp);
+    priv->entriesdoc = xmlNewDoc (BAD_CAST "1.0");
+    rootnode = xmlNewDocNode (priv->entriesdoc, NULL, BAD_CAST "links", NULL);
+    xmlDocSetRootElement (priv->entriesdoc, rootnode);
+    xmlNewTextChild (rootnode, NULL, BAD_CAST "title", BAD_CAST _("All Help Documents"));
 
     priv->all_entries = g_list_sort (priv->all_entries,
                                      (GCompareFunc) help_list_entry_cmp);
-    for (cur = priv->all_entries; cur != NULL; cur = cur->next) {
-        HelpListEntry *entry = (HelpListEntry *) cur->data;
-        gchar *title = entry->title ? entry->title : (strchr (entry->id, ':') + 1);
-        const gchar *desc = entry->desc ? entry->desc : "";
-
-        tmp = g_markup_printf_escaped ("<a href='%s'><div class='linkdiv'>",
-                                       entry->id);
-        g_string_append (string, tmp);
-        g_free (tmp);
-
-        if (entry->icon) {
-            tmp = g_markup_printf_escaped ("<div class='inner' style='background-image: url(%s);'>",
-                                           entry->icon);
-            g_string_append (string, tmp);
-            g_free (tmp);
-        }
-        else
-            g_string_append (string, "<div class='inner'>");
-
-        tmp = g_markup_printf_escaped ("<div class='title'>%s</div>"
-                                       "<div class='desc'>%s</div>"
-                                       "</div></div></a>",
-                                       title, desc);
-        g_string_append (string, tmp);
-        g_free (tmp);
+    for (entrycur = priv->all_entries; entrycur != NULL; entrycur = entrycur->next) {
+        xmlNodePtr linknode, curnode;
+        HelpListEntry *entry = (HelpListEntry *) entrycur->data;
+        linknode = xmlNewChild (rootnode, NULL, BAD_CAST "link", NULL);
+        xmlSetProp (linknode, BAD_CAST "href", BAD_CAST entry->id);
+        xmlNewTextChild (linknode, NULL, BAD_CAST "title", BAD_CAST entry->title);
+        xmlNewTextChild (linknode, NULL, BAD_CAST "desc", BAD_CAST entry->desc);
+        curnode = xmlNewChild (linknode, NULL, BAD_CAST "thumb", NULL);
+        xmlSetProp (curnode, BAD_CAST "src", BAD_CAST entry->icon);
     }
 
-    g_string_append (string,
-                     "</div>"
-                     "<div class='footer'></div>"
-                     "</body></html>");
+    params = yelp_settings_get_all_params (yelp_settings_get_default (), 0, NULL);
+    priv->transform = yelp_transform_new (STYLESHEET);
 
-    yelp_document_give_contents (YELP_DOCUMENT (list), page_id,
-                                 string->str,
-                                 "application/xhtml+xml");
-    g_strfreev (colors);
-    g_string_free (string, FALSE);
-    yelp_document_signal (YELP_DOCUMENT (list), page_id,
-                          YELP_DOCUMENT_SIGNAL_CONTENTS, NULL);
+    g_signal_connect (priv->transform, "chunk-ready",
+                      (GCallback) transform_chunk_ready,
+                      list);
+
+    yelp_transform_start (priv->transform, priv->entriesdoc, NULL,
+			  (const gchar * const *) params);
+
+    g_strfreev (params);
 }
 
 

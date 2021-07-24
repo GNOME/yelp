@@ -35,7 +35,7 @@ PKG_CHECK_MODULES(YELP,
 	libexslt >= 0.8.1
 	sqlite3
 	webkit2gtk-4.0 >= 2.19.2
-	yelp-xsl >= 3.27.1
+	yelp-xsl >= 40.0
 ])
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
@@ -136,6 +136,9 @@ XSL_ICONS="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/common/icons.xsl"
 AC_SUBST(XSL_ICONS)
 XSL_HTML="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/common/html.xsl"
 AC_SUBST(XSL_HTML)
+XSL_TMPL="`$PKG_CONFIG --variable=xsltdir yelp-xsl`/common/tmpl.xsl"
+AC_SUBST(XSL_TMPL)
+
 XSL_JSDIR="`$PKG_CONFIG --variable=jsdir yelp-xsl`"
 AC_SUBST(XSL_JSDIR)
 
@@ -159,6 +162,7 @@ docs/libyelp/version.xml
 data/dtd/catalog
 data/xslt/db2html.xsl
 data/xslt/info2html.xsl
+data/xslt/links2html.xsl
 data/xslt/mal2html.xsl
 data/xslt/man2html.xsl
 data/xslt/yelp-common.xsl

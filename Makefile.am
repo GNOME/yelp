@@ -691,6 +691,7 @@ xsldir = $(pkgdatadir)/xslt
 xsl_DATA = \
 	data/xslt/db2html.xsl \
 	data/xslt/info2html.xsl \
+	data/xslt/links2html.xsl \
 	data/xslt/mal2html.xsl \
 	data/xslt/man2html.xsl \
 	data/xslt/yelp-common.xsl

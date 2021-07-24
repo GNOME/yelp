@@ -10,6 +10,7 @@
 <xsl:import href="@XSL_ICONS@"/>
 <xsl:import href="@XSL_HTML@"/>
 <xsl:import href="@XSL_GETTEXT@"/>
+<xsl:import href="@XSL_TMPL@"/>
 <xsl:include href="yelp-common.xsl"/>
 
 <xsl:template name="linktrails">

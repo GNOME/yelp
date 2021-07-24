@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- -*- indent-tabs-mode: nil -*- -->
+
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:yelp="http://www.gnome.org/yelp/ns"
+                xmlns="http://www.w3.org/1999/xhtml"
+                extension-element-prefixes="yelp"
+                version="1.0">
+
+<xsl:import href="@XSL_COLOR@"/>
+<xsl:import href="@XSL_ICONS@"/>
+<xsl:import href="@XSL_HTML@"/>
+<xsl:import href="@XSL_GETTEXT@"/>
+<xsl:import href="@XSL_TMPL@"/>
+<xsl:include href="yelp-common.xsl"/>
+
+<!-- copied from mal2html-page.xsl, not ideal -->
+<!-- We need this in the CSS, but the text templates can't xsl:call-template -->
+<xsl:variable name="_color.link_button_hover">
+  <xsl:call-template name="color.blend">
+    <xsl:with-param name="bg" select="$color.blue"/>
+    <xsl:with-param name="fg" select="$color.bg"/>
+    <xsl:with-param name="mix" select="0.1"/>
+  </xsl:call-template>
+</xsl:variable>
+
+<xsl:template match="/">
+  <xsl:for-each select="links">
+    <xsl:call-template name="html.output"/>
+  </xsl:for-each>
+</xsl:template>
+
+<xsl:template mode="html.title.mode" match="links">
+  <xsl:value-of select="title"/>
+</xsl:template>
+
+<xsl:template mode="html.css.mode" match="links">
+  <xsl:param name="direction">
+    <xsl:call-template name="l10n.direction"/>
+  </xsl:param>
+  <xsl:param name="left">
+    <xsl:call-template name="l10n.align.start">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="right">
+    <xsl:call-template name="l10n.align.end">
+      <xsl:with-param name="direction" select="$direction"/>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:call-template name="tmpl.file">
+    <xsl:with-param name="file" select="'css/mallard.css.tmpl'"/>
+    <xsl:with-param name="node" select="."/>
+    <xsl:with-param name="direction" select="$direction"/>
+    <xsl:with-param name="left" select="$left"/>
+    <xsl:with-param name="right" select="$right"/>
+  </xsl:call-template>
+  <xsl:text>
+.ex-yelp-panel-icon {
+  display: flex;
+}
+  </xsl:text>
+</xsl:template>
+
+<xsl:template mode="html.body.mode" match="links">
+  <div class="hgroup pagewide">
+    <h1><span class="title"><xsl:value-of select="title"/></span></h1>
+  </div>
+  <div class="region">
+    <div class="contents pagewide">
+      <div class="links-divs">
+        <xsl:for-each select="link">
+          <div class="linkdiv">
+            <a class="linkdiv" href="{@href}" title="{title}">
+              <span style="display:flex;">
+                <span class="thumb" style="min-width:48px;padding-right:10px;">
+                  <xsl:if test="thumb/@src != ''">
+                    <img src="{thumb/@src}" width="48" height="48"/>
+                  </xsl:if>
+                </span>
+                <span>
+                  <span class="title">
+                    <xsl:value-of select="title"/>
+                  </span>
+                  <span class="desc">
+                    <xsl:value-of select="desc"/>
+                  </span>
+                </span>
+              </span>
+            </a>
+          </div>
+        </xsl:for-each>
+      </div>
+    </div>
+  </div>
+</xsl:template>
+
+</xsl:stylesheet>
