@@ -1847,11 +1847,12 @@ view_clear_load (YelpView *view)
 static gchar*
 fix_docbook_uri (YelpUri *docbook_uri, YelpDocument* document)
 {
-    SoupURI *soup_uri;
+    GUri *uri;
     gchar *retval, *canonical;
+    const gchar *fragment;
 
     canonical = yelp_uri_get_canonical_uri (docbook_uri);
-    soup_uri = soup_uri_new (canonical);
+    uri = g_uri_parse (canonical, G_URI_FLAGS_ENCODED, NULL);
     g_free (canonical);
 
     /* We don't have actual page and frag IDs for DocBook. We just map IDs
@@ -1859,19 +1860,32 @@ fix_docbook_uri (YelpUri *docbook_uri, YelpDocument* document)
        If someid is really the page ID, we just drop the frag reference.
        Otherwise, normal page views scroll past the link trail.
     */
-    if (soup_uri->fragment && YELP_IS_DOCBOOK_DOCUMENT (document)) {
+    fragment = g_uri_get_fragment (uri);
+    if (fragment && YELP_IS_DOCBOOK_DOCUMENT (document)) {
         gchar *page_id = yelp_uri_get_page_id (docbook_uri);
         gchar *real_id = yelp_document_get_page_id (document, page_id);
 
-        if (g_str_equal (real_id, soup_uri->fragment))
-            soup_uri_set_fragment (soup_uri, NULL);
+        if (g_str_equal (real_id, fragment)) {
+            GUri *modified;
+
+            modified = g_uri_build (g_uri_get_flags (uri),
+                                    g_uri_get_scheme (uri),
+                                    g_uri_get_userinfo (uri),
+                                    g_uri_get_host (uri),
+                                    g_uri_get_port (uri),
+                                    g_uri_get_path (uri),
+                                    g_uri_get_query (uri),
+                                    NULL);
+            g_uri_unref (uri);
+            uri = modified;
+        }
 
         g_free (real_id);
         g_free (page_id);
     }
 
-    retval = soup_uri_to_string (soup_uri, FALSE);
-    soup_uri_free (soup_uri);
+    retval = g_uri_to_string (uri);
+    g_uri_unref (uri);
 
     return retval;
 }

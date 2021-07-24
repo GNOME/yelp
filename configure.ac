@@ -26,7 +26,7 @@ APPSTREAM_XML
 LT_LIB_M
 PKG_CHECK_MODULES(YELP,
 [
-	gio-2.0 >= 2.38.0
+	gio-2.0 >= 2.67.4
 	gio-unix-2.0
 	gtk+-unix-print-3.0
 	gtk+-3.0 >= 3.13.3
@@ -34,7 +34,7 @@ PKG_CHECK_MODULES(YELP,
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
 	sqlite3
-	webkit2gtk-4.0 >= 2.19.2
+	webkit2gtk-4.1
 	yelp-xsl >= 40.0
 ])
 AC_SUBST([YELP_CFLAGS])
@@ -45,7 +45,7 @@ AC_SUBST([YELP_LIBS])
 LT_PREREQ([2.2.6])
 LT_INIT
 
-PKG_CHECK_MODULES([YELP_EXTENSION], [webkit2gtk-web-extension-4.0 >= 2.7.2])
+PKG_CHECK_MODULES([YELP_EXTENSION], [webkit2gtk-web-extension-4.1])
 AC_SUBST(YELP_EXTENSION_CFLAGS)
 AC_SUBST(YELP_EXTENSION_LIBS)
 
