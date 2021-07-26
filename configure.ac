@@ -22,6 +22,15 @@ AC_PROG_LN_S
 GLIB_GSETTINGS
 APPSTREAM_XML
 
+# Release team wants WebKitGTK 4.1 for the GNOME 41 release.
+# Shaun doesn't have a build environment with that yet.
+# Get rid of this option when that stops being true.
+AC_ARG_WITH([webkit2gtk-4-0],
+        AS_HELP_STRING([--with-webkit2gtk-4-0],
+        [Build against webkit2gtk-4.0 instead of webkit2gtk-4.1]),
+        [webkitdep="webkit2gtk-4.0 >= 2.19.2";webextdep="webkit2gtk-web-extension-4.0 >= 2.7.2"],
+        [webkitdep="webkit2gtk-4.1";webextdep="webkit2gtk-web-extension-4.1"])
+
 # Library dependecies
 LT_LIB_M
 PKG_CHECK_MODULES(YELP,
@@ -34,7 +43,7 @@ PKG_CHECK_MODULES(YELP,
 	libxslt >= 1.1.4
 	libexslt >= 0.8.1
 	sqlite3
-	webkit2gtk-4.1
+        $webkitdep
 	yelp-xsl >= 40.0
 ])
 AC_SUBST([YELP_CFLAGS])
@@ -45,7 +54,7 @@ AC_SUBST([YELP_LIBS])
 LT_PREREQ([2.2.6])
 LT_INIT
 
-PKG_CHECK_MODULES([YELP_EXTENSION], [webkit2gtk-web-extension-4.1])
+PKG_CHECK_MODULES([YELP_EXTENSION], [$webextdep])
 AC_SUBST(YELP_EXTENSION_CFLAGS)
 AC_SUBST(YELP_EXTENSION_LIBS)
 
