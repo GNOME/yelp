@@ -55,28 +55,44 @@
     <xsl:with-param name="right" select="$right"/>
   </xsl:call-template>
   <xsl:text>
-.ex-yelp-panel-icon {
-  display: flex;
-}
   </xsl:text>
+</xsl:template>
+
+<xsl:template mode="html.header.mode" match="links">
+  <xsl:if test="@docref and @doctitle">
+    <div class="trails" role="navigation">
+      <div class="trail">
+        <a class="trail" href="{@docref}">
+          <xsl:value-of select="@doctitle"/>
+        </a>
+        <xsl:text>&#x00A0; » </xsl:text>
+      </div>
+    </div>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template mode="html.body.mode" match="links">
   <div class="hgroup pagewide">
     <h1><span class="title"><xsl:value-of select="title"/></span></h1>
   </div>
+  <xsl:variable name="hasicons" select="count(link/thumb/@src) > 0"/>
   <div class="region">
     <div class="contents pagewide">
+      <xsl:for-each select="p">
+        <p><xsl:value-of select="."/></p>
+      </xsl:for-each>
       <div class="links-divs">
         <xsl:for-each select="link">
           <div class="linkdiv">
             <a class="linkdiv" href="{@href}" title="{title}">
               <span style="display:flex;">
-                <span class="thumb" style="min-width:48px;padding-right:10px;">
-                  <xsl:if test="thumb/@src != ''">
-                    <img src="{thumb/@src}" width="48" height="48"/>
-                  </xsl:if>
-                </span>
+                <xsl:if test="$hasicons">
+                  <span class="thumb" style="min-width:48px;padding-right:10px;">
+                    <xsl:if test="thumb/@src != ''">
+                      <img src="{thumb/@src}" width="48" height="48"/>
+                    </xsl:if>
+                  </span>
+                </xsl:if>
                 <span>
                   <span class="title">
                     <xsl:value-of select="title"/>

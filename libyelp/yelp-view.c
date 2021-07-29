@@ -780,17 +780,19 @@ document_callback (YelpDocument       *document,
 
     contents = yelp_document_read_contents (document, data->page_id);
 
-    content_length = strlen (contents);
+    if (contents) {
+        content_length = strlen (contents);
 
-    stream = g_memory_input_stream_new_from_data (g_strdup (contents), content_length, g_free);
-    yelp_document_finish_read (document, contents);
+        stream = g_memory_input_stream_new_from_data (g_strdup (contents), content_length, g_free);
+        yelp_document_finish_read (document, contents);
 
-    webkit_uri_scheme_request_finish (data->request,
-                                      stream,
-                                      content_length,
-                                      mime_type);
-    g_free (mime_type);
-    g_object_unref (stream);
+        webkit_uri_scheme_request_finish (data->request,
+                                          stream,
+                                          content_length,
+                                          mime_type);
+        g_free (mime_type);
+        g_object_unref (stream);
+    }
 }
 
 static void

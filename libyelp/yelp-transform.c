@@ -273,6 +273,14 @@ yelp_transform_set_property (GObject      *object,
     }
 }
 
+
+xmlDocPtr
+yelp_transform_get_xmldoc (YelpTransform *transform)
+{
+    YelpTransformPrivate *priv = yelp_transform_get_instance_private (transform);
+    return priv->input;
+}
+
 /******************************************************************************/
 
 YelpTransform *

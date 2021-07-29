@@ -53,4 +53,6 @@ gchar *          yelp_transform_take_chunk     (YelpTransform       *transform,
 void             yelp_transform_cancel         (YelpTransform       *transform);
 GError *         yelp_transform_get_error      (YelpTransform       *transform);
 
+xmlDocPtr        yelp_transform_get_xmldoc     (YelpTransform       *transform);
+
 #endif /* __YELP_TRANSFORM_H__ */
