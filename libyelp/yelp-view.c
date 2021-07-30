@@ -1942,42 +1942,13 @@ view_load_page (YelpView *view)
 #define FORMAT_ERRORPAGE \
     "<html><head>" \
     "<style type='text/css'>" \
-    "body {" \
-    " margin: 1em;" \
-    " color: %s;" \
-    " background-color: %s;" \
-    " }\n" \
-    "p { margin: 1em 0 0 0; }\n" \
-    "div.note {" \
-    " padding: 6px;" \
-    " border-color: %s;" \
-    " border-top: solid 1px;" \
-    " border-bottom: solid 1px;" \
-    " background-color: %s;" \
-    " }\n" \
-    "div.note div.inner {" \
-    " margin: 0; padding: 0;" \
-    " background-image: url(%s);" \
-    " background-position: %s top;" \
-    " background-repeat: no-repeat;" \
-    " min-height: %ipx;" \
-    " }\n" \
-    "div.note div.contents {" \
-    " margin-%s: %ipx;" \
-    " }\n" \
-    "div.note div.title {" \
-    " margin-%s: %ipx;" \
-    " margin-bottom: 0.2em;" \
-    " font-weight: bold;" \
-    " color: %s;" \
-    " }\n" \
-    "a { color: %s; text-decoration: none; }\n" \
-    "</style>" \
-    "</head><body>" \
-    "<div class='note'><div class='inner'>" \
-    "%s<div class='contents'>%s%s</div>" \
-    "</div></div>" \
-    "</body></html>"
+    " body { color: %s; background-color: %s; } " \
+    " div.title { font-size: 2em; margin: 1rem 0 0 0; } " \
+    " p { margin: 1em 0 0 0; } " \
+    " .container { max-width: 800px; margin: 0 auto; text-align: center; } " \
+    "</style></head><body>" \
+    "<div class='container'>" \
+    "<div><img src='%s' height='256'></div>%s%s%s</div></body></html>"
 
 static void
 view_show_error_page (YelpView *view,
@@ -1985,12 +1956,12 @@ view_show_error_page (YelpView *view,
 {
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     YelpSettings *settings = yelp_settings_get_default ();
+    GtkIconTheme *icontheme;
+    GtkIconInfo *icon;
     gchar *page, *title = NULL, *title_m, *content_beg, *content_end;
-    gchar *textcolor, *bgcolor, *noteborder, *notebg, *titlecolor, *noteicon, *linkcolor;
-    gint iconsize;
+    gchar *textcolor, *bgcolor;
     GParamSpec *spec;
     gboolean doc404 = FALSE;
-    const gchar *left = (gtk_widget_get_direction ((GtkWidget *) view) == GTK_TEXT_DIR_RTL) ? "right" : "left";
 
     if (priv->uri && yelp_uri_get_document_type (priv->uri) == YELP_URI_DOCUMENT_TYPE_NOT_FOUND)
         doc404 = TRUE;
@@ -2035,18 +2006,17 @@ view_show_error_page (YelpView *view,
 
     textcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_TEXT);
     bgcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_BASE);
-    noteborder = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_RED_BORDER);
-    notebg = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_YELLOW_BASE);
-    titlecolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_TEXT_LIGHT);
-    linkcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_LINK);
-    noteicon = yelp_settings_get_icon (settings, YELP_SETTINGS_ICON_WARNING);
-    iconsize = yelp_settings_get_icon_size (settings) + 6;
-
+    g_object_get (settings, "gtk-icon-theme", &icontheme, NULL);
+    icon = gtk_icon_theme_lookup_icon (icontheme, "computer-fail-symbolic", 256, 0);
     page = g_strdup_printf (FORMAT_ERRORPAGE,
-                            textcolor, bgcolor, noteborder, notebg, noteicon,
-                            left, iconsize, left, iconsize, left, iconsize,
-                            titlecolor, linkcolor, title_m, content_beg,
+                            textcolor, bgcolor,
+                            gtk_icon_info_get_filename (icon),
+                            title_m,
+                            content_beg,
                             (content_end != NULL) ? content_end : "");
+    g_object_unref (icon);
+    g_free (textcolor);
+    g_free (bgcolor);
 
     g_object_set (view, "state", YELP_VIEW_STATE_ERROR, NULL);
 
