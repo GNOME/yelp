@@ -97,14 +97,6 @@ static void           gtk_font_changed           (GtkSettings          *gtk_sett
 static void           icon_theme_changed         (GtkIconTheme         *theme,
 						  YelpSettings         *settings);
 
-static void           rgb_to_hsv                 (GdkRGBA  color,
-						  gdouble *h,
-						  gdouble *s,
-						  gdouble *v);
-static void           hsv_to_hex                 (gdouble  h,
-						  gdouble  s,
-						  gdouble  v,
-						  gchar    *str);
 
 /******************************************************************************/
 
@@ -666,20 +658,7 @@ yelp_settings_get_color_param (YelpSettingsColor color)
 {
     static const gchar *params[YELP_SETTINGS_NUM_COLORS] = {
         "color.bg",
-        "color.fg",
-        /* FIXME 41-settings-revamp probably drop all these */
-	"color.text_light",
-	"color.link",
-	"color.link_visted",
-	"color.gray_background",
-	"color.dark_background",
-	"color.gray_border",
-	"color.blue_background",
-	"color.blue_border",
-	"color.red_background",
-	"color.red_border",
-	"color.yellow_background",
-	"color.yellow_border"
+        "color.fg"
     };
     g_return_val_if_fail (color < YELP_SETTINGS_NUM_COLORS, NULL);
     return params[color];
@@ -999,8 +978,6 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
 {
     GtkStyleContext *context;
     GdkRGBA base, text;
-    gdouble base_h, base_s, base_v;
-    gdouble text_h, text_s, text_v;
 
     g_mutex_lock (&settings->priv->mutex);
 
@@ -1017,59 +994,6 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
         g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_BASE], 8, "#FFFFFF");
         g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_TEXT], 8, "#000000");
     }
-
-    /* FIXME 41-settings-revamp might drop all color computations, if so drop these hsv vars */
-    rgb_to_hsv (text, &text_h, &text_s, &text_v);
-    rgb_to_hsv (base, &base_h, &base_s, &base_v);
-
-    /* YELP_SETTINGS_COLOR_LINK */
-    /*
-      FIXME 41-settings-revamp probably drop these entirely
-    if ( gtk_style_context_lookup_color(context, "theme_selected_bg_color", &text) )
-        g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_LINK], 8, "#%02X%02X%02X",
-                    (guint) (text.red * 255), (guint) (text.green * 255), (guint) (text.blue * 255));
-    g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_LINK_VISITED], 8, "#%02X%02X%02X",
-                (guint) (link.red * 255), (guint) (link.green * 255), (guint) (link.blue * 255));
-    */
-
-    /* YELP_SETTINGS_COLOR_TEXT_LIGHT */
-    hsv_to_hex (text_h, text_s, text_v - ((text_v - base_v) * 0.25),
-                settings->priv->colors[YELP_SETTINGS_COLOR_TEXT_LIGHT]);
-
-    /* YELP_SETTINGS_COLOR_GRAY */
-    hsv_to_hex (base_h, base_s,
-                base_v - ((base_v - text_v) * 0.05),
-                settings->priv->colors[YELP_SETTINGS_COLOR_GRAY_BASE]);
-    hsv_to_hex (base_h, base_s,
-                base_v - ((base_v - text_v) * 0.1),
-                settings->priv->colors[YELP_SETTINGS_COLOR_DARK_BASE]);
-    hsv_to_hex (base_h, base_s,
-                base_v - ((base_v - text_v) * 0.26),
-                settings->priv->colors[YELP_SETTINGS_COLOR_GRAY_BORDER]);
-
-    /* YELP_SETTINGS_COLOR_BLUE */
-    hsv_to_hex (211, 0.1,
-                base_v - ((base_v - text_v) * 0.01),
-                settings->priv->colors[YELP_SETTINGS_COLOR_BLUE_BASE]);
-    hsv_to_hex (211, 0.45,
-                base_v - ((base_v - text_v) * 0.19),
-                settings->priv->colors[YELP_SETTINGS_COLOR_BLUE_BORDER]);
-
-    /* YELP_SETTINGS_COLOR_RED */
-    hsv_to_hex (0, 0.13,
-                base_v - ((base_v - text_v) * 0.01),
-                settings->priv->colors[YELP_SETTINGS_COLOR_RED_BASE]);
-    hsv_to_hex (0, 0.83,
-                base_v - ((base_v - text_v) * 0.06),
-                settings->priv->colors[YELP_SETTINGS_COLOR_RED_BORDER]);
-
-    /* YELP_SETTINGS_COLOR_YELLOW */
-    hsv_to_hex (60, 0.25,
-                base_v - ((base_v - text_v) * 0.01),
-                settings->priv->colors[YELP_SETTINGS_COLOR_YELLOW_BASE]);
-    hsv_to_hex (60, 1.0,
-                base_v - ((base_v - text_v) * 0.07),
-                settings->priv->colors[YELP_SETTINGS_COLOR_YELLOW_BORDER]);
 
     g_object_unref (context);
 
@@ -1172,76 +1096,4 @@ yelp_settings_cmp_icons (const gchar *icon1,
         return 1;
     else
         return strcmp (icon1, icon2);
-}
-
-/******************************************************************************/
-
-static void
-rgb_to_hsv (GdkRGBA color, gdouble *h, gdouble *s, gdouble *v)
-{
-    gdouble min, max, delta;
-
-    max = (color.red > color.green) ? color.red : color.green;
-    max = (max > color.blue) ? max : color.blue;
-    min = (color.red < color.green) ? color.red : color.green;
-    min = (min < color.blue) ? min : color.blue;
-
-    delta = max - min;
-
-    *v = max;
-    *s = 0;
-    *h = 0;
-
-    if (max != min) {
-	*s = delta / *v;
-
-	if (color.red == max)
-	    *h = (color.green - color.blue) / delta;
-	else if (color.green == max)
-	    *h = 2 + (color.blue - color.red) / delta;
-	else if (color.blue == max)
-	    *h = 4 + (color.red - color.green) / delta;
-
-	*h *= 60;
-	if (*h < 0.0)
-	    *h += 360;
-    }
-}
-
-static void
-hsv_to_hex (gdouble h, gdouble s, gdouble v, gchar *str)
-{
-    gint hue;
-    gdouble m1, m2, m3;
-    gdouble r, g, b;
-    guint red, green, blue;
-
-    h /= 60;
-    hue = (int) h;
-    m1 = v * (1 - s);
-    m2 = v * (1 - s * (h - hue));
-    m3 = v * (1 - s * (-h + hue + 1));
-
-    r = g = b = v;
-    switch (hue) {
-    case 0:
-        b = m1; g = m3; break;
-    case 1:
-        b = m1; r = m2; break;
-    case 2:
-        r = m1; b = m3; break;
-    case 3:
-        r = m1; g = m2; break;
-    case 4:
-        g = m1; r = m3; break;
-    case 5:
-        g = m1; b = m2; break;
-    default:
-        g_assert_not_reached (); break;
-    }
-
-    red = r * 255;
-    green = g * 255;
-    blue = b * 255;
-    g_snprintf (str, 8, "#%02X%02X%02X", red, green, blue);
 }
