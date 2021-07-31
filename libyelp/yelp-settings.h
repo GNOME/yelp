@@ -57,15 +57,6 @@ typedef enum {
     YELP_SETTINGS_NUM_FONTS
 } YelpSettingsFont;
 
-typedef enum {
-    YELP_SETTINGS_ICON_BUG,
-    YELP_SETTINGS_ICON_IMPORTANT,
-    YELP_SETTINGS_ICON_NOTE,
-    YELP_SETTINGS_ICON_TIP,
-    YELP_SETTINGS_ICON_WARNING,
-    YELP_SETTINGS_NUM_ICONS
-} YelpSettingsIcon;
-
 GType               yelp_settings_get_type             (void);
 YelpSettings *      yelp_settings_get_default          (void);
 
@@ -90,21 +81,9 @@ void                yelp_settings_set_fonts            (YelpSettings       *sett
 gint                yelp_settings_get_font_adjustment  (YelpSettings       *settings);
 void                yelp_settings_set_font_adjustment  (YelpSettings       *settings,
                                                         gint                adjustment);
-
-gint                yelp_settings_get_icon_size        (YelpSettings       *settings);
-void                yelp_settings_set_icon_size        (YelpSettings       *settings,
-                                                        gint                size);
-gchar *             yelp_settings_get_icon             (YelpSettings       *settings,
-                                                        YelpSettingsIcon    icon);
-void                yelp_settings_set_icons            (YelpSettings       *settings,
-                                                        YelpSettingsIcon    first_icon,
-                                                        ...);
-const gchar *       yelp_settings_get_icon_param       (YelpSettingsIcon    icon);
-
 gchar **            yelp_settings_get_all_params       (YelpSettings       *settings,
                                                         gint                extra,
                                                         gint               *end);
-
 gboolean            yelp_settings_get_show_text_cursor (YelpSettings       *settings);
 void                yelp_settings_set_show_text_cursor (YelpSettings       *settings,
                                                         gboolean            show);

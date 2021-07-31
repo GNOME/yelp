@@ -35,8 +35,6 @@ struct _YelpSettingsPrivate {
     gchar         colors[YELP_SETTINGS_NUM_COLORS][8];
     gchar        *setfonts[YELP_SETTINGS_NUM_FONTS];
     gchar        *fonts[YELP_SETTINGS_NUM_FONTS];
-    gchar        *icons[YELP_SETTINGS_NUM_ICONS];
-    gint          icon_size;
 
     GtkSettings  *gtk_settings;
     GtkIconTheme *gtk_icon_theme;
@@ -45,7 +43,6 @@ struct _YelpSettingsPrivate {
 
     gulong        gtk_theme_changed;
     gulong        gtk_font_changed;
-    gulong        icon_theme_changed;
 
     gboolean      show_text_cursor;
 
@@ -57,7 +54,6 @@ struct _YelpSettingsPrivate {
 enum {
     COLORS_CHANGED,
     FONTS_CHANGED,
-    ICONS_CHANGED,
     LAST_SIGNAL
 };
 static guint settings_signals[LAST_SIGNAL] = {0,};
@@ -70,8 +66,6 @@ enum {
   PROP_SHOW_TEXT_CURSOR,
   PROP_EDITOR_MODE
 };
-
-static const gchar *icon_names[YELP_SETTINGS_NUM_ICONS];
 
 G_DEFINE_TYPE_WITH_PRIVATE (YelpSettings, yelp_settings, G_TYPE_OBJECT)
 
@@ -94,8 +88,6 @@ static void           gtk_theme_changed          (GtkSettings          *gtk_sett
 static void           gtk_font_changed           (GtkSettings          *gtk_settings,
 						  GParamSpec           *pspec,
 					          YelpSettings         *settings);
-static void           icon_theme_changed         (GtkIconTheme         *theme,
-						  YelpSettings         *settings);
 
 
 /******************************************************************************/
@@ -104,34 +96,11 @@ static void
 yelp_settings_class_init (YelpSettingsClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
-    gint i;
 
     object_class->constructed  = yelp_settings_constructed;
     object_class->finalize = yelp_settings_finalize;
     object_class->get_property = yelp_settings_get_property;
     object_class->set_property = yelp_settings_set_property;
-
-    for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++) {
-	switch (i) {
-	case YELP_SETTINGS_ICON_BUG:
-	    icon_names[i] = "yelp-note-bug";
-	    break;
-	case YELP_SETTINGS_ICON_IMPORTANT:
-	    icon_names[i] = "yelp-note-important";
-	    break;
-	case YELP_SETTINGS_ICON_NOTE:
-	    icon_names[i] = "yelp-note";
-	    break;
-	case YELP_SETTINGS_ICON_TIP:
-	    icon_names[i] = "yelp-note-tip";
-	    break;
-	case YELP_SETTINGS_ICON_WARNING:
-	    icon_names[i] = "yelp-note-warning";
-	    break;
-	default:
-	    g_assert_not_reached ();
-	}
-    }
 
     g_object_class_install_property (object_class,
                                      PROP_GTK_SETTINGS,
@@ -193,14 +162,6 @@ yelp_settings_class_init (YelpSettingsClass *klass)
 		      0, NULL, NULL,
 		      g_cclosure_marshal_VOID__VOID,
 		      G_TYPE_NONE, 0);
-
-    settings_signals[ICONS_CHANGED] =
-	g_signal_new ("icons-changed",
-		      G_OBJECT_CLASS_TYPE (klass),
-		      G_SIGNAL_RUN_LAST,
-		      0, NULL, NULL,
-		      g_cclosure_marshal_VOID__VOID,
-		      G_TYPE_NONE, 0);
 }
 
 static void
@@ -210,10 +171,7 @@ yelp_settings_init (YelpSettings *settings)
 
     settings->priv = yelp_settings_get_instance_private (settings);
     g_mutex_init (&settings->priv->mutex);
-    settings->priv->icon_size = 24;
 
-    for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++)
-	settings->priv->icons[i] = NULL;
     for (i = 0; i < YELP_SETTINGS_NUM_FONTS; i++) {
 	settings->priv->setfonts[i] = NULL;
 	settings->priv->fonts[i] = NULL;
@@ -522,11 +480,6 @@ yelp_settings_set_property (GObject      *object,
 	}
 	break;
     case PROP_GTK_ICON_THEME:
-	if (settings->priv->gtk_icon_theme) {
-	    g_signal_handler_disconnect (settings->priv->gtk_icon_theme,
-					 settings->priv->icon_theme_changed);
-	    g_object_unref (settings->priv->gtk_icon_theme);
-	}
 	settings->priv->gtk_icon_theme = g_value_get_object (value);
 	if (settings->priv->gtk_icon_theme != NULL) {
 	    gchar **search_path;
@@ -553,15 +506,6 @@ yelp_settings_set_property (GObject      *object,
                                                    DATADIR"/yelp/icons");
 	    g_strfreev (search_path);
 	    g_object_ref (settings->priv->gtk_icon_theme);
-	    settings->priv->icon_theme_changed =
-		g_signal_connect (settings->priv->gtk_icon_theme,
-				  "changed",
-				  (GCallback) icon_theme_changed,
-				  settings);
-	    icon_theme_changed (settings->priv->gtk_icon_theme, settings);
-	}
-	else {
-	    settings->priv->icon_theme_changed = 0;
 	}
 	break;
     case PROP_FONT_ADJUSTMENT:
@@ -794,77 +738,6 @@ yelp_settings_set_font_adjustment (YelpSettings *settings,
 
 /******************************************************************************/
 
-gint
-yelp_settings_get_icon_size (YelpSettings *settings)
-{
-    return settings->priv->icon_size;
-}
-
-void
-yelp_settings_set_icon_size (YelpSettings *settings,
-			     gint          size)
-{
-    settings->priv->icon_size = size;
-    if (settings->priv->gtk_icon_theme != NULL)
-	icon_theme_changed (settings->priv->gtk_icon_theme, settings);
-}
-
-gchar *
-yelp_settings_get_icon (YelpSettings     *settings,
-			YelpSettingsIcon  icon)
-{
-    gchar *ret;
-    g_return_val_if_fail (icon < YELP_SETTINGS_NUM_ICONS, NULL);
-
-    g_mutex_lock (&settings->priv->mutex);
-    ret = g_strdup (settings->priv->icons[icon]);
-    g_mutex_unlock (&settings->priv->mutex);
-
-    return ret;
-}
-
-void
-yelp_settings_set_icons (YelpSettings     *settings,
-			 YelpSettingsIcon  first_icon,
-			 ...)
-{
-    YelpSettingsIcon icon;
-    va_list args;
-
-    g_mutex_lock (&settings->priv->mutex);
-    va_start (args, first_icon);
-
-    icon = first_icon;
-    while ((gint) icon >= 0) {
-	gchar *filename = va_arg (args, gchar *);
-	if (settings->priv->icons[icon] != NULL)
-	    g_free (settings->priv->icons[icon]);
-	settings->priv->icons[icon] = g_filename_to_uri (filename, NULL, NULL);
-	icon = va_arg (args, YelpSettingsIcon);
-    }
-
-    va_end (args);
-    g_mutex_unlock (&settings->priv->mutex);
-
-    g_signal_emit (settings, settings_signals[ICONS_CHANGED], 0);
-}
-
-const gchar *
-yelp_settings_get_icon_param (YelpSettingsIcon icon)
-{
-    static const gchar *params[YELP_SETTINGS_NUM_ICONS] = {
-	"icons.note.bug",
-	"icons.note.important",
-	"icons.note",
-	"icons.note.tip",
-	"icons.note.warning"
-    };
-    g_return_val_if_fail (icon < YELP_SETTINGS_NUM_ICONS, NULL);
-    return params[icon];
-}
-
-/******************************************************************************/
-
 gboolean
 yelp_settings_get_show_text_cursor (YelpSettings *settings)
 {
@@ -916,7 +789,7 @@ yelp_settings_get_all_params (YelpSettings *settings,
     GList *envs, *envi;
 
     params = g_new0 (gchar *,
-                     (2*YELP_SETTINGS_NUM_COLORS) + (2*YELP_SETTINGS_NUM_ICONS) + extra + 9);
+                     (2*YELP_SETTINGS_NUM_COLORS) + extra + 7);
 
     for (i = 0; i < YELP_SETTINGS_NUM_COLORS; i++) {
         gchar *val;
@@ -926,17 +799,7 @@ yelp_settings_get_all_params (YelpSettings *settings,
         params[ix + 1] = g_strdup_printf ("\"%s\"", val);
         g_free (val);
     }
-    for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++) {
-        gchar *val;
-        ix = 2 * (YELP_SETTINGS_NUM_COLORS + i);
-        params[ix] = g_strdup (yelp_settings_get_icon_param (i));
-        val = yelp_settings_get_icon (settings, i);
-        params[ix + 1] = g_strdup_printf ("\"%s\"", val);
-        g_free (val);
-    }
-    ix = 2 * (YELP_SETTINGS_NUM_COLORS + YELP_SETTINGS_NUM_ICONS);
-    params[ix++] = g_strdup ("icons.size.note");
-    params[ix++] = g_strdup_printf ("%i", yelp_settings_get_icon_size (settings));
+    ix = 2 * YELP_SETTINGS_NUM_COLORS;
     params[ix++] = g_strdup ("yelp.editor_mode");
     if (settings->priv->editor_mode)
         params[ix++] = g_strdup ("true()");
@@ -1030,37 +893,6 @@ gtk_font_changed (GtkSettings  *gtk_settings,
     settings->priv->fonts[YELP_SETTINGS_FONT_FIXED] = font;
 
     g_signal_emit (settings, settings_signals[FONTS_CHANGED], 0);
-}
-
-static void
-icon_theme_changed (GtkIconTheme *theme,
-		    YelpSettings *settings)
-{
-    GtkIconInfo *info;
-    gint i;
-
-    g_mutex_lock (&settings->priv->mutex);
-
-    for (i = 0; i < YELP_SETTINGS_NUM_ICONS; i++) {
-	if (settings->priv->icons[i] != NULL)
-	    g_free (settings->priv->icons[i]);
-	info = gtk_icon_theme_lookup_icon (theme,
-					   icon_names[i],
-					   settings->priv->icon_size,
-					   GTK_ICON_LOOKUP_NO_SVG);
-	if (info != NULL) {
-	    settings->priv->icons[i] = g_filename_to_uri (gtk_icon_info_get_filename (info),
-                                                          NULL, NULL);
-	    g_object_unref (info);
-	}
-	else {
-	    settings->priv->icons[i] = NULL;
-	}
-    }
-
-    g_mutex_unlock (&settings->priv->mutex);
-
-    g_signal_emit (settings, settings_signals[ICONS_CHANGED], 0);
 }
 
 gint
