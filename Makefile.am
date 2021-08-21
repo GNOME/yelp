@@ -199,7 +199,6 @@ YELP_COMMON_LDADD =				\
 
 check_PROGRAMS =				\
 	tests/test-magic			\
-	tests/test-settings			\
 	tests/test-transform			\
 	tests/test-uri				\
 	tests/test-view
