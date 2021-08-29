@@ -57,11 +57,16 @@ build_network_uri (const gchar *uri)
     if (g_str_equal (scheme, "ghelp") || g_str_equal (scheme, "gnome-help") ||
         g_str_equal (scheme, "help") || g_str_equal (scheme, "help-list") ||
         g_str_equal (scheme, "info") || g_str_equal (scheme, "man")) {
+        const gchar *upath = g_uri_get_path (guri);
         if (g_str_equal (scheme, "info") && fragment) {
-            path = g_strdup_printf ("/%s/%s", g_uri_get_path (guri), fragment);
+            if (upath[0] == '/')
+                path = g_strdup_printf ("%s/%s", upath, fragment);
+            else
+                path = g_strdup_printf ("/%s/%s", upath, fragment);
             fragment = NULL;
-        } else {
-            path = g_strdup_printf ("/%s", g_uri_get_path (guri));
+        }
+        else if (upath[0] != '/') {
+            path = g_strdup_printf ("/%s", upath);
         }
     }
 
@@ -95,10 +100,18 @@ build_yelp_uri (const gchar *uri_str)
 
   memmove (uri, uri + BOGUS_PREFIX_LEN, strlen (uri) - BOGUS_PREFIX_LEN + 1);
 
-  /* Remove the leading slash */
+  /* Remove some leading slashes */
   if ((resource = strstr (uri, ":"))) {
     resource++;
-    memmove (resource, resource + 1, strlen (resource));
+
+    if (g_str_has_prefix (uri, "help:")) {
+        if (resource[0] == '/')
+            memmove (resource, resource + 1, strlen (resource));
+    }
+    else if (g_str_has_prefix (uri, "ghelp:")) {
+        if (resource[0] == '/' && resource[1] == '/')
+            memmove (resource, resource + 1, strlen (resource));
+    }
   }
 
   /* Remove the trailing slash if any */
