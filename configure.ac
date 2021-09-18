@@ -1,6 +1,6 @@
 AC_PREREQ([2.63])
 # Reminder: add some release notes to data/yelp.appdata.xml.in on major releases
-AC_INIT([Yelp],[41.beta2],[https://gitlab.gnome.org/GNOME/yelp/-/issues/],[yelp])
+AC_INIT([Yelp],[41.0],[https://gitlab.gnome.org/GNOME/yelp/-/issues/],[yelp])
 
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_SRCDIR([src/yelp.c])
