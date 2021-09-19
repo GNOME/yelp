@@ -45,7 +45,7 @@ PKG_CHECK_MODULES(YELP,
 	libexslt >= 0.8.1
 	sqlite3
         $webkitdep
-	yelp-xsl >= 40.0
+	yelp-xsl >= 41.0
 ])
 AC_SUBST([YELP_CFLAGS])
 AC_SUBST([YELP_LIBS])
