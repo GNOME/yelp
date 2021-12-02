@@ -220,7 +220,7 @@ yelp_document_get_for_uri (YelpUri *uri)
         return g_object_ref (document);
     }
 
-    switch (yelp_uri_get_document_type (uri)) {
+    switch (doctype) {
     case YELP_URI_DOCUMENT_TYPE_TEXT:
     case YELP_URI_DOCUMENT_TYPE_HTML:
     case YELP_URI_DOCUMENT_TYPE_XHTML:
