@@ -109,7 +109,13 @@ build_yelp_uri (const gchar *uri_str)
             memmove (resource, resource + 1, strlen (resource));
     }
     else if (g_str_has_prefix (uri, "ghelp:")) {
-        if (resource[0] == '/' && resource[1] == '/')
+        /* This is an ugly heuristic that probably always works. The URI
+           mangling ends up not distinguishing between absolute file paths
+           and ordinary old ghelp URIs. But absolute file paths should
+           have more than one slash, right? This will fail:
+               cp foo.xml / && yelp /foo.xml
+         */
+        if (resource[0] == '/' && !strchr (resource + 1, '/'))
             memmove (resource, resource + 1, strlen (resource));
     }
   }
