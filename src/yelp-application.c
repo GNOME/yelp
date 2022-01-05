@@ -272,6 +272,8 @@ yelp_application_startup (GApplication *application)
     G_APPLICATION_CLASS (yelp_application_parent_class)->startup (application);
 
     hdy_init ();
+    hdy_style_manager_set_color_scheme (hdy_style_manager_get_default (),
+                                        HDY_COLOR_SCHEME_PREFER_LIGHT);
 
     settings = yelp_settings_get_default ();
     if (editor_mode)
