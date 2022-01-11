@@ -49,6 +49,7 @@ static gboolean       help_list_request_page         (YelpDocument          *doc
                                                       gpointer               user_data,
                                                       GDestroyNotify         notify);
 static void           help_list_think                (YelpHelpList          *list);
+static void           help_list_reload               (YelpHelpList          *list);
 static void           help_list_handle_page          (YelpHelpList          *list,
                                                       const gchar           *page_id);
 static void           help_list_process_docbook      (YelpHelpList          *list,
@@ -128,8 +129,9 @@ yelp_help_list_init (YelpHelpList *list)
     YelpHelpListPrivate *priv = yelp_help_list_get_instance_private (list);
 
     g_mutex_init (&priv->mutex);
+    /* don't free the key, it belongs to the value struct */
     priv->entries = g_hash_table_new_full (g_str_hash, g_str_equal,
-                                           g_free,
+                                           NULL,
                                            (GDestroyNotify) help_list_entry_free);
 
     priv->get_docbook_title = xmlXPathCompile (BAD_CAST "normalize-space("
@@ -157,6 +159,8 @@ yelp_help_list_finalize (GObject *object)
 {
     YelpHelpListPrivate *priv = yelp_help_list_get_instance_private (YELP_HELP_LIST (object));
 
+    /* entry structs belong to hash table */
+    g_list_free (priv->all_entries);
     g_hash_table_destroy (priv->entries);
     g_mutex_clear (&priv->mutex);
 
@@ -180,7 +184,14 @@ yelp_help_list_finalize (GObject *object)
 YelpDocument *
 yelp_help_list_new (YelpUri *uri)
 {
-    return g_object_new (YELP_TYPE_HELP_LIST, NULL);
+    YelpHelpList *helplist = g_object_new (YELP_TYPE_HELP_LIST, NULL);
+
+    g_signal_connect_swapped (yelp_settings_get_default (),
+                              "colors-changed",
+                              G_CALLBACK (help_list_reload),
+                              helplist);
+
+    return (YelpDocument *) helplist;
 }
 
 /******************************************************************************/
@@ -285,7 +296,7 @@ help_list_think (YelpHelpList *list)
                                              NULL);
                 if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
                     entry = g_new0 (HelpListEntry, 1);
-                    entry->id = g_strdup (docid);
+                    entry->id = docid;
                     entry->filename = filename;
                     entry->type = YELP_URI_DOCUMENT_TYPE_MALLARD;
                     break;
@@ -301,7 +312,7 @@ help_list_think (YelpHelpList *list)
                 g_free (tmp);
                 if (g_file_test (filename, G_FILE_TEST_IS_REGULAR)) {
                     entry = g_new0 (HelpListEntry, 1);
-                    entry->id = g_strdup (docid);
+                    entry->id = docid;
                     entry->filename = filename;
                     entry->type = YELP_URI_DOCUMENT_TYPE_DOCBOOK;
                     break;
@@ -313,8 +324,9 @@ help_list_think (YelpHelpList *list)
                 g_hash_table_insert (priv->entries, docid, entry);
                 priv->all_entries = g_list_prepend (priv->all_entries, entry);
             }
-            else
+            else {
                 g_free (docid);
+            }
             g_object_unref (child);
         }
         g_object_unref (children);
@@ -376,12 +388,14 @@ help_list_think (YelpHelpList *list)
                 }
                 g_free (filename);
 
-                g_free (docid);
             found:
                 g_object_unref (child);
                 if (entry != NULL) {
                     g_hash_table_insert (priv->entries, docid, entry);
                     priv->all_entries = g_list_prepend (priv->all_entries, entry);
+                }
+                else {
+                    g_free (docid);
                 }
             }
 
@@ -449,6 +463,43 @@ help_list_think (YelpHelpList *list)
     g_mutex_unlock (&priv->mutex);
 
     g_object_unref (list);
+}
+
+
+static void
+help_list_reload (YelpHelpList *list)
+{
+    YelpHelpListPrivate *priv = yelp_help_list_get_instance_private (list);
+    gchar **ids;
+    gint i;
+
+    if (priv->process_running)
+        return;
+
+    g_mutex_lock (&priv->mutex);
+
+    ids = yelp_document_get_requests (YELP_DOCUMENT (list));
+    for (i = 0; ids[i]; i++) {
+        priv->pending = g_slist_prepend (priv->pending, ids[i]);
+    }
+    g_free (ids);
+
+    /* entry structs belong to hash table */
+    g_list_free (priv->all_entries);
+    priv->all_entries = NULL;
+    g_hash_table_remove_all (priv->entries);
+
+    yelp_document_clear_contents (YELP_DOCUMENT (list));
+
+    priv->process_ran = FALSE;
+    priv->process_running = TRUE;
+
+    g_object_ref (list);
+    priv->thread = g_thread_new ("helplist-page",
+                                 (GThreadFunc)(GCallback) help_list_think,
+                                 list);
+
+    g_mutex_unlock (&priv->mutex);
 }
 
 

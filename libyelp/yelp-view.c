@@ -176,6 +176,7 @@ struct _RequestAsyncData {
     WebKitURISchemeRequest *request;
     GFile *resource_file;
     gchar *page_id;
+    gboolean finished;
 };
 
 static RequestAsyncData *
@@ -186,6 +187,7 @@ request_async_data_new (WebKitURISchemeRequest *request, gchar *page_id)
     data = g_slice_new0 (RequestAsyncData);
     data->request = g_object_ref (request);
     data->page_id = g_strdup (page_id);
+    data->finished = FALSE;
     return data;
 }
 
@@ -771,7 +773,19 @@ document_callback (YelpDocument       *document,
     if (signal == YELP_DOCUMENT_SIGNAL_INFO)
         return;
 
+    if (data->finished) {
+        /* If this is set, this callback is because YelpDocument refreshed
+           the page, such as when a file changes. WebKit doesn't like us
+           to reuse the request object, so we do a fresh load.
+         */
+        YelpView *view = YELP_VIEW (webkit_uri_scheme_request_get_web_view (data->request));
+        YelpViewPrivate *priv = yelp_view_get_instance_private (view);
+        yelp_view_load_uri (view, priv->uri);
+        return;
+    }
+
     if (signal == YELP_DOCUMENT_SIGNAL_ERROR) {
+        data->finished = TRUE;
         webkit_uri_scheme_request_finish_error (data->request, error);
         return;
     }
@@ -786,6 +800,7 @@ document_callback (YelpDocument       *document,
         stream = g_memory_input_stream_new_from_data (g_strdup (contents), content_length, g_free);
         yelp_document_finish_read (document, contents);
 
+        data->finished = TRUE;
         webkit_uri_scheme_request_finish (data->request,
                                           stream,
                                           content_length,

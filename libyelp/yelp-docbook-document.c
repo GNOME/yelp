@@ -228,7 +228,7 @@ yelp_docbook_document_new (YelpUri *uri)
         GFile *file;
         file = g_file_new_for_path (path[path_i]);
         priv->monitors[path_i] = g_file_monitor (file,
-                                                 G_FILE_MONITOR_SEND_MOVED,
+                                                 G_FILE_MONITOR_WATCH_MOVES,
                                                  NULL, NULL);
         g_signal_connect (priv->monitors[path_i], "changed",
                           G_CALLBACK (docbook_monitor_changed),
@@ -236,6 +236,12 @@ yelp_docbook_document_new (YelpUri *uri)
         g_object_unref (file);
     }
     g_strfreev (path);
+
+    g_signal_connect_swapped (yelp_settings_get_default (),
+                              "colors-changed",
+                              G_CALLBACK (docbook_reload),
+                              docbook);
+
     return (YelpDocument *) docbook;
 }
 

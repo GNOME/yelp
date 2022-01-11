@@ -103,6 +103,7 @@ static void           mallard_page_data_info    (MallardPageData      *page_data
                                                  xmlNodePtr            cache_node);
 static void           mallard_page_data_run     (MallardPageData      *page_data);
 static void           mallard_page_data_free    (MallardPageData      *page_data);
+static void           mallard_reload            (YelpMallardDocument  *mallard);
 static void           mallard_monitor_changed   (GFileMonitor         *monitor,
                                                  GFile                *file,
                                                  GFile                *other_file,
@@ -238,7 +239,7 @@ yelp_mallard_document_new (YelpUri *uri)
         GFile *file;
         file = g_file_new_for_path (path[path_i]);
         priv->monitors[path_i] = g_file_monitor (file,
-                                                 G_FILE_MONITOR_SEND_MOVED,
+                                                 G_FILE_MONITOR_WATCH_MOVES,
                                                  NULL, NULL);
         g_signal_connect (priv->monitors[path_i], "changed",
                           G_CALLBACK (mallard_monitor_changed),
@@ -246,6 +247,11 @@ yelp_mallard_document_new (YelpUri *uri)
         g_object_unref (file);
     }
     g_strfreev (path);
+
+    g_signal_connect_swapped (yelp_settings_get_default (),
+                              "colors-changed",
+                              G_CALLBACK (mallard_reload),
+                              mallard);
 
     return (YelpDocument *) mallard;
 }
@@ -364,8 +370,15 @@ mallard_think (YelpMallardDocument *mallard)
             GFile *pagefile;
             filename = g_file_info_get_attribute_as_string (pageinfo,
                                                             G_FILE_ATTRIBUTE_STANDARD_NAME);
-            if (!g_str_has_suffix (filename, ".page") &&
-                !(editor_mode && g_str_has_suffix (filename, ".page.stub"))) {
+            /* Only .page files, or .page.stub files in editor mode.
+               Also, filenames with # really mess things up, and emacs
+               creates them in the background all the time.
+               FIXME: Let's add support for .stack files.
+             */
+            if (strchr(filename, '#') ||
+                ( !g_str_has_suffix (filename, ".page") &&
+                  !(editor_mode && g_str_has_suffix (filename, ".page.stub"))
+                  )) {
                 g_free (filename);
                 g_object_unref (pageinfo);
                 continue;
@@ -1140,6 +1153,23 @@ mallard_monitor_changed (GFileMonitor         *monitor,
                          GFile                *other_file,
                          GFileMonitorEvent     event_type,
                          YelpMallardDocument  *mallard)
+{
+    char *filename;
+
+    if (file) {
+        filename = g_file_get_path (file);
+        if (strchr(filename, '#')) {
+            /* ignore emacs tmp files that mess up our uri handling anyway */
+            g_free (filename);
+            return;
+        }
+        g_free (filename);
+        mallard_reload (mallard);
+    }
+}
+
+static void
+mallard_reload (YelpMallardDocument *mallard)
 {
     gchar **ids;
     gint i;
