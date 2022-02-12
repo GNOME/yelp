@@ -246,35 +246,6 @@ tests_test_view_LDADD = \
 	$(YELP_COMMON_LDADD) \
 	libyelp/libyelp.la
 
-gtkdoc_builddir = $(top_builddir)/docs/libyelp
-gtkdoc_distdir = $(top_distdir)/docs/libyelp
-gtkdoc_srcdir = $(top_srcdir)/docs/libyelp
-
-all-local: $(bin_PROGRAMS)
-	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) all
-check-local:
-	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) check
-clean-local:
-	cd $(gtkdoc_builddir) && if test -e Makefile ; then \
-		$(MAKE) $(AM_MAKEFLAGS) clean ; \
-	fi
-distclean-local:
-	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) distclean
-docs: $(lib_LTLIBRARIES)
-	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) docs
-install-data-local:
-	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) install-data
-uninstall-local:
-	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) uninstall
-
-dist-hook:
-	$(MKDIR_P) $(gtkdoc_distdir)
-	cp $(gtkdoc_srcdir)/Makefile.am $(gtkdoc_srcdir)/Makefile.in $(gtkdoc_distdir)
-	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) \
-		distdir="../../$(gtkdoc_distdir)" \
-		top_distdir="../../$(top_distdir)" \
-		dist-hook
-
 install-exec-hook:
 	rm -f $(DESTDIR)$(bindir)/gnome-help && \
 	$(LN_S) yelp $(DESTDIR)$(bindir)/gnome-help
@@ -864,10 +835,7 @@ dist_noinst_DATA = \
 	data/mathjax/unpacked/jax/output/NativeMML/jax.js \
 	data/mathjax/LICENSE \
 	data/mathjax/README \
-	docs/libyelp/libyelp-docs.xml \
-	docs/libyelp/version.xml.in \
-	libyelp/yelp-marshal.list \
-	gtk-doc.make
+	libyelp/yelp-marshal.list
 
 dist_noinst_SCRIPTS = \
 	autogen.sh
@@ -893,8 +861,8 @@ MAINTAINERCLEANFILES = \
 	mkinstalldirs
 
 AM_DISTCHECK_CONFIGURE_FLAGS = \
+	--with-webkit2gtk-4-0 \
 	--enable-bz2 \
-	--enable-gtk-doc \
 	--enable-lzma
 
 .PHONY: docs
