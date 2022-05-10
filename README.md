@@ -1,4 +1,5 @@
-Yelp is the default help viewer for the GNOME desktop.  Yelp provides
+# Yelp 
+The default help viewer for the GNOME desktop.  Yelp provides
 a simple graphical interface for viewing Mallard, DocBook, HTML, man,
 and info formatted documentation.  The name Yelp was suggested by Daniel
 Lundin. Yelp is pronounced the same as the swedish word for 'help'.
