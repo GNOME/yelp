@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
 "POT-Creation-Date: 2022-05-11 16:39+0000\n"
-"PO-Revision-Date: 2022-07-17 20:00+0200\n"
+"PO-Revision-Date: 2022-07-27 08:53+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -46,18 +46,25 @@ msgid ""
 "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
 "also display DocBook, info, man, and HTML documentation."
 msgstr ""
+"Yep GNOME-ს დახმარების წაკითხვის აპლიკაციაა. ის მალაერდის ნაგულსიხმები "
+"მნახველია, მაგრამ ასევე შეუძლია აჩვენებოს DocBook, info, man და HTML "
+"დოკუმენტაციაც."
 
 #: data/yelp.appdata.xml.in:32
 msgid ""
 "It makes it easy to find the documentation you need, with interactive search "
 "and bookmarks."
 msgstr ""
+"გაგიადვილებთ იპოვოთ დოკუმენტაცია, რომელიც გჭირდებათ. ინტერაქტიური ძებნითა და "
+"სანიშნებით."
 
 #: data/yelp.appdata.xml.in:36
 msgid ""
 "It also has an editor mode, which shows editorial comments and revision "
 "statuses when editing Mallard documents."
 msgstr ""
+"ასევე გააჩნია რედაქტორის რეჟიმი,  რომელიც გაჩვენებთ რედაქტორის კომენტარებს "
+"და რევიზიების მდგომარეობებს, მალარდის დოკუმენტების ჩასწორებისას."
 
 #: data/yelp.appdata.xml.in:51
 msgid "The GNOME Project"
@@ -95,6 +102,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
+"ფაილის (%s) დამუშავების პრობლემა. ის სწორ XML დოკუმენტს არ წარმოადგენს."
 
 #: libyelp/yelp-docbook-document.c:378
 #, c-format
@@ -102,6 +110,8 @@ msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
+"ფაილის (%s) დამუშავების პრობლემა. ერთი ან მეტი ჩასმული ფაილი სწორ XML "
+"დოკუმენტს არ წარმოადგენს."
 
 #: libyelp/yelp-docbook-document.c:813
 msgid "Unknown"
@@ -111,7 +121,7 @@ msgstr "უცნობი"
 #: libyelp/yelp-man-document.c:278
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
-msgstr ""
+msgstr "მოთხოვნილი გვერდი დოკუმენტში %s არ არსებობს."
 
 #: libyelp/yelp-document.c:888
 #, c-format
@@ -135,6 +145,7 @@ msgstr "დახმარების ყველა გვერდი"
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
+"ფაილის (%s) დამუშავების პრობლემა. ის გვერდად სწორად არაა ჩამოყალიბებული."
 
 #: libyelp/yelp-mallard-document.c:354
 #, c-format
@@ -149,11 +160,11 @@ msgstr "\"%s\"-ის მოძებნა"
 #: libyelp/yelp-transform.c:379 libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
-msgstr ""
+msgstr "XSLT სტილების სია აკლია ან არასწორია: %s."
 
 #: libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
-msgstr ""
+msgstr "Yelp:document -ზე href ატრიბუტი ვერ ვიპოვე\n"
 
 #: libyelp/yelp-transform.c:543
 msgid "Out of memory"
@@ -207,7 +218,7 @@ msgstr "უცნობი შეცდომა."
 
 #: libyelp/yelp-view.c:1015
 msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr ""
+msgstr "არ გაქვთ PackageKit. პაკეტების დაყენება PackageKit-ს მოითხოვს."
 
 #: libyelp/yelp-view.c:1262
 msgid "Save Image"
@@ -232,16 +243,16 @@ msgstr "ვიდეოს შენახვა, როგორც…"
 
 #: libyelp/yelp-view.c:1570
 msgid "S_end Image To…"
-msgstr ""
+msgstr "_გამოსახულების გაგზავნა მისამართზე…"
 
 #: libyelp/yelp-view.c:1571
 msgid "S_end Video To…"
-msgstr ""
+msgstr "_ვიდეოს გაგზავნა მისამართზე…"
 
 #: libyelp/yelp-view.c:1926
 #, c-format
 msgid "Could not load a document for ‘%s’"
-msgstr ""
+msgstr "დოკუმენტის ჩატვირთვის პრობლემა %s-თვის"
 
 #: libyelp/yelp-view.c:1932
 msgid "Could not load a document"
@@ -265,7 +276,7 @@ msgstr "უცნობი შეცდომა"
 
 #: libyelp/yelp-view.c:2018
 msgid "Search for packages containing this document."
-msgstr ""
+msgstr "პაკეტის მოძებნა, რომელიც ამ დოკუმენტს შეიცავს."
 
 #: src/yelp-application.c:60
 msgid "Turn on editor mode"
@@ -337,7 +348,7 @@ msgstr "სანიშნეების ამოღება"
 
 #: yelp.desktop.in:4
 msgid "Get help with GNOME"
-msgstr ""
+msgstr "GNOME-ის დახმარების მიღება"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: yelp.desktop.in:6
