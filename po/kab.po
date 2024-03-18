@@ -1,0 +1,354 @@
+# Kabyle translation for yelp.
+# Copyright (C) 2024 yelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the yelp package.
+# ZiriSut <rgebbid@gmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
+"POT-Creation-Date: 2024-02-22 20:20+0000\n"
+"PO-Revision-Date: 2024-03-17 12:26+0100\n"
+"Last-Translator: sa\n"
+"Language-Team: Kabyle <kab@li.org>\n"
+"Language: kab\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. (itstool) path: msg/msgstr
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <string/> - The package to install
+#.
+#: data/domains/yelp.xml.in:36
+msgid "Install <string/>"
+msgstr "Sebded <string/>"
+
+#: data/yelp.appdata.xml.in:25 src/yelp-application.c:269
+#: src/yelp-window.c:1192 yelp.desktop.in:3
+msgid "Help"
+msgstr "Tallalt"
+
+#: data/yelp.appdata.xml.in:26
+msgid "Help viewer for GNOME"
+msgstr "Tameskant n tallelt i GNOME"
+
+#: data/yelp.appdata.xml.in:28
+msgid ""
+"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
+"also display DocBook, info, man, and HTML documentation."
+msgstr ""
+"Yelp d amsenqed n tallalt Gnome. D amsenqad Mallard amezwer, maca yezmer "
+"daɣen ad d-yesken DocBook, talɣut, man d tameslit HTML."
+
+#: data/yelp.appdata.xml.in:32
+msgid ""
+"It makes it easy to find the documentation you need, with interactive search "
+"and bookmarks."
+msgstr "Yessishil tifin n tsemlit i tuḥwaǧeḍ, akked unadi amyigaw d tecraḍ."
+
+#: data/yelp.appdata.xml.in:36
+msgid ""
+"It also has an editor mode, which shows editorial comments and revision "
+"statuses when editing Mallard documents."
+msgstr ""
+"Yesεa daɣen asker n amaẓrag, win i d-yeskanen iwenniten igejdiyen d waddaden "
+"n ucegger lawan n usiẓreg n yisemliyen Mallard."
+
+#: data/yelp.appdata.xml.in:51
+msgid "The GNOME Project"
+msgstr "Asenfar n GNOME"
+
+#: libyelp/yelp-bz2-decompressor.c:143 libyelp/yelp-lzma-decompressor.c:152
+msgid "Invalid compressed data"
+msgstr "Isefka ussiden d arameɣtuyen"
+
+#: libyelp/yelp-bz2-decompressor.c:149 libyelp/yelp-lzma-decompressor.c:158
+msgid "Not enough memory"
+msgstr "Txuṣṣ tkatut"
+
+#: libyelp/yelp-docbook-document.c:298 libyelp/yelp-info-document.c:220
+#: libyelp/yelp-mallard-document.c:312 libyelp/yelp-mallard-document.c:477
+#: libyelp/yelp-man-document.c:198
+#, c-format
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr "Asebter '%s' ulac-it deg warrat '%s'."
+
+#: libyelp/yelp-docbook-document.c:337 libyelp/yelp-info-document.c:357
+#: libyelp/yelp-man-document.c:335
+msgid "The file does not exist."
+msgstr "Afaylu ulac-it."
+
+#: libyelp/yelp-docbook-document.c:347 libyelp/yelp-info-document.c:367
+#: libyelp/yelp-man-document.c:345
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "Afaylu '%s' ulac-it."
+
+#: libyelp/yelp-docbook-document.c:365
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Afaylu '%s' ur izmir ara ad ittwasleḍ acku mačči d isemli XML i imeslen "
+"akken iwata."
+
+#: libyelp/yelp-docbook-document.c:378
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+"Afaylu '%s' ur izmir ara ad ittwasleḍ acku yiweneɣ ugar seg yifuyla i yellan "
+"deg-s mačči d isemli XML i imeslen akken iwata."
+
+#: libyelp/yelp-docbook-document.c:813
+msgid "Unknown"
+msgstr "D arussin"
+
+#: libyelp/yelp-docbook-document.c:911 libyelp/yelp-info-document.c:300
+#: libyelp/yelp-man-document.c:278
+#, c-format
+msgid "The requested page was not found in the document ‘%s’."
+msgstr "Asebter i d-ittwasutren ur yelli ara deg yisemli '%s'."
+
+#: libyelp/yelp-document.c:889
+#, c-format
+msgid "Search results for “%s”"
+msgstr "Anadi n yigmaḍ i \"%s\""
+
+#: libyelp/yelp-document.c:902
+msgid "No matching help pages found."
+msgstr "Ulac isebtar n tallalt tinmeɣriyin yettwafen."
+
+#: libyelp/yelp-error.c:35
+msgid "An unknown error occurred."
+msgstr "Teḍra-d tuccḍa tarussint."
+
+#: libyelp/yelp-help-list.c:537
+msgid "All Help Documents"
+msgstr "Akk arraten n tallelt"
+
+#: libyelp/yelp-info-document.c:382
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"Afaylu'%s' ur izmir ara ad ittwasleḍ acku mačči d asebter n telɣut i imeslen "
+"akken iwata."
+
+#: libyelp/yelp-mallard-document.c:354
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Akaram '%s' ulac-it."
+
+#: libyelp/yelp-search-entry.c:435
+#, c-format
+msgid "Search for “%s”"
+msgstr "Nadi \"%s\""
+
+#: libyelp/yelp-transform.c:379 libyelp/yelp-transform.c:394
+#, c-format
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
+msgstr "Taferkit n uɣanib XSLT '%s' ular-itt neɣ mačči d tameɣtut."
+
+#: libyelp/yelp-transform.c:528
+msgid "No href attribute found on yelp:document\n"
+msgstr "Ulac imyerr href yettwafen deg yelp:amasal\n"
+
+#: libyelp/yelp-transform.c:543
+msgid "Out of memory"
+msgstr "Iɛedda talast n tkatut"
+
+#: libyelp/yelp-view.c:253
+msgid "C_opy Code Block"
+msgstr "N_ɣel iḥder n tengalt"
+
+#: libyelp/yelp-view.c:258
+msgid "_Copy Link Location"
+msgstr "_Nɣel adeg n useɣwen"
+
+#: libyelp/yelp-view.c:263
+msgid "_Open Link"
+msgstr "_Ldi aseɣwen"
+
+#: libyelp/yelp-view.c:268
+msgid "Open Link in New _Window"
+msgstr "Ldi aseɣwen deg _Usfaylu amaynut"
+
+#: libyelp/yelp-view.c:278
+msgid "_Install Packages"
+msgstr "_Sebded ikemmusen"
+
+#: libyelp/yelp-view.c:283
+msgid "Save Code _Block As…"
+msgstr "Sekles tangalt_iḥder am…"
+
+#: libyelp/yelp-view.c:298
+msgid "_Copy Text"
+msgstr "_Nɣel aḍris"
+
+#: libyelp/yelp-view.c:845 libyelp/yelp-view.c:2162
+#, c-format
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "URI '%s' ur iwehha ara ɣer usebter ameɣtu."
+
+#: libyelp/yelp-view.c:851 libyelp/yelp-view.c:2168
+msgid "The URI does not point to a valid page."
+msgstr "URI ur iwehha ara ɣer usebter ameɣtu."
+
+#: libyelp/yelp-view.c:856 libyelp/yelp-view.c:2174
+#, c-format
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "Uri '%s' ur izmir ara ad ittwasleḍ."
+
+#: libyelp/yelp-view.c:861
+msgid "Unknown Error."
+msgstr "Tuccḍa ur tettwassen ara."
+
+#: libyelp/yelp-view.c:1015
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr "Ulac ɣer-k·m PackageKit. Iseɣwan n usebded n ukemmus yesra PackageKit."
+
+#: libyelp/yelp-view.c:1262
+msgid "Save Image"
+msgstr "Sekles tugna"
+
+#: libyelp/yelp-view.c:1361
+msgid "Save Code"
+msgstr "Sekles angal"
+
+#: libyelp/yelp-view.c:1457
+#, c-format
+msgid "Send email to %s"
+msgstr "Azen imayl i %s"
+
+#: libyelp/yelp-view.c:1561
+msgid "_Save Image As…"
+msgstr "_Sekles tugna am…"
+
+#: libyelp/yelp-view.c:1562
+msgid "_Save Video As…"
+msgstr "Sekles tavidyut am…"
+
+#: libyelp/yelp-view.c:1570
+msgid "S_end Image To…"
+msgstr "A_zen tugna i…"
+
+#: libyelp/yelp-view.c:1571
+msgid "S_end Video To…"
+msgstr "A_zen tavidyut i…"
+
+#: libyelp/yelp-view.c:1926
+#, c-format
+msgid "Could not load a document for ‘%s’"
+msgstr "Ur izmir ara ad issali isemli i '%s'"
+
+#: libyelp/yelp-view.c:1932
+msgid "Could not load a document"
+msgstr "Ur izmir ara ad issali isemli"
+
+#: libyelp/yelp-view.c:1987
+msgid "Document Not Found"
+msgstr "Isemli ulac-it"
+
+#: libyelp/yelp-view.c:1989
+msgid "Page Not Found"
+msgstr "Asebter ulac-it"
+
+#: libyelp/yelp-view.c:1992
+msgid "Cannot Read"
+msgstr "Ur izmir ara ad d-iɣer"
+
+#: libyelp/yelp-view.c:1998
+msgid "Unknown Error"
+msgstr "Tuccḍa Ur tettwassen ara"
+
+#: libyelp/yelp-view.c:2018
+msgid "Search for packages containing this document."
+msgstr "Nadi ikemmusen ideg yella yisemli-a."
+
+#: src/yelp-application.c:60
+msgid "Turn on editor mode"
+msgstr "Uɣal ɣer uskar n umaẓrag"
+
+#: src/yelp-window.c:346
+msgid "Back"
+msgstr "Tuɣalin"
+
+#: src/yelp-window.c:353
+msgid "Forward"
+msgstr "Welleh"
+
+#: src/yelp-window.c:364
+msgid "Menu"
+msgstr "Umuɣ"
+
+#: src/yelp-window.c:369
+msgid "New Window"
+msgstr "Asfaylu amaynut"
+
+#: src/yelp-window.c:370
+msgid "Find…"
+msgstr "Af-d…"
+
+#: src/yelp-window.c:371
+msgid "Print…"
+msgstr "Siggez…"
+
+#: src/yelp-window.c:376
+msgid "Previous Page"
+msgstr "Asebter udfir"
+
+#: src/yelp-window.c:377
+msgid "Next Page"
+msgstr "Asebtar uḍfir"
+
+#: src/yelp-window.c:382
+msgid "Larger Text"
+msgstr "Asebter hrawen nezzeh"
+
+#: src/yelp-window.c:383
+msgid "Smaller Text"
+msgstr "Aḍris wezzilen nezzeh"
+
+#: src/yelp-window.c:388
+msgid "All Help"
+msgstr "Akk tallelt"
+
+#: src/yelp-window.c:410
+msgid "Search (Ctrl+S)"
+msgstr "Anadi (Ctrl+S)"
+
+#: src/yelp-window.c:427
+msgid "Bookmarks"
+msgstr "Ticraḍ n yisebtar"
+
+#: src/yelp-window.c:444
+msgid "No bookmarks"
+msgstr "Ulac ticraḍ"
+
+#: src/yelp-window.c:452
+msgid "Add Bookmark"
+msgstr "Rnu ticreḍt"
+
+#: src/yelp-window.c:458
+msgid "Remove Bookmark"
+msgstr "Kkes ticreḍt"
+
+#: yelp.desktop.in:4
+msgid "Get help with GNOME"
+msgstr "Awi tallelt akked GNOME"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: yelp.desktop.in:6
+msgid "documentation;information;manual;help;"
+msgstr "tasemlit;talɣut;awfus;tallelt;"
