@@ -50,8 +50,7 @@ install_subdir('icons',
                  'hicolor/scalable/apps/org.gnome.Yelp.Devel.svg',
                ])
 
-i18n.merge_file('appdata',
-                input: 'yelp.appdata.xml.in',
+i18n.merge_file(input: 'yelp.appdata.xml.in',
                 output: 'yelp.appdata.xml',
                 install: true,
                 install_dir: join_paths(datadir, 'metainfo'),

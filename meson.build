@@ -127,8 +127,7 @@ libyelpinc = include_directories('libyelp')
 gnome = import('gnome')
 i18n = import('i18n')
 
-i18n.merge_file('desktop',
-                input: 'yelp.desktop.in',
+i18n.merge_file(input: 'yelp.desktop.in',
                 output: 'yelp.desktop',
                 install: true,
                 install_dir: join_paths(datadir, 'applications'),
