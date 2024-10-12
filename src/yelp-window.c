@@ -68,6 +68,9 @@ static gboolean      window_resize_signal         (YelpWindow         *window);
 static gboolean      window_key_press             (YelpWindow         *window,
                                                    GdkEventKey        *event,
                                                    gpointer            userdata);
+static gboolean      window_button_press          (YelpWindow         *window,
+                                                   GdkEventButton     *event,
+                                                   gpointer            userdata);
 
 static void          bookmark_activated           (GtkListBox         *box,
                                                    GtkListBoxRow      *row,
@@ -165,6 +168,9 @@ struct _YelpWindowPrivate {
     GtkWidget *search_entry;
     GtkWidget *find_bar;
     GtkWidget *find_entry;
+    GtkWidget *find_prev_button;
+    GtkWidget *find_next_button;
+    GtkWidget *bookmark_menu_button;
     GtkWidget *bookmark_menu;
     GtkWidget *bookmark_sw;
     GtkWidget *bookmark_list;
@@ -188,6 +194,16 @@ G_DEFINE_TYPE_WITH_PRIVATE (YelpWindow, yelp_window, HDY_TYPE_APPLICATION_WINDOW
 static void
 yelp_window_init (YelpWindow *window)
 {
+    GdkScreen *screen = gtk_widget_get_screen (GTK_WIDGET (window));
+    GtkCssProvider *css = gtk_css_provider_new();
+
+    gtk_widget_init_template (GTK_WIDGET (window));
+
+    gtk_css_provider_load_from_resource (css, "/org/gnome/yelp/style.css");
+    gtk_style_context_add_provider_for_screen (screen,
+                                               GTK_STYLE_PROVIDER(css),
+                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
     g_signal_connect (window, "configure-event", G_CALLBACK (window_configure_event), NULL);
     g_signal_connect (window, "map-event", G_CALLBACK (window_map_event), NULL);
 }
@@ -196,6 +212,7 @@ static void
 yelp_window_class_init (YelpWindowClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
+    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
     object_class->dispose = yelp_window_dispose;
     object_class->finalize = yelp_window_finalize;
@@ -219,6 +236,27 @@ yelp_window_class_init (YelpWindowClass *klass)
                       0, NULL, NULL,
                       g_cclosure_marshal_VOID__VOID,
                       G_TYPE_NONE, 0);
+
+    gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/yelp/yelp-window.ui");
+
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, header);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, vbox_view);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, vbox_full);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, search_bar);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_bar);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_entry);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_prev_button);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_next_button);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_menu_button);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_menu);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_sw);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_list);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_add);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_remove);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, view);
+
+    gtk_widget_class_bind_template_callback (widget_class, window_key_press);
+    gtk_widget_class_bind_template_callback (widget_class, window_button_press);
 }
 
 static void
@@ -306,11 +344,6 @@ window_button_press (YelpWindow *window, GdkEventButton *event, gpointer userdat
 static void
 window_construct (YelpWindow *window)
 {
-    GtkWidget *box, *button;
-    GtkWidget *frame;
-    GtkCssProvider *css;
-    GtkSizeGroup *size_group;
-    GMenu *menu, *section;
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     const GActionEntry entries[] = {
@@ -322,216 +355,42 @@ window_construct (YelpWindow *window)
         { "yelp-window-ctrll",  action_ctrll,        NULL, NULL, NULL },
     };
 
-    gtk_window_set_icon_name (GTK_WINDOW (window), "org.gnome.Yelp");
-
-    priv->view = (YelpView *) yelp_view_new ();
-
     g_action_map_add_action_entries (G_ACTION_MAP (window),
                                      entries, G_N_ELEMENTS (entries), window);
     yelp_view_register_actions (priv->view, G_ACTION_MAP (window));
 
-    priv->vbox_full = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_container_add (GTK_CONTAINER (window), priv->vbox_full);
-
-    priv->header = hdy_header_bar_new ();
-    hdy_header_bar_set_show_close_button (HDY_HEADER_BAR (priv->header), TRUE);
-    gtk_container_add (GTK_CONTAINER (priv->vbox_full), priv->header);
-
-    /** Back/Forward **/
-    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
-    hdy_header_bar_pack_start (HDY_HEADER_BAR (priv->header), box);
-
-    button = gtk_button_new_from_icon_name ("go-previous-symbolic", GTK_ICON_SIZE_MENU);
-    gtk_widget_set_tooltip_text (button, _("Back"));
-    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
-    gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
-    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
-    g_object_set (button, "action-name", "win.yelp-view-go-back", NULL);
-
-    button = gtk_button_new_from_icon_name ("go-next-symbolic", GTK_ICON_SIZE_MENU);
-    gtk_widget_set_tooltip_text (button, _("Forward"));
-    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
-    gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
-    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
-    g_object_set (button, "action-name", "win.yelp-view-go-forward", NULL);
-
-    /** Gear Menu **/
-    button = gtk_menu_button_new ();
-    gtk_menu_button_set_direction (GTK_MENU_BUTTON (button), GTK_ARROW_NONE);
-    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
-    gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
-    gtk_widget_set_tooltip_text (button, _("Menu"));
-    hdy_header_bar_pack_end (HDY_HEADER_BAR (priv->header), button);
-
-    menu = g_menu_new ();
-    section = g_menu_new ();
-    g_menu_append (section, _("New Window"), "win.yelp-window-new");
-    g_menu_append (section, _("Find…"), "win.yelp-window-find");
-    g_menu_append (section, _("Print…"), "win.yelp-view-print");
-    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
-    g_object_unref (section);
-
-    section = g_menu_new ();
-    g_menu_append (section, _("Previous Page"), "win.yelp-view-go-previous");
-    g_menu_append (section, _("Next Page"), "win.yelp-view-go-next");
-    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
-    g_object_unref (section);
-
-    section = g_menu_new ();
-    g_menu_append (section, _("Larger Text"), "app.yelp-application-larger-text");
-    g_menu_append (section, _("Smaller Text"), "app.yelp-application-smaller-text");
-    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
-    g_object_unref (section);
-
-    section = g_menu_new ();
-    g_menu_append (section, _("All Help"), "win.yelp-window-go-all");
-    g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
-    g_object_unref (section);
-
-    gtk_menu_button_set_menu_model (GTK_MENU_BUTTON (button), G_MENU_MODEL (menu));
-
-    /** Search **/
-    priv->vbox_view = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_box_pack_start (GTK_BOX (priv->vbox_full), priv->vbox_view, TRUE, TRUE, 0);
-
-    priv->search_bar = gtk_search_bar_new ();
-    gtk_box_pack_start (GTK_BOX (priv->vbox_view), priv->search_bar, FALSE, FALSE, 0);
     priv->search_entry = yelp_search_entry_new (priv->view,
                                                 YELP_BOOKMARKS (priv->application));
     gtk_entry_set_width_chars (GTK_ENTRY (priv->search_entry), 50);
     gtk_container_add (GTK_CONTAINER (priv->search_bar), priv->search_entry);
-    button = gtk_toggle_button_new ();
-    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
-    gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
-    gtk_button_set_image (GTK_BUTTON (button),
-                          gtk_image_new_from_icon_name ("edit-find-symbolic",
-                                                        GTK_ICON_SIZE_MENU));
-    gtk_widget_set_tooltip_text (button, _("Search (Ctrl+S)"));
-    g_object_bind_property (button, "active",
-                            priv->search_bar, "search-mode-enabled",
-                            G_BINDING_BIDIRECTIONAL);
+
     g_signal_connect (priv->search_bar, "notify::search-mode-enabled",
                       G_CALLBACK (window_search_mode), window);
-    hdy_header_bar_pack_end (HDY_HEADER_BAR (priv->header), button);
-
-    g_signal_connect (window, "key-press-event", G_CALLBACK (window_key_press), NULL);
 
     /** Bookmarks **/
-    button = gtk_menu_button_new ();
-    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
-    gtk_style_context_add_class (gtk_widget_get_style_context (button), "image-button");
-    gtk_button_set_image (GTK_BUTTON (button),
-                          gtk_image_new_from_icon_name ("user-bookmarks-symbolic",
-                                                        GTK_ICON_SIZE_MENU));
-    gtk_widget_set_tooltip_text (button, _("Bookmarks"));
-    hdy_header_bar_pack_end (HDY_HEADER_BAR (priv->header), button);
-
-    priv->bookmark_menu = gtk_popover_new (button);
-    g_object_set (priv->bookmark_menu, "border-width", 12, NULL);
-    gtk_menu_button_set_popover (GTK_MENU_BUTTON (button), priv->bookmark_menu);
-
-    box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 12);
-    gtk_container_add (GTK_CONTAINER (priv->bookmark_menu), box);
-    priv->bookmark_sw = gtk_scrolled_window_new (NULL, NULL);
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->bookmark_sw),
-                                    GTK_POLICY_NEVER,
-                                    GTK_POLICY_AUTOMATIC);
-    g_object_set (priv->bookmark_sw, "height-request", 200, NULL);
-    gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (priv->bookmark_sw), GTK_SHADOW_IN);
-    gtk_box_pack_start (GTK_BOX (box), priv->bookmark_sw, TRUE, TRUE, 0);
-    priv->bookmark_list = gtk_list_box_new ();
-    button = gtk_label_new (_("No bookmarks"));
-    gtk_widget_show (button);
-    gtk_list_box_set_placeholder (GTK_LIST_BOX (priv->bookmark_list), button);
-    g_object_set (priv->bookmark_list, "selection-mode", GTK_SELECTION_NONE, NULL);
     g_signal_connect (priv->bookmark_list, "row-activated",
                       G_CALLBACK (bookmark_activated), window);
-    gtk_container_add (GTK_CONTAINER (priv->bookmark_sw), priv->bookmark_list);
 
-    priv->bookmark_add = gtk_button_new_with_label (_("Add Bookmark"));
     g_signal_connect (priv->bookmark_add, "clicked",
                       G_CALLBACK (bookmark_added), window);
-    gtk_box_pack_end (GTK_BOX (box), priv->bookmark_add, FALSE, FALSE, 0);
-    gtk_widget_show_all (box);
 
-    priv->bookmark_remove = gtk_button_new_with_label (_("Remove Bookmark"));
     g_signal_connect (priv->bookmark_remove, "clicked",
                       G_CALLBACK (bookmark_removed), window);
-    gtk_box_pack_end (GTK_BOX (box), priv->bookmark_remove, FALSE, FALSE, 0);
-    gtk_widget_show_all (box);
 
     priv->bookmarks_changed =
         g_signal_connect (priv->application, "bookmarks-changed",
                           G_CALLBACK (app_bookmarks_changed), window);
 
     /** Find **/
-    css = gtk_css_provider_new ();
-    /* FIXME: Connect to parsing-error signal. */
-    gtk_css_provider_load_from_data (css,
-                                     ".yelp-find-frame {"
-                                     "    background-color: @theme_base_color;"
-                                     "    padding: 6px;"
-                                     "    border-color: @borders;"
-                                     "    border-radius: 0 0 3px 3px;"
-                                     "    border-width: 0 1px 1px 1px;"
-                                     "    border-style: solid;"
-                                     "}",
-                                     -1, NULL);
-    priv->find_bar = gtk_revealer_new ();
-    frame = gtk_frame_new (NULL);
-    gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_NONE);
-    gtk_style_context_add_class (gtk_widget_get_style_context (frame),
-                                 "yelp-find-frame");
-    gtk_style_context_add_provider (gtk_widget_get_style_context (frame),
-                                    GTK_STYLE_PROVIDER (css),
-                                    GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-    box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-    g_object_set (priv->find_bar,
-                  "halign", GTK_ALIGN_END,
-                  "margin-end", 6,
-                  "valign", GTK_ALIGN_START,
-                  NULL);
-    gtk_style_context_add_class (gtk_widget_get_style_context (box), "linked");
-    gtk_container_add (GTK_CONTAINER (frame), box);
-    gtk_container_add (GTK_CONTAINER (priv->find_bar), frame);
-
-    g_object_unref (css);
-
-    size_group = gtk_size_group_new (GTK_SIZE_GROUP_VERTICAL);
-
-    priv->find_entry = gtk_search_entry_new ();
-    gtk_entry_set_width_chars (GTK_ENTRY (priv->find_entry), 30);
-    gtk_size_group_add_widget (size_group, priv->find_entry);
-    gtk_box_pack_start (GTK_BOX (box), priv->find_entry, TRUE, TRUE, 0);
     g_signal_connect (priv->find_entry, "changed",
                       G_CALLBACK (find_entry_changed), window);
     g_signal_connect (priv->find_entry, "key-press-event",
                       G_CALLBACK (find_entry_key_press), window);
 
-    button = gtk_button_new_from_icon_name ("go-up-symbolic", GTK_ICON_SIZE_MENU);
-    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
-    gtk_style_context_add_class (gtk_widget_get_style_context (button), "raised");
-    gtk_size_group_add_widget (size_group, button);
-    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
-    g_signal_connect (button, "clicked", G_CALLBACK (find_prev_clicked), window);
-
-    button = gtk_button_new_from_icon_name ("go-down-symbolic", GTK_ICON_SIZE_MENU);
-    gtk_widget_set_valign (button, GTK_ALIGN_CENTER);
-    gtk_style_context_add_class (gtk_widget_get_style_context (button), "raised");
-    gtk_size_group_add_widget (size_group, button);
-    gtk_box_pack_start (GTK_BOX (box), button, FALSE, FALSE, 0);
-    g_signal_connect (button, "clicked", G_CALLBACK (find_next_clicked), window);
-
-    g_object_unref (size_group);
+    g_signal_connect (priv->find_prev_button, "clicked", G_CALLBACK (find_prev_clicked), window);
+    g_signal_connect (priv->find_next_button, "clicked", G_CALLBACK (find_next_clicked), window);
 
     /** View **/
-    box = gtk_overlay_new ();
-    gtk_overlay_add_overlay (GTK_OVERLAY (box), GTK_WIDGET (priv->find_bar));
-
-    gtk_container_add (GTK_CONTAINER (box), GTK_WIDGET (priv->view));
-    gtk_box_pack_start (GTK_BOX (priv->vbox_view), box, TRUE, TRUE, 0);
-
     g_signal_connect (priv->view, "new-view-requested", G_CALLBACK (view_new_window), window);
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
     g_signal_connect (priv->view, "notify::is-loading", G_CALLBACK (view_is_loading_changed), window);
@@ -549,8 +408,6 @@ window_construct (YelpWindow *window)
     gtk_drag_dest_add_uri_targets (GTK_WIDGET (window));
     g_signal_connect (window, "drag-data-received",
                       G_CALLBACK (window_drag_received), NULL);
-
-    g_signal_connect (window, "button-press-event", G_CALLBACK (window_button_press), NULL);
 }
 
 /******************************************************************************/

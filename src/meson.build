@@ -4,6 +4,11 @@ yelp_sources = files(
   'yelp.c',
 )
 
+yelp_sources += gnome.compile_resources('yelp-resources',
+  'yelp.gresource.xml',
+  c_name: 'yelp'
+)
+
 yelp = executable('yelp',
                   sources: yelp_sources,
                   c_args: [
