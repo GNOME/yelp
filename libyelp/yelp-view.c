@@ -1201,8 +1201,8 @@ popup_save_image (GSimpleAction  *action,
     dialog = gtk_file_chooser_dialog_new (_("Save Image"),
                                           GTK_WINDOW (window),
                                           GTK_FILE_CHOOSER_ACTION_SAVE,
-                                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                          GTK_STOCK_SAVE, GTK_RESPONSE_OK,
+                                          _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                          _("_Save"), GTK_RESPONSE_OK,
                                           NULL);
     gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
     basename = g_file_get_basename (data->orig);
@@ -1306,8 +1306,8 @@ popup_save_code (GSimpleAction  *action,
     dialog = gtk_file_chooser_dialog_new (_("Save Code"),
                                           GTK_WINDOW (window),
                                           GTK_FILE_CHOOSER_ACTION_SAVE,
-                                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                          GTK_STOCK_SAVE, GTK_RESPONSE_OK,
+                                          _("_Cancel"), GTK_RESPONSE_CANCEL,
+                                          _("_Save"), GTK_RESPONSE_OK,
                                           NULL);
     gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
 
