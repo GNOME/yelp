@@ -59,22 +59,30 @@ static gboolean    view_external_uri                 (YelpView           *view,
                                                       YelpUri            *uri);
 static void        view_install_uri                  (YelpView           *view,
                                                       const gchar        *uri);
-static void        popup_open_link                   (GtkAction          *action,
-                                                      YelpView           *view);
-static void        popup_open_link_new               (GtkAction          *action,
-                                                      YelpView           *view);
-static void        popup_copy_link                   (GtkAction          *action,
-                                                      YelpView           *view);
-static void        popup_save_image                  (GtkAction          *action,
-                                                      YelpView           *view);
-static void        popup_send_image                  (GtkAction          *action,
-                                                      YelpView           *view);
-static void        popup_copy_code                   (GtkAction          *action,
-                                                      YelpView           *view);
-static void        popup_save_code                   (GtkAction          *action,
-                                                      YelpView           *view);
-static void        popup_copy_clipboard              (GtkAction          *action,
-                                                      YelpView           *view);
+static void        popup_open_link                   (GSimpleAction      *action,
+                                                      GVariant           *parameter,
+                                                      gpointer            user_data);
+static void        popup_open_link_new               (GSimpleAction      *action,
+                                                      GVariant           *parameter,
+                                                      gpointer            user_data);
+static void        popup_copy_link                   (GSimpleAction      *action,
+                                                      GVariant           *parameter,
+                                                      gpointer            user_data);
+static void        popup_save_image                  (GSimpleAction      *action,
+                                                      GVariant           *parameter,
+                                                      gpointer            user_data);
+static void        popup_send_image                  (GSimpleAction      *action,
+                                                      GVariant           *parameter,
+                                                      gpointer            user_data);
+static void        popup_copy_code                   (GSimpleAction      *action,
+                                                      GVariant           *parameter,
+                                                      gpointer            user_data);
+static void        popup_save_code                   (GSimpleAction      *action,
+                                                      GVariant           *parameter,
+                                                      gpointer            user_data);
+static void        popup_copy_clipboard              (GSimpleAction      *action,
+                                                      GVariant           *parameter,
+                                                      gpointer            user_data);
 static gboolean    view_populate_context_menu        (YelpView            *view,
                                                       WebKitContextMenu   *context_menu,
                                                       GdkEvent            *event,
@@ -156,21 +164,6 @@ yelp_view_get_global_settings (void)
     return websettings;
 }
 
-typedef struct _YelpActionEntry YelpActionEntry;
-struct _YelpActionEntry {
-    GtkAction               *action;
-    YelpViewActionValidFunc  func;
-    gpointer                 data;
-};
-static void
-action_entry_free (YelpActionEntry *entry)
-{
-    if (entry == NULL)
-        return;
-    g_object_unref (entry->action);
-    g_free (entry);
-}
-
 typedef struct _RequestAsyncData RequestAsyncData;
 struct _RequestAsyncData {
     WebKitURISchemeRequest *request;
@@ -229,9 +222,7 @@ struct _YelpViewPrivate {
     GSimpleAction  *prev_action;
     GSimpleAction  *next_action;
 
-    GtkActionGroup *popup_actions;
-
-    GSList         *link_actions;
+    GSimpleActionGroup *popup_actions;
 
     gboolean        resolve_uri_on_policy_decision;
     gboolean        load_page_after_resolved;
@@ -247,57 +238,17 @@ G_DEFINE_TYPE_WITH_PRIVATE (YelpView, yelp_view, WEBKIT_TYPE_WEB_VIEW)
 static void
 yelp_view_init (YelpView *view)
 {
-    static const GtkActionEntry popup_action_entries[] = {
-      {
-        "CopyCode", NULL,
-        N_("C_opy Code Block"), NULL, NULL,
-        G_CALLBACK (popup_copy_code)
-      },
-      {
-        "CopyLink", NULL,
-        N_("_Copy Link Location"), NULL, NULL,
-        G_CALLBACK (popup_copy_link)
-      },
-      {
-        "OpenLink", NULL,
-        N_("_Open Link"), NULL, NULL,
-        G_CALLBACK (popup_open_link)
-      },
-      {
-        "OpenLinkNew", NULL,
-        N_("Open Link in New _Window"), NULL, NULL,
-        G_CALLBACK (popup_open_link_new)
-      },
-      {
-        "SendEmail", NULL,
-        NULL, NULL, NULL,
-        G_CALLBACK (popup_open_link)
-      },
-      {
-        "InstallPackages", NULL,
-        N_("_Install Packages"), NULL, NULL,
-        G_CALLBACK (popup_open_link)
-      },
-      {
-        "SaveCode", NULL,
-        N_("Save Code _Block As…"), NULL, NULL,
-        G_CALLBACK (popup_save_code)
-      },
-      {
-        "SaveMedia", NULL,
-        NULL, NULL, NULL,
-        G_CALLBACK (popup_save_image)
-      },
-      {
-        "SendMedia", NULL,
-        NULL, NULL, NULL,
-        G_CALLBACK (popup_send_image)
-      },
-      {
-        "CopyText", NULL,
-        N_("_Copy Text"), NULL, NULL,
-        G_CALLBACK (popup_copy_clipboard)
-      }
+    static const GActionEntry popup_action_entries[] = {
+      { "CopyCode", popup_copy_code, NULL, NULL, NULL },
+      { "CopyLink", popup_copy_link, NULL, NULL, NULL },
+      { "OpenLink", popup_open_link, NULL, NULL, NULL },
+      { "OpenLinkNew", popup_open_link_new, NULL, NULL, NULL },
+      { "SendEmail", popup_open_link, NULL, NULL, NULL },
+      { "InstallPackages", popup_open_link, NULL, NULL, NULL },
+      { "SaveCode", popup_save_code, NULL, NULL, NULL },
+      { "SaveMedia", popup_save_image, NULL, NULL, NULL },
+      { "SendMedia", popup_send_image, NULL, NULL, NULL },
+      { "CopyText", popup_copy_clipboard, NULL, NULL, NULL }
     };
 
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
@@ -318,9 +269,11 @@ yelp_view_init (YelpView *view)
     g_signal_connect (view, "script-dialog",
                       G_CALLBACK (view_script_dialog), NULL);
 
-    priv->popup_actions = gtk_action_group_new ("PopupActions");
-    gtk_action_group_add_actions (priv->popup_actions, popup_action_entries,
-                                  G_N_ELEMENTS (popup_action_entries), view);
+    priv->popup_actions = g_simple_action_group_new ();
+    g_action_map_add_action_entries (G_ACTION_MAP (priv->popup_actions),
+                                     popup_action_entries,
+                                     G_N_ELEMENTS (popup_action_entries),
+                                     view);
 
     priv->print_action = g_simple_action_new ("yelp-view-print", NULL);
     g_signal_connect (priv->print_action,
@@ -419,11 +372,6 @@ yelp_view_dispose (GObject *object)
     if (priv->document) {
         g_object_unref (priv->document);
         priv->document = NULL;
-    }
-
-    while (priv->link_actions) {
-        action_entry_free (priv->link_actions->data);
-        priv->link_actions = g_slist_delete_link (priv->link_actions, priv->link_actions);
     }
 
     G_OBJECT_CLASS (yelp_view_parent_class)->dispose (object);
@@ -909,23 +857,6 @@ yelp_view_register_custom_schemes (void)
 
 /******************************************************************************/
 
-void
-yelp_view_add_link_action (YelpView                *view,
-                           GtkAction               *action,
-                           YelpViewActionValidFunc  func,
-                           gpointer                 data)
-{
-    YelpActionEntry *entry;
-    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
-
-    entry = g_new0 (YelpActionEntry, 1);
-    entry->action = g_object_ref (action);
-    entry->func = func;
-    entry->data = data;
-
-    priv->link_actions = g_slist_append (priv->link_actions, entry);
-}
-
 YelpUri *
 yelp_view_get_active_link_uri (YelpView *view)
 {
@@ -1162,9 +1093,11 @@ view_install_uri (YelpView    *view,
 }
 
 static void
-popup_open_link (GtkAction   *action,
-                 YelpView    *view)
+popup_open_link (GSimpleAction  *action,
+                 GVariant       *parameter,
+                 gpointer        user_data)
 {
+    YelpView *view = (YelpView *) user_data;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     YelpUri *uri;
 
@@ -1181,9 +1114,11 @@ popup_open_link (GtkAction   *action,
 }
 
 static void
-popup_open_link_new (GtkAction   *action,
-                     YelpView    *view)
+popup_open_link_new (GSimpleAction  *action,
+                     GVariant       *parameter,
+                     gpointer        user_data)
 {
+    YelpView *view = (YelpView *) user_data;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     YelpUri *uri;
 
@@ -1200,9 +1135,11 @@ popup_open_link_new (GtkAction   *action,
 }
 
 static void
-popup_copy_link (GtkAction   *action,
-                 YelpView    *view)
+popup_copy_link (GSimpleAction  *action,
+                 GVariant       *parameter,
+                 gpointer        user_data)
 {
+    YelpView *view = (YelpView *) user_data;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     gtk_clipboard_set_text (gtk_widget_get_clipboard (GTK_WIDGET (view), GDK_SELECTION_CLIPBOARD),
                             priv->popup_link_uri,
@@ -1239,9 +1176,11 @@ file_copied (GFile        *file,
 }
 
 static void
-popup_save_image (GtkAction   *action,
-                  YelpView    *view)
+popup_save_image (GSimpleAction  *action,
+                  GVariant       *parameter,
+                  gpointer        user_data)
 {
+    YelpView *view = (YelpView *) user_data;
     YelpSaveData *data;
     GtkWidget *dialog, *window;
     gchar *basename;
@@ -1294,9 +1233,11 @@ popup_save_image (GtkAction   *action,
 }
 
 static void
-popup_send_image (GtkAction   *action,
-                  YelpView    *view)
+popup_send_image (GSimpleAction  *action,
+                  GVariant       *parameter,
+                  gpointer        user_data)
 {
+    YelpView *view = (YelpView *) user_data;
     gchar *command;
     GAppInfo *app;
     GAppLaunchContext *context;
@@ -1324,9 +1265,11 @@ popup_send_image (GtkAction   *action,
 }
 
 static void
-popup_copy_code (GtkAction   *action,
-                 YelpView    *view)
+popup_copy_code (GSimpleAction  *action,
+                 GVariant       *parameter,
+                 gpointer        user_data)
 {
+    YelpView *view = (YelpView *) user_data;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     GtkClipboard *clipboard;
 
@@ -1338,9 +1281,11 @@ popup_copy_code (GtkAction   *action,
 }
 
 static void
-popup_save_code (GtkAction   *action,
-                 YelpView    *view)
+popup_save_code (GSimpleAction  *action,
+                 GVariant       *parameter,
+                 gpointer        user_data)
 {
+    YelpView *view = (YelpView *) user_data;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     GtkWidget *dialog, *window;
     gint res;
@@ -1413,9 +1358,11 @@ popup_save_code (GtkAction   *action,
 }
 
 static void
-popup_copy_clipboard (GtkAction   *action,
-                      YelpView    *view)
+popup_copy_clipboard (GSimpleAction  *action,
+                      GVariant       *parameter,
+                      gpointer        user_data)
 {
+    YelpView *view = (YelpView *) user_data;
     webkit_web_view_execute_editing_command (WEBKIT_WEB_VIEW (view), WEBKIT_EDITING_COMMAND_COPY);
 }
 
@@ -1428,7 +1375,7 @@ view_populate_context_menu (YelpView            *view,
 {
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     WebKitContextMenuItem *item;
-    GtkAction *action;
+    GAction *action;
     GVariant *dom_info_variant;
     GVariantDict dom_info_dict;
 
@@ -1456,66 +1403,42 @@ view_populate_context_menu (YelpView            *view,
         if (g_str_has_prefix (priv->popup_link_uri, "mailto:")) {
             gchar *label = g_strdup_printf (_("Send email to %s"),
                                             priv->popup_link_uri + 7);
-            action = gtk_action_group_get_action (priv->popup_actions,
+            action = g_action_map_lookup_action (G_ACTION_MAP (priv->popup_actions),
               "SendEmail");
-            gtk_action_set_label (action, label);
-            item = webkit_context_menu_item_new (action);
+            item = webkit_context_menu_item_new_from_gaction (action, label, NULL);
             webkit_context_menu_append (context_menu, item);
             g_free (label);
         }
         else if (g_str_has_prefix (priv->popup_link_uri, "install:")) {
-            action = gtk_action_group_get_action (priv->popup_actions,
+            action = g_action_map_lookup_action (G_ACTION_MAP (priv->popup_actions),
               "InstallPackages");
-            item = webkit_context_menu_item_new (action);
+            item = webkit_context_menu_item_new_from_gaction (action,
+              _("_Install Packages"), NULL);
             webkit_context_menu_append (context_menu, item);
         }
         else {
-            GSList *l;
-
-            action = gtk_action_group_get_action (priv->popup_actions,
+            action = g_action_map_lookup_action (G_ACTION_MAP (priv->popup_actions),
               "OpenLink");
-            item = webkit_context_menu_item_new (action);
+            item = webkit_context_menu_item_new_from_gaction (action,
+              _("_Open Link"), NULL);
             webkit_context_menu_append (context_menu, item);
 
             if (g_str_has_prefix (priv->popup_link_uri, "http://") ||
                 g_str_has_prefix (priv->popup_link_uri, "https://")) {
-                action = gtk_action_group_get_action (priv->popup_actions,
+                action = g_action_map_lookup_action (G_ACTION_MAP (priv->popup_actions),
                   "CopyLink");
-                item = webkit_context_menu_item_new (action);
+                item = webkit_context_menu_item_new_from_gaction (action,
+                  _("_Copy Link Location"), NULL);
                 webkit_context_menu_append (context_menu, item);
             }
             else {
-                action = gtk_action_group_get_action (priv->popup_actions,
+                action = g_action_map_lookup_action (G_ACTION_MAP (priv->popup_actions),
                   "OpenLinkNew");
-                item = webkit_context_menu_item_new (action);
+                item = webkit_context_menu_item_new_from_gaction (action,
+                  _("Open Link in New _Window"), NULL);
                 webkit_context_menu_append (context_menu, item);
             }
-
-            for (l = priv->link_actions; l != NULL; l = l->next) {
-                gboolean add;
-                YelpActionEntry *entry = (YelpActionEntry *) l->data;
-                if (entry->func == NULL)
-                    add = TRUE;
-                else
-                    add = (* entry->func) (view, entry->action,
-                                           priv->popup_link_uri,
-                                           entry->data);
-                if (add) {
-                    item = webkit_context_menu_item_new (entry->action);
-                    webkit_context_menu_append (context_menu, item);
-                }
-            }
         }
-    }
-    else {
-#if 0
-        item = gtk_action_create_menu_item (gtk_action_group_get_action (priv->action_group,
-                                                                         "YelpViewGoBack"));
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
-        item = gtk_action_create_menu_item (gtk_action_group_get_action (priv->action_group,
-                                                                         "YelpViewGoForward"));
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
-#endif
     }
 
     if (webkit_hit_test_result_context_is_image (hit_test_result) ||
@@ -1555,22 +1478,23 @@ view_populate_context_menu (YelpView            *view,
         item = webkit_context_menu_item_new_separator ();
         webkit_context_menu_append (context_menu, item);
 
-        action = gtk_action_group_get_action (priv->popup_actions,
+        action = g_action_map_lookup_action (G_ACTION_MAP (priv->popup_actions),
                                       "SaveMedia");
 
-        gtk_action_set_label (action, image ? _("_Save Image As…") :
-                              _("_Save Video As…"));
-
-        item = webkit_context_menu_item_new (action);
+        item = webkit_context_menu_item_new_from_gaction (action,
+                              image ? _("_Save Image As…") :
+                                      _("_Save Video As…"),
+                              NULL);
         webkit_context_menu_append (context_menu, item);
 
         if (nautilus_sendto) {
-            action = gtk_action_group_get_action (priv->popup_actions,
+            action = g_action_map_lookup_action (G_ACTION_MAP (priv->popup_actions),
                                                   "SendMedia");
-            gtk_action_set_label (action, image ? _("S_end Image To…") :
-                                  _("S_end Video To…"));
 
-            item = webkit_context_menu_item_new (action);
+            item = webkit_context_menu_item_new_from_gaction (action,
+                                      image ? _("S_end Image To…") :
+                                              _("S_end Video To…"),
+                                      NULL);
             webkit_context_menu_append (context_menu, item);
         }
     }
@@ -1579,9 +1503,10 @@ view_populate_context_menu (YelpView            *view,
         item = webkit_context_menu_item_new_separator ();
         webkit_context_menu_append (context_menu, item);
 
-        action = gtk_action_group_get_action (priv->popup_actions,
+        action = g_action_map_lookup_action (G_ACTION_MAP (priv->popup_actions),
                                               "CopyText");
-        item = webkit_context_menu_item_new (action);
+        item = webkit_context_menu_item_new_from_gaction (action,
+                                              _("_Copy Text"), NULL);
         webkit_context_menu_append (context_menu, item);
     }
 
@@ -1599,14 +1524,16 @@ view_populate_context_menu (YelpView            *view,
         item = webkit_context_menu_item_new_separator ();
         webkit_context_menu_append (context_menu, item);
 
-        action = gtk_action_group_get_action (priv->popup_actions,
+        action = g_action_map_lookup_action (G_ACTION_MAP (priv->popup_actions),
                                               "CopyCode");
-        item = webkit_context_menu_item_new (action);
+        item = webkit_context_menu_item_new_from_gaction (action,
+                                              _("C_opy Code Block"), NULL);
         webkit_context_menu_append (context_menu, item);
 
-        action = gtk_action_group_get_action (priv->popup_actions,
+        action = g_action_map_lookup_action (G_ACTION_MAP (priv->popup_actions),
                                               "SaveCode");
-        item = webkit_context_menu_item_new (action);
+        item = webkit_context_menu_item_new_from_gaction (action,
+                                              _("Save Code _Block As…"), NULL);
         webkit_context_menu_append (context_menu, item);
     }
 

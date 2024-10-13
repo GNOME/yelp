@@ -39,7 +39,6 @@ G_BEGIN_DECLS
 
 typedef struct _YelpView         YelpView;
 typedef struct _YelpViewClass    YelpViewClass;
-typedef gboolean (* YelpViewActionValidFunc) (YelpView *view, GtkAction *action, gchar *uri, gpointer data);
 
 struct _YelpView
 {
@@ -76,10 +75,6 @@ YelpDocument *     yelp_view_get_document         (YelpView                *view
 void               yelp_view_register_actions     (YelpView                *view,
                                                    GActionMap              *map);
 
-void               yelp_view_add_link_action      (YelpView                *view,
-                                                   GtkAction               *action,
-                                                   YelpViewActionValidFunc  func,
-                                                   gpointer                 data);
 YelpUri *          yelp_view_get_active_link_uri  (YelpView                *view);
 gchar *            yelp_view_get_active_link_text (YelpView                *view);
 
