@@ -18,8 +18,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#include <jsc/jsc.h>
 #include <webkit2/webkit-web-extension.h>
-#include <webkitdom/webkitdom.h>
 #include <string.h>
 #include <stdlib.h>
 #include "yelp-uri.h"
@@ -112,38 +112,46 @@ web_page_notify_uri (WebKitWebPage *web_page,
     g_free (yelp_uri);
 }
 
+#define JSC_ELEMENT_MATCHES(elem, match) \
+    jsc_value_to_boolean (jsc_value_object_invoke_method (elem, "matches",       \
+                                                          G_TYPE_STRING, match,  \
+                                                          G_TYPE_NONE))          \
+
+#define JSC_GET_PARENT_ELEMENT(elem) \
+    jsc_value_object_get_property (elem, "parentElement")
+
+#define JSC_ELEMENT_QUERY_SELECTOR(elem, selector)           \
+    jsc_value_object_invoke_method (elem, "querySelector",   \
+                                    G_TYPE_STRING, selector, \
+                                    G_TYPE_NONE)
+
+#define JSC_GET_ELEMENT_TEXT_CONTENT(elem) \
+    jsc_value_to_string (jsc_value_object_get_property (elem, "textContent"))
+
+
 static gboolean
 web_page_context_menu (WebKitWebPage          *web_page,
                        WebKitContextMenu      *context_menu,
                        WebKitWebHitTestResult *hit_test_result)
 {
-    WebKitDOMNode *node, *cur, *link_node = NULL, *code_node = NULL, *code_title_node = NULL;
+    JSCValue *node, *cur, *link_node = NULL, *code_node = NULL, *code_title_node = NULL;
     gchar *popup_link_text = NULL;
     GVariantDict user_data_dict;
 
-    node = webkit_web_hit_test_result_get_node (hit_test_result);
+    node = webkit_web_hit_test_result_get_js_node (hit_test_result, NULL);
 
-    for (cur = node; cur != NULL; cur = webkit_dom_node_get_parent_node (cur)) {
-        if (WEBKIT_DOM_IS_ELEMENT (cur) &&
-            webkit_dom_element_webkit_matches_selector (WEBKIT_DOM_ELEMENT (cur),
-                                                        "a", NULL))
+    for (cur = node; !jsc_value_is_null (cur); cur = JSC_GET_PARENT_ELEMENT (cur)) {
+        if (!jsc_value_is_null (cur) && JSC_ELEMENT_MATCHES (cur, "a"))
             link_node = cur;
 
-        if (WEBKIT_DOM_IS_ELEMENT (cur) &&
-            webkit_dom_element_webkit_matches_selector (WEBKIT_DOM_ELEMENT (cur),
-                                                        "div.code", NULL)) {
-            WebKitDOMNode *title;
-            code_node = WEBKIT_DOM_NODE (
-                webkit_dom_element_query_selector (WEBKIT_DOM_ELEMENT (cur),
-                                                   "pre.contents", NULL));
-            title = webkit_dom_node_get_parent_node (cur);
-            if (WEBKIT_DOM_IS_ELEMENT (title) &&
-                webkit_dom_element_webkit_matches_selector (WEBKIT_DOM_ELEMENT (title),
-                                                            "div.contents", NULL)) {
-                title = webkit_dom_node_get_previous_sibling (title);
-                if (WEBKIT_DOM_IS_ELEMENT (title) &&
-                    webkit_dom_element_webkit_matches_selector (WEBKIT_DOM_ELEMENT (title),
-                                                                "div.title", NULL)) {
+        if (!jsc_value_is_null (cur) && JSC_ELEMENT_MATCHES (cur, "div.code")) {
+            JSCValue *title;
+
+            code_node = JSC_ELEMENT_QUERY_SELECTOR (cur, "pre.contents");
+            title = JSC_GET_PARENT_ELEMENT (cur);
+            if (!jsc_value_is_null (title) && JSC_ELEMENT_MATCHES (title, "div.contents")) {
+                title = jsc_value_object_get_property (title, "previousElementSibling");
+                if (!jsc_value_is_null (title) && JSC_ELEMENT_MATCHES (title, "div.title")) {
                     code_title_node = title;
                 }
             }
@@ -151,19 +159,17 @@ web_page_context_menu (WebKitWebPage          *web_page,
     }
 
     if (webkit_hit_test_result_context_is_link (WEBKIT_HIT_TEST_RESULT (hit_test_result)) && link_node) {
-        WebKitDOMNode *child;
+        JSCValue *child;
         gchar *tmp;
         gint i, tmpi;
         gboolean ws;
 
-        child = WEBKIT_DOM_NODE (
-            webkit_dom_element_query_selector (WEBKIT_DOM_ELEMENT (link_node),
-                                               "span.title", NULL));
-        if (child)
-            popup_link_text = webkit_dom_node_get_text_content (child);
+        child = JSC_ELEMENT_QUERY_SELECTOR (link_node, "span.title");
+        if (!jsc_value_is_null (child))
+            popup_link_text = JSC_GET_ELEMENT_TEXT_CONTENT(child);
 
         if (!popup_link_text)
-            popup_link_text = webkit_dom_node_get_text_content (link_node);
+            popup_link_text = JSC_GET_ELEMENT_TEXT_CONTENT(link_node);
 
         tmp = g_new0 (gchar, strlen (popup_link_text) + 1);
         ws = FALSE;
@@ -196,14 +202,14 @@ web_page_context_menu (WebKitWebPage          *web_page,
             g_variant_new_take_string (popup_link_text));
     }
 
-    if (code_node) {
-        gchar *code_code = webkit_dom_node_get_text_content (code_node);
+    if (code_node && !jsc_value_is_null (code_node)) {
+        gchar *code_code = JSC_GET_ELEMENT_TEXT_CONTENT(code_node);
         g_variant_dict_insert_value (&user_data_dict, "code-text",
             g_variant_new_take_string (code_code));
     }
 
-    if (code_title_node) {
-        gchar *code_title = webkit_dom_node_get_text_content (code_title_node);
+    if (code_title_node && !jsc_value_is_null (code_title_node)) {
+        gchar *code_title = JSC_GET_ELEMENT_TEXT_CONTENT(code_title_node);
         g_variant_dict_insert_value (&user_data_dict, "code-title",
             g_variant_new_take_string (code_title));
     }
