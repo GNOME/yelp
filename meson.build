@@ -30,24 +30,15 @@ cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required : false)
 gio_dep = dependency('gio-2.0', version: '>= 2.67.4')
 gio_unix_dep = dependency('gio-unix-2.0')
-gtk_unix_print_dep = dependency('gtk+-unix-print-3.0')
-gtk_dep = dependency('gtk+-3.0', version: '>= 3.13.3')
-libhandy_dep = dependency('libhandy-1', version: '>= 1.5.0')
+gtk_unix_print_dep = dependency('gtk4-unix-print')
+gtk_dep = dependency('gtk4', version: '>= 4.16.0')
+libadwaita_dep = dependency('libadwaita-1', version: '>= 1.6.0')
 libxml_dep = dependency('libxml-2.0', version: '>= 2.6.5')
 libxslt_dep = dependency('libxslt', version: '>= 1.1.4')
 libexslt_dep = dependency('libexslt', version: '>= 0.8.1')
 sqlite_dep = dependency('sqlite3')
-# Release team wants WebKitGTK 4.1 for the GNOME 41 release.
-# Shaun doesn't have a build environment with that yet.
-# Get rid of this option when that stops being true.
-if get_option('webkit2gtk-4-0')
-  webkitgtk_dep = dependency('webkit2gtk-4.0', version: '>= 2.19.2')
-  webkitgtk_web_extension_dep = dependency('webkit2gtk-web-extension-4.0',
-                                           version: '>= 2.7.2')
-else
-  webkitgtk_dep = dependency('webkit2gtk-4.1')
-  webkitgtk_web_extension_dep = dependency('webkit2gtk-web-extension-4.1')
-endif
+webkitgtk_dep = dependency('webkitgtk-6.0')
+webkitgtk_web_extension_dep = dependency('webkitgtk-web-process-extension-6.0')
 yelp_xsl_dep = dependency('yelp-xsl', version: '>= 42.3')
 
 lzma_dep = dependency('liblzma',

@@ -17,7 +17,7 @@ yelp = executable('yelp',
                   ],
                   dependencies: [
                     libyelp_dep,
-                    libhandy_dep,
+                    libadwaita_dep,
                   ],
                   install: true,
                   include_directories: [configinc],
