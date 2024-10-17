@@ -267,6 +267,7 @@ yelp_application_startup (GApplication *application)
     YelpSettings *settings;
 
     g_set_application_name (_("Help"));
+    g_application_set_resource_base_path (application, "/org/gnome/yelp");
 
     /* chain up */
     G_APPLICATION_CLASS (yelp_application_parent_class)->startup (application);

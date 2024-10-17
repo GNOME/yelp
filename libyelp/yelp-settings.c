@@ -37,7 +37,6 @@ struct _YelpSettingsPrivate {
     gchar        *fonts[YELP_SETTINGS_NUM_FONTS];
 
     GtkSettings  *gtk_settings;
-    GtkIconTheme *gtk_icon_theme;
 
     gint          font_adjustment;
 
@@ -61,7 +60,6 @@ static guint settings_signals[LAST_SIGNAL] = {0,};
 enum {  
   PROP_0,
   PROP_GTK_SETTINGS,
-  PROP_GTK_ICON_THEME,
   PROP_FONT_ADJUSTMENT,
   PROP_SHOW_TEXT_CURSOR,
   PROP_EDITOR_MODE
@@ -108,15 +106,6 @@ yelp_settings_class_init (YelpSettingsClass *klass)
 							  "GtkSettings",
 							  "A GtkSettings object to get settings from",
 							  GTK_TYPE_SETTINGS,
-							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
-							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
-
-    g_object_class_install_property (object_class,
-                                     PROP_GTK_ICON_THEME,
-                                     g_param_spec_object ("gtk-icon-theme",
-							  "GtkIconTheme",
-							  "A GtkIconTheme object to get icons from",
-							  GTK_TYPE_ICON_THEME,
 							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
 							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
@@ -423,9 +412,6 @@ yelp_settings_get_property (GObject    *object,
     case PROP_GTK_SETTINGS:
 	g_value_set_object (value, settings->priv->gtk_settings);
 	break;
-    case PROP_GTK_ICON_THEME:
-	g_value_set_object (value, settings->priv->gtk_icon_theme);
-	break;
     case PROP_FONT_ADJUSTMENT:
         g_value_set_int (value, settings->priv->font_adjustment);
         break;
@@ -479,35 +465,6 @@ yelp_settings_set_property (GObject      *object,
 	    settings->priv->gtk_font_changed = 0;
 	}
 	break;
-    case PROP_GTK_ICON_THEME:
-	settings->priv->gtk_icon_theme = g_value_get_object (value);
-	if (settings->priv->gtk_icon_theme != NULL) {
-	    gchar **search_path;
-	    gint search_path_len, i;
-	    gboolean append_search_path = TRUE;
-	    gtk_icon_theme_get_search_path (settings->priv->gtk_icon_theme,
-					    &search_path, &search_path_len);
-	    for (i = search_path_len - 1; i >= 0; i--)
-		if (g_str_equal (search_path[i], YELP_ICON_PATH)) {
-		    append_search_path = FALSE;
-		    break;
-		}
-	    if (append_search_path)
-		gtk_icon_theme_append_search_path (settings->priv->gtk_icon_theme,
-						   YELP_ICON_PATH);
-            append_search_path = TRUE;
-	    for (i = search_path_len - 1; i >= 0; i--)
-		if (g_str_equal (search_path[i], DATADIR"/yelp/icons")) {
-		    append_search_path = FALSE;
-		    break;
-		}
-	    if (append_search_path)
-		gtk_icon_theme_append_search_path (settings->priv->gtk_icon_theme,
-                                                   DATADIR"/yelp/icons");
-	    g_strfreev (search_path);
-	    g_object_ref (settings->priv->gtk_icon_theme);
-	}
-	break;
     case PROP_FONT_ADJUSTMENT:
         settings->priv->font_adjustment = g_value_get_int (value);
         gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
@@ -535,7 +492,6 @@ yelp_settings_get_default (void)
     if (settings == NULL)
 	settings = g_object_new (YELP_TYPE_SETTINGS,
 				 "gtk-settings", gtk_settings_get_default (),
-				 "gtk-icon-theme", gtk_icon_theme_get_default (),
 				 NULL);
     g_mutex_unlock (&mutex);
     return settings;

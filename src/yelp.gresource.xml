@@ -3,5 +3,19 @@
   <gresource prefix="/org/gnome/yelp/">
     <file preprocess="xml-stripblanks">yelp-window.ui</file>
     <file>style.css</file>
+
+    <file preprocess="xml-stripblanks">icons/scalable/status/yelp-page-video-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/yelp-page-search-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/yelp-page-task-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/yelp-page-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/yelp-page-problem-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/yelp-page-ui-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">icons/scalable/status/yelp-page-tip-symbolic.svg</file>
+
+    <file compressed="true">icons/16x16/status/yelp-page-tip.png</file>
+    <file compressed="true">icons/16x16/status/yelp-page-video.png</file>
+    <file compressed="true">icons/16x16/status/bookmark.png</file>
+    <file compressed="true">icons/16x16/status/yelp-page-ui.png</file>
+    <file compressed="true">icons/16x16/status/yelp-page-task.png</file>
   </gresource>
 </gresources>

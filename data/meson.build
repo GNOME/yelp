@@ -40,14 +40,6 @@ install_subdir('mathjax',
                  'unpacked',
                ])
 
-# TODO: this should be installed as icons directory
-install_subdir('yelp-icons',
-               install_dir: join_paths(yelp_datadir, 'icons'),
-               strip_directory: true,
-               exclude_files: [
-                 'yelp-watermark-blockquote.xcf',
-               ])
-
 install_subdir('icons',
                install_dir: datadir,
                exclude_files: [
