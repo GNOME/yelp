@@ -24,14 +24,11 @@
 
 #define G_SETTINGS_ENABLE_BACKEND
 
+#include <adwaita.h>
 #include <gio/gio.h>
 #include <gio/gsettingsbackend.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#ifdef GDK_WINDOWING_X11
-#include <gdk/gdkx.h>
-#endif
-#include <libhandy-1/handy.h>
 #include <stdlib.h>
 
 #include "yelp-bookmarks.h"
@@ -65,7 +62,7 @@ static const GOptionEntry entries[] = {
 typedef struct _YelpApplicationLoad YelpApplicationLoad;
 struct _YelpApplicationLoad {
     YelpApplication *app;
-    guint32 timestamp;
+    gint64 timestamp;
     gboolean new;
     gboolean fallback_help_list;
 };
@@ -96,6 +93,7 @@ static void          bookmarks_changed                 (GSettings             *s
                                                         const gchar           *key,
                                                         YelpApplication       *app);
 static gboolean      window_resized                    (YelpWindow            *window,
+                                                        GParamSpec *pspec,
                                                         YelpApplication       *app);
 
 typedef struct _YelpApplicationPrivate YelpApplicationPrivate;
@@ -112,7 +110,7 @@ struct _YelpApplicationPrivate {
     GHashTable *docsettings;
 };
 
-G_DEFINE_TYPE_WITH_CODE (YelpApplication, yelp_application, GTK_TYPE_APPLICATION,
+G_DEFINE_TYPE_WITH_CODE (YelpApplication, yelp_application, ADW_TYPE_APPLICATION,
                          G_IMPLEMENT_INTERFACE (YELP_TYPE_BOOKMARKS,
                                                 yelp_application_iface_init)
                          G_ADD_PRIVATE (YelpApplication) )
@@ -234,7 +232,6 @@ yelp_application_cmdline (GApplication     *app,
     gint i;
 
     context = g_option_context_new (NULL);
-    g_option_context_add_group (context, gtk_get_option_group (FALSE));
     g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);
     g_option_context_parse (context, &argc, arguments, NULL);
 
@@ -272,9 +269,8 @@ yelp_application_startup (GApplication *application)
     /* chain up */
     G_APPLICATION_CLASS (yelp_application_parent_class)->startup (application);
 
-    hdy_init ();
-    hdy_style_manager_set_color_scheme (hdy_style_manager_get_default (),
-                                        HDY_COLOR_SCHEME_PREFER_LIGHT);
+    adw_style_manager_set_color_scheme (adw_style_manager_get_default (),
+                                        ADW_COLOR_SCHEME_PREFER_LIGHT);
 
     settings = yelp_settings_get_default ();
     if (editor_mode)
@@ -283,6 +279,7 @@ yelp_application_startup (GApplication *application)
                                                        g_str_equal,
                                                        g_free,
                                                        NULL);
+
     /* Use a config file for per-document settings, because
        Ryan asked me to. */
     keyfile = g_build_filename (g_get_user_config_dir (), "yelp", "yelp.cfg", NULL);
@@ -399,7 +396,7 @@ open_uri (YelpApplication *app,
     YelpApplicationLoad *data;
     data = g_new (YelpApplicationLoad, 1);
     data->app = app;
-    data->timestamp = gtk_get_current_event_time ();
+    data->timestamp = g_get_real_time();
     data->new = new_window;
     data->fallback_help_list = fallback_help_list;
 
@@ -460,7 +457,6 @@ application_uri_resolved (YelpUri             *uri,
 {
     YelpWindow *window;
     gchar *doc_uri;
-    GdkWindow *gdk_window;
     YelpApplicationPrivate *priv = yelp_application_get_instance_private (data->app);
     GFile *gfile;
 
@@ -493,7 +489,6 @@ application_uri_resolved (YelpUri             *uri,
         g_settings_get (settings, "geometry", "(ii)", &width, &height);
         window = yelp_window_new (data->app);
         gtk_window_set_default_size (GTK_WINDOW (window), width, height);
-        g_signal_connect (window, "resized", G_CALLBACK (window_resized), data->app);
         priv->windows = g_slist_prepend (priv->windows, window);
 
         if (!data->new) {
@@ -504,8 +499,11 @@ application_uri_resolved (YelpUri             *uri,
             g_free (doc_uri);
         }
 
-        g_signal_connect (window, "delete-event",
-                          G_CALLBACK (application_window_deleted), data->app);
+        g_signal_connect (window, "notify::default-width", G_CALLBACK (window_resized), data->app);
+        g_signal_connect (window, "notify::default-height", G_CALLBACK (window_resized), data->app);
+
+        //g_signal_connect (window, "unrealize",
+        //				  G_CALLBACK (application_window_deleted), data->app);
         gtk_window_set_application (GTK_WINDOW (window),
                                     GTK_APPLICATION (data->app));
     }
@@ -515,29 +513,7 @@ application_uri_resolved (YelpUri             *uri,
 
     yelp_window_load_uri (window, uri);
 
-    gtk_widget_show_all (GTK_WIDGET (window));
-
-    /* Metacity no longer does anything useful with gtk_window_present */
-    gdk_window = gtk_widget_get_window (GTK_WIDGET (window));
-
-#ifdef GDK_WINDOWING_X11
-    if (GDK_IS_X11_WINDOW (gdk_window)){
-        if (gdk_window)
-            gdk_x11_window_move_to_current_desktop (gdk_window);
-
-        /* Ensure we actually present the window when invoked from the command
-         * line. This is somewhat evil, but the minor evil of Yelp stealing
-         * focus (after you requested it) is outweighed for me by the major
-         * evil of no help window appearing when you click Help.
-         */
-        if (data->timestamp == 0)
-            data->timestamp = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
-
-        gtk_window_present_with_time (GTK_WINDOW (window), data->timestamp);
-    }
-    else
-#endif
-        gtk_window_present (GTK_WINDOW (window));
+    gtk_window_present (GTK_WINDOW (window));
 
     g_object_unref (uri);
     g_free (data);
@@ -556,7 +532,7 @@ application_window_deleted (YelpWindow      *window,
     if (doc_uri)
         g_hash_table_remove (priv->windows_by_document, doc_uri);
 
-    return FALSE;
+    return TRUE;
 }
 
 GSettings *
@@ -758,6 +734,7 @@ bookmarks_changed (GSettings       *settings,
 
 static gboolean
 window_resized (YelpWindow        *window,
+                GParamSpec        *pspec,
                 YelpApplication   *app)
 {
     YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
@@ -773,7 +750,7 @@ window_resized (YelpWindow        *window,
         g_object_unref (uri);
         return FALSE;
     }
-    settings = g_hash_table_lookup (priv->docsettings, doc_uri);
+    settings = application_get_doc_settings(app, doc_uri);
 
     if (settings) {
         gint width, height;

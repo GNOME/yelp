@@ -404,7 +404,7 @@ help_list_think (YelpHelpList *list)
     }
     g_free (datadirs);
 
-    theme = gtk_icon_theme_get_default ();
+    theme = gtk_icon_theme_get_for_display (gdk_display_get_default ());
     for (cur = priv->all_entries; cur != NULL; cur = cur->next) {
         GDesktopAppInfo *app;
         gchar *tmp;
@@ -422,6 +422,7 @@ help_list_think (YelpHelpList *list)
         else {
             tmp = g_strconcat (entryid, ".desktop", NULL);
         }
+
         app = g_desktop_app_info_new (tmp);
         g_free (tmp);
 
@@ -436,18 +437,22 @@ help_list_think (YelpHelpList *list)
             }
         }
 
-        if (app != NULL) {
+        if (app != NULL && theme != NULL) {
             GIcon *icon = g_app_info_get_icon ((GAppInfo *) app);
             if (icon != NULL) {
-                GtkIconInfo *info = gtk_icon_theme_lookup_by_gicon (theme, icon, 48, 0);
-                if (info != NULL) {
-                    const gchar *iconfile = gtk_icon_info_get_filename (info);
-                    if (iconfile)
-                        entry->icon = g_filename_to_uri (iconfile, NULL, NULL);
-                    g_object_unref (info);
+                GtkIconPaintable *paintable = gtk_icon_theme_lookup_by_gicon (theme, icon,
+                                                                              48, 1,
+                                                                              GTK_TEXT_DIR_NONE,
+                                                                              0);
+                if (paintable != NULL) {
+                    GFile *iconfile = gtk_icon_paintable_get_file (paintable);
+                    if (iconfile) {
+                        entry->icon = g_file_get_uri (iconfile);
+                        g_object_unref (iconfile);
+                    }
+                    g_object_unref (paintable);
                 }
             }
-            g_object_unref (app);
         }
     }
 

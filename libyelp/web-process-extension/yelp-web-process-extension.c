@@ -18,8 +18,7 @@
  * Boston, MA 02111-1307, USA.
  */
 
-#include <jsc/jsc.h>
-#include <webkit2/webkit-web-extension.h>
+#include <webkit/webkit-web-process-extension.h>
 #include <string.h>
 #include <stdlib.h>
 #include "yelp-uri.h"
@@ -158,7 +157,12 @@ web_page_context_menu (WebKitWebPage          *web_page,
         }
     }
 
-    if (webkit_hit_test_result_context_is_link (WEBKIT_HIT_TEST_RESULT (hit_test_result)) && link_node) {
+    /*
+     * TODO: The line below does not work due to what appears to be a WebKitGTK bug:
+     * https://bugs.webkit.org/show_bug.cgi?id=281767
+     * Remove this note once it is fixed.
+     */
+    if (webkit_web_hit_test_result_context_is_link (hit_test_result) && link_node) {
         JSCValue *child;
         gchar *tmp;
         gint i, tmpi;
@@ -220,9 +224,9 @@ web_page_context_menu (WebKitWebPage          *web_page,
 }
 
 static void
-web_page_created_callback (WebKitWebExtension *extension,
-                           WebKitWebPage      *web_page,
-                           gpointer            user_data)
+web_page_created_callback (WebKitWebProcessExtension *extension,
+                           WebKitWebPage             *web_page,
+                           gpointer                   user_data)
 {
     g_signal_connect (web_page, "context-menu",
                       G_CALLBACK (web_page_context_menu),
@@ -236,7 +240,7 @@ web_page_created_callback (WebKitWebExtension *extension,
 }
 
 G_MODULE_EXPORT void
-webkit_web_extension_initialize (WebKitWebExtension *extension)
+webkit_web_process_extension_initialize (WebKitWebProcessExtension *extension)
 {
     g_signal_connect (extension, "page-created",
                       G_CALLBACK (web_page_created_callback),

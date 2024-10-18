@@ -23,15 +23,16 @@
 #include <config.h>
 #endif
 
+#include <adwaita.h>
 #include <glib/gi18n.h>
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #ifdef GDK_WINDOWING_X11
-#include <gdk/gdkx.h>
+#include <gdk/x11/gdkx.h>
 #endif
 #include <math.h>
-#include <webkit2/webkit2.h>
+#include <webkit/webkit.h>
 
 #include "yelp-debug.h"
 #include "yelp-docbook-document.h"
@@ -85,7 +86,6 @@ static void        popup_copy_clipboard              (GSimpleAction      *action
                                                       gpointer            user_data);
 static gboolean    view_populate_context_menu        (YelpView            *view,
                                                       WebKitContextMenu   *context_menu,
-                                                      GdkEvent            *event,
                                                       WebKitHitTestResult *hit_test_result,
                                                       gpointer             user_data);
 static gboolean    view_script_dialog                (YelpView           *view,
@@ -117,15 +117,20 @@ static void        settings_show_text_cursor         (YelpSettings       *settin
 
 static void        uri_resolved                      (YelpUri            *uri,
                                                       YelpView           *view);
+static void        yelp_view_button_press            (GtkGestureClick    *event,
+                                                      gint                n_press,
+                                                      gdouble             x,
+                                                      gdouble             y,
+                                                      YelpView           *view);
 static void        yelp_view_register_custom_schemes (void);
-static void        view_load_failed                  (WebKitWebView            *web_view,
-                                                      WebKitLoadEvent           load_event,
-                                                      gchar                    *failing_uri,
-                                                      GError                   *error,
-                                                      gpointer                  user_data);
-static void        view_load_status_changed          (WebKitWebView            *view,
-                                                      WebKitLoadEvent           load_event,
-                                                      gpointer                  user_data);
+static void        view_load_failed                  (WebKitWebView      *web_view,
+                                                      WebKitLoadEvent     load_event,
+                                                      gchar              *failing_uri,
+                                                      GError             *error,
+                                                      gpointer            user_data);
+static void        view_load_status_changed          (WebKitWebView      *view,
+                                                      WebKitLoadEvent     load_event,
+                                                      gpointer            user_data);
 static void        yelp_view_register_extensions     (void);
 
 static gchar *nautilus_sendto = NULL;
@@ -207,6 +212,8 @@ struct _YelpViewPrivate {
     gchar         *popup_code_text;
     gchar         *popup_code_title;
 
+    GtkGesture    *gesture_click;
+
     YelpViewState  state;
     YelpViewState  prevstate;
 
@@ -268,6 +275,11 @@ yelp_view_init (YelpView *view)
                       G_CALLBACK (view_populate_context_menu), NULL);
     g_signal_connect (view, "script-dialog",
                       G_CALLBACK (view_script_dialog), NULL);
+
+    priv->gesture_click = gtk_gesture_click_new ();
+    g_signal_connect (priv->gesture_click, "pressed", G_CALLBACK (yelp_view_button_press), view);
+    gtk_widget_add_controller (GTK_WIDGET (view), GTK_EVENT_CONTROLLER (priv->gesture_click));
+
 
     priv->popup_actions = g_simple_action_group_new ();
     g_action_map_add_action_entries (G_ACTION_MAP (priv->popup_actions),
@@ -399,30 +411,32 @@ yelp_view_finalize (GObject *object)
     G_OBJECT_CLASS (yelp_view_parent_class)->finalize (object);
 }
 
-static gboolean
-yelp_view_button_press_event (GtkWidget      *widget,
-                              GdkEventButton *event)
+static void
+yelp_view_button_press (GtkGestureClick *event,
+                        gint             n_press,
+                        gdouble          x,
+                        gdouble          y,
+                        YelpView        *view)
 {
     /* Handle typical back/forward mouse buttons. */
-    if (event->button == 8) {
-        webkit_web_view_go_back (WEBKIT_WEB_VIEW (widget));
-        return TRUE;
-    }
+    switch (gtk_gesture_single_get_current_button (GTK_GESTURE_SINGLE (event))) {
+        case 8:
+            webkit_web_view_go_back (WEBKIT_WEB_VIEW (view));
+            break;
 
-    if (event->button == 9) {
-        webkit_web_view_go_forward (WEBKIT_WEB_VIEW (widget));
-        return TRUE;
-    }
+        case 9:
+            webkit_web_view_go_forward (WEBKIT_WEB_VIEW (view));
+            break;
 
-     /* Let parent class handle this. */
-     return GTK_WIDGET_CLASS (yelp_view_parent_class)->button_press_event (widget, event);
+        default:
+            break;
+    }
 }
 
 static void
 yelp_view_class_init (YelpViewClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
-    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
     YelpSettings *settings = yelp_settings_get_default ();
 
     nautilus_sendto = g_find_program_in_path ("nautilus-sendto");
@@ -532,8 +546,6 @@ yelp_view_class_init (YelpViewClass *klass)
                                                           NULL,
                                                           G_PARAM_READABLE |
                                                           G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
-
-    widget_class->button_press_event = yelp_view_button_press_event;
 }
 
 static void
@@ -882,7 +894,7 @@ yelp_view_register_extensions (void)
 {
     WebKitWebContext *context = webkit_web_context_get_default ();
 
-    webkit_web_context_set_web_extensions_directory (context, YELP_WEB_EXTENSIONS_DIR);
+    webkit_web_context_set_web_process_extensions_directory (context, YELP_WEB_PROCESS_EXTENSIONS_DIR);
 }
 
 /******************************************************************************/
@@ -948,12 +960,10 @@ view_install_installed (GDBusConnection *connection,
                 err = error->message;
         }
         if (err != NULL) {
-            GtkWidget *dialog = gtk_message_dialog_new (NULL, 0,
-                                                        GTK_MESSAGE_ERROR,
-                                                        GTK_BUTTONS_CLOSE,
-                                                        "%s", err);
-            gtk_dialog_run ((GtkDialog *) dialog);
-            gtk_widget_destroy (dialog);
+            AdwDialog *dialog = adw_alert_dialog_new (_("Package Install Link Error"), err);
+            adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog), "close", _("_Close"));
+            adw_alert_dialog_set_close_response (ADW_ALERT_DIALOG (dialog), "close");
+            adw_dialog_present (dialog, GTK_WIDGET (gtk_widget_get_root (GTK_WIDGET (info->view))));
         }
         g_error_free (error);
     }
@@ -983,8 +993,10 @@ view_install_uri (YelpView    *view,
     YelpInstallInfo *info;
     guint32 xid = 0;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
-    GtkWidget *gtkwin;
-    GdkWindow *gdkwin;
+#ifdef GDK_WINDOWING_X11
+    GtkNative *win;
+    GdkSurface *win_surface;
+#endif
     /* do not free */
     const gchar *pkg = NULL, *confirm_search;
 
@@ -1010,14 +1022,12 @@ view_install_uri (YelpView    *view,
     info = g_new0 (YelpInstallInfo, 1);
     info->view = g_object_ref (view);
 
-    gtkwin = gtk_widget_get_toplevel (GTK_WIDGET (view));
-    if (gtkwin != NULL && gtk_widget_is_toplevel (gtkwin)) {
-        gdkwin = gtk_widget_get_window (gtkwin);
 #ifdef GDK_WINDOWING_X11
-        if (gdkwin != NULL && GDK_IS_X11_WINDOW (gdkwin))
-            xid = gdk_x11_window_get_xid (gdkwin);
+    win = gtk_widget_get_native (GTK_WIDGET (view));
+    win_surface = gtk_native_get_surface (win);
+    if (win != NULL && GDK_IS_X11_SURFACE (win_surface))
+        xid = gdk_x11_surface_get_xid (win_surface);
 #endif
-    }
 
     if (priv->state == YELP_VIEW_STATE_ERROR)
         confirm_search = "hide-confirm-search";
@@ -1141,9 +1151,8 @@ popup_copy_link (GSimpleAction  *action,
 {
     YelpView *view = (YelpView *) user_data;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
-    gtk_clipboard_set_text (gtk_widget_get_clipboard (GTK_WIDGET (view), GDK_SELECTION_CLIPBOARD),
-                            priv->popup_link_uri,
-                            -1);
+    gdk_clipboard_set_text (gtk_widget_get_clipboard (GTK_WIDGET (view)),
+                            priv->popup_link_uri);
 }
 
 typedef struct _YelpSaveData YelpSaveData;
@@ -1161,18 +1170,39 @@ file_copied (GFile        *file,
 {
     GError *error = NULL;
     if (!g_file_copy_finish (file, res, &error)) {
-        GtkWidget *dialog = gtk_message_dialog_new (gtk_widget_get_visible (GTK_WIDGET (data->window)) ? data->window : NULL,
-                                                    GTK_DIALOG_DESTROY_WITH_PARENT,
-                                                    GTK_MESSAGE_ERROR,
-                                                    GTK_BUTTONS_OK,
-                                                    "%s", error->message);
-        gtk_dialog_run (GTK_DIALOG (dialog));
-        gtk_widget_destroy (dialog);
+        AdwDialog *dialog = adw_alert_dialog_new (_("Failed to Save Image"), error->message);
+        adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog), "close", _("_Close"));
+        adw_alert_dialog_set_close_response (ADW_ALERT_DIALOG (dialog), "close");
+        adw_dialog_present (dialog, gtk_widget_get_visible (GTK_WIDGET (data->window)) ? GTK_WIDGET (data->window) : NULL);
     }
     g_object_unref (data->orig);
     g_object_unref (data->dest);
     g_object_unref (data->view);
     g_object_unref (data->window);
+}
+
+static void
+save_image_callback (GtkFileDialog *dialog,
+                     GAsyncResult *res,
+                     YelpSaveData *data)
+{
+    GError *error = NULL;
+
+    data->dest = gtk_file_dialog_save_finish (dialog, res, &error);
+    if (!error) {
+        g_file_copy_async (data->orig, data->dest,
+                           G_FILE_COPY_OVERWRITE,
+                           G_PRIORITY_DEFAULT,
+                           NULL, NULL, NULL,
+                           (GAsyncReadyCallback) file_copied,
+                           data);
+    } else {
+        g_object_unref (data->orig);
+        g_object_unref (data->view);
+        g_object_unref (data->window);
+        g_free (data);
+        g_error_free (error);
+    }
 }
 
 static void
@@ -1182,14 +1212,12 @@ popup_save_image (GSimpleAction  *action,
 {
     YelpView *view = (YelpView *) user_data;
     YelpSaveData *data;
-    GtkWidget *dialog, *window;
+    GtkWindow *window;
+    GtkFileDialog *dialog;
     gchar *basename;
-    gint res;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
-    for (window = gtk_widget_get_parent (GTK_WIDGET (view));
-         window && !GTK_IS_WINDOW (window);
-         window = gtk_widget_get_parent (window));
+    window = GTK_WINDOW (gtk_widget_get_native (GTK_WIDGET (view)));
 
     data = g_new0 (YelpSaveData, 1);
     data->orig = g_file_new_for_uri (priv->popup_image_uri);
@@ -1198,38 +1226,13 @@ popup_save_image (GSimpleAction  *action,
     g_free (priv->popup_image_uri);
     priv->popup_image_uri = NULL;
 
-    dialog = gtk_file_chooser_dialog_new (_("Save Image"),
-                                          GTK_WINDOW (window),
-                                          GTK_FILE_CHOOSER_ACTION_SAVE,
-                                          _("_Cancel"), GTK_RESPONSE_CANCEL,
-                                          _("_Save"), GTK_RESPONSE_OK,
-                                          NULL);
-    gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
+    dialog = gtk_file_dialog_new ();
+    gtk_file_dialog_set_title (dialog, _("Save Image"));
     basename = g_file_get_basename (data->orig);
-    gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), basename);
+    gtk_file_dialog_set_initial_name (dialog, basename);
     g_free (basename);
-    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog),
-                                         g_get_user_special_dir (G_USER_DIRECTORY_DESKTOP));
 
-    res = gtk_dialog_run (GTK_DIALOG (dialog));
-
-    if (res == GTK_RESPONSE_OK) {
-        data->dest = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
-        g_file_copy_async (data->orig, data->dest,
-                           G_FILE_COPY_OVERWRITE,
-                           G_PRIORITY_DEFAULT,
-                           NULL, NULL, NULL,
-                           (GAsyncReadyCallback) file_copied,
-                           data);
-    }
-    else {
-        g_object_unref (data->orig);
-        g_object_unref (data->view);
-        g_object_unref (data->window);
-        g_free (data);
-    }
-
-    gtk_widget_destroy (dialog);
+    gtk_file_dialog_save (dialog, window, NULL, (GAsyncReadyCallback) save_image_callback, data);
 }
 
 static void
@@ -1271,13 +1274,48 @@ popup_copy_code (GSimpleAction  *action,
 {
     YelpView *view = (YelpView *) user_data;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
-    GtkClipboard *clipboard;
+    GdkClipboard *clipboard;
 
     if (!priv->popup_code_text)
         return;
 
-    clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-    gtk_clipboard_set_text (clipboard, priv->popup_code_text, -1);
+    clipboard = gtk_widget_get_clipboard (GTK_WIDGET (view));
+    gdk_clipboard_set_text (clipboard, priv->popup_code_text);
+}
+
+static void
+save_code_callback (GtkFileDialog *dialog,
+                    GAsyncResult  *res,
+                    YelpView     *view)
+{
+    YelpViewPrivate *priv = yelp_view_get_instance_private (view);
+    GtkWidget *window = GTK_WIDGET (gtk_widget_get_native (GTK_WIDGET (view)));
+    GError *error = NULL;
+    GFile *file = gtk_file_dialog_save_finish (dialog, res, &error);
+    GFileOutputStream *stream = g_file_replace (file, NULL, FALSE,
+                                                G_FILE_CREATE_NONE,
+                                                NULL,
+                                                &error);
+
+    if (stream == NULL) {
+        AdwDialog *dialog = adw_alert_dialog_new (_("Failed to Save Code"), error->message);
+        adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog), "close", _("_Close"));
+        adw_alert_dialog_set_close_response (ADW_ALERT_DIALOG (dialog), "close");
+        adw_dialog_present (dialog, gtk_widget_get_visible (window) ? window : NULL);
+        g_error_free (error);
+    } else {
+        /* FIXME: we should do this async */
+        GDataOutputStream *datastream = g_data_output_stream_new (G_OUTPUT_STREAM (stream));
+        if (!g_data_output_stream_put_string (datastream, priv->popup_code_text, NULL, &error)) {
+            AdwDialog *dialog = adw_alert_dialog_new (_("Failed to Save Code"), error->message);
+            adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog), "close", _("_Close"));
+            adw_alert_dialog_set_close_response (ADW_ALERT_DIALOG (dialog), "close");
+            adw_dialog_present (dialog, gtk_widget_get_visible (window) ? window : NULL);
+            g_error_free (error);
+        }
+        g_object_unref (datastream);
+    }
+    g_object_unref (file);
 }
 
 static void
@@ -1287,8 +1325,8 @@ popup_save_code (GSimpleAction  *action,
 {
     YelpView *view = (YelpView *) user_data;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
-    GtkWidget *dialog, *window;
-    gint res;
+    GtkFileDialog *dialog;
+    GtkWindow *window;
 
     if (!priv->popup_code_text)
         return;
@@ -1299,62 +1337,14 @@ popup_save_code (GSimpleAction  *action,
         priv->popup_code_text = tmp;
     }
 
-    for (window = gtk_widget_get_parent (GTK_WIDGET (view));
-         window && !GTK_IS_WINDOW (window);
-         window = gtk_widget_get_parent (window));
+    window = GTK_WINDOW (gtk_widget_get_native (GTK_WIDGET (view)));
 
-    dialog = gtk_file_chooser_dialog_new (_("Save Code"),
-                                          GTK_WINDOW (window),
-                                          GTK_FILE_CHOOSER_ACTION_SAVE,
-                                          _("_Cancel"), GTK_RESPONSE_CANCEL,
-                                          _("_Save"), GTK_RESPONSE_OK,
-                                          NULL);
-    gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
-
+    dialog = gtk_file_dialog_new ();
+    gtk_file_dialog_set_title (dialog, _("Save Code"));
     if (priv->popup_code_title)
-        gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), priv->popup_code_title);
+        gtk_file_dialog_set_initial_name (dialog, priv->popup_code_title);
 
-    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog),
-                                         g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS));
-
-    res = gtk_dialog_run (GTK_DIALOG (dialog));
-
-    if (res == GTK_RESPONSE_OK) {
-        GError *error = NULL;
-        GFile *file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (dialog));
-        GFileOutputStream *stream = g_file_replace (file, NULL, FALSE,
-                                                    G_FILE_CREATE_NONE,
-                                                    NULL,
-                                                    &error);
-        if (stream == NULL) {
-            GtkWidget *dlg = gtk_message_dialog_new (gtk_widget_get_visible (window) ? GTK_WINDOW (window) : NULL,
-                                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-                                                     GTK_MESSAGE_ERROR,
-                                                     GTK_BUTTONS_OK,
-                                                     "%s", error->message);
-            gtk_dialog_run (GTK_DIALOG (dlg));
-            gtk_widget_destroy (dlg);
-            g_error_free (error);
-        }
-        else {
-            /* FIXME: we should do this async */
-            GDataOutputStream *datastream = g_data_output_stream_new (G_OUTPUT_STREAM (stream));
-            if (!g_data_output_stream_put_string (datastream, priv->popup_code_text, NULL, &error)) {
-                GtkWidget *dlg = gtk_message_dialog_new (gtk_widget_get_visible (window) ? GTK_WINDOW (window) : NULL,
-                                                         GTK_DIALOG_DESTROY_WITH_PARENT,
-                                                         GTK_MESSAGE_ERROR,
-                                                         GTK_BUTTONS_OK,
-                                                         "%s", error->message);
-                gtk_dialog_run (GTK_DIALOG (dlg));
-                gtk_widget_destroy (dlg);
-                g_error_free (error);
-            }
-            g_object_unref (datastream);
-        }
-        g_object_unref (file);
-    }
-
-    gtk_widget_destroy (dialog);
+    gtk_file_dialog_save (dialog, window, NULL, (GAsyncReadyCallback) save_code_callback, view);
 }
 
 static void
@@ -1369,7 +1359,6 @@ popup_copy_clipboard (GSimpleAction  *action,
 static gboolean
 view_populate_context_menu (YelpView            *view,
                             WebKitContextMenu   *context_menu,
-                            GdkEvent            *event,
                             WebKitHitTestResult *hit_test_result,
                             gpointer             user_data)
 {
@@ -1381,12 +1370,12 @@ view_populate_context_menu (YelpView            *view,
 
     webkit_context_menu_remove_all (context_menu);
 
-    /* We extract the info about the dom tree that we build in the web-extension.*/
+    /* We extract the info about the dom tree that we build in the web process extension.*/
     dom_info_variant = webkit_context_menu_get_user_data (context_menu);
     if (dom_info_variant)
       g_variant_dict_init (&dom_info_dict, dom_info_variant);
 
-    if (webkit_hit_test_result_context_is_link (hit_test_result)) {
+    if (webkit_hit_test_result_context_is_link (WEBKIT_HIT_TEST_RESULT (hit_test_result))) {
         const gchar *uri = webkit_hit_test_result_get_link_uri (hit_test_result);
         g_free (priv->popup_link_uri);
 
@@ -1691,12 +1680,12 @@ view_load_failed (WebKitWebView  *view,
 static void
 view_print_action (GAction *action, GVariant *parameter, YelpView *view)
 {
-    GtkWidget *window;
+    GtkWindow *window;
     WebKitPrintOperation *print_operation;
     GtkPrintSettings *settings;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
-    window = gtk_widget_get_toplevel (GTK_WIDGET (view));
+    window = GTK_WINDOW (gtk_widget_get_native (GTK_WIDGET (view)));
 
     print_operation = webkit_print_operation_new (WEBKIT_WEB_VIEW (view));
 
@@ -1706,7 +1695,7 @@ view_print_action (GAction *action, GVariant *parameter, YelpView *view)
                             priv->page_title);
     webkit_print_operation_set_print_settings (print_operation, settings);
 
-    webkit_print_operation_run_dialog (print_operation, GTK_WINDOW (window));
+    webkit_print_operation_run_dialog (print_operation, window);
     g_object_unref (print_operation);
     g_object_unref (settings);
 }
@@ -1899,9 +1888,9 @@ view_show_error_page (YelpView *view,
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     YelpSettings *settings = yelp_settings_get_default ();
     GtkIconTheme *icontheme;
-    GtkIconInfo *icon;
+    GtkIconPaintable *icon;
     gchar *page, *title = NULL, *title_m, *content_beg, *content_end;
-    gchar *textcolor, *bgcolor;
+    gchar *textcolor, *bgcolor, *icon_filename = "";
     GParamSpec *spec;
     gboolean doc404 = FALSE;
 
@@ -1948,15 +1937,23 @@ view_show_error_page (YelpView *view,
 
     textcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_TEXT);
     bgcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_BASE);
-    g_object_get (settings, "gtk-icon-theme", &icontheme, NULL);
-    icon = gtk_icon_theme_lookup_icon (icontheme, "computer-fail-symbolic", 256, 0);
+    icontheme = gtk_icon_theme_get_for_display (gtk_root_get_display (gtk_widget_get_root (GTK_WIDGET (view))));
+    icon = gtk_icon_theme_lookup_icon (icontheme, "computer-fail-symbolic", NULL, 256, 1, GTK_TEXT_DIR_NONE, 0);
+    if (icon != NULL) {
+        GFile *iconfile = gtk_icon_paintable_get_file (icon);
+        if (iconfile) {
+            icon_filename = g_file_get_uri (iconfile);
+            g_object_unref (iconfile);
+        }
+        g_object_unref (icon);
+    }
+
     page = g_strdup_printf (FORMAT_ERRORPAGE,
                             textcolor, bgcolor,
-                            gtk_icon_info_get_filename (icon),
+                            icon_filename,
                             title_m,
                             content_beg,
                             (content_end != NULL) ? content_end : "");
-    g_object_unref (icon);
     g_free (textcolor);
     g_free (bgcolor);
 

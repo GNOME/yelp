@@ -38,7 +38,7 @@ libxslt_dep = dependency('libxslt', version: '>= 1.1.4')
 libexslt_dep = dependency('libexslt', version: '>= 0.8.1')
 sqlite_dep = dependency('sqlite3')
 webkitgtk_dep = dependency('webkitgtk-6.0')
-webkitgtk_web_extension_dep = dependency('webkitgtk-web-process-extension-6.0')
+webkitgtk_web_process_extension_dep = dependency('webkitgtk-web-process-extension-6.0')
 yelp_xsl_dep = dependency('yelp-xsl', version: '>= 42.3')
 
 lzma_dep = dependency('liblzma',
@@ -111,8 +111,8 @@ yelp_xsl_conf.set('XSL_GETTEXT', xsl_gettext)
 yelp_xsl_conf.set('DATADIR', join_paths(prefix, datadir))
 
 yelp_conf.set_quoted('YELP_ICON_PATH', xsl_icondir)
-yelp_conf.set_quoted('YELP_WEB_EXTENSIONS_DIR',
-                     join_paths(prefix, libdir, 'yelp', 'web-extensions'))
+yelp_conf.set_quoted('YELP_WEB_PROCESS_EXTENSIONS_DIR',
+                     join_paths(prefix, libdir, 'yelp', 'web-process-extensions'))
 
 configure_file(output: 'config.h',
                configuration: yelp_conf)

@@ -51,12 +51,12 @@ typedef struct _YelpSearchEntryClass    YelpSearchEntryClass;
 
 struct _YelpSearchEntry
 {
-    GtkSearchEntry parent;
+    GtkEntry parent;
 };
 
 struct _YelpSearchEntryClass
 {
-    GtkSearchEntryClass parent;
+    GtkEntryClass parent;
 
     void     (* search_activated)           (YelpSearchEntry *entry);
     void     (* bookmark_clicked)           (YelpSearchEntry *entry);

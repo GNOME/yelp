@@ -1,18 +1,18 @@
-webextension_sources = files(
+webprocessextension_sources = files(
   '../yelp-settings.c',
   '../yelp-uri-builder.c',
   '../yelp-uri.c',
-  'yelp-web-extension.c',
+  'yelp-web-process-extension.c',
 )
 
-webextension = library('yelpwebextension',
-                             sources: webextension_sources,
+webprocessextension = library('yelpwebprocessextension',
+                             sources: webprocessextension_sources,
                              install: true,
                              link_args : ['-Wl,--no-undefined'],
-                             dependencies: [webkitgtk_web_extension_dep],
+                             dependencies: [libadwaita_dep, webkitgtk_web_process_extension_dep],
                              include_directories: [configinc, libyelpinc],
                              c_args: ['-DHAVE_CONFIG_H'],
                              install_dir: join_paths(libdir,
                                                      'yelp',
-                                                     'web-extensions'),
+                                                     'web-process-extensions'),
 )

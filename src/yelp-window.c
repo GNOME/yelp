@@ -28,6 +28,7 @@
 #include <glib/gi18n.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#include <webkit/webkit.h>
 
 #include "yelp-search-entry.h"
 #include "yelp-settings.h"
@@ -50,27 +51,24 @@ static void          yelp_window_set_property     (GObject            *object,
 
 static void          window_construct             (YelpWindow         *window);
 
-static gboolean      window_map_event             (YelpWindow         *window,
-                                                   GdkEvent           *event,
-                                                   gpointer            user_data);
-static gboolean      window_configure_event       (YelpWindow         *window,
-                                                   GdkEventConfigure  *event,
-                                                   gpointer            user_data);
-static void          window_drag_received         (YelpWindow         *window,
-                                                   GdkDragContext     *context,
-                                                   gint                x,
-                                                   gint                y,
-                                                   GtkSelectionData   *data,
-                                                   guint               info,
-                                                   guint               time,
+static gboolean      window_on_drop               (GtkDropTarget      *target,
+                                                   const GValue       *value,
+                                                   double             x,
+                                                   double             y,
+                                                   YelpWindow         *window);
+static gboolean      window_resize_signal         (YelpWindow         *window,
+                                                   GParamSpec         *pspec,
                                                    gpointer            userdata);
-static gboolean      window_resize_signal         (YelpWindow         *window);
-static gboolean      window_key_press             (YelpWindow         *window,
-                                                   GdkEventKey        *event,
-                                                   gpointer            userdata);
-static gboolean      window_button_press          (YelpWindow         *window,
-                                                   GdkEventButton     *event,
-                                                   gpointer            userdata);
+static gboolean      window_key_press             (GtkEventControllerKey *event,
+                                                   guint                  keyval,
+                                                   guint                  keycode,
+                                                   GdkModifierType       *state,
+                                                   YelpWindow            *window);
+static void          window_button_press          (GtkGestureClick    *event,
+                                                   gint                n_press,
+                                                   gdouble             x,
+                                                   gdouble             y,
+                                                   YelpWindow         *window);
 
 static void          bookmark_activated           (GtkListBox         *box,
                                                    GtkListBoxRow      *row,
@@ -110,9 +108,11 @@ static void          action_ctrll                 (GSimpleAction      *action,
                                                    gpointer            userdata);
 
 
-static gboolean      find_entry_key_press         (GtkEntry           *entry,
-                                                   GdkEventKey        *event,
-                                                   YelpWindow         *window);
+static gboolean      find_entry_key_press         (GtkEventControllerKey *event,
+                                                   guint                  keyval,
+                                                   guint                  keycode,
+                                                   GdkModifierType       *state,
+                                                   YelpWindow            *window);
 static void          find_entry_changed           (GtkEntry           *entry,
                                                    YelpWindow         *window);
 static void          find_prev_clicked            (GtkButton          *button,
@@ -136,9 +136,11 @@ static void          view_root_title              (YelpView           *view,
                                                    YelpWindow         *window);
 static void          ctrll_entry_activate         (GtkEntry           *entry,
                                                    YelpWindow         *window);
-static gboolean      ctrll_entry_key_press        (GtkWidget          *widget,
-                                                   GdkEventKey        *event,
-                                                   YelpWindow         *window);
+static gboolean      ctrll_entry_key_press        (GtkEventControllerKey *event,
+                                                   guint                  keyval,
+                                                   guint                  keycode,
+                                                   GdkModifierType       *state,
+                                                   YelpWindow            *window);
 
 enum {
     PROP_0,
@@ -162,8 +164,7 @@ struct _YelpWindowPrivate {
 
     /* no refs on these, owned by containers */
     GtkWidget *header;
-    GtkWidget *vbox_view;
-    GtkWidget *vbox_full;
+    GtkWidget *header_title;
     GtkWidget *search_bar;
     GtkWidget *search_entry;
     GtkWidget *find_bar;
@@ -186,26 +187,23 @@ struct _YelpWindowPrivate {
     gint width;
     gint height;
 
-    gboolean configured;
+    /* Event controllers */
+    GtkGesture *gesture_click;
+    GtkEventController *event_key;
+    GtkEventController *event_find_entry_key;
+    GtkEventController *event_ctrll_entry_key;
+    GtkDropTarget *drop_target;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (YelpWindow, yelp_window, HDY_TYPE_APPLICATION_WINDOW)
+G_DEFINE_TYPE_WITH_PRIVATE (YelpWindow, yelp_window, ADW_TYPE_APPLICATION_WINDOW)
 
 static void
 yelp_window_init (YelpWindow *window)
 {
-    GdkScreen *screen = gtk_widget_get_screen (GTK_WIDGET (window));
-    GtkCssProvider *css = gtk_css_provider_new();
-
     gtk_widget_init_template (GTK_WIDGET (window));
 
-    gtk_css_provider_load_from_resource (css, "/org/gnome/yelp/style.css");
-    gtk_style_context_add_provider_for_screen (screen,
-                                               GTK_STYLE_PROVIDER(css),
-                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-    g_signal_connect (window, "configure-event", G_CALLBACK (window_configure_event), NULL);
-    g_signal_connect (window, "map-event", G_CALLBACK (window_map_event), NULL);
+    g_signal_connect (window, "notify::default-width", G_CALLBACK (window_resize_signal), NULL);
+    g_signal_connect (window, "notify::default-height", G_CALLBACK (window_resize_signal), NULL);
 }
 
 static void
@@ -240,8 +238,7 @@ yelp_window_class_init (YelpWindowClass *klass)
     gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/yelp/yelp-window.ui");
 
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, header);
-    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, vbox_view);
-    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, vbox_full);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, header_title);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, search_bar);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_bar);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_entry);
@@ -254,9 +251,6 @@ yelp_window_class_init (YelpWindowClass *klass)
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_add);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_remove);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, view);
-
-    gtk_widget_class_bind_template_callback (widget_class, window_key_press);
-    gtk_widget_class_bind_template_callback (widget_class, window_button_press);
 }
 
 static void
@@ -320,24 +314,28 @@ yelp_window_set_property (GObject     *object,
     }
 }
 
-static gboolean
-window_button_press (YelpWindow *window, GdkEventButton *event, gpointer userdata)
+static void
+window_button_press (GtkGestureClick *event,
+                     gint             n_press,
+                     gdouble          x,
+                     gdouble          y,
+                     YelpWindow      *window)
 {
-    switch (event->button) {
+    switch (gtk_gesture_single_get_current_button (GTK_GESTURE_SINGLE (event))) {
         case 8:
             g_action_activate (g_action_map_lookup_action (G_ACTION_MAP (window),
                                                            "yelp-view-go-back"),
                                NULL);
-            return TRUE;
+            break;
 
         case 9:
             g_action_activate (g_action_map_lookup_action (G_ACTION_MAP (window),
                                                            "yelp-view-go-forward"),
                                NULL);
-            return TRUE;
+            break;
 
         default:
-            return FALSE;
+            break;
     }
 }
 
@@ -361,8 +359,9 @@ window_construct (YelpWindow *window)
 
     priv->search_entry = yelp_search_entry_new (priv->view,
                                                 YELP_BOOKMARKS (priv->application));
-    gtk_entry_set_width_chars (GTK_ENTRY (priv->search_entry), 50);
-    gtk_container_add (GTK_CONTAINER (priv->search_bar), priv->search_entry);
+    gtk_editable_set_width_chars (GTK_EDITABLE (priv->search_entry), 50);
+    gtk_search_bar_set_child (GTK_SEARCH_BAR (priv->search_bar), priv->search_entry);
+    gtk_search_bar_set_key_capture_widget (GTK_SEARCH_BAR (priv->search_bar), priv->search_entry);
 
     g_signal_connect (priv->search_bar, "notify::search-mode-enabled",
                       G_CALLBACK (window_search_mode), window);
@@ -384,8 +383,10 @@ window_construct (YelpWindow *window)
     /** Find **/
     g_signal_connect (priv->find_entry, "changed",
                       G_CALLBACK (find_entry_changed), window);
-    g_signal_connect (priv->find_entry, "key-press-event",
-                      G_CALLBACK (find_entry_key_press), window);
+
+    priv->event_find_entry_key = gtk_event_controller_key_new();
+    g_signal_connect (priv->event_find_entry_key, "key-pressed", G_CALLBACK (find_entry_key_press), window);
+    gtk_widget_add_controller (priv->find_entry, GTK_EVENT_CONTROLLER (priv->event_find_entry_key));
 
     g_signal_connect (priv->find_prev_button, "clicked", G_CALLBACK (find_prev_clicked), window);
     g_signal_connect (priv->find_next_button, "clicked", G_CALLBACK (find_next_clicked), window);
@@ -401,13 +402,19 @@ window_construct (YelpWindow *window)
     g_signal_connect (priv->view, "notify::root-title", G_CALLBACK (view_root_title), window);
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
 
-    gtk_drag_dest_set (GTK_WIDGET (window),
-                       GTK_DEST_DEFAULT_ALL,
-                       NULL, 0,
-                       GDK_ACTION_COPY);
-    gtk_drag_dest_add_uri_targets (GTK_WIDGET (window));
-    g_signal_connect (window, "drag-data-received",
-                      G_CALLBACK (window_drag_received), NULL);
+    /** Drag-and-drop **/
+    priv->drop_target = gtk_drop_target_new (G_TYPE_URI, GDK_ACTION_COPY);
+    g_signal_connect (priv->drop_target, "drop", G_CALLBACK(window_on_drop), window);
+    gtk_widget_add_controller (GTK_WIDGET (window), GTK_EVENT_CONTROLLER (priv->drop_target));
+
+    /** Click/keyboard handlers **/
+    priv->gesture_click = gtk_gesture_click_new();
+    g_signal_connect (priv->gesture_click, "pressed", G_CALLBACK (window_button_press), window);
+    gtk_widget_add_controller (GTK_WIDGET (window), GTK_EVENT_CONTROLLER (priv->gesture_click));
+
+    priv->event_key = gtk_event_controller_key_new();
+    g_signal_connect (priv->event_key, "key-pressed", G_CALLBACK (window_key_press), window);
+    gtk_widget_add_controller (GTK_WIDGET (window), GTK_EVENT_CONTROLLER (priv->event_key));
 }
 
 /******************************************************************************/
@@ -527,16 +534,16 @@ action_ctrll (GSimpleAction *action,
 
         g_signal_connect (priv->ctrll_entry, "activate",
                           G_CALLBACK (ctrll_entry_activate), userdata);
-        g_signal_connect (priv->ctrll_entry, "key-press-event",
-                          G_CALLBACK (ctrll_entry_key_press), userdata);
+        priv->event_ctrll_entry_key = gtk_event_controller_key_new();
+        g_signal_connect (priv->event_ctrll_entry_key, "key-pressed", G_CALLBACK (ctrll_entry_key_press), userdata);
+        gtk_widget_add_controller (priv->ctrll_entry, GTK_EVENT_CONTROLLER (priv->event_ctrll_entry_key));
     }
 
     g_object_set (priv->ctrll_entry, "width-request", priv->width / 2, NULL);
 
-    gtk_entry_set_text (GTK_ENTRY (priv->ctrll_entry), "");
+    gtk_editable_set_text (GTK_EDITABLE (priv->ctrll_entry), "");
 
-    hdy_header_bar_set_custom_title (HDY_HEADER_BAR (priv->header), priv->ctrll_entry);
-    gtk_widget_show (priv->ctrll_entry);
+    adw_header_bar_set_title_widget (ADW_HEADER_BAR (priv->header), priv->ctrll_entry);
     gtk_widget_grab_focus (priv->ctrll_entry);
 
     g_object_get (priv->view, "yelp-uri", &yuri, NULL);
@@ -546,7 +553,7 @@ action_ctrll (GSimpleAction *action,
     }
     if (uri) {
         gchar *c;
-        gtk_entry_set_text (GTK_ENTRY (priv->ctrll_entry), uri);
+        gtk_editable_set_text (GTK_EDITABLE (priv->ctrll_entry), uri);
         c = strchr (uri, ':');
         if (c)
             gtk_editable_select_region (GTK_EDITABLE (priv->ctrll_entry), c - uri + 1, -1);
@@ -559,92 +566,55 @@ action_ctrll (GSimpleAction *action,
 
 /******************************************************************************/
 
-static void
-window_drag_received (YelpWindow         *window,
-                      GdkDragContext     *context,
-                      gint                x,
-                      gint                y,
-                      GtkSelectionData   *data,
-                      guint               info,
-                      guint               time,
-                      gpointer            userdata)
-{
-    gchar **uris = gtk_selection_data_get_uris (data);
-    if (uris && uris[0]) {
-        YelpUri *uri = yelp_uri_new (uris[0]);
-        yelp_window_load_uri (window, uri);
-        g_object_unref (uri);
-        g_strfreev (uris);
-        gtk_drag_finish (context, TRUE, FALSE, time);
-    }
-    gtk_drag_finish (context, FALSE, FALSE, time);
-}
-
 static gboolean
-window_map_event (YelpWindow  *window,
-                  GdkEvent    *event,
-                  gpointer     user_data)
+window_on_drop (GtkDropTarget *target,
+                const GValue  *value,
+                double         x,
+                double         y,
+                YelpWindow    *window)
 {
-    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
-    priv->configured = TRUE;
-    return FALSE;
-}
-
-static gboolean
-window_configure_event (YelpWindow         *window,
-                        GdkEventConfigure  *event,
-                        gpointer            user_data)
-{
-    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
-    gboolean skip = TRUE;
-    if (priv->width != event->width) {
-        skip = FALSE;
-        priv->width = event->width;
-    }
-    if (priv->height != event->height) {
-        skip = FALSE;
-        priv->height = event->height;
-    }
-    /* Skip the configure-event signals that GTK+ sends as it's mapping
-     * the window, and also skip if the event didn't change the size of
-     * the window (i.e. it was just a move).
-     */
-    if (!priv->configured || skip)
+    if (!G_VALUE_HOLDS (value, G_TYPE_URI) || !g_value_get_object (value))
         return FALSE;
 
-    if (priv->resize_signal > 0)
-        g_source_remove (priv->resize_signal);
-    priv->resize_signal = g_timeout_add (200,
-                                         (GSourceFunc) window_resize_signal,
-                                         window);
-    g_object_set (priv->find_entry, "width-request", 2 * priv->width / 3, NULL);
-    return FALSE;
+    YelpUri *uri = yelp_uri_new (g_value_get_object (value));
+    yelp_window_load_uri (window, uri);
+    g_object_unref (uri);
+
+    return TRUE;
 }
 
 static gboolean
-window_resize_signal (YelpWindow *window)
+window_resize_signal (YelpWindow *window, GParamSpec *pspec, gpointer userdata)
 {
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
+    int width, height;
+
+    gtk_window_get_default_size (GTK_WINDOW (window), &width, &height);
+
+    priv->width = width;
+    priv->height = height;
+
     g_signal_emit (window, signals[RESIZE_EVENT], 0);
     priv->resize_signal = 0;
     return FALSE;
 }
 
 static gboolean
-window_key_press (YelpWindow  *window,
-                  GdkEventKey *event,
-                  gpointer     userdata)
+window_key_press (GtkEventControllerKey *event,
+                  guint                  keyval,
+                  guint                  keycode,
+                  GdkModifierType       *state,
+                  YelpWindow            *window)
 {
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
     if (gtk_revealer_get_reveal_child (GTK_REVEALER (priv->find_bar)))
         return FALSE;
 
-    if (hdy_header_bar_get_custom_title (HDY_HEADER_BAR (priv->header)))
+    if (adw_header_bar_get_title_widget (ADW_HEADER_BAR (priv->header)) == priv->header_title)
         return FALSE;
 
-    return gtk_search_bar_handle_event (GTK_SEARCH_BAR (priv->search_bar),
-                                        (GdkEvent *) event);
+    return gtk_event_controller_key_forward (event, priv->search_bar);
 }
 
 static void
@@ -656,7 +626,7 @@ bookmark_activated (GtkListBox    *box,
     gchar *xref;
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
-    gtk_widget_hide (priv->bookmark_menu);
+    gtk_widget_set_visible (priv->bookmark_menu, FALSE);
 
     xref = g_strconcat ("xref:",
                         (gchar *) g_object_get_data (G_OBJECT (row), "page-id"),
@@ -777,17 +747,11 @@ window_set_bookmarks (YelpWindow  *window,
     GVariantIter *iter;
     gchar *page_id, *icon, *title;
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
-    GList *children, *cur;
     GSList *entries = NULL;
 
     window_set_bookmark_buttons (window);
 
-    children = gtk_container_get_children (GTK_CONTAINER (priv->bookmark_list));
-    for (cur = children ; cur != NULL; cur = cur->next) {
-        gtk_container_remove (GTK_CONTAINER (priv->bookmark_list),
-                              GTK_WIDGET (cur->data));
-    }
-    g_list_free (children);
+    gtk_list_box_remove_all (GTK_LIST_BOX (priv->bookmark_list));
 
     value = yelp_application_get_bookmarks (priv->application, doc_uri);
     g_variant_get (value, "a(sss)", &iter);
@@ -806,22 +770,20 @@ window_set_bookmarks (YelpWindow  *window,
         g_object_set_data_full (G_OBJECT (row), "page-id",
                                 g_strdup (entry->page_id), (GDestroyNotify) g_free);
         box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
-        gtk_container_add (GTK_CONTAINER (row), box);
+        gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (row), GTK_WIDGET (box));
         button = gtk_label_new (entry->title);
-        g_object_set (button, "halign", GTK_ALIGN_START, NULL);
-        gtk_box_pack_start (GTK_BOX (box), button, TRUE, TRUE, 0);
-        button = gtk_button_new_from_icon_name ("edit-delete-symbolic", GTK_ICON_SIZE_MENU);
+        g_object_set (button, "halign", GTK_ALIGN_START, "hexpand", TRUE, NULL);
+        gtk_box_append (GTK_BOX (box), button);
+        button = gtk_button_new_from_icon_name ("edit-delete-symbolic");
         g_object_set (button,
-                      "relief", GTK_RELIEF_NONE,
                       "focus-on-click", FALSE,
                       NULL);
         g_object_set_data_full (G_OBJECT (button), "page-id",
                                 g_strdup (entry->page_id), (GDestroyNotify) g_free);
         g_signal_connect (button, "clicked", G_CALLBACK (bookmark_removed), window);
-        gtk_box_pack_end (GTK_BOX (box), button, FALSE, FALSE, 0);
-        gtk_box_pack_end (GTK_BOX (box), gtk_separator_new (GTK_ORIENTATION_VERTICAL), FALSE, FALSE, 0);
-        gtk_widget_show_all (row);
-        gtk_container_add (GTK_CONTAINER (priv->bookmark_list), row);
+        gtk_box_append (GTK_BOX (box), gtk_separator_new (GTK_ORIENTATION_VERTICAL));
+        gtk_box_append (GTK_BOX (box), button);
+        gtk_list_box_append (GTK_LIST_BOX (priv->bookmark_list), row);
         g_free (entry->icon);
         g_free (entry);
     }
@@ -844,8 +806,8 @@ window_set_bookmark_buttons (YelpWindow *window)
                   "page-id", &page_id,
                   NULL);
     if (page_id == NULL || uri == NULL) {
-        gtk_widget_hide (priv->bookmark_add);
-        gtk_widget_hide (priv->bookmark_remove);
+        gtk_widget_set_visible (priv->bookmark_add, FALSE);
+        gtk_widget_set_visible (priv->bookmark_remove, FALSE);
         goto done;
     }
     doc_uri = yelp_uri_get_document_uri (uri);
@@ -874,23 +836,25 @@ window_search_mode (GtkSearchBar  *search_bar,
 }
 
 static gboolean
-find_entry_key_press (GtkEntry    *entry,
-                      GdkEventKey *event,
-                      YelpWindow  *window)
+find_entry_key_press (GtkEventControllerKey *event,
+                      guint                  keyval,
+                      guint                  keycode,
+                      GdkModifierType       *state,
+                      YelpWindow            *window)
 {
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     WebKitFindController *find_controller;
 
     find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (priv->view));
 
-    if (event->keyval == GDK_KEY_Escape) {
+    if (keyval == GDK_KEY_Escape) {
         gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
         gtk_widget_grab_focus (GTK_WIDGET (priv->view));
         webkit_find_controller_search_finish (find_controller);
         return TRUE;
     }
 
-    if (event->keyval == GDK_KEY_Return || event->keyval == GDK_KEY_KP_Enter) {
+    if (keyval == GDK_KEY_Return || keyval == GDK_KEY_KP_Enter) {
         webkit_find_controller_search_next (find_controller);
         return TRUE;
     }
@@ -993,19 +957,10 @@ view_is_loading_changed (YelpView   *view,
                          GParamSpec *pspec,
                          YelpWindow *window)
 {
-    GdkWindow *gdkwin;
-
-    gdkwin = gtk_widget_get_window (GTK_WIDGET (window));
-    if (!gdkwin)
-        return;
-
-    if (webkit_web_view_is_loading (WEBKIT_WEB_VIEW (view))) {
-        gdk_window_set_cursor (gdkwin,
-                               gdk_cursor_new_for_display (gdk_window_get_display (gdkwin),
-                                                           GDK_WATCH));
-    } else {
-        gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)), NULL);
-    }
+    if (webkit_web_view_is_loading (WEBKIT_WEB_VIEW (view)))
+        gtk_widget_set_cursor (GTK_WIDGET (window), gdk_cursor_new_from_name("watch", NULL));
+    else
+        gtk_widget_set_cursor (GTK_WIDGET (window), gdk_cursor_new_from_name("default", NULL));
 }
 
 static void
@@ -1044,14 +999,14 @@ view_root_title (YelpView    *view,
     g_object_get (view, "root-title", &root_title, "page-title", &page_title, NULL);
 
     if (page_title)
-        hdy_header_bar_set_title (HDY_HEADER_BAR (priv->header), page_title);
+        adw_window_title_set_title (ADW_WINDOW_TITLE (priv->header_title), page_title);
     else
-        hdy_header_bar_set_title (HDY_HEADER_BAR (priv->header), _("Help"));
+        adw_window_title_set_title (ADW_WINDOW_TITLE (priv->header_title), _("Help"));
 
     if (root_title && (page_title == NULL || strcmp (root_title, page_title)))
-        hdy_header_bar_set_subtitle (HDY_HEADER_BAR (priv->header), root_title);
+        adw_window_title_set_subtitle (ADW_WINDOW_TITLE (priv->header_title), root_title);
     else
-        hdy_header_bar_set_subtitle (HDY_HEADER_BAR (priv->header), NULL);
+        adw_window_title_set_subtitle (ADW_WINDOW_TITLE (priv->header_title), NULL);
 }
 
 static void
@@ -1059,23 +1014,25 @@ ctrll_entry_activate (GtkEntry    *entry,
                       YelpWindow  *window)
 {
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
-    YelpUri *uri = yelp_uri_new (gtk_entry_get_text (entry));
+    YelpUri *uri = yelp_uri_new (gtk_editable_get_text (GTK_EDITABLE (entry)));
 
     yelp_window_load_uri (window, uri);
     g_object_unref (uri);
 
-    hdy_header_bar_set_custom_title (HDY_HEADER_BAR (priv->header), NULL);
+    adw_header_bar_set_title_widget (ADW_HEADER_BAR (priv->header), priv->header_title);
 }
 
 static gboolean
-ctrll_entry_key_press (GtkWidget    *widget,
-                       GdkEventKey  *event,
-                       YelpWindow   *window)
+ctrll_entry_key_press (GtkEventControllerKey *event,
+                       guint                  keyval,
+                       guint                  keycode,
+                       GdkModifierType       *state,
+                       YelpWindow            *window)
 {
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
-    if (event->keyval == GDK_KEY_Escape) {
-        hdy_header_bar_set_custom_title (HDY_HEADER_BAR (priv->header), NULL);
+    if (keyval == GDK_KEY_Escape) {
+        adw_header_bar_set_title_widget (ADW_HEADER_BAR (priv->header), priv->header_title);
         return TRUE;
     }
     return FALSE;

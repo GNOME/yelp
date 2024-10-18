@@ -123,7 +123,7 @@ static GHashTable *completions;
 
 static guint search_entry_signals[LAST_SIGNAL] = {0,};
 
-G_DEFINE_TYPE_WITH_PRIVATE (YelpSearchEntry, yelp_search_entry, GTK_TYPE_SEARCH_ENTRY)
+G_DEFINE_TYPE_WITH_PRIVATE (YelpSearchEntry, yelp_search_entry, GTK_TYPE_ENTRY)
 
 static void
 yelp_search_entry_class_init (YelpSearchEntryClass *klass)
@@ -296,7 +296,7 @@ search_entry_search_activated  (YelpSearchEntry *entry)
     if (base == NULL)
         return;
     uri = yelp_uri_new_search (base,
-                               gtk_entry_get_text (GTK_ENTRY (entry)));
+                               gtk_editable_get_text (GTK_EDITABLE (entry)));
     g_object_unref (base);
     yelp_view_load_uri (priv->view, uri);
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
@@ -385,7 +385,7 @@ static void
 entry_activate_cb (GtkEntry  *text_entry,
                    gpointer   user_data)
 {
-    gchar *text = g_strdup (gtk_entry_get_text (text_entry));
+    gchar *text = g_strdup (gtk_editable_get_text (GTK_EDITABLE (text_entry)));
 
     if (text == NULL || strlen(text) == 0)
         return;
@@ -433,7 +433,7 @@ cell_set_completion_text_cell (GtkCellLayout     *layout,
     gtk_tree_model_get (model, iter, COMPLETION_COL_FLAGS, &flags, -1);
     if (flags & COMPLETION_FLAG_ACTIVATE_SEARCH) {
         title = g_strdup_printf (_("Search for “%s”"),
-                                 gtk_entry_get_text (GTK_ENTRY (entry)));
+                                 gtk_editable_get_text (GTK_EDITABLE (entry)));
         g_object_set (cell, "text", title, NULL);
         g_free (title);
         return;

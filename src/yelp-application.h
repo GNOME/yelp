@@ -21,6 +21,7 @@
 #ifndef __YELP_APPLICATION_H__
 #define __YELP_APPLICATION_H__
 
+#include <adwaita.h>
 #include <glib-object.h>
 
 #include "yelp-uri.h"
@@ -37,12 +38,12 @@ typedef struct _YelpApplicationClass  YelpApplicationClass;
 
 struct _YelpApplication
 {
-    GtkApplication       parent;
+    AdwApplication       parent;
 };
 
 struct _YelpApplicationClass
 {
-    GtkApplicationClass  parent_class;
+    AdwApplicationClass  parent_class;
 };
 
 GType             yelp_application_get_type       (void);

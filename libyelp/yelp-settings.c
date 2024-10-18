@@ -24,6 +24,7 @@
 
 #include <stdarg.h>
 
+#include <adwaita.h>
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 
@@ -490,9 +491,9 @@ yelp_settings_get_default (void)
     static YelpSettings *settings = NULL;
     g_mutex_lock (&mutex);
     if (settings == NULL)
-	settings = g_object_new (YELP_TYPE_SETTINGS,
-				 "gtk-settings", gtk_settings_get_default (),
-				 NULL);
+        settings = g_object_new (YELP_TYPE_SETTINGS,
+                                 "gtk-settings", gtk_settings_get_default (),
+                                 NULL);
     g_mutex_unlock (&mutex);
     return settings;
 }
@@ -801,26 +802,24 @@ gtk_theme_changed (GtkSettings  *gtk_settings,
 		   GParamSpec   *pspec,
 		   YelpSettings *settings)
 {
-    GtkStyleContext *context;
-    GdkRGBA base, text;
+    AdwStyleManager *style_manager = adw_style_manager_get_default();
+    if (!style_manager)
+        return;
+
+    /* This used to get the colors from the current theme. As of GTK 4.16 and
+     * libadwaita 1.6, this is deprecated, and there's no easy way to get the
+     * style context since we have no easy way to get the display here.
+     * Thus, we hardcode the libadwaita colors here instead. */
 
     g_mutex_lock (&settings->priv->mutex);
 
-    context = gtk_style_context_new ();
-
-    if ( gtk_style_context_lookup_color(context, "theme_base_color", &base) &&
-         gtk_style_context_lookup_color(context, "theme_text_color", &text) ) {
-        g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_BASE], 8, "#%02X%02X%02X",
-                    (guint) (base.red * 255), (guint) (base.green * 255), (guint) (base.blue * 255));
-        g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_TEXT], 8, "#%02X%02X%02X",
-                    (guint) (text.red * 255), (guint) (text.green * 255), (guint) (text.blue * 255));
-    }
-    else {
+    if (adw_style_manager_get_dark (style_manager)) {
+        g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_BASE], 8, "#1E1E1E");
+        g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_TEXT], 8, "#FFFFFF");
+    } else {
         g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_BASE], 8, "#FFFFFF");
         g_snprintf (settings->priv->colors[YELP_SETTINGS_COLOR_TEXT], 8, "#000000");
     }
-
-    g_object_unref (context);
 
     g_mutex_unlock (&settings->priv->mutex);
 

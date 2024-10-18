@@ -3,6 +3,7 @@ libyelp_deps = [
   gio_dep,
   gio_unix_dep,
   gtk_dep,
+  libadwaita_dep,
   libxml_dep,
   libxslt_dep,
   libexslt_dep,
@@ -98,8 +99,9 @@ libyelp_dep = declare_dependency(link_with: libyelp,
                                  dependencies: [
                                    gio_dep,
                                    gtk_dep,
+                                   libadwaita_dep,
                                    webkitgtk_dep,
                                  ],
 )
 
-subdir('web-extension')
+subdir('web-process-extension')
