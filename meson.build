@@ -56,6 +56,7 @@ lzma_dep = dependency('liblzma',
 
 glib_compile_schemas = find_program('glib-compile-schemas', required: false)
 desktop_file_validate = find_program('desktop-file-validate', required: false)
+appstreamcli = find_program('appstreamcli', required: false)
 
 if lzma_dep.found()
   yelp_conf.set('ENABLE_LZMA', true)
