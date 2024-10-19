@@ -4,14 +4,18 @@ subdir('domains')
 subdir('dtd')
 subdir('xslt')
 
-# we build it by default, but ignore the result - this is to ensure
-# that schema file is valid
-gnome.compile_schemas(build_by_default: true,
-                      depend_files: 'org.gnome.yelp.gschema.xml',
-)
-
 install_data('org.gnome.yelp.gschema.xml',
              install_dir : join_paths(datadir, 'glib-2.0', 'schemas'))
+
+# Validate GSchema
+if glib_compile_schemas.found()
+  test(
+    'validate-gschema', glib_compile_schemas,
+    args: [
+      '--strict', '--dry-run', meson.current_build_dir()
+    ],
+  )
+endif
 
 install_subdir('dtd',
                install_dir: yelp_datadir,

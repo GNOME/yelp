@@ -53,6 +53,9 @@ yelp_xsl_dep = dependency('yelp-xsl', version: '>= 42.3')
 lzma_dep = dependency('liblzma',
                       version: '>= 4.9',
                       required: get_option('lzma'))
+
+glib_compile_schemas = find_program('glib-compile-schemas', required: false)
+
 if lzma_dep.found()
   yelp_conf.set('ENABLE_LZMA', true)
 endif
