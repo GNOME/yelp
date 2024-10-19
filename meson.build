@@ -138,3 +138,9 @@ subdir('libyelp')
 subdir('src')
 subdir('data')
 subdir('po')
+
+gnome.post_install(
+  gtk_update_icon_cache: true,
+  glib_compile_schemas: true,
+  update_desktop_database: true,
+)
