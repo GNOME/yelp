@@ -43,6 +43,7 @@ struct _YelpSettingsPrivate {
 
     gulong        gtk_theme_changed;
     gulong        gtk_font_changed;
+    gulong        adw_theme_changed;
 
     gboolean      show_text_cursor;
 
@@ -81,9 +82,9 @@ static void           yelp_settings_set_property (GObject              *object,
 static void           yelp_settings_set_if_token (YelpSettings         *settings,
                                                   const gchar          *token);
 
-static void           gtk_theme_changed          (GtkSettings          *gtk_settings,
-						  GParamSpec           *pspec,
-					          YelpSettings         *settings);
+static void           gtk_theme_changed          (GObject              *src,
+                                                  GParamSpec           *pspec,
+                                                  YelpSettings         *settings);
 static void           gtk_font_changed           (GtkSettings          *gtk_settings,
 						  GParamSpec           *pspec,
 					          YelpSettings         *settings);
@@ -435,37 +436,48 @@ yelp_settings_set_property (GObject      *object,
 			    GParamSpec   *pspec)
 {
     YelpSettings *settings = YELP_SETTINGS (object);
+    AdwStyleManager *style_manager = adw_style_manager_get_default();
 
     switch (prop_id) {
     case PROP_GTK_SETTINGS:
-	if (settings->priv->gtk_settings) {
-	    g_signal_handler_disconnect (settings->priv->gtk_settings,
-					 settings->priv->gtk_theme_changed);
-	    g_signal_handler_disconnect (settings->priv->gtk_settings,
-					 settings->priv->gtk_font_changed);
-	    g_object_unref (settings->priv->gtk_settings);
-	}
-	settings->priv->gtk_settings = g_value_get_object (value);
-	if (settings->priv->gtk_settings != NULL) {
-	    g_object_ref (settings->priv->gtk_settings);
-	    settings->priv->gtk_theme_changed =
-		g_signal_connect (settings->priv->gtk_settings,
-				  "notify::gtk-theme-name",
-				  (GCallback) gtk_theme_changed,
-				  settings);
-	    settings->priv->gtk_font_changed =
-		g_signal_connect (settings->priv->gtk_settings,
-				  "notify::gtk-font-name",
-				  (GCallback) gtk_font_changed,
-				  settings);
-	    gtk_theme_changed (settings->priv->gtk_settings, NULL, settings);
-	    gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
-	}
-	else {
-	    settings->priv->gtk_theme_changed = 0;
-	    settings->priv->gtk_font_changed = 0;
-	}
-	break;
+        if (settings->priv->gtk_settings) {
+            g_signal_handler_disconnect (settings->priv->gtk_settings,
+                                         settings->priv->gtk_theme_changed);
+            g_signal_handler_disconnect (settings->priv->gtk_settings,
+                                         settings->priv->gtk_font_changed);
+            g_object_unref (settings->priv->gtk_settings);
+
+            if (style_manager != NULL && settings->priv->adw_theme_changed)
+                g_signal_handler_disconnect (style_manager,
+                                             settings->priv->adw_theme_changed);
+        }
+        settings->priv->gtk_settings = g_value_get_object (value);
+        if (settings->priv->gtk_settings != NULL) {
+            g_object_ref (settings->priv->gtk_settings);
+            settings->priv->gtk_theme_changed =
+                g_signal_connect (settings->priv->gtk_settings,
+                                  "notify::gtk-theme-name",
+                                  (GCallback) gtk_theme_changed,
+                                  settings);
+            settings->priv->gtk_font_changed =
+                g_signal_connect (settings->priv->gtk_settings,
+                                  "notify::gtk-font-name",
+                                  (GCallback) gtk_font_changed,
+                                  settings);
+            gtk_theme_changed ((GObject *) settings->priv->gtk_settings, NULL, settings);
+            gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
+        } else {
+            settings->priv->gtk_theme_changed = 0;
+            settings->priv->gtk_font_changed = 0;
+        }
+        if (style_manager != NULL) {
+            settings->priv->adw_theme_changed =
+                g_signal_connect (style_manager,
+                                  "notify::dark",
+                                  (GCallback) gtk_theme_changed,
+                                  settings);
+        }
+        break;
     case PROP_FONT_ADJUSTMENT:
         settings->priv->font_adjustment = g_value_get_int (value);
         gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
@@ -798,9 +810,9 @@ yelp_settings_get_all_params (YelpSettings *settings,
 /******************************************************************************/
 
 static void
-gtk_theme_changed (GtkSettings  *gtk_settings,
-		   GParamSpec   *pspec,
-		   YelpSettings *settings)
+gtk_theme_changed (GObject      *src,
+                   GParamSpec   *pspec,
+                   YelpSettings *settings)
 {
     AdwStyleManager *style_manager = adw_style_manager_get_default();
     if (!style_manager)
