@@ -166,6 +166,7 @@ struct _YelpWindowPrivate {
     GtkWidget *header;
     GtkWidget *header_title;
     GtkWidget *search_bar;
+    GtkWidget *search_entry_clamp;
     GtkWidget *search_entry;
     GtkWidget *find_bar;
     GtkWidget *find_entry;
@@ -240,6 +241,7 @@ yelp_window_class_init (YelpWindowClass *klass)
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, header);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, header_title);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, search_bar);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, search_entry_clamp);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_bar);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_entry);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_prev_button);
@@ -359,8 +361,9 @@ window_construct (YelpWindow *window)
 
     priv->search_entry = yelp_search_entry_new (priv->view,
                                                 YELP_BOOKMARKS (priv->application));
-    gtk_editable_set_width_chars (GTK_EDITABLE (priv->search_entry), 50);
-    gtk_search_bar_set_child (GTK_SEARCH_BAR (priv->search_bar), priv->search_entry);
+    g_object_set (priv->search_entry, "hexpand", TRUE, NULL);
+    adw_clamp_set_child (ADW_CLAMP (priv->search_entry_clamp), priv->search_entry);
+    gtk_search_bar_connect_entry (GTK_SEARCH_BAR (priv->search_bar), priv->search_entry);
     gtk_search_bar_set_key_capture_widget (GTK_SEARCH_BAR (priv->search_bar), priv->search_entry);
 
     g_signal_connect (priv->search_bar, "notify::search-mode-enabled",

@@ -68,6 +68,11 @@
         <child type="top">
           <object class="GtkSearchBar" id="search_bar">
             <property name="search-mode-enabled" bind-source="search_button" bind-property="active" bind-flags="bidirectional"/>
+            <child>
+              <object class="AdwClamp" id="search_entry_clamp">
+                <property name="maximum-size">425</property>
+              </object>
+            </child>
           </object>
         </child>
 
