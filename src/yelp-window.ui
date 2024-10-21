@@ -176,6 +176,9 @@
   </menu>
 
   <object class="GtkPopover" id="bookmark_menu">
+    <style>
+      <class name="menu"/>
+    </style>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
@@ -190,12 +193,6 @@
             <child>
               <object class="GtkListBox" id="bookmark_list">
                 <property name="selection-mode">none</property>
-
-                <child type="placeholder">
-                  <object class="GtkLabel">
-                    <property name="label" translatable="yes">No bookmarks</property>
-                  </object>
-                </child>
               </object>
             </child>
           </object>
@@ -203,12 +200,20 @@
 
         <child>
           <object class="GtkButton" id="bookmark_add">
+            <property name="margin-start">6</property>
+            <property name="margin-end">6</property>
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
             <property name="label" translatable="yes">Add Bookmark</property>
           </object>
         </child>
 
         <child>
           <object class="GtkButton" id="bookmark_remove">
+            <property name="margin-start">6</property>
+            <property name="margin-end">6</property>
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
             <property name="label" translatable="yes">Remove Bookmark</property>
           </object>
         </child>

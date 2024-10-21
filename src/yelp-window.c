@@ -780,13 +780,13 @@ window_set_bookmarks (YelpWindow  *window,
         g_object_set (button, "halign", GTK_ALIGN_START, "hexpand", TRUE, NULL);
         gtk_box_append (GTK_BOX (box), button);
         button = gtk_button_new_from_icon_name ("edit-delete-symbolic");
+        gtk_widget_add_css_class (button, "flat");
         g_object_set (button,
                       "focus-on-click", FALSE,
                       NULL);
         g_object_set_data_full (G_OBJECT (button), "page-id",
                                 g_strdup (entry->page_id), (GDestroyNotify) g_free);
         g_signal_connect (button, "clicked", G_CALLBACK (bookmark_removed), window);
-        gtk_box_append (GTK_BOX (box), gtk_separator_new (GTK_ORIENTATION_VERTICAL));
         gtk_box_append (GTK_BOX (box), button);
         gtk_list_box_append (GTK_LIST_BOX (priv->bookmark_list), row);
         g_free (entry->icon);
