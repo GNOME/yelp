@@ -412,6 +412,8 @@ window_construct (YelpWindow *window)
 
     /** Click/keyboard handlers **/
     priv->gesture_click = gtk_gesture_click_new();
+    gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (priv->gesture_click), GTK_PHASE_CAPTURE);
+    gtk_gesture_single_set_button (GTK_GESTURE_SINGLE (priv->gesture_click), 0);
     g_signal_connect (priv->gesture_click, "pressed", G_CALLBACK (window_button_press), window);
     gtk_widget_add_controller (GTK_WIDGET (window), GTK_EVENT_CONTROLLER (priv->gesture_click));
 
