@@ -55,6 +55,7 @@ lzma_dep = dependency('liblzma',
                       required: get_option('lzma'))
 
 glib_compile_schemas = find_program('glib-compile-schemas', required: false)
+desktop_file_validate = find_program('desktop-file-validate', required: false)
 
 if lzma_dep.found()
   yelp_conf.set('ENABLE_LZMA', true)
@@ -130,12 +131,25 @@ libyelpinc = include_directories('libyelp')
 gnome = import('gnome')
 i18n = import('i18n')
 
-i18n.merge_file(input: 'yelp.desktop.in',
-                output: 'yelp.desktop',
-                install: true,
-                install_dir: join_paths(datadir, 'applications'),
-                po_dir: join_paths(meson.project_source_root(), 'po'),
-                type: 'desktop')
+desktop_file = i18n.merge_file(
+  input: 'yelp.desktop.in',
+  output: 'yelp.desktop',
+  install: true,
+  install_dir: join_paths(datadir, 'applications'),
+  po_dir: join_paths(meson.project_source_root(), 'po'),
+  type: 'desktop')
+
+# Validate Desktop file
+if desktop_file_validate.found()
+  test(
+    'validate-desktop',
+    desktop_file_validate,
+    args: [
+      desktop_file.full_path()
+    ],
+    depends: desktop_file,
+  )
+endif
 
 subdir('libyelp')
 subdir('src')
