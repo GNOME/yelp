@@ -36,6 +36,7 @@
 #include "yelp-view.h"
 
 #include "yelp-application.h"
+#include "yelp-config.h"
 #include "yelp-window.h"
 
 static void          yelp_window_dispose          (GObject            *object);
@@ -141,6 +142,8 @@ static gboolean      ctrll_entry_key_press        (GtkEventControllerKey *event,
                                                    guint                  keycode,
                                                    GdkModifierType       *state,
                                                    YelpWindow            *window);
+
+static void          present_about_dialog         (YelpWindow *window);
 
 enum {
     PROP_0,
@@ -253,6 +256,9 @@ yelp_window_class_init (YelpWindowClass *klass)
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_add);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_remove);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, view);
+
+    gtk_widget_class_install_action (widget_class, "win.yelp-show-about-dialog", NULL,
+                                     (GtkWidgetActionActivateFunc) present_about_dialog);
 }
 
 static void
@@ -1041,4 +1047,31 @@ ctrll_entry_key_press (GtkEventControllerKey *event,
         return TRUE;
     }
     return FALSE;
+}
+
+static void
+present_about_dialog (YelpWindow *window)
+{
+    static const gchar *developers[] = {
+      "Shaun McCance <shaunm@gnome.org>",
+      "Mikael Hallendal <micke@imendio.com>",
+      "Alexander Larsson <alexl@redhat.com>",
+      "Brent Smith <gnome@nextreality.net>",
+      "Don Scorgie <Don@Scorgie.org>",
+      "David King <amigadave@amigadave.com>",
+      NULL
+    };
+
+    adw_show_about_dialog (GTK_WIDGET (window),
+                           "application-name", _("Help"),
+                           "application-icon", "org.gnome.Yelp",
+                           "website", "https://apps.gnome.org/Yelp",
+                           "issue-url", "https://gitlab.gnome.org/GNOME/yelp/issues",
+                           "license-type", GTK_LICENSE_GPL_2_0,
+                           "developer-name", _("The GNOME Project"),
+                           "developers", developers,
+                           "version", PACKAGE_VERSION,
+                           /* TRANSLATORS Credit yourself here. Appears in about dialog. */
+                           "translator-credits", _("translator-credits"),
+                           NULL);
 }

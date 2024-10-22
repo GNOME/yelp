@@ -175,6 +175,12 @@
         <attribute name="action">win.yelp-window-go-all</attribute>
       </item>
     </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">About Help</attribute>
+        <attribute name="action">win.yelp-show-about-dialog</attribute>
+      </item>
+    </section>
   </menu>
 
   <object class="GtkPopover" id="bookmark_menu">

@@ -1,8 +1,23 @@
+conf = configuration_data()
+conf.set_quoted('PACKAGE_VERSION', meson.project_version())
+
+config_h_in = configure_file(
+  output: 'yelp-config.h.in',
+  configuration: conf,
+)
+config_h = vcs_tag(
+  input: config_h_in,
+  output: 'yelp-config.h',
+  command: ['git', 'rev-parse', '--short', 'HEAD'],
+  fallback: 'Devel'
+)
+
 yelp_sources = files(
   'yelp-application.c',
   'yelp-window.c',
   'yelp.c',
 )
+yelp_sources += config_h
 
 yelp_sources += gnome.compile_resources('yelp-resources',
   'yelp.gresource.xml',
