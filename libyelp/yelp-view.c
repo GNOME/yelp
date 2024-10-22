@@ -1235,7 +1235,7 @@ popup_save_image (GSimpleAction  *action,
     gtk_file_dialog_set_initial_name (dialog, basename);
     g_free (basename);
 
-    save_folder = g_get_user_special_dir (G_USER_DIRECTORY_DESKTOP);
+    save_folder = g_get_user_special_dir (G_USER_DIRECTORY_PICTURES);
     if (save_folder)
         gtk_file_dialog_set_initial_folder (dialog, g_file_new_for_path (save_folder));
 
