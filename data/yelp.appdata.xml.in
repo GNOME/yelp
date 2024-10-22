@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
+<component type="desktop-application">
   <releases>
     <release version="41.1" date="2021-09-25">
       <description>
@@ -19,7 +19,7 @@
     </release>
     <release version="40" date="2020-03-20"/>
   </releases>
-  <id>yelp.desktop</id>
+  <id>org.gnome.Yelp</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Help</name>
@@ -39,14 +39,37 @@
     </p>
   </description>
   <screenshots>
-    <screenshot type="default">https://gitlab.gnome.org/GNOME/yelp/raw/HEAD/data/screenshot.png</screenshot>
+    <screenshot type="default">
+      <caption>Main window</caption>
+      <image>https://gitlab.gnome.org/GNOME/yelp/raw/HEAD/data/screenshot.png</image>
+    </screenshot>
   </screenshots>
+  <branding>
+    <color type="primary" scheme_preference="light">#ff7768</color>
+    <color type="primary" scheme_preference="dark">#c93121</color>
+  </branding>
   <content_rating type="oars-1.1" />
-  <url type="homepage">https://wiki.gnome.org/Apps/Yelp</url>
+  <url type="homepage">https://apps.gnome.org/Yelp</url>
+  <url type="vcs-browser">https://gitlab.gnome.org/GNOME/yelp</url>
   <url type="bugtracker">https://gitlab.gnome.org/GNOME/yelp/issues</url>
-  <updatecontact>gnome-doc-devel-list@gnome.org</updatecontact>
+  <url type="donation">https://www.gnome.org/donate</url>
+  <url type="contribute">https://welcome.gnome.org/app/Yelp</url>
+  <url type="translate">https://l10n.gnome.org/module/yelp</url>
+  <url type="contact">https://matrix.to/#/#gnome:gnome.org</url>
   <project_group>GNOME</project_group>
   <compulsory_for_desktop>GNOME</compulsory_for_desktop>
   <translation type="gettext">yelp</translation>
-  <developer_name>The GNOME Project</developer_name>
+  <developer id="org.gnome">
+    <name>The GNOME Project</name>
+  </developer>
+  <requires>
+    <display_length compare="ge">490</display_length>
+    <internet>offline-only</internet>
+  </requires>
+  <supports>
+    <control>keyboard</control>
+    <control>pointing</control>
+    <control>touch</control>
+  </supports>
+  <launchable type="desktop-id">yelp.desktop</launchable>
 </component>
