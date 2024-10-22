@@ -963,7 +963,7 @@ view_is_loading_changed (YelpView   *view,
                          YelpWindow *window)
 {
     if (webkit_web_view_is_loading (WEBKIT_WEB_VIEW (view)))
-        gtk_widget_set_cursor_from_name (GTK_WIDGET (window), "watch");
+        gtk_widget_set_cursor_from_name (GTK_WIDGET (window), "progress");
     else
         gtk_widget_set_cursor_from_name (GTK_WIDGET (window), "default");
 }
