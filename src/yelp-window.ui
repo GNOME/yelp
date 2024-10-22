@@ -91,9 +91,7 @@
 
                     <child>
                       <object class="GtkBox">
-                        <style>
-                          <class name="linked"/>
-                        </style>
+                        <property name="spacing">6</property>
 
                         <child>
                           <object class="GtkSearchEntry" id="find_entry"/>
@@ -104,6 +102,9 @@
                             <property name="icon-name">go-up-symbolic</property>
                             <property name="tooltip-text" translatable="yes">Previous</property>
                             <property name="valign">center</property>
+                            <style>
+                              <class name="flat"/>
+                            </style>
                           </object>
                         </child>
 
@@ -112,6 +113,9 @@
                             <property name="icon-name">go-down-symbolic</property>
                             <property name="tooltip-text" translatable="yes">Next</property>
                             <property name="valign">center</property>
+                            <style>
+                              <class name="flat"/>
+                            </style>
                           </object>
                         </child>
                       </object>
