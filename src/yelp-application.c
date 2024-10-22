@@ -79,7 +79,7 @@ static int           yelp_application_command_line     (GApplication          *a
                                                         GApplicationCommandLine *cmdline);
 static void          application_uri_resolved          (YelpUri               *uri,
                                                         YelpApplicationLoad   *data);
-static gboolean      application_window_deleted        (YelpWindow            *window,
+static gboolean      application_window_closed        (YelpWindow            *window,
                                                         GdkEvent              *event,
                                                         YelpApplication       *app);
 GSettings *          application_get_doc_settings      (YelpApplication       *app,
@@ -268,9 +268,6 @@ yelp_application_startup (GApplication *application)
 
     /* chain up */
     G_APPLICATION_CLASS (yelp_application_parent_class)->startup (application);
-
-    adw_style_manager_set_color_scheme (adw_style_manager_get_default (),
-                                        ADW_COLOR_SCHEME_PREFER_LIGHT);
 
     settings = yelp_settings_get_default ();
     if (editor_mode)
@@ -502,8 +499,8 @@ application_uri_resolved (YelpUri             *uri,
         g_signal_connect (window, "notify::default-width", G_CALLBACK (window_resized), data->app);
         g_signal_connect (window, "notify::default-height", G_CALLBACK (window_resized), data->app);
 
-        //g_signal_connect (window, "unrealize",
-        //				  G_CALLBACK (application_window_deleted), data->app);
+        //g_signal_connect (window, "close-request",
+        //				  G_CALLBACK (application_window_closed), data->app);
         gtk_window_set_application (GTK_WINDOW (window),
                                     GTK_APPLICATION (data->app));
     }
@@ -520,9 +517,9 @@ application_uri_resolved (YelpUri             *uri,
 }
 
 static gboolean
-application_window_deleted (YelpWindow      *window,
-                            GdkEvent        *event,
-                            YelpApplication *app)
+application_window_closed (YelpWindow      *window,
+                           GdkEvent        *event,
+                           YelpApplication *app)
 {
     gchar *doc_uri; /* owned by windows_by_document */
     YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
@@ -737,7 +734,6 @@ window_resized (YelpWindow        *window,
                 GParamSpec        *pspec,
                 YelpApplication   *app)
 {
-    YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
     YelpUri *uri;
     gchar *doc_uri;
     GSettings *settings;
@@ -750,7 +746,7 @@ window_resized (YelpWindow        *window,
         g_object_unref (uri);
         return FALSE;
     }
-    settings = application_get_doc_settings(app, doc_uri);
+    settings = application_get_doc_settings (app, doc_uri);
 
     if (settings) {
         gint width, height;

@@ -422,7 +422,6 @@ help_list_think (YelpHelpList *list)
         else {
             tmp = g_strconcat (entryid, ".desktop", NULL);
         }
-
         app = g_desktop_app_info_new (tmp);
         g_free (tmp);
 
@@ -444,14 +443,12 @@ help_list_think (YelpHelpList *list)
                                                                               48, 1,
                                                                               GTK_TEXT_DIR_NONE,
                                                                               0);
-                if (paintable != NULL) {
-                    GFile *iconfile = gtk_icon_paintable_get_file (paintable);
-                    if (iconfile) {
-                        entry->icon = g_file_get_uri (iconfile);
-                        g_object_unref (iconfile);
-                    }
-                    g_object_unref (paintable);
+                GFile *iconfile = gtk_icon_paintable_get_file (paintable);
+                if (iconfile) {
+                    entry->icon = g_file_get_uri (iconfile);
+                    g_object_unref (iconfile);
                 }
+                g_object_unref (paintable);
             }
         }
     }

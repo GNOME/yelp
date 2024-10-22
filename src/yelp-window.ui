@@ -21,7 +21,6 @@
               <object class="GtkButton" id="go_back_button">
                 <property name="icon-name">go-previous-symbolic</property>
                 <property name="tooltip-text" translatable="yes">Back</property>
-                <property name="valign">center</property>
                 <property name="action-name">win.yelp-view-go-back</property>
               </object>
             </child>
@@ -30,18 +29,17 @@
               <object class="GtkButton" id="go_forward_button">
                 <property name="icon-name">go-next-symbolic</property>
                 <property name="tooltip-text" translatable="yes">Forward</property>
-                <property name="valign">center</property>
                 <property name="action-name">win.yelp-view-go-forward</property>
               </object>
             </child>
 
-            <!-- Gear menu -->
+            <!-- Main menu -->
             <child type="end">
               <object class="GtkMenuButton" id="menu_button">
                 <property name="icon-name">open-menu-symbolic</property>
                 <property name="tooltip-text" translatable="yes">Menu</property>
                 <property name="menu-model">primary-menu</property>
-                <property name="valign">center</property>
+                <property name="primary">true</property>
               </object>
             </child>
 
@@ -50,7 +48,6 @@
               <object class="GtkToggleButton" id="search_button">
                 <property name="icon-name">edit-find-symbolic</property>
                 <property name="tooltip-text" translatable="yes">Search (Ctrl+S)</property>
-                <property name="valign">center</property>
               </object>
             </child>
 
@@ -59,7 +56,6 @@
               <object class="GtkMenuButton" id="bookmark_menu_button">
                 <property name="icon-name">user-bookmarks-symbolic</property>
                 <property name="tooltip-text" translatable="yes">Bookmarks</property>
-                <property name="valign">center</property>
                 <property name="popover">bookmark_menu</property>
               </object>
             </child>
@@ -106,6 +102,7 @@
                         <child>
                           <object class="GtkButton" id="find_prev_button">
                             <property name="icon-name">go-up-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Previous</property>
                             <property name="valign">center</property>
                           </object>
                         </child>
@@ -113,6 +110,7 @@
                         <child>
                           <object class="GtkButton" id="find_next_button">
                             <property name="icon-name">go-down-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Next</property>
                             <property name="valign">center</property>
                           </object>
                         </child>

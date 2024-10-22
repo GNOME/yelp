@@ -777,7 +777,7 @@ window_set_bookmarks (YelpWindow  *window,
         box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
         gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (row), GTK_WIDGET (box));
         button = gtk_label_new (entry->title);
-        g_object_set (button, "halign", GTK_ALIGN_START, "hexpand", TRUE, NULL);
+        gtk_widget_set_halign (button, GTK_ALIGN_START);
         gtk_box_append (GTK_BOX (box), button);
         button = gtk_button_new_from_icon_name ("edit-delete-symbolic");
         gtk_widget_add_css_class (button, "flat");
@@ -963,9 +963,9 @@ view_is_loading_changed (YelpView   *view,
                          YelpWindow *window)
 {
     if (webkit_web_view_is_loading (WEBKIT_WEB_VIEW (view)))
-        gtk_widget_set_cursor (GTK_WIDGET (window), gdk_cursor_new_from_name("watch", NULL));
+        gtk_widget_set_cursor_from_name (GTK_WIDGET (window), "watch");
     else
-        gtk_widget_set_cursor (GTK_WIDGET (window), gdk_cursor_new_from_name("default", NULL));
+        gtk_widget_set_cursor_from_name (GTK_WIDGET (window), "default");
 }
 
 static void

@@ -41,9 +41,8 @@ struct _YelpSettingsPrivate {
 
     gint          font_adjustment;
 
-    gulong        gtk_theme_changed;
+    gulong        adw_color_scheme_changed;
     gulong        gtk_font_changed;
-    gulong        adw_theme_changed;
 
     gboolean      show_text_cursor;
 
@@ -82,7 +81,7 @@ static void           yelp_settings_set_property (GObject              *object,
 static void           yelp_settings_set_if_token (YelpSettings         *settings,
                                                   const gchar          *token);
 
-static void           gtk_theme_changed          (GObject              *src,
+static void           adw_color_scheme_changed   (AdwStyleManager      *style_manager,
                                                   GParamSpec           *pspec,
                                                   YelpSettings         *settings);
 static void           gtk_font_changed           (GtkSettings          *gtk_settings,
@@ -158,6 +157,7 @@ yelp_settings_class_init (YelpSettingsClass *klass)
 static void
 yelp_settings_init (YelpSettings *settings)
 {
+    AdwStyleManager *style_manager = adw_style_manager_get_default ();
     gint i;
 
     settings->priv = yelp_settings_get_instance_private (settings);
@@ -170,6 +170,13 @@ yelp_settings_init (YelpSettings *settings)
 
     settings->priv->tokens = g_hash_table_new_full (g_str_hash, g_str_equal,
                                                     g_free, NULL);
+
+    settings->priv->adw_color_scheme_changed = g_signal_connect (style_manager,
+                                                                 "notify::dark",
+                                                                 G_CALLBACK (adw_color_scheme_changed),
+                                                                 settings);
+
+    adw_color_scheme_changed (style_manager, NULL, settings);
 }
 
 static void
@@ -399,6 +406,8 @@ yelp_settings_finalize (GObject *object)
 
     g_hash_table_destroy (settings->priv->tokens);
 
+    g_signal_handler_disconnect (adw_style_manager_get_default (), settings->priv->adw_color_scheme_changed);
+
     G_OBJECT_CLASS (yelp_settings_parent_class)->finalize (object);
 }
 
@@ -436,46 +445,25 @@ yelp_settings_set_property (GObject      *object,
 			    GParamSpec   *pspec)
 {
     YelpSettings *settings = YELP_SETTINGS (object);
-    AdwStyleManager *style_manager = adw_style_manager_get_default();
 
     switch (prop_id) {
     case PROP_GTK_SETTINGS:
         if (settings->priv->gtk_settings) {
             g_signal_handler_disconnect (settings->priv->gtk_settings,
-                                         settings->priv->gtk_theme_changed);
-            g_signal_handler_disconnect (settings->priv->gtk_settings,
                                          settings->priv->gtk_font_changed);
             g_object_unref (settings->priv->gtk_settings);
-
-            if (style_manager != NULL && settings->priv->adw_theme_changed)
-                g_signal_handler_disconnect (style_manager,
-                                             settings->priv->adw_theme_changed);
         }
         settings->priv->gtk_settings = g_value_get_object (value);
         if (settings->priv->gtk_settings != NULL) {
             g_object_ref (settings->priv->gtk_settings);
-            settings->priv->gtk_theme_changed =
-                g_signal_connect (settings->priv->gtk_settings,
-                                  "notify::gtk-theme-name",
-                                  (GCallback) gtk_theme_changed,
-                                  settings);
             settings->priv->gtk_font_changed =
                 g_signal_connect (settings->priv->gtk_settings,
                                   "notify::gtk-font-name",
-                                  (GCallback) gtk_font_changed,
+                                  G_CALLBACK (gtk_font_changed),
                                   settings);
-            gtk_theme_changed ((GObject *) settings->priv->gtk_settings, NULL, settings);
             gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
         } else {
-            settings->priv->gtk_theme_changed = 0;
             settings->priv->gtk_font_changed = 0;
-        }
-        if (style_manager != NULL) {
-            settings->priv->adw_theme_changed =
-                g_signal_connect (style_manager,
-                                  "notify::dark",
-                                  (GCallback) gtk_theme_changed,
-                                  settings);
         }
         break;
     case PROP_FONT_ADJUSTMENT:
@@ -810,18 +798,18 @@ yelp_settings_get_all_params (YelpSettings *settings,
 /******************************************************************************/
 
 static void
-gtk_theme_changed (GObject      *src,
-                   GParamSpec   *pspec,
-                   YelpSettings *settings)
+adw_color_scheme_changed (AdwStyleManager      *style_manager,
+                          GParamSpec   *pspec,
+                          YelpSettings *settings)
 {
-    AdwStyleManager *style_manager = adw_style_manager_get_default();
-    if (!style_manager)
-        return;
-
-    /* This used to get the colors from the current theme. As of GTK 4.16 and
-     * libadwaita 1.6, this is deprecated, and there's no easy way to get the
-     * style context since we have no easy way to get the display here.
-     * Thus, we hardcode the libadwaita colors here instead. */
+    /*
+     * This used to get the colors from the current theme. As of GTK 4.16 and
+     * libadwaita 1.6, this is deprecated. Thus, we hardcode the libadwaita
+     * colors here instead.
+     *
+     * These colors are taken from here:
+     * https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/css-variables.html#view-colors
+     */
 
     g_mutex_lock (&settings->priv->mutex);
 

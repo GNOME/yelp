@@ -963,6 +963,7 @@ view_install_installed (GDBusConnection *connection,
             AdwDialog *dialog = adw_alert_dialog_new (_("Package Install Link Error"), err);
             adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog), "close", _("_Close"));
             adw_alert_dialog_set_close_response (ADW_ALERT_DIALOG (dialog), "close");
+            adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG (dialog), "close");
             adw_dialog_present (dialog, GTK_WIDGET (gtk_widget_get_root (GTK_WIDGET (info->view))));
         }
         g_error_free (error);
@@ -1173,6 +1174,7 @@ file_copied (GFile        *file,
         AdwDialog *dialog = adw_alert_dialog_new (_("Failed to Save Image"), error->message);
         adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog), "close", _("_Close"));
         adw_alert_dialog_set_close_response (ADW_ALERT_DIALOG (dialog), "close");
+        adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG (dialog), "close");
         adw_dialog_present (dialog, gtk_widget_get_visible (GTK_WIDGET (data->window)) ? GTK_WIDGET (data->window) : NULL);
     }
     g_object_unref (data->orig);
@@ -1215,9 +1217,10 @@ popup_save_image (GSimpleAction  *action,
     GtkWindow *window;
     GtkFileDialog *dialog;
     gchar *basename;
+    const gchar *save_folder;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
-    window = GTK_WINDOW (gtk_widget_get_native (GTK_WIDGET (view)));
+    window = GTK_WINDOW (gtk_widget_get_root (GTK_WIDGET (view)));
 
     data = g_new0 (YelpSaveData, 1);
     data->orig = g_file_new_for_uri (priv->popup_image_uri);
@@ -1231,6 +1234,10 @@ popup_save_image (GSimpleAction  *action,
     basename = g_file_get_basename (data->orig);
     gtk_file_dialog_set_initial_name (dialog, basename);
     g_free (basename);
+
+    save_folder = g_get_user_special_dir (G_USER_DIRECTORY_DESKTOP);
+    if (save_folder)
+        gtk_file_dialog_set_initial_folder (dialog, g_file_new_for_path (save_folder));
 
     gtk_file_dialog_save (dialog, window, NULL, (GAsyncReadyCallback) save_image_callback, data);
 }
@@ -1289,7 +1296,7 @@ save_code_callback (GtkFileDialog *dialog,
                     YelpView     *view)
 {
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
-    GtkWidget *window = GTK_WIDGET (gtk_widget_get_native (GTK_WIDGET (view)));
+    GtkWidget *window = GTK_WIDGET (gtk_widget_get_root (GTK_WIDGET (view)));
     GError *error = NULL;
     GFile *file = gtk_file_dialog_save_finish (dialog, res, &error);
     GFileOutputStream *stream = g_file_replace (file, NULL, FALSE,
@@ -1301,7 +1308,8 @@ save_code_callback (GtkFileDialog *dialog,
         AdwDialog *dialog = adw_alert_dialog_new (_("Failed to Save Code"), error->message);
         adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog), "close", _("_Close"));
         adw_alert_dialog_set_close_response (ADW_ALERT_DIALOG (dialog), "close");
-        adw_dialog_present (dialog, gtk_widget_get_visible (window) ? window : NULL);
+        adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG (dialog), "close");
+        adw_dialog_present (dialog, window);
         g_error_free (error);
     } else {
         /* FIXME: we should do this async */
@@ -1310,7 +1318,8 @@ save_code_callback (GtkFileDialog *dialog,
             AdwDialog *dialog = adw_alert_dialog_new (_("Failed to Save Code"), error->message);
             adw_alert_dialog_add_response (ADW_ALERT_DIALOG (dialog), "close", _("_Close"));
             adw_alert_dialog_set_close_response (ADW_ALERT_DIALOG (dialog), "close");
-            adw_dialog_present (dialog, gtk_widget_get_visible (window) ? window : NULL);
+            adw_alert_dialog_set_default_response (ADW_ALERT_DIALOG (dialog), "close");
+            adw_dialog_present (dialog, window);
             g_error_free (error);
         }
         g_object_unref (datastream);
@@ -1327,6 +1336,7 @@ popup_save_code (GSimpleAction  *action,
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
     GtkFileDialog *dialog;
     GtkWindow *window;
+    const gchar *save_folder;
 
     if (!priv->popup_code_text)
         return;
@@ -1337,12 +1347,16 @@ popup_save_code (GSimpleAction  *action,
         priv->popup_code_text = tmp;
     }
 
-    window = GTK_WINDOW (gtk_widget_get_native (GTK_WIDGET (view)));
+    window = GTK_WINDOW (gtk_widget_get_root (GTK_WIDGET (view)));
 
     dialog = gtk_file_dialog_new ();
     gtk_file_dialog_set_title (dialog, _("Save Code"));
     if (priv->popup_code_title)
         gtk_file_dialog_set_initial_name (dialog, priv->popup_code_title);
+
+    save_folder = g_get_user_special_dir (G_USER_DIRECTORY_DOCUMENTS);
+    if (save_folder)
+        gtk_file_dialog_set_initial_folder (dialog, g_file_new_for_path (save_folder));
 
     gtk_file_dialog_save (dialog, window, NULL, (GAsyncReadyCallback) save_code_callback, view);
 }
@@ -1685,7 +1699,7 @@ view_print_action (GAction *action, GVariant *parameter, YelpView *view)
     GtkPrintSettings *settings;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
 
-    window = GTK_WINDOW (gtk_widget_get_native (GTK_WIDGET (view)));
+    window = GTK_WINDOW (gtk_widget_get_root (GTK_WIDGET (view)));
 
     print_operation = webkit_print_operation_new (WEBKIT_WEB_VIEW (view));
 
