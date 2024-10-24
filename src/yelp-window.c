@@ -49,6 +49,7 @@ static void          yelp_window_set_property     (GObject            *object,
                                                    guint               prop_id,
                                                    const GValue       *value,
                                                    GParamSpec         *pspec);
+static gboolean      yelp_window_close_request    (GtkWindow          *window);
 
 static void          window_construct             (YelpWindow         *window);
 
@@ -215,11 +216,13 @@ yelp_window_class_init (YelpWindowClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+    GtkWindowClass *window_class = GTK_WINDOW_CLASS (klass);
 
     object_class->dispose = yelp_window_dispose;
     object_class->finalize = yelp_window_finalize;
     object_class->get_property = yelp_window_get_property;
     object_class->set_property = yelp_window_set_property;
+    window_class->close_request = yelp_window_close_request;
 
     g_object_class_install_property (object_class,
                                      PROP_APPLICATION,
@@ -466,6 +469,15 @@ yelp_window_get_geometry (YelpWindow  *window,
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     *width = priv->width;
     *height = priv->height;
+}
+
+gboolean
+yelp_window_close_request(GtkWindow *window)
+{
+    yelp_application_window_close_request (YELP_APPLICATION (gtk_window_get_application (window)),
+                                           window);
+
+    return GTK_WINDOW_CLASS (yelp_window_parent_class)->close_request (window);
 }
 
 /******************************************************************************/

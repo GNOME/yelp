@@ -79,9 +79,6 @@ static int           yelp_application_command_line     (GApplication          *a
                                                         GApplicationCommandLine *cmdline);
 static void          application_uri_resolved          (YelpUri               *uri,
                                                         YelpApplicationLoad   *data);
-static gboolean      application_window_closed        (YelpWindow            *window,
-                                                        GdkEvent              *event,
-                                                        YelpApplication       *app);
 GSettings *          application_get_doc_settings      (YelpApplication       *app,
                                                         const gchar           *doc_uri);
 static void          application_adjust_font           (GAction               *action,
@@ -499,8 +496,6 @@ application_uri_resolved (YelpUri             *uri,
         g_signal_connect (window, "notify::default-width", G_CALLBACK (window_resized), data->app);
         g_signal_connect (window, "notify::default-height", G_CALLBACK (window_resized), data->app);
 
-        //g_signal_connect (window, "close-request",
-        //				  G_CALLBACK (application_window_closed), data->app);
         gtk_window_set_application (GTK_WINDOW (window),
                                     GTK_APPLICATION (data->app));
     }
@@ -516,20 +511,16 @@ application_uri_resolved (YelpUri             *uri,
     g_free (data);
 }
 
-static gboolean
-application_window_closed (YelpWindow      *window,
-                           GdkEvent        *event,
-                           YelpApplication *app)
+void
+yelp_application_window_close_request (YelpApplication *app, GtkWindow *window)
 {
     gchar *doc_uri; /* owned by windows_by_document */
     YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
 
-    priv->windows = g_slist_remove (priv->windows, window);
+    priv->windows = g_slist_remove (priv->windows, YELP_WINDOW (window));
     doc_uri = g_object_get_data (G_OBJECT (window), "doc_uri");
     if (doc_uri)
         g_hash_table_remove (priv->windows_by_document, doc_uri);
-
-    return TRUE;
 }
 
 GSettings *

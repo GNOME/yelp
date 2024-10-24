@@ -70,5 +70,7 @@ void              yelp_application_update_bookmarks     (YelpApplication   *app,
                                                          const gchar       *title);
 GVariant *        yelp_application_get_bookmarks        (YelpApplication   *app,
                                                          const gchar       *doc_uri);
+void              yelp_application_window_close_request (YelpApplication       *app,
+                                                         GtkWindow             *window);
 
 #endif /* __YELP_APPLICATION_H__ */
