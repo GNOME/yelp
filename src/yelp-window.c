@@ -415,7 +415,7 @@ window_construct (YelpWindow *window)
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
 
     /** Drag-and-drop **/
-    priv->drop_target = gtk_drop_target_new (G_TYPE_URI, GDK_ACTION_COPY);
+    priv->drop_target = gtk_drop_target_new (G_TYPE_STRING, GDK_ACTION_COPY);
     g_signal_connect (priv->drop_target, "drop", G_CALLBACK(window_on_drop), window);
     gtk_widget_add_controller (GTK_WIDGET (window), GTK_EVENT_CONTROLLER (priv->drop_target));
 
@@ -596,10 +596,11 @@ window_on_drop (GtkDropTarget *target,
                 double         y,
                 YelpWindow    *window)
 {
-    if (!G_VALUE_HOLDS (value, G_TYPE_URI) || !g_value_get_object (value))
+    if (!G_VALUE_HOLDS (value, G_TYPE_STRING) || g_str_has_prefix(g_value_get_string (value), "xref:")) {
         return FALSE;
+    }
 
-    YelpUri *uri = yelp_uri_new (g_value_get_object (value));
+    YelpUri *uri = yelp_uri_new (g_value_get_string (value));
     yelp_window_load_uri (window, uri);
     g_object_unref (uri);
 
