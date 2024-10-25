@@ -477,6 +477,7 @@ application_uri_resolved (YelpUri             *uri,
     if (window == NULL) {
         gint width, height;
         GSettings *settings = application_get_doc_settings (data->app, doc_uri);
+        YelpSettings *yelp_settings = yelp_settings_get_default ();
 
         g_settings_get (settings, "geometry", "(ii)", &width, &height);
         window = yelp_window_new (data->app);
@@ -496,6 +497,9 @@ application_uri_resolved (YelpUri             *uri,
 
         gtk_window_set_application (GTK_WINDOW (window),
                                     GTK_APPLICATION (data->app));
+
+        /* We need to set this here, otherwise window font doesn't get initialized correctly */
+        g_object_set_data (G_OBJECT (yelp_settings), "gtk-settings", gtk_settings_get_default ());
     }
     else {
         g_free (doc_uri);

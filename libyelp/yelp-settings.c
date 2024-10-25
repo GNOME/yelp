@@ -491,9 +491,7 @@ yelp_settings_get_default (void)
     static YelpSettings *settings = NULL;
     g_mutex_lock (&mutex);
     if (settings == NULL)
-        settings = g_object_new (YELP_TYPE_SETTINGS,
-                                 "gtk-settings", gtk_settings_get_default (),
-                                 NULL);
+        settings = g_object_new (YELP_TYPE_SETTINGS, NULL);
     g_mutex_unlock (&mutex);
     return settings;
 }
