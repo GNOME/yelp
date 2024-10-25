@@ -62,7 +62,6 @@ static const GOptionEntry entries[] = {
 typedef struct _YelpApplicationLoad YelpApplicationLoad;
 struct _YelpApplicationLoad {
     YelpApplication *app;
-    gint64 timestamp;
     gboolean new;
     gboolean fallback_help_list;
 };
@@ -390,7 +389,6 @@ open_uri (YelpApplication *app,
     YelpApplicationLoad *data;
     data = g_new (YelpApplicationLoad, 1);
     data->app = app;
-    data->timestamp = g_get_real_time();
     data->new = new_window;
     data->fallback_help_list = fallback_help_list;
 
