@@ -28,9 +28,6 @@
 #include <glib-object.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
-#ifdef GDK_WINDOWING_X11
-#include <gdk/x11/gdkx.h>
-#endif
 #include <math.h>
 #include <webkit/webkit.h>
 
@@ -992,12 +989,7 @@ view_install_uri (YelpView    *view,
     gboolean help = FALSE, ghelp = FALSE;
     GVariantBuilder *strv;
     YelpInstallInfo *info;
-    guint32 xid = 0;
     YelpViewPrivate *priv = yelp_view_get_instance_private (view);
-#ifdef GDK_WINDOWING_X11
-    GtkNative *win;
-    GdkSurface *win_surface;
-#endif
     /* do not free */
     const gchar *pkg = NULL, *confirm_search;
 
@@ -1022,13 +1014,6 @@ view_install_uri (YelpView    *view,
 
     info = g_new0 (YelpInstallInfo, 1);
     info->view = g_object_ref (view);
-
-#ifdef GDK_WINDOWING_X11
-    win = gtk_widget_get_native (GTK_WIDGET (view));
-    win_surface = gtk_native_get_surface (win);
-    if (win != NULL && GDK_IS_X11_SURFACE (win_surface))
-        xid = gdk_x11_surface_get_xid (win_surface);
-#endif
 
     if (priv->state == YELP_VIEW_STATE_ERROR)
         confirm_search = "hide-confirm-search";
@@ -1068,9 +1053,9 @@ view_install_uri (YelpView    *view,
         g_dbus_connection_call (connection,
                                 "org.freedesktop.PackageKit",
                                 "/org/freedesktop/PackageKit",
-                                "org.freedesktop.PackageKit.Modify",
+                                "org.freedesktop.PackageKit.Modify2",
                                 "InstallProvideFiles",
-                                g_variant_new ("(uass)", xid, strv, confirm_search),
+                                g_variant_new ("(uass)", strv, confirm_search),
                                 NULL,
                                 G_DBUS_CALL_FLAGS_NONE,
                                 G_MAXINT, NULL,
@@ -1089,9 +1074,9 @@ view_install_uri (YelpView    *view,
         g_dbus_connection_call (connection,
                                 "org.freedesktop.PackageKit",
                                 "/org/freedesktop/PackageKit",
-                                "org.freedesktop.PackageKit.Modify",
+                                "org.freedesktop.PackageKit.Modify2",
                                 "InstallPackageNames",
-                                g_variant_new ("(uass)", xid, strv, confirm_search),
+                                g_variant_new ("(uass)", strv, confirm_search),
                                 NULL,
                                 G_DBUS_CALL_FLAGS_NONE,
                                 G_MAXINT, NULL,
