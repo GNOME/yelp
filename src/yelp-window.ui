@@ -3,6 +3,55 @@
   <requires lib="gtk" version="4.0"/>
   <requires lib="libadwaita" version="1.0"/>
 
+  <menu id="primary-menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">New Window</attribute>
+        <attribute name="action">win.yelp-window-new</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Find…</attribute>
+        <attribute name="action">win.yelp-window-find</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Print…</attribute>
+        <attribute name="action">win.yelp-view-print</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Previous Page</attribute>
+        <attribute name="action">win.yelp-view-go-previous</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Next Page</attribute>
+        <attribute name="action">win.yelp-view-go-next</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Larger Text</attribute>
+        <attribute name="action">app.yelp-application-larger-text</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Smaller Text</attribute>
+        <attribute name="action">app.yelp-application-smaller-text</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">All Help</attribute>
+        <attribute name="action">win.yelp-window-go-all</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">About Help</attribute>
+        <attribute name="action">win.yelp-show-about-dialog</attribute>
+      </item>
+    </section>
+  </menu>
+
   <template class="YelpWindow" parent="AdwApplicationWindow">
     <property name="icon-name">org.gnome.Yelp</property>
 
@@ -133,55 +182,6 @@
       </object>
     </property>
   </template>
-
-  <menu id="primary-menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">New Window</attribute>
-        <attribute name="action">win.yelp-window-new</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Find…</attribute>
-        <attribute name="action">win.yelp-window-find</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Print…</attribute>
-        <attribute name="action">win.yelp-view-print</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Previous Page</attribute>
-        <attribute name="action">win.yelp-view-go-previous</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Next Page</attribute>
-        <attribute name="action">win.yelp-view-go-next</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Larger Text</attribute>
-        <attribute name="action">app.yelp-application-larger-text</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Smaller Text</attribute>
-        <attribute name="action">app.yelp-application-smaller-text</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">All Help</attribute>
-        <attribute name="action">win.yelp-window-go-all</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">About Help</attribute>
-        <attribute name="action">win.yelp-show-about-dialog</attribute>
-      </item>
-    </section>
-  </menu>
 
   <object class="GtkPopover" id="bookmark_menu">
     <style>
