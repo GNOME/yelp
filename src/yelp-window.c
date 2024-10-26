@@ -86,6 +86,8 @@ static void          app_bookmarks_changed        (YelpApplication    *app,
 static void          window_set_bookmarks         (YelpWindow         *window,
                                                    const gchar        *doc_uri);
 static void          window_set_bookmark_buttons  (YelpWindow         *window);
+static void          on_stop_search               (YelpSearchEntry    *search_entry,
+                                                   YelpWindow         *window);
 static void          window_search_mode           (GtkSearchBar       *search_bar,
                                                    GParamSpec         *pspec,
                                                    YelpWindow         *window);
@@ -374,6 +376,9 @@ window_construct (YelpWindow *window)
     adw_clamp_set_child (ADW_CLAMP (priv->search_entry_clamp), priv->search_entry);
     gtk_search_bar_connect_entry (GTK_SEARCH_BAR (priv->search_bar), priv->search_entry);
     gtk_search_bar_set_key_capture_widget (GTK_SEARCH_BAR (priv->search_bar), priv->search_entry);
+
+    g_signal_connect (priv->search_entry, "stop-search",
+                      G_CALLBACK (on_stop_search), window);
 
     g_signal_connect (priv->search_bar, "notify::search-mode-enabled",
                       G_CALLBACK (window_search_mode), window);
@@ -847,6 +852,15 @@ window_set_bookmark_buttons (YelpWindow *window)
     g_free (doc_uri);
     if (uri)
         g_object_unref (uri);
+}
+
+static void
+on_stop_search (YelpSearchEntry  *search_entry,
+                YelpWindow       *window)
+{
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
+
+    gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), FALSE);
 }
 
 static void

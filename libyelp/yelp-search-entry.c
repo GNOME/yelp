@@ -110,6 +110,7 @@ enum {
 
 enum {
     SEARCH_ACTIVATED,
+    STOP_SEARCH,
     LAST_SIGNAL
 };
 
@@ -125,15 +126,26 @@ static guint search_entry_signals[LAST_SIGNAL] = {0,};
 
 G_DEFINE_TYPE_WITH_PRIVATE (YelpSearchEntry, yelp_search_entry, GTK_TYPE_ENTRY)
 
+gboolean
+on_escape (GtkWidget* widget,
+           GVariant* args,
+           gpointer user_data)
+{
+    g_signal_emit (YELP_SEARCH_ENTRY (widget), search_entry_signals[STOP_SEARCH], 0);
+    return TRUE;
+}
+
 static void
 yelp_search_entry_class_init (YelpSearchEntryClass *klass)
 {
     GObjectClass *object_class;
+    GtkWidgetClass *widget_class;
 
     klass->search_activated = search_entry_search_activated;
     klass->bookmark_clicked = search_entry_bookmark_clicked;
 
     object_class = G_OBJECT_CLASS (klass);
+    widget_class = GTK_WIDGET_CLASS (klass);
   
     object_class->constructed = search_entry_constructed;
     object_class->dispose = search_entry_dispose;
@@ -160,6 +172,14 @@ yelp_search_entry_class_init (YelpSearchEntryClass *klass)
                       g_cclosure_marshal_VOID__STRING,
                       G_TYPE_NONE, 1,
                       G_TYPE_STRING);
+
+    search_entry_signals[STOP_SEARCH] =
+        g_signal_new ("stop-search",
+                      G_TYPE_FROM_CLASS (klass),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      g_cclosure_marshal_VOID__VOID,
+                      G_TYPE_NONE, 0);
 
     /**
      * YelpLocationEntry:view
@@ -193,6 +213,11 @@ yelp_search_entry_class_init (YelpSearchEntryClass *klass)
                                                           G_PARAM_STATIC_STRINGS));
 
     completions = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
+
+    gtk_widget_class_add_binding (widget_class,
+                                  GDK_KEY_Escape, 0,
+                                  (GtkShortcutFunc) on_escape,
+                                  NULL);
 }
 
 static void
