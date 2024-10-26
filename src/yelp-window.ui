@@ -30,12 +30,7 @@
     </section>
     <section>
       <item>
-        <attribute name="label" translatable="yes">Larger Text</attribute>
-        <attribute name="action">app.yelp-application-larger-text</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Smaller Text</attribute>
-        <attribute name="action">app.yelp-application-smaller-text</attribute>
+        <attribute name="custom">zoom-controls</attribute>
       </item>
     </section>
     <section>
@@ -87,8 +82,60 @@
               <object class="GtkMenuButton" id="menu_button">
                 <property name="icon-name">open-menu-symbolic</property>
                 <property name="tooltip-text" translatable="yes">Menu</property>
-                <property name="menu-model">primary-menu</property>
                 <property name="primary">true</property>
+                <property name="popover">
+                  <object class="GtkPopoverMenu">
+                    <property name="menu-model">primary-menu</property>
+                    <child type="zoom-controls">
+                      <object class="GtkBox">
+                        <property name="orientation">horizontal</property>
+                        <property name="homogeneous">True</property>
+                        <property name="margin-top">3</property>
+                        <property name="margin-bottom">3</property>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="icon-name">zoom-out-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Shrink Text</property>
+                            <property  name="action-name">app.yelp-application-smaller-text</property>
+                            <property name="halign">center</property>
+                            <style>
+                              <class name="circular" />
+                              <class name="flat" />
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="tooltip-text" translatable="yes">Reset Size</property>
+                            <property name="halign">center</property>
+                            <property  name="action-name">app.yelp-application-reset-text-size</property>
+                            <style>
+                              <class name="flat" />
+                              <class name="numeric" />
+                            </style>
+                            <child>
+                              <object class="GtkLabel" id="font_adjustment_label">
+                                <property name="width_chars">5</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="icon-name">zoom-in-symbolic</property>
+                            <property name="tooltip-text" translatable="yes">Enlarge Text</property>
+                            <property  name="action-name">app.yelp-application-larger-text</property>
+                            <property name="halign">center</property>
+                            <style>
+                              <class name="circular" />
+                              <class name="flat" />
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </property>
               </object>
             </child>
 

@@ -26,6 +26,9 @@
 
 G_BEGIN_DECLS
 
+#define YELP_ZOOM_LEVEL_MIN 0.5
+#define YELP_ZOOM_LEVEL_MAX 4.0
+
 #define YELP_TYPE_SETTINGS         (yelp_settings_get_type ())
 #define YELP_SETTINGS(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), YELP_TYPE_SETTINGS, YelpSettings))
 #define YELP_SETTINGS_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), YELP_TYPE_SETTINGS, YelpSettingsClass))
@@ -79,9 +82,9 @@ gint                yelp_settings_get_font_size        (YelpSettings       *sett
 void                yelp_settings_set_fonts            (YelpSettings       *settings,
                                                         YelpSettingsFont    first_font,
                                                         ...);
-gint                yelp_settings_get_font_adjustment  (YelpSettings       *settings);
-void                yelp_settings_set_font_adjustment  (YelpSettings       *settings,
-                                                        gint                adjustment);
+double              yelp_settings_get_zoom_level       (YelpSettings       *settings);
+void                yelp_settings_set_zoom_level       (YelpSettings       *settings,
+                                                        double              scale);
 gchar **            yelp_settings_get_all_params       (YelpSettings       *settings,
                                                         gint                extra,
                                                         gint               *end);

@@ -31,6 +31,7 @@ yelp = executable('yelp',
                     '-DG_LOG_DOMAIN="Yelp"',
                   ],
                   dependencies: [
+                    m_dep,
                     libyelp_dep,
                     libadwaita_dep,
                   ],

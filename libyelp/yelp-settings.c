@@ -39,7 +39,7 @@ struct _YelpSettingsPrivate {
 
     GtkSettings  *gtk_settings;
 
-    gint          font_adjustment;
+    double        zoom_level;
 
     gulong        adw_color_scheme_changed;
     gulong        gtk_font_changed;
@@ -61,7 +61,7 @@ static guint settings_signals[LAST_SIGNAL] = {0,};
 enum {  
   PROP_0,
   PROP_GTK_SETTINGS,
-  PROP_FONT_ADJUSTMENT,
+  PROP_ZOOM_LEVEL,
   PROP_SHOW_TEXT_CURSOR,
   PROP_EDITOR_MODE
 };
@@ -111,13 +111,13 @@ yelp_settings_class_init (YelpSettingsClass *klass)
 							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
     g_object_class_install_property (object_class,
-                                     PROP_FONT_ADJUSTMENT,
-                                     g_param_spec_int ("font-adjustment",
-                                                       "Font Adjustment",
-                                                       "A size adjustment to add to font sizes",
-                                                       -3, 10, 0,
-                                                       G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_EXPLICIT_NOTIFY |
-                                                       G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+                                     PROP_ZOOM_LEVEL,
+                                     g_param_spec_double ("zoom-level",
+                                                          "Level of zoom",
+                                                          "A level of zoom to apply to font",
+                                                          YELP_ZOOM_LEVEL_MIN, YELP_ZOOM_LEVEL_MAX, 1.0,
+                                                          G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_EXPLICIT_NOTIFY |
+                                                          G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
     g_object_class_install_property (object_class,
                                      PROP_SHOW_TEXT_CURSOR,
@@ -423,8 +423,8 @@ yelp_settings_get_property (GObject    *object,
     case PROP_GTK_SETTINGS:
 	g_value_set_object (value, settings->priv->gtk_settings);
 	break;
-    case PROP_FONT_ADJUSTMENT:
-        g_value_set_int (value, settings->priv->font_adjustment);
+    case PROP_ZOOM_LEVEL:
+        g_value_set_double (value, settings->priv->zoom_level);
         break;
     case PROP_SHOW_TEXT_CURSOR:
         g_value_set_boolean (value, settings->priv->show_text_cursor);
@@ -450,8 +450,8 @@ yelp_settings_set_property (GObject      *object,
     case PROP_GTK_SETTINGS:
         yelp_settings_set_gtk_settings (settings, g_value_get_object (value));
         break;
-    case PROP_FONT_ADJUSTMENT:
-        yelp_settings_set_font_adjustment (settings, g_value_get_int (value));
+    case PROP_ZOOM_LEVEL:
+        yelp_settings_set_zoom_level (settings, g_value_get_double (value));
         break;
     case PROP_SHOW_TEXT_CURSOR:
         settings->priv->show_text_cursor = g_value_get_boolean (value);
@@ -630,7 +630,6 @@ yelp_settings_get_font_size (YelpSettings     *settings,
 
  done:
     g_mutex_unlock (&settings->priv->mutex);
-    ret += settings->priv->font_adjustment;
     ret = (ret < 5) ? 5 : ret;
     return ret;
 }
@@ -661,24 +660,23 @@ yelp_settings_set_fonts (YelpSettings     *settings,
     g_signal_emit (settings, settings_signals[FONTS_CHANGED], 0);
 }
 
-gint
-yelp_settings_get_font_adjustment (YelpSettings *settings)
+double
+yelp_settings_get_zoom_level (YelpSettings *settings)
 {
-    return settings->priv->font_adjustment;
+    return settings->priv->zoom_level;
 }
 
 void
-yelp_settings_set_font_adjustment (YelpSettings *settings,
-                                   gint          adjustment)
+yelp_settings_set_zoom_level (YelpSettings *settings,
+                              double        zoom_level)
 {
-    if (settings->priv->font_adjustment == adjustment)
+    if (fabs (settings->priv->zoom_level - zoom_level) <= DBL_EPSILON)
         return;
 
-    settings->priv->font_adjustment = adjustment;
+    double clamped = CLAMP (zoom_level, YELP_ZOOM_LEVEL_MIN, YELP_ZOOM_LEVEL_MAX);
+    settings->priv->zoom_level = clamped;
 
-    g_object_notify (G_OBJECT (settings), "font-adjustment");
-
-    gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
+    g_object_notify (G_OBJECT (settings), "zoom-level");
 }
 
 /******************************************************************************/

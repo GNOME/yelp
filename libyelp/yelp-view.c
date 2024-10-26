@@ -110,6 +110,9 @@ static void        view_show_error_page              (YelpView           *view,
 
 static void        settings_set_fonts                (YelpSettings       *settings,
                                                       gpointer            user_data);
+static void        settings_set_scale                (YelpSettings       *settings,
+                                                      GParamSpec         *spec,
+                                                      gpointer            user_data);
 static void        settings_show_text_cursor         (YelpSettings       *settings);
 
 static void        uri_resolved                      (YelpUri            *uri,
@@ -337,6 +340,15 @@ yelp_view_constructed (GObject *object)
                                             "fonts-changed",
                                             G_CALLBACK (settings_set_fonts),
                                             view);
+
+    g_signal_connect (settings,
+                      "notify::zoom-level",
+                      G_CALLBACK (settings_set_scale),
+                      view);
+
+    double zoom_level = yelp_settings_get_zoom_level (settings);
+    webkit_web_view_set_zoom_level (WEBKIT_WEB_VIEW (view), zoom_level);
+
     settings_set_fonts (settings, view);
 }
 
@@ -2001,6 +2013,16 @@ view_show_error_page (YelpView *view,
     g_free (content_beg);
     if (content_end != NULL)
         g_free (content_end);
+}
+
+static void
+settings_set_scale (YelpSettings *settings,
+                    GParamSpec   *spec,
+                    gpointer      user_data)
+{
+    YelpView *view = user_data;
+    double zoom_level = yelp_settings_get_zoom_level (settings);
+    webkit_web_view_set_zoom_level (WEBKIT_WEB_VIEW (view), zoom_level);
 }
 
 static void

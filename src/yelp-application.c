@@ -80,9 +80,6 @@ static void          application_uri_resolved          (YelpUri               *u
                                                         YelpApplicationLoad   *data);
 GSettings *          application_get_doc_settings      (YelpApplication       *app,
                                                         const gchar           *doc_uri);
-static void          application_adjust_font           (GAction               *action,
-                                                        GVariant              *parameter,
-                                                        YelpApplication       *app);
 static void          application_set_font_sensitivity  (YelpApplication       *app);
 
 static void          bookmarks_changed                 (GSettings             *settings,
@@ -100,6 +97,7 @@ struct _YelpApplicationPrivate {
     GPropertyAction  *show_cursor_action;
     GSimpleAction    *larger_text_action;
     GSimpleAction    *smaller_text_action;
+    GSimpleAction    *reset_text_size_action;
 
     GSettingsBackend *backend;
     GSettings *gsettings;
@@ -110,6 +108,48 @@ G_DEFINE_TYPE_WITH_CODE (YelpApplication, yelp_application, ADW_TYPE_APPLICATION
                          G_IMPLEMENT_INTERFACE (YELP_TYPE_BOOKMARKS,
                                                 yelp_application_iface_init)
                          G_ADD_PRIVATE (YelpApplication) )
+
+static void
+larger_text_activated (GSimpleAction *action,
+                       GVariant      *parameter,
+                       gpointer       data)
+{
+    YelpApplication *app = data;
+    YelpSettings *settings = yelp_settings_get_default ();
+
+    double zoom_level = yelp_settings_get_zoom_level (settings);
+
+    yelp_settings_set_zoom_level (settings, zoom_level + 0.1);
+
+    application_set_font_sensitivity (app);
+}
+
+static void
+smaller_text_activated (GSimpleAction *action,
+                        GVariant      *parameter,
+                        gpointer       data)
+{
+    YelpApplication *app = data;
+    YelpSettings *settings = yelp_settings_get_default ();
+
+    double zoom_level = yelp_settings_get_zoom_level (settings);
+
+    yelp_settings_set_zoom_level (settings, zoom_level - 0.1);
+
+    application_set_font_sensitivity (app);
+}
+
+static void
+reset_text_size_activated (GSimpleAction *action,
+                           GVariant      *parameter,
+                           gpointer       data)
+{
+    YelpApplication *app = data;
+    YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
+
+    g_settings_set_double (priv->gsettings, "zoom-level", 1.0);
+    application_set_font_sensitivity (app);
+}
 
 static void
 yelp_application_init (YelpApplication *app)
@@ -196,6 +236,11 @@ yelp_application_dispose (GObject *object)
     if (priv->smaller_text_action) {
         g_object_unref (priv->smaller_text_action);
         priv->smaller_text_action = NULL;
+    }
+
+    if (priv->reset_text_size_action) {
+        g_object_unref (priv->reset_text_size_action);
+        priv->reset_text_size_action = NULL;
     }
 
     if (priv->gsettings) {
@@ -289,23 +334,30 @@ yelp_application_startup (GApplication *application)
                                                       settings, "show-text-cursor");
     g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (priv->show_cursor_action));
 
-    g_settings_bind (priv->gsettings, "font-adjustment",
-                     settings, "font-adjustment",
+    g_settings_bind (priv->gsettings, "zoom-level",
+                     settings, "zoom-level",
                      G_SETTINGS_BIND_DEFAULT);
 
     priv->larger_text_action = g_simple_action_new ("yelp-application-larger-text", NULL);
     g_signal_connect (priv->larger_text_action,
                       "activate",
-                      G_CALLBACK (application_adjust_font),
+                      G_CALLBACK (larger_text_activated),
                       app);
     g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (priv->larger_text_action));
 
     priv->smaller_text_action = g_simple_action_new ("yelp-application-smaller-text", NULL);
     g_signal_connect (priv->smaller_text_action,
                       "activate",
-                      G_CALLBACK (application_adjust_font),
+                      G_CALLBACK (smaller_text_activated),
                       app);
     g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (priv->smaller_text_action));
+
+    priv->reset_text_size_action = g_simple_action_new ("yelp-application-reset-text-size", NULL);
+    g_signal_connect (priv->reset_text_size_action,
+                      "activate",
+                      G_CALLBACK (reset_text_size_activated),
+                      app);
+    g_action_map_add_action (G_ACTION_MAP (app), G_ACTION (priv->reset_text_size_action));
 
     application_set_font_sensitivity (app);
 }
@@ -313,36 +365,17 @@ yelp_application_startup (GApplication *application)
 /******************************************************************************/
 
 static void
-application_adjust_font (GAction         *action,
-                         GVariant        *parameter,
-                         YelpApplication *app)
-{
-    YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
-    gint adjustment = g_settings_get_int (priv->gsettings, "font-adjustment");
-    gint adjust = g_str_equal (g_action_get_name (action), "yelp-application-larger-text") ? 1 : -1;
-
-    adjustment += adjust;
-    g_settings_set_int (priv->gsettings, "font-adjustment", adjustment);
-
-    application_set_font_sensitivity (app);
-}
-
-static void
 application_set_font_sensitivity (YelpApplication *app)
 {
     YelpApplicationPrivate *priv = yelp_application_get_instance_private (app);
     YelpSettings *settings = yelp_settings_get_default ();
-    GParamSpec *spec = g_object_class_find_property ((GObjectClass *) YELP_SETTINGS_GET_CLASS (settings),
-                                                     "font-adjustment");
-    gint adjustment = g_settings_get_int (priv->gsettings, "font-adjustment");
-    if (!G_PARAM_SPEC_INT (spec)) {
-        g_warning ("Expcected integer param spec for font-adjustment");
-        return;
-    }
-    g_simple_action_set_enabled (priv->larger_text_action, 
-                                 adjustment < ((GParamSpecInt *) spec)->maximum);
-    g_simple_action_set_enabled (priv->smaller_text_action, 
-                                 adjustment > ((GParamSpecInt *) spec)->minimum);
+    double zoom_level = yelp_settings_get_zoom_level (settings);
+
+    g_simple_action_set_enabled (priv->larger_text_action,
+                                 zoom_level < YELP_ZOOM_LEVEL_MAX - DBL_EPSILON);
+
+    g_simple_action_set_enabled (priv->smaller_text_action,
+                                 zoom_level > YELP_ZOOM_LEVEL_MIN + DBL_EPSILON);
 }
 
 /******************************************************************************/

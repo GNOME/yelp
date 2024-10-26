@@ -184,6 +184,7 @@ struct _YelpWindowPrivate {
     GtkWidget *bookmark_list;
     GtkWidget *bookmark_add;
     GtkWidget *bookmark_remove;
+    GtkWidget *font_adjustment_label;
     YelpView *view;
 
     GtkWidget *ctrll_entry;
@@ -205,12 +206,46 @@ struct _YelpWindowPrivate {
 G_DEFINE_TYPE_WITH_PRIVATE (YelpWindow, yelp_window, ADW_TYPE_APPLICATION_WINDOW)
 
 static void
+update_font_scale (YelpWindow   *window,
+                   YelpSettings *settings)
+{
+    double zoom_level;
+    char *label;
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
+
+    settings = yelp_settings_get_default ();
+    zoom_level = yelp_settings_get_zoom_level (settings);
+
+    label = g_strdup_printf ("%i%%", (int) round (zoom_level * 100));
+
+    gtk_label_set_label (GTK_LABEL (priv->font_adjustment_label), label);
+
+    g_free (label);
+}
+
+static void
+on_font_scale_nofity (YelpSettings       *settings,
+                      GParamSpec         *pspec,
+                      gpointer            user_data)
+{
+    YelpWindow *window = user_data;
+    update_font_scale (window, settings);
+}
+
+static void
 yelp_window_init (YelpWindow *window)
 {
+    YelpSettings *settings;
+
+    settings = yelp_settings_get_default ();
+
     gtk_widget_init_template (GTK_WIDGET (window));
 
     g_signal_connect (window, "notify::default-width", G_CALLBACK (window_resize_signal), NULL);
     g_signal_connect (window, "notify::default-height", G_CALLBACK (window_resize_signal), NULL);
+    g_signal_connect (settings, "notify::zoom-level", G_CALLBACK (on_font_scale_nofity), window);
+
+    update_font_scale (window, settings);
 }
 
 static void
@@ -261,6 +296,7 @@ yelp_window_class_init (YelpWindowClass *klass)
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_add);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_remove);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, view);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, font_adjustment_label);
 
     gtk_widget_class_install_action (widget_class, "win.yelp-show-about-dialog", NULL,
                                      (GtkWidgetActionActivateFunc) present_about_dialog);
