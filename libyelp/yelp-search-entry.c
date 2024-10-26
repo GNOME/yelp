@@ -223,6 +223,9 @@ yelp_search_entry_class_init (YelpSearchEntryClass *klass)
 static void
 yelp_search_entry_init (YelpSearchEntry *entry)
 {
+    gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry),
+                                       GTK_ENTRY_ICON_PRIMARY,
+                                       "system-search-symbolic");
 }
 
 static void
