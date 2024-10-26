@@ -787,7 +787,7 @@ window_set_bookmarks (YelpWindow  *window,
         entries = g_slist_insert_sorted (entries, entry, (GCompareFunc) entry_compare);
     }
     for ( ; entries != NULL; entries = g_slist_delete_link (entries, entries)) {
-        GtkWidget *row, *box, *button;
+        GtkWidget *row, *box, *button, *label;
         YelpMenuEntry *entry = (YelpMenuEntry *) entries->data;
 
         row = gtk_list_box_row_new ();
@@ -795,9 +795,9 @@ window_set_bookmarks (YelpWindow  *window,
                                 g_strdup (entry->page_id), (GDestroyNotify) g_free);
         box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
         gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (row), GTK_WIDGET (box));
-        button = gtk_label_new (entry->title);
-        gtk_widget_set_halign (button, GTK_ALIGN_START);
-        gtk_box_append (GTK_BOX (box), button);
+        label = gtk_label_new (entry->title);
+        gtk_widget_set_halign (label, GTK_ALIGN_START);
+        gtk_box_append (GTK_BOX (box), label);
         button = gtk_button_new_from_icon_name ("edit-delete-symbolic");
         gtk_widget_add_css_class (button, "flat");
         g_object_set (button,
