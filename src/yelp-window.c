@@ -796,7 +796,8 @@ window_set_bookmarks (YelpWindow  *window,
         box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
         gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (row), GTK_WIDGET (box));
         label = gtk_label_new (entry->title);
-        gtk_widget_set_halign (label, GTK_ALIGN_START);
+        gtk_label_set_xalign (GTK_LABEL (label), 0.0);
+        gtk_widget_set_hexpand (label, true);
         gtk_box_append (GTK_BOX (box), label);
         button = gtk_button_new_from_icon_name ("edit-delete-symbolic");
         gtk_widget_add_css_class (button, "flat");
