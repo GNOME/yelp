@@ -116,7 +116,7 @@ yelp_settings_class_init (YelpSettingsClass *klass)
                                                        "Font Adjustment",
                                                        "A size adjustment to add to font sizes",
                                                        -3, 10, 0,
-                                                       G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+                                                       G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_EXPLICIT_NOTIFY |
                                                        G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
     g_object_class_install_property (object_class,
@@ -451,8 +451,7 @@ yelp_settings_set_property (GObject      *object,
         yelp_settings_set_gtk_settings (settings, g_value_get_object (value));
         break;
     case PROP_FONT_ADJUSTMENT:
-        settings->priv->font_adjustment = g_value_get_int (value);
-        gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
+        yelp_settings_set_font_adjustment (settings, g_value_get_int (value));
         break;
     case PROP_SHOW_TEXT_CURSOR:
         settings->priv->show_text_cursor = g_value_get_boolean (value);
@@ -672,7 +671,14 @@ void
 yelp_settings_set_font_adjustment (YelpSettings *settings,
                                    gint          adjustment)
 {
-    g_object_set (settings, "font-adjustment", adjustment, NULL);
+    if (settings->priv->font_adjustment == adjustment)
+        return;
+
+    settings->priv->font_adjustment = adjustment;
+
+    g_object_notify (G_OBJECT (settings), "font-adjustment");
+
+    gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
 }
 
 /******************************************************************************/
