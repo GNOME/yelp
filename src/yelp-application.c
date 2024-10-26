@@ -499,7 +499,7 @@ application_uri_resolved (YelpUri             *uri,
                                     GTK_APPLICATION (data->app));
 
         /* We need to set this here, otherwise window font doesn't get initialized correctly */
-        g_object_set_data (G_OBJECT (yelp_settings), "gtk-settings", gtk_settings_get_default ());
+        yelp_settings_set_gtk_settings (yelp_settings, gtk_settings_get_default ());
     }
     else {
         g_free (doc_uri);

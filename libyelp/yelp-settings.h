@@ -22,6 +22,7 @@
 #define __YELP_SETTINGS_H__
 
 #include <glib-object.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
@@ -91,6 +92,9 @@ void                yelp_settings_set_show_text_cursor (YelpSettings       *sett
 gboolean            yelp_settings_get_editor_mode      (YelpSettings       *settings);
 void                yelp_settings_set_editor_mode      (YelpSettings       *settings,
                                                         gboolean            editor_mode);
+
+void                yelp_settings_set_gtk_settings     (YelpSettings       *settings,
+                                                        GtkSettings        *gtk_settings);
 
 gint                yelp_settings_cmp_icons            (const gchar        *icon1,
                                                         const gchar        *icon2);

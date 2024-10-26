@@ -107,7 +107,7 @@ yelp_settings_class_init (YelpSettingsClass *klass)
 							  "GtkSettings",
 							  "A GtkSettings object to get settings from",
 							  GTK_TYPE_SETTINGS,
-							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_EXPLICIT_NOTIFY |
 							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
     g_object_class_install_property (object_class,
@@ -448,23 +448,7 @@ yelp_settings_set_property (GObject      *object,
 
     switch (prop_id) {
     case PROP_GTK_SETTINGS:
-        if (settings->priv->gtk_settings) {
-            g_signal_handler_disconnect (settings->priv->gtk_settings,
-                                         settings->priv->gtk_font_changed);
-            g_object_unref (settings->priv->gtk_settings);
-        }
-        settings->priv->gtk_settings = g_value_get_object (value);
-        if (settings->priv->gtk_settings != NULL) {
-            g_object_ref (settings->priv->gtk_settings);
-            settings->priv->gtk_font_changed =
-                g_signal_connect (settings->priv->gtk_settings,
-                                  "notify::gtk-font-name",
-                                  G_CALLBACK (gtk_font_changed),
-                                  settings);
-            gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
-        } else {
-            settings->priv->gtk_font_changed = 0;
-        }
+        yelp_settings_set_gtk_settings (settings, g_value_get_object (value));
         break;
     case PROP_FONT_ADJUSTMENT:
         settings->priv->font_adjustment = g_value_get_int (value);
@@ -887,4 +871,29 @@ yelp_settings_cmp_icons (const gchar *icon1,
         return 1;
     else
         return strcmp (icon1, icon2);
+}
+
+void
+yelp_settings_set_gtk_settings (YelpSettings *settings,
+                                GtkSettings  *gtk_settings)
+{
+    if (settings->priv->gtk_settings) {
+        g_signal_handler_disconnect (settings->priv->gtk_settings,
+                                     settings->priv->gtk_font_changed);
+        g_object_unref (settings->priv->gtk_settings);
+    }
+    settings->priv->gtk_settings = gtk_settings;
+    if (settings->priv->gtk_settings != NULL) {
+        g_object_ref (settings->priv->gtk_settings);
+        settings->priv->gtk_font_changed =
+            g_signal_connect (settings->priv->gtk_settings,
+                              "notify::gtk-font-name",
+                              G_CALLBACK (gtk_font_changed),
+                              settings);
+        gtk_font_changed (settings->priv->gtk_settings, NULL, settings);
+    } else {
+        settings->priv->gtk_font_changed = 0;
+    }
+
+    g_object_notify (G_OBJECT (settings), "gtk-settings");
 }
