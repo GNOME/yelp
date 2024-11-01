@@ -374,7 +374,7 @@ window_construct (YelpWindow *window)
                                                 YELP_BOOKMARKS (priv->application));
     g_object_set (priv->search_entry, "hexpand", TRUE, NULL);
     adw_clamp_set_child (ADW_CLAMP (priv->search_entry_clamp), priv->search_entry);
-    gtk_search_bar_connect_entry (GTK_SEARCH_BAR (priv->search_bar), priv->search_entry);
+    gtk_search_bar_connect_entry (GTK_SEARCH_BAR (priv->search_bar), GTK_EDITABLE (priv->search_entry));
     gtk_search_bar_set_key_capture_widget (GTK_SEARCH_BAR (priv->search_bar), priv->search_entry);
 
     g_signal_connect (priv->search_entry, "stop-search",
