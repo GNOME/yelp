@@ -14,6 +14,7 @@ config_h = vcs_tag(
 
 yelp_sources = files(
   'yelp-application.c',
+  'yelp-search-entry.c',
   'yelp-window.c',
   'yelp.c',
 )
