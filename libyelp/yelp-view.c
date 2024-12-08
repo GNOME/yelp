@@ -1881,17 +1881,6 @@ view_load_page (YelpView *view)
     g_free (uri_str);
 }
 
-#define FORMAT_ERRORPAGE \
-    "<html><head>" \
-    "<style type='text/css'>" \
-    " body { color: %s; background-color: %s; } " \
-    " div.title { font-size: 2em; margin: 1rem 0 0 0; } " \
-    " p { margin: 1em 0 0 0; } " \
-    " .container { max-width: 800px; margin: 0 auto; text-align: center; } " \
-    "</style></head><body>" \
-    "<div class='container'>" \
-    "<div><img src='%s' height='256'></div>%s%s%s</div></body></html>"
-
 static void
 view_show_error_page (YelpView *view,
                       GError   *error)
@@ -1900,7 +1889,9 @@ view_show_error_page (YelpView *view,
     YelpSettings *settings = yelp_settings_get_default ();
     GtkIconTheme *icontheme;
     GtkIconPaintable *icon;
-    gchar *page, *title = NULL, *title_m, *content_beg, *content_end;
+	GBytes *html_file = NULL;
+	GString *page = g_string_new (NULL);
+    gchar *title = NULL, *title_m, *content_beg, *content_end;
     gchar *textcolor, *bgcolor, *icon_filename = "";
     GParamSpec *spec;
     gboolean doc404 = FALSE;
@@ -1959,12 +1950,16 @@ view_show_error_page (YelpView *view,
         g_object_unref (icon);
     }
 
-    page = g_strdup_printf (FORMAT_ERRORPAGE,
-                            textcolor, bgcolor,
-                            icon_filename,
-                            title_m,
-                            content_beg,
-                            (content_end != NULL) ? content_end : "");
+    html_file = g_resources_lookup_data ("/org/gnome/yelp/resources/error.html", 0, NULL);
+
+    g_string_printf (page,
+                     g_bytes_get_data (html_file, NULL),
+                     textcolor, bgcolor,
+                     icon_filename,
+                     title_m,
+                     content_beg,
+                     (content_end != NULL) ? content_end : "");
+
     g_free (textcolor);
     g_free (bgcolor);
 
@@ -2007,7 +2002,7 @@ view_show_error_page (YelpView *view,
 
     priv->resolve_uri_on_policy_decision = FALSE;
     webkit_web_view_load_html  (WEBKIT_WEB_VIEW (view),
-                                page,
+                                page->str,
                                 "file:///error/");
     g_free (title_m);
     g_free (content_beg);
