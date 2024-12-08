@@ -1891,8 +1891,8 @@ view_show_error_page (YelpView *view,
     GtkIconPaintable *icon;
 	GBytes *html_file = NULL;
 	GString *page = g_string_new (NULL);
-    gchar *title = NULL, *title_m, *content_beg, *content_end;
-    gchar *textcolor, *bgcolor, *icon_filename = "";
+    gchar *title = NULL, *content_beg, *content_end;
+    gchar *icon_filename = "";
     GParamSpec *spec;
     gboolean doc404 = FALSE;
 
@@ -1914,7 +1914,6 @@ view_show_error_page (YelpView *view,
         }
     if (title == NULL)
         title = _("Unknown Error");
-    title_m = g_markup_printf_escaped ("<div class='title'>%s</div>", title);
 
     content_beg = g_markup_printf_escaped ("<p>%s</p>", error->message);
     content_end = NULL;
@@ -1931,16 +1930,18 @@ view_show_error_page (YelpView *view,
             pkg = struri + 6;
         }
         if (pkg != NULL)
-            content_end = g_markup_printf_escaped ("<p><a href='install-%s:%s'>%s</a></p>",
+            content_end = g_markup_printf_escaped ("<p><a class='button' href='install-%s:%s'>%s</a></p>",
                                                    scheme, pkg,
-                                                   _("Search for packages containing this document."));
+                                                   _("Find Packages Containing This Document"));
         g_free (struri);
     }
 
-    textcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_TEXT);
-    bgcolor = yelp_settings_get_color (settings, YELP_SETTINGS_COLOR_BASE);
     icontheme = gtk_icon_theme_get_for_display (gtk_root_get_display (gtk_widget_get_root (GTK_WIDGET (view))));
-    icon = gtk_icon_theme_lookup_icon (icontheme, "computer-fail-symbolic", NULL, 256, 1, GTK_TEXT_DIR_NONE, 0);
+	if (doc404)
+    	icon = gtk_icon_theme_lookup_icon (icontheme, "dialog-question-symbolic", NULL, 128, 1, GTK_TEXT_DIR_NONE, 0);
+	else
+    	icon = gtk_icon_theme_lookup_icon (icontheme, "computer-fail-symbolic", NULL, 128, 1, GTK_TEXT_DIR_NONE, 0);
+
     if (icon != NULL) {
         GFile *iconfile = gtk_icon_paintable_get_file (icon);
         if (iconfile) {
@@ -1954,14 +1955,10 @@ view_show_error_page (YelpView *view,
 
     g_string_printf (page,
                      g_bytes_get_data (html_file, NULL),
-                     textcolor, bgcolor,
                      icon_filename,
-                     title_m,
+                     title,
                      content_beg,
                      (content_end != NULL) ? content_end : "");
-
-    g_free (textcolor);
-    g_free (bgcolor);
 
     g_object_set (view, "state", YELP_VIEW_STATE_ERROR, NULL);
 
@@ -2004,7 +2001,6 @@ view_show_error_page (YelpView *view,
     webkit_web_view_load_html  (WEBKIT_WEB_VIEW (view),
                                 page->str,
                                 "file:///error/");
-    g_free (title_m);
     g_free (content_beg);
     if (content_end != NULL)
         g_free (content_end);

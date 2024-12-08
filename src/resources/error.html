@@ -1,9 +1,124 @@
-<html><head>
-<style type='text/css'>
-	body { color: %s; background-color: %s; }
-	div.title { font-size: 2em; margin: 1rem 0 0 0; }
-	p { margin: 1em 0 0 0; }
-	.container { max-width: 800px; margin: 0 auto; text-align: center; }
-</style></head><body>
-<div class='container'>
-<div><img src='%s' height='256'></div>%s%s%s</div></body></html>
+<!DOCTYPE html>
+<html>
+	<head>
+
+<style type="text/css">
+html {
+    /* Adwaita colors */
+    --bg-color: #fafafa;
+    --fg-color: rgba(0, 0, 0, 0.8);
+    --base-color: #fff;
+    --text-color: #000;
+    --borders: #d3d7cf;
+    --error-color: #c01c28;
+
+	/* TODO: get accent color */
+	--accent-bg-color: #3584e4;
+	--accent-fg-color: #ffffff;
+
+    --icon-invert: 0.2; /* average(0x2e, 0x34, 0x36) / 0xff */
+
+    color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        /* Adwaita colors */
+        --bg-color: #242424;
+        --fg-color: #fff;
+        --base-color: rgba(255, 255, 255, 0.08);
+        --text-color: #fff;
+        --borders: #1b1b1b;
+        --error-color: #f66151;
+
+        --icon-invert: 0.93; /* average(0xee, 0xee, 0xec) / 0xff */
+    }
+}
+
+@media (prefers-contrast: more) {
+	a.button {
+		box-shadow: inset 0 0 0 1px var(--border-color);
+	}
+}
+
+* { box-sizing: border-box; }
+
+html {
+    font-family: -webkit-system-font, Cantarell, sans-serif;
+    color: var(--fg-color);
+    background-color: var(--bg-color);
+    height: 100%%;
+}
+
+body {
+    display: flex;
+	align-items:center;
+    height: 100%%;
+    margin: 0;
+}
+
+.error-container {
+	text-align: center;
+    max-width: 40em;
+    margin: auto;
+    padding: 12px;
+    line-height: 1.5;
+	flex: 100%% 0 0;
+}
+
+.error-title {
+    text-align: center;
+    font-size: 20pt;
+    font-weight: 800;
+	margin: 0;
+}
+
+.error-icon {
+    margin-left: auto;
+    margin-right: auto;
+	margin-bottom: 24px;
+    width: 128px;
+    height: 128px;
+    background-size: cover;
+    opacity: 0.5;
+    filter: brightness(0) invert(var(--icon-invert));
+}
+
+.error-message {
+	font-size: 11pt;
+	font-weight: 400;
+	text-align: center;
+}
+
+.error-message p {
+	margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+a.button {
+	display: block;
+	max-width: 100%%;
+	margin-top: 24px;
+
+	background-color: var(--accent-bg-color);
+	color: var(--accent-fg-color);
+
+    text-align: center;
+	text-decoration: none;
+	font-size: 11pt;
+	font-weight: 700;
+	min-height: 24px;
+	padding: 10px 32px;
+	border-radius: 9999px;
+}
+</style>
+
+	</head>
+	<body>
+		<div class="error-container">
+			<img class="error-icon" src="%s"/>
+			<h2 class="error-title">%s</h2>
+			<div class="error-message">%s%s</div>
+		</div>
+	</body>
+</html>
