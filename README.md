@@ -5,9 +5,7 @@ and info formatted documentation.  The name Yelp was suggested by Daniel
 Lundin. Yelp is pronounced the same as the swedish word for 'help'.
 
 The Yelp help viewer builds on yelp-xsl and yelp-tools. You can use
-these to build and manage your documentation. For more information:
-
-  http://yelp.io/
+these to build and manage your documentation.
 
 Yelp is developed in GNOME git, and mirrored to GitHub. Please do all
 development in GNOME:
