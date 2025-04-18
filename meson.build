@@ -77,7 +77,7 @@ if bzip2_dep.found()
 endif
 
 itstool = find_program('itstool')
-r = run_command(itstool, '--version')
+r = run_command(itstool, '--version', check: true)
 if r.returncode() != 0
   error('failed to run itstool --version')
 endif
