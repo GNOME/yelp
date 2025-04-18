@@ -971,7 +971,7 @@ view_external_uri (YelpView *view,
 
     if (app_info)
       {
-        if (!strstr (g_app_info_get_executable (app_info), "yelp"))
+        if (!strstr (g_app_info_get_executable (app_info), "yelp") && !strstr (struri, "%3C") && !strstr (struri, "%3E"))
           {
             GList l;
 
