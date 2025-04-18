@@ -131,7 +131,7 @@
   the correct styling and a single character which we measure the
   width of and update each sheet as required.
 -->
-<script type="text/javascript" language="javascript">
+<script type="text/javascript" language="javascript" nonce="{$html.csp.nonce}">
 <xsl:text>
 $(document).ready (function () {
   var div = document.getElementById("invisible-char");
