@@ -56,3 +56,5 @@ i18n.merge_file(input: 'yelp.appdata.xml.in',
                 install_dir: join_paths(datadir, 'metainfo'),
                 po_dir: join_paths(meson.project_source_root(), 'po'),
                 type: 'xml')
+
+gnome.post_install(glib_compile_schemas: true)
