@@ -123,6 +123,8 @@ static void          find_prev_clicked            (GtkButton          *button,
                                                    YelpWindow         *window);
 static void          find_next_clicked            (GtkButton          *button,
                                                    YelpWindow         *window);
+static void          find_close_clicked           (GtkButton          *button,
+                                                   YelpWindow         *window);
 
 static void          view_new_window              (YelpView           *view,
                                                    YelpUri            *uri,
@@ -178,6 +180,7 @@ struct _YelpWindowPrivate {
     GtkWidget *find_entry;
     GtkWidget *find_prev_button;
     GtkWidget *find_next_button;
+    GtkWidget *find_close_button;
     GtkWidget *bookmark_menu_button;
     GtkWidget *bookmark_menu;
     GtkWidget *bookmark_sw;
@@ -289,6 +292,7 @@ yelp_window_class_init (YelpWindowClass *klass)
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_entry);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_prev_button);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_next_button);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, find_close_button);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_menu_button);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_menu);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_sw);
@@ -443,6 +447,7 @@ window_construct (YelpWindow *window)
 
     g_signal_connect (priv->find_prev_button, "clicked", G_CALLBACK (find_prev_clicked), window);
     g_signal_connect (priv->find_next_button, "clicked", G_CALLBACK (find_next_clicked), window);
+    g_signal_connect (priv->find_close_button, "clicked", G_CALLBACK (find_close_clicked), window);
 
     /** View **/
     g_signal_connect (priv->view, "new-view-requested", G_CALLBACK (view_new_window), window);
@@ -976,6 +981,20 @@ find_next_clicked (GtkButton  *button,
 
     find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (priv->view));
     webkit_find_controller_search_next (find_controller);
+}
+
+static void
+find_close_clicked (GtkButton  *button,
+                   YelpWindow *window)
+{
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
+    WebKitFindController *find_controller;
+
+    find_controller = webkit_web_view_get_find_controller (WEBKIT_WEB_VIEW (priv->view));
+
+    gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
+    gtk_widget_grab_focus (GTK_WIDGET (priv->view));
+    webkit_find_controller_search_finish (find_controller);
 }
 
 static void

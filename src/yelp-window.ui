@@ -176,44 +176,53 @@
             <child type="overlay">
               <object class="GtkRevealer" id="find_bar">
                 <property name="halign">end</property>
+                <property name="margin-start">6</property>
                 <property name="margin-end">6</property>
                 <property name="valign">start</property>
 
                 <child>
-                  <object class="GtkFrame">
+                  <object class="GtkBox">
+                    <property name="spacing">6</property>
                     <style>
                       <class name="yelp-find-frame"/>
                     </style>
 
                     <child>
-                      <object class="GtkBox">
-                        <property name="spacing">6</property>
+                      <object class="GtkSearchEntry" id="find_entry">
+                        <property name="placeholder-text" translatable="yes">Search in page…</property>
+                      </object>
+                    </child>
 
-                        <child>
-                          <object class="GtkSearchEntry" id="find_entry"/>
-                        </child>
+                    <child>
+                      <object class="GtkButton" id="find_prev_button">
+                        <property name="icon-name">go-up-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Previous</property>
+                        <property name="valign">center</property>
+                        <style>
+                          <class name="flat"/>
+                        </style>
+                      </object>
+                    </child>
 
-                        <child>
-                          <object class="GtkButton" id="find_prev_button">
-                            <property name="icon-name">go-up-symbolic</property>
-                            <property name="tooltip-text" translatable="yes">Previous</property>
-                            <property name="valign">center</property>
-                            <style>
-                              <class name="flat"/>
-                            </style>
-                          </object>
-                        </child>
+                    <child>
+                      <object class="GtkButton" id="find_next_button">
+                        <property name="icon-name">go-down-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Next</property>
+                        <property name="valign">center</property>
+                        <style>
+                          <class name="flat"/>
+                        </style>
+                      </object>
+                    </child>
 
-                        <child>
-                          <object class="GtkButton" id="find_next_button">
-                            <property name="icon-name">go-down-symbolic</property>
-                            <property name="tooltip-text" translatable="yes">Next</property>
-                            <property name="valign">center</property>
-                            <style>
-                              <class name="flat"/>
-                            </style>
-                          </object>
-                        </child>
+                    <child>
+                      <object class="GtkButton" id="find_close_button">
+                        <property name="icon-name">window-close-symbolic</property>
+                        <property name="tooltip-text" translatable="yes">Close Search</property>
+                        <property name="valign">center</property>
+                        <style>
+                          <class name="flat"/>
+                        </style>
                       </object>
                     </child>
                   </object>
