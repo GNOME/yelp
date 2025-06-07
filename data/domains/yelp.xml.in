@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><!-- -*- indent-tabs-mode: nil -*- -->
 
 <!--
-Making a change? Make sure to run:
-$ make yelp.pot
+Making a change? From the build directory, run:
+
+$ ninja yelp.pot
+
+Otherwise, translators will never see it.
 -->
 
 <l10n xmlns="http://projects.gnome.org/yelp/gettext/"

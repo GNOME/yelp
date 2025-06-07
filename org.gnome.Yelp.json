@@ -28,10 +28,7 @@
         },
         {
             "name" : "yelp",
-            "builddir" : true,
-            "config-opts" : [
-                "--with-webkit2gtk-4-0"
-            ],
+            "buildsystem" : "meson",
             "sources" : [
                 {
                     "type" : "git",
