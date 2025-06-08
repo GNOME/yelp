@@ -787,9 +787,10 @@ yelp_settings_get_all_params (YelpSettings *settings,
     gint i, ix;
     GString *malstr, *dbstr;
     GList *envs, *envi;
+    GRand *rand;
 
     params = g_new0 (gchar *,
-                     (2*YELP_SETTINGS_NUM_COLORS) + extra + 7);
+                     (2*YELP_SETTINGS_NUM_COLORS) + extra + 9);
 
     for (i = 0; i < YELP_SETTINGS_NUM_COLORS; i++) {
         gchar *val;
@@ -824,6 +825,11 @@ yelp_settings_get_all_params (YelpSettings *settings,
     params[ix++] = g_string_free (malstr, FALSE);
     params[ix++] = g_strdup ("db.profile.os");
     params[ix++] = g_string_free (dbstr, FALSE);
+
+    rand = g_rand_new ();
+    params[ix++] = g_strdup ("html.csp.nonce");
+    params[ix++] = g_strdup_printf("'%08x%08x'", g_rand_int (rand), g_rand_int (rand));
+    g_rand_free (rand);
 
     params[ix] = NULL;
 
