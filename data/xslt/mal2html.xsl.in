@@ -19,11 +19,6 @@
 <xsl:param name="mal.link.prefix" select="'xref:'"/>
 <xsl:param name="mal.link.extension" select="''"/>
 
-<xsl:template name="html.head.top.custom">
-  <xsl:param name="node" select="."/>
-  <meta http-equiv="Content-Security-Policy" content="default-src bogus-ghelp: bogus-gnome-help: bogus-help: bogus-help-list: bogus-info: bogus-man: ; script-src 'nonce-{$html.csp.nonce}'; style-src 'nonce-{$html.csp.nonce}'; "/>
-</xsl:template>
-
 <xsl:template name="mal.link.target.custom">
   <xsl:param name="node" select="."/>
   <xsl:param name="action" select="$node/@action"/>

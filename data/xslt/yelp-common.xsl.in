@@ -15,13 +15,6 @@
 <xsl:param name="html.syntax.highlight" select="true()"/>
 <xsl:param name="html.js.root" select="'file://@XSL_JSDIR@/'"/>
 
-<xsl:param name="html.csp.nonce" select="yelp:generate_nonce()"/>
-
-<xsl:template name="html.head.top.custom">
-  <xsl:param name="node" select="."/>
-  <meta http-equiv="Content-Security-Policy" content="default-src bogus-ghelp: bogus-gnome-help: bogus-help: bogus-help-list: bogus-info: bogus-man: ; script-src 'nonce-{$html.csp.nonce}'; style-src 'unsafe-inline'; "/>
-</xsl:template>
-
 <xsl:template name="html.js.mathjax">
   <xsl:param name="node" select="."/>
   <xsl:if test="$node//mml:*[1]">
