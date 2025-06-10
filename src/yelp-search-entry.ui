@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+
+  <template class="YelpSearchEntry" parent="GtkEntry">
+    <signal name="activate" handler="entry_activate_cb"/>
+    <signal name="changed" handler="entry_changed_cb"/>
+
+    <child>
+      <object class="GtkPopover" id="completions_popover">
+        <property name="has-arrow">false</property>
+        <property name="autohide">false</property>
+        <property name="child">
+          <object class="GtkScrolledWindow" id="completions_scroll">
+            <property name="hscrollbar-policy">never</property>
+            <property name="max-content-height">400</property>
+            <property name="propagate-natural-height">true</property>
+            <property name="receives-default">false</property>
+
+            <property name="child">
+              <object class="GtkListView" id="completions_list">
+                <property name="single-click-activate">true</property>
+                <signal name="activate" handler="completion_activate_cb" swapped="yes"/>
+                <property name="model">
+                  <object class="GtkNoSelection" id="completions_selection_model"/>
+                </property>
+                <property name="factory">
+                  <object class="GtkBuilderListItemFactory">
+                    <property name="bytes"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkListItem">
+    <property name="child">
+      <object class="GtkGrid">
+        <property name="column-spacing">6</property>
+        <property name="row-spacing">3</property>
+        <child>
+          <object class="GtkImage">
+            <property name="pixel-size">16</property>
+            <binding name="icon-name">
+              <lookup name="icon" type="YelpSearchResult">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="use-markup">True</property>
+            <property name="ellipsize">end</property>
+            <property name="xalign">0</property>
+            <property name="single-line-mode">True</property>
+            <property name="hexpand">True</property>
+            <binding name="label">
+              <lookup name="title" type="YelpSearchResult">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="pixel-size">16</property>
+            <binding name="icon-name">
+              <closure type="gchararray" function="get_bookmark_icon">
+                <lookup name="flags" type="YelpSearchResult">
+                  <lookup name="item">GtkListItem</lookup>
+                </lookup>
+              </closure>
+            </binding>
+            <layout>
+              <property name="column">2</property>
+              <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="use-markup">True</property>
+            <property name="ellipsize">end</property>
+            <property name="xalign">0</property>
+            <property name="single-line-mode">True</property>
+            <property name="hexpand">True</property>
+            <binding name="label">
+              <lookup name="desc" type="YelpSearchResult">
+                <lookup name="item">GtkListItem</lookup>
+              </lookup>
+            </binding>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">1</property>
+            </layout>
+            <style>
+              <class name="dim-label"/>
+              <class name="caption"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>
+                    ]]></property>
+                  </object>
+                </property>
+              </object>
+            </property>
+          </object>
+        </property>
+        <style>
+          <class name="menu"/>
+          <class name="completions"/>
+        </style>
+      </object>
+    </child>
+  </template>
+</interface>

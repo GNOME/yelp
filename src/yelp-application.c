@@ -624,6 +624,7 @@ yelp_application_add_bookmark (YelpBookmarks     *bookmarks,
             g_variant_builder_add (&builder, "(sss)", page_id, icon, title);
             value = g_variant_builder_end (&builder);
             g_settings_set_value (settings, "bookmarks", value);
+            g_signal_emit_by_name (bookmarks, "bookmark-added", doc_uri, page_id);
         }
     }
 }
@@ -654,6 +655,7 @@ yelp_application_remove_bookmark (YelpBookmarks     *bookmarks,
         g_variant_iter_free (iter);
 
         g_settings_set_value (settings, "bookmarks", g_variant_builder_end (&builder));
+        g_signal_emit_by_name (bookmarks, "bookmark-removed", doc_uri, page_id);
     }
 }
 

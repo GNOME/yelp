@@ -61,11 +61,6 @@ static gboolean      window_on_drop               (GtkDropTarget      *target,
 static gboolean      window_resize_signal         (YelpWindow         *window,
                                                    GParamSpec         *pspec,
                                                    gpointer            userdata);
-static gboolean      window_key_press             (GtkEventControllerKey *event,
-                                                   guint                  keyval,
-                                                   guint                  keycode,
-                                                   GdkModifierType       *state,
-                                                   YelpWindow            *window);
 static void          window_button_press          (GtkGestureClick    *event,
                                                    gint                n_press,
                                                    gdouble             x,
@@ -415,7 +410,7 @@ window_construct (YelpWindow *window)
     g_object_set (priv->search_entry, "hexpand", TRUE, NULL);
     adw_clamp_set_child (ADW_CLAMP (priv->search_entry_clamp), priv->search_entry);
     gtk_search_bar_connect_entry (GTK_SEARCH_BAR (priv->search_bar), GTK_EDITABLE (priv->search_entry));
-    gtk_search_bar_set_key_capture_widget (GTK_SEARCH_BAR (priv->search_bar), priv->search_entry);
+    gtk_search_bar_set_key_capture_widget (GTK_SEARCH_BAR (priv->search_bar), GTK_WIDGET (window));
 
     g_signal_connect (priv->search_entry, "stop-search",
                       G_CALLBACK (on_stop_search), window);
@@ -471,10 +466,6 @@ window_construct (YelpWindow *window)
     gtk_gesture_single_set_button (GTK_GESTURE_SINGLE (priv->gesture_click), 0);
     g_signal_connect (priv->gesture_click, "pressed", G_CALLBACK (window_button_press), window);
     gtk_widget_add_controller (GTK_WIDGET (window), GTK_EVENT_CONTROLLER (priv->gesture_click));
-
-    priv->event_key = gtk_event_controller_key_new();
-    g_signal_connect (priv->event_key, "key-pressed", G_CALLBACK (window_key_press), window);
-    gtk_widget_add_controller (GTK_WIDGET (window), GTK_EVENT_CONTROLLER (priv->event_key));
 }
 
 /******************************************************************************/
@@ -562,9 +553,7 @@ action_search (GSimpleAction *action,
 {
     YelpWindowPrivate *priv = yelp_window_get_instance_private (userdata);
 
-    gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
     gtk_search_bar_set_search_mode (GTK_SEARCH_BAR (priv->search_bar), TRUE);
-    gtk_widget_grab_focus (priv->search_entry);
 }
 
 static void
@@ -667,24 +656,6 @@ window_resize_signal (YelpWindow *window, GParamSpec *pspec, gpointer userdata)
     g_signal_emit (window, signals[RESIZE_EVENT], 0);
     priv->resize_signal = 0;
     return FALSE;
-}
-
-static gboolean
-window_key_press (GtkEventControllerKey *event,
-                  guint                  keyval,
-                  guint                  keycode,
-                  GdkModifierType       *state,
-                  YelpWindow            *window)
-{
-    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
-
-    if (gtk_revealer_get_reveal_child (GTK_REVEALER (priv->find_bar)))
-        return FALSE;
-
-    if (adw_header_bar_get_title_widget (ADW_HEADER_BAR (priv->header)) == priv->header_title)
-        return FALSE;
-
-    return gtk_event_controller_key_forward (event, priv->search_bar);
 }
 
 static void
@@ -911,8 +882,10 @@ window_search_mode (GtkSearchBar  *search_bar,
 {
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
 
-    if (gtk_search_bar_get_search_mode (GTK_SEARCH_BAR (search_bar)))
+    if (gtk_search_bar_get_search_mode (GTK_SEARCH_BAR (search_bar))) {
         gtk_revealer_set_reveal_child (GTK_REVEALER (priv->find_bar), FALSE);
+        gtk_entry_grab_focus_without_selecting (GTK_ENTRY (priv->search_entry));
+    }
 }
 
 static gboolean

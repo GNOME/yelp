@@ -22,6 +22,8 @@
 
 enum {
     BOOKMARKS_CHANGED,
+    BOOKMARK_ADDED,
+    BOOKMARK_REMOVED,
     LAST_SIGNAL
 };
 static gint signals[LAST_SIGNAL] = { 0 };
@@ -38,6 +40,22 @@ yelp_bookmarks_default_init (YelpBookmarksInterface *iface)
                       0, NULL, NULL,
                       g_cclosure_marshal_VOID__STRING,
                       G_TYPE_NONE, 1, G_TYPE_STRING);
+
+    signals[BOOKMARK_ADDED] =
+        g_signal_new ("bookmark-added",
+                      G_TYPE_FROM_INTERFACE (iface),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      NULL,
+                      G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_STRING);
+
+    signals[BOOKMARK_REMOVED] =
+        g_signal_new ("bookmark-removed",
+                      G_TYPE_FROM_INTERFACE (iface),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      NULL,
+                      G_TYPE_NONE, 2, G_TYPE_STRING, G_TYPE_STRING);
 }
 
 void

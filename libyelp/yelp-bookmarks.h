@@ -39,6 +39,12 @@ struct _YelpBookmarksInterface
 
     /* Signals */
     void      (* bookmarks_changed)     (YelpBookmarks *bookmarks);
+    void      (* bookmark_added)        (YelpBookmarks *bookmarks,
+                                         gchar *doc_uri,
+                                         gchar *page_id);
+    void      (* bookmark_removed)      (YelpBookmarks *bookmarks,
+                                         gchar *doc_uri,
+                                         gchar *page_id);
 
     /* Virtual Table */
     void      (* add_bookmark)          (YelpBookmarks *bookmarks,

@@ -18,6 +18,8 @@
  * Author: Shaun McCance <shaunm@gnome.org>
  */
 
+#include "glib-object.h"
+#include "yelp-bookmarks.h"
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -25,10 +27,13 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
+#include <gio/gio.h>
 
 #include "yelp-search-entry.h"
 #include "yelp-marshal.h"
 #include "yelp-settings.h"
+#include "yelp-search-result.h"
+#include "yelp-application.h"
 
 static void     search_entry_constructed     (GObject           *object);
 static void     search_entry_dispose         (GObject           *object);
@@ -42,43 +47,51 @@ static void     search_entry_set_property    (GObject           *object,
 					      const GValue      *value,
 					      GParamSpec        *pspec);
 
+static void     search_entry_size_allocate    (GtkWidget *widget,
+                                               int           width,
+                                               int           height,
+                                               int           baseline);
+
 /* Signals */
 static void     search_entry_search_activated  (YelpSearchEntry *entry);
 static void     search_entry_bookmark_clicked  (YelpSearchEntry *entry);
 
 
-/* Utilities */
-static void     search_entry_set_completion  (YelpSearchEntry *entry,
-                                                GtkTreeModel      *model);
-
-
-/* GtkEntry callbacks */
-static void     entry_activate_cb                   (GtkEntry          *text_entry,
+/* Callbacks */
+static void     entry_changed_cb                    (YelpSearchEntry   *entry,
+                                                     gpointer           user_data);
+static void     entry_activate_cb                   (YelpSearchEntry   *entry,
+                                                     gpointer           user_data);
+static void     entry_focus_cb                      (YelpSearchEntry   *entry,
+                                                     gpointer           user_data);
+static void     completion_activate_cb              (YelpSearchEntry   *entry,
+                                                     guint              position,
                                                      gpointer           user_data);
 
-/* GtkEntryCompletion callbacks */
-static void     cell_set_completion_bookmark_icon   (GtkCellLayout     *layout,
-                                                     GtkCellRenderer   *cell,
-                                                     GtkTreeModel      *model,
-                                                     GtkTreeIter       *iter,
-                                                     YelpSearchEntry *entry);
-static void     cell_set_completion_text_cell       (GtkCellLayout     *layout,
-                                                     GtkCellRenderer   *cell,
-                                                     GtkTreeModel      *model,
-                                                     GtkTreeIter       *iter,
-                                                     YelpSearchEntry *entry);
-static gboolean entry_match_func                    (GtkEntryCompletion *completion,
-                                                     const gchar        *key,
-                                                     GtkTreeIter        *iter,
+static gboolean  key_entry_cb                       (YelpSearchEntry        *entry,
+                                                     guint                   keyval,
+                                                     guint                   keycode,
+                                                     GdkModifierType         state,
+                                                     GtkEventControllerKey *controller);
+
+static void bookmark_added_cb                       (YelpSearchEntry *entry,
+                                                     gchar *doc_uri,
+                                                     gchar *page_id);
+static void bookmark_removed_cb                     (YelpSearchEntry *entry,
+                                                     gchar *doc_uri,
+                                                     gchar *page_id);
+
+/* Filter/sorter functions */
+static gboolean entry_match_func                    (YelpSearchResult *result,
                                                      YelpSearchEntry  *entry);
-static gint     entry_completion_sort               (GtkTreeModel       *model,
-                                                     GtkTreeIter        *iter1,
-                                                     GtkTreeIter        *iter2,
-                                                     gpointer            user_data);
-static gboolean entry_match_selected                (GtkEntryCompletion *completion,
-                                                     GtkTreeModel       *model,
-                                                     GtkTreeIter        *iter,
-                                                     YelpSearchEntry  *entry);
+static gint     entry_completion_sort               (YelpSearchResult *res1,
+                                                     YelpSearchResult *res2,
+                                                     gpointer          user_data);
+
+static gchar *  get_bookmark_icon                   (GtkListItem *item,
+                                                     guint flags,
+                                                     gpointer user_data);
+
 /* YelpView callbacks */
 static void          view_loaded                    (YelpView           *view,
                                                      YelpSearchEntry    *entry);
@@ -89,28 +102,31 @@ struct _YelpSearchEntryPrivate
 {
     YelpView *view;
     YelpBookmarks *bookmarks;
+
     gchar *completion_uri;
+    gulong bookmark_added;
+    gulong bookmark_removed;
 
-    /* do not free below */
-    GtkEntryCompletion *completion;
-};
+    GtkWidget *completions_list;
+    GtkWidget *completions_popover;
+    GtkWidget *completions_scroll;
+    GtkNoSelection *completions_selection_model;
 
-enum {
-    COMPLETION_COL_TITLE,
-    COMPLETION_COL_DESC,
-    COMPLETION_COL_ICON,
-    COMPLETION_COL_PAGE,
-    COMPLETION_COL_FLAGS,
-    COMPLETION_COL_KEYWORDS
-};
+    GtkSortListModel *completions_sort_model;
+    YelpSearchResult *activate_search_result;
 
-enum {
-    COMPLETION_FLAG_ACTIVATE_SEARCH = 1<<0
+    GtkCustomSorter *completions_sorter;
+    GtkCustomFilter *completions_filter;
+
+    GtkEventController *focus_controller;
+    GtkEventController *keyboard_controller;
+    GtkEventController *popover_keyboard_controller;
 };
 
 enum {
     SEARCH_ACTIVATED,
     STOP_SEARCH,
+    PREEDIT_CHANGED,
     LAST_SIGNAL
 };
 
@@ -153,6 +169,8 @@ yelp_search_entry_class_init (YelpSearchEntryClass *klass)
     object_class->get_property = search_entry_get_property;
     object_class->set_property = search_entry_set_property;
 
+    widget_class->size_allocate = search_entry_size_allocate;
+
     /**
      * YelpSearchEntry::search-activated
      * @widget: The #YelpLocationEntry for which the signal was emitted.
@@ -175,6 +193,14 @@ yelp_search_entry_class_init (YelpSearchEntryClass *klass)
 
     search_entry_signals[STOP_SEARCH] =
         g_signal_new ("stop-search",
+                      G_TYPE_FROM_CLASS (klass),
+                      G_SIGNAL_RUN_LAST,
+                      0, NULL, NULL,
+                      g_cclosure_marshal_VOID__VOID,
+                      G_TYPE_NONE, 0);
+
+    search_entry_signals[PREEDIT_CHANGED] =
+        g_signal_new ("preedit-changed",
                       G_TYPE_FROM_CLASS (klass),
                       G_SIGNAL_RUN_LAST,
                       0, NULL, NULL,
@@ -218,14 +244,117 @@ yelp_search_entry_class_init (YelpSearchEntryClass *klass)
                                   GDK_KEY_Escape, 0,
                                   (GtkShortcutFunc) on_escape,
                                   NULL);
+
+    gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/yelp/yelp-search-entry.ui");
+
+    gtk_widget_class_bind_template_child_private (widget_class, YelpSearchEntry, completions_popover);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpSearchEntry, completions_list);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpSearchEntry, completions_scroll);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpSearchEntry, completions_selection_model);
+
+    gtk_widget_class_bind_template_callback (widget_class, entry_activate_cb);
+    gtk_widget_class_bind_template_callback (widget_class, entry_changed_cb);
+    gtk_widget_class_bind_template_callback (widget_class, completion_activate_cb);
+    gtk_widget_class_bind_template_callback (widget_class, get_bookmark_icon);
+}
+
+static void
+preedit_changed_cb (YelpSearchEntry *entry, gchar *preedit) {
+    g_signal_emit_by_name (entry, "preedit-changed", preedit);
 }
 
 static void
 yelp_search_entry_init (YelpSearchEntry *entry)
 {
+    YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
+    GListStore *activate_search_model, *search_concat_model;
+    GtkFlattenListModel *search_flatten_model;
+    GtkFilterListModel *completions_filter_model;
+    GtkSliceListModel *completions_slice_model;
+
+    gtk_widget_init_template (GTK_WIDGET (entry));
+
+    /* Search icon */
     gtk_entry_set_icon_from_icon_name (GTK_ENTRY (entry),
                                        GTK_ENTRY_ICON_PRIMARY,
                                        "system-search-symbolic");
+
+    /* GtkSearchBar requires the preedit-changed property */
+    g_signal_connect_swapped (gtk_editable_get_delegate (GTK_EDITABLE (entry)),
+                              "preedit-changed",
+                              G_CALLBACK (preedit_changed_cb),
+                              entry);
+
+    /* Focus controller used to open/close the popover */
+    priv->focus_controller = gtk_event_controller_focus_new ();
+    g_signal_connect_swapped (priv->focus_controller, "notify::contains-focus",
+                              G_CALLBACK (entry_focus_cb),
+                              entry);
+    gtk_widget_add_controller (GTK_WIDGET (entry), priv->focus_controller);
+
+    /* Hack to work around entry not bubbling down events to delegate correctly */
+    priv->keyboard_controller = gtk_event_controller_key_new ();
+    g_signal_connect_swapped (priv->keyboard_controller, "key-pressed",
+                              G_CALLBACK (key_entry_cb), entry);
+    g_signal_connect_swapped (priv->keyboard_controller, "key-released",
+                              G_CALLBACK (key_entry_cb), entry);
+    gtk_widget_add_controller (GTK_WIDGET (entry), priv->keyboard_controller);
+
+    /* Keyboard controller to redirect typing events from the popover to the entry */
+    priv->popover_keyboard_controller = gtk_event_controller_key_new ();
+    g_signal_connect_swapped (priv->popover_keyboard_controller, "key-pressed",
+                              G_CALLBACK (key_entry_cb), entry);
+    g_signal_connect_swapped (priv->popover_keyboard_controller, "key-released",
+                              G_CALLBACK (key_entry_cb), entry);
+    gtk_widget_add_controller (priv->completions_popover,
+                               priv->popover_keyboard_controller);
+
+    /* Sorter and filter used for the completions list */
+    priv->completions_sorter =
+        gtk_custom_sorter_new ((GCompareDataFunc) entry_completion_sort,
+                               entry, NULL);
+    priv->completions_filter =
+        gtk_custom_filter_new ((GtkCustomFilterFunc) entry_match_func,
+                               entry, NULL);
+
+    priv->completions_sort_model =
+        g_object_new (GTK_TYPE_SORT_LIST_MODEL,
+                      "sorter",
+                      GTK_SORTER (priv->completions_sorter),
+                      NULL);
+
+    completions_filter_model =
+        gtk_filter_list_model_new(G_LIST_MODEL (priv->completions_sort_model),
+                                  GTK_FILTER (priv->completions_filter));
+
+    search_concat_model = g_list_store_new (G_TYPE_LIST_MODEL);
+
+    /*
+     * Completions are sliced to only show up to 6 items at a time (a 7th item,
+     * the "Search for X" option, is appended at the end later).
+     */
+    completions_slice_model = gtk_slice_list_model_new(G_LIST_MODEL (completions_filter_model), 0, 6);
+
+    g_list_store_append (search_concat_model, completions_slice_model);
+
+    /*
+     * The "Search for X" result is stored in a separate ListStore, then
+     * concatenated to the end of the full completion model with a GtkFlattenListModel.
+     */
+    activate_search_model = g_list_store_new (YELP_TYPE_SEARCH_RESULT);
+    priv->activate_search_result = g_object_new (YELP_TYPE_SEARCH_RESULT,
+                                            /* Title is set dynamically */
+                                            "desc", _("Browse all search results"),
+                                            "icon", "edit-find-symbolic",
+                                            "flags", COMPLETION_FLAG_ACTIVATE_SEARCH,
+                                            NULL);
+    g_list_store_append (activate_search_model, priv->activate_search_result);
+
+    g_list_store_append (search_concat_model, activate_search_model);
+
+    search_flatten_model = gtk_flatten_list_model_new (G_LIST_MODEL (search_concat_model));
+
+    gtk_no_selection_set_model(priv->completions_selection_model, G_LIST_MODEL (search_flatten_model));
 }
 
 static void
@@ -233,9 +362,6 @@ search_entry_constructed (GObject *object)
 {
     YelpSearchEntryPrivate *priv =
         yelp_search_entry_get_instance_private (YELP_SEARCH_ENTRY (object));
-
-    g_signal_connect (object, "activate",
-                      G_CALLBACK (entry_activate_cb), object);
 
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), object);
 }
@@ -245,6 +371,16 @@ search_entry_dispose (GObject *object)
 {
     YelpSearchEntryPrivate *priv =
         yelp_search_entry_get_instance_private (YELP_SEARCH_ENTRY (object));
+
+    if (priv->bookmark_added) {
+        g_signal_handler_disconnect (priv->bookmarks, priv->bookmark_added);
+        priv->bookmark_added = 0;
+    }
+
+    if (priv->bookmark_removed) {
+        g_signal_handler_disconnect (priv->bookmarks, priv->bookmark_removed);
+        priv->bookmark_removed = 0;
+    }
 
     if (priv->view) {
         g_object_unref (priv->view);
@@ -256,7 +392,29 @@ search_entry_dispose (GObject *object)
         priv->bookmarks = NULL;
     }
 
+    gtk_widget_dispose_template (GTK_WIDGET (object), YELP_TYPE_SEARCH_ENTRY);
+
     G_OBJECT_CLASS (yelp_search_entry_parent_class)->dispose (object);
+}
+
+static void
+search_entry_size_allocate (GtkWidget *widget,
+                                               int           width,
+                                               int           height,
+                                               int           baseline)
+{
+    YelpSearchEntryPrivate *priv =
+        yelp_search_entry_get_instance_private (YELP_SEARCH_ENTRY (widget));
+
+    GTK_WIDGET_CLASS (yelp_search_entry_parent_class)->size_allocate (widget,
+                                                                      width,
+                                                                      height,
+                                                                      baseline);
+
+    gtk_widget_set_size_request (priv->completions_popover,
+                                 gtk_widget_get_width (widget), -1);
+    gtk_widget_queue_resize (priv->completions_popover);
+    gtk_popover_present (GTK_POPOVER (priv->completions_popover));
 }
 
 static void
@@ -307,6 +465,24 @@ search_entry_set_property   (GObject      *object,
         break;
     case PROP_BOOKMARKS:
         priv->bookmarks = g_value_dup_object (value);
+
+        /* Set up bookmark change bindings */
+        if (priv->bookmark_added)
+            g_signal_handler_disconnect (priv->bookmarks, priv->bookmark_added);
+
+        priv->bookmark_added = g_signal_connect_swapped (priv->bookmarks,
+                                                         "bookmark-added",
+                                                         G_CALLBACK (bookmark_added_cb),
+                                                         YELP_SEARCH_ENTRY (object));
+
+        if (priv->bookmark_removed)
+            g_signal_handler_disconnect (priv->bookmarks, priv->bookmark_removed);
+
+        priv->bookmark_removed = g_signal_connect_swapped (priv->bookmarks,
+                                                           "bookmark-removed",
+                                                           G_CALLBACK (bookmark_removed_cb),
+                                                           YELP_SEARCH_ENTRY (object));
+
         break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -363,129 +539,105 @@ search_entry_bookmark_clicked  (YelpSearchEntry *entry)
 }
 
 static void
-search_entry_set_completion (YelpSearchEntry *entry,
-			     GtkTreeModel    *model)
-{
-    YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
-    GList *cells;
-    GtkCellRenderer *icon_cell, *bookmark_cell;
-
-    priv->completion = gtk_entry_completion_new ();
-    gtk_entry_completion_set_minimum_key_length (priv->completion, 3);
-    gtk_entry_completion_set_model (priv->completion, model);
-    gtk_entry_completion_set_text_column (priv->completion, COMPLETION_COL_TITLE);
-    gtk_entry_completion_set_match_func (priv->completion,
-                                         (GtkEntryCompletionMatchFunc) entry_match_func,
-                                         entry, NULL);
-    g_signal_connect (priv->completion, "match-selected",
-                      G_CALLBACK (entry_match_selected), entry);
-
-    cells = gtk_cell_layout_get_cells (GTK_CELL_LAYOUT (priv->completion));
-    g_object_set (cells->data, "xpad", 4, NULL);
-    gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (priv->completion),
-                                        GTK_CELL_RENDERER (cells->data),
-                                        (GtkCellLayoutDataFunc) cell_set_completion_text_cell,
-                                        entry, NULL);
-    g_object_set (cells->data, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
-    g_list_free (cells);
-
-    icon_cell = gtk_cell_renderer_pixbuf_new ();
-    g_object_set (icon_cell, "yalign", 0.2, NULL);
-    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (priv->completion), icon_cell, FALSE);
-    gtk_cell_layout_reorder (GTK_CELL_LAYOUT (priv->completion), icon_cell, 0);
-    gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (priv->completion),
-                                    icon_cell,
-                                    "icon-name",
-                                    COMPLETION_COL_ICON,
-                                    NULL);
-    if (priv->bookmarks) {
-        bookmark_cell = gtk_cell_renderer_pixbuf_new ();
-        gtk_cell_layout_pack_end (GTK_CELL_LAYOUT (priv->completion), bookmark_cell, FALSE);
-        gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (priv->completion),
-                                            bookmark_cell,
-                                            (GtkCellLayoutDataFunc) cell_set_completion_bookmark_icon,
-                                            entry, NULL);
-    }
-    gtk_entry_set_completion (GTK_ENTRY (entry), priv->completion);
-}
-
-static void
-entry_activate_cb (GtkEntry  *text_entry,
+entry_changed_cb (YelpSearchEntry  *entry,
                    gpointer   user_data)
 {
-    gchar *text = g_strdup (gtk_editable_get_text (GTK_EDITABLE (text_entry)));
+    YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
+    gchar *text = g_strdup (gtk_editable_get_text (GTK_EDITABLE (entry)));
+    GtkAdjustment *vadjust;
+    gchar *title;
 
-    if (text == NULL || strlen(text) == 0)
+    if (text == NULL || strlen(text) == 0) {
+        gtk_popover_popdown (GTK_POPOVER (priv->completions_popover));
+        g_free (text);
         return;
+    }
 
-    g_signal_emit (user_data, search_entry_signals[SEARCH_ACTIVATED], 0, text);
+    if (!gtk_widget_get_visible(priv->completions_popover))
+        gtk_popover_popup (GTK_POPOVER (priv->completions_popover));
 
+    gtk_filter_changed (GTK_FILTER (priv->completions_filter),
+                        GTK_FILTER_CHANGE_DIFFERENT);
+
+    /* Scroll to the top of the list */
+    vadjust = gtk_scrolled_window_get_vadjustment (GTK_SCROLLED_WINDOW (priv->completions_scroll));
+    gtk_adjustment_set_value (vadjust, gtk_adjustment_get_lower (vadjust));
+
+    /* Update label on the "Search for X" result */
+    title = g_strdup_printf (_("Search for “%s”"), text);
+    g_object_set (priv->activate_search_result, "title", title, NULL);
+
+    g_free (title);
     g_free (text);
 }
 
 static void
-cell_set_completion_bookmark_icon (GtkCellLayout     *layout,
-                                   GtkCellRenderer   *cell,
-                                   GtkTreeModel      *model,
-                                   GtkTreeIter       *iter,
-                                   YelpSearchEntry *entry)
+entry_focus_cb (YelpSearchEntry  *entry,
+                   gpointer   user_data)
 {
     YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
+    gchar *text = g_strdup (gtk_editable_get_text (GTK_EDITABLE (entry)));
+    gboolean has_focus;
 
-    if (priv->completion_uri) {
-        gchar *page_id = NULL;
-        gtk_tree_model_get (model, iter,
-                            COMPLETION_COL_PAGE, &page_id,
-                            -1);
+    has_focus = gtk_event_controller_focus_contains_focus (
+                        GTK_EVENT_CONTROLLER_FOCUS (priv->focus_controller));
 
-        if (page_id && yelp_bookmarks_is_bookmarked (priv->bookmarks,
-                                                     priv->completion_uri, page_id))
-            g_object_set (cell, "icon-name", "user-bookmarks-symbolic", NULL);
-        else
-            g_object_set (cell, "icon-name", NULL, NULL);
-
-        g_free (page_id);
-    }
+    if (!(text == NULL || strlen(text) == 0) && has_focus)
+        gtk_popover_popup (GTK_POPOVER (priv->completions_popover));
+    else if (!has_focus)
+        gtk_popover_popdown (GTK_POPOVER (priv->completions_popover));
 }
 
 static void
-cell_set_completion_text_cell (GtkCellLayout     *layout,
-                               GtkCellRenderer   *cell,
-                               GtkTreeModel      *model,
-                               GtkTreeIter       *iter,
-                               YelpSearchEntry *entry)
+entry_activate_cb (YelpSearchEntry  *entry,
+                   gpointer   user_data)
 {
-    gchar *title;
-    gint flags;
+    YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
+    gchar *text = g_strdup (gtk_editable_get_text (GTK_EDITABLE (entry)));
 
-    gtk_tree_model_get (model, iter, COMPLETION_COL_FLAGS, &flags, -1);
-    if (flags & COMPLETION_FLAG_ACTIVATE_SEARCH) {
-        title = g_strdup_printf (_("Search for “%s”"),
-                                 gtk_editable_get_text (GTK_EDITABLE (entry)));
-        g_object_set (cell, "text", title, NULL);
-        g_free (title);
+    gtk_popover_popdown (GTK_POPOVER (priv->completions_popover));
+
+    if (text == NULL || strlen(text) == 0)
         return;
-    }
 
-    gtk_tree_model_get (model, iter,
-                        COMPLETION_COL_TITLE, &title,
-                        -1);
-    g_object_set (cell, "text", title, NULL);
-    g_free (title);
+    g_signal_emit_by_name (priv->completions_list, "activate", 0);
+    g_signal_emit (entry, search_entry_signals[STOP_SEARCH], 0, text);
+
+    g_free (text);
 }
 
 static gboolean
-entry_match_func (GtkEntryCompletion *completion,
-                  const gchar        *key,
-                  GtkTreeIter        *iter,
-                  YelpSearchEntry  *entry)
+key_entry_cb (YelpSearchEntry *entry, guint keyval, guint keycode, GdkModifierType state, GtkEventControllerKey *controller)
 {
+    if (keyval == GDK_KEY_Tab       || keyval == GDK_KEY_KP_Tab ||
+        keyval == GDK_KEY_Up        || keyval == GDK_KEY_KP_Up ||
+        keyval == GDK_KEY_Down      || keyval == GDK_KEY_KP_Down ||
+        keyval == GDK_KEY_Left      || keyval == GDK_KEY_KP_Left ||
+        keyval == GDK_KEY_Right     || keyval == GDK_KEY_KP_Right ||
+        keyval == GDK_KEY_Home      || keyval == GDK_KEY_KP_Home ||
+        keyval == GDK_KEY_End       || keyval == GDK_KEY_KP_End ||
+        keyval == GDK_KEY_Page_Up   || keyval == GDK_KEY_KP_Page_Up ||
+        keyval == GDK_KEY_Page_Down || keyval == GDK_KEY_KP_Page_Down ||
+        keyval == GDK_KEY_Escape ||
+        ((state & (GDK_CONTROL_MASK | GDK_ALT_MASK)) != 0)) {
+            return GDK_EVENT_PROPAGATE;
+    }
+
+    gtk_event_controller_key_forward (controller,
+                                      GTK_WIDGET (gtk_editable_get_delegate (GTK_EDITABLE (entry))));
+
+    return GDK_EVENT_STOP;
+}
+
+static gboolean
+entry_match_func (YelpSearchResult *result, YelpSearchEntry *entry)
+{
+    const gchar *key = g_utf8_casefold (gtk_editable_get_text (GTK_EDITABLE (entry)), -1);
     gint stri;
     gchar *title, *desc, *keywords, *titlecase = NULL, *desccase = NULL, *keywordscase = NULL;
     gboolean ret = FALSE;
     gchar **strs;
     gint flags;
-    GtkTreeModel *model = gtk_entry_completion_get_model (completion);
     static GRegex *nonword = NULL;
 
     if (nonword == NULL)
@@ -493,15 +645,13 @@ entry_match_func (GtkEntryCompletion *completion,
     if (nonword == NULL)
         return FALSE;
 
-    gtk_tree_model_get (model, iter, COMPLETION_COL_FLAGS, &flags, -1);
-    if (flags & COMPLETION_FLAG_ACTIVATE_SEARCH)
-        return TRUE;
+    g_object_get(result,
+                 "title", &title,
+                 "desc", &desc,
+                 "keywords", &keywords,
+                 "flags", &flags,
+                 NULL);
 
-    gtk_tree_model_get (model, iter,
-                        COMPLETION_COL_TITLE, &title,
-                        COMPLETION_COL_DESC, &desc,
-                        COMPLETION_COL_KEYWORDS, &keywords,
-                        -1);
     if (title) {
         titlecase = g_utf8_casefold (title, -1);
         g_free (title);
@@ -536,64 +686,80 @@ entry_match_func (GtkEntryCompletion *completion,
 }
 
 static gint
-entry_completion_sort (GtkTreeModel *model,
-                       GtkTreeIter  *iter1,
-                       GtkTreeIter  *iter2,
+entry_completion_sort (YelpSearchResult *res1,
+                       YelpSearchResult *res2,
                        gpointer      user_data)
 {
     gint ret = 0;
     gint flags1, flags2;
-    gchar *key1, *key2;
+    gchar *title1, *title2, *icon1, *icon2;
 
-    gtk_tree_model_get (model, iter1, COMPLETION_COL_FLAGS, &flags1, -1);
-    gtk_tree_model_get (model, iter2, COMPLETION_COL_FLAGS, &flags2, -1);
-    if (flags1 & COMPLETION_FLAG_ACTIVATE_SEARCH)
-        return 1;
-    else if (flags2 & COMPLETION_FLAG_ACTIVATE_SEARCH)
-        return -1;
+    g_object_get (res1,
+                  "flags", &flags1,
+                  "icon", &icon1,
+                  "title", &title1,
+                  NULL);
 
-    gtk_tree_model_get (model, iter1, COMPLETION_COL_ICON, &key1, -1);
-    gtk_tree_model_get (model, iter2, COMPLETION_COL_ICON, &key2, -1);
-    ret = yelp_settings_cmp_icons (key1, key2);
-    g_free (key1);
-    g_free (key2);
+    g_object_get (res2,
+                  "flags", &flags2,
+                  "icon", &icon2,
+                  "title", &title2,
+                  NULL);
+
+    ret = yelp_settings_cmp_icons (icon1, icon2);
 
     if (ret)
-        return ret;
+        goto out;
 
-    gtk_tree_model_get (model, iter1, COMPLETION_COL_TITLE, &key1, -1);
-    gtk_tree_model_get (model, iter2, COMPLETION_COL_TITLE, &key2, -1);
-    if (key1 && key2)
-        ret = g_utf8_collate (key1, key2);
-    else if (key2 == NULL)
-        return -1;
-    else if (key1 == NULL)
-        return 1;
-    g_free (key1);
-    g_free (key2);
+    if (flags1 & COMPLETION_FLAG_BOOKMARKED)
+        ret = -1;
+    else if (flags2 & COMPLETION_FLAG_BOOKMARKED)
+        ret = 1;
 
+    if (ret)
+        goto out;
+
+    if (title1 && title2)
+        ret = g_utf8_collate (title1, title2);
+    else if (title2 == NULL)
+        ret = -1;
+    else if (title1 == NULL)
+        ret = 1;
+
+out:
+    g_free (icon1);
+    g_free (icon2);
+    g_free (title1);
+    g_free (title2);
     return ret;
 }
 
-static gboolean
-entry_match_selected (GtkEntryCompletion *completion,
-                      GtkTreeModel       *model,
-                      GtkTreeIter        *iter,
-                      YelpSearchEntry    *entry)
+static void
+completion_activate_cb (YelpSearchEntry *entry, guint position, gpointer user_data)
 {
     YelpUri *base, *uri;
     gchar *page, *xref;
     gint flags;
+    YelpSearchResult *result;
     YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
 
-    gtk_tree_model_get (model, iter, COMPLETION_COL_FLAGS, &flags, -1);
+    result = g_list_model_get_item (G_LIST_MODEL (priv->completions_selection_model), position);
+
+    g_object_get(result,
+                 "page", &page,
+                 "flags", &flags,
+                 NULL);
+
     if (flags & COMPLETION_FLAG_ACTIVATE_SEARCH) {
-        entry_activate_cb (GTK_ENTRY (entry), entry);
-        return TRUE;
+        gchar *text = g_strdup (gtk_editable_get_text (GTK_EDITABLE (entry)));
+        g_signal_emit (entry, search_entry_signals[SEARCH_ACTIVATED], 0, text);
+        g_signal_emit (entry, search_entry_signals[STOP_SEARCH], 0, text);
+        g_free (text);
+        g_free (page);
+        return;
     }
 
     g_object_get (priv->view, "yelp-uri", &base, NULL);
-    gtk_tree_model_get (model, iter, COMPLETION_COL_PAGE, &page, -1);
 
     xref = g_strconcat ("xref:", page, NULL);
     uri = yelp_uri_new_relative (base, xref);
@@ -606,7 +772,80 @@ entry_match_selected (GtkEntryCompletion *completion,
     g_object_unref (base);
 
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
-    return TRUE;
+    return;
+}
+
+static void
+_bookmark_add_remove (YelpSearchEntry *entry, gchar *doc_uri, gchar *page_id, gboolean added)
+{
+    YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
+    GListModel *model;
+    guint n_items, i;
+    gboolean page_found = FALSE;
+
+    model = (GListModel *) g_hash_table_lookup (completions, doc_uri);
+
+    n_items = g_list_model_get_n_items(model);
+
+    for (i = 0; i < n_items; i++) {
+        YelpSearchResult *result;
+        gchar *this_page;
+        guint flags;
+
+        result = g_list_model_get_item(model, i);
+
+        if (!result)
+            break;
+
+        g_object_get (result, "page", &this_page, "flags", &flags, NULL);
+
+        if (!g_strcmp0 (this_page, page_id)) {
+            if (added)
+                g_object_set (result,
+                              "flags", flags | COMPLETION_FLAG_BOOKMARKED,
+                              NULL);
+            else
+                g_object_set (result,
+                              "flags", flags & ~COMPLETION_FLAG_BOOKMARKED,
+                              NULL);
+            page_found = TRUE;
+            g_free (this_page);
+            break;
+        }
+
+        g_free (this_page);
+    }
+
+    if (page_found) {
+        gtk_sorter_changed (GTK_SORTER (priv->completions_sorter),
+                            GTK_SORTER_CHANGE_DIFFERENT);
+        gtk_filter_changed (GTK_FILTER (priv->completions_filter),
+                            GTK_FILTER_CHANGE_DIFFERENT);
+    }
+
+}
+
+static void
+bookmark_added_cb (YelpSearchEntry *entry, gchar *doc_uri, gchar *page_id)
+{
+    _bookmark_add_remove(entry, doc_uri, page_id, true);
+}
+
+static void
+bookmark_removed_cb (YelpSearchEntry *entry, gchar *doc_uri, gchar *page_id)
+{
+    _bookmark_add_remove(entry, doc_uri, page_id, false);
+}
+
+static gchar *
+get_bookmark_icon (GtkListItem *item, guint flags, gpointer user_data)
+{
+    gchar *icon_name = NULL;
+
+    if (flags & COMPLETION_FLAG_BOOKMARKED)
+        icon_name = g_strdup ("user-bookmarks-symbolic");
+
+    return icon_name;
 }
 
 static void
@@ -615,10 +854,9 @@ view_loaded (YelpView          *view,
 {
     gchar **ids;
     gint i;
-    GtkTreeIter iter;
     YelpUri *uri;
     gchar *doc_uri;
-    GtkTreeModel *completion;
+    GListStore *completion;
     YelpSearchEntryPrivate *priv = yelp_search_entry_get_instance_private (entry);
     YelpDocument *document = yelp_view_get_document (view);
 
@@ -627,53 +865,54 @@ view_loaded (YelpView          *view,
 
     if ((priv->completion_uri == NULL) || 
         !g_str_equal (doc_uri, priv->completion_uri)) {
-        completion = (GtkTreeModel *) g_hash_table_lookup (completions, doc_uri);
+        completion = (GListStore *) g_hash_table_lookup (completions, doc_uri);
         if (completion == NULL) {
-            GtkListStore *base = gtk_list_store_new (6,
-                                                     G_TYPE_STRING,  /* title */
-                                                     G_TYPE_STRING,  /* desc */
-                                                     G_TYPE_STRING,  /* icon */
-                                                     G_TYPE_STRING,  /* uri */
-                                                     G_TYPE_INT,     /* flags */
-                                                     G_TYPE_STRING   /* keywords */
-                                                     );
-            completion = gtk_tree_model_sort_new_with_model (GTK_TREE_MODEL (base));
-            gtk_tree_sortable_set_default_sort_func (GTK_TREE_SORTABLE (completion),
-                                                     entry_completion_sort,
-                                                     NULL, NULL);
+            completion = g_list_store_new (YELP_TYPE_SEARCH_RESULT);
+
             g_hash_table_insert (completions, g_strdup (doc_uri), completion);
             if (document != NULL) {
                 ids = yelp_document_list_page_ids (document);
                 for (i = 0; ids[i]; i++) {
+                    YelpSearchResult *search_result;
                     gchar *title, *desc, *icon, *keywords;
-                    gtk_list_store_insert (GTK_LIST_STORE (base), &iter, 0);
+                    gboolean is_bookmarked;
+
                     title = yelp_document_get_page_title (document, ids[i]);
                     desc = yelp_document_get_page_desc (document, ids[i]);
                     icon = yelp_document_get_page_icon (document, ids[i]);
                     keywords = yelp_document_get_page_keywords (document, ids[i]);
-                    gtk_list_store_set (base, &iter,
-                                        COMPLETION_COL_TITLE, title,
-                                        COMPLETION_COL_DESC, desc,
-                                        COMPLETION_COL_ICON, icon,
-                                        COMPLETION_COL_KEYWORDS, keywords,
-                                        COMPLETION_COL_PAGE, ids[i],
-                                        -1);
+                    is_bookmarked = yelp_bookmarks_is_bookmarked(priv->bookmarks, doc_uri, ids[i]);
+
+                    search_result = g_object_new (YELP_TYPE_SEARCH_RESULT,
+                                                  "title", title,
+                                                  "desc", desc,
+                                                  "icon", icon,
+                                                  "keywords", keywords,
+                                                  "page", ids[i],
+                                                  "flags", is_bookmarked ? COMPLETION_FLAG_BOOKMARKED : 0,
+                                                  NULL);
+
+                    g_list_store_append(completion, search_result);
+
+                    g_free (keywords);
                     g_free (icon);
                     g_free (desc);
                     g_free (title);
                 }
                 g_strfreev (ids);
-                gtk_list_store_insert (GTK_LIST_STORE (base), &iter, 0);
-                gtk_list_store_set (base, &iter,
-                                    COMPLETION_COL_ICON, "edit-find-symbolic",
-                                    COMPLETION_COL_FLAGS, COMPLETION_FLAG_ACTIVATE_SEARCH,
-                                    -1);
             }
-            g_object_unref (base);
+
+            gtk_sort_list_model_set_model (priv->completions_sort_model,
+                                           G_LIST_MODEL (completion));
         }
+
+        gtk_sorter_changed (GTK_SORTER (priv->completions_sorter),
+                            GTK_SORTER_CHANGE_DIFFERENT);
+        gtk_filter_changed (GTK_FILTER (priv->completions_filter),
+                            GTK_FILTER_CHANGE_DIFFERENT);
+
         g_free (priv->completion_uri);
         priv->completion_uri = doc_uri;
-        search_entry_set_completion (entry, completion);
     }
 
     g_object_unref (uri);
