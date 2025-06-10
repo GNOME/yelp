@@ -18,6 +18,7 @@
  * Author: Shaun McCance <shaunm@gnome.org>
  */
 
+#include "pango/pango-layout.h"
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -813,7 +814,11 @@ window_set_bookmarks (YelpWindow  *window,
         box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 4);
         gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (row), GTK_WIDGET (box));
         label = gtk_label_new (entry->title);
+        gtk_widget_set_tooltip_text (label, entry->title);
+        gtk_widget_set_hexpand (label, TRUE);
         gtk_label_set_xalign (GTK_LABEL (label), 0.0);
+        gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
+        g_object_set (label, "margin-start", 9, "margin-end", 9, NULL);
         gtk_widget_set_hexpand (label, true);
         gtk_box_append (GTK_BOX (box), label);
         button = gtk_button_new_from_icon_name ("edit-delete-symbolic");

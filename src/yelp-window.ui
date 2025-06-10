@@ -241,21 +241,25 @@
 
   <object class="GtkPopover" id="bookmark_menu">
     <style>
+      <class name="yelp-bookmark-menu"/>
       <class name="menu"/>
     </style>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <property name="spacing">12</property>
+        <property name="width-request">280</property>
 
         <child>
           <object class="GtkScrolledWindow" id="bookmark_sw">
             <property name="hscrollbar-policy">never</property>
             <property name="vscrollbar-policy">automatic</property>
             <property name="height-request">200</property>
+            <property name="max-content-width">280</property>
 
             <child>
               <object class="GtkListBox" id="bookmark_list">
+                <property name="hexpand">true</property>
                 <property name="selection-mode">none</property>
               </object>
             </child>
