@@ -49,6 +49,9 @@
 
   <template class="YelpWindow" parent="AdwApplicationWindow">
     <property name="icon-name">org.gnome.Yelp</property>
+    <signal name="notify::default-width" handler="window_resize_signal"/>
+    <signal name="notify::default-height" handler="window_resize_signal"/>
+
 
     <property name="content">
       <object class="AdwToolbarView">
@@ -162,9 +165,11 @@
         <child type="top">
           <object class="GtkSearchBar" id="search_bar">
             <property name="search-mode-enabled" bind-source="search_button" bind-property="active" bind-flags="bidirectional"/>
+            <signal name="notify::search-mode-enabled" handler="window_search_mode"/>
             <child>
               <object class="AdwClamp" id="search_entry_clamp">
                 <property name="maximum-size">425</property>
+                <!-- Search entry is added in-code -->
               </object>
             </child>
           </object>
@@ -190,6 +195,7 @@
                     <child>
                       <object class="GtkSearchEntry" id="find_entry">
                         <property name="placeholder-text" translatable="yes">Search in page…</property>
+                        <signal name="changed" handler="find_entry_changed"/>
                       </object>
                     </child>
 
@@ -198,6 +204,7 @@
                         <property name="icon-name">go-up-symbolic</property>
                         <property name="tooltip-text" translatable="yes">Previous</property>
                         <property name="valign">center</property>
+                        <signal name="clicked" handler="find_prev_clicked"/>
                         <style>
                           <class name="flat"/>
                         </style>
@@ -209,6 +216,7 @@
                         <property name="icon-name">go-down-symbolic</property>
                         <property name="tooltip-text" translatable="yes">Next</property>
                         <property name="valign">center</property>
+                        <signal name="clicked" handler="find_next_clicked"/>
                         <style>
                           <class name="flat"/>
                         </style>
@@ -220,6 +228,7 @@
                         <property name="icon-name">window-close-symbolic</property>
                         <property name="tooltip-text" translatable="yes">Close Search</property>
                         <property name="valign">center</property>
+                        <signal name="clicked" handler="find_close_clicked"/>
                         <style>
                           <class name="flat"/>
                         </style>
@@ -231,7 +240,14 @@
             </child>
 
             <child>
-              <object class="YelpView" id="view"/>
+              <object class="YelpView" id="view">
+                <signal name="new-view-requested" handler="view_new_window"/>
+                <signal name="loaded" handler="view_loaded"/>
+                <signal name="notify::is-loading" handler="view_is_loading_changed"/>
+                <signal name="notify::yelp-uri" handler="view_uri_selected"/>
+                <signal name="notify::page-id" handler="window_set_bookmark_buttons" swapped="yes"/>
+                <signal name="notify::root-title" handler="view_root_title"/>
+              </object>
             </child>
           </object>
         </property>
@@ -261,6 +277,7 @@
               <object class="GtkListBox" id="bookmark_list">
                 <property name="hexpand">true</property>
                 <property name="selection-mode">none</property>
+                <signal name="row-activated" handler="bookmark_activated"/>
               </object>
             </child>
           </object>
@@ -273,6 +290,7 @@
             <property name="margin-top">6</property>
             <property name="margin-bottom">6</property>
             <property name="label" translatable="yes">Add Bookmark</property>
+            <signal name="clicked" handler="bookmark_added"/>
           </object>
         </child>
 
@@ -283,6 +301,7 @@
             <property name="margin-top">6</property>
             <property name="margin-bottom">6</property>
             <property name="label" translatable="yes">Remove Bookmark</property>
+            <signal name="clicked" handler="bookmark_removed"/>
           </object>
         </child>
       </object>

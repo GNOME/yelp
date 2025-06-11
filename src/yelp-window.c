@@ -240,8 +240,6 @@ yelp_window_init (YelpWindow *window)
 
     gtk_widget_init_template (GTK_WIDGET (window));
 
-    g_signal_connect (window, "notify::default-width", G_CALLBACK (window_resize_signal), NULL);
-    g_signal_connect (window, "notify::default-height", G_CALLBACK (window_resize_signal), NULL);
     g_signal_connect (settings, "notify::zoom-level", G_CALLBACK (on_font_scale_nofity), window);
 
     update_font_scale (window, settings);
@@ -297,6 +295,22 @@ yelp_window_class_init (YelpWindowClass *klass)
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_remove);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, view);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, font_adjustment_label);
+
+    gtk_widget_class_bind_template_callback (widget_class, window_resize_signal);
+    gtk_widget_class_bind_template_callback (widget_class, window_search_mode);
+    gtk_widget_class_bind_template_callback (widget_class, find_entry_changed);
+    gtk_widget_class_bind_template_callback (widget_class, find_next_clicked);
+    gtk_widget_class_bind_template_callback (widget_class, find_prev_clicked);
+    gtk_widget_class_bind_template_callback (widget_class, find_close_clicked);
+    gtk_widget_class_bind_template_callback (widget_class, view_new_window);
+    gtk_widget_class_bind_template_callback (widget_class, view_loaded);
+    gtk_widget_class_bind_template_callback (widget_class, view_is_loading_changed);
+    gtk_widget_class_bind_template_callback (widget_class, view_uri_selected);
+    gtk_widget_class_bind_template_callback (widget_class, window_set_bookmark_buttons);
+    gtk_widget_class_bind_template_callback (widget_class, view_root_title);
+    gtk_widget_class_bind_template_callback (widget_class, bookmark_activated);
+    gtk_widget_class_bind_template_callback (widget_class, bookmark_added);
+    gtk_widget_class_bind_template_callback (widget_class, bookmark_removed);
 
     gtk_widget_class_install_action (widget_class, "win.yelp-show-about-dialog", NULL,
                                      (GtkWidgetActionActivateFunc) present_about_dialog);
@@ -406,6 +420,7 @@ window_construct (YelpWindow *window)
                                      entries, G_N_ELEMENTS (entries), window);
     yelp_view_register_actions (priv->view, G_ACTION_MAP (window));
 
+    /* Search */
     priv->search_entry = yelp_search_entry_new (priv->view,
                                                 YELP_BOOKMARKS (priv->application));
     g_object_set (priv->search_entry, "hexpand", TRUE, NULL);
@@ -416,44 +431,19 @@ window_construct (YelpWindow *window)
     g_signal_connect (priv->search_entry, "stop-search",
                       G_CALLBACK (on_stop_search), window);
 
-    g_signal_connect (priv->search_bar, "notify::search-mode-enabled",
-                      G_CALLBACK (window_search_mode), window);
-
     /** Bookmarks **/
-    g_signal_connect (priv->bookmark_list, "row-activated",
-                      G_CALLBACK (bookmark_activated), window);
-
-    g_signal_connect (priv->bookmark_add, "clicked",
-                      G_CALLBACK (bookmark_added), window);
-
-    g_signal_connect (priv->bookmark_remove, "clicked",
-                      G_CALLBACK (bookmark_removed), window);
-
     priv->bookmarks_changed =
         g_signal_connect (priv->application, "bookmarks-changed",
                           G_CALLBACK (app_bookmarks_changed), window);
 
     /** Find **/
-    g_signal_connect (priv->find_entry, "changed",
-                      G_CALLBACK (find_entry_changed), window);
-
     priv->event_find_entry_key = gtk_event_controller_key_new();
     g_signal_connect (priv->event_find_entry_key, "key-pressed", G_CALLBACK (find_entry_key_press), window);
     gtk_widget_add_controller (priv->find_entry, GTK_EVENT_CONTROLLER (priv->event_find_entry_key));
 
-    g_signal_connect (priv->find_prev_button, "clicked", G_CALLBACK (find_prev_clicked), window);
-    g_signal_connect (priv->find_next_button, "clicked", G_CALLBACK (find_next_clicked), window);
-    g_signal_connect (priv->find_close_button, "clicked", G_CALLBACK (find_close_clicked), window);
-
     /** View **/
-    g_signal_connect (priv->view, "new-view-requested", G_CALLBACK (view_new_window), window);
-    g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), window);
-    g_signal_connect (priv->view, "notify::is-loading", G_CALLBACK (view_is_loading_changed), window);
-    g_signal_connect (priv->view, "notify::yelp-uri", G_CALLBACK (view_uri_selected), window);
-    g_signal_connect_swapped (priv->view, "notify::page-id",
-                              G_CALLBACK (window_set_bookmark_buttons), window);
     window_set_bookmark_buttons (window);
-    g_signal_connect (priv->view, "notify::root-title", G_CALLBACK (view_root_title), window);
+    view_root_title (priv->view, NULL, window);
     gtk_widget_grab_focus (GTK_WIDGET (priv->view));
 
     /** Drag-and-drop **/
