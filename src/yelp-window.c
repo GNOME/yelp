@@ -223,7 +223,7 @@ update_font_scale (YelpWindow   *window,
 }
 
 static void
-on_font_scale_nofity (YelpSettings       *settings,
+on_font_scale_notify (YelpSettings       *settings,
                       GParamSpec         *pspec,
                       gpointer            user_data)
 {
@@ -240,7 +240,7 @@ yelp_window_init (YelpWindow *window)
 
     gtk_widget_init_template (GTK_WIDGET (window));
 
-    g_signal_connect (settings, "notify::zoom-level", G_CALLBACK (on_font_scale_nofity), window);
+    g_signal_connect (settings, "notify::zoom-level", G_CALLBACK (on_font_scale_notify), window);
 
     update_font_scale (window, settings);
 }
