@@ -148,7 +148,8 @@ static void          present_about_dialog         (YelpWindow *window);
 
 enum {
     PROP_0,
-    PROP_APPLICATION
+    PROP_APPLICATION,
+    PROP_ADAPTIVE_MODE
 };
 
 enum {
@@ -165,8 +166,10 @@ struct _YelpWindowPrivate {
     YelpApplication *application;
 
     gulong        bookmarks_changed;
+    gboolean     adaptive_mode;
 
     /* no refs on these, owned by containers */
+    AdwBreakpoint *adaptive_mode_breakpoint;
     GtkWidget *header;
     GtkWidget *header_title;
     GtkWidget *search_bar;
@@ -185,6 +188,7 @@ struct _YelpWindowPrivate {
     GtkWidget *bookmark_remove;
     GtkWidget *font_adjustment_label;
     YelpView *view;
+    GtkWidget *bottom_toolbar;
 
     GtkWidget *ctrll_entry;
 
@@ -234,11 +238,20 @@ on_font_scale_notify (YelpSettings       *settings,
 static void
 yelp_window_init (YelpWindow *window)
 {
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     YelpSettings *settings;
+    GValue *true_val = g_new0 (GValue, 1);
 
     settings = yelp_settings_get_default ();
 
     gtk_widget_init_template (GTK_WIDGET (window));
+
+    g_value_init (true_val, G_TYPE_BOOLEAN);
+    g_value_set_boolean (true_val, TRUE);
+    adw_breakpoint_add_setter(priv->adaptive_mode_breakpoint,
+                              G_OBJECT (window),
+                              "adaptive-mode",
+                              true_val);
 
     g_signal_connect (settings, "notify::zoom-level", G_CALLBACK (on_font_scale_notify), window);
 
@@ -268,6 +281,15 @@ yelp_window_class_init (YelpWindowClass *klass)
 							  G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
 							  G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
 
+    g_object_class_install_property (object_class,
+                                     PROP_ADAPTIVE_MODE,
+                                     g_param_spec_boolean ("adaptive-mode",
+                                     "Adaptive mode",
+                                     "If true, makes the UI adapt to smaller screens.",
+                                     FALSE,
+                                     G_PARAM_READWRITE | G_PARAM_STATIC_NAME |
+                                     G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB));
+
     signals[RESIZE_EVENT] =
         g_signal_new ("resized",
                       G_OBJECT_CLASS_TYPE (klass),
@@ -278,6 +300,7 @@ yelp_window_class_init (YelpWindowClass *klass)
 
     gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/yelp/yelp-window.ui");
 
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, adaptive_mode_breakpoint);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, header);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, header_title);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, search_bar);
@@ -295,6 +318,7 @@ yelp_window_class_init (YelpWindowClass *klass)
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bookmark_remove);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, view);
     gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, font_adjustment_label);
+    gtk_widget_class_bind_template_child_private (widget_class, YelpWindow, bottom_toolbar);
 
     gtk_widget_class_bind_template_callback (widget_class, window_resize_signal);
     gtk_widget_class_bind_template_callback (widget_class, window_search_mode);
@@ -353,9 +377,27 @@ yelp_window_get_property (GObject    *object,
     case PROP_APPLICATION:
         g_value_set_object (value, priv->application);
         break;
+    case PROP_ADAPTIVE_MODE:
+        g_value_set_boolean (value, priv->adaptive_mode);
+        break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
         break;
+    }
+}
+
+static void
+window_toggle_adaptive_mode (YelpWindow *window, gboolean enabled)
+{
+    YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
+    priv->adaptive_mode = enabled;
+
+    if (enabled) {
+        gtk_widget_unparent (priv->bookmark_menu_button);
+        gtk_action_bar_pack_end (GTK_ACTION_BAR (priv->bottom_toolbar), priv->bookmark_menu_button);
+    } else {
+        gtk_widget_unparent (priv->bookmark_menu_button);
+        adw_header_bar_pack_end (ADW_HEADER_BAR (priv->header), priv->bookmark_menu_button);
     }
 }
 
@@ -370,6 +412,9 @@ yelp_window_set_property (GObject     *object,
     case PROP_APPLICATION:
         priv->application = g_value_get_object (value);
         window_construct ((YelpWindow *) object);
+        break;
+    case PROP_ADAPTIVE_MODE:
+        window_toggle_adaptive_mode (YELP_WINDOW (object), g_value_get_boolean (value));
         break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
