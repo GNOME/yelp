@@ -1,6 +1,6 @@
 project('yelp', 'c',
-        version : '42.beta',
-        meson_version : '>= 0.59.0',
+        version : '42.3',
+        meson_version : '>= 1.3',
         default_options : [
           'warning_level=1',
           'c_std=gnu89'
@@ -48,7 +48,7 @@ else
   webkitgtk_dep = dependency('webkit2gtk-4.1')
   webkitgtk_web_extension_dep = dependency('webkit2gtk-web-extension-4.1')
 endif
-yelp_xsl_dep = dependency('yelp-xsl', version: '>= 41.0')
+yelp_xsl_dep = dependency('yelp-xsl', version: '>= 42.3')
 
 lzma_dep = dependency('liblzma',
                       version: '>= 4.9',
