@@ -853,7 +853,8 @@ window_set_bookmarks (YelpWindow  *window,
         gtk_widget_set_hexpand (label, TRUE);
         gtk_label_set_xalign (GTK_LABEL (label), 0.0);
         gtk_label_set_ellipsize (GTK_LABEL (label), PANGO_ELLIPSIZE_END);
-        g_object_set (label, "margin-start", 9, "margin-end", 9, NULL);
+        gtk_widget_set_margin_start (label, 9);
+        gtk_widget_set_margin_end (label, 9);
         gtk_widget_set_hexpand (label, true);
         gtk_box_append (GTK_BOX (box), label);
         button = gtk_button_new_from_icon_name ("edit-delete-symbolic");
