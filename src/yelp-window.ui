@@ -48,7 +48,6 @@
   </menu>
 
   <template class="YelpWindow" parent="AdwApplicationWindow">
-    <property name="icon-name">org.gnome.Yelp</property>
     <signal name="notify::default-width" handler="window_resize_signal"/>
     <signal name="notify::default-height" handler="window_resize_signal"/>
 

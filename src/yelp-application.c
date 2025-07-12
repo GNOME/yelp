@@ -305,6 +305,7 @@ yelp_application_startup (GApplication *application)
     YelpSettings *settings;
 
     g_set_application_name (_("Help"));
+    gtk_window_set_default_icon_name ("org.gnome.Yelp");
 
     /* chain up */
     G_APPLICATION_CLASS (yelp_application_parent_class)->startup (application);
