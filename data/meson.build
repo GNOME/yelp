@@ -47,8 +47,8 @@ install_subdir('icons',
                ])
 
 appdata_file = i18n.merge_file(
-  input: 'yelp.appdata.xml.in',
-  output: 'yelp.appdata.xml',
+  input: 'org.gnome.Yelp.appdata.xml.in',
+  output: 'org.gnome.Yelp.appdata.xml',
   install: true,
   install_dir: join_paths(datadir, 'metainfo'),
   po_dir: join_paths(meson.project_source_root(), 'po'),
