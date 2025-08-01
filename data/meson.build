@@ -46,22 +46,22 @@ install_subdir('icons',
                  'hicolor/scalable/apps/org.gnome.Yelp.Devel.svg',
                ])
 
-appdata_file = i18n.merge_file(
-  input: 'org.gnome.Yelp.appdata.xml.in',
-  output: 'org.gnome.Yelp.appdata.xml',
+metainfo_file = i18n.merge_file(
+  input: 'org.gnome.Yelp.metainfo.xml.in',
+  output: 'org.gnome.Yelp.metainfo.xml',
   install: true,
   install_dir: join_paths(datadir, 'metainfo'),
   po_dir: join_paths(meson.project_source_root(), 'po'),
   type: 'xml')
 
-# Validate Appdata
+# Validate Metainfo
 if appstreamcli.found()
   test(
-    'validate-appdata', appstreamcli,
+    'validate-metainfo', appstreamcli,
     args: [
-      'validate', '--no-net', '--explain', appdata_file
+      'validate', '--no-net', '--explain', metainfo_file
     ],
-    depends: appdata_file,
+    depends: metainfo_file,
   )
 endif
 

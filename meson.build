@@ -124,8 +124,8 @@ gnome = import('gnome')
 i18n = import('i18n')
 
 desktop_file = i18n.merge_file(
-  input: 'yelp.desktop.in',
-  output: 'yelp.desktop',
+  input: 'org.gnome.Yelp.desktop.in',
+  output: 'org.gnome.Yelp.desktop',
   install: true,
   install_dir: join_paths(datadir, 'applications'),
   po_dir: join_paths(meson.project_source_root(), 'po'),
