@@ -1,0 +1,403 @@
+# Interlingua translation for yelp.
+# Copyright (C) 2025 yelp's COPYRIGHT HOLDER
+# This file is distributed under the same license as the yelp package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Emilio Sepúlveda <emism.translations@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yelp master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues/\n"
+"POT-Creation-Date: 2025-08-10 05:39+0000\n"
+"PO-Revision-Date: 2025-08-10 18:43-0400\n"
+"Last-Translator: Emilio Sepúlveda <emism.translations@gmail.com>\n"
+"Language-Team: Interlingua <softinterlingua@gmail.com>\n"
+"Language: ia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-Lang: ia\n"
+"X-DL-Module: yelp\n"
+"X-DL-Branch: master\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Gtranslator 48.0\n"
+
+#. (itstool) path: msg/msgstr
+#. ID: install.tooltip
+#. This is a format message used to format tooltips on install: links. These
+#. links allow users to install packages by clicking a link in the help. The
+#. tooltip may also be used as the link text, if there's no link text in the
+#. document. Special elements in the message will be replaced with the
+#. appropriate content, as follows:
+#.
+#. <string/> - The package to install
+#.
+#: yelp.xml.in:36
+msgid "Install <string/>"
+msgstr "Installar <string/>"
+
+#: data/org.gnome.Yelp.metainfo.xml.in:19 org.gnome.Yelp.desktop.in:2
+#: src/yelp-application.c:307 src/yelp-window.c:1112 src/yelp-window.c:1163
+msgid "Help"
+msgstr "Adjuta"
+
+#: data/org.gnome.Yelp.metainfo.xml.in:20
+msgid "Help viewer for GNOME"
+msgstr "Visualisator de adjuta pro GNOME"
+
+#: data/org.gnome.Yelp.metainfo.xml.in:22
+msgid ""
+"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
+"also display DocBook, info, man, and HTML documentation."
+msgstr ""
+
+#: data/org.gnome.Yelp.metainfo.xml.in:26
+msgid ""
+"It makes it easy to find the documentation you need, with interactive search "
+"and bookmarks."
+msgstr ""
+
+#: data/org.gnome.Yelp.metainfo.xml.in:30
+msgid ""
+"It also has an editor mode, which shows editorial comments and revision "
+"statuses when editing Mallard documents."
+msgstr ""
+
+#: data/org.gnome.Yelp.metainfo.xml.in:37
+msgid "Main window"
+msgstr "Fenestra principal"
+
+#: data/org.gnome.Yelp.metainfo.xml.in:56 src/yelp-window.c:1168
+msgid "The GNOME Project"
+msgstr "Le projecto GNOME"
+
+#: libyelp/yelp-bz2-decompressor.c:143 libyelp/yelp-lzma-decompressor.c:152
+msgid "Invalid compressed data"
+msgstr ""
+
+#: libyelp/yelp-bz2-decompressor.c:149 libyelp/yelp-lzma-decompressor.c:158
+msgid "Not enough memory"
+msgstr ""
+
+#: libyelp/yelp-docbook-document.c:298 libyelp/yelp-info-document.c:220
+#: libyelp/yelp-mallard-document.c:312 libyelp/yelp-mallard-document.c:477
+#: libyelp/yelp-man-document.c:198
+#, c-format
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr ""
+
+#: libyelp/yelp-docbook-document.c:337 libyelp/yelp-info-document.c:357
+#: libyelp/yelp-man-document.c:335
+msgid "The file does not exist."
+msgstr "Le file non existe."
+
+#: libyelp/yelp-docbook-document.c:347 libyelp/yelp-info-document.c:367
+#: libyelp/yelp-man-document.c:345
+#, c-format
+msgid "The file ‘%s’ does not exist."
+msgstr "Le file ‘%s’ non existe."
+
+#: libyelp/yelp-docbook-document.c:365
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+
+#: libyelp/yelp-docbook-document.c:378
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
+msgstr ""
+
+#: libyelp/yelp-docbook-document.c:813
+msgid "Unknown"
+msgstr "Incognite"
+
+#: libyelp/yelp-docbook-document.c:911 libyelp/yelp-info-document.c:300
+#: libyelp/yelp-man-document.c:278
+#, c-format
+msgid "The requested page was not found in the document ‘%s’."
+msgstr ""
+
+#: libyelp/yelp-document.c:889
+#, c-format
+msgid "Search results for “%s”"
+msgstr "Resultatos de recerca pro “%s”"
+
+#: libyelp/yelp-document.c:902
+msgid "No matching help pages found."
+msgstr ""
+
+#: libyelp/yelp-error.c:35
+msgid "An unknown error occurred."
+msgstr "Ocurreva un error incognite."
+
+#: libyelp/yelp-help-list.c:539
+msgid "All Help Documents"
+msgstr "Tote le documentos de adjuta"
+
+#: libyelp/yelp-info-document.c:382
+#, c-format
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+
+#: libyelp/yelp-mallard-document.c:354
+#, c-format
+msgid "The directory ‘%s’ does not exist."
+msgstr "Le directorio ‘%s’ non existe."
+
+#: libyelp/yelp-transform.c:379 libyelp/yelp-transform.c:394
+#, c-format
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
+msgstr ""
+
+#: libyelp/yelp-transform.c:528
+msgid "No href attribute found on yelp:document\n"
+msgstr ""
+
+#: libyelp/yelp-transform.c:543
+msgid "Out of memory"
+msgstr ""
+
+#: libyelp/yelp-view.c:814 libyelp/yelp-view.c:2098
+#, c-format
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr ""
+
+#: libyelp/yelp-view.c:820 libyelp/yelp-view.c:2104
+msgid "The URI does not point to a valid page."
+msgstr ""
+
+#: libyelp/yelp-view.c:825 libyelp/yelp-view.c:2110
+#, c-format
+msgid "The URI ‘%s’ could not be parsed."
+msgstr ""
+
+#: libyelp/yelp-view.c:830
+msgid "Unknown Error."
+msgstr "Error incognite."
+
+#: libyelp/yelp-view.c:967
+msgid "You do not have PackageKit. Package install links require PackageKit."
+msgstr ""
+
+#: libyelp/yelp-view.c:972
+msgid "Package Install Link Error"
+msgstr ""
+
+#: libyelp/yelp-view.c:973 libyelp/yelp-view.c:1172 libyelp/yelp-view.c:1306
+#: libyelp/yelp-view.c:1316
+msgid "_Close"
+msgstr "_Clauder"
+
+#: libyelp/yelp-view.c:1171
+msgid "Failed to Save Image"
+msgstr "Falleva le salvamento del imagine"
+
+#: libyelp/yelp-view.c:1230
+msgid "Save Image"
+msgstr "Salvar imagine"
+
+#: libyelp/yelp-view.c:1305 libyelp/yelp-view.c:1315
+msgid "Failed to Save Code"
+msgstr "Falleva le salvamento del codice"
+
+#: libyelp/yelp-view.c:1350
+msgid "Save Code"
+msgstr "Salvar codice"
+
+#: libyelp/yelp-view.c:1404
+#, c-format
+msgid "Send email to %s"
+msgstr "Inviar e-mail a %s"
+
+#: libyelp/yelp-view.c:1416
+msgid "_Install Packages"
+msgstr "_Installar pacchettos"
+
+#: libyelp/yelp-view.c:1423
+msgid "_Open Link"
+msgstr "_Aperir ligamine"
+
+#: libyelp/yelp-view.c:1431
+msgid "_Copy Link Location"
+msgstr "_Copiar localisation de ligamine"
+
+#: libyelp/yelp-view.c:1438
+msgid "Open Link in New _Window"
+msgstr "Aperir ligamine in nove _fenestra"
+
+#: libyelp/yelp-view.c:1485
+msgid "_Save Image As…"
+msgstr "_Salvar imagine como…"
+
+#: libyelp/yelp-view.c:1486
+msgid "_Save Video As…"
+msgstr "_Salvar video como…"
+
+#: libyelp/yelp-view.c:1495
+msgid "S_end Image To…"
+msgstr "Inviar imagin_e a…"
+
+#: libyelp/yelp-view.c:1496
+msgid "S_end Video To…"
+msgstr "Inviar vid_eo a…"
+
+#: libyelp/yelp-view.c:1509
+msgid "_Copy Text"
+msgstr "_Copiar texto"
+
+#: libyelp/yelp-view.c:1530
+msgid "C_opy Code Block"
+msgstr ""
+
+#: libyelp/yelp-view.c:1536
+msgid "Save Code _Block As…"
+msgstr ""
+
+#: libyelp/yelp-view.c:1853
+#, c-format
+msgid "Could not load a document for ‘%s’"
+msgstr ""
+
+#: libyelp/yelp-view.c:1859
+msgid "Could not load a document"
+msgstr ""
+
+#: libyelp/yelp-view.c:1905
+msgid "Document Not Found"
+msgstr ""
+
+#: libyelp/yelp-view.c:1907
+msgid "Page Not Found"
+msgstr ""
+
+#: libyelp/yelp-view.c:1910
+msgid "Cannot Read"
+msgstr ""
+
+#: libyelp/yelp-view.c:1916
+msgid "Unknown Error"
+msgstr "Error incognite"
+
+#: libyelp/yelp-view.c:1935
+msgid "Find Packages Containing This Document"
+msgstr ""
+
+#: org.gnome.Yelp.desktop.in:3
+msgid "Get help with GNOME"
+msgstr "Obtene adjuta con GNOME"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: org.gnome.Yelp.desktop.in:5
+msgid "documentation;information;manual;help;"
+msgstr ""
+
+#: src/yelp-application.c:57
+msgid "Turn on editor mode"
+msgstr ""
+
+#. Title is set dynamically
+#: src/yelp-search-entry.c:347
+msgid "Browse all search results"
+msgstr ""
+
+#. Update label on the "Search for X" result
+#: src/yelp-search-entry.c:567
+#, c-format
+msgid "Search for “%s”"
+msgstr ""
+
+#. TRANSLATORS Credit yourself here. Appears in about dialog.
+#: src/yelp-window.c:1172
+msgid "translator-credits"
+msgstr "Emilio Sepúlveda <emism.translations@gmail.com>"
+
+#: src/yelp-window.ui:9
+msgid "New Window"
+msgstr "Nove fenestra"
+
+#: src/yelp-window.ui:13
+msgid "Find in Page…"
+msgstr "Cercar in pagina…"
+
+#: src/yelp-window.ui:17
+msgid "Print…"
+msgstr "Imprimer…"
+
+#: src/yelp-window.ui:23
+msgid "Previous Page"
+msgstr "Pagina precedente"
+
+#: src/yelp-window.ui:27
+msgid "Next Page"
+msgstr "Pagina sequente"
+
+#: src/yelp-window.ui:38
+msgid "All Help"
+msgstr "Tote le adjuta"
+
+#: src/yelp-window.ui:44
+msgid "About Help"
+msgstr "A proposito de Adjuta"
+
+#: src/yelp-window.ui:78 src/yelp-window.ui:218
+msgid "Back"
+msgstr "Retro"
+
+#: src/yelp-window.ui:86 src/yelp-window.ui:226
+msgid "Forward"
+msgstr "Avante"
+
+#: src/yelp-window.ui:95
+msgid "Menu"
+msgstr "Menu"
+
+#: src/yelp-window.ui:105
+msgid "Search (Ctrl+S)"
+msgstr "Cercar (Ctrl+S)"
+
+#: src/yelp-window.ui:113
+msgid "Bookmarks"
+msgstr "Marcapaginas"
+
+#: src/yelp-window.ui:153
+msgid "Search in page…"
+msgstr "Cercar in pagina…"
+
+#: src/yelp-window.ui:161
+msgid "Previous"
+msgstr "Precedente"
+
+#: src/yelp-window.ui:173
+msgid "Next"
+msgstr "Sequente"
+
+#: src/yelp-window.ui:185
+msgid "Close Search"
+msgstr "Clauder recerca"
+
+#: src/yelp-window.ui:249
+msgid "Shrink Text"
+msgstr ""
+
+#: src/yelp-window.ui:260
+msgid "Reset Size"
+msgstr "Reinitialisar dimension"
+
+#: src/yelp-window.ui:277
+msgid "Enlarge Text"
+msgstr ""
+
+#: src/yelp-window.ui:324
+msgid "Add Bookmark"
+msgstr "Adder marcapagina"
+
+#: src/yelp-window.ui:335
+msgid "Remove Bookmark"
+msgstr "Remover marcapagina"
