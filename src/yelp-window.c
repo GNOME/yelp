@@ -239,18 +239,19 @@ yelp_window_init (YelpWindow *window)
 {
     YelpWindowPrivate *priv = yelp_window_get_instance_private (window);
     YelpSettings *settings;
-    GValue *true_val = g_new0 (GValue, 1);
+    GValue true_val = G_VALUE_INIT;
 
     settings = yelp_settings_get_default ();
 
     gtk_widget_init_template (GTK_WIDGET (window));
 
-    g_value_init (true_val, G_TYPE_BOOLEAN);
-    g_value_set_boolean (true_val, TRUE);
+    g_value_init (&true_val, G_TYPE_BOOLEAN);
+    g_value_set_boolean (&true_val, TRUE);
     adw_breakpoint_add_setter(priv->adaptive_mode_breakpoint,
                               G_OBJECT (window),
                               "adaptive-mode",
-                              true_val);
+                              &true_val);
+    g_value_unset (&true_val);
 
     g_signal_connect (settings, "notify::zoom-level", G_CALLBACK (on_font_scale_notify), window);
 
