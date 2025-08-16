@@ -598,6 +598,7 @@ yelp_settings_get_font_family (YelpSettings     *settings,
 
  done:
     g_mutex_unlock (&settings->priv->mutex);
+    g_clear_pointer (&desc, g_free);
     return ret;
 }
 
@@ -631,6 +632,7 @@ yelp_settings_get_font_size (YelpSettings     *settings,
     ret = g_ascii_strtod (c, NULL);
 
  done:
+    g_clear_pointer (&desc, g_free);
     g_mutex_unlock (&settings->priv->mutex);
     ret = (ret < 5) ? 5 : ret;
     return ret;
