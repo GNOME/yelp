@@ -34,6 +34,7 @@ int
 main (int argc, char **argv) 
 {
     YelpApplication *app;
+    int status;
 
     setlocale (LC_ALL, "");
     textdomain (GETTEXT_PACKAGE);
@@ -41,6 +42,8 @@ main (int argc, char **argv)
     bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 
     app = yelp_application_new ();
+    status = g_application_run (G_APPLICATION (app), argc, argv);
+    g_object_unref (app);
 
-    return g_application_run (G_APPLICATION (app), argc, argv);
+    return status;
 }
