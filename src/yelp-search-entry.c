@@ -587,6 +587,8 @@ entry_focus_cb (YelpSearchEntry  *entry,
         gtk_popover_popup (GTK_POPOVER (priv->completions_popover));
     else if (!has_focus)
         gtk_popover_popdown (GTK_POPOVER (priv->completions_popover));
+
+    g_clear_pointer (&text, g_free);
 }
 
 static void
