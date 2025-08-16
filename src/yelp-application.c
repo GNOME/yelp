@@ -275,6 +275,7 @@ yelp_application_cmdline (GApplication     *app,
     context = g_option_context_new (NULL);
     g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);
     g_option_context_parse (context, &argc, arguments, NULL);
+    g_option_context_free (context);
 
     for (i = 1; i < argc; i++) {
         if (!strchr ((*arguments)[i], ':') && !((*arguments)[i][0] == '/')) {
