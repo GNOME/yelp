@@ -407,9 +407,7 @@ static char
         if (str[i] == INFO_TAG_OPEN[0] && str[i+1] == INFO_TAG_OPEN[1])
             str[i] = INFO_C_TAG_OPEN[0];
 
-    g_string_free (string, FALSE);
-
-    return str;
+    return g_string_free_and_steal (string);
 }
 
 static gchar *
