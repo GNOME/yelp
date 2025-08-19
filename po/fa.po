@@ -2,17 +2,18 @@
 # Copyright (C) 2010, 2011 Iranian Free Software Users Group (IFSUG.org)translation team
 # Copyright (C) 2002, 2004, 2005, 2006 Sharif FarsiWeb, Inc.
 # Roozbeh Pournader <roozbeh@farsiweb.info>, 2002.
-# Meelad Zakaria <meelad@farsiweb.info>, 2004, 2005.
+# Meelad Zakaria <meelad@farsiweb.info>, 2004-2005.
 # Masoud Ahmadzadeh <masoud@bamdad.org>, 2005.
 # Sanaz Shahrokni <sanaz.shahrokni@gmail.com>, 2006.
-# Arash Mousavi <mousavi.arash@gmail.com>, 2011, 2012, 2014, 2015.
+# Arash Mousavi <mousavi.arash@gmail.com>, 2011-2015.
+# Danial Behzadi <dani.behzi@ubuntu.com>, 2015-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp 2.10.0\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
-"POT-Creation-Date: 2019-04-19 15:58+0000\n"
-"PO-Revision-Date: 2019-08-17 19:25+0430\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues/\n"
+"POT-Creation-Date: 2025-08-11 01:27+0000\n"
+"PO-Revision-Date: 2025-08-20 00:21+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 3.6\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -33,19 +34,20 @@ msgstr ""
 #.
 #. <string/> - The package to install
 #.
-#: data/domains/yelp.xml.in:36
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "نصب <string/>"
 
-#: data/yelp.appdata.xml.in:6
-msgid "GNOME Help"
-msgstr "راهنمای گنوم"
+#: data/yelp.appdata.xml.in:14 src/yelp-application.c:269 src/yelp-window.c:1192
+#: yelp.desktop.in:2
+msgid "Help"
+msgstr "راهنما"
 
-#: data/yelp.appdata.xml.in:7
+#: data/yelp.appdata.xml.in:15
 msgid "Help viewer for GNOME"
 msgstr "نمایشگر راهنما برای گنوم"
 
-#: data/yelp.appdata.xml.in:9
+#: data/yelp.appdata.xml.in:17
 msgid ""
 "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
 "also display DocBook, info, man, and HTML documentation."
@@ -53,7 +55,7 @@ msgstr ""
 "سلپ نمایشگر راهنمای گنوم است. به صورت پیش‌فرض برای نمایش مستندات مالارد طرّاحی "
 "شده،‌ولی می‌تواند DocBook، info، man و HTML را نیز نشان دهد."
 
-#: data/yelp.appdata.xml.in:13
+#: data/yelp.appdata.xml.in:21
 msgid ""
 "It makes it easy to find the documentation you need, with interactive search "
 "and bookmarks."
@@ -61,7 +63,7 @@ msgstr ""
 "این برنامه یافتن مستندات موردنیازتان را به وسیلهٔ جست‌وجوی تعاملی و نشانک‌ها، راحت "
 "می‌کند."
 
-#: data/yelp.appdata.xml.in:17
+#: data/yelp.appdata.xml.in:25
 msgid ""
 "It also has an editor mode, which shows editorial comments and revision "
 "statuses when editing Mallard documents."
@@ -69,43 +71,43 @@ msgstr ""
 "هم‌چنین یک حالت ویرایشگر دارد که هنگام ویرایش مستندات مالارد، نظرات ویرایشی و "
 "وضعیت‌های اصلاح را نشان می‌دهد."
 
-#: data/yelp.appdata.xml.in:30
+#: data/yelp.appdata.xml.in:40
 msgid "The GNOME Project"
 msgstr "پروژهٔ گنوم"
 
 #: libyelp/yelp-bz2-decompressor.c:143 libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
-msgstr "اطلاعات فشرده شدهٔ نامعتبر"
+msgstr "داده فشرده شده نامعتبر"
 
 #: libyelp/yelp-bz2-decompressor.c:149 libyelp/yelp-lzma-decompressor.c:158
 msgid "Not enough memory"
-msgstr "حافظه کافی موجود نیست"
+msgstr "حافظهٔ ناکافی"
 
-#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:221
-#: libyelp/yelp-mallard-document.c:306 libyelp/yelp-mallard-document.c:464
-#: libyelp/yelp-man-document.c:199
+#: libyelp/yelp-docbook-document.c:298 libyelp/yelp-info-document.c:220
+#: libyelp/yelp-mallard-document.c:312 libyelp/yelp-mallard-document.c:477
+#: libyelp/yelp-man-document.c:198
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "صفحهٔ «%s» در سند «%s» پیدا نشد."
 
-#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:358
-#: libyelp/yelp-man-document.c:336
+#: libyelp/yelp-docbook-document.c:337 libyelp/yelp-info-document.c:357
+#: libyelp/yelp-man-document.c:335
 msgid "The file does not exist."
 msgstr "پرونده وجود ندارد."
 
-#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:368
-#: libyelp/yelp-man-document.c:346
+#: libyelp/yelp-docbook-document.c:347 libyelp/yelp-info-document.c:367
+#: libyelp/yelp-man-document.c:345
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "پروندهٔ «%s» وجود ندارد."
 
-#: libyelp/yelp-docbook-document.c:359
+#: libyelp/yelp-docbook-document.c:365
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
 msgstr "تجزیهٔ پروندهٔ «%s» به دلیل اینکه سند XML خوش ترکیبی نیست، امکان‌پذیر نیست."
 
-#: libyelp/yelp-docbook-document.c:372
+#: libyelp/yelp-docbook-document.c:378
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files is "
@@ -114,27 +116,22 @@ msgstr ""
 "تجزیهٔ پروندهٔ «%s» به دلیل اینکه یک یا تعدادی از پرونده‌های مشمول آن یک XML خوش "
 "ترکیب نیست، امکان‌پذیر نیست."
 
-#: libyelp/yelp-docbook-document.c:810
+#: libyelp/yelp-docbook-document.c:813
 msgid "Unknown"
 msgstr "ناشناس"
 
-#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:301
-#: libyelp/yelp-man-document.c:279
+#: libyelp/yelp-docbook-document.c:911 libyelp/yelp-info-document.c:300
+#: libyelp/yelp-man-document.c:278
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "صفحهٔ درخواست شده در سند «%s» پیدا نشد."
 
-#: libyelp/yelp-document.c:1068
+#: libyelp/yelp-document.c:889
 #, c-format
 msgid "Search results for “%s”"
-msgstr "نتایج جست‌وجو برای «%s»"
+msgstr "نتیجه‌ه جست‌وجو برای «%s»"
 
-#: libyelp/yelp-document.c:1080
-#, c-format
-msgid "No matching help pages found in “%s”."
-msgstr "هیچ صفحهٔ راهنمای منطبقی در «%s» پیدا نشد."
-
-#: libyelp/yelp-document.c:1086
+#: libyelp/yelp-document.c:902
 msgid "No matching help pages found."
 msgstr "هیچ صفحهٔ راهنمای منطبقی پیدا نشد."
 
@@ -142,228 +139,230 @@ msgstr "هیچ صفحهٔ راهنمای منطبقی پیدا نشد."
 msgid "An unknown error occurred."
 msgstr "خطای نامعلومی رخ داد."
 
-#: libyelp/yelp-help-list.c:548 libyelp/yelp-help-list.c:557
+#: libyelp/yelp-help-list.c:537
 msgid "All Help Documents"
 msgstr "تمام سندهای راهنما"
 
-#: libyelp/yelp-info-document.c:383
+#: libyelp/yelp-info-document.c:382
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr "تجزیهٔ پروندهٔ «%s» بدلیل اینکه صفحهٔ info خوش ترکیبی نیست، امکان‌پذیر نیست."
 
-#: libyelp/yelp-mallard-document.c:348
+#: libyelp/yelp-mallard-document.c:354
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "شاخهٔ «%s» وجود ندارد."
 
-#: libyelp/yelp-search-entry.c:434
+#: libyelp/yelp-search-entry.c:435
 #, c-format
 msgid "Search for “%s”"
 msgstr "جست‌وجو برای «%s»"
 
-#: libyelp/yelp-transform.c:370 libyelp/yelp-transform.c:385
+#: libyelp/yelp-transform.c:379 libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "برگه سبک XSLT «%s» یا موجود و یا معتبر نیست."
 
-#: libyelp/yelp-transform.c:519
+#: libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
 msgstr "مشخصهٔ href در yelp:document پیدا نشد\n"
 
-#: libyelp/yelp-transform.c:534
+#: libyelp/yelp-transform.c:543
 msgid "Out of memory"
 msgstr "حافظه تمام شد"
 
-#: libyelp/yelp-view.c:248
+#: libyelp/yelp-view.c:253
 msgid "C_opy Code Block"
 msgstr "_رونوشت قالب کد"
 
-#: libyelp/yelp-view.c:253
+#: libyelp/yelp-view.c:258
 msgid "_Copy Link Location"
 msgstr "_رونوشت از محل پیوند"
 
-#: libyelp/yelp-view.c:258
+#: libyelp/yelp-view.c:263
 msgid "_Open Link"
 msgstr "_گشودن پیوند"
 
-#: libyelp/yelp-view.c:263
+#: libyelp/yelp-view.c:268
 msgid "Open Link in New _Window"
 msgstr "گشودن پیوند در _پنجرهٔ جدید"
 
-#: libyelp/yelp-view.c:273
+#: libyelp/yelp-view.c:278
 msgid "_Install Packages"
 msgstr "_نصب بسته‌ها"
 
-#: libyelp/yelp-view.c:278
+#: libyelp/yelp-view.c:283
 msgid "Save Code _Block As…"
 msgstr "ذخیرهٔ _قطعه‌کد به نام…"
 
-#: libyelp/yelp-view.c:293
+#: libyelp/yelp-view.c:298
 msgid "_Copy Text"
 msgstr "_رونوشت از متن"
 
-#: libyelp/yelp-view.c:805 libyelp/yelp-view.c:2138
+#: libyelp/yelp-view.c:845 libyelp/yelp-view.c:2162
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "نشانی «‎%s» به یک پروندهٔ واقعی اشاره نمی‌کند."
 
-#: libyelp/yelp-view.c:811 libyelp/yelp-view.c:2144
+#: libyelp/yelp-view.c:851 libyelp/yelp-view.c:2168
 msgid "The URI does not point to a valid page."
 msgstr "آدرس به یک صفحهٔ معتبر اشاره نمی‌کند."
 
-#: libyelp/yelp-view.c:816 libyelp/yelp-view.c:2150
+#: libyelp/yelp-view.c:856 libyelp/yelp-view.c:2174
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "نشانی %s نتوانست تجزیه شود."
 
-#: libyelp/yelp-view.c:821
+#: libyelp/yelp-view.c:861
 msgid "Unknown Error."
 msgstr "خطای نامعلوم."
 
-#: libyelp/yelp-view.c:975
+#: libyelp/yelp-view.c:1015
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "شما PackageKit ندارید. نصب بسته نیاز به PackageKit دارد."
 
-#: libyelp/yelp-view.c:1222
+#: libyelp/yelp-view.c:1262
 msgid "Save Image"
-msgstr "ذخیره تصویر"
+msgstr "ذخیرهٔ تصویر"
 
-#: libyelp/yelp-view.c:1321
+#: libyelp/yelp-view.c:1361
 msgid "Save Code"
-msgstr "دخیره کد"
+msgstr "ذخیرهٔ کد"
 
-#: libyelp/yelp-view.c:1417
+#: libyelp/yelp-view.c:1457
 #, c-format
 msgid "Send email to %s"
-msgstr "ارسال پست الکترونیکی به %s"
+msgstr "فرستادن رایانامه به %s"
 
-#: libyelp/yelp-view.c:1521
+#: libyelp/yelp-view.c:1561
 msgid "_Save Image As…"
-msgstr "_ذخیرهٔ تصویر به نام…"
+msgstr "_ذخیرهٔ تصویر به شکل…"
 
-#: libyelp/yelp-view.c:1522
+#: libyelp/yelp-view.c:1562
 msgid "_Save Video As…"
-msgstr "_ذخیرهٔ ویدیو به نام…"
+msgstr "_ذخیرهٔ ویدیو به شکل…"
 
-#: libyelp/yelp-view.c:1530
+#: libyelp/yelp-view.c:1570
 msgid "S_end Image To…"
-msgstr "_ارسال تصویر به…"
+msgstr "_فرستادن تصویر به…"
 
-#: libyelp/yelp-view.c:1531
+#: libyelp/yelp-view.c:1571
 msgid "S_end Video To…"
-msgstr "_ارسال ویدیو به…"
+msgstr "_فرستادن ویدیو به…"
 
-#: libyelp/yelp-view.c:1872
+#: libyelp/yelp-view.c:1926
 #, c-format
 msgid "Could not load a document for ‘%s’"
-msgstr "برای «%s» نمی‌توان سندی پیدا کرد"
+msgstr "نتوانست سندی را برای «%s» بار کند"
 
-#: libyelp/yelp-view.c:1878
+#: libyelp/yelp-view.c:1932
 msgid "Could not load a document"
-msgstr "ناتوان در بارکردن یک سند"
+msgstr "نتوانست سندی را بار کند"
 
-#: libyelp/yelp-view.c:1962
+#: libyelp/yelp-view.c:1987
 msgid "Document Not Found"
 msgstr "سند پیدا نشد"
 
-#: libyelp/yelp-view.c:1964
+#: libyelp/yelp-view.c:1989
 msgid "Page Not Found"
 msgstr "صفحه پیدا نشد"
 
-#: libyelp/yelp-view.c:1967
+#: libyelp/yelp-view.c:1992
 msgid "Cannot Read"
 msgstr "نمی‌توان خواند"
 
-#: libyelp/yelp-view.c:1973
+#: libyelp/yelp-view.c:1998
 msgid "Unknown Error"
 msgstr "خطای نامعلوم"
 
-#: libyelp/yelp-view.c:1993
+#: libyelp/yelp-view.c:2018
 msgid "Search for packages containing this document."
-msgstr "جست‌وجو برای بسته‌های حاوی این سند."
+msgstr "جست‌وجوی بسته‌های حاوی این سند."
 
-#: src/yelp-application.c:59
+#: src/yelp-application.c:60
 msgid "Turn on editor mode"
 msgstr "روشن کردن حالت ویرایش"
 
-#: src/yelp-application.c:270 src/yelp-window.c:1188 src/yelp-window.c:1196
-#: yelp.desktop.in:3
-msgid "Help"
-msgstr "راهنما"
-
-#: src/yelp-window.c:343
+#: src/yelp-window.c:346
 msgid "Back"
-msgstr "عقب"
+msgstr "بازگشت"
 
-#: src/yelp-window.c:350
+#: src/yelp-window.c:353
 msgid "Forward"
-msgstr "جلو"
+msgstr "پیشروی"
 
-#: src/yelp-window.c:361
+#: src/yelp-window.c:364
 msgid "Menu"
-msgstr "منو"
+msgstr "فهرست"
 
-#: src/yelp-window.c:366
+#: src/yelp-window.c:369
 msgid "New Window"
 msgstr "پنجرهٔ جدید"
 
-#: src/yelp-window.c:367
+#: src/yelp-window.c:370
 msgid "Find…"
 msgstr "یافتن…"
 
-#: src/yelp-window.c:368
+#: src/yelp-window.c:371
 msgid "Print…"
 msgstr "چاپ…"
 
-#: src/yelp-window.c:373
+#: src/yelp-window.c:376
 msgid "Previous Page"
-msgstr "صفحهٔ پیش"
+msgstr "صفحهٔ پیشین"
 
-#: src/yelp-window.c:374
+#: src/yelp-window.c:377
 msgid "Next Page"
-msgstr "صفحهٔ بعد"
+msgstr "صفحهٔ بعدی"
 
-#: src/yelp-window.c:379
+#: src/yelp-window.c:382
 msgid "Larger Text"
 msgstr "متن بزرگ‌تر"
 
-#: src/yelp-window.c:380
+#: src/yelp-window.c:383
 msgid "Smaller Text"
 msgstr "متن کوچک‌تر"
 
-#: src/yelp-window.c:385
+#: src/yelp-window.c:388
 msgid "All Help"
-msgstr "تمام راهنما"
+msgstr "همهٔ راهنماها"
 
-#: src/yelp-window.c:407
+#: src/yelp-window.c:410
 msgid "Search (Ctrl+S)"
 msgstr "جست‌وجو"
 
-#: src/yelp-window.c:424
+#: src/yelp-window.c:427
 msgid "Bookmarks"
 msgstr "نشانک‌ها"
 
-#: src/yelp-window.c:441
+#: src/yelp-window.c:444
 msgid "No bookmarks"
 msgstr "بدون نشانک‌ها"
 
-#: src/yelp-window.c:449
+#: src/yelp-window.c:452
 msgid "Add Bookmark"
 msgstr "افزودن نشانک"
 
-#: src/yelp-window.c:455
+#: src/yelp-window.c:458
 msgid "Remove Bookmark"
 msgstr "حذف نشانک"
 
-#: yelp.desktop.in:4
+#: yelp.desktop.in:3
 msgid "Get help with GNOME"
 msgstr "راهنمایی گرفتن در مورد گنوم"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: yelp.desktop.in:6
+#: yelp.desktop.in:5
 msgid "documentation;information;manual;help;"
 msgstr "documentation;information;manual;help;مستندات;اطلاعات;راهنما;کمک;"
+
+#~ msgid "GNOME Help"
+#~ msgstr "راهنمای گنوم"
+
+#, c-format
+#~ msgid "No matching help pages found in “%s”."
+#~ msgstr "هیچ صفحهٔ راهنمای منطبقی در «%s» پیدا نشد."
 
 #~ msgid "Indexed"
 #~ msgstr "فهرست شد"
