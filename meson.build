@@ -14,6 +14,8 @@ libdir = get_option('libdir')
 includedir = get_option('includedir')
 buildtype = get_option('buildtype')
 
+lib_version = 1
+
 yelp_conf = configuration_data()
 
 if buildtype == 'debug' or buildtype == 'debugoptimized'
@@ -110,9 +112,10 @@ yelp_xsl_conf.set('XSL_JSDIR', xsl_jsdir)
 yelp_xsl_conf.set('XSL_GETTEXT', xsl_gettext)
 yelp_xsl_conf.set('DATADIR', join_paths(prefix, datadir))
 
+yelp_web_process_extensions_dir = libdir / 'yelp-@0@'.format(lib_version) / 'web-process-extensions'
 yelp_conf.set_quoted('YELP_ICON_PATH', xsl_icondir)
 yelp_conf.set_quoted('YELP_WEB_PROCESS_EXTENSIONS_DIR',
-                     join_paths(prefix, libdir, 'yelp', 'web-process-extensions'))
+                     prefix / yelp_web_process_extensions_dir)
 
 configure_file(output: 'config.h',
                configuration: yelp_conf)

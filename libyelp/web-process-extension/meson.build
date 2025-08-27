@@ -12,7 +12,5 @@ webprocessextension = library('yelpwebprocessextension',
                              dependencies: [libadwaita_dep, webkitgtk_web_process_extension_dep],
                              include_directories: [configinc, libyelpinc],
                              c_args: ['-DHAVE_CONFIG_H'],
-                             install_dir: join_paths(libdir,
-                                                     'yelp',
-                                                     'web-process-extensions'),
+                             install_dir: yelp_web_process_extensions_dir,
 )

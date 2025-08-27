@@ -30,7 +30,9 @@ libyelp_headers = files(
   'yelp-uri.h',
   'yelp-view.h',
 )
-install_headers(libyelp_headers, subdir: 'libyelp')
+
+headers_path = 'libyelp-@0@'.format(lib_version)
+install_headers(libyelp_headers, subdir: headers_path)
 
 libyelp_sources = files(
   'yelp-bookmarks.c',
@@ -76,11 +78,11 @@ libyelp_enums = gnome.mkenums('yelp-types',
                               c_template: 'yelp-types.c.template',
                               h_template: 'yelp-types.h.template',
                               install_header: true,
-                              install_dir: join_paths(includedir, 'libyelp'),
+                              install_dir: join_paths(includedir, headers_path),
                               sources: libyelp_headers,
 )
 
-libyelp = library('yelp',
+libyelp = library('yelp-@0@'.format(lib_version),
                   sources: libyelp_sources + libyelp_marshallers + libyelp_enums,
                   install: true,
                   soversion: '0',
