@@ -1,3 +1,5 @@
+pkg = import('pkgconfig')
+
 libyelp_deps = [
   m_dep,
   gio_dep,
@@ -103,5 +105,8 @@ libyelp_dep = declare_dependency(link_with: libyelp,
                                    webkitgtk_dep,
                                  ],
 )
+
+pkg.generate(libyelp, name: headers_path, description: 'Yelp library',
+    subdirs: headers_path)
 
 subdir('web-process-extension')
