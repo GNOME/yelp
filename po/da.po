@@ -8,6 +8,7 @@
 # Ask Hjorth Larsen <asklarsen@gmail.com>, 2007-2008, 2016.
 # Aputsiaq Niels Janussen <aj@isit.gl>, 2011.
 # Kenneth Nielsen <k.nielsen81@gmail.com>, 2014.
+# Alan Mortensen <alanmortensen.am@gmail.com>, 2019, 2025.
 #
 # Husk at tilføje dig i credit-listen (besked id "translator-credits")
 #
@@ -17,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
-"POT-Creation-Date: 2019-02-20 07:46+0000\n"
-"PO-Revision-Date: 2019-02-13 11:54+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues/\n"
+"POT-Creation-Date: 2025-08-29 16:26+0000\n"
+"PO-Revision-Date: 2025-08-31 16:47+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Launchpad-Export-Date: 2011-03-30 00:28+0000\n"
 
 #. (itstool) path: msg/msgstr
@@ -40,44 +41,35 @@ msgstr ""
 #.
 #. <string/> - The package to install
 #.
-#: data/domains/yelp.xml.in:36
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Installér <string/>"
 
-# Det skal vist forstås som en slags programnavn
-#: data/yelp.appdata.xml.in:6
-msgid "GNOME Help"
-msgstr "GNOME Hjælp"
+#: data/org.gnome.Yelp.metainfo.xml.in:19 org.gnome.Yelp.desktop.in:2 src/yelp-application.c:307 src/yelp-window.c:1112 src/yelp-window.c:1163
+msgid "Help"
+msgstr "Hjælp"
 
-#: data/yelp.appdata.xml.in:7
+#: data/org.gnome.Yelp.metainfo.xml.in:20
 msgid "Help viewer for GNOME"
 msgstr "Hjælpefremviser til GNOME"
 
-#: data/yelp.appdata.xml.in:9
-msgid ""
-"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
-"also display DocBook, info, man, and HTML documentation."
-msgstr ""
-"Yelp er GNOMEs hjælpefremviser. Yelp er standardfremviseren for Mallard, men "
-"kan også fremvise DocBook, info, man samt HTML-dokumentation."
+#: data/org.gnome.Yelp.metainfo.xml.in:22
+msgid "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can also display DocBook, info, man, and HTML documentation."
+msgstr "Yelp er GNOMEs hjælpefremviser. Yelp er standardfremviseren for Mallard, men kan også fremvise DocBook, info, man samt HTML-dokumentation."
 
-#: data/yelp.appdata.xml.in:13
-msgid ""
-"It makes it easy to find the documentation you need, with interactive search "
-"and bookmarks."
-msgstr ""
-"Programmet gør det nemt at finde den dokumentation, du har brug for, med "
-"interaktiv søgning og bogmærker."
+#: data/org.gnome.Yelp.metainfo.xml.in:26
+msgid "It makes it easy to find the documentation you need, with interactive search and bookmarks."
+msgstr "Programmet gør det nemt at finde den dokumentation, du har brug for, med interaktiv søgning og bogmærker."
 
-#: data/yelp.appdata.xml.in:17
-msgid ""
-"It also has an editor mode, which shows editorial comments and revision "
-"statuses when editing Mallard documents."
-msgstr ""
-"Det har også en redigeringstilstand, som viser kommentarer og "
-"revisionsstatus ved redigering af Mallard-dokumenter."
+#: data/org.gnome.Yelp.metainfo.xml.in:30
+msgid "It also has an editor mode, which shows editorial comments and revision statuses when editing Mallard documents."
+msgstr "Det har også en redigeringstilstand, som viser kommentarer og revisionsstatus ved redigering af Mallard-dokumenter."
 
-#: data/yelp.appdata.xml.in:30
+#: data/org.gnome.Yelp.metainfo.xml.in:37
+msgid "Main window"
+msgstr "Hovedvindue"
+
+#: data/org.gnome.Yelp.metainfo.xml.in:56 src/yelp-window.c:1168
 msgid "The GNOME Project"
 msgstr "GNOME-projektet"
 
@@ -89,62 +81,45 @@ msgstr "Ugyldige komprimerede data"
 msgid "Not enough memory"
 msgstr "Ikke nok hukommelse"
 
-#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:221
-#: libyelp/yelp-mallard-document.c:306 libyelp/yelp-mallard-document.c:464
-#: libyelp/yelp-man-document.c:199
+#: libyelp/yelp-docbook-document.c:298 libyelp/yelp-info-document.c:220 libyelp/yelp-mallard-document.c:312 libyelp/yelp-mallard-document.c:477 libyelp/yelp-man-document.c:198
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Siden “%s” blev ikke fundet i dokumentet “%s”."
 
-#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:358
-#: libyelp/yelp-man-document.c:336
+#: libyelp/yelp-docbook-document.c:337 libyelp/yelp-info-document.c:357 libyelp/yelp-man-document.c:335
 msgid "The file does not exist."
 msgstr "Filen findes ikke."
 
-#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:368
-#: libyelp/yelp-man-document.c:346
+#: libyelp/yelp-docbook-document.c:347 libyelp/yelp-info-document.c:367 libyelp/yelp-man-document.c:345
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Filen “%s” findes ikke."
 
-#: libyelp/yelp-docbook-document.c:359
+#: libyelp/yelp-docbook-document.c:365
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"Filen “%s” kunne ikke fortolkes fordi den ikke er et velformet XML-dokument."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgstr "Filen “%s” kunne ikke fortolkes fordi den ikke er et velformet XML-dokument."
 
-#: libyelp/yelp-docbook-document.c:372
+#: libyelp/yelp-docbook-document.c:378
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files "
-"is not a well-formed XML document."
-msgstr ""
-"Filen “%s” kunne ikke fortolkes fordi en eller flere af dens inkluderede "
-"filer ikke er et velformet XML-dokument."
+msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
+msgstr "Filen “%s” kunne ikke fortolkes fordi en eller flere af dens inkluderede filer ikke er et velformet XML-dokument."
 
-#: libyelp/yelp-docbook-document.c:810
+#: libyelp/yelp-docbook-document.c:813
 msgid "Unknown"
 msgstr "Ukendt"
 
-#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:301
-#: libyelp/yelp-man-document.c:279
+#: libyelp/yelp-docbook-document.c:911 libyelp/yelp-info-document.c:300 libyelp/yelp-man-document.c:278
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Den efterspurgte side blev ikke fundet i dokumentet “%s”."
 
-#: libyelp/yelp-document.c:1068
+#: libyelp/yelp-document.c:889
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Søgeresultater for “%s”"
 
-#: libyelp/yelp-document.c:1080
-#, c-format
-msgid "No matching help pages found in “%s”."
-msgstr "Ingen hjælpesider fundet i “%s”."
-
-#: libyelp/yelp-document.c:1086
+#: libyelp/yelp-document.c:902
 msgid "No matching help pages found."
 msgstr "Ingen hjælpesider fundet."
 
@@ -152,232 +127,308 @@ msgstr "Ingen hjælpesider fundet."
 msgid "An unknown error occurred."
 msgstr "Der opstod en ukendt fejl."
 
-#: libyelp/yelp-help-list.c:548 libyelp/yelp-help-list.c:557
+#: libyelp/yelp-help-list.c:539
 msgid "All Help Documents"
 msgstr "Alle hjælpedokumenter"
 
-#: libyelp/yelp-info-document.c:383
+#: libyelp/yelp-info-document.c:382
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"Filen “%s” kunne ikke fortolkes fordi den ikke er en velformet info-side."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr "Filen “%s” kunne ikke fortolkes fordi den ikke er en velformet info-side."
 
-#: libyelp/yelp-mallard-document.c:348
+#: libyelp/yelp-mallard-document.c:354
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Mappen “%s” findes ikke."
 
-#: libyelp/yelp-search-entry.c:434
-#, c-format
-msgid "Search for “%s”"
-msgstr "Søg efter “%s”"
-
-#: libyelp/yelp-transform.c:369 libyelp/yelp-transform.c:384
+#: libyelp/yelp-transform.c:379 libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "XSLT-stilarket “%s” mangler eller indeholder fejl."
 
-#: libyelp/yelp-transform.c:518
+#: libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
 msgstr "Ingen “href”-egenskab fundet i yelp:document\n"
 
-#: libyelp/yelp-transform.c:533
+#: libyelp/yelp-transform.c:543
 msgid "Out of memory"
 msgstr "Løbet tør for hukommelse"
 
-#: libyelp/yelp-view.c:248
-msgid "C_opy Code Block"
-msgstr "K_opiér kodeblok"
-
-#: libyelp/yelp-view.c:253
-msgid "_Copy Link Location"
-msgstr "_Kopiér linkplacering"
-
-#: libyelp/yelp-view.c:258
-msgid "_Open Link"
-msgstr "_Åbn link"
-
-#: libyelp/yelp-view.c:263
-msgid "Open Link in New _Window"
-msgstr "Gå til link i nyt _vindue"
-
-#: libyelp/yelp-view.c:273
-msgid "_Install Packages"
-msgstr "_Installér pakker"
-
-#: libyelp/yelp-view.c:278
-msgid "Save Code _Block As…"
-msgstr "Gem kode_blok som …"
-
-#: libyelp/yelp-view.c:293
-msgid "_Copy Text"
-msgstr "_Kopiér tekst"
-
-#: libyelp/yelp-view.c:805 libyelp/yelp-view.c:2138
+#: libyelp/yelp-view.c:814 libyelp/yelp-view.c:2098
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI'en “%s” peger ikke på en gyldig side."
 
-#: libyelp/yelp-view.c:811 libyelp/yelp-view.c:2144
+#: libyelp/yelp-view.c:820 libyelp/yelp-view.c:2104
 msgid "The URI does not point to a valid page."
 msgstr "URI'en peger ikke på en gyldig side."
 
-#: libyelp/yelp-view.c:816 libyelp/yelp-view.c:2150
+#: libyelp/yelp-view.c:825 libyelp/yelp-view.c:2110
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI'en “%s” kunne ikke tolkes."
 
-#: libyelp/yelp-view.c:821
+#: libyelp/yelp-view.c:830
 msgid "Unknown Error."
 msgstr "Ukendt fejl."
 
-#: libyelp/yelp-view.c:975
+#: libyelp/yelp-view.c:967
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "Du har ikke PackageKit. Pakkeinstallationslinks kræver PackageKit."
 
-#: libyelp/yelp-view.c:1222
+#: libyelp/yelp-view.c:972
+msgid "Package Install Link Error"
+msgstr "Fejl i pakkeinstallationslink"
+
+#: libyelp/yelp-view.c:973 libyelp/yelp-view.c:1172 libyelp/yelp-view.c:1306 libyelp/yelp-view.c:1316
+msgid "_Close"
+msgstr "_Luk"
+
+#: libyelp/yelp-view.c:1171
+msgid "Failed to Save Image"
+msgstr "Kunne ikke gemme billede"
+
+#: libyelp/yelp-view.c:1230
 msgid "Save Image"
 msgstr "Gem billede"
 
-#: libyelp/yelp-view.c:1321
+#: libyelp/yelp-view.c:1305 libyelp/yelp-view.c:1315
+msgid "Failed to Save Code"
+msgstr "Kunne ikke gemme kode"
+
+#: libyelp/yelp-view.c:1350
 msgid "Save Code"
 msgstr "Gem kode"
 
-#: libyelp/yelp-view.c:1417
+#: libyelp/yelp-view.c:1404
 #, c-format
 msgid "Send email to %s"
 msgstr "Send e-mail til %s"
 
-#: libyelp/yelp-view.c:1521
+#: libyelp/yelp-view.c:1416
+msgid "_Install Packages"
+msgstr "_Installér pakker"
+
+#: libyelp/yelp-view.c:1423
+msgid "_Open Link"
+msgstr "_Åbn link"
+
+#: libyelp/yelp-view.c:1431
+msgid "_Copy Link Location"
+msgstr "_Kopiér linkplacering"
+
+#: libyelp/yelp-view.c:1438
+msgid "Open Link in New _Window"
+msgstr "Gå til link i nyt _vindue"
+
+#: libyelp/yelp-view.c:1485
 msgid "_Save Image As…"
 msgstr "_Gem billede som …"
 
-#: libyelp/yelp-view.c:1522
+#: libyelp/yelp-view.c:1486
 msgid "_Save Video As…"
 msgstr "_Gem video som …"
 
-#: libyelp/yelp-view.c:1530
+#: libyelp/yelp-view.c:1495
 msgid "S_end Image To…"
 msgstr "_Send billede til …"
 
-#: libyelp/yelp-view.c:1531
+#: libyelp/yelp-view.c:1496
 msgid "S_end Video To…"
 msgstr "_Send video til …"
 
-#: libyelp/yelp-view.c:1872
+#: libyelp/yelp-view.c:1509
+msgid "_Copy Text"
+msgstr "_Kopiér tekst"
+
+#: libyelp/yelp-view.c:1530
+msgid "C_opy Code Block"
+msgstr "K_opiér kodeblok"
+
+#: libyelp/yelp-view.c:1536
+msgid "Save Code _Block As…"
+msgstr "Gem kode_blok som …"
+
+#: libyelp/yelp-view.c:1853
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Kunne ikke indlæse et dokument for “%s”"
 
-#: libyelp/yelp-view.c:1878
+#: libyelp/yelp-view.c:1859
 msgid "Could not load a document"
 msgstr "Kunne ikke indlæse et dokument"
 
-#: libyelp/yelp-view.c:1962
+#: libyelp/yelp-view.c:1905
 msgid "Document Not Found"
 msgstr "Dokument ikke fundet"
 
-#: libyelp/yelp-view.c:1964
+#: libyelp/yelp-view.c:1907
 msgid "Page Not Found"
 msgstr "Side ikke fundet"
 
-#: libyelp/yelp-view.c:1967
+#: libyelp/yelp-view.c:1910
 msgid "Cannot Read"
 msgstr "Kunne ikke læse"
 
-#: libyelp/yelp-view.c:1973
+#: libyelp/yelp-view.c:1916
 msgid "Unknown Error"
 msgstr "Ukendt fejl"
 
-#: libyelp/yelp-view.c:1993
-msgid "Search for packages containing this document."
-msgstr "Søg efter pakker der indeholder dette dokument."
+#: libyelp/yelp-view.c:1935
+msgid "Find Packages Containing This Document"
+msgstr "Find pakker, der indeholder dette dokument"
 
-#: src/yelp-application.c:59
-msgid "Turn on editor mode"
-msgstr "Aktivér redigeringstilstand"
-
-#: src/yelp-application.c:270 src/yelp-window.c:1188 src/yelp-window.c:1196
-#: yelp.desktop.in:3
-msgid "Help"
-msgstr "Hjælp"
-
-#: src/yelp-window.c:343
-msgid "Back"
-msgstr "Tilbage"
-
-#: src/yelp-window.c:350
-msgid "Forward"
-msgstr "Fremad"
-
-#: src/yelp-window.c:361
-msgid "Menu"
-msgstr "Menu"
-
-#: src/yelp-window.c:366
-msgid "New Window"
-msgstr "Nyt vindue"
-
-#: src/yelp-window.c:367
-msgid "Find…"
-msgstr "Find …"
-
-#: src/yelp-window.c:368
-msgid "Print…"
-msgstr "Udskriv …"
-
-#: src/yelp-window.c:373
-msgid "Previous Page"
-msgstr "Forrige side"
-
-#: src/yelp-window.c:374
-msgid "Next Page"
-msgstr "Næste side"
-
-#: src/yelp-window.c:379
-msgid "Larger Text"
-msgstr "Større tekst"
-
-#: src/yelp-window.c:380
-msgid "Smaller Text"
-msgstr "Mindre tekst"
-
-#: src/yelp-window.c:385
-msgid "All Help"
-msgstr "Al hjælp"
-
-#: src/yelp-window.c:407
-msgid "Search (Ctrl+S)"
-msgstr "Søg (Ctrl+S)"
-
-#: src/yelp-window.c:424
-msgid "Bookmarks"
-msgstr "Bogmærker"
-
-#: src/yelp-window.c:441
-msgid "No bookmarks"
-msgstr "Ingen bogmærker"
-
-#: src/yelp-window.c:449
-msgid "Add Bookmark"
-msgstr "Tilføj bogmærke"
-
-#: src/yelp-window.c:455
-msgid "Remove Bookmark"
-msgstr "Fjern bogmærke"
-
-#: yelp.desktop.in:4
+#: org.gnome.Yelp.desktop.in:3
 msgid "Get help with GNOME"
 msgstr "Få hjælp til GNOME"
 
-#: yelp.desktop.in:5
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: org.gnome.Yelp.desktop.in:5
 msgid "documentation;information;manual;help;"
 msgstr "dokumentation;information;manual;håndbog;hjælp;"
 
-#: yelp.desktop.in:8
-msgid "org.gnome.Yelp"
-msgstr "org.gnome.Yelp"
+#: src/yelp-application.c:57
+msgid "Turn on editor mode"
+msgstr "Aktivér redigeringstilstand"
+
+#. Title is set dynamically
+#: src/yelp-search-entry.c:347
+msgid "Browse all search results"
+msgstr "Gennemse alle søgeresultater"
+
+#. Update label on the "Search for X" result
+#: src/yelp-search-entry.c:567
+#, c-format
+msgid "Search for “%s”"
+msgstr "Søg efter “%s”"
+
+#. TRANSLATORS Credit yourself here. Appears in about dialog.
+#: src/yelp-window.c:1172
+msgid "translator-credits"
+msgstr ""
+"Ole Laursen\n"
+"Martin Willemoes Hansen\n"
+"Lasse Bang Mikkelsen\n"
+"Ask Hjorth Larsen\n"
+"Alan Mortensen\n"
+"\n"
+"Dansk-gruppen\n"
+"Websted http://dansk-gruppen.dk\n"
+"E-mail <dansk@dansk-gruppen.dk>\n"
+"\n"
+"Launchpad Contributions:\n"
+"  AJenbo https://launchpad.net/~ajenbo\n"
+"  Ask Hjorth Larsen https://launchpad.net/~askhl\n"
+"  Hans Ove Hansen https://launchpad.net/~h-hansove\n"
+"  Joe Hansen https://launchpad.net/~joedalton2\n"
+"  Lasse Bang Mikkelsen https://launchpad.net/~lbm\n"
+"  Louis https://launchpad.net/~louis-louis\n"
+"  Mads Konradsen https://launchpad.net/~mads-hk\n"
+"  Michael Bæk https://launchpad.net/~mchlbk\n"
+"  Philip Munksgaard https://launchpad.net/~pmunksgaard\n"
+"  Pillum https://launchpad.net/~pillum\n"
+"  eZtaR https://launchpad.net/~eztar-dk"
+
+#: src/yelp-window.ui:9
+msgid "New Window"
+msgstr "Nyt vindue"
+
+#: src/yelp-window.ui:13
+msgid "Find in Page…"
+msgstr "Find på siden …"
+
+#: src/yelp-window.ui:17
+msgid "Print…"
+msgstr "Udskriv …"
+
+#: src/yelp-window.ui:23
+msgid "Previous Page"
+msgstr "Forrige side"
+
+#: src/yelp-window.ui:27
+msgid "Next Page"
+msgstr "Næste side"
+
+#: src/yelp-window.ui:38
+msgid "All Help"
+msgstr "Al hjælp"
+
+#: src/yelp-window.ui:44
+msgid "About Help"
+msgstr "Om Hjælp"
+
+#: src/yelp-window.ui:78 src/yelp-window.ui:218
+msgid "Back"
+msgstr "Tilbage"
+
+#: src/yelp-window.ui:86 src/yelp-window.ui:226
+msgid "Forward"
+msgstr "Fremad"
+
+#: src/yelp-window.ui:95
+msgid "Menu"
+msgstr "Menu"
+
+#: src/yelp-window.ui:105
+msgid "Search (Ctrl+S)"
+msgstr "Søg (Ctrl+S)"
+
+#: src/yelp-window.ui:113
+msgid "Bookmarks"
+msgstr "Bogmærker"
+
+#: src/yelp-window.ui:153
+msgid "Search in page…"
+msgstr "Søg på siden …"
+
+#: src/yelp-window.ui:161
+msgid "Previous"
+msgstr "Forrige"
+
+#: src/yelp-window.ui:173
+msgid "Next"
+msgstr "Næste"
+
+#: src/yelp-window.ui:185
+msgid "Close Search"
+msgstr "Luk søgning"
+
+#: src/yelp-window.ui:249
+msgid "Shrink Text"
+msgstr "Formindsk tekst"
+
+#: src/yelp-window.ui:260
+msgid "Reset Size"
+msgstr "Nulstil størrelse"
+
+#: src/yelp-window.ui:277
+msgid "Enlarge Text"
+msgstr "Forstør tekst"
+
+#: src/yelp-window.ui:324
+msgid "Add Bookmark"
+msgstr "Tilføj bogmærke"
+
+#: src/yelp-window.ui:335
+msgid "Remove Bookmark"
+msgstr "Fjern bogmærke"
+
+# Det skal vist forstås som en slags programnavn
+#~ msgid "GNOME Help"
+#~ msgstr "GNOME Hjælp"
+
+#, c-format
+#~ msgid "No matching help pages found in “%s”."
+#~ msgstr "Ingen hjælpesider fundet i “%s”."
+
+#~ msgid "Find…"
+#~ msgstr "Find …"
+
+#~ msgid "No bookmarks"
+#~ msgstr "Ingen bogmærker"
+
+#~ msgid "org.gnome.Yelp"
+#~ msgstr "org.gnome.Yelp"
 
 #~ msgid "Indexed"
 #~ msgstr "Indekseret"
@@ -490,12 +541,6 @@ msgstr "org.gnome.Yelp"
 #~ msgid "A YelpApplication instance that controls this window"
 #~ msgstr "En instans af YelpApplication, der styrer dette vindue"
 
-#~ msgid "See all search results for “%s”"
-#~ msgstr "Vis alle søgeresultater for “%s”"
-
-#~ msgid "Enable Search"
-#~ msgstr "Aktivér søgning"
-
 #~ msgid "Whether the location entry can be used as a search field"
 #~ msgstr "Om placeringstekstfeltet skal kunne bruges som et søgefelt"
 
@@ -538,17 +583,11 @@ msgstr "org.gnome.Yelp"
 #~ msgid "_Bookmarks"
 #~ msgstr "_Bogmærker"
 
-#~ msgid "_Close"
-#~ msgstr "_Luk"
-
 #~ msgid "_All Documents"
 #~ msgstr "_Alle dokumenter"
 
 #~ msgid "_Add Bookmark"
 #~ msgstr "_Tilføj bogmærke"
-
-#~ msgid "Find in Page..."
-#~ msgstr "Find på siden …"
 
 #~ msgid "Open Location"
 #~ msgstr "Åbn sted"
@@ -876,7 +915,7 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Economy"
 #~ msgstr "Økonomi"
 
-#~ # ...eller uddannelse. Men undervisning lyder bedre her
+# ...eller uddannelse. Men undervisning lyder bedre her
 #~ msgid "Education"
 #~ msgstr "Undervisning"
 
@@ -925,7 +964,7 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Generic applications for the GNOME environment"
 #~ msgstr "Generiske programmer til GNOME-miljøet"
 
-#~ # Egentlig er KDE Desktop Environment jo navnet i sig selv, men lad os bare oversætte det alligevel
+# Egentlig er KDE Desktop Environment jo navnet i sig selv, men lad os bare oversætte det alligevel
 #~ msgid "Generic applications for the KDE environment"
 #~ msgstr "Specifikke programmer til KDE-miljøet"
 
@@ -983,9 +1022,7 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Kids Games"
 #~ msgstr "Børnespil"
 
-#~ msgid ""
-#~ "Learn more about making your system more accessible for a range of "
-#~ "disabilities"
+#~ msgid "Learn more about making your system more accessible for a range of disabilities"
 #~ msgstr "Læs mere om at gøre dit system tilgængeligt for en række handicaps"
 
 #~ msgid "Licenses"
@@ -1012,7 +1049,7 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Mixers"
 #~ msgstr "Miksere"
 
-#~ # Vi ved ikke helt om monitor betegner måling af noget, og i så fald hvad, eller om det har noget med computerskærme at gøre, men det er næppe kriminelt at bruge ordet på dansk
+# Vi ved ikke helt om monitor betegner måling af noget, og i så fald hvad, eller om det har noget med computerskærme at gøre, men det er næppe kriminelt at bruge ordet på dansk
 #~ msgid "Monitor"
 #~ msgstr "Monitor"
 
@@ -1076,7 +1113,7 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Qt"
 #~ msgstr "Qt"
 
-#~ # Bitmap er velsagtens et lidt mere genkendt ord på dansk
+# Bitmap er velsagtens et lidt mere genkendt ord på dansk
 #~ msgid "Raster Graphics"
 #~ msgstr "Bitmap-grafik"
 
@@ -1104,7 +1141,7 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Security"
 #~ msgstr "Sikkerhed"
 
-#~ # ??? http://en.wikipedia.org/wiki/Music_sequencer
+# ??? http://en.wikipedia.org/wiki/Music_sequencer
 #~ msgid "Sequencers"
 #~ msgstr "Musik-sequencere"
 
@@ -1112,8 +1149,7 @@ msgstr "org.gnome.Yelp"
 #~ msgstr "Indstillinger"
 
 #~ msgid "Settings users can manipulate to make their environment more pleasant"
-#~ msgstr ""
-#~ "Indstillinger, brugere kan manipulere for at gøre deres miljø mere behageligt"
+#~ msgstr "Indstillinger, brugere kan manipulere for at gøre deres miljø mere behageligt"
 
 #~ msgid "Simulation Games"
 #~ msgstr "Simulationsspil"
@@ -1256,19 +1292,11 @@ msgstr "org.gnome.Yelp"
 #~ msgid "The Uniform Resource Identifier for the file is invalid."
 #~ msgstr "Adressen på filen er ugyldig."
 
-#~ msgid ""
-#~ "SGML documents are no longer supported. Please ask the author of the "
-#~ "document to convert to XML."
-#~ msgstr ""
-#~ "SGML-dokumenter understøttes ikke længere. Bed venligst forfatteren af "
-#~ "dokumentet om at konvertere det til XML."
+#~ msgid "SGML documents are no longer supported. Please ask the author of the document to convert to XML."
+#~ msgstr "SGML-dokumenter understøttes ikke længere. Bed venligst forfatteren af dokumentet om at konvertere det til XML."
 
-#~ msgid ""
-#~ "A transformation context could not be created for the file ‘%s’. The format "
-#~ "may not be supported."
-#~ msgstr ""
-#~ "En transformationskontekst kunne ikke oprettes for filen “%s”. Formatet "
-#~ "understøttes muligvis ikke."
+#~ msgid "A transformation context could not be created for the file ‘%s’. The format may not be supported."
+#~ msgstr "En transformationskontekst kunne ikke oprettes for filen “%s”. Formatet understøttes muligvis ikke."
 
 #~ msgid "Multimedia"
 #~ msgstr "Multimedie"
@@ -1285,12 +1313,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Generating PDF is not currently supported"
 #~ msgstr "Udskrivning til PDF-format understøttes ikke på nuværende tidspunkt"
 
-#~ msgid ""
-#~ "You were trying to print to a printer using the \"%s\" driver.  This program "
-#~ "requires a PostScript printer driver."
-#~ msgstr ""
-#~ "Du forsøgte at udskrive til en printer med driveren “%s”. Dette program "
-#~ "kræver en PostScript-printerdriver."
+#~ msgid "You were trying to print to a printer using the \"%s\" driver.  This program requires a PostScript printer driver."
+#~ msgstr "Du forsøgte at udskrive til en printer med driveren “%s”. Dette program kræver en PostScript-printerdriver."
 
 #~ msgid "_From:"
 #~ msgstr "_Fra:"
@@ -1298,12 +1322,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "_To:"
 #~ msgstr "_Til:"
 
-#~ msgid ""
-#~ "Your search could not be processed. There is no connection to the beagle "
-#~ "daemon."
-#~ msgstr ""
-#~ "Din søgning kunne ikke gennemføres. Der er ingen forbindelse til "
-#~ "Beagle-dæmonen."
+#~ msgid "Your search could not be processed. There is no connection to the beagle daemon."
+#~ msgstr "Din søgning kunne ikke gennemføres. Der er ingen forbindelse til Beagle-dæmonen."
 
 #~ msgid "Colophon"
 #~ msgstr "Kolofon"
@@ -1373,12 +1393,6 @@ msgstr "org.gnome.Yelp"
 
 #~ msgid "Match _entire word"
 #~ msgstr "Find _hele ord"
-
-#~ msgid "Next"
-#~ msgstr "Næste"
-
-#~ msgid "Search in the index"
-#~ msgstr "Søg i indekset"
 
 #~ msgid "Enter phrase to search for in all documents"
 #~ msgstr "Skriv de ord du vil søge efter i alle dokumenter"
@@ -1455,12 +1469,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "No information is available about this error."
 #~ msgstr "Ingen oplysninger tilgængelige om fejlen."
 
-#~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed in "
-#~ "an unsupported format."
-#~ msgstr ""
-#~ "Filen “%s” kunne ikke læses og afkodes. Filen kan være komprimeret i et "
-#~ "ikke-understøttet format."
+#~ msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
+#~ msgstr "Filen “%s” kunne ikke læses og afkodes. Filen kan være komprimeret i et ikke-understøttet format."
 
 #~ msgid "Use a private session"
 #~ msgstr "Brug en privat session"
@@ -1489,20 +1499,12 @@ msgstr "org.gnome.Yelp"
 #~ msgid "No results for \"%s\""
 #~ msgstr "Ingen resultater for “%s”"
 
-#~ msgid ""
-#~ "Try using different words to describe the problem you're having or the topic "
-#~ "you want help with."
-#~ msgstr ""
-#~ "Prøv at bruge forskellige ord til at beskrive det problem du har eller emnet "
-#~ "du ønsker hjælp til."
+#~ msgid "Try using different words to describe the problem you're having or the topic you want help with."
+#~ msgstr "Prøv at bruge forskellige ord til at beskrive det problem du har eller emnet du ønsker hjælp til."
 
-#~ # Man kunne oversætte disse, men da GNOME dokumentationen ikke bliver oversat til dansk foreløbig, vil søgningerne alligevel foregå på engelsk. Derfor lader jeg denne streng stå i dens engelske form
-#~ msgid ""
-#~ ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-#~ msgstr ""
-#~ ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+# Man kunne oversætte disse, men da GNOME dokumentationen ikke bliver oversat til dansk foreløbig, vil søgningerne alligevel foregå på engelsk. Derfor lader jeg denne streng stå i dens engelske form
+#~ msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ msgstr "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
 
 #~ msgid "re"
 #~ msgstr "re"
@@ -1645,38 +1647,10 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Phrase not found"
 #~ msgstr "Udtrykket blev ikke fundet"
 
-#~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you might "
-#~ "not have permissions to read it."
-#~ msgstr ""
-#~ "Filen “%s” kunne ikke læses. Filen kan mangle, eller du har måske ikke "
-#~ "rettigheder til at læse den."
+#~ msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
+#~ msgstr "Filen “%s” kunne ikke læses. Filen kan mangle, eller du har måske ikke rettigheder til at læse den."
 
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "Ole Laursen\n"
-#~ "Martin Willemoes Hansen\n"
-#~ "Lasse Bang Mikkelsen\n"
-#~ "Ask Hjorth Larsen\n"
-#~ "\n"
-#~ "Dansk-gruppen\n"
-#~ "Websted http://dansk-gruppen.dk\n"
-#~ "E-mail <dansk@dansk-gruppen.dk>\n"
-#~ "\n"
-#~ "Launchpad Contributions:\n"
-#~ "  AJenbo https://launchpad.net/~ajenbo\n"
-#~ "  Ask Hjorth Larsen https://launchpad.net/~askhl\n"
-#~ "  Hans Ove Hansen https://launchpad.net/~h-hansove\n"
-#~ "  Joe Hansen https://launchpad.net/~joedalton2\n"
-#~ "  Lasse Bang Mikkelsen https://launchpad.net/~lbm\n"
-#~ "  Louis https://launchpad.net/~louis-louis\n"
-#~ "  Mads Konradsen https://launchpad.net/~mads-hk\n"
-#~ "  Michael Bæk https://launchpad.net/~mchlbk\n"
-#~ "  Philip Munksgaard https://launchpad.net/~pmunksgaard\n"
-#~ "  Pillum https://launchpad.net/~pillum\n"
-#~ "  eZtaR https://launchpad.net/~eztar-dk"
-
-#~ # skidt med "browser"-delen
+# skidt med "browser"-delen
 #~ msgid "A documentation browser and viewer for the Gnome Desktop."
 #~ msgstr "En dokumentationsfremviser til Gnome."
 
@@ -1700,4 +1674,3 @@ msgstr "org.gnome.Yelp"
 
 #~ msgid "Print This Page ..."
 #~ msgstr "Udskriv denne side …"
-
