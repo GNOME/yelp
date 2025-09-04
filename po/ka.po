@@ -1,22 +1,22 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Georgian translation for yelp.
+# Copyright (C) 2023 yelp's authors.
+# This file is distributed under the same license as the yelp package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2023-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
-"POT-Creation-Date: 2022-05-11 16:39+0000\n"
-"PO-Revision-Date: 2022-07-27 08:53+0200\n"
-"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues/\n"
+"POT-Creation-Date: 2025-09-01 14:16+0000\n"
+"PO-Revision-Date: 2025-09-04 14:28+0200\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.7\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -28,20 +28,20 @@ msgstr ""
 #.
 #. <string/> - The package to install
 #.
-#: data/domains/yelp.xml.in:36
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "დააყენეთ <string/>"
 
-#: data/yelp.appdata.xml.in:25 src/yelp-application.c:269
-#: src/yelp-window.c:1192 yelp.desktop.in:3
+#: data/org.gnome.Yelp.metainfo.xml.in:19 org.gnome.Yelp.desktop.in:2
+#: src/yelp-application.c:307 src/yelp-window.c:1112 src/yelp-window.c:1163
 msgid "Help"
 msgstr "დახმარება"
 
-#: data/yelp.appdata.xml.in:26
+#: data/org.gnome.Yelp.metainfo.xml.in:20
 msgid "Help viewer for GNOME"
 msgstr "დახმარების პროგრამა GNOME-სთვის"
 
-#: data/yelp.appdata.xml.in:28
+#: data/org.gnome.Yelp.metainfo.xml.in:22
 msgid ""
 "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
 "also display DocBook, info, man, and HTML documentation."
@@ -50,7 +50,7 @@ msgstr ""
 "მნახველია, მაგრამ ასევე შეუძლია აჩვენებოს DocBook, info, man და HTML "
 "დოკუმენტაციაც."
 
-#: data/yelp.appdata.xml.in:32
+#: data/org.gnome.Yelp.metainfo.xml.in:26
 msgid ""
 "It makes it easy to find the documentation you need, with interactive search "
 "and bookmarks."
@@ -58,7 +58,7 @@ msgstr ""
 "გაგიადვილებთ იპოვოთ დოკუმენტაცია, რომელიც გჭირდებათ. ინტერაქტიური ძებნითა და "
 "სანიშნებით."
 
-#: data/yelp.appdata.xml.in:36
+#: data/org.gnome.Yelp.metainfo.xml.in:30
 msgid ""
 "It also has an editor mode, which shows editorial comments and revision "
 "statuses when editing Mallard documents."
@@ -66,7 +66,11 @@ msgstr ""
 "ასევე გააჩნია რედაქტორის რეჟიმი,  რომელიც გაჩვენებთ რედაქტორის კომენტარებს "
 "და რევიზიების მდგომარეობებს, მალარდის დოკუმენტების ჩასწორებისას."
 
-#: data/yelp.appdata.xml.in:51
+#: data/org.gnome.Yelp.metainfo.xml.in:37
+msgid "Main window"
+msgstr "მთავარი ფანჯარა"
+
+#: data/org.gnome.Yelp.metainfo.xml.in:56 src/yelp-window.c:1168
 msgid "The GNOME Project"
 msgstr "პროექტი „GNOME“"
 
@@ -123,12 +127,12 @@ msgstr "უცნობი"
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "მოთხოვნილი გვერდი დოკუმენტში %s არ არსებობს."
 
-#: libyelp/yelp-document.c:888
+#: libyelp/yelp-document.c:889
 #, c-format
 msgid "Search results for “%s”"
 msgstr "ძებნის შედეგები %s-სთვის"
 
-#: libyelp/yelp-document.c:898
+#: libyelp/yelp-document.c:902
 msgid "No matching help pages found."
 msgstr "დახმარების მოთხოვნილი გვერდები არ არსებობს."
 
@@ -136,7 +140,7 @@ msgstr "დახმარების მოთხოვნილი გვე�
 msgid "An unknown error occurred."
 msgstr "უცნობი შეცდომა."
 
-#: libyelp/yelp-help-list.c:537
+#: libyelp/yelp-help-list.c:539
 msgid "All Help Documents"
 msgstr "დახმარების ყველა გვერდი"
 
@@ -152,11 +156,6 @@ msgstr ""
 msgid "The directory ‘%s’ does not exist."
 msgstr "საქაღალდე არ არსებობს: %s."
 
-#: libyelp/yelp-search-entry.c:435
-#, c-format
-msgid "Search for “%s”"
-msgstr "\"%s\"-ის მოძებნა"
-
 #: libyelp/yelp-transform.c:379 libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
@@ -170,187 +169,243 @@ msgstr "Yelp:document -ზე href ატრიბუტი ვერ ვიპ�
 msgid "Out of memory"
 msgstr "არასაკმარისი მეხსიერება"
 
-#: libyelp/yelp-view.c:253
-msgid "C_opy Code Block"
-msgstr "_კოდის ბლოკის კოპირება"
-
-#: libyelp/yelp-view.c:258
-msgid "_Copy Link Location"
-msgstr "_ბმულის კოპირება"
-
-#: libyelp/yelp-view.c:263
-msgid "_Open Link"
-msgstr "_ბმულის გახსნა"
-
-#: libyelp/yelp-view.c:268
-msgid "Open Link in New _Window"
-msgstr "ბმულის ახალ _ფანჯარაში გახსნა"
-
-#: libyelp/yelp-view.c:278
-msgid "_Install Packages"
-msgstr "_პაკეტების დაყენება"
-
-#: libyelp/yelp-view.c:283
-msgid "Save Code _Block As…"
-msgstr "კოდის ბლოკის შენახვა, _როგორც…"
-
-#: libyelp/yelp-view.c:298
-msgid "_Copy Text"
-msgstr "ტექსტის _კოპირება"
-
-#: libyelp/yelp-view.c:845 libyelp/yelp-view.c:2162
+#: libyelp/yelp-view.c:814 libyelp/yelp-view.c:2098
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI სწორ პაკეტზე არ მიუთითებს: %s."
 
-#: libyelp/yelp-view.c:851 libyelp/yelp-view.c:2168
+#: libyelp/yelp-view.c:820 libyelp/yelp-view.c:2104
 msgid "The URI does not point to a valid page."
 msgstr "URI სწორ პაკეტზე არ მიუთითებს."
 
-#: libyelp/yelp-view.c:856 libyelp/yelp-view.c:2174
+#: libyelp/yelp-view.c:825 libyelp/yelp-view.c:2110
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI-ის დამუშავება შეუძლებელია: %s."
 
-#: libyelp/yelp-view.c:861
+#: libyelp/yelp-view.c:830
 msgid "Unknown Error."
 msgstr "უცნობი შეცდომა."
 
-#: libyelp/yelp-view.c:1015
+#: libyelp/yelp-view.c:967
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr "არ გაქვთ PackageKit. პაკეტების დაყენება PackageKit-ს მოითხოვს."
 
-#: libyelp/yelp-view.c:1262
+#: libyelp/yelp-view.c:972
+msgid "Package Install Link Error"
+msgstr "პაკეტის დაყენების შეცდომა"
+
+#: libyelp/yelp-view.c:973 libyelp/yelp-view.c:1172 libyelp/yelp-view.c:1306
+#: libyelp/yelp-view.c:1316
+msgid "_Close"
+msgstr "და_ხურვა"
+
+#: libyelp/yelp-view.c:1171
+msgid "Failed to Save Image"
+msgstr "გამოსახულების შენახვის შეცდომა"
+
+#: libyelp/yelp-view.c:1230
 msgid "Save Image"
 msgstr "გამოსახულების შენახვა"
 
-#: libyelp/yelp-view.c:1361
+#: libyelp/yelp-view.c:1305 libyelp/yelp-view.c:1315
+msgid "Failed to Save Code"
+msgstr "კოდის შენახვა ჩავარდა"
+
+#: libyelp/yelp-view.c:1350
 msgid "Save Code"
 msgstr "კოდის შენახვა"
 
-#: libyelp/yelp-view.c:1457
+#: libyelp/yelp-view.c:1404
 #, c-format
 msgid "Send email to %s"
 msgstr "ელფოსტის გაგზავნა %s-თან"
 
-#: libyelp/yelp-view.c:1561
+#: libyelp/yelp-view.c:1416
+msgid "_Install Packages"
+msgstr "_პაკეტების დაყენება"
+
+#: libyelp/yelp-view.c:1423
+msgid "_Open Link"
+msgstr "_ბმულის გახსნა"
+
+#: libyelp/yelp-view.c:1431
+msgid "_Copy Link Location"
+msgstr "_ბმულის კოპირება"
+
+#: libyelp/yelp-view.c:1438
+msgid "Open Link in New _Window"
+msgstr "ბმულის ახალ _ფანჯარაში გახსნა"
+
+#: libyelp/yelp-view.c:1485
 msgid "_Save Image As…"
 msgstr "_გამოსახულების შენახვა, როგორც…"
 
-#: libyelp/yelp-view.c:1562
+#: libyelp/yelp-view.c:1486
 msgid "_Save Video As…"
 msgstr "ვიდეოს შენახვა, როგორც…"
 
-#: libyelp/yelp-view.c:1570
+#: libyelp/yelp-view.c:1495
 msgid "S_end Image To…"
 msgstr "_გამოსახულების გაგზავნა მისამართზე…"
 
-#: libyelp/yelp-view.c:1571
+#: libyelp/yelp-view.c:1496
 msgid "S_end Video To…"
 msgstr "_ვიდეოს გაგზავნა მისამართზე…"
 
-#: libyelp/yelp-view.c:1926
+#: libyelp/yelp-view.c:1509
+msgid "_Copy Text"
+msgstr "ტექსტის _კოპირება"
+
+#: libyelp/yelp-view.c:1530
+msgid "C_opy Code Block"
+msgstr "_კოდის ბლოკის კოპირება"
+
+#: libyelp/yelp-view.c:1536
+msgid "Save Code _Block As…"
+msgstr "კოდის ბლოკის შენახვა, _როგორც…"
+
+#: libyelp/yelp-view.c:1853
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "დოკუმენტის ჩატვირთვის პრობლემა %s-თვის"
 
-#: libyelp/yelp-view.c:1932
+#: libyelp/yelp-view.c:1859
 msgid "Could not load a document"
 msgstr "დოკუმენტის ჩატვირთვის შეცდომა"
 
-#: libyelp/yelp-view.c:1987
+#: libyelp/yelp-view.c:1905
 msgid "Document Not Found"
 msgstr "დოკუმენტი არ არსებობს"
 
-#: libyelp/yelp-view.c:1989
+#: libyelp/yelp-view.c:1907
 msgid "Page Not Found"
 msgstr "გვერდი ვერ მოიძებნა"
 
-#: libyelp/yelp-view.c:1992
+#: libyelp/yelp-view.c:1910
 msgid "Cannot Read"
 msgstr "წაკითხვის შეცდომა"
 
-#: libyelp/yelp-view.c:1998
+#: libyelp/yelp-view.c:1916
 msgid "Unknown Error"
 msgstr "უცნობი შეცდომა"
 
-#: libyelp/yelp-view.c:2018
-msgid "Search for packages containing this document."
-msgstr "პაკეტის მოძებნა, რომელიც ამ დოკუმენტს შეიცავს."
+#: libyelp/yelp-view.c:1935
+msgid "Find Packages Containing This Document"
+msgstr "პაკეტის მოძებნა, რომელიც ამ დოკუმენტს შეიცავს"
 
-#: src/yelp-application.c:60
-msgid "Turn on editor mode"
-msgstr "რედაქტორის რეჟიმის ჩართვა"
-
-#: src/yelp-window.c:346
-msgid "Back"
-msgstr "უკან"
-
-#: src/yelp-window.c:353
-msgid "Forward"
-msgstr "წინ"
-
-#: src/yelp-window.c:364
-msgid "Menu"
-msgstr "მენიუ"
-
-#: src/yelp-window.c:369
-msgid "New Window"
-msgstr "ახალი ფანჯარა"
-
-#: src/yelp-window.c:370
-msgid "Find…"
-msgstr "ძებნა…"
-
-#: src/yelp-window.c:371
-msgid "Print…"
-msgstr "ბეჭდვა…"
-
-#: src/yelp-window.c:376
-msgid "Previous Page"
-msgstr "წინა გვერდი"
-
-#: src/yelp-window.c:377
-msgid "Next Page"
-msgstr "შემდეგი გვერდი"
-
-#: src/yelp-window.c:382
-msgid "Larger Text"
-msgstr "უფრო დიდი ტექსტი"
-
-#: src/yelp-window.c:383
-msgid "Smaller Text"
-msgstr "უფრო პატარა ტექსტი"
-
-#: src/yelp-window.c:388
-msgid "All Help"
-msgstr "დახმარების ყველა გვერდი"
-
-#: src/yelp-window.c:410
-msgid "Search (Ctrl+S)"
-msgstr "ძებნა (Ctrl+S)"
-
-#: src/yelp-window.c:427
-msgid "Bookmarks"
-msgstr "სანიშნები"
-
-#: src/yelp-window.c:444
-msgid "No bookmarks"
-msgstr "სანიშნების გარეშე"
-
-#: src/yelp-window.c:452
-msgid "Add Bookmark"
-msgstr "სანიშნის დამატება"
-
-#: src/yelp-window.c:458
-msgid "Remove Bookmark"
-msgstr "სანიშნეების ამოღება"
-
-#: yelp.desktop.in:4
+#: org.gnome.Yelp.desktop.in:3
 msgid "Get help with GNOME"
 msgstr "GNOME-ის დახმარების მიღება"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: yelp.desktop.in:6
+#: org.gnome.Yelp.desktop.in:5
 msgid "documentation;information;manual;help;"
 msgstr "documentation;information;manual;help;"
+
+#: src/yelp-application.c:57
+msgid "Turn on editor mode"
+msgstr "რედაქტორის რეჟიმის ჩართვა"
+
+#. Title is set dynamically
+#: src/yelp-search-entry.c:347
+msgid "Browse all search results"
+msgstr "ძებნის ყველა შედეგის ნახვა"
+
+#. Update label on the "Search for X" result
+#: src/yelp-search-entry.c:567
+#, c-format
+msgid "Search for “%s”"
+msgstr "\"%s\"-ის მოძებნა"
+
+#. TRANSLATORS Credit yourself here. Appears in about dialog.
+#: src/yelp-window.c:1172
+msgid "translator-credits"
+msgstr "თემური დოღონაძე"
+
+#: src/yelp-window.ui:9
+msgid "New Window"
+msgstr "ახალი ფანჯარა"
+
+#: src/yelp-window.ui:13
+msgid "Find in Page…"
+msgstr "გვერდში ძებნა…"
+
+#: src/yelp-window.ui:17
+msgid "Print…"
+msgstr "ბეჭდვა…"
+
+#: src/yelp-window.ui:23
+msgid "Previous Page"
+msgstr "წინა გვერდი"
+
+#: src/yelp-window.ui:27
+msgid "Next Page"
+msgstr "შემდეგი გვერდი"
+
+#: src/yelp-window.ui:38
+msgid "All Help"
+msgstr "დახმარების ყველა გვერდი"
+
+#: src/yelp-window.ui:44
+msgid "About Help"
+msgstr "დახმარების შესახებ"
+
+#: src/yelp-window.ui:78 src/yelp-window.ui:218
+msgid "Back"
+msgstr "უკან"
+
+#: src/yelp-window.ui:86 src/yelp-window.ui:226
+msgid "Forward"
+msgstr "წინ"
+
+#: src/yelp-window.ui:95
+msgid "Menu"
+msgstr "მენიუ"
+
+#: src/yelp-window.ui:105
+msgid "Search (Ctrl+S)"
+msgstr "ძებნა (Ctrl+S)"
+
+#: src/yelp-window.ui:113
+msgid "Bookmarks"
+msgstr "სანიშნები"
+
+#: src/yelp-window.ui:153
+msgid "Search in page…"
+msgstr "ძებნა გვერდში…"
+
+#: src/yelp-window.ui:161
+msgid "Previous"
+msgstr "წინა"
+
+#: src/yelp-window.ui:173
+msgid "Next"
+msgstr "შემდეგი"
+
+#: src/yelp-window.ui:185
+msgid "Close Search"
+msgstr "ძებნის დახურვა"
+
+#: src/yelp-window.ui:249
+msgid "Shrink Text"
+msgstr "ტექსტის დაპატარავება"
+
+#: src/yelp-window.ui:260
+msgid "Reset Size"
+msgstr "ზომის ჩამოყრა"
+
+#: src/yelp-window.ui:277
+msgid "Enlarge Text"
+msgstr "ტექსტის გადიდება"
+
+#: src/yelp-window.ui:324
+msgid "Add Bookmark"
+msgstr "სანიშნის დამატება"
+
+#: src/yelp-window.ui:335
+msgid "Remove Bookmark"
+msgstr "სანიშნეების ამოღება"
+
+#~ msgid "No bookmarks"
+#~ msgstr "სანიშნების გარეშე"
