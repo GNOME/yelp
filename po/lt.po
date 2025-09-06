@@ -9,18 +9,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
-"POT-Creation-Date: 2019-01-25 11:28+0000\n"
-"PO-Revision-Date: 2019-02-24 19:11+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues/\n"
+"POT-Creation-Date: 2025-09-06 19:05+0000\n"
+"PO-Revision-Date: 2025-09-06 23:11+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 3.30.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.7\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -32,19 +32,20 @@ msgstr ""
 #.
 #. <string/> - The package to install
 #.
-#: data/domains/yelp.xml.in:36
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "Įdiegti <string/>"
 
-#: data/yelp.appdata.xml.in:6
-msgid "GNOME Help"
-msgstr "GNOME žinynas"
+#: data/org.gnome.Yelp.metainfo.xml.in:19 org.gnome.Yelp.desktop.in:2
+#: src/yelp-application.c:307 src/yelp-window.c:1112 src/yelp-window.c:1163
+msgid "Help"
+msgstr "Žinynas"
 
-#: data/yelp.appdata.xml.in:7
+#: data/org.gnome.Yelp.metainfo.xml.in:20
 msgid "Help viewer for GNOME"
 msgstr "GNOME žinyno žiūryklė"
 
-#: data/yelp.appdata.xml.in:9
+#: data/org.gnome.Yelp.metainfo.xml.in:22
 msgid ""
 "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
 "also display DocBook, info, man, and HTML documentation."
@@ -52,7 +53,7 @@ msgstr ""
 "Yelp yra GNOME žinyno žiūryklė. Ji yra numatytoji Mallard žiūryklė, tačiau "
 "taip pat gali rodyti DocBook, info, man, ir HTML dokumentaciją."
 
-#: data/yelp.appdata.xml.in:13
+#: data/org.gnome.Yelp.metainfo.xml.in:26
 msgid ""
 "It makes it easy to find the documentation you need, with interactive search "
 "and bookmarks."
@@ -60,7 +61,7 @@ msgstr ""
 "Interaktyvios paieškos ir žymelių dėka, ji leidžia lengvai rasti ieškomą "
 "dokumentaciją."
 
-#: data/yelp.appdata.xml.in:17
+#: data/org.gnome.Yelp.metainfo.xml.in:30
 msgid ""
 "It also has an editor mode, which shows editorial comments and revision "
 "statuses when editing Mallard documents."
@@ -68,7 +69,11 @@ msgstr ""
 "Joje taip pat yra redaktoriaus veiksena, kuri, redaguojant Mallard "
 "dokumentus, rodo redaktoriaus komentarus ir taisymų būsenas."
 
-#: data/yelp.appdata.xml.in:30
+#: data/org.gnome.Yelp.metainfo.xml.in:37
+msgid "Main window"
+msgstr "Pagrindinis langas"
+
+#: data/org.gnome.Yelp.metainfo.xml.in:56 src/yelp-window.c:1168
 msgid "The GNOME Project"
 msgstr "GNOME projektas"
 
@@ -80,25 +85,26 @@ msgstr "Neteisingi suglaudinti duomenys"
 msgid "Not enough memory"
 msgstr "Nepakanka atminties"
 
-#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:221
-#: libyelp/yelp-mallard-document.c:306 libyelp/yelp-mallard-document.c:464
-#: libyelp/yelp-man-document.c:199
+#: libyelp/yelp-docbook-document.c:298 libyelp/yelp-info-document.c:220
+#: libyelp/yelp-mallard-document.c:312 libyelp/yelp-mallard-document.c:477
+#: libyelp/yelp-man-document.c:198
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Puslapis „%s“ dokumente „%s“ nerastas."
 
-#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:358
-#: libyelp/yelp-man-document.c:336
+#: libyelp/yelp-docbook-document.c:337 libyelp/yelp-info-document.c:357
+#: libyelp/yelp-man-document.c:335
+#, c-format
 msgid "The file does not exist."
 msgstr "Failas neegzistuoja."
 
-#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:368
-#: libyelp/yelp-man-document.c:346
+#: libyelp/yelp-docbook-document.c:347 libyelp/yelp-info-document.c:367
+#: libyelp/yelp-man-document.c:345
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Failas „%s“ neegzistuoja."
 
-#: libyelp/yelp-docbook-document.c:359
+#: libyelp/yelp-docbook-document.c:365
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
@@ -106,7 +112,7 @@ msgid ""
 msgstr ""
 "Nepavyko apdoroti failo „%s“, nes tai nėra tinkamai suformuotas XML failas."
 
-#: libyelp/yelp-docbook-document.c:372
+#: libyelp/yelp-docbook-document.c:378
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
@@ -115,39 +121,35 @@ msgstr ""
 "Nepavyko apdoroti failo „%s“, nes bent vienas iš jo įtraukiamų failų nėra "
 "tinkamai suformuotas XML failas."
 
-#: libyelp/yelp-docbook-document.c:810
+#: libyelp/yelp-docbook-document.c:813
 msgid "Unknown"
 msgstr "Nežinoma"
 
-#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:301
-#: libyelp/yelp-man-document.c:279
+#: libyelp/yelp-docbook-document.c:911 libyelp/yelp-info-document.c:300
+#: libyelp/yelp-man-document.c:278
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "Nurodytas puslapis dokumente „%s“ nerastas."
 
-#: libyelp/yelp-document.c:1068
+#: libyelp/yelp-document.c:889
 #, c-format
 msgid "Search results for “%s”"
 msgstr "„%s“ paieškos rezultatai"
 
-#: libyelp/yelp-document.c:1080
-#, c-format
-msgid "No matching help pages found in “%s”."
-msgstr "„%s“ nerasta atitinkamų pagalbos puslapių."
-
-#: libyelp/yelp-document.c:1086
+#: libyelp/yelp-document.c:902
 msgid "No matching help pages found."
 msgstr "Nerasta atitinkamų pagalbos puslapių."
 
 #: libyelp/yelp-error.c:35
+#, c-format
 msgid "An unknown error occurred."
 msgstr "Įvyko nežinoma klaida."
 
-#: libyelp/yelp-help-list.c:548 libyelp/yelp-help-list.c:557
+#: libyelp/yelp-help-list.c:539
 msgid "All Help Documents"
 msgstr "Visi pagalbos dokumentai"
 
-#: libyelp/yelp-info-document.c:383
+#: libyelp/yelp-info-document.c:382
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
@@ -155,222 +157,280 @@ msgstr ""
 "Nepavyko apdoroti failo „%s“, nes tai nėra tinkamai suformuotas „info“ "
 "puslapis."
 
-#: libyelp/yelp-mallard-document.c:348
+#: libyelp/yelp-mallard-document.c:354
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "Katalogas „%s“ neegzistuoja."
 
-#: libyelp/yelp-search-entry.c:434
-#, c-format
-msgid "Search for “%s”"
-msgstr "Ieškoti „%s“"
-
-#: libyelp/yelp-transform.c:369 libyelp/yelp-transform.c:384
+#: libyelp/yelp-transform.c:379 libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "XSLT stiliaus aprašas „%s“ neegzistuoja arba yra netinkamas."
 
-#: libyelp/yelp-transform.c:518
+#: libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
 msgstr "Nerasta yelp:document href atributo\n"
 
-#: libyelp/yelp-transform.c:533
+#: libyelp/yelp-transform.c:543
 msgid "Out of memory"
 msgstr "Nepakanka atminties"
 
-#: libyelp/yelp-view.c:248
-msgid "C_opy Code Block"
-msgstr "K_opijuoti kodo bloką"
-
-#: libyelp/yelp-view.c:253
-msgid "_Copy Link Location"
-msgstr "_Kopijuoti saito vietą"
-
-#: libyelp/yelp-view.c:258
-msgid "_Open Link"
-msgstr "_Atverti nuorodą"
-
-#: libyelp/yelp-view.c:263
-msgid "Open Link in New _Window"
-msgstr "Atverti nuorodą _naujame lange"
-
-#: libyelp/yelp-view.c:273
-msgid "_Install Packages"
-msgstr "Įd_iegti paketus"
-
-#: libyelp/yelp-view.c:278
-msgid "Save Code _Block As…"
-msgstr "Įrašyti kodo _bloką kaip…"
-
-#: libyelp/yelp-view.c:293
-msgid "_Copy Text"
-msgstr "_Kopijuoti tekstą"
-
-#: libyelp/yelp-view.c:805 libyelp/yelp-view.c:2138
+#: libyelp/yelp-view.c:814 libyelp/yelp-view.c:2098
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "URI „%s“ nenukreipia į tinkamą puslapį."
 
-#: libyelp/yelp-view.c:811 libyelp/yelp-view.c:2144
+#: libyelp/yelp-view.c:820 libyelp/yelp-view.c:2104
+#, c-format
 msgid "The URI does not point to a valid page."
 msgstr "URI nenukreipia į tinkamą puslapį."
 
-#: libyelp/yelp-view.c:816 libyelp/yelp-view.c:2150
+#: libyelp/yelp-view.c:825 libyelp/yelp-view.c:2110
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "URI „%s“ neperskaitomas."
 
-#: libyelp/yelp-view.c:821
+#: libyelp/yelp-view.c:830
+#, c-format
 msgid "Unknown Error."
 msgstr "Nežinoma klaida."
 
-#: libyelp/yelp-view.c:975
+#: libyelp/yelp-view.c:967
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
 "Jūs nesate įdiegę PackageKit. Paketų diegimo nuorodos reikalauja PackageKit."
 
-#: libyelp/yelp-view.c:1222
+#: libyelp/yelp-view.c:972
+msgid "Package Install Link Error"
+msgstr "Paketo diegimo susiejimo klaida"
+
+#: libyelp/yelp-view.c:973 libyelp/yelp-view.c:1172 libyelp/yelp-view.c:1306
+#: libyelp/yelp-view.c:1316
+msgid "_Close"
+msgstr "_Užverti"
+
+#: libyelp/yelp-view.c:1171
+msgid "Failed to Save Image"
+msgstr "Nepavyko įrašyti paveikslėlio"
+
+#: libyelp/yelp-view.c:1230
 msgid "Save Image"
 msgstr "Įrašyti paveikslėlį"
 
-#: libyelp/yelp-view.c:1321
+#: libyelp/yelp-view.c:1305 libyelp/yelp-view.c:1315
+msgid "Failed to Save Code"
+msgstr "Nepavyko įrašyti kodo"
+
+#: libyelp/yelp-view.c:1350
 msgid "Save Code"
 msgstr "Įrašyti kodą"
 
-#: libyelp/yelp-view.c:1417
+#: libyelp/yelp-view.c:1404
 #, c-format
 msgid "Send email to %s"
 msgstr "Siųsti el. laišką adresu %s"
 
-#: libyelp/yelp-view.c:1521
+#: libyelp/yelp-view.c:1416
+msgid "_Install Packages"
+msgstr "Įd_iegti paketus"
+
+#: libyelp/yelp-view.c:1423
+msgid "_Open Link"
+msgstr "_Atverti nuorodą"
+
+#: libyelp/yelp-view.c:1431
+msgid "_Copy Link Location"
+msgstr "_Kopijuoti saito vietą"
+
+#: libyelp/yelp-view.c:1438
+msgid "Open Link in New _Window"
+msgstr "Atverti nuorodą _naujame lange"
+
+#: libyelp/yelp-view.c:1485
 msgid "_Save Image As…"
 msgstr "Į_rašyti paveikslėlį kaip…"
 
-#: libyelp/yelp-view.c:1522
+#: libyelp/yelp-view.c:1486
 msgid "_Save Video As…"
 msgstr "Į_rašyti vaizdo įrašą kaip…"
 
-#: libyelp/yelp-view.c:1530
+#: libyelp/yelp-view.c:1495
 msgid "S_end Image To…"
 msgstr "S_iųsti paveikslėlį…"
 
-#: libyelp/yelp-view.c:1531
+#: libyelp/yelp-view.c:1496
 msgid "S_end Video To…"
 msgstr "S_iųsti vaizdo įrašą…"
 
-#: libyelp/yelp-view.c:1872
+#: libyelp/yelp-view.c:1509
+msgid "_Copy Text"
+msgstr "_Kopijuoti tekstą"
+
+#: libyelp/yelp-view.c:1530
+msgid "C_opy Code Block"
+msgstr "K_opijuoti kodo bloką"
+
+#: libyelp/yelp-view.c:1536
+msgid "Save Code _Block As…"
+msgstr "Įrašyti kodo _bloką kaip…"
+
+#: libyelp/yelp-view.c:1853
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Nepavyko įkelti dokumento „%s“"
 
-#: libyelp/yelp-view.c:1878
+#: libyelp/yelp-view.c:1859
+#, c-format
 msgid "Could not load a document"
 msgstr "Nepavyko įkelti dokumento"
 
-#: libyelp/yelp-view.c:1962
+#: libyelp/yelp-view.c:1905
 msgid "Document Not Found"
 msgstr "Dokumentas nerastas"
 
-#: libyelp/yelp-view.c:1964
+#: libyelp/yelp-view.c:1907
 msgid "Page Not Found"
 msgstr "Puslapis nerastas"
 
-#: libyelp/yelp-view.c:1967
+#: libyelp/yelp-view.c:1910
 msgid "Cannot Read"
 msgstr "Nepavyko perskaityti"
 
-#: libyelp/yelp-view.c:1973
+#: libyelp/yelp-view.c:1916
 msgid "Unknown Error"
 msgstr "Nežinoma klaida"
 
-#: libyelp/yelp-view.c:1993
-msgid "Search for packages containing this document."
-msgstr "Ieškoti paketų, turinčių šį dokumentaciją."
+#: libyelp/yelp-view.c:1935
+msgid "Find Packages Containing This Document"
+msgstr "Ieškoti paketų, turinčių šį dokumentą"
 
-#: src/yelp-application.c:59
-msgid "Turn on editor mode"
-msgstr "Įjungti redaktoriaus veikseną"
-
-#: src/yelp-application.c:270 src/yelp-window.c:1188 src/yelp-window.c:1196
-#: yelp.desktop.in:3
-msgid "Help"
-msgstr "Žinynas"
-
-#: src/yelp-window.c:343
-msgid "Back"
-msgstr "Atgal"
-
-#: src/yelp-window.c:350
-msgid "Forward"
-msgstr "Pirmyn"
-
-#: src/yelp-window.c:361
-msgid "Menu"
-msgstr "Meniu"
-
-#: src/yelp-window.c:366
-msgid "New Window"
-msgstr "Naujas langas"
-
-#: src/yelp-window.c:367
-msgid "Find…"
-msgstr "Rasti…"
-
-#: src/yelp-window.c:368
-msgid "Print…"
-msgstr "Spausdinti…"
-
-#: src/yelp-window.c:373
-msgid "Previous Page"
-msgstr "Ankstesnis puslapis"
-
-#: src/yelp-window.c:374
-msgid "Next Page"
-msgstr "Kitas puslapis"
-
-#: src/yelp-window.c:379
-msgid "Larger Text"
-msgstr "Didesnis tekstas"
-
-#: src/yelp-window.c:380
-msgid "Smaller Text"
-msgstr "Mažesnis tekstas"
-
-#: src/yelp-window.c:385
-msgid "All Help"
-msgstr "Visas žinynas"
-
-#: src/yelp-window.c:407
-msgid "Search (Ctrl+S)"
-msgstr "Ieškoti (Vald+S)"
-
-#: src/yelp-window.c:424
-msgid "Bookmarks"
-msgstr "Žymelės"
-
-#: src/yelp-window.c:441
-msgid "No bookmarks"
-msgstr "Nėra žymelių"
-
-#: src/yelp-window.c:449
-msgid "Add Bookmark"
-msgstr "Pridėti žymelę"
-
-#: src/yelp-window.c:455
-msgid "Remove Bookmark"
-msgstr "Pašalinti žymelę"
-
-#: yelp.desktop.in:4
+#: org.gnome.Yelp.desktop.in:3
 msgid "Get help with GNOME"
 msgstr "Gauti pagalbą dirbant su GNOME"
 
-#: yelp.desktop.in:5
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: org.gnome.Yelp.desktop.in:5
 msgid "documentation;information;manual;help;"
 msgstr "dokumentacija;informacija;vadovas;žinynas;"
 
-#: yelp.desktop.in:8
-msgid "org.gnome.Yelp"
-msgstr "org.gnome.Yelp"
+#: src/yelp-application.c:57
+msgid "Turn on editor mode"
+msgstr "Įjungti redaktoriaus veikseną"
+
+#. Title is set dynamically
+#: src/yelp-search-entry.c:347
+msgid "Browse all search results"
+msgstr "Naršyti visus paieškos rezultatus"
+
+#. Update label on the "Search for X" result
+#: src/yelp-search-entry.c:567
+#, c-format
+msgid "Search for “%s”"
+msgstr "Ieškoti „%s“"
+
+#. TRANSLATORS Credit yourself here. Appears in about dialog.
+#: src/yelp-window.c:1172
+msgid "translator-credits"
+msgstr ""
+"Išvertė:\n"
+"Aurimas Černius <aurimas.cernius@mailo.com>"
+
+#: src/yelp-window.ui:9
+msgid "New Window"
+msgstr "Naujas langas"
+
+#: src/yelp-window.ui:13
+msgid "Find in Page…"
+msgstr "Rasti puslapyje…"
+
+#: src/yelp-window.ui:17
+msgid "Print…"
+msgstr "Spausdinti…"
+
+#: src/yelp-window.ui:23
+msgid "Previous Page"
+msgstr "Ankstesnis puslapis"
+
+#: src/yelp-window.ui:27
+msgid "Next Page"
+msgstr "Kitas puslapis"
+
+#: src/yelp-window.ui:38
+msgid "All Help"
+msgstr "Visas žinynas"
+
+#: src/yelp-window.ui:44
+msgid "About Help"
+msgstr "Apie Žinyną"
+
+#: src/yelp-window.ui:78 src/yelp-window.ui:218
+msgid "Back"
+msgstr "Atgal"
+
+#: src/yelp-window.ui:86 src/yelp-window.ui:226
+msgid "Forward"
+msgstr "Pirmyn"
+
+#: src/yelp-window.ui:95
+msgid "Menu"
+msgstr "Meniu"
+
+#: src/yelp-window.ui:105
+msgid "Search (Ctrl+S)"
+msgstr "Ieškoti (Vald+S)"
+
+#: src/yelp-window.ui:113
+msgid "Bookmarks"
+msgstr "Žymelės"
+
+#: src/yelp-window.ui:153
+msgid "Search in page…"
+msgstr "Ieškoti puslapyje…"
+
+#: src/yelp-window.ui:161
+msgid "Previous"
+msgstr "Ankstesnis"
+
+#: src/yelp-window.ui:173
+msgid "Next"
+msgstr "Kitas"
+
+#: src/yelp-window.ui:185
+msgid "Close Search"
+msgstr "Užverti paiešką"
+
+#: src/yelp-window.ui:249
+msgid "Shrink Text"
+msgstr "Sumažinti tekstas"
+
+#: src/yelp-window.ui:260
+msgid "Reset Size"
+msgstr "Atstatyti dydį"
+
+#: src/yelp-window.ui:277
+msgid "Enlarge Text"
+msgstr "Padidinti tekstą"
+
+#: src/yelp-window.ui:324
+msgid "Add Bookmark"
+msgstr "Pridėti žymelę"
+
+#: src/yelp-window.ui:335
+msgid "Remove Bookmark"
+msgstr "Pašalinti žymelę"
+
+#~ msgid "GNOME Help"
+#~ msgstr "GNOME žinynas"
+
+#, c-format
+#~ msgid "No matching help pages found in “%s”."
+#~ msgstr "„%s“ nerasta atitinkamų pagalbos puslapių."
+
+#~ msgid "No bookmarks"
+#~ msgstr "Nėra žymelių"
+
+#~ msgid "org.gnome.Yelp"
+#~ msgstr "org.gnome.Yelp"
 
 #~ msgid "Indexed"
 #~ msgstr "Suindeksuotas"
@@ -483,15 +543,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "A YelpApplication instance that controls this window"
 #~ msgstr "YelpApplication programa, valdanti šį langą"
 
-#~ msgid "Enable Search"
-#~ msgstr "Įjungti paiešką"
-
 #~ msgid "Whether the location entry can be used as a search field"
 #~ msgstr "Ar vietos įrašas gali būti naudojamas kaip paieškos laukas"
-
-#~| msgid "Search..."
-#~ msgid "Search…"
-#~ msgstr "Ieškoti…"
 
 #~ msgid "Clear the search text"
 #~ msgstr "Išvalyti paieškos tekstą"
@@ -504,6 +557,3 @@ msgstr "org.gnome.Yelp"
 
 #~ msgid "Loading"
 #~ msgstr "Įkeliama"
-
-#~ msgid "See all search results for “%s”"
-#~ msgstr "Rodyti visus „%s“ paieškos rezultatus"
