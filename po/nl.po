@@ -9,21 +9,21 @@
 # Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006, 2011, 2013.
 # Redmar <redmar@ubuntu-nl.org>, 2011, 2012.
 # Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2011, 2012, 2015, 2017.
-# Nathan Follens <nthn@unseen.is>, 2016, 2019.
+# Nathan Follens <nfollens@gnome.org>, 2016, 2019, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Yelp\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues\n"
-"POT-Creation-Date: 2019-01-25 11:28+0000\n"
-"PO-Revision-Date: 2019-02-24 14:52+0100\n"
-"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
-"Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues/\n"
+"POT-Creation-Date: 2025-09-09 11:32+0000\n"
+"PO-Revision-Date: 2025-09-09 20:00+0200\n"
+"Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
+"Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 3.6\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -35,47 +35,38 @@ msgstr ""
 #.
 #. <string/> - The package to install
 #.
-#: data/domains/yelp.xml.in:36
+#: yelp.xml.in:36
 msgid "Install <string/>"
 msgstr "<string/> installeren"
 
-#: data/yelp.appdata.xml.in:6
-msgid "GNOME Help"
-msgstr "Gnome Hulp"
+#: data/org.gnome.Yelp.metainfo.xml.in:19 org.gnome.Yelp.desktop.in:2 src/yelp-application.c:307 src/yelp-window.c:1112 src/yelp-window.c:1163
+msgid "Help"
+msgstr "Hulp"
 
 # Een Hulp voor GNOME, een Hulp-programma voor GNOME
-#: data/yelp.appdata.xml.in:7
+#: data/org.gnome.Yelp.metainfo.xml.in:20
 msgid "Help viewer for GNOME"
-msgstr "Hulpweergave voor Gnome"
+msgstr "Hulpweergave voor GNOME"
 
-#: data/yelp.appdata.xml.in:9
-msgid ""
-"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
-"also display DocBook, info, man, and HTML documentation."
-msgstr ""
-"Yelp is de hulpweergave voor Gnome. Mallard-bestanden worden er standaard in "
-"weergegeven, maar het kan ook DocBook-, info-, man- en HTML-documentatie "
-"tonen."
+#: data/org.gnome.Yelp.metainfo.xml.in:22
+msgid "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can also display DocBook, info, man, and HTML documentation."
+msgstr "Yelp is de hulpweergave voor GNOME. Mallard-bestanden worden er standaard in weergegeven, maar het kan ook DocBook-, info-, man- en HTML-documentatie tonen."
 
-#: data/yelp.appdata.xml.in:13
-msgid ""
-"It makes it easy to find the documentation you need, with interactive search "
-"and bookmarks."
-msgstr ""
-"Zoek eenvoudig de documentatie die u nodig heeft, met interactief zoeken en "
-"bladwijzers."
+#: data/org.gnome.Yelp.metainfo.xml.in:26
+msgid "It makes it easy to find the documentation you need, with interactive search and bookmarks."
+msgstr "Zoek eenvoudig de documentatie die u nodig heeft, met interactief zoeken en bladwijzers."
 
-#: data/yelp.appdata.xml.in:17
-msgid ""
-"It also has an editor mode, which shows editorial comments and revision "
-"statuses when editing Mallard documents."
-msgstr ""
-"Het heeft ook een bewerkingsmodus, die notities van redacteurs en "
-"revisiestatussen toont bij het bewerken van Mallard-documenten."
+#: data/org.gnome.Yelp.metainfo.xml.in:30
+msgid "It also has an editor mode, which shows editorial comments and revision statuses when editing Mallard documents."
+msgstr "Het heeft ook een bewerkingsmodus, die notities van redacteurs en revisiestatussen toont bij het bewerken van Mallard-documenten."
 
-#: data/yelp.appdata.xml.in:30
+#: data/org.gnome.Yelp.metainfo.xml.in:37
+msgid "Main window"
+msgstr "Hoofdvenster"
+
+#: data/org.gnome.Yelp.metainfo.xml.in:56 src/yelp-window.c:1168
 msgid "The GNOME Project"
-msgstr "Het Gnome-project"
+msgstr "Het GNOME-project"
 
 #: libyelp/yelp-bz2-decompressor.c:143 libyelp/yelp-lzma-decompressor.c:152
 msgid "Invalid compressed data"
@@ -87,303 +78,347 @@ msgstr "Onvoldoende geheugen"
 
 # werd niet gevonden?
 # aangetroffen?
-#: libyelp/yelp-docbook-document.c:292 libyelp/yelp-info-document.c:221
-#: libyelp/yelp-mallard-document.c:306 libyelp/yelp-mallard-document.c:464
-#: libyelp/yelp-man-document.c:199
+#: libyelp/yelp-docbook-document.c:298 libyelp/yelp-info-document.c:220 libyelp/yelp-mallard-document.c:312 libyelp/yelp-mallard-document.c:477 libyelp/yelp-man-document.c:198
 #, c-format
 msgid "The page ‘%s’ was not found in the document ‘%s’."
 msgstr "Pagina ‘%s’ werd niet aangetroffen in document ‘%s’."
 
-#: libyelp/yelp-docbook-document.c:331 libyelp/yelp-info-document.c:358
-#: libyelp/yelp-man-document.c:336
+#: libyelp/yelp-docbook-document.c:337 libyelp/yelp-info-document.c:357 libyelp/yelp-man-document.c:335
+#, c-format
 msgid "The file does not exist."
 msgstr "Het bestand bestaat niet."
 
-#: libyelp/yelp-docbook-document.c:341 libyelp/yelp-info-document.c:368
-#: libyelp/yelp-man-document.c:346
+#: libyelp/yelp-docbook-document.c:347 libyelp/yelp-info-document.c:367 libyelp/yelp-man-document.c:345
 #, c-format
 msgid "The file ‘%s’ does not exist."
 msgstr "Het bestand ‘%s’ bestaat niet."
 
-#: libyelp/yelp-docbook-document.c:359
+#: libyelp/yelp-docbook-document.c:365
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed XML "
-"document."
-msgstr ""
-"Het bestand ‘%s’ kon niet worden verwerkt, omdat het ongeldige XML bevat."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
+msgstr "Het bestand ‘%s’ kon niet worden verwerkt, omdat het ongeldige XML bevat."
 
-#: libyelp/yelp-docbook-document.c:372
+#: libyelp/yelp-docbook-document.c:378
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files "
-"is not a well-formed XML document."
-msgstr ""
-"Het bestand ‘%s’ kon niet worden verwerkt, omdat een van de bestanden waar "
-"het naar verwijst ongeldige XML bevat."
+msgid "The file ‘%s’ could not be parsed because one or more of its included files is not a well-formed XML document."
+msgstr "Het bestand ‘%s’ kon niet worden verwerkt, omdat een van de bestanden waar het naar verwijst ongeldige XML bevat."
 
-#: libyelp/yelp-docbook-document.c:810
+#: libyelp/yelp-docbook-document.c:813
 msgid "Unknown"
 msgstr "Onbekend"
 
 # werd niet gevonden?
 # aangetroffen?
-#: libyelp/yelp-docbook-document.c:908 libyelp/yelp-info-document.c:301
-#: libyelp/yelp-man-document.c:279
+#: libyelp/yelp-docbook-document.c:911 libyelp/yelp-info-document.c:300 libyelp/yelp-man-document.c:278
 #, c-format
 msgid "The requested page was not found in the document ‘%s’."
 msgstr "De gezochte pagina werd niet aangetroffen in document ‘%s’."
 
-#: libyelp/yelp-document.c:1068
+#: libyelp/yelp-document.c:889
 #, c-format
 msgid "Search results for “%s”"
 msgstr "Zoekresultaten voor ‘%s’"
 
-#: libyelp/yelp-document.c:1080
-#, c-format
-msgid "No matching help pages found in “%s”."
-msgstr "Geen overeenkomende hulppagina's gevonden in ‘%s’."
-
-#: libyelp/yelp-document.c:1086
+#: libyelp/yelp-document.c:902
 msgid "No matching help pages found."
 msgstr "Geen overeenkomende hulppagina's gevonden."
 
 #: libyelp/yelp-error.c:35
+#, c-format
 msgid "An unknown error occurred."
 msgstr "Er is een onbekende fout opgetreden."
 
-#: libyelp/yelp-help-list.c:548 libyelp/yelp-help-list.c:557
+#: libyelp/yelp-help-list.c:539
 msgid "All Help Documents"
 msgstr "Alle hulpdocumenten"
 
-#: libyelp/yelp-info-document.c:383
+#: libyelp/yelp-info-document.c:382
 #, c-format
-msgid ""
-"The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"Het bestand ‘%s’ kon niet worden verwerkt omdat het een ongeldige infopagina "
-"is."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr "Het bestand ‘%s’ kon niet worden verwerkt omdat het een ongeldige infopagina is."
 
-#: libyelp/yelp-mallard-document.c:348
+#: libyelp/yelp-mallard-document.c:354
 #, c-format
 msgid "The directory ‘%s’ does not exist."
 msgstr "De map ‘%s’ bestaat niet."
 
-#: libyelp/yelp-search-entry.c:434
-#, c-format
-msgid "Search for “%s”"
-msgstr "Zoeken naar ‘%s’"
-
-#: libyelp/yelp-transform.c:369 libyelp/yelp-transform.c:384
+#: libyelp/yelp-transform.c:379 libyelp/yelp-transform.c:394
 #, c-format
 msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
 msgstr "Het XSLT-stijlblad ‘%s’ onbreekt of is ongeldig."
 
-#: libyelp/yelp-transform.c:518
+#: libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
 msgstr "Geen ‘href’-attribuut gevonden op yelp:document\n"
 
-#: libyelp/yelp-transform.c:533
+#: libyelp/yelp-transform.c:543
 msgid "Out of memory"
 msgstr "Geen geheugen meer"
 
-#: libyelp/yelp-view.c:248
-msgid "C_opy Code Block"
-msgstr "Codeblok _kopiëren"
-
-#: libyelp/yelp-view.c:253
-msgid "_Copy Link Location"
-msgstr "Koppeling naar locatie _kopiëren"
-
-#: libyelp/yelp-view.c:258
-msgid "_Open Link"
-msgstr "_Koppeling openen"
-
-#: libyelp/yelp-view.c:263
-msgid "Open Link in New _Window"
-msgstr "Koppeling openen in _nieuw venster"
-
-# man-pagina's
-#: libyelp/yelp-view.c:273
-msgid "_Install Packages"
-msgstr "_Pakketten installeren"
-
-#: libyelp/yelp-view.c:278
-msgid "Save Code _Block As…"
-msgstr "Code_blok opslaan als…"
-
-#: libyelp/yelp-view.c:293
-msgid "_Copy Text"
-msgstr "Tekst _kopiëren"
-
-#: libyelp/yelp-view.c:805 libyelp/yelp-view.c:2138
+#: libyelp/yelp-view.c:814 libyelp/yelp-view.c:2098
 #, c-format
 msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "De URI ‘%s’ wijst niet naar een geldige pagina."
 
-#: libyelp/yelp-view.c:811 libyelp/yelp-view.c:2144
+#: libyelp/yelp-view.c:820 libyelp/yelp-view.c:2104
+#, c-format
 msgid "The URI does not point to a valid page."
 msgstr "De URI wijst niet naar een geldige pagina."
 
-#: libyelp/yelp-view.c:816 libyelp/yelp-view.c:2150
+#: libyelp/yelp-view.c:825 libyelp/yelp-view.c:2110
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
 msgstr "De URI ‘%s’ kan niet verwerkt worden."
 
-#: libyelp/yelp-view.c:821
+#: libyelp/yelp-view.c:830
+#, c-format
 msgid "Unknown Error."
 msgstr "Onbekende fout."
 
-#: libyelp/yelp-view.c:975
+#: libyelp/yelp-view.c:967
 msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr ""
-"U heeft PackageKit niet. Koppelingen naar pakketinstallaties vereisen "
-"PackageKit."
+msgstr "U heeft PackageKit niet. Koppelingen naar pakketinstallaties vereisen PackageKit."
 
-#: libyelp/yelp-view.c:1222
+#: libyelp/yelp-view.c:972
+msgid "Package Install Link Error"
+msgstr "Fout in pakketinstallatieverwijzing"
+
+#: libyelp/yelp-view.c:973 libyelp/yelp-view.c:1172 libyelp/yelp-view.c:1306 libyelp/yelp-view.c:1316
+msgid "_Close"
+msgstr "_Sluiten"
+
+#: libyelp/yelp-view.c:1171
+msgid "Failed to Save Image"
+msgstr "Kon afbeelding niet opslaan"
+
+#: libyelp/yelp-view.c:1230
 msgid "Save Image"
 msgstr "Afbeelding opslaan"
 
-#: libyelp/yelp-view.c:1321
+#: libyelp/yelp-view.c:1305 libyelp/yelp-view.c:1315
+msgid "Failed to Save Code"
+msgstr "Kon code niet opslaan"
+
+#: libyelp/yelp-view.c:1350
 msgid "Save Code"
 msgstr "Code opslaan"
 
-#: libyelp/yelp-view.c:1417
+#: libyelp/yelp-view.c:1404
 #, c-format
 msgid "Send email to %s"
 msgstr "Een e-mail sturen naar %s"
 
-#: libyelp/yelp-view.c:1521
+# man-pagina's
+#: libyelp/yelp-view.c:1416
+msgid "_Install Packages"
+msgstr "_Pakketten installeren"
+
+#: libyelp/yelp-view.c:1423
+msgid "_Open Link"
+msgstr "_Koppeling openen"
+
+#: libyelp/yelp-view.c:1431
+msgid "_Copy Link Location"
+msgstr "Koppeling naar locatie _kopiëren"
+
+#: libyelp/yelp-view.c:1438
+msgid "Open Link in New _Window"
+msgstr "Koppeling openen in _nieuw venster"
+
+#: libyelp/yelp-view.c:1485
 msgid "_Save Image As…"
 msgstr "Afbeelding op_slaan als…"
 
-#: libyelp/yelp-view.c:1522
+#: libyelp/yelp-view.c:1486
 msgid "_Save Video As…"
 msgstr "Video op_slaan als…"
 
-#: libyelp/yelp-view.c:1530
+#: libyelp/yelp-view.c:1495
 msgid "S_end Image To…"
 msgstr "Afbeelding s_turen naar…"
 
-#: libyelp/yelp-view.c:1531
+#: libyelp/yelp-view.c:1496
 msgid "S_end Video To…"
 msgstr "Video s_turen naar…"
 
-#: libyelp/yelp-view.c:1872
+#: libyelp/yelp-view.c:1509
+msgid "_Copy Text"
+msgstr "Tekst _kopiëren"
+
+#: libyelp/yelp-view.c:1530
+msgid "C_opy Code Block"
+msgstr "Codeblok _kopiëren"
+
+#: libyelp/yelp-view.c:1536
+msgid "Save Code _Block As…"
+msgstr "Code_blok opslaan als…"
+
+#: libyelp/yelp-view.c:1853
 #, c-format
 msgid "Could not load a document for ‘%s’"
 msgstr "Laden van een document voor ‘%s’ mislukt"
 
-#: libyelp/yelp-view.c:1878
+#: libyelp/yelp-view.c:1859
+#, c-format
 msgid "Could not load a document"
 msgstr "Laden van een document mislukt"
 
 # onderdelen/secties
-#: libyelp/yelp-view.c:1962
+#: libyelp/yelp-view.c:1905
 msgid "Document Not Found"
 msgstr "Document niet gevonden"
 
-#: libyelp/yelp-view.c:1964
+#: libyelp/yelp-view.c:1907
 msgid "Page Not Found"
 msgstr "Pagina niet gevonden"
 
-#: libyelp/yelp-view.c:1967
+#: libyelp/yelp-view.c:1910
 msgid "Cannot Read"
 msgstr "Lezen mislukt"
 
-#: libyelp/yelp-view.c:1973
+#: libyelp/yelp-view.c:1916
 msgid "Unknown Error"
 msgstr "Onbekende fout"
 
-#: libyelp/yelp-view.c:1993
-msgid "Search for packages containing this document."
-msgstr "Zoek naar pakketten die dit document bevatten."
+#: libyelp/yelp-view.c:1935
+msgid "Find Packages Containing This Document"
+msgstr "Zoek naar pakketten die dit document bevatten"
 
-#: src/yelp-application.c:59
+#: org.gnome.Yelp.desktop.in:3
+msgid "Get help with GNOME"
+msgstr "Hulp bij GNOME"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: org.gnome.Yelp.desktop.in:5
+msgid "documentation;information;manual;help;"
+msgstr "documentatie;informatie;handleiding;hulp;help;docs;"
+
+#: src/yelp-application.c:57
 msgid "Turn on editor mode"
 msgstr "Bewerkingsmodus activeren"
 
-#: src/yelp-application.c:270 src/yelp-window.c:1188 src/yelp-window.c:1196
-#: yelp.desktop.in:3
-msgid "Help"
-msgstr "Hulp"
+#. Title is set dynamically
+#: src/yelp-search-entry.c:347
+msgid "Browse all search results"
+msgstr "Bekijk alle zoekresultaten"
 
-#: src/yelp-window.c:343
+#. Update label on the "Search for X" result
+#: src/yelp-search-entry.c:567
+#, c-format
+msgid "Search for “%s”"
+msgstr "Zoeken naar ‘%s’"
+
+#. TRANSLATORS Credit yourself here. Appears in about dialog.
+#: src/yelp-window.c:1172
+msgid "translator-credits"
+msgstr ""
+"Tino Meinen\n"
+"Ronald Hummelink\n"
+"Reinout van Schouwen\n"
+"Wouter Bolsterlee\n"
+"Nathan Follens\n"
+"Meer info over GNOME-NL https://nl.gnome.org/"
+
+#: src/yelp-window.ui:9
+msgid "New Window"
+msgstr "Nieuw venster"
+
+#: src/yelp-window.ui:13
+msgid "Find in Page…"
+msgstr "Zoeken op pagina…"
+
+#: src/yelp-window.ui:17
+msgid "Print…"
+msgstr "Afdrukken…"
+
+#: src/yelp-window.ui:23
+msgid "Previous Page"
+msgstr "Vorige pagina"
+
+#: src/yelp-window.ui:27
+msgid "Next Page"
+msgstr "Volgende pagina"
+
+#: src/yelp-window.ui:38
+msgid "All Help"
+msgstr "Alle hulp"
+
+#: src/yelp-window.ui:44
+msgid "About Help"
+msgstr "Over Hulp"
+
+#: src/yelp-window.ui:78 src/yelp-window.ui:218
 msgid "Back"
 msgstr "Vorige"
 
 # In tegenstelling tot de normale sneltoets gebruiken we hier de V
-#: src/yelp-window.c:350
+#: src/yelp-window.ui:86 src/yelp-window.ui:226
 msgid "Forward"
 msgstr "Volgende"
 
-#: src/yelp-window.c:361
+#: src/yelp-window.ui:95
 msgid "Menu"
 msgstr "Menu"
 
-#: src/yelp-window.c:366
-msgid "New Window"
-msgstr "Nieuw venster"
-
-#: src/yelp-window.c:367
-msgid "Find…"
-msgstr "Zoeken…"
-
-#: src/yelp-window.c:368
-msgid "Print…"
-msgstr "Afdrukken…"
-
-#: src/yelp-window.c:373
-msgid "Previous Page"
-msgstr "Vorige pagina"
-
-#: src/yelp-window.c:374
-msgid "Next Page"
-msgstr "Volgende pagina"
-
-#: src/yelp-window.c:379
-msgid "Larger Text"
-msgstr "Grotere tekst"
-
-#: src/yelp-window.c:380
-msgid "Smaller Text"
-msgstr "Kleinere tekst"
-
-#: src/yelp-window.c:385
-msgid "All Help"
-msgstr "Alle hulp"
-
-#: src/yelp-window.c:407
+#: src/yelp-window.ui:105
 msgid "Search (Ctrl+S)"
 msgstr "Zoeken (Ctrl+S)"
 
-#: src/yelp-window.c:424
+#: src/yelp-window.ui:113
 msgid "Bookmarks"
 msgstr "Bladwijzers"
 
-#: src/yelp-window.c:441
-msgid "No bookmarks"
-msgstr "Geen bladwijzers"
+#: src/yelp-window.ui:153
+msgid "Search in page…"
+msgstr "Zoeken op pagina…"
 
-#: src/yelp-window.c:449
+#: src/yelp-window.ui:161
+msgid "Previous"
+msgstr "Vorige"
+
+#: src/yelp-window.ui:173
+msgid "Next"
+msgstr "Volgende"
+
+#: src/yelp-window.ui:185
+msgid "Close Search"
+msgstr "Zoeken sluiten"
+
+#: src/yelp-window.ui:249
+msgid "Shrink Text"
+msgstr "Tekst verkleinen"
+
+#: src/yelp-window.ui:260
+msgid "Reset Size"
+msgstr "Tekstgrootte herstellen"
+
+#: src/yelp-window.ui:277
+msgid "Enlarge Text"
+msgstr "Tekst vergroten"
+
+#: src/yelp-window.ui:324
 msgid "Add Bookmark"
 msgstr "Bladwijzer toevoegen"
 
-#: src/yelp-window.c:455
+#: src/yelp-window.ui:335
 msgid "Remove Bookmark"
 msgstr "Bladwijzer verwijderen"
 
-#: yelp.desktop.in:4
-msgid "Get help with GNOME"
-msgstr "Hulp bij Gnome"
+#~ msgid "GNOME Help"
+#~ msgstr "Gnome Hulp"
 
-#: yelp.desktop.in:5
-msgid "documentation;information;manual;help;"
-msgstr "documentatie;informatie;handleiding;hulp;help;docs;"
+#, c-format
+#~ msgid "No matching help pages found in “%s”."
+#~ msgstr "Geen overeenkomende hulppagina's gevonden in ‘%s’."
 
-#: yelp.desktop.in:8
-msgid "org.gnome.Yelp"
-msgstr "org.gnome.Yelp"
+#~ msgid "Find…"
+#~ msgstr "Zoeken…"
+
+#~ msgid "No bookmarks"
+#~ msgstr "Geen bladwijzers"
+
+#~ msgid "org.gnome.Yelp"
+#~ msgstr "org.gnome.Yelp"
 
 #~ msgid "Indexed"
 #~ msgstr "Geïndexeerd"
@@ -496,12 +531,6 @@ msgstr "org.gnome.Yelp"
 #~ msgid "A YelpApplication instance that controls this window"
 #~ msgstr "Een YelpApplication-instance die dit venster beheert"
 
-#~ msgid "See all search results for “%s”"
-#~ msgstr "Zie alle zoekresultaten voor ‘%s’"
-
-#~ msgid "Enable Search"
-#~ msgstr "Zoeken inschakelen"
-
 #~ msgid "Whether the location entry can be used as a search field"
 #~ msgstr "Of de locatiebalk als zoekveld gebruikt kan worden"
 
@@ -544,17 +573,11 @@ msgstr "org.gnome.Yelp"
 #~ msgid "_Bookmarks"
 #~ msgstr "Bl_adwijzers"
 
-#~ msgid "_Close"
-#~ msgstr "_Sluiten"
-
 #~ msgid "_All Documents"
 #~ msgstr "_Alle documenten"
 
 #~ msgid "_Add Bookmark"
 #~ msgstr "Bla_dwijzer toevoegen"
-
-#~ msgid "Find in Page..."
-#~ msgstr "Zoek in pagina…"
 
 #~ msgid "Open Location"
 #~ msgstr "Locatie openen"
@@ -985,11 +1008,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Graphics"
 #~ msgstr "Grafisch"
 
-#~ msgid ""
-#~ "Guides and manuals for applications that connect to the outside world"
-#~ msgstr ""
-#~ "Gidsen en handleidingen voor toepassingen die verbinding maken met de "
-#~ "buitenwereld"
+#~ msgid "Guides and manuals for applications that connect to the outside world"
+#~ msgstr "Gidsen en handleidingen voor toepassingen die verbinding maken met de buitenwereld"
 
 #~ msgid "Guides for getting involved in development"
 #~ msgstr "Gidsen voor het betrokken raken bij ontwikkeling"
@@ -1030,12 +1050,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Kids Games"
 #~ msgstr "Kinderspelletjes"
 
-#~ msgid ""
-#~ "Learn more about making your system more accessible for a range of "
-#~ "disabilities"
-#~ msgstr ""
-#~ "Meer te weten komen over het toegankelijk maken van uw systeem voor een "
-#~ "scala aan functiebeperkingen"
+#~ msgid "Learn more about making your system more accessible for a range of disabilities"
+#~ msgstr "Meer te weten komen over het toegankelijk maken van uw systeem voor een scala aan functiebeperkingen"
 
 #~ msgid "Licenses"
 #~ msgstr "Licenties"
@@ -1158,11 +1174,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Settings"
 #~ msgstr "Instellingen"
 
-#~ msgid ""
-#~ "Settings users can manipulate to make their environment more pleasant"
-#~ msgstr ""
-#~ "Instellingen die gebruikers kunnen manipuleren om hun werkomgeving naar "
-#~ "hun smaak aan te passen"
+#~ msgid "Settings users can manipulate to make their environment more pleasant"
+#~ msgstr "Instellingen die gebruikers kunnen manipuleren om hun werkomgeving naar hun smaak aan te passen"
 
 #~ msgid "Simulation Games"
 #~ msgstr "Simulatiespellen"
@@ -1334,9 +1347,7 @@ msgstr "org.gnome.Yelp"
 
 # vertaald als weergeven ipv bekijken
 #~ msgid "Use a keyboard-controllable caret when viewing pages."
-#~ msgstr ""
-#~ "Bij het weergeven van pagina's een caret gebruiken die met het "
-#~ "toetsenbord bediend kan worden."
+#~ msgstr "Bij het weergeven van pagina's een caret gebruiken die met het toetsenbord bediend kan worden."
 
 #~ msgid "Use caret"
 #~ msgstr "caret gebruiken"
@@ -1369,12 +1380,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "No information is available about this error."
 #~ msgstr "Er is geen informatie beschikbaar over deze fout."
 
-#~ msgid ""
-#~ "The file ‘%s’ could not be read and decoded. The file may be compressed "
-#~ "in an unsupported format."
-#~ msgstr ""
-#~ "Het bestand ‘%s’ kon niet worden gelezen en gedecodeerd. Het bestand is "
-#~ "mogelijk gecomprimeerd in een onbekend formaat."
+#~ msgid "The file ‘%s’ could not be read and decoded. The file may be compressed in an unsupported format."
+#~ msgstr "Het bestand ‘%s’ kon niet worden gelezen en gedecodeerd. Het bestand is mogelijk gecomprimeerd in een onbekend formaat."
 
 #~ msgid "Use a private session"
 #~ msgstr "Een privé-sessie gebruiken"
@@ -1382,12 +1389,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Define which cache directory to use"
 #~ msgstr "Aangeven welke map moet worden gebruikt voor tijdelijke opslag"
 
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
-#~ "page."
-#~ msgstr ""
-#~ "Het bestand ‘%s’ kon niet worden verwerkt, omdat het een ongeldige man-"
-#~ "pagina is."
+#~ msgid "The file ‘%s’ could not be parsed because it is not a well-formed man page."
+#~ msgstr "Het bestand ‘%s’ kon niet worden verwerkt, omdat het een ongeldige man-pagina is."
 
 #~ msgid "Preparing to print"
 #~ msgstr "Voorbereiding voor afdrukken"
@@ -1416,20 +1419,11 @@ msgstr "org.gnome.Yelp"
 #~ msgid "No results for \"%s\""
 #~ msgstr "Geen resultaten op ‘%s’"
 
-#~ msgid ""
-#~ "Try using different words to describe the problem you're having or the "
-#~ "topic you want help with."
-#~ msgstr ""
-#~ "Probeer met andere woorden te omschrijven wat het probleem is of waar u "
-#~ "hulp bij zoekt."
+#~ msgid "Try using different words to describe the problem you're having or the topic you want help with."
+#~ msgstr "Probeer met andere woorden te omschrijven wat het probleem is of waar u hulp bij zoekt."
 
-#~ msgid ""
-#~ "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:"
-#~ "doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:"
-#~ "when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:"
-#~ "this:to:what:where:who:will:with:won't:wont:why:work:working:works"
-#~ msgstr ""
-#~ "de:het:een:over:vertel:uitleg:help:hoe:kan:ik:je:iets:werkt:doet:niet:stuk"
+#~ msgid "a:about:an:are:as:at:be:broke:broken:by:can:can't:dialog:dialogue:do:doesn't:doesnt:don't:dont:explain:for:from:get:gets:got:make:makes:not:when:has:have:help:how:i:in:is:it:item:me:my:of:on:or:tell:that:the:thing:this:to:what:where:who:will:with:won't:wont:why:work:working:works"
+#~ msgstr "de:het:een:over:vertel:uitleg:help:hoe:kan:ik:je:iets:werkt:doet:niet:stuk"
 
 # ^^ Dit kan vast beter (Wouter Bolsterlee)
 #~ msgid "re"
@@ -1459,20 +1453,15 @@ msgstr "org.gnome.Yelp"
 # werd niet gevonden?
 # aangetroffen?
 #~ msgid "The requested page was not found in the TOC."
-#~ msgstr ""
-#~ "De geselecteerde pagina kon niet worden gevonden in de inhoudsopgave."
+#~ msgstr "De geselecteerde pagina kon niet worden gevonden in de inhoudsopgave."
 
-#~ msgid ""
-#~ "The TOC file could not be parsed because it is not a well-formed XML "
-#~ "document."
-#~ msgstr ""
-#~ "De inhoudsopgave kon niet worden verwerkt, omdat het ongeldige XML bevat."
+#~ msgid "The TOC file could not be parsed because it is not a well-formed XML document."
+#~ msgstr "De inhoudsopgave kon niet worden verwerkt, omdat het ongeldige XML bevat."
 
 #~ msgid "Broken Transformation"
 #~ msgstr "Documentomzetting"
 
-#~ msgid ""
-#~ "An unknown error occurred while attempting to transform the document."
+#~ msgid "An unknown error occurred while attempting to transform the document."
 #~ msgstr "Er is onbekende fout opgetreden bij het omzetten van het document."
 
 #~ msgid "_File"
@@ -1585,21 +1574,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Phrase not found"
 #~ msgstr "Zoekopdracht niet gevonden"
 
-#~ msgid ""
-#~ "The file ‘%s’ could not be read.  This file might be missing, or you "
-#~ "might not have permissions to read it."
-#~ msgstr ""
-#~ "Het bestand ‘%s’ kon niet worden gelezen.  Ofwel het bestand ontbreekt, "
-#~ "of u heeft geen toestemming het te lezen."
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "Tino Meinen\n"
-#~ "Ronald Hummelink\n"
-#~ "Reinout van Schouwen\n"
-#~ "Wouter Bolsterlee\n"
-#~ "\n"
-#~ "Kijk voor meer informatie op http://nl.gnome.org/"
+#~ msgid "The file ‘%s’ could not be read.  This file might be missing, or you might not have permissions to read it."
+#~ msgstr "Het bestand ‘%s’ kon niet worden gelezen.  Ofwel het bestand ontbreekt, of u heeft geen toestemming het te lezen."
 
 # vrij vertaald.
 #~ msgid "A documentation browser and viewer for the Gnome Desktop."
@@ -1661,12 +1637,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Could not process document"
 #~ msgstr "Kon het document niet verwerken"
 
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed.  Either the file does not exist, or it "
-#~ "is formatted incorrectly."
-#~ msgstr ""
-#~ "Het bestand ‘%s’ kon niet worden verwerkt.  Ofwel het bestand bestaat "
-#~ "niet, of het is niet correct opgemaakt."
+#~ msgid "The file ‘%s’ could not be parsed.  Either the file does not exist, or it is formatted incorrectly."
+#~ msgstr "Het bestand ‘%s’ kon niet worden verwerkt.  Ofwel het bestand bestaat niet, of het is niet correct opgemaakt."
 
 #~ msgid "The YelpDocInfo struct of the document"
 #~ msgstr "De YelpDocInfo struct van het document"
@@ -1674,12 +1646,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "<b>Printing</b>"
 #~ msgstr "<b>Afdrukken</b>"
 
-#~ msgid ""
-#~ "Your search could not be processed. The file ‘%s’ is either missing or is "
-#~ "not a valid XSLT stylesheet."
-#~ msgstr ""
-#~ "Uw zoekopdracht kon niet worden verwerkt. Ofwel het bestand ‘%s’ "
-#~ "ontbreekt, of het is geen geldige XSLT stylesheet."
+#~ msgid "Your search could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
+#~ msgstr "Uw zoekopdracht kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, of het is geen geldige XSLT stylesheet."
 
 #~ msgid "Help Contents"
 #~ msgstr "Hulp-inhoudsopgave"
@@ -1695,12 +1663,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "YelpTocPager: Pause count is negative."
 #~ msgstr "YelpTocPager: Pauzerentelling is negatief."
 
-#~ msgid ""
-#~ "The table of contents could not be processed. The file ‘%s’ is either "
-#~ "missing or is not a valid XSLT stylesheet."
-#~ msgstr ""
-#~ "De inhoudstabel kon niet worden verwerkt. Ofwel het bestand ‘%s’ "
-#~ "ontbreekt, of het is geen geldige XSLT stylesheet."
+#~ msgid "The table of contents could not be processed. The file ‘%s’ is either missing or is not a valid XSLT stylesheet."
+#~ msgstr "De inhoudstabel kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, of het is geen geldige XSLT stylesheet."
 
 #~ msgid "Read man page for %s"
 #~ msgstr "Man-pagina's over %s lezen"
@@ -1709,12 +1673,8 @@ msgstr "org.gnome.Yelp"
 #~ msgstr "Info-pagina over %s lezen"
 
 # niet-juist gevormde/niet-juist opgemaakte
-#~ msgid ""
-#~ "The table of contents could not be loaded. The file ‘%s’ is either "
-#~ "missing or is not well-formed XML."
-#~ msgstr ""
-#~ "De inhoudstabel kon niet worden verwerkt. Ofwel het bestand ‘%s’ "
-#~ "ontbreekt, of het is niet-juist gevormde XML."
+#~ msgid "The table of contents could not be loaded. The file ‘%s’ is either missing or is not well-formed XML."
+#~ msgstr "De inhoudstabel kon niet worden verwerkt. Ofwel het bestand ‘%s’ ontbreekt, of het is niet-juist gevormde XML."
 
 #~ msgid "Command Line Help"
 #~ msgstr "Opdrachtregel hulp"
@@ -1723,12 +1683,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "The Uniform Resource Identifier for the file is invalid."
 #~ msgstr "De Uniform Resource Identifier voor het bestand is ongeldig."
 
-#~ msgid ""
-#~ "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an "
-#~ "actual file."
-#~ msgstr ""
-#~ "De Uniform Resource Identifier ‘%s’ is ongeldig of wijst niet naar een "
-#~ "bestaand bestand."
+#~ msgid "The Uniform Resource Identifier ‘%s’ is invalid or does not point to an actual file."
+#~ msgstr "De Uniform Resource Identifier ‘%s’ is ongeldig of wijst niet naar een bestaand bestand."
 
 #~ msgid "Man pages are not supported in this version."
 #~ msgstr "Man-pagina's kunnen in deze versie niet worden weergegeven."
@@ -1739,50 +1695,26 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Search is not supported in this version."
 #~ msgstr "Zoeken is in deze versie niet mogelijk."
 
-#~ msgid ""
-#~ "SGML documents are no longer supported. Please ask the author of the "
-#~ "document to convert to XML."
-#~ msgstr ""
-#~ "SGML documenten zijn niet langer ondersteund. Vraag de auteur het "
-#~ "document om te zetten naar XML."
+#~ msgid "SGML documents are no longer supported. Please ask the author of the document to convert to XML."
+#~ msgstr "SGML documenten zijn niet langer ondersteund. Vraag de auteur het document om te zetten naar XML."
 
-#~ msgid ""
-#~ "A transformation context could not be created for the file ‘%s’. The "
-#~ "format may not be supported."
-#~ msgstr ""
-#~ "Een transformatiecontext kon niet worden aangemaakt voor het bestand "
-#~ "‘%s’. De opmaak wordt mogelijk niet ondersteund."
+#~ msgid "A transformation context could not be created for the file ‘%s’. The format may not be supported."
+#~ msgstr "Een transformatiecontext kon niet worden aangemaakt voor het bestand ‘%s’. De opmaak wordt mogelijk niet ondersteund."
 
-#~ msgid ""
-#~ "The section ‘%s’ does not exist in this document. If you were directed to "
-#~ "this section from a Help button in an application, please report this to "
-#~ "the maintainers of that application."
-#~ msgstr ""
-#~ "De sectie ‘%s’ bestaat niet in dit document. Indien u hier terechtkwam "
-#~ "door de Hulp aan te klikken in een toepassing, rapporteert u dit dan "
-#~ "alstublieft aan de beheerders van die toepassing."
+#~ msgid "The section ‘%s’ does not exist in this document. If you were directed to this section from a Help button in an application, please report this to the maintainers of that application."
+#~ msgstr "De sectie ‘%s’ bestaat niet in dit document. Indien u hier terechtkwam door de Hulp aan te klikken in een toepassing, rapporteert u dit dan alstublieft aan de beheerders van die toepassing."
 
-#~ msgid ""
-#~ "The file ‘%s’ could not be parsed. Either the file does not exist, or it "
-#~ "is improperly formatted."
-#~ msgstr ""
-#~ "Het bestand ‘%s’ kon niet worden verwerkt. Ofwel het bestand bestaat "
-#~ "niet, of het heeft niet de juiste opmaak."
+#~ msgid "The file ‘%s’ could not be parsed. Either the file does not exist, or it is improperly formatted."
+#~ msgstr "Het bestand ‘%s’ kon niet worden verwerkt. Ofwel het bestand bestaat niet, of het heeft niet de juiste opmaak."
 
-#~ msgid ""
-#~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
-#~ msgstr ""
-#~ "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+#~ msgid "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
+#~ msgstr "http://gnomesupport.org/forums/search.php?search_keywords=%s&search_cat=1"
 
 #~ msgid "Generating PDF is not currently supported"
 #~ msgstr "Het maken van een PDF is nog niet mogelijk"
 
-#~ msgid ""
-#~ "You were trying to print to a printer using the \"%s\" driver.  This "
-#~ "program requires a PostScript printer driver."
-#~ msgstr ""
-#~ "U probeerde af te drukken naar een printer met het ‘%s’ stuurprogramma. "
-#~ "Dit programma vereist een PostScript printer-stuurprogramma."
+#~ msgid "You were trying to print to a printer using the \"%s\" driver.  This program requires a PostScript printer driver."
+#~ msgstr "U probeerde af te drukken naar een printer met het ‘%s’ stuurprogramma. Dit programma vereist een PostScript printer-stuurprogramma."
 
 #~ msgid "_From:"
 #~ msgstr "_Van:"
@@ -1816,12 +1748,8 @@ msgstr "org.gnome.Yelp"
 #~ msgid "Could not activate Yelp: '%s'"
 #~ msgstr "Kon Yelp niet opstarten: '%s'"
 
-#~ msgid ""
-#~ "Your search could not be processed. There is no connection to the beagle "
-#~ "daemon."
-#~ msgstr ""
-#~ "Uw zoekopdracht kon niet worden verwerkt. Er is geen verbinding met de "
-#~ "beagle daemon."
+#~ msgid "Your search could not be processed. There is no connection to the beagle daemon."
+#~ msgstr "Uw zoekopdracht kon niet worden verwerkt. Er is geen verbinding met de beagle daemon."
 
 #~ msgid "<b>_Bookmarks:</b>"
 #~ msgstr "<b>Bl_adwijzers:</b>"
@@ -2084,12 +2012,3 @@ msgstr "org.gnome.Yelp"
 
 #~ msgid "Loading..&nbsp;"
 #~ msgstr "Bezig met laden..&nbsp;"
-
-#~ msgid "Previous"
-#~ msgstr "Vorige"
-
-#~ msgid "Next"
-#~ msgstr "Volgende"
-
-#~ msgid "Search in the index"
-#~ msgstr "De index doorzoeken"
