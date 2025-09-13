@@ -1,5 +1,5 @@
 project('yelp', 'c',
-        version : '49.rc',
+        version : '49.0',
         meson_version : '>= 1.3',
         default_options : [
           'warning_level=1',
