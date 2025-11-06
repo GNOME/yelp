@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues/\n"
-"POT-Creation-Date: 2025-10-11 04:12+0000\n"
+"POT-Creation-Date: 2025-10-27 16:04+0000\n"
 "PO-Revision-Date: 2019-02-17 02:45+0200\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: team@gnome.gr\n"
@@ -143,8 +143,8 @@ msgstr "Η ζητούμενη σελίδα δε βρέθηκε στο έγγρα
 
 #: libyelp/yelp-document.c:889
 #, c-format
-msgid "Search results for \"%s\""
-msgstr "Αποτελέσματα αναζήτησης για \"%s\""
+msgid "Search results for “%s”"
+msgstr "Αποτελέσματα αναζήτησης για «%s»"
 
 #: libyelp/yelp-document.c:902
 msgid "No matching help pages found."
@@ -283,8 +283,9 @@ msgid "Save Code _Block As…"
 msgstr "Αποθήκευση ο_μάδας κώδικα ως…"
 
 #: libyelp/yelp-view.c:1853
-#, c-format
-msgid "Could not load a document for '%s'"
+#, fuzzy, c-format
+#| msgid "Could not load a document for '%s'"
+msgid "Could not load a document for ‘%s’"
 msgstr "Αδυναμία φόρτωσης ενός εγγράφου για το '%s'"
 
 #: libyelp/yelp-view.c:1859
@@ -331,8 +332,9 @@ msgstr "Περιήγηση σε όλα τα αποτελέσματα αναζή�
 
 #. Update label on the "Search for X" result
 #: src/yelp-search-entry.c:567
-#, c-format
-msgid "Search for \"%s\""
+#, fuzzy, c-format
+#| msgid "Search for \"%s\""
+msgid "Search for “%s”"
 msgstr "Αναζήτηση για \"%s\""
 
 #. TRANSLATORS Credit yourself here. Appears in about dialog.
