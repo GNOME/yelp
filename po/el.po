@@ -283,9 +283,8 @@ msgid "Save Code _Block As…"
 msgstr "Αποθήκευση ο_μάδας κώδικα ως…"
 
 #: libyelp/yelp-view.c:1853
-#, fuzzy, c-format
-#| msgid "Could not load a document for '%s'"
-msgid "Could not load a document for ‘%s’"
+#, c-format
+msgid "Could not load a document for '%s'"
 msgstr "Αδυναμία φόρτωσης ενός εγγράφου για το '%s'"
 
 #: libyelp/yelp-view.c:1859
@@ -332,10 +331,9 @@ msgstr "Περιήγηση σε όλα τα αποτελέσματα αναζή�
 
 #. Update label on the "Search for X" result
 #: src/yelp-search-entry.c:567
-#, fuzzy, c-format
-#| msgid "Search for \"%s\""
+#, c-format
 msgid "Search for “%s”"
-msgstr "Αναζήτηση για \"%s\""
+msgstr "Αναζήτηση για «%s»"
 
 #. TRANSLATORS Credit yourself here. Appears in about dialog.
 #: src/yelp-window.c:1172
