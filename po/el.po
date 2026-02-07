@@ -18,16 +18,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues/\n"
-"POT-Creation-Date: 2025-10-27 16:04+0000\n"
-"PO-Revision-Date: 2019-02-17 02:45+0200\n"
-"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
+"POT-Creation-Date: 2025-09-13 19:38+0000\n"
+"PO-Revision-Date: 2026-02-07 21:36+0200\n"
+"Last-Translator: Efstathios Iosifidis <eiosifidis@gmail.com>\n"
 "Language-Team: team@gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Project-Style: gnome\n"
 
 #. (itstool) path: msg/msgstr
@@ -56,28 +56,28 @@ msgstr "Εφαρμογή προβολής βοήθειας για το GNOME"
 
 #: data/org.gnome.Yelp.metainfo.xml.in:22
 msgid ""
-"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
-"also display DocBook, info, man, and HTML documentation."
+"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can also "
+"display DocBook, info, man, and HTML documentation."
 msgstr ""
-"Το Yelp είναι εφαρμογή προβολής βοήθειας του GNOME. Είναι η προεπιλεγμένη "
-"εφαρμογή προβολής του Mallard, αλλά μπορεί επίσης να εμφανίσει τεκμηρίωση "
-"DocBook, info, man και HTML."
+"Το Yelp είναι εφαρμογή προβολής βοήθειας του GNOME. Είναι η προεπιλεγμένη εφαρμογή "
+"προβολής του Mallard, αλλά μπορεί επίσης να εμφανίσει τεκμηρίωση DocBook, info, man "
+"και HTML."
 
 #: data/org.gnome.Yelp.metainfo.xml.in:26
 msgid ""
-"It makes it easy to find the documentation you need, with interactive search "
-"and bookmarks."
+"It makes it easy to find the documentation you need, with interactive search and "
+"bookmarks."
 msgstr ""
-"Κάνει εύκολη την εύρεση της τεκμηρίωσης που χρειάζεστε, με διαδραστική "
-"αναζήτηση και σελιδοδείκτες."
+"Κάνει εύκολη την εύρεση της τεκμηρίωσης που χρειάζεστε, με διαδραστική αναζήτηση και "
+"σελιδοδείκτες."
 
 #: data/org.gnome.Yelp.metainfo.xml.in:30
 msgid ""
-"It also has an editor mode, which shows editorial comments and revision "
-"statuses when editing Mallard documents."
+"It also has an editor mode, which shows editorial comments and revision statuses when "
+"editing Mallard documents."
 msgstr ""
-"Έχει επίσης μια λειτουργία επεξεργασίας, η οποία εμφανίζει σχόλια συντακτών "
-"και κατάστασης αναθεώρησης κατά την επεξεργασία εγγράφων Mallard."
+"Έχει επίσης μια λειτουργία επεξεργασίας, η οποία εμφανίζει σχόλια συντακτών και "
+"κατάστασης αναθεώρησης κατά την επεξεργασία εγγράφων Mallard."
 
 #: data/org.gnome.Yelp.metainfo.xml.in:37
 msgid "Main window"
@@ -99,8 +99,8 @@ msgstr "Ανεπαρκής μνήμη"
 #: libyelp/yelp-mallard-document.c:312 libyelp/yelp-mallard-document.c:477
 #: libyelp/yelp-man-document.c:198
 #, c-format
-msgid "The page '%s' was not found in the document '%s'."
-msgstr "Δε βρέθηκε η σελίδα '%s' στο έγγραφο '%s'."
+msgid "The page ‘%s’ was not found in the document ‘%s’."
+msgstr "Η σελίδα «%s» δεν βρέθηκε στο έγγραφο «%s»."
 
 #: libyelp/yelp-docbook-document.c:337 libyelp/yelp-info-document.c:357
 #: libyelp/yelp-man-document.c:335
@@ -110,26 +110,24 @@ msgstr "Το αρχείο δεν υπάρχει."
 #: libyelp/yelp-docbook-document.c:347 libyelp/yelp-info-document.c:367
 #: libyelp/yelp-man-document.c:345
 #, c-format
-msgid "The file '%s' does not exist."
-msgstr "Το αρχείο '%s' δεν υπάρχει."
+msgid "The file ‘%s’ does not exist."
+msgstr "Το αρχείο «%s» δεν υπάρχει."
 
 #: libyelp/yelp-docbook-document.c:365
 #, c-format
-msgid ""
-"The file '%s' could not be parsed because it is not a well-formed XML "
-"document."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
 msgstr ""
-"Το αρχείο '%s' δε μπορεί να αναλυθεί επειδή δεν είναι ένα σωστά δομημένο "
-"έγγραφο XML."
+"Το αρχείο «%s» δεν μπόρεσε να αναλυθεί επειδή δεν είναι ένα σωστά διαμορφωμένο έγγραφο "
+"XML."
 
 #: libyelp/yelp-docbook-document.c:378
 #, c-format
 msgid ""
-"The file '%s' could not be parsed because one or more of its included files "
-"is not a well-formed XML document."
+"The file ‘%s’ could not be parsed because one or more of its included files is not a "
+"well-formed XML document."
 msgstr ""
-"Το αρχείο '%s' δε μπορεί να αναλυθεί επειδή ένα ή περισσότερα από τα αρχεία "
-"που περιλαμβάνει δεν είναι σωστά δομημένο έγγραφο XML."
+"Το αρχείο «%s» δεν μπόρεσε να αναλυθεί επειδή ένα ή περισσότερα από τα αρχεία που "
+"περιλαμβάνει δεν είναι σωστά διαμορφωμένα έγγραφα XML."
 
 #: libyelp/yelp-docbook-document.c:813
 msgid "Unknown"
@@ -138,8 +136,8 @@ msgstr "Άγνωστο"
 #: libyelp/yelp-docbook-document.c:911 libyelp/yelp-info-document.c:300
 #: libyelp/yelp-man-document.c:278
 #, c-format
-msgid "The requested page was not found in the document '%s'."
-msgstr "Η ζητούμενη σελίδα δε βρέθηκε στο έγγραφο '%s'."
+msgid "The requested page was not found in the document ‘%s’."
+msgstr "Η ζητούμενη σελίδα δεν βρέθηκε στο έγγραφο «%s»."
 
 #: libyelp/yelp-document.c:889
 #, c-format
@@ -160,21 +158,20 @@ msgstr "Όλα τα έγγραφα βοήθειας"
 
 #: libyelp/yelp-info-document.c:382
 #, c-format
-msgid ""
-"The file '%s' could not be parsed because it is not a well-formed info page."
+msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
 msgstr ""
-"Το αρχείο '%s' δεν μπορεί να αναλυθεί επειδή δεν είναι μια σωστά δομημένη "
-"σελίδα πληροφοριών."
+"Το αρχείο «%s» δεν μπόρεσε να αναλυθεί επειδή δεν είναι μια σωστά διαμορφωμένη σελίδα "
+"πληροφοριών."
 
 #: libyelp/yelp-mallard-document.c:354
 #, c-format
-msgid "The directory '%s' does not exist."
-msgstr "Ο κατάλογος '%s' δεν υπάρχει."
+msgid "The directory ‘%s’ does not exist."
+msgstr "Ο κατάλογος «%s» δεν υπάρχει."
 
 #: libyelp/yelp-transform.c:379 libyelp/yelp-transform.c:394
 #, c-format
-msgid "The XSLT stylesheet '%s' is either missing or not valid."
-msgstr "Το φύλλο στυλ XSLT '%s' είτε λείπει είτε δεν είναι έγκυρο."
+msgid "The XSLT stylesheet ‘%s’ is either missing or not valid."
+msgstr "Το φύλλο στυλ XSLT «%s» είτε λείπει είτε δεν είναι έγκυρο."
 
 #: libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
@@ -186,8 +183,8 @@ msgstr "Εξαντλήθηκε η μνήμη"
 
 #: libyelp/yelp-view.c:814 libyelp/yelp-view.c:2098
 #, c-format
-msgid "The URI '%s' does not point to a valid page."
-msgstr "Το URI '%s' δεν δείχνει σε μια έγκυρη σελίδα."
+msgid "The URI ‘%s’ does not point to a valid page."
+msgstr "Η διεύθυνση URI «%s» δεν οδηγεί σε έγκυρη σελίδα."
 
 #: libyelp/yelp-view.c:820 libyelp/yelp-view.c:2104
 msgid "The URI does not point to a valid page."
@@ -195,8 +192,8 @@ msgstr "Το URI δεν δείχνει σε μια έγκυρη σελίδα."
 
 #: libyelp/yelp-view.c:825 libyelp/yelp-view.c:2110
 #, c-format
-msgid "The URI '%s' could not be parsed."
-msgstr "Το URI '%s' δεν μπορεί να αναλυθεί."
+msgid "The URI ‘%s’ could not be parsed."
+msgstr "Δεν ήταν δυνατή η ανάλυση του URI «%s»."
 
 #: libyelp/yelp-view.c:830
 msgid "Unknown Error."
@@ -205,8 +202,7 @@ msgstr "Άγνωστο σφάλμα."
 #: libyelp/yelp-view.c:967
 msgid "You do not have PackageKit. Package install links require PackageKit."
 msgstr ""
-"Δεν έχετε το PackageKit. Οι σύνδεσμοι εγκατάστασης πακέτων απαιτούν το "
-"PackageKit."
+"Δεν έχετε το PackageKit. Οι σύνδεσμοι εγκατάστασης πακέτων απαιτούν το PackageKit."
 
 #: libyelp/yelp-view.c:972
 msgid "Package Install Link Error"
@@ -284,8 +280,8 @@ msgstr "Αποθήκευση ο_μάδας κώδικα ως…"
 
 #: libyelp/yelp-view.c:1853
 #, c-format
-msgid "Could not load a document for '%s'"
-msgstr "Αδυναμία φόρτωσης ενός εγγράφου για το '%s'"
+msgid "Could not load a document for ‘%s’"
+msgstr "Δεν ήταν δυνατή η φόρτωση ενός εγγράφου για το «%s»"
 
 #: libyelp/yelp-view.c:1859
 msgid "Could not load a document"
@@ -474,8 +470,7 @@ msgstr "Αφαίρεση σελιδοδείκτη"
 #~ msgstr "Ρύθμιση γραμματοσειράς"
 
 #~ msgid "A size adjustment to add to font sizes"
-#~ msgstr ""
-#~ "Μια ρύθμιση μεγέθους που θα προστίθεται στα μεγέθη των γραμματοσειρών"
+#~ msgstr "Μια ρύθμιση μεγέθους που θα προστίθεται στα μεγέθη των γραμματοσειρών"
 
 #~ msgid "Show Text Cursor"
 #~ msgstr "Εμφάνιση δρομέα κειμένου"
