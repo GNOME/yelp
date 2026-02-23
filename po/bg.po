@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: yelp master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues/\n"
-"POT-Creation-Date: 2025-09-17 18:33+0000\n"
-"PO-Revision-Date: 2025-09-20 16:28+0200\n"
+"POT-Creation-Date: 2025-09-13 19:38+0000\n"
+"PO-Revision-Date: 2026-02-23 15:28+0100\n"
 "Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -50,27 +50,27 @@ msgstr "Преглед на помощта за GNOME"
 
 #: data/org.gnome.Yelp.metainfo.xml.in:22
 msgid ""
-"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can also "
-"display DocBook, info, man, and HTML documentation."
+"Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
+"also display DocBook, info, man, and HTML documentation."
 msgstr ""
-"Yelp е визуализаторът за помощта на GNOME. Стандартно показва помощта във формат "
-"Mallard, но поддържа и DocBook, info, man и HTML."
+"Yelp е визуализаторът за помощта на GNOME. Стандартно показва помощта във "
+"формат Mallard, но поддържа и DocBook, info, man и HTML."
 
 #: data/org.gnome.Yelp.metainfo.xml.in:26
 msgid ""
-"It makes it easy to find the documentation you need, with interactive search and "
-"bookmarks."
+"It makes it easy to find the documentation you need, with interactive search "
+"and bookmarks."
 msgstr ""
-"Yelp помага да откриете необходимата документация с интерактивно търсене и запазване "
-"на отметки."
+"Yelp помага да откриете необходимата документация с интерактивно търсене и "
+"запазване на отметки."
 
 #: data/org.gnome.Yelp.metainfo.xml.in:30
 msgid ""
-"It also has an editor mode, which shows editorial comments and revision statuses when "
-"editing Mallard documents."
+"It also has an editor mode, which shows editorial comments and revision "
+"statuses when editing Mallard documents."
 msgstr ""
-"Има и режим на редактиране, който ви показва коментарите и ревизиите при промяната на "
-"документи във формат Mallard."
+"Има и режим на редактиране, който ви показва коментарите и ревизиите при "
+"промяната на документи във формат Mallard."
 
 #: data/org.gnome.Yelp.metainfo.xml.in:37
 msgid "Main window"
@@ -97,7 +97,6 @@ msgstr "Страницата „%s“ не е открита в документ
 
 #: libyelp/yelp-docbook-document.c:337 libyelp/yelp-info-document.c:357
 #: libyelp/yelp-man-document.c:335
-#, c-format
 msgid "The file does not exist."
 msgstr "Файлът не съществува."
 
@@ -109,17 +108,20 @@ msgstr "Файлът „%s“ не съществува."
 
 #: libyelp/yelp-docbook-document.c:365
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed XML document."
-msgstr "Файлът „%s“ не може да бъде анализиран, защото не е правилен документ на XML."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed XML "
+"document."
+msgstr ""
+"Файлът „%s“ не може да се анализира, защото не е правилен документ на XML."
 
 #: libyelp/yelp-docbook-document.c:378
 #, c-format
 msgid ""
-"The file ‘%s’ could not be parsed because one or more of its included files is not a "
-"well-formed XML document."
+"The file ‘%s’ could not be parsed because one or more of its included files "
+"is not a well-formed XML document."
 msgstr ""
-"Файлът „%s“ не може да бъде анализиран, защото поне един от файловете включени в него "
-"не е правилен XML."
+"Файлът „%s“ не може да се анализира, защото поне един от файловете включени "
+"в него не е правилен XML."
 
 #: libyelp/yelp-docbook-document.c:813
 msgid "Unknown"
@@ -141,7 +143,6 @@ msgid "No matching help pages found."
 msgstr "Няма съвпадащи страници в помощта."
 
 #: libyelp/yelp-error.c:35
-#, c-format
 msgid "An unknown error occurred."
 msgstr "Възникна неизвестна грешка."
 
@@ -151,8 +152,10 @@ msgstr "Всички документи от помощта"
 
 #: libyelp/yelp-info-document.c:382
 #, c-format
-msgid "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr "Файлът „%s“ не може да бъде анализиран, защото е неправилна страница от info."
+msgid ""
+"The file ‘%s’ could not be parsed because it is not a well-formed info page."
+msgstr ""
+"Файлът „%s“ не може да се анализира, защото е неправилна страница от info."
 
 #: libyelp/yelp-mallard-document.c:354
 #, c-format
@@ -178,23 +181,22 @@ msgid "The URI ‘%s’ does not point to a valid page."
 msgstr "Адресът „%s“ сочи към неправилна страница."
 
 #: libyelp/yelp-view.c:820 libyelp/yelp-view.c:2104
-#, c-format
 msgid "The URI does not point to a valid page."
 msgstr "Адресът не сочи към правилна страница."
 
 #: libyelp/yelp-view.c:825 libyelp/yelp-view.c:2110
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "Адресът „%s“ не може да бъде обработен."
+msgstr "Адресът „%s“ не може да се обработи."
 
 #: libyelp/yelp-view.c:830
-#, c-format
 msgid "Unknown Error."
 msgstr "Непозната грешка."
 
 #: libyelp/yelp-view.c:967
 msgid "You do not have PackageKit. Package install links require PackageKit."
-msgstr "Пакетът „PackageKit“ не е инсталиран, а връзките за инсталиране го изискват."
+msgstr ""
+"Пакетът „PackageKit“ не е инсталиран, а връзките за инсталиране го изискват."
 
 #: libyelp/yelp-view.c:972
 msgid "Package Install Link Error"
@@ -207,7 +209,7 @@ msgstr "_Затваряне"
 
 #: libyelp/yelp-view.c:1171
 msgid "Failed to Save Image"
-msgstr "Изображението не може да бъде запазено"
+msgstr "Изображението не може да се запази"
 
 #: libyelp/yelp-view.c:1230
 msgid "Save Image"
@@ -215,7 +217,7 @@ msgstr "Запазване на изображението"
 
 #: libyelp/yelp-view.c:1305 libyelp/yelp-view.c:1315
 msgid "Failed to Save Code"
-msgstr "Изходният код не може да бъде запазен"
+msgstr "Изходният код не може да се запази"
 
 #: libyelp/yelp-view.c:1350
 msgid "Save Code"
@@ -276,7 +278,6 @@ msgid "Could not load a document for ‘%s’"
 msgstr "Неуспешно зареждане на документ за „%s“"
 
 #: libyelp/yelp-view.c:1859
-#, c-format
 msgid "Could not load a document"
 msgstr "Неуспешно зареждане на документ"
 
@@ -307,7 +308,7 @@ msgstr "Помощ за GNOME"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: org.gnome.Yelp.desktop.in:5
 msgid "documentation;information;manual;help;"
-msgstr "documentation;information;manual;help;документация;информация;ръководство;помощ;"
+msgstr "документация;информация;ръководство;помощ;documentation;information;manual;help;"
 
 #: src/yelp-application.c:57
 msgid "Turn on editor mode"
@@ -328,11 +329,12 @@ msgstr "Търсене на „%s“"
 #: src/yelp-window.c:1172
 msgid "translator-credits"
 msgstr ""
-"Twlvnn Kraftwerk &lt;<a href='mailto:kraft_werk@tutanota.com'>kraft_werk@tutanota.com</"
-"a>&gt;\n"
+"Twlvnn Kraftwerk &lt;<a "
+"href='mailto:kraft_werk@tutanota.com'>kraft_werk@tutanota.com</a>&gt;\n"
 "\n"
 "Проектът за превод на GNOME има нужда от подкрепа.\n"
-"Научете повече за нас на <a href='https://fsa-bg.org/project/gtp'>уеб сайта</a> ни.\n"
+"Научете повече за нас на <a href='https://fsa-bg.org/project/gtp'>уеб сайта</"
+"a> ни.\n"
 "Докладвайте за грешки в превода в <a href='https://fsa-bg.org/project/gtp/"
 "newticket'>съответния раздел</a>."
 
@@ -419,9 +421,3 @@ msgstr "Добавяне на отметка"
 #: src/yelp-window.ui:335
 msgid "Remove Bookmark"
 msgstr "Премахване на отметката"
-
-#~ msgid "GNOME Help"
-#~ msgstr "Помощ за GNOME"
-
-#~ msgid "No bookmarks"
-#~ msgstr "Липсват отметки"
