@@ -788,7 +788,10 @@ resolve_ghelp_uri (YelpUri *uri)
         gchar *path;
 
         path = g_build_filename ("/", slash, NULL);
-        if (g_file_test (path, G_FILE_TEST_EXISTS)) {
+        if (g_str_has_prefix (path, "/proc")) {
+            priv->tmptype = YELP_URI_DOCUMENT_TYPE_ERROR;
+        }
+        else if (g_file_test (path, G_FILE_TEST_EXISTS)) {
             priv->gfile = g_file_new_for_path (path);
             resolve_gfile (uri, query, hash);
         } else {
