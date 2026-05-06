@@ -73,6 +73,10 @@ web_page_send_request (WebKitWebPage     *web_page,
     const gchar *resource_uri = webkit_uri_request_get_uri (request);
     gchar *yelp_uri, *file_path;
 
+    /* Don't allow loading external resources at all, for security */
+    if (g_str_has_prefix (resource_uri, "http://") || g_str_has_prefix (resource_uri, "https://"))
+        return TRUE;
+
     if (!current_uri)
         return FALSE;
 
