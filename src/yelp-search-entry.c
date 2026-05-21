@@ -24,7 +24,6 @@
 #include <config.h>
 #endif
 
-#include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include <gio/gio.h>
