@@ -64,6 +64,8 @@ yelp_bz2_decompressor_constructed (GObject *object)
     YelpBz2Decompressor *decompressor;
     int res;
 
+    G_OBJECT_CLASS (yelp_bz2_decompressor_parent_class)->constructed (object);
+
     decompressor = YELP_BZ2_DECOMPRESSOR (object);
 
     res = BZ2_bzDecompressInit (&decompressor->bzstream, 0, FALSE);

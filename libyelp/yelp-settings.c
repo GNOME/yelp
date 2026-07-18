@@ -187,6 +187,8 @@ yelp_settings_constructed (GObject *object)
     gchar *os_release = NULL;
     const gchar *desktop;
 
+    G_OBJECT_CLASS (yelp_settings_parent_class)->constructed (object);
+
     yelp_settings_set_if_token (settings, "action:install");
 
     g_file_get_contents ("/etc/os-release", &os_release, NULL, NULL);

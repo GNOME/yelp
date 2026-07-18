@@ -362,6 +362,8 @@ search_entry_constructed (GObject *object)
     YelpSearchEntryPrivate *priv =
         yelp_search_entry_get_instance_private (YELP_SEARCH_ENTRY (object));
 
+    G_OBJECT_CLASS (yelp_search_entry_parent_class)->constructed (object);
+
     g_signal_connect (priv->view, "loaded", G_CALLBACK (view_loaded), object);
 }
 

@@ -101,6 +101,8 @@ yelp_sqlite_storage_constructed (GObject *object)
     YelpSqliteStoragePrivate *priv =
         yelp_sqlite_storage_get_instance_private (YELP_SQLITE_STORAGE (object));
 
+    G_OBJECT_CLASS (yelp_sqlite_storage_parent_class)->constructed (object);
+
     if (priv->filename != NULL)
         status = sqlite3_open (priv->filename, &(priv->db));
     else

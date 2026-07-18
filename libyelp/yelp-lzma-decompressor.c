@@ -69,6 +69,8 @@ yelp_lzma_decompressor_constructed (GObject *object)
     lzma_stream tmp = LZMA_STREAM_INIT;
     lzma_ret res;
 
+    G_OBJECT_CLASS (yelp_lzma_decompressor_parent_class)->constructed (object);
+
     decompressor = YELP_LZMA_DECOMPRESSOR (object);
 
     decompressor->lzmastream = tmp;
