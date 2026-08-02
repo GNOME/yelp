@@ -10,21 +10,23 @@
 # Piotr Drąg <piotrdrag@gmail.com>, 2011-2025.
 # Paweł Żołnowski <pawel@zolnowski.name>, 2014.
 # Aviary.pl <community-poland@mozilla.org>, 2006-2025.
+# Victoria Niedzielska <victorian@gnome.org>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: yelp\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues/\n"
-"POT-Creation-Date: 2025-08-19 20:48+0000\n"
-"PO-Revision-Date: 2025-08-27 13:52+0200\n"
-"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish <community-poland@mozilla.org>\n"
+"POT-Creation-Date: 2026-07-02 13:04+0000\n"
+"PO-Revision-Date: 2026-08-02 12:43+0200\n"
+"Last-Translator: Victoria Niedzielska <victorian@gnome.org>\n"
+"Language-Team: Polish <https://l10n.gnome.org/teams/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #. (itstool) path: msg/msgstr
 #. ID: install.tooltip
@@ -40,16 +42,16 @@ msgstr ""
 msgid "Install <string/>"
 msgstr "Zainstaluj „<string/>”"
 
-#: data/org.gnome.Yelp.metainfo.xml.in:19 org.gnome.Yelp.desktop.in:2
-#: src/yelp-application.c:307 src/yelp-window.c:1112 src/yelp-window.c:1163
+#: data/org.gnome.Yelp.metainfo.xml.in:24 org.gnome.Yelp.desktop.in:2
+#: src/yelp-application.c:307 src/yelp-window.c:1111 src/yelp-window.c:1162
 msgid "Help"
 msgstr "Pomoc"
 
-#: data/org.gnome.Yelp.metainfo.xml.in:20
+#: data/org.gnome.Yelp.metainfo.xml.in:25
 msgid "Help viewer for GNOME"
 msgstr "Przeglądarka pomocy dla GNOME"
 
-#: data/org.gnome.Yelp.metainfo.xml.in:22
+#: data/org.gnome.Yelp.metainfo.xml.in:27
 msgid ""
 "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
 "also display DocBook, info, man, and HTML documentation."
@@ -57,7 +59,7 @@ msgstr ""
 "Yelp to przeglądarka pomocy GNOME. To domyślna przeglądarka formatu Mallard, "
 "ale może także wyświetlać dokumentację w formatach DocBook, info, man i HTML."
 
-#: data/org.gnome.Yelp.metainfo.xml.in:26
+#: data/org.gnome.Yelp.metainfo.xml.in:31
 msgid ""
 "It makes it easy to find the documentation you need, with interactive search "
 "and bookmarks."
@@ -65,7 +67,7 @@ msgstr ""
 "Ułatwia znajdowanie potrzebnej dokumentacji za pomocą interaktywnego "
 "wyszukiwania i zakładek."
 
-#: data/org.gnome.Yelp.metainfo.xml.in:30
+#: data/org.gnome.Yelp.metainfo.xml.in:35
 msgid ""
 "It also has an editor mode, which shows editorial comments and revision "
 "statuses when editing Mallard documents."
@@ -73,11 +75,12 @@ msgstr ""
 "Ma także tryb redaktora, który wyświetla komentarze redakcyjne i stany "
 "wersji podczas redagowania dokumentów w formacie Mallard."
 
-#: data/org.gnome.Yelp.metainfo.xml.in:37
+#: data/org.gnome.Yelp.metainfo.xml.in:42
 msgid "Main window"
 msgstr "Główne okno"
 
-#: data/org.gnome.Yelp.metainfo.xml.in:56 src/yelp-window.c:1168
+#: data/org.gnome.Yelp.metainfo.xml.in:61
+#: data/org.gnome.Yelp.metainfo.xml.in:63 src/yelp-window.c:1167
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
@@ -316,21 +319,21 @@ msgstr "dokumentacja;informacje;podręcznik;przewodnik;manual;instrukcja;pomoc;w
 
 #: src/yelp-application.c:57
 msgid "Turn on editor mode"
-msgstr "Włącza tryb redaktora"
+msgstr "Włącz tryb redaktora"
 
 #. Title is set dynamically
-#: src/yelp-search-entry.c:347
+#: src/yelp-search-entry.c:346
 msgid "Browse all search results"
 msgstr "Przeglądaj wszystkie wyniki wyszukiwania"
 
 #. Update label on the "Search for X" result
-#: src/yelp-search-entry.c:567
+#: src/yelp-search-entry.c:566
 #, c-format
 msgid "Search for “%s”"
 msgstr "Wyszukaj „%s”"
 
 #. TRANSLATORS Credit yourself here. Appears in about dialog.
-#: src/yelp-window.c:1172
+#: src/yelp-window.c:1171
 msgid "translator-credits"
 msgstr ""
 "Zbigniew Chyla <chyla@alice.ci.pwr.wroc.pl>, 2002-2003\n"
@@ -341,7 +344,8 @@ msgstr ""
 "Piotr Zaryk <pzaryk@aviary.pl>, 2008\n"
 "Piotr Drąg <piotrdrag@gmail.com>, 2011-2025\n"
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014\n"
-"Aviary.pl <community-poland@mozilla.org>, 2006-2025"
+"Aviary.pl <community-poland@mozilla.org>, 2006-2025\n"
+"Victoria Niedzielska <victorian@gnome.org>, 2026"
 
 #: src/yelp-window.ui:9
 msgid "New Window"
@@ -369,7 +373,7 @@ msgstr "Cała pomoc"
 
 #: src/yelp-window.ui:44
 msgid "About Help"
-msgstr "O programie"
+msgstr "O aplikacji"
 
 #: src/yelp-window.ui:78 src/yelp-window.ui:218
 msgid "Back"
@@ -385,7 +389,7 @@ msgstr "Menu"
 
 #: src/yelp-window.ui:105
 msgid "Search (Ctrl+S)"
-msgstr "Wyszukuje (Ctrl+S)"
+msgstr "Wyszukaj (Ctrl+S)"
 
 #: src/yelp-window.ui:113
 msgid "Bookmarks"
@@ -393,7 +397,7 @@ msgstr "Zakładki"
 
 #: src/yelp-window.ui:153
 msgid "Search in page…"
-msgstr "Wyszukiwanie na stronie…"
+msgstr "Wyszukaj na stronie…"
 
 #: src/yelp-window.ui:161
 msgid "Previous"
@@ -405,19 +409,19 @@ msgstr "Następny"
 
 #: src/yelp-window.ui:185
 msgid "Close Search"
-msgstr "Zamyka wyszukiwanie"
+msgstr "Zamknij wyszukiwanie"
 
 #: src/yelp-window.ui:249
 msgid "Shrink Text"
-msgstr "Pomniejsza tekst"
+msgstr "Pomniejsz tekst"
 
 #: src/yelp-window.ui:260
 msgid "Reset Size"
-msgstr "Oryginalny rozmiar"
+msgstr "Przywróć zwykły rozmiar tekstu"
 
 #: src/yelp-window.ui:277
 msgid "Enlarge Text"
-msgstr "Powiększa tekst"
+msgstr "Powiększ tekst"
 
 #: src/yelp-window.ui:324
 msgid "Add Bookmark"
