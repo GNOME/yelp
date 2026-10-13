@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: nn\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/yelp/issues/\n"
 "POT-Creation-Date: 2026-08-11 22:02+0000\n"
-"PO-Revision-Date: 2026-09-11 10:35+0200\n"
+"PO-Revision-Date: 2026-10-12 12:00+0200\n"
 "Last-Translator: Roy-Magne Mo <rmo@sunnmore.net>\n"
 "Language-Team: Norwegian Nynorsk <i18n-nn@lister.ping.uio.no>\n"
 "Language: nn\n"
@@ -47,15 +47,15 @@ msgid ""
 "Yelp is the GNOME help viewer. It is the default Mallard viewer, but it can "
 "also display DocBook, info, man, and HTML documentation."
 msgstr ""
-"Yelp er GNOME-hjelpevisaren. Det er standard Mallard-visaren, men det kan også "
-"vise DocBook, info, man og HTML-dokumentasjon."
+"Yelp er hjelpevisaren i GNOME. Han er standardvisaren for Mallard, men han "
+"kan òg vise DocBook-, info-, man- og HTML-dokumentasjon."
 
 #: data/org.gnome.Yelp.metainfo.xml.in:31
 msgid ""
 "It makes it easy to find the documentation you need, with interactive search "
 "and bookmarks."
 msgstr ""
-"Det gjer det lett å finne dokumentasjonen du treng, med interaktivt søk og "
+"Han gjer det lett å finne dokumentasjonen du treng, med interaktivt søk og "
 "bokmerke."
 
 #: data/org.gnome.Yelp.metainfo.xml.in:35
@@ -63,7 +63,7 @@ msgid ""
 "It also has an editor mode, which shows editorial comments and revision "
 "statuses when editing Mallard documents."
 msgstr ""
-"Det har òg ein redigeringstilstand, som viser redigeringkommentarar og "
+"Han har òg ein redigeringstilstand, som viser redigeringskommentarar og "
 "revisjonsstatusar når du redigerer Mallard-dokument."
 
 #: data/org.gnome.Yelp.metainfo.xml.in:42
@@ -107,8 +107,7 @@ msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed XML "
 "document."
 msgstr ""
-"Fila «%s» kunne ikkje lesast fordi den ikkje er eit korrekt utforma XML-"
-"dokument."
+"Fila «%s» kunne ikkje tolkast fordi ho ikkje er eit velforma XML-dokument."
 
 #: libyelp/yelp-docbook-document.c:378
 #, c-format
@@ -116,8 +115,8 @@ msgid ""
 "The file ‘%s’ could not be parsed because one or more of its included files "
 "is not a well-formed XML document."
 msgstr ""
-"Fila «%s» kunne ikkje tolkast fordi den eller ein inkludert fil er ikkje "
-"korrekt utforma XML."
+"Fila «%s» kunne ikkje tolkast fordi ei eller fleire av dei inkluderte filene"
+" ikkje er velforma XML-dokument."
 
 #
 #: libyelp/yelp-docbook-document.c:813
@@ -137,22 +136,21 @@ msgstr "Søkjeresultat for «%s»"
 
 #: libyelp/yelp-document.c:902
 msgid "No matching help pages found."
-msgstr "Ingen samsvarande hjelpesider funne."
+msgstr "Fann ingen samsvarande hjelpesider."
 
 #: libyelp/yelp-error.c:35
 msgid "An unknown error occurred."
-msgstr "Ein ukjend feil oppstod."
+msgstr "Det oppstod ein ukjend feil."
 
 #: libyelp/yelp-help-list.c:539
 msgid "All Help Documents"
-msgstr "All hjelp-dokumentasjon"
+msgstr "All hjelpedokumentasjon"
 
 #: libyelp/yelp-info-document.c:382
 #, c-format
 msgid ""
 "The file ‘%s’ could not be parsed because it is not a well-formed info page."
-msgstr ""
-"Fila «%s» kunne ikkje tolkast fordi den ikkje er ei korrekt utforma info-side."
+msgstr "Fila «%s» kunne ikkje tolkast fordi ho ikkje er ei velforma infoside."
 
 #: libyelp/yelp-mallard-document.c:354
 #, c-format
@@ -167,11 +165,11 @@ msgstr "XSLT-stilarket «%s» manglar eller er ikkje gyldig."
 #
 #: libyelp/yelp-transform.c:528
 msgid "No href attribute found on yelp:document\n"
-msgstr "Inga href-attributt funne på yelp:document\n"
+msgstr "Fann ikkje href-attributtet på yelp:document\n"
 
 #: libyelp/yelp-transform.c:543
 msgid "Out of memory"
-msgstr "Tom for minne"
+msgstr "Tomt for minne"
 
 #: libyelp/yelp-view.c:814 libyelp/yelp-view.c:2098
 #, c-format
@@ -185,7 +183,7 @@ msgstr "URI-en peikar ikkje til ei gyldig side."
 #: libyelp/yelp-view.c:825 libyelp/yelp-view.c:2110
 #, c-format
 msgid "The URI ‘%s’ could not be parsed."
-msgstr "URI-en «%s» kunne ikkje analyserast."
+msgstr "URI-en «%s» kunne ikkje tolkast."
 
 #
 #: libyelp/yelp-view.c:830
@@ -198,25 +196,25 @@ msgstr "Du har ikkje PackageKit. Pakkeinstallasjonslenkjer krev PackageKit."
 
 #: libyelp/yelp-view.c:972
 msgid "Package Install Link Error"
-msgstr "Feil ved installasjon av pakke"
+msgstr "Feil i lenkje for pakkeinstallasjon"
 
 #: libyelp/yelp-view.c:973 libyelp/yelp-view.c:1172 libyelp/yelp-view.c:1306
 #: libyelp/yelp-view.c:1316
 msgid "_Close"
-msgstr "_Lat att"
+msgstr "_Lukk"
 
 #
 #: libyelp/yelp-view.c:1171
 msgid "Failed to Save Image"
-msgstr "Mislukkast i å lagra bilete"
+msgstr "Klarte ikkje lagre bilete"
 
 #: libyelp/yelp-view.c:1230
 msgid "Save Image"
-msgstr "Lagra bilete"
+msgstr "Lagre bilete"
 
 #: libyelp/yelp-view.c:1305 libyelp/yelp-view.c:1315
 msgid "Failed to Save Code"
-msgstr "Klarteikkje lagre kode"
+msgstr "Klarte ikkje lagre kode"
 
 #: libyelp/yelp-view.c:1350
 msgid "Save Code"
@@ -237,7 +235,7 @@ msgstr "_Opne lenkje"
 
 #: libyelp/yelp-view.c:1431
 msgid "_Copy Link Location"
-msgstr "_Kopier lenkjestad"
+msgstr "_Kopier lenkjeadresse"
 
 #: libyelp/yelp-view.c:1438
 msgid "Open Link in New _Window"
@@ -306,7 +304,7 @@ msgstr "Finn pakkar som inneheld dette dokumentet"
 #
 #: org.gnome.Yelp.desktop.in:3
 msgid "Get help with GNOME"
-msgstr "Få hjelp om GNOME"
+msgstr "Få hjelp med GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: org.gnome.Yelp.desktop.in:5
@@ -1362,7 +1360,8 @@ msgstr "Fjern bokmerke"
 #~ "The file ‘%s’ could not be parsed because it is not a well-formed man "
 #~ "page."
 #~ msgstr ""
-#~ "Fila «%s» kunne ikkje tolkast fordi den ikkje er ei korrekt utforma manualside."
+#~ "Fila «%s» kunne ikkje tolkast fordi den ikkje er ei korrekt utforma "
+#~ "manualside."
 
 #~ msgid "Preparing to print"
 #~ msgstr "Gjer klar til utskrift"
@@ -1452,8 +1451,8 @@ msgstr "Fjern bokmerke"
 #~ "The TOC file could not be parsed because it is not a well-formed XML "
 #~ "document."
 #~ msgstr ""
-#~ "Innhaldsforteiknelsen kunne ikkje tolkast fordi den ikkje er eit korrekt utforma "
-#~ "XML-dokument."
+#~ "Innhaldsforteiknelsen kunne ikkje tolkast fordi den ikkje er eit korrekt "
+#~ "utforma XML-dokument."
 
 #
 #~ msgid "Invalid Stylesheet"
